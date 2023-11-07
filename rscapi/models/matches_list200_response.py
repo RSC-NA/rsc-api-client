@@ -21,7 +21,7 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
-from openapi_client.models.match_list import MatchList
+from rscapi.models.match_list import MatchList
 
 class MatchesList200Response(BaseModel):
     """

@@ -25,13 +25,13 @@ from pydantic import Field, StrictInt, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.league_player import LeaguePlayer
-from openapi_client.models.league_players_list200_response import LeaguePlayersList200Response
-from openapi_client.models.player_season_stats import PlayerSeasonStats
+from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.league_players_list200_response import LeaguePlayersList200Response
+from rscapi.models.player_season_stats import PlayerSeasonStats
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from rscapi.api_client import ApiClient
+from rscapi.api_response import ApiResponse
+from rscapi.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

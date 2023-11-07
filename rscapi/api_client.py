@@ -25,11 +25,11 @@ import tempfile
 
 from urllib.parse import quote
 
-from openapi_client.configuration import Configuration
-from openapi_client.api_response import ApiResponse
-import openapi_client.models
-from openapi_client import rest
-from openapi_client.exceptions import ApiValueError, ApiException
+from rscapi.configuration import Configuration
+from rscapi.api_response import ApiResponse
+import rscapi.models
+from rscapi import rest
+from rscapi.exceptions import ApiValueError, ApiException
 
 
 class ApiClient:
@@ -346,7 +346,7 @@ class ApiClient:
             if klass in self.NATIVE_TYPES_MAPPING:
                 klass = self.NATIVE_TYPES_MAPPING[klass]
             else:
-                klass = getattr(openapi_client.models, klass)
+                klass = getattr(rscapi.models, klass)
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)

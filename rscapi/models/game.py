@@ -21,7 +21,7 @@ import json
 
 from typing import Any, Dict, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from openapi_client.models.team import Team
+from rscapi.models.team import Team
 
 class Game(BaseModel):
     """

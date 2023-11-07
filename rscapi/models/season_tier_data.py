@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, constr
-from openapi_client.models.season_schedule import SeasonSchedule
+from rscapi.models.season_schedule import SeasonSchedule
 
 class SeasonTierData(BaseModel):
     """

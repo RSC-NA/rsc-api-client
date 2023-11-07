@@ -21,10 +21,10 @@ import json
 from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
-from openapi_client.models.league import League
-from openapi_client.models.league_player_member import LeaguePlayerMember
-from openapi_client.models.player_team import PlayerTeam
-from openapi_client.models.previous_team import PreviousTeam
+from rscapi.models.league import League
+from rscapi.models.league_player_member import LeaguePlayerMember
+from rscapi.models.player_team import PlayerTeam
+from rscapi.models.previous_team import PreviousTeam
 
 class LeaguePlayer(BaseModel):
     """

@@ -25,16 +25,16 @@ from pydantic import Field, StrictInt, StrictStr
 
 from typing import List, Optional
 
-from openapi_client.models.intent_to_play_schema import IntentToPlaySchema
-from openapi_client.models.league_player import LeaguePlayer
-from openapi_client.models.member import Member
-from openapi_client.models.members_list200_response import MembersList200Response
-from openapi_client.models.player_season_stats import PlayerSeasonStats
-from openapi_client.models.player_signup_schema import PlayerSignupSchema
+from rscapi.models.intent_to_play_schema import IntentToPlaySchema
+from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.member import Member
+from rscapi.models.members_list200_response import MembersList200Response
+from rscapi.models.player_season_stats import PlayerSeasonStats
+from rscapi.models.player_signup_schema import PlayerSignupSchema
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from rscapi.api_client import ApiClient
+from rscapi.api_response import ApiResponse
+from rscapi.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

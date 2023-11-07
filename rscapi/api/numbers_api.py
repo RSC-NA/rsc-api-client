@@ -25,11 +25,11 @@ from pydantic import Field, StrictInt, StrictStr
 
 from typing import List, Optional
 
-from openapi_client.models.player_mmr import PlayerMMR
+from rscapi.models.player_mmr import PlayerMMR
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from rscapi.api_client import ApiClient
+from rscapi.api_response import ApiResponse
+from rscapi.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

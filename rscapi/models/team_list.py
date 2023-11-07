@@ -21,7 +21,7 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictInt, conlist, constr
-from openapi_client.models.player_list import PlayerList
+from rscapi.models.player_list import PlayerList
 
 class TeamList(BaseModel):
     """

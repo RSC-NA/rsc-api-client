@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conint, conlist, constr
-from openapi_client.models.elevated_role import ElevatedRole
-from openapi_client.models.league_player import LeaguePlayer
+from rscapi.models.elevated_role import ElevatedRole
+from rscapi.models.league_player import LeaguePlayer
 
 class Member(BaseModel):
     """

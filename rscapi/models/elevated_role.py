@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, constr
-from openapi_client.models.league import League
+from rscapi.models.league import League
 
 class ElevatedRole(BaseModel):
     """

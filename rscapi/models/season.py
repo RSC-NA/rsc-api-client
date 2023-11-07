@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, conlist
-from openapi_client.models.season_league import SeasonLeague
-from openapi_client.models.season_tier_data import SeasonTierData
+from rscapi.models.season_league import SeasonLeague
+from rscapi.models.season_tier_data import SeasonTierData
 
 class Season(BaseModel):
     """

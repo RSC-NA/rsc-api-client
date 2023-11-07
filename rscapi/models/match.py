@@ -21,8 +21,8 @@ import json
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr, constr, validator
-from openapi_client.models.match_results import MatchResults
-from openapi_client.models.team import Team
+from rscapi.models.match_results import MatchResults
+from rscapi.models.team import Team
 
 class Match(BaseModel):
     """

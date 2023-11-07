@@ -21,7 +21,7 @@ import json
 
 from typing import Any, Dict, Optional
 from pydantic import BaseModel, StrictBool, StrictInt, StrictStr, constr
-from openapi_client.models.franchise_gm import FranchiseGM
+from rscapi.models.franchise_gm import FranchiseGM
 
 class FranchiseList(BaseModel):
     """

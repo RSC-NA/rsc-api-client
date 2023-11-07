@@ -21,7 +21,7 @@ import json
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr, conint, constr, validator
-from openapi_client.models.tracker_mmr import TrackerMMR
+from rscapi.models.tracker_mmr import TrackerMMR
 
 class PlayerMMR(BaseModel):
     """

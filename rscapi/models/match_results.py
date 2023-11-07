@@ -21,7 +21,7 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, conlist, constr
-from openapi_client.models.game import Game
+from rscapi.models.game import Game
 
 class MatchResults(BaseModel):
     """

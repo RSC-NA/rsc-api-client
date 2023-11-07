@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, constr
-from openapi_client.models.league_data import LeagueData
+from rscapi.models.league_data import LeagueData
 
 class League(BaseModel):
     """

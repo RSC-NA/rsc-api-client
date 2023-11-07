@@ -20,12 +20,12 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing import overload, Optional, Union, Awaitable
 
-from openapi_client.models.cut_a_player_from_a_league import CutAPlayerFromALeague
-from openapi_client.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
+from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from rscapi.api_client import ApiClient
+from rscapi.api_response import ApiResponse
+from rscapi.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

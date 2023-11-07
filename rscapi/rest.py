@@ -22,7 +22,7 @@ import ssl
 import aiohttp
 from urllib.parse import urlencode, quote_plus
 
-from openapi_client.exceptions import ApiException, ApiValueError
+from rscapi.exceptions import ApiException, ApiValueError
 
 logger = logging.getLogger(__name__)
 

@@ -25,13 +25,13 @@ from pydantic import Field, StrictInt
 
 from typing import List
 
-from openapi_client.models.franchise_standings import FranchiseStandings
-from openapi_client.models.schedule_ingest_request_body import ScheduleIngestRequestBody
-from openapi_client.models.season import Season
+from rscapi.models.franchise_standings import FranchiseStandings
+from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
+from rscapi.models.season import Season
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from rscapi.api_client import ApiClient
+from rscapi.api_response import ApiResponse
+from rscapi.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

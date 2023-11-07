@@ -21,7 +21,7 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
-from openapi_client.models.member import Member
+from rscapi.models.member import Member
 
 class MembersList200Response(BaseModel):
     """

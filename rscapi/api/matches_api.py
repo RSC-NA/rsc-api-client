@@ -25,14 +25,14 @@ from pydantic import Field, StrictInt, StrictStr
 
 from typing import List, Optional
 
-from openapi_client.models.match import Match
-from openapi_client.models.match_list import MatchList
-from openapi_client.models.match_results import MatchResults
-from openapi_client.models.matches_list200_response import MatchesList200Response
+from rscapi.models.match import Match
+from rscapi.models.match_list import MatchList
+from rscapi.models.match_results import MatchResults
+from rscapi.models.matches_list200_response import MatchesList200Response
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from rscapi.api_client import ApiClient
+from rscapi.api_response import ApiResponse
+from rscapi.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
