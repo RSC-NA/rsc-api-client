@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.franchise_list import FranchiseList  # noqa: E501
+from rscapi.models.franchise_list import FranchiseList  # noqa: E501
 
 class TestFranchiseList(unittest.TestCase):
     """FranchiseList unit test stubs"""
@@ -40,12 +40,12 @@ class TestFranchiseList(unittest.TestCase):
                 id = 56,
                 name = '0',
                 prefix = '0',
-                gm = openapi_client.models.franchise_gm.FranchiseGM(
+                gm = rscapi.models.franchise_gm.FranchiseGM(
                     rsc_name = '0', ),
                 league = 56,
-                tiers = openapi_client.models.tiers.Tiers(),
+                tiers = rscapi.models.tiers.Tiers(),
                 active = True,
-                teams = openapi_client.models.teams.Teams(),
+                teams = rscapi.models.teams.Teams(),
                 logo = ''
             )
         else:

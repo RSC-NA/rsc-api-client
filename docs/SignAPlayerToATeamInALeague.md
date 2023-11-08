@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
 
 # TODO update the JSON string below
 json = "{}"

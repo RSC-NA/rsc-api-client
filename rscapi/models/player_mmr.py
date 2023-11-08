@@ -29,15 +29,15 @@ class PlayerMMR(BaseModel):
     """
     date_pulled: datetime = Field(...)
     tracker_link: TrackerMMR = Field(...)
-    threes_rating: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    threes_season_peak: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    threes_games_played: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    twos_rating: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    twos_season_peak: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    twos_games_played: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    ones_rating: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    ones_season_peak: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    ones_games_played: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    threes_rating: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    threes_season_peak: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    threes_games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    twos_rating: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    twos_season_peak: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    twos_games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    ones_rating: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    ones_season_peak: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    ones_games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     notes: Optional[constr(strict=True, min_length=1)] = None
     member: Optional[constr(strict=True, min_length=1)] = None
     type: Optional[StrictStr] = None

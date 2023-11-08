@@ -7,12 +7,11 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | [optional] [readonly] 
 **franchise** | **str** |  | 
-**players** | [**List[PlayerList]**](PlayerList.md) |  | 
 
 ## Example
 
 ```python
-from openapi_client.models.team_list import TeamList
+from rscapi.models.team_list import TeamList
 
 # TODO update the JSON string below
 json = "{}"

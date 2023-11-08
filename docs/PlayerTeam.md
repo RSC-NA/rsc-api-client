@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.player_team import PlayerTeam
+from rscapi.models.player_team import PlayerTeam
 
 # TODO update the JSON string below
 json = "{}"

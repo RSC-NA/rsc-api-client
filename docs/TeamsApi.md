@@ -1,4 +1,4 @@
-# openapi_client.TeamsApi
+# rscapi.TeamsApi
 
 All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
@@ -25,14 +25,14 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.team_list import TeamList
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.team_list import TeamList
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -48,9 +48,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TeamsApi(api_client)
+    api_instance = rscapi.TeamsApi(api_client)
     seasons = 'seasons_example' # str | seasons (optional)
     franchise = 'franchise_example' # str | franchise (optional)
     name = 'name_example' # str | name (optional)
@@ -110,14 +110,14 @@ Get a match details for a specific day for the given team
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.match import Match
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.match import Match
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -133,10 +133,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    api_instance = rscapi.TeamsApi(api_client)
+    id = 'id_example' # str | 
     day = 56 # int | Match day to find
     preseason = 56 # int | 1 if this is a preseason match. (optional)
 
@@ -154,7 +154,7 @@ async with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **str**|  | 
  **day** | **int**| Match day to find | 
  **preseason** | **int**| 1 if this is a preseason match. | [optional] 
 
@@ -191,14 +191,14 @@ Get the next match for a given team
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.match import Match
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.match import Match
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -214,10 +214,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    api_instance = rscapi.TeamsApi(api_client)
+    id = 'id_example' # str | 
 
     try:
         api_response = await api_instance.teams_next_match(id)
@@ -233,7 +233,7 @@ async with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **str**|  | 
 
 ### Return type
 
@@ -268,14 +268,14 @@ Get the players for a given team.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.player import Player
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.player import Player
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -291,10 +291,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    api_instance = rscapi.TeamsApi(api_client)
+    id = 'id_example' # str | 
 
     try:
         api_response = await api_instance.teams_players(id)
@@ -310,7 +310,7 @@ async with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **str**|  | 
 
 ### Return type
 
@@ -345,14 +345,14 @@ Get postseason stats for a given team. (Default: Current Season)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.team_season_stats import TeamSeasonStats
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.team_season_stats import TeamSeasonStats
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -368,10 +368,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    api_instance = rscapi.TeamsApi(api_client)
+    id = 'id_example' # str | 
     season = 56 # int | Specific season number to get stats for. (optional)
 
     try:
@@ -388,7 +388,7 @@ async with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **str**|  | 
  **season** | **int**| Specific season number to get stats for. | [optional] 
 
 ### Return type
@@ -422,14 +422,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.team import Team
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.team import Team
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -445,10 +445,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    api_instance = rscapi.TeamsApi(api_client)
+    id = 'id_example' # str | 
 
     try:
         api_response = await api_instance.teams_read(id)
@@ -464,7 +464,7 @@ async with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **str**|  | 
 
 ### Return type
 
@@ -499,14 +499,14 @@ Get all matches for a given team.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.match import Match
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.match import Match
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -522,10 +522,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    api_instance = rscapi.TeamsApi(api_client)
+    id = 'id_example' # str | 
     preseason = True # bool | If true, get preseason matches (Default: Regular) (optional)
     season = 56 # int | Season number to get matches for (Default: Current Season) (optional)
 
@@ -543,7 +543,7 @@ async with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **str**|  | 
  **preseason** | **bool**| If true, get preseason matches (Default: Regular) | [optional] 
  **season** | **int**| Season number to get matches for (Default: Current Season) | [optional] 
 
@@ -580,14 +580,14 @@ Get regular season stats for a given team. (Default: Current Season)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.team_season_stats import TeamSeasonStats
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.team_season_stats import TeamSeasonStats
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -603,10 +603,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    api_instance = rscapi.TeamsApi(api_client)
+    id = 'id_example' # str | 
     season = 56 # int | Specific season number to get stats for. (optional)
 
     try:
@@ -623,7 +623,7 @@ async with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **str**|  | 
  **season** | **int**| Specific season number to get stats for. | [optional] 
 
 ### Return type

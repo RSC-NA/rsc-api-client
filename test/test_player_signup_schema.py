@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.player_signup_schema import PlayerSignupSchema  # noqa: E501
+from rscapi.models.player_signup_schema import PlayerSignupSchema  # noqa: E501
 
 class TestPlayerSignupSchema(unittest.TestCase):
     """PlayerSignupSchema unit test stubs"""

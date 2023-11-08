@@ -1,4 +1,4 @@
-# openapi_client.TrackerLinksApi
+# rscapi.TrackerLinksApi
 
 All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
@@ -26,14 +26,14 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.tracker_link import TrackerLink
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.tracker_link import TrackerLink
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -49,10 +49,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
-    data = openapi_client.TrackerLink() # TrackerLink | 
+    api_instance = rscapi.TrackerLinksApi(api_client)
+    data = rscapi.TrackerLink() # TrackerLink | 
 
     try:
         api_response = await api_instance.tracker_links_create(data)
@@ -101,13 +101,13 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -123,9 +123,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
+    api_instance = rscapi.TrackerLinksApi(api_client)
     id = 56 # int | A unique integer value identifying this tracker links.
 
     try:
@@ -173,14 +173,14 @@ void (empty response body)
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -196,10 +196,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
-    data = openapi_client.TrackerLinkInvalidateObject() # TrackerLinkInvalidateObject | 
+    api_instance = rscapi.TrackerLinksApi(api_client)
+    data = rscapi.TrackerLinkInvalidateObject() # TrackerLinkInvalidateObject | 
 
     try:
         api_response = await api_instance.tracker_links_invalidate_links(data)
@@ -248,14 +248,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.tracker_link import TrackerLink
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.tracker_link import TrackerLink
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -271,9 +271,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
+    api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | status (optional)
     member = 'member_example' # str | member (optional)
 
@@ -325,14 +325,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.tracker_link import TrackerLink
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.tracker_link import TrackerLink
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -348,9 +348,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
+    api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | Tracker Link Status (Pulled, Failed, etc.) (optional)
     member = 'member_example' # str | member (optional)
 
@@ -402,14 +402,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.tracker_link import TrackerLink
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.tracker_link import TrackerLink
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -425,9 +425,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
+    api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | status (optional)
     member = 'member_example' # str | member (optional)
     limit = 56 # int | Number of tracker links to grab (Default: 1, Max:25) (optional)
@@ -481,14 +481,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.tracker_link import TrackerLink
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.tracker_link import TrackerLink
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -504,11 +504,11 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
+    api_instance = rscapi.TrackerLinksApi(api_client)
     id = 56 # int | A unique integer value identifying this tracker links.
-    data = openapi_client.TrackerLink() # TrackerLink | 
+    data = rscapi.TrackerLink() # TrackerLink | 
 
     try:
         api_response = await api_instance.tracker_links_partial_update(id, data)
@@ -558,14 +558,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.tracker_link import TrackerLink
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.tracker_link import TrackerLink
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -581,9 +581,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
+    api_instance = rscapi.TrackerLinksApi(api_client)
     id = 56 # int | A unique integer value identifying this tracker links.
 
     try:
@@ -633,14 +633,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.tracker_link import TrackerLink
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.tracker_link import TrackerLink
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -656,11 +656,11 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TrackerLinksApi(api_client)
+    api_instance = rscapi.TrackerLinksApi(api_client)
     id = 56 # int | A unique integer value identifying this tracker links.
-    data = openapi_client.TrackerLink() # TrackerLink | 
+    data = rscapi.TrackerLink() # TrackerLink | 
 
     try:
         api_response = await api_instance.tracker_links_update(id, data)

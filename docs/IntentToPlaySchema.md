@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.intent_to_play_schema import IntentToPlaySchema
+from rscapi.models.intent_to_play_schema import IntentToPlaySchema
 
 # TODO update the JSON string below
 json = "{}"

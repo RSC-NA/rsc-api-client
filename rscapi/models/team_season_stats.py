@@ -34,21 +34,21 @@ class TeamSeasonStats(BaseModel):
     goal_differential: StrictInt = Field(...)
     opponent_shooting_percentage: Union[StrictFloat, StrictInt] = Field(...)
     stats_type: Optional[StrictStr] = None
-    games_played: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    games_won: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    games_lost: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    points: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    goals: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    assists: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    saves: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    shots: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    opponent_points: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    opponent_goals: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    opponent_assists: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    opponent_saves: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    opponent_shots: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    demos_inflicted: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    demos_taken: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    games_won: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    games_lost: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    points: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    goals: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    assists: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    saves: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    shots: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    opponent_points: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    opponent_goals: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    opponent_assists: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    opponent_saves: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    opponent_shots: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    demos_inflicted: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    demos_taken: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     __properties = ["id", "team", "type", "shooting_percentage", "win_percentage", "goal_differential", "opponent_shooting_percentage", "stats_type", "games_played", "games_won", "games_lost", "points", "goals", "assists", "saves", "shots", "opponent_points", "opponent_goals", "opponent_assists", "opponent_saves", "opponent_shots", "demos_inflicted", "demos_taken"]
 
     @validator('stats_type')

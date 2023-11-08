@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.seasons_api import SeasonsApi  # noqa: E501
+from rscapi.api.seasons_api import SeasonsApi  # noqa: E501
 
 
 class TestSeasonsApi(unittest.TestCase):

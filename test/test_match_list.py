@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.match_list import MatchList  # noqa: E501
+from rscapi.models.match_list import MatchList  # noqa: E501
 
 class TestMatchList(unittest.TestCase):
     """MatchList unit test stubs"""

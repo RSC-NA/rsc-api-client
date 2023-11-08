@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.franchise_standings import FranchiseStandings  # noqa: E501
+from rscapi.models.franchise_standings import FranchiseStandings  # noqa: E501
 
 class TestFranchiseStandings(unittest.TestCase):
     """FranchiseStandings unit test stubs"""

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.previous_team import PreviousTeam  # noqa: E501
+from rscapi.models.previous_team import PreviousTeam  # noqa: E501
 
 class TestPreviousTeam(unittest.TestCase):
     """PreviousTeam unit test stubs"""

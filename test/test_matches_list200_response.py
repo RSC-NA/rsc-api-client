@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.matches_list200_response import MatchesList200Response  # noqa: E501
+from rscapi.models.matches_list200_response import MatchesList200Response  # noqa: E501
 
 class TestMatchesList200Response(unittest.TestCase):
     """MatchesList200Response unit test stubs"""
@@ -41,7 +41,7 @@ class TestMatchesList200Response(unittest.TestCase):
                 next = '',
                 previous = '',
                 results = [
-                    openapi_client.models.match_list.MatchList(
+                    rscapi.models.match_list.MatchList(
                         day = 56, 
                         date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         game_name = '0', 
@@ -58,7 +58,7 @@ class TestMatchesList200Response(unittest.TestCase):
             return MatchesList200Response(
                 count = 56,
                 results = [
-                    openapi_client.models.match_list.MatchList(
+                    rscapi.models.match_list.MatchList(
                         day = 56, 
                         date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         game_name = '0', 

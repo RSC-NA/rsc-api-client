@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.player_mmr import PlayerMMR  # noqa: E501
+from rscapi.models.player_mmr import PlayerMMR  # noqa: E501
 
 class TestPlayerMMR(unittest.TestCase):
     """PlayerMMR unit test stubs"""
@@ -38,7 +38,7 @@ class TestPlayerMMR(unittest.TestCase):
         if include_optional:
             return PlayerMMR(
                 date_pulled = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                tracker_link = openapi_client.models.tracker_mmr.TrackerMMR(
+                tracker_link = rscapi.models.tracker_mmr.TrackerMMR(
                     link = '0', ),
                 threes_rating = -9223372036854775808,
                 threes_season_peak = -9223372036854775808,
@@ -57,7 +57,7 @@ class TestPlayerMMR(unittest.TestCase):
         else:
             return PlayerMMR(
                 date_pulled = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                tracker_link = openapi_client.models.tracker_mmr.TrackerMMR(
+                tracker_link = rscapi.models.tracker_mmr.TrackerMMR(
                     link = '0', ),
         )
         """

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.member import Member  # noqa: E501
+from rscapi.models.member import Member  # noqa: E501
 
 class TestMember(unittest.TestCase):
     """Member unit test stubs"""
@@ -40,12 +40,12 @@ class TestMember(unittest.TestCase):
                 username = '0',
                 rsc_id = '',
                 elevated_roles = [
-                    openapi_client.models.elevated_role.ElevatedRole(
-                        league = openapi_client.models.league.League(
+                    rscapi.models.elevated_role.ElevatedRole(
+                        league = rscapi.models.league.League(
                             id = 56, 
                             name = '0', 
                             guild_id = 56, 
-                            league_data = openapi_client.models.league_data.LeagueData(
+                            league_data = rscapi.models.league_data.LeagueData(
                                 max_num_players = -9223372036854775808, 
                                 game_mode = '0', 
                                 match_format = -9223372036854775808, ), ), 
@@ -56,13 +56,13 @@ class TestMember(unittest.TestCase):
                         project_role = '0', )
                     ],
                 player_leagues = [
-                    openapi_client.models.league_player.LeaguePlayer(
+                    rscapi.models.league_player.LeaguePlayer(
                         id = 56, 
-                        league = openapi_client.models.league.League(
+                        league = rscapi.models.league.League(
                             id = 56, 
                             name = '0', 
                             guild_id = 56, 
-                            league_data = openapi_client.models.league_data.LeagueData(
+                            league_data = rscapi.models.league_data.LeagueData(
                                 max_num_players = -9223372036854775808, 
                                 game_mode = '0', 
                                 match_format = -9223372036854775808, ), ), 
@@ -72,17 +72,17 @@ class TestMember(unittest.TestCase):
                         base_mmr = 56, 
                         current_mmr = 56, 
                         contract_length = 56, 
-                        team = openapi_client.models.player_team.PlayerTeam(
+                        team = rscapi.models.player_team.PlayerTeam(
                             name = '0', 
                             tier = '0', ), 
                         last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         previous_teams = [
-                            openapi_client.models.previous_team.PreviousTeam(
+                            rscapi.models.previous_team.PreviousTeam(
                                 sign_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 release_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 player = '0', )
                             ], 
-                        player = openapi_client.models.league_player_member.LeaguePlayerMember(
+                        player = rscapi.models.league_player_member.LeaguePlayerMember(
                             name = '0', 
                             rsc_id = '', ), )
                     ],

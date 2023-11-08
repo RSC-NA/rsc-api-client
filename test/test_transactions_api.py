@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.transactions_api import TransactionsApi  # noqa: E501
+from rscapi.api.transactions_api import TransactionsApi  # noqa: E501
 
 
 class TestTransactionsApi(unittest.TestCase):

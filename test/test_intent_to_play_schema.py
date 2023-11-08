@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.intent_to_play_schema import IntentToPlaySchema  # noqa: E501
+from rscapi.models.intent_to_play_schema import IntentToPlaySchema  # noqa: E501
 
 class TestIntentToPlaySchema(unittest.TestCase):
     """IntentToPlaySchema unit test stubs"""

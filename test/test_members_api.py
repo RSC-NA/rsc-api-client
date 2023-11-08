@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.members_api import MembersApi  # noqa: E501
+from rscapi.api.members_api import MembersApi  # noqa: E501
 
 
 class TestMembersApi(unittest.TestCase):

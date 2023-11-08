@@ -1,4 +1,4 @@
-# openapi_client.NumbersApi
+# rscapi.NumbersApi
 
 All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
@@ -19,14 +19,14 @@ Method | HTTP request | Description
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.player_mmr import PlayerMMR
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.player_mmr import PlayerMMR
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -42,9 +42,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.NumbersApi(api_client)
+    api_instance = rscapi.NumbersApi(api_client)
     pulled = 'pulled_example' # str | pulled (optional)
     rscid = 'rscid_example' # str | rscid (optional)
 
@@ -96,14 +96,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.player_mmr import PlayerMMR
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.player_mmr import PlayerMMR
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -119,9 +119,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.NumbersApi(api_client)
+    api_instance = rscapi.NumbersApi(api_client)
     id = 56 # int | A unique integer value identifying this player mmr pull.
 
     try:

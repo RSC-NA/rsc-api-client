@@ -20,14 +20,15 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, constr
+from pydantic import BaseModel, StrictInt, constr
 
 class FranchiseGM(BaseModel):
     """
     FranchiseGM
     """
     rsc_name: Optional[constr(strict=True, min_length=1)] = None
-    __properties = ["rsc_name"]
+    discord_id: Optional[StrictInt] = None
+    __properties = ["rsc_name", "discord_id"]
 
     class Config:
         """Pydantic configuration"""
@@ -52,6 +53,7 @@ class FranchiseGM(BaseModel):
         _dict = self.dict(by_alias=True,
                           exclude={
                             "rsc_name",
+                            "discord_id",
                           },
                           exclude_none=True)
         return _dict
@@ -66,7 +68,8 @@ class FranchiseGM(BaseModel):
             return FranchiseGM.parse_obj(obj)
 
         _obj = FranchiseGM.parse_obj({
-            "rsc_name": obj.get("rsc_name")
+            "rsc_name": obj.get("rsc_name"),
+            "discord_id": obj.get("discord_id")
         })
         return _obj
 

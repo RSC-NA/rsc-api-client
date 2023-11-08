@@ -28,8 +28,8 @@ class FranchiseStandings(BaseModel):
     """
     franchise: constr(strict=True, min_length=1) = Field(...)
     gm: constr(strict=True, min_length=1) = Field(...)
-    wins: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    losses: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    wins: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    losses: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     win_percentage: Optional[Union[StrictFloat, StrictInt]] = None
     franchise_standings_rank: StrictInt = Field(...)
     __properties = ["franchise", "gm", "wins", "losses", "win_percentage", "franchise_standings_rank"]

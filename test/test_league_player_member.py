@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.league_player_member import LeaguePlayerMember  # noqa: E501
+from rscapi.models.league_player_member import LeaguePlayerMember  # noqa: E501
 
 class TestLeaguePlayerMember(unittest.TestCase):
     """LeaguePlayerMember unit test stubs"""

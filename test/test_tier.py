@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.tier import Tier  # noqa: E501
+from rscapi.models.tier import Tier  # noqa: E501
 
 class TestTier(unittest.TestCase):
     """Tier unit test stubs"""

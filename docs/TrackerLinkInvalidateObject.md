@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
+from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
 
 # TODO update the JSON string below
 json = "{}"

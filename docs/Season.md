@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.season import Season
+from rscapi.models.season import Season
 
 # TODO update the JSON string below
 json = "{}"

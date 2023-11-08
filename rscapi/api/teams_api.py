@@ -232,15 +232,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, **kwargs) -> Match:  # noqa: E501
+    async def teams_match(self, id : StrictStr, day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, **kwargs) -> Match:  # noqa: E501
         ...
 
     @overload
-    def teams_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, async_req: Optional[bool]=True, **kwargs) -> Match:  # noqa: E501
+    def teams_match(self, id : StrictStr, day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, async_req: Optional[bool]=True, **kwargs) -> Match:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[Match, Awaitable[Match]]:  # noqa: E501
+    def teams_match(self, id : StrictStr, day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[Match, Awaitable[Match]]:  # noqa: E501
         """teams_match  # noqa: E501
 
         Get a match details for a specific day for the given team  # noqa: E501
@@ -250,8 +250,8 @@ class TeamsApi:
         >>> thread = api.teams_match(id, day, preseason, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param day: Match day to find (required)
         :type day: int
         :param preseason: 1 if this is a preseason match.
@@ -276,7 +276,7 @@ class TeamsApi:
         return self.teams_match_with_http_info(id, day, preseason, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_match_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_match_with_http_info(self, id : StrictStr, day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """teams_match  # noqa: E501
 
         Get a match details for a specific day for the given team  # noqa: E501
@@ -286,8 +286,8 @@ class TeamsApi:
         >>> thread = api.teams_match_with_http_info(id, day, preseason, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param day: Match day to find (required)
         :type day: int
         :param preseason: 1 if this is a preseason match.
@@ -398,15 +398,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> Match:  # noqa: E501
+    async def teams_next_match(self, id : StrictStr, **kwargs) -> Match:  # noqa: E501
         ...
 
     @overload
-    def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=True, **kwargs) -> Match:  # noqa: E501
+    def teams_next_match(self, id : StrictStr, async_req: Optional[bool]=True, **kwargs) -> Match:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=None, **kwargs) -> Union[Match, Awaitable[Match]]:  # noqa: E501
+    def teams_next_match(self, id : StrictStr, async_req: Optional[bool]=None, **kwargs) -> Union[Match, Awaitable[Match]]:  # noqa: E501
         """teams_next_match  # noqa: E501
 
         Get the next match for a given team  # noqa: E501
@@ -416,8 +416,8 @@ class TeamsApi:
         >>> thread = api.teams_next_match(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -438,7 +438,7 @@ class TeamsApi:
         return self.teams_next_match_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_next_match_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_next_match_with_http_info(self, id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """teams_next_match  # noqa: E501
 
         Get the next match for a given team  # noqa: E501
@@ -448,8 +448,8 @@ class TeamsApi:
         >>> thread = api.teams_next_match_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -548,15 +548,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_players(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> List[Player]:  # noqa: E501
+    async def teams_players(self, id : StrictStr, **kwargs) -> List[Player]:  # noqa: E501
         ...
 
     @overload
-    def teams_players(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=True, **kwargs) -> List[Player]:  # noqa: E501
+    def teams_players(self, id : StrictStr, async_req: Optional[bool]=True, **kwargs) -> List[Player]:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_players(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=None, **kwargs) -> Union[List[Player], Awaitable[List[Player]]]:  # noqa: E501
+    def teams_players(self, id : StrictStr, async_req: Optional[bool]=None, **kwargs) -> Union[List[Player], Awaitable[List[Player]]]:  # noqa: E501
         """teams_players  # noqa: E501
 
         Get the players for a given team.  # noqa: E501
@@ -566,8 +566,8 @@ class TeamsApi:
         >>> thread = api.teams_players(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -588,7 +588,7 @@ class TeamsApi:
         return self.teams_players_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_players_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_players_with_http_info(self, id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """teams_players  # noqa: E501
 
         Get the players for a given team.  # noqa: E501
@@ -598,8 +598,8 @@ class TeamsApi:
         >>> thread = api.teams_players_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -698,15 +698,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_postseason_stats(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, **kwargs) -> TeamSeasonStats:  # noqa: E501
+    async def teams_postseason_stats(self, id : StrictStr, season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, **kwargs) -> TeamSeasonStats:  # noqa: E501
         ...
 
     @overload
-    def teams_postseason_stats(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, async_req: Optional[bool]=True, **kwargs) -> TeamSeasonStats:  # noqa: E501
+    def teams_postseason_stats(self, id : StrictStr, season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, async_req: Optional[bool]=True, **kwargs) -> TeamSeasonStats:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_postseason_stats(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[TeamSeasonStats, Awaitable[TeamSeasonStats]]:  # noqa: E501
+    def teams_postseason_stats(self, id : StrictStr, season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[TeamSeasonStats, Awaitable[TeamSeasonStats]]:  # noqa: E501
         """teams_postseason_stats  # noqa: E501
 
         Get postseason stats for a given team. (Default: Current Season)  # noqa: E501
@@ -716,8 +716,8 @@ class TeamsApi:
         >>> thread = api.teams_postseason_stats(id, season, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param season: Specific season number to get stats for.
         :type season: int
         :param async_req: Whether to execute the request asynchronously.
@@ -740,7 +740,7 @@ class TeamsApi:
         return self.teams_postseason_stats_with_http_info(id, season, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_postseason_stats_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_postseason_stats_with_http_info(self, id : StrictStr, season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """teams_postseason_stats  # noqa: E501
 
         Get postseason stats for a given team. (Default: Current Season)  # noqa: E501
@@ -750,8 +750,8 @@ class TeamsApi:
         >>> thread = api.teams_postseason_stats_with_http_info(id, season, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param season: Specific season number to get stats for.
         :type season: int
         :param async_req: Whether to execute the request asynchronously.
@@ -856,15 +856,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_read(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> Team:  # noqa: E501
+    async def teams_read(self, id : StrictStr, **kwargs) -> Team:  # noqa: E501
         ...
 
     @overload
-    def teams_read(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=True, **kwargs) -> Team:  # noqa: E501
+    def teams_read(self, id : StrictStr, async_req: Optional[bool]=True, **kwargs) -> Team:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_read(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=None, **kwargs) -> Union[Team, Awaitable[Team]]:  # noqa: E501
+    def teams_read(self, id : StrictStr, async_req: Optional[bool]=None, **kwargs) -> Union[Team, Awaitable[Team]]:  # noqa: E501
         """teams_read  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -873,8 +873,8 @@ class TeamsApi:
         >>> thread = api.teams_read(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -895,7 +895,7 @@ class TeamsApi:
         return self.teams_read_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_read_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_read_with_http_info(self, id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """teams_read  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -904,8 +904,8 @@ class TeamsApi:
         >>> thread = api.teams_read_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1004,15 +1004,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, **kwargs) -> List[Match]:  # noqa: E501
+    async def teams_season_matches(self, id : StrictStr, preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, **kwargs) -> List[Match]:  # noqa: E501
         ...
 
     @overload
-    def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, async_req: Optional[bool]=True, **kwargs) -> List[Match]:  # noqa: E501
+    def teams_season_matches(self, id : StrictStr, preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, async_req: Optional[bool]=True, **kwargs) -> List[Match]:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[Match], Awaitable[List[Match]]]:  # noqa: E501
+    def teams_season_matches(self, id : StrictStr, preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[Match], Awaitable[List[Match]]]:  # noqa: E501
         """teams_season_matches  # noqa: E501
 
         Get all matches for a given team.  # noqa: E501
@@ -1022,8 +1022,8 @@ class TeamsApi:
         >>> thread = api.teams_season_matches(id, preseason, season, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param preseason: If true, get preseason matches (Default: Regular)
         :type preseason: bool
         :param season: Season number to get matches for (Default: Current Season)
@@ -1048,7 +1048,7 @@ class TeamsApi:
         return self.teams_season_matches_with_http_info(id, preseason, season, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_season_matches_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_season_matches_with_http_info(self, id : StrictStr, preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """teams_season_matches  # noqa: E501
 
         Get all matches for a given team.  # noqa: E501
@@ -1058,8 +1058,8 @@ class TeamsApi:
         >>> thread = api.teams_season_matches_with_http_info(id, preseason, season, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param preseason: If true, get preseason matches (Default: Regular)
         :type preseason: bool
         :param season: Season number to get matches for (Default: Current Season)
@@ -1170,15 +1170,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_stats(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, **kwargs) -> TeamSeasonStats:  # noqa: E501
+    async def teams_stats(self, id : StrictStr, season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, **kwargs) -> TeamSeasonStats:  # noqa: E501
         ...
 
     @overload
-    def teams_stats(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, async_req: Optional[bool]=True, **kwargs) -> TeamSeasonStats:  # noqa: E501
+    def teams_stats(self, id : StrictStr, season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, async_req: Optional[bool]=True, **kwargs) -> TeamSeasonStats:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_stats(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[TeamSeasonStats, Awaitable[TeamSeasonStats]]:  # noqa: E501
+    def teams_stats(self, id : StrictStr, season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[TeamSeasonStats, Awaitable[TeamSeasonStats]]:  # noqa: E501
         """teams_stats  # noqa: E501
 
         Get regular season stats for a given team. (Default: Current Season)  # noqa: E501
@@ -1188,8 +1188,8 @@ class TeamsApi:
         >>> thread = api.teams_stats(id, season, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param season: Specific season number to get stats for.
         :type season: int
         :param async_req: Whether to execute the request asynchronously.
@@ -1212,7 +1212,7 @@ class TeamsApi:
         return self.teams_stats_with_http_info(id, season, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_stats_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_stats_with_http_info(self, id : StrictStr, season : Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """teams_stats  # noqa: E501
 
         Get regular season stats for a given team. (Default: Current Season)  # noqa: E501
@@ -1222,8 +1222,8 @@ class TeamsApi:
         >>> thread = api.teams_stats_with_http_info(id, season, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param season: Specific season number to get stats for.
         :type season: int
         :param async_req: Whether to execute the request asynchronously.

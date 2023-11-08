@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.season import Season  # noqa: E501
+from rscapi.models.season import Season  # noqa: E501
 
 class TestSeason(unittest.TestCase):
     """Season unit test stubs"""
@@ -37,18 +37,18 @@ class TestSeason(unittest.TestCase):
         model = Season()  # noqa: E501
         if include_optional:
             return Season(
-                league = openapi_client.models.season_league.SeasonLeague(
+                league = rscapi.models.season_league.SeasonLeague(
                     name = '0', 
                     id = 56, ),
                 number = 56,
                 season_tier_data = [
-                    openapi_client.models.season_tier_data.SeasonTierData(
+                    rscapi.models.season_tier_data.SeasonTierData(
                         tier = '0', 
                         mmr_min = 56, 
                         mmr_max = 56, 
                         team_cap = 56, 
                         team_number = 56, 
-                        schedule = openapi_client.models.season_schedule.SeasonSchedule(
+                        schedule = rscapi.models.season_schedule.SeasonSchedule(
                             matches_per_season = 56, 
                             matches_per_night = 56, 
                             match_nights = '', ), )
@@ -57,17 +57,17 @@ class TestSeason(unittest.TestCase):
             )
         else:
             return Season(
-                league = openapi_client.models.season_league.SeasonLeague(
+                league = rscapi.models.season_league.SeasonLeague(
                     name = '0', 
                     id = 56, ),
                 season_tier_data = [
-                    openapi_client.models.season_tier_data.SeasonTierData(
+                    rscapi.models.season_tier_data.SeasonTierData(
                         tier = '0', 
                         mmr_min = 56, 
                         mmr_max = 56, 
                         team_cap = 56, 
                         team_number = 56, 
-                        schedule = openapi_client.models.season_schedule.SeasonSchedule(
+                        schedule = rscapi.models.season_schedule.SeasonSchedule(
                             matches_per_season = 56, 
                             matches_per_night = 56, 
                             match_nights = '', ), )

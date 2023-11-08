@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.franchises_api import FranchisesApi  # noqa: E501
+from rscapi.api.franchises_api import FranchisesApi  # noqa: E501
 
 
 class TestFranchisesApi(unittest.TestCase):

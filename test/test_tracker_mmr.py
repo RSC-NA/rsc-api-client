@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.tracker_mmr import TrackerMMR  # noqa: E501
+from rscapi.models.tracker_mmr import TrackerMMR  # noqa: E501
 
 class TestTrackerMMR(unittest.TestCase):
     """TrackerMMR unit test stubs"""

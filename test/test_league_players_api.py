@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.league_players_api import LeaguePlayersApi  # noqa: E501
+from rscapi.api.league_players_api import LeaguePlayersApi  # noqa: E501
 
 
 class TestLeaguePlayersApi(unittest.TestCase):

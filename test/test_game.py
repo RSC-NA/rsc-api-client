@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.game import Game  # noqa: E501
+from rscapi.models.game import Game  # noqa: E501
 
 class TestGame(unittest.TestCase):
     """Game unit test stubs"""
@@ -37,13 +37,13 @@ class TestGame(unittest.TestCase):
         model = Game()  # noqa: E501
         if include_optional:
             return Game(
-                winner = openapi_client.models.team.Team(
+                winner = rscapi.models.team.Team(
                     id = 56, 
                     name = '0', 
                     franchise = '0', 
                     tier = '0', 
                     players = [
-                        openapi_client.models.player.Player(
+                        rscapi.models.player.Player(
                             id = 56, 
                             name = '0', 
                             status = '0', 
@@ -55,17 +55,17 @@ class TestGame(unittest.TestCase):
                     latest_season = 56, ),
                 forfeit = True,
                 replay_id = '',
-                raw_stats = openapi_client.models.raw_stats.Raw stats()
+                raw_stats = rscapi.models.raw_stats.Raw stats()
             )
         else:
             return Game(
-                winner = openapi_client.models.team.Team(
+                winner = rscapi.models.team.Team(
                     id = 56, 
                     name = '0', 
                     franchise = '0', 
                     tier = '0', 
                     players = [
-                        openapi_client.models.player.Player(
+                        rscapi.models.player.Player(
                             id = 56, 
                             name = '0', 
                             status = '0', 
@@ -75,7 +75,7 @@ class TestGame(unittest.TestCase):
                             last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                         ], 
                     latest_season = 56, ),
-                raw_stats = openapi_client.models.raw_stats.Raw stats(),
+                raw_stats = rscapi.models.raw_stats.Raw stats(),
         )
         """
 

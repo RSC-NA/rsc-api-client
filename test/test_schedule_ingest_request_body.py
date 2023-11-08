@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.schedule_ingest_request_body import ScheduleIngestRequestBody  # noqa: E501
+from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody  # noqa: E501
 
 class TestScheduleIngestRequestBody(unittest.TestCase):
     """ScheduleIngestRequestBody unit test stubs"""

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.season_tier_data import SeasonTierData  # noqa: E501
+from rscapi.models.season_tier_data import SeasonTierData  # noqa: E501
 
 class TestSeasonTierData(unittest.TestCase):
     """SeasonTierData unit test stubs"""
@@ -42,7 +42,7 @@ class TestSeasonTierData(unittest.TestCase):
                 mmr_max = 56,
                 team_cap = 56,
                 team_number = 56,
-                schedule = openapi_client.models.season_schedule.SeasonSchedule(
+                schedule = rscapi.models.season_schedule.SeasonSchedule(
                     matches_per_season = 56, 
                     matches_per_night = 56, 
                     match_nights = '', )

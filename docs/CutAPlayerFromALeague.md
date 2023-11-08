@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.cut_a_player_from_a_league import CutAPlayerFromALeague
+from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 
 # TODO update the JSON string below
 json = "{}"

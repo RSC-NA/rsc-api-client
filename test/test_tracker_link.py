@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.tracker_link import TrackerLink  # noqa: E501
+from rscapi.models.tracker_link import TrackerLink  # noqa: E501
 
 class TestTrackerLink(unittest.TestCase):
     """TrackerLink unit test stubs"""

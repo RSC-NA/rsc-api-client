@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject  # noqa: E501
+from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject  # noqa: E501
 
 class TestTrackerLinkInvalidateObject(unittest.TestCase):
     """TrackerLinkInvalidateObject unit test stubs"""

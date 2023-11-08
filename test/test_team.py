@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.team import Team  # noqa: E501
+from rscapi.models.team import Team  # noqa: E501
 
 class TestTeam(unittest.TestCase):
     """Team unit test stubs"""
@@ -42,7 +42,7 @@ class TestTeam(unittest.TestCase):
                 franchise = '0',
                 tier = '0',
                 players = [
-                    openapi_client.models.player.Player(
+                    rscapi.models.player.Player(
                         id = 56, 
                         name = '0', 
                         status = '0', 
@@ -58,7 +58,7 @@ class TestTeam(unittest.TestCase):
                 franchise = '0',
                 tier = '0',
                 players = [
-                    openapi_client.models.player.Player(
+                    rscapi.models.player.Player(
                         id = 56, 
                         name = '0', 
                         status = '0', 

@@ -26,9 +26,9 @@ class LeagueData(BaseModel):
     """
     LeagueData
     """
-    max_num_players: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    max_num_players: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     game_mode: Optional[constr(strict=True, min_length=1)] = None
-    match_format: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    match_format: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     __properties = ["max_num_players", "game_mode", "match_format"]
 
     class Config:

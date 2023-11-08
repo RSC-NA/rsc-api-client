@@ -1,165 +1,14 @@
-# openapi_client.MatchesApi
+# rscapi.MatchesApi
 
 All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**matches_create**](MatchesApi.md#matches_create) | **POST** /matches/ | 
-[**matches_delete**](MatchesApi.md#matches_delete) | **DELETE** /matches/{id}/ | 
 [**matches_find_match**](MatchesApi.md#matches_find_match) | **GET** /matches/find_match/ | 
 [**matches_list**](MatchesApi.md#matches_list) | **GET** /matches/ | 
-[**matches_partial_update**](MatchesApi.md#matches_partial_update) | **PATCH** /matches/{id}/ | 
 [**matches_read**](MatchesApi.md#matches_read) | **GET** /matches/{id}/ | 
 [**matches_results**](MatchesApi.md#matches_results) | **GET** /matches/{id}/results/ | 
-[**matches_update**](MatchesApi.md#matches_update) | **PUT** /matches/{id}/ | 
 
-
-# **matches_create**
-> MatchList matches_create(data)
-
-
-
-### Example
-
-* Api Key Authentication (api_key):
-```python
-import time
-import os
-import openapi_client
-from openapi_client.models.match_list import MatchList
-from openapi_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.MatchesApi(api_client)
-    data = openapi_client.MatchList() # MatchList | 
-
-    try:
-        api_response = await api_instance.matches_create(data)
-        print("The response of MatchesApi->matches_create:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MatchesApi->matches_create: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **data** | [**MatchList**](MatchList.md)|  | 
-
-### Return type
-
-[**MatchList**](MatchList.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **matches_delete**
-> matches_delete(id)
-
-
-
-### Example
-
-* Api Key Authentication (api_key):
-```python
-import time
-import os
-import openapi_client
-from openapi_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
-
-    try:
-        await api_instance.matches_delete(id)
-    except Exception as e:
-        print("Exception when calling MatchesApi->matches_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matches_find_match**
 > List[Match] matches_find_match(league, date__lt=date__lt, date__gt=date__gt, season=season, season_number=season_number, home_team=home_team, away_team=away_team, day=day, match_type=match_type, match_format=match_format, limit=limit, offset=offset, teams=teams, preseason=preseason)
@@ -174,14 +23,14 @@ Find a match for a team or teams.
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.match import Match
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.match import Match
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -197,9 +46,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MatchesApi(api_client)
+    api_instance = rscapi.MatchesApi(api_client)
     league = 56 # int | ID of the league to get team matches for
     date__lt = 'date__lt_example' # str | date__lt (optional)
     date__gt = 'date__gt_example' # str | date__gt (optional)
@@ -275,14 +124,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.matches_list200_response import MatchesList200Response
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.matches_list200_response import MatchesList200Response
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -298,9 +147,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MatchesApi(api_client)
+    api_instance = rscapi.MatchesApi(api_client)
     date__lt = 'date__lt_example' # str | date__lt (optional)
     date__gt = 'date__gt_example' # str | date__gt (optional)
     season = 'season_example' # str | season (optional)
@@ -361,83 +210,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **matches_partial_update**
-> MatchList matches_partial_update(id, data)
-
-
-
-### Example
-
-* Api Key Authentication (api_key):
-```python
-import time
-import os
-import openapi_client
-from openapi_client.models.match_list import MatchList
-from openapi_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
-    data = openapi_client.MatchList() # MatchList | 
-
-    try:
-        api_response = await api_instance.matches_partial_update(id, data)
-        print("The response of MatchesApi->matches_partial_update:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MatchesApi->matches_partial_update: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
- **data** | [**MatchList**](MatchList.md)|  | 
-
-### Return type
-
-[**MatchList**](MatchList.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **matches_read**
 > Match matches_read(id)
 
@@ -449,14 +221,14 @@ Name | Type | Description  | Notes
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.match import Match
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.match import Match
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -472,9 +244,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MatchesApi(api_client)
+    api_instance = rscapi.MatchesApi(api_client)
     id = 56 # int | A unique integer value identifying this matches.
 
     try:
@@ -526,14 +298,14 @@ Get results for a given match
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.match_results import MatchResults
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.match_results import MatchResults
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -549,9 +321,9 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.MatchesApi(api_client)
+    api_instance = rscapi.MatchesApi(api_client)
     id = 56 # int | A unique integer value identifying this matches.
 
     try:
@@ -581,83 +353,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **matches_update**
-> MatchList matches_update(id, data)
-
-
-
-### Example
-
-* Api Key Authentication (api_key):
-```python
-import time
-import os
-import openapi_client
-from openapi_client.models.match_list import MatchList
-from openapi_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
-    data = openapi_client.MatchList() # MatchList | 
-
-    try:
-        api_response = await api_instance.matches_update(id, data)
-        print("The response of MatchesApi->matches_update:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MatchesApi->matches_update: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
- **data** | [**MatchList**](MatchList.md)|  | 
-
-### Return type
-
-[**MatchList**](MatchList.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

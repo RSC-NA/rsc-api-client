@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.match_list import MatchList
+from rscapi.models.match_list import MatchList
 
 # TODO update the JSON string below
 json = "{}"

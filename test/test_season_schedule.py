@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.season_schedule import SeasonSchedule  # noqa: E501
+from rscapi.models.season_schedule import SeasonSchedule  # noqa: E501
 
 class TestSeasonSchedule(unittest.TestCase):
     """SeasonSchedule unit test stubs"""

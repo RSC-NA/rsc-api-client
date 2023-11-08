@@ -19,9 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, conlist, constr
-from rscapi.models.player_list import PlayerList
+from typing import Optional
+from pydantic import BaseModel, Field, StrictInt, constr
 
 class TeamList(BaseModel):
     """
@@ -30,8 +29,7 @@ class TeamList(BaseModel):
     id: Optional[StrictInt] = None
     name: Optional[constr(strict=True, min_length=1)] = None
     franchise: constr(strict=True, min_length=1) = Field(...)
-    players: conlist(PlayerList) = Field(...)
-    __properties = ["id", "name", "franchise", "players"]
+    __properties = ["id", "name", "franchise"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,13 +57,6 @@ class TeamList(BaseModel):
                             "name",
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in players (list)
-        _items = []
-        if self.players:
-            for _item in self.players:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['players'] = _items
         return _dict
 
     @classmethod
@@ -80,8 +71,7 @@ class TeamList(BaseModel):
         _obj = TeamList.parse_obj({
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "players": [PlayerList.from_dict(_item) for _item in obj.get("players")] if obj.get("players") is not None else None
+            "franchise": obj.get("franchise")
         })
         return _obj
 

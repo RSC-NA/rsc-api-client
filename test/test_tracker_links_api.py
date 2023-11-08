@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.tracker_links_api import TrackerLinksApi  # noqa: E501
+from rscapi.api.tracker_links_api import TrackerLinksApi  # noqa: E501
 
 
 class TestTrackerLinksApi(unittest.TestCase):

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.match import Match  # noqa: E501
+from rscapi.models.match import Match  # noqa: E501
 
 class TestMatch(unittest.TestCase):
     """Match unit test stubs"""
@@ -44,13 +44,13 @@ class TestMatch(unittest.TestCase):
                 num_games = 56,
                 match_format = 'GMS',
                 match_type = 'REG',
-                home_team = openapi_client.models.team.Team(
+                home_team = rscapi.models.team.Team(
                     id = 56, 
                     name = '0', 
                     franchise = '0', 
                     tier = '0', 
                     players = [
-                        openapi_client.models.player.Player(
+                        rscapi.models.player.Player(
                             id = 56, 
                             name = '0', 
                             status = '0', 
@@ -60,13 +60,13 @@ class TestMatch(unittest.TestCase):
                             last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                         ], 
                     latest_season = 56, ),
-                away_team = openapi_client.models.team.Team(
+                away_team = rscapi.models.team.Team(
                     id = 56, 
                     name = '0', 
                     franchise = '0', 
                     tier = '0', 
                     players = [
-                        openapi_client.models.player.Player(
+                        rscapi.models.player.Player(
                             id = 56, 
                             name = '0', 
                             status = '0', 
@@ -77,18 +77,18 @@ class TestMatch(unittest.TestCase):
                         ], 
                     latest_season = 56, ),
                 id = 56,
-                results = openapi_client.models.match_results.MatchResults(
+                results = rscapi.models.match_results.MatchResults(
                     home_wins = 56, 
                     away_wins = 56, 
                     games = [
-                        openapi_client.models.game.Game(
-                            winner = openapi_client.models.team.Team(
+                        rscapi.models.game.Game(
+                            winner = rscapi.models.team.Team(
                                 id = 56, 
                                 name = '0', 
                                 franchise = '0', 
                                 tier = '0', 
                                 players = [
-                                    openapi_client.models.player.Player(
+                                    rscapi.models.player.Player(
                                         id = 56, 
                                         name = '0', 
                                         status = '0', 
@@ -100,20 +100,20 @@ class TestMatch(unittest.TestCase):
                                 latest_season = 56, ), 
                             forfeit = True, 
                             replay_id = '', 
-                            raw_stats = openapi_client.models.raw_stats.Raw stats(), )
+                            raw_stats = rscapi.models.raw_stats.Raw stats(), )
                         ], 
                     manual = True, 
                     ballchasing_group = '0', )
             )
         else:
             return Match(
-                home_team = openapi_client.models.team.Team(
+                home_team = rscapi.models.team.Team(
                     id = 56, 
                     name = '0', 
                     franchise = '0', 
                     tier = '0', 
                     players = [
-                        openapi_client.models.player.Player(
+                        rscapi.models.player.Player(
                             id = 56, 
                             name = '0', 
                             status = '0', 
@@ -123,13 +123,13 @@ class TestMatch(unittest.TestCase):
                             last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                         ], 
                     latest_season = 56, ),
-                away_team = openapi_client.models.team.Team(
+                away_team = rscapi.models.team.Team(
                     id = 56, 
                     name = '0', 
                     franchise = '0', 
                     tier = '0', 
                     players = [
-                        openapi_client.models.player.Player(
+                        rscapi.models.player.Player(
                             id = 56, 
                             name = '0', 
                             status = '0', 
@@ -139,18 +139,18 @@ class TestMatch(unittest.TestCase):
                             last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                         ], 
                     latest_season = 56, ),
-                results = openapi_client.models.match_results.MatchResults(
+                results = rscapi.models.match_results.MatchResults(
                     home_wins = 56, 
                     away_wins = 56, 
                     games = [
-                        openapi_client.models.game.Game(
-                            winner = openapi_client.models.team.Team(
+                        rscapi.models.game.Game(
+                            winner = rscapi.models.team.Team(
                                 id = 56, 
                                 name = '0', 
                                 franchise = '0', 
                                 tier = '0', 
                                 players = [
-                                    openapi_client.models.player.Player(
+                                    rscapi.models.player.Player(
                                         id = 56, 
                                         name = '0', 
                                         status = '0', 
@@ -162,7 +162,7 @@ class TestMatch(unittest.TestCase):
                                 latest_season = 56, ), 
                             forfeit = True, 
                             replay_id = '', 
-                            raw_stats = openapi_client.models.raw_stats.Raw stats(), )
+                            raw_stats = rscapi.models.raw_stats.Raw stats(), )
                         ], 
                     manual = True, 
                     ballchasing_group = '0', ),

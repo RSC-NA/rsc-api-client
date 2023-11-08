@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.teams_api import TeamsApi  # noqa: E501
+from rscapi.api.teams_api import TeamsApi  # noqa: E501
 
 
 class TestTeamsApi(unittest.TestCase):

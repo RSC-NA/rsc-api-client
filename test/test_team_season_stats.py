@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.team_season_stats import TeamSeasonStats  # noqa: E501
+from rscapi.models.team_season_stats import TeamSeasonStats  # noqa: E501
 
 class TestTeamSeasonStats(unittest.TestCase):
     """TeamSeasonStats unit test stubs"""

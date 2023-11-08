@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.elevated_role import ElevatedRole  # noqa: E501
+from rscapi.models.elevated_role import ElevatedRole  # noqa: E501
 
 class TestElevatedRole(unittest.TestCase):
     """ElevatedRole unit test stubs"""
@@ -37,11 +37,11 @@ class TestElevatedRole(unittest.TestCase):
         model = ElevatedRole()  # noqa: E501
         if include_optional:
             return ElevatedRole(
-                league = openapi_client.models.league.League(
+                league = rscapi.models.league.League(
                     id = 56, 
                     name = '0', 
                     guild_id = 56, 
-                    league_data = openapi_client.models.league_data.LeagueData(
+                    league_data = rscapi.models.league_data.LeagueData(
                         max_num_players = -9223372036854775808, 
                         game_mode = '0', 
                         match_format = -9223372036854775808, ), ),
@@ -53,11 +53,11 @@ class TestElevatedRole(unittest.TestCase):
             )
         else:
             return ElevatedRole(
-                league = openapi_client.models.league.League(
+                league = rscapi.models.league.League(
                     id = 56, 
                     name = '0', 
                     guild_id = 56, 
-                    league_data = openapi_client.models.league_data.LeagueData(
+                    league_data = rscapi.models.league_data.LeagueData(
                         max_num_players = -9223372036854775808, 
                         game_mode = '0', 
                         match_format = -9223372036854775808, ), ),

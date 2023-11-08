@@ -1,4 +1,4 @@
-# openapi_client.TransactionsApi
+# rscapi.TransactionsApi
 
 All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
@@ -21,14 +21,14 @@ Cut a player
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.cut_a_player_from_a_league import CutAPlayerFromALeague
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -44,10 +44,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TransactionsApi(api_client)
-    data = openapi_client.CutAPlayerFromALeague() # CutAPlayerFromALeague | 
+    api_instance = rscapi.TransactionsApi(api_client)
+    data = rscapi.CutAPlayerFromALeague() # CutAPlayerFromALeague | 
 
     try:
         api_response = await api_instance.transactions_cut_create(data)
@@ -98,14 +98,14 @@ Sign a player
 ```python
 import time
 import os
-import openapi_client
-from openapi_client.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
-from openapi_client.rest import ApiException
+import rscapi
+from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = rscapi.Configuration(
     host = "https://staging-api.rscna.com/api/v1"
 )
 
@@ -121,10 +121,10 @@ configuration.api_key['api_key'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['api_key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-async with openapi_client.ApiClient(configuration) as api_client:
+async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TransactionsApi(api_client)
-    data = openapi_client.SignAPlayerToATeamInALeague() # SignAPlayerToATeamInALeague | 
+    api_instance = rscapi.TransactionsApi(api_client)
+    data = rscapi.SignAPlayerToATeamInALeague() # SignAPlayerToATeamInALeague | 
 
     try:
         api_response = await api_instance.transactions_sign_create(data)

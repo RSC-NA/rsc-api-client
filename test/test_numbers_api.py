@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.numbers_api import NumbersApi  # noqa: E501
+from rscapi.api.numbers_api import NumbersApi  # noqa: E501
 
 
 class TestNumbersApi(unittest.TestCase):

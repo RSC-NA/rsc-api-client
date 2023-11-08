@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.player_mmr import PlayerMMR
+from rscapi.models.player_mmr import PlayerMMR
 
 # TODO update the JSON string below
 json = "{}"

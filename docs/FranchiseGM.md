@@ -5,11 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rsc_name** | **str** |  | [optional] [readonly] 
+**discord_id** | **int** |  | [optional] [readonly] 
 
 ## Example
 
 ```python
-from openapi_client.models.franchise_gm import FranchiseGM
+from rscapi.models.franchise_gm import FranchiseGM
 
 # TODO update the JSON string below
 json = "{}"

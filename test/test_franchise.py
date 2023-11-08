@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.franchise import Franchise  # noqa: E501
+from rscapi.models.franchise import Franchise  # noqa: E501
 
 class TestFranchise(unittest.TestCase):
     """Franchise unit test stubs"""
@@ -40,30 +40,30 @@ class TestFranchise(unittest.TestCase):
                 id = 56,
                 name = '0',
                 prefix = '0',
-                gm = openapi_client.models.franchise_gm.FranchiseGM(
+                gm = rscapi.models.franchise_gm.FranchiseGM(
                     rsc_name = '0', ),
-                league = openapi_client.models.league.League(
+                league = rscapi.models.league.League(
                     id = 56, 
                     name = '0', 
                     guild_id = 56, 
-                    league_data = openapi_client.models.league_data.LeagueData(
+                    league_data = rscapi.models.league_data.LeagueData(
                         max_num_players = -9223372036854775808, 
                         game_mode = '0', 
                         match_format = -9223372036854775808, ), ),
-                tiers = openapi_client.models.tiers.Tiers(),
+                tiers = rscapi.models.tiers.Tiers(),
                 active = True,
-                teams = openapi_client.models.teams.Teams(),
+                teams = rscapi.models.teams.Teams(),
                 logo = ''
             )
         else:
             return Franchise(
                 name = '0',
                 prefix = '0',
-                league = openapi_client.models.league.League(
+                league = rscapi.models.league.League(
                     id = 56, 
                     name = '0', 
                     guild_id = 56, 
-                    league_data = openapi_client.models.league_data.LeagueData(
+                    league_data = rscapi.models.league_data.LeagueData(
                         max_num_players = -9223372036854775808, 
                         game_mode = '0', 
                         match_format = -9223372036854775808, ), ),

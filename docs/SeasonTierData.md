@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.season_tier_data import SeasonTierData
+from rscapi.models.season_tier_data import SeasonTierData
 
 # TODO update the JSON string below
 json = "{}"

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.schedule_ingest_request_body import ScheduleIngestRequestBody
+from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
 
 # TODO update the JSON string below
 json = "{}"

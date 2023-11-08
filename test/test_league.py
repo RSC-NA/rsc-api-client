@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.league import League  # noqa: E501
+from rscapi.models.league import League  # noqa: E501
 
 class TestLeague(unittest.TestCase):
     """League unit test stubs"""
@@ -40,7 +40,7 @@ class TestLeague(unittest.TestCase):
                 id = 56,
                 name = '0',
                 guild_id = 56,
-                league_data = openapi_client.models.league_data.LeagueData(
+                league_data = rscapi.models.league_data.LeagueData(
                     max_num_players = -9223372036854775808, 
                     game_mode = '0', 
                     match_format = -9223372036854775808, )
@@ -49,7 +49,7 @@ class TestLeague(unittest.TestCase):
             return League(
                 name = '0',
                 guild_id = 56,
-                league_data = openapi_client.models.league_data.LeagueData(
+                league_data = rscapi.models.league_data.LeagueData(
                     max_num_players = -9223372036854775808, 
                     game_mode = '0', 
                     match_format = -9223372036854775808, ),

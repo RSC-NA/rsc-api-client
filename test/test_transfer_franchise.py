@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.transfer_franchise import TransferFranchise  # noqa: E501
+from rscapi.models.transfer_franchise import TransferFranchise  # noqa: E501
 
 class TestTransferFranchise(unittest.TestCase):
     """TransferFranchise unit test stubs"""

@@ -16,7 +16,7 @@
 import unittest
 import datetime
 
-from openapi_client.models.cut_a_player_from_a_league import CutAPlayerFromALeague  # noqa: E501
+from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague  # noqa: E501
 
 class TestCutAPlayerFromALeague(unittest.TestCase):
     """CutAPlayerFromALeague unit test stubs"""

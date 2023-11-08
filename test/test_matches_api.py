@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.matches_api import MatchesApi  # noqa: E501
+from rscapi.api.matches_api import MatchesApi  # noqa: E501
 
 
 class TestMatchesApi(unittest.TestCase):

@@ -225,7 +225,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
+from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 
 # TODO update the JSON string below
 json = "{}"

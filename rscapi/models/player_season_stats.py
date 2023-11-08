@@ -65,43 +65,43 @@ class PlayerSeasonStats(BaseModel):
     percent_closest_to_ball: Union[StrictFloat, StrictInt] = Field(...)
     percent_farthest_from_ball: Union[StrictFloat, StrictInt] = Field(...)
     stats_type: Optional[StrictStr] = None
-    games_played: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    games_won: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    games_lost: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    mvps: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    shots: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    shots_against: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    goals: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    goals_against: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    saves: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    assists: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    points: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    hat_tricks: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    playmakers: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    saviors: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    goals_against_while_last_defender: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    games_won: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    games_lost: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    mvps: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    shots: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    shots_against: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    goals: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    goals_against: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    saves: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    assists: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    points: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    hat_tricks: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    playmakers: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    saviors: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    goals_against_while_last_defender: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     time_powerslide: Optional[Union[StrictFloat, StrictInt]] = None
-    count_powerslide: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_collected: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_stolen: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_collected_big: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_stolen_big: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_collected_small: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_stolen_small: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    count_collected_big: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    count_stolen_big: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    count_collected_small: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    count_stolen_small: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_overfill: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_overfill_stolen: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    amount_used_while_supersonic: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    count_powerslide: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_collected: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_stolen: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_collected_big: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_stolen_big: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_collected_small: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_stolen_small: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    count_collected_big: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    count_stolen_big: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    count_collected_small: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    count_stolen_small: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_overfill: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_overfill_stolen: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    amount_used_while_supersonic: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     time_zero_boost: Optional[Union[StrictFloat, StrictInt]] = None
     time_full_boost: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_0_25: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_25_50: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_50_75: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_75_100: Optional[Union[StrictFloat, StrictInt]] = None
-    total_distance: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    total_distance: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     time_supersonic_speed: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_speed: Optional[Union[StrictFloat, StrictInt]] = None
     time_slow_speed: Optional[Union[StrictFloat, StrictInt]] = None
@@ -119,8 +119,8 @@ class PlayerSeasonStats(BaseModel):
     time_most_forward: Optional[Union[StrictFloat, StrictInt]] = None
     time_closest_to_ball: Optional[Union[StrictFloat, StrictInt]] = None
     time_farthest_from_ball: Optional[Union[StrictFloat, StrictInt]] = None
-    demos_inflicted: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    demos_taken: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    demos_inflicted: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    demos_taken: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     raw_shooting_percentage: Optional[Union[StrictFloat, StrictInt]] = None
     raw_bpm: Optional[Union[StrictFloat, StrictInt]] = None
     raw_bcpm: Optional[Union[StrictFloat, StrictInt]] = None
@@ -131,7 +131,7 @@ class PlayerSeasonStats(BaseModel):
     raw_percent_boost_25_50: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_boost_50_75: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_boost_75_100: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_avg_speed: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    raw_avg_speed: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     raw_avg_powerslide_duration: Optional[Union[StrictFloat, StrictInt]] = None
     raw_avg_speed_percentage: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_slow_speed: Optional[Union[StrictFloat, StrictInt]] = None
@@ -140,10 +140,10 @@ class PlayerSeasonStats(BaseModel):
     raw_percent_ground: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_low_air: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_high_air: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_avg_distance_to_ball: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    raw_avg_distance_to_ball_possession: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    raw_avg_distance_to_ball_no_possession: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
-    raw_avg_distance_to_mates: Optional[conint(strict=True, le=9223372036854775807, ge=-9223372036854775808)] = None
+    raw_avg_distance_to_ball: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    raw_avg_distance_to_ball_possession: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    raw_avg_distance_to_ball_no_possession: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    raw_avg_distance_to_mates: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     raw_percent_defensive_third: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_offensive_third: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_neutral_third: Optional[Union[StrictFloat, StrictInt]] = None

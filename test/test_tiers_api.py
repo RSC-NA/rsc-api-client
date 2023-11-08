@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.tiers_api import TiersApi  # noqa: E501
+from rscapi.api.tiers_api import TiersApi  # noqa: E501
 
 
 class TestTiersApi(unittest.TestCase):
