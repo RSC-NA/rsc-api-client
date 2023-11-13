@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **base_mmr** | **int** |  | [optional] [readonly] 
 **current_mmr** | **int** |  | [optional] [readonly] 
 **last_updated** | **datetime** |  | [optional] [readonly] 
+**discord_id** | **int** |  | 
 
 ## Example
 

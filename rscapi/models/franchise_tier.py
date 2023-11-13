@@ -18,23 +18,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, constr
 
-class Player(BaseModel):
+from typing import Optional
+from pydantic import BaseModel, StrictInt, constr
+
+class FranchiseTier(BaseModel):
     """
-    Player
+    FranchiseTier
     """
+    name: Optional[constr(strict=True, min_length=1)] = None
     id: Optional[StrictInt] = None
-    name: constr(strict=True, min_length=1) = Field(...)
-    status: constr(strict=True, min_length=1) = Field(...)
-    captain: Optional[StrictBool] = None
-    base_mmr: Optional[StrictInt] = None
-    current_mmr: Optional[StrictInt] = None
-    last_updated: Optional[datetime] = None
-    discord_id: StrictInt = Field(...)
-    __properties = ["id", "name", "status", "captain", "base_mmr", "current_mmr", "last_updated", "discord_id"]
+    __properties = ["name", "id"]
 
     class Config:
         """Pydantic configuration"""
@@ -50,41 +44,32 @@ class Player(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Player:
-        """Create an instance of Player from a JSON string"""
+    def from_json(cls, json_str: str) -> FranchiseTier:
+        """Create an instance of FranchiseTier from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
+                            "name",
                             "id",
-                            "captain",
-                            "base_mmr",
-                            "current_mmr",
-                            "last_updated",
                           },
                           exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Player:
-        """Create an instance of Player from a dict"""
+    def from_dict(cls, obj: dict) -> FranchiseTier:
+        """Create an instance of FranchiseTier from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Player.parse_obj(obj)
+            return FranchiseTier.parse_obj(obj)
 
-        _obj = Player.parse_obj({
-            "id": obj.get("id"),
+        _obj = FranchiseTier.parse_obj({
             "name": obj.get("name"),
-            "status": obj.get("status"),
-            "captain": obj.get("captain"),
-            "base_mmr": obj.get("base_mmr"),
-            "current_mmr": obj.get("current_mmr"),
-            "last_updated": obj.get("last_updated"),
-            "discord_id": obj.get("discord_id")
+            "id": obj.get("id")
         })
         return _obj
 

@@ -19,25 +19,27 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, constr
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, constr
 from rscapi.models.franchise_gm import FranchiseGM
+from rscapi.models.franchise_tier import FranchiseTier
 from rscapi.models.league import League
+from rscapi.models.team import Team
 
 class Franchise(BaseModel):
     """
     Franchise
     """
-    id: Optional[StrictInt] = None
     name: constr(strict=True, min_length=1) = Field(...)
     prefix: constr(strict=True, max_length=3, min_length=1) = Field(...)
+    id: Optional[StrictInt] = None
     gm: Optional[FranchiseGM] = None
     league: League = Field(...)
-    tiers: Optional[Dict[str, Any]] = None
+    tiers: Optional[conlist(FranchiseTier)] = None
     active: Optional[StrictBool] = None
-    teams: Optional[Dict[str, Any]] = None
+    teams: Optional[conlist(Team)] = None
     logo: Optional[StrictStr] = None
-    __properties = ["id", "name", "prefix", "gm", "league", "tiers", "active", "teams", "logo"]
+    __properties = ["name", "prefix", "id", "gm", "league", "tiers", "active", "teams", "logo"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,6 +76,20 @@ class Franchise(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of league
         if self.league:
             _dict['league'] = self.league.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in tiers (list)
+        _items = []
+        if self.tiers:
+            for _item in self.tiers:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['tiers'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in teams (list)
+        _items = []
+        if self.teams:
+            for _item in self.teams:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['teams'] = _items
         return _dict
 
     @classmethod
@@ -86,14 +102,14 @@ class Franchise(BaseModel):
             return Franchise.parse_obj(obj)
 
         _obj = Franchise.parse_obj({
-            "id": obj.get("id"),
             "name": obj.get("name"),
             "prefix": obj.get("prefix"),
+            "id": obj.get("id"),
             "gm": FranchiseGM.from_dict(obj.get("gm")) if obj.get("gm") is not None else None,
             "league": League.from_dict(obj.get("league")) if obj.get("league") is not None else None,
-            "tiers": obj.get("tiers"),
+            "tiers": [FranchiseTier.from_dict(_item) for _item in obj.get("tiers")] if obj.get("tiers") is not None else None,
             "active": obj.get("active"),
-            "teams": obj.get("teams"),
+            "teams": [Team.from_dict(_item) for _item in obj.get("teams")] if obj.get("teams") is not None else None,
             "logo": obj.get("logo")
         })
         return _obj

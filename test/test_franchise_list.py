@@ -41,11 +41,20 @@ class TestFranchiseList(unittest.TestCase):
                 name = '0',
                 prefix = '0',
                 gm = rscapi.models.franchise_gm.FranchiseGM(
-                    rsc_name = '0', ),
+                    rsc_name = '0', 
+                    discord_id = 56, ),
                 league = 56,
-                tiers = rscapi.models.tiers.Tiers(),
+                tiers = [
+                    rscapi.models.franchise_tier.FranchiseTier(
+                        name = '0', 
+                        id = 56, )
+                    ],
                 active = True,
-                teams = rscapi.models.teams.Teams(),
+                teams = [
+                    rscapi.models.franchise_team.FranchiseTeam(
+                        id = 56, 
+                        name = '0', )
+                    ],
                 logo = ''
             )
         else:

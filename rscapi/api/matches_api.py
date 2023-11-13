@@ -26,6 +26,7 @@ from pydantic import Field, StrictInt, StrictStr
 from typing import List, Optional
 
 from rscapi.models.match import Match
+from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
 from rscapi.models.matches_list200_response import MatchesList200Response
 
@@ -50,15 +51,312 @@ class MatchesApi:
         self.api_client = api_client
 
     @overload
-    async def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="date__lt")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="date__gt")] = None, season : Annotated[Optional[StrictStr], Field(description="season")] = None, season_number : Annotated[Optional[StrictStr], Field(description="season_number")] = None, home_team : Annotated[Optional[StrictStr], Field(description="home_team")] = None, away_team : Annotated[Optional[StrictStr], Field(description="away_team")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, teams : Annotated[Optional[StrictStr], Field(description="Comma delimited list of teams to get names for.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, **kwargs) -> List[Match]:  # noqa: E501
+    async def matches_create(self, data : MatchList, **kwargs) -> MatchList:  # noqa: E501
         ...
 
     @overload
-    def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="date__lt")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="date__gt")] = None, season : Annotated[Optional[StrictStr], Field(description="season")] = None, season_number : Annotated[Optional[StrictStr], Field(description="season_number")] = None, home_team : Annotated[Optional[StrictStr], Field(description="home_team")] = None, away_team : Annotated[Optional[StrictStr], Field(description="away_team")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, teams : Annotated[Optional[StrictStr], Field(description="Comma delimited list of teams to get names for.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, async_req: Optional[bool]=True, **kwargs) -> List[Match]:  # noqa: E501
+    def matches_create(self, data : MatchList, async_req: Optional[bool]=True, **kwargs) -> MatchList:  # noqa: E501
         ...
 
     @validate_arguments
-    def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="date__lt")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="date__gt")] = None, season : Annotated[Optional[StrictStr], Field(description="season")] = None, season_number : Annotated[Optional[StrictStr], Field(description="season_number")] = None, home_team : Annotated[Optional[StrictStr], Field(description="home_team")] = None, away_team : Annotated[Optional[StrictStr], Field(description="away_team")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, teams : Annotated[Optional[StrictStr], Field(description="Comma delimited list of teams to get names for.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[Match], Awaitable[List[Match]]]:  # noqa: E501
+    def matches_create(self, data : MatchList, async_req: Optional[bool]=None, **kwargs) -> Union[MatchList, Awaitable[MatchList]]:  # noqa: E501
+        """matches_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.matches_create(data, async_req=True)
+        >>> result = thread.get()
+
+        :param data: (required)
+        :type data: MatchList
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: MatchList
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the matches_create_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.matches_create_with_http_info(data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def matches_create_with_http_info(self, data : MatchList, **kwargs) -> ApiResponse:  # noqa: E501
+        """matches_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.matches_create_with_http_info(data, async_req=True)
+        >>> result = thread.get()
+
+        :param data: (required)
+        :type data: MatchList
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(MatchList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method matches_create" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '201': "MatchList",
+        }
+
+        return self.api_client.call_api(
+            '/matches/', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def matches_delete(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], **kwargs) -> None:  # noqa: E501
+        ...
+
+    @overload
+    def matches_delete(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def matches_delete(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+        """matches_delete  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.matches_delete(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this matches. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the matches_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.matches_delete_with_http_info(id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def matches_delete_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """matches_delete  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.matches_delete_with_http_info(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this matches. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method matches_delete" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/matches/{id}/', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, home_team : Annotated[Optional[StrictStr], Field(description="Name of the home team to search for.")] = None, away_team : Annotated[Optional[StrictStr], Field(description="Name of the away team to search for.")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, teams : Annotated[Optional[StrictStr], Field(description="Comma delimited list of teams to get names for.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, **kwargs) -> List[Match]:  # noqa: E501
+        ...
+
+    @overload
+    def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, home_team : Annotated[Optional[StrictStr], Field(description="Name of the home team to search for.")] = None, away_team : Annotated[Optional[StrictStr], Field(description="Name of the away team to search for.")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, teams : Annotated[Optional[StrictStr], Field(description="Comma delimited list of teams to get names for.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, async_req: Optional[bool]=True, **kwargs) -> List[Match]:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, home_team : Annotated[Optional[StrictStr], Field(description="Name of the home team to search for.")] = None, away_team : Annotated[Optional[StrictStr], Field(description="Name of the away team to search for.")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, teams : Annotated[Optional[StrictStr], Field(description="Comma delimited list of teams to get names for.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[Match], Awaitable[List[Match]]]:  # noqa: E501
         """matches_find_match  # noqa: E501
 
         Find a match for a team or teams.  # noqa: E501
@@ -70,17 +368,17 @@ class MatchesApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param date__lt: date__lt
+        :param date__lt: Date less than in datetime isoformat.
         :type date__lt: str
-        :param date__gt: date__gt
+        :param date__gt: Date greater than in datetime isoformat.
         :type date__gt: str
-        :param season: season
-        :type season: str
-        :param season_number: season_number
-        :type season_number: str
-        :param home_team: home_team
+        :param season: ID of the season to search for match.
+        :type season: int
+        :param season_number: Season number to search for. (E.g: 18)
+        :type season_number: int
+        :param home_team: Name of the home team to search for.
         :type home_team: str
-        :param away_team: away_team
+        :param away_team: Name of the away team to search for.
         :type away_team: str
         :param day: Match day to query for.
         :type day: int
@@ -116,7 +414,7 @@ class MatchesApi:
         return self.matches_find_match_with_http_info(league, date__lt, date__gt, season, season_number, home_team, away_team, day, match_type, match_format, limit, offset, teams, preseason, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def matches_find_match_with_http_info(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="date__lt")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="date__gt")] = None, season : Annotated[Optional[StrictStr], Field(description="season")] = None, season_number : Annotated[Optional[StrictStr], Field(description="season_number")] = None, home_team : Annotated[Optional[StrictStr], Field(description="home_team")] = None, away_team : Annotated[Optional[StrictStr], Field(description="away_team")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, teams : Annotated[Optional[StrictStr], Field(description="Comma delimited list of teams to get names for.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def matches_find_match_with_http_info(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, home_team : Annotated[Optional[StrictStr], Field(description="Name of the home team to search for.")] = None, away_team : Annotated[Optional[StrictStr], Field(description="Name of the away team to search for.")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, teams : Annotated[Optional[StrictStr], Field(description="Comma delimited list of teams to get names for.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """matches_find_match  # noqa: E501
 
         Find a match for a team or teams.  # noqa: E501
@@ -128,17 +426,17 @@ class MatchesApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param date__lt: date__lt
+        :param date__lt: Date less than in datetime isoformat.
         :type date__lt: str
-        :param date__gt: date__gt
+        :param date__gt: Date greater than in datetime isoformat.
         :type date__gt: str
-        :param season: season
-        :type season: str
-        :param season_number: season_number
-        :type season_number: str
-        :param home_team: home_team
+        :param season: ID of the season to search for match.
+        :type season: int
+        :param season_number: Season number to search for. (E.g: 18)
+        :type season_number: int
+        :param home_team: Name of the home team to search for.
         :type home_team: str
-        :param away_team: away_team
+        :param away_team: Name of the away team to search for.
         :type away_team: str
         :param day: Match day to query for.
         :type day: int
@@ -280,7 +578,7 @@ class MatchesApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "List[Match]",
@@ -516,7 +814,7 @@ class MatchesApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "MatchesList200Response",
@@ -524,6 +822,169 @@ class MatchesApi:
 
         return self.api_client.call_api(
             '/matches/', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def matches_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], data : MatchList, **kwargs) -> MatchList:  # noqa: E501
+        ...
+
+    @overload
+    def matches_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], data : MatchList, async_req: Optional[bool]=True, **kwargs) -> MatchList:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def matches_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], data : MatchList, async_req: Optional[bool]=None, **kwargs) -> Union[MatchList, Awaitable[MatchList]]:  # noqa: E501
+        """matches_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.matches_partial_update(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this matches. (required)
+        :type id: int
+        :param data: (required)
+        :type data: MatchList
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: MatchList
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the matches_partial_update_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.matches_partial_update_with_http_info(id, data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def matches_partial_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], data : MatchList, **kwargs) -> ApiResponse:  # noqa: E501
+        """matches_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.matches_partial_update_with_http_info(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this matches. (required)
+        :type id: int
+        :param data: (required)
+        :type data: MatchList
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(MatchList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method matches_partial_update" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '200': "MatchList",
+        }
+
+        return self.api_client.call_api(
+            '/matches/{id}/', 'PATCH',
             _path_params,
             _query_params,
             _header_params,
@@ -664,7 +1125,7 @@ class MatchesApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "Match",
@@ -814,7 +1275,7 @@ class MatchesApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "MatchResults",
@@ -822,6 +1283,169 @@ class MatchesApi:
 
         return self.api_client.call_api(
             '/matches/{id}/results/', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def matches_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], data : MatchList, **kwargs) -> MatchList:  # noqa: E501
+        ...
+
+    @overload
+    def matches_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], data : MatchList, async_req: Optional[bool]=True, **kwargs) -> MatchList:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def matches_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], data : MatchList, async_req: Optional[bool]=None, **kwargs) -> Union[MatchList, Awaitable[MatchList]]:  # noqa: E501
+        """matches_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.matches_update(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this matches. (required)
+        :type id: int
+        :param data: (required)
+        :type data: MatchList
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: MatchList
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the matches_update_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.matches_update_with_http_info(id, data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def matches_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this matches.")], data : MatchList, **kwargs) -> ApiResponse:  # noqa: E501
+        """matches_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.matches_update_with_http_info(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this matches. (required)
+        :type id: int
+        :param data: (required)
+        :type data: MatchList
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(MatchList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method matches_update" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '200': "MatchList",
+        }
+
+        return self.api_client.call_api(
+            '/matches/{id}/', 'PUT',
             _path_params,
             _query_params,
             _header_params,

@@ -1,30 +1,28 @@
-# TeamList
+# FranchiseTier
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | [optional] [readonly] 
-**franchise** | **str** |  | 
-**tier** | **str** |  | 
+**id** | **int** |  | [optional] [readonly] 
 
 ## Example
 
 ```python
-from rscapi.models.team_list import TeamList
+from rscapi.models.franchise_tier import FranchiseTier
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of TeamList from a JSON string
-team_list_instance = TeamList.from_json(json)
+# create an instance of FranchiseTier from a JSON string
+franchise_tier_instance = FranchiseTier.from_json(json)
 # print the JSON string representation of the object
-print TeamList.to_json()
+print FranchiseTier.to_json()
 
 # convert the object into a dict
-team_list_dict = team_list_instance.to_dict()
-# create an instance of TeamList from a dict
-team_list_form_dict = team_list.from_dict(team_list_dict)
+franchise_tier_dict = franchise_tier_instance.to_dict()
+# create an instance of FranchiseTier from a dict
+franchise_tier_form_dict = franchise_tier.from_dict(franchise_tier_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

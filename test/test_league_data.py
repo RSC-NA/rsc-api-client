@@ -37,9 +37,9 @@ class TestLeagueData(unittest.TestCase):
         model = LeagueData()  # noqa: E501
         if include_optional:
             return LeagueData(
-                max_num_players = -9223372036854775808,
+                max_num_players = -2147483648,
                 game_mode = '0',
-                match_format = -9223372036854775808
+                match_format = -2147483648
             )
         else:
             return LeagueData(

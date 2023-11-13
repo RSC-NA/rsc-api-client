@@ -40,20 +40,12 @@ class TestTeamList(unittest.TestCase):
                 id = 56,
                 name = '0',
                 franchise = '0',
-                players = [
-                    rscapi.models.player_list.PlayerList(
-                        id = 56, 
-                        name = '0', )
-                    ]
+                tier = '0'
             )
         else:
             return TeamList(
                 franchise = '0',
-                players = [
-                    rscapi.models.player_list.PlayerList(
-                        id = 56, 
-                        name = '0', )
-                    ],
+                tier = '0',
         )
         """
 

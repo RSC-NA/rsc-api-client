@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, StrictInt, StrictStr
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
 
 class SeasonSchedule(BaseModel):
     """
@@ -28,7 +28,7 @@ class SeasonSchedule(BaseModel):
     """
     matches_per_season: Optional[StrictInt] = None
     matches_per_night: Optional[StrictInt] = None
-    match_nights: Optional[StrictStr] = None
+    match_nights: conlist(StrictStr) = Field(...)
     __properties = ["matches_per_season", "matches_per_night", "match_nights"]
 
     class Config:
@@ -55,7 +55,6 @@ class SeasonSchedule(BaseModel):
                           exclude={
                             "matches_per_season",
                             "matches_per_night",
-                            "match_nights",
                           },
                           exclude_none=True)
         return _dict

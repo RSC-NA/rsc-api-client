@@ -46,9 +46,9 @@ class TestMember(unittest.TestCase):
                             name = '0', 
                             guild_id = 56, 
                             league_data = rscapi.models.league_data.LeagueData(
-                                max_num_players = -9223372036854775808, 
+                                max_num_players = -2147483648, 
                                 game_mode = '0', 
-                                match_format = -9223372036854775808, ), ), 
+                                match_format = -2147483648, ), ), 
                         position = '0', 
                         gm = True, 
                         agm = True, 
@@ -63,9 +63,9 @@ class TestMember(unittest.TestCase):
                             name = '0', 
                             guild_id = 56, 
                             league_data = rscapi.models.league_data.LeagueData(
-                                max_num_players = -9223372036854775808, 
+                                max_num_players = -2147483648, 
                                 game_mode = '0', 
-                                match_format = -9223372036854775808, ), ), 
+                                match_format = -2147483648, ), ), 
                         status = 'DE', 
                         season = 56, 
                         captain = True, 

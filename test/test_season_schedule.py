@@ -39,10 +39,15 @@ class TestSeasonSchedule(unittest.TestCase):
             return SeasonSchedule(
                 matches_per_season = 56,
                 matches_per_night = 56,
-                match_nights = ''
+                match_nights = [
+                    ''
+                    ]
             )
         else:
             return SeasonSchedule(
+                match_nights = [
+                    ''
+                    ],
         )
         """
 

@@ -19,18 +19,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, constr
 
-class TeamList(BaseModel):
+from pydantic import BaseModel, Field, StrictInt
+
+class TransferFranchise(BaseModel):
     """
-    TeamList
+    TransferFranchise
     """
-    id: Optional[StrictInt] = None
-    name: Optional[constr(strict=True, min_length=1)] = None
-    franchise: constr(strict=True, min_length=1) = Field(...)
-    tier: constr(strict=True, min_length=1) = Field(...)
-    __properties = ["id", "name", "franchise", "tier"]
+    general_manager: StrictInt = Field(..., description="General manager to transfer franchise to")
+    league: StrictInt = Field(..., description="League ID to get player contract status of.")
+    __properties = ["general_manager", "league"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,34 +44,30 @@ class TeamList(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TeamList:
-        """Create an instance of TeamList from a JSON string"""
+    def from_json(cls, json_str: str) -> TransferFranchise:
+        """Create an instance of TransferFranchise from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "id",
-                            "name",
                           },
                           exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TeamList:
-        """Create an instance of TeamList from a dict"""
+    def from_dict(cls, obj: dict) -> TransferFranchise:
+        """Create an instance of TransferFranchise from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TeamList.parse_obj(obj)
+            return TransferFranchise.parse_obj(obj)
 
-        _obj = TeamList.parse_obj({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "tier": obj.get("tier")
+        _obj = TransferFranchise.parse_obj({
+            "general_manager": obj.get("general_manager"),
+            "league": obj.get("league")
         })
         return _obj
 

@@ -4,14 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **prefix** | **str** |  | 
+**id** | **int** |  | [optional] [readonly] 
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | [optional] 
 **league** | [**League**](League.md) |  | 
-**tiers** | **object** |  | [optional] [readonly] 
+**tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [optional] [readonly] 
 **active** | **bool** |  | [optional] [readonly] 
-**teams** | **object** |  | [optional] [readonly] 
+**teams** | [**List[Team]**](Team.md) |  | [optional] [readonly] 
 **logo** | **str** |  | [optional] [readonly] 
 
 ## Example

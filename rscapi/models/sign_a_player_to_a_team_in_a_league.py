@@ -20,17 +20,16 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, constr
+from pydantic import BaseModel, Field, StrictInt, StrictStr
 
-class TeamList(BaseModel):
+class SignAPlayerToATeamInALeague(BaseModel):
     """
-    TeamList
+    Signs a player to a team in a given league..  # noqa: E501
     """
-    id: Optional[StrictInt] = None
-    name: Optional[constr(strict=True, min_length=1)] = None
-    franchise: constr(strict=True, min_length=1) = Field(...)
-    tier: constr(strict=True, min_length=1) = Field(...)
-    __properties = ["id", "name", "franchise", "tier"]
+    player: Optional[StrictInt] = Field(None, description="Specific player to sign.")
+    league: Optional[StrictInt] = Field(None, description="Guild ID of the discord the player is being signed in.")
+    team: Optional[StrictStr] = Field(None, description="Specific team name the player is being signed to.")
+    __properties = ["player", "league", "team"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,34 +45,31 @@ class TeamList(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TeamList:
-        """Create an instance of TeamList from a JSON string"""
+    def from_json(cls, json_str: str) -> SignAPlayerToATeamInALeague:
+        """Create an instance of SignAPlayerToATeamInALeague from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "id",
-                            "name",
                           },
                           exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TeamList:
-        """Create an instance of TeamList from a dict"""
+    def from_dict(cls, obj: dict) -> SignAPlayerToATeamInALeague:
+        """Create an instance of SignAPlayerToATeamInALeague from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TeamList.parse_obj(obj)
+            return SignAPlayerToATeamInALeague.parse_obj(obj)
 
-        _obj = TeamList.parse_obj({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "tier": obj.get("tier")
+        _obj = SignAPlayerToATeamInALeague.parse_obj({
+            "player": obj.get("player"),
+            "league": obj.get("league"),
+            "team": obj.get("team")
         })
         return _obj
 

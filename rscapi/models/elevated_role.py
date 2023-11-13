@@ -66,6 +66,11 @@ class ElevatedRole(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of league
         if self.league:
             _dict['league'] = self.league.to_dict()
+        # set to None if project_role (nullable) is None
+        # and __fields_set__ contains the field
+        if self.project_role is None and "project_role" in self.__fields_set__:
+            _dict['project_role'] = None
+
         return _dict
 
     @classmethod

@@ -27,6 +27,7 @@ from typing import List, Optional
 
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
+from rscapi.models.tracker_link_stats import TrackerLinkStats
 
 from rscapi.api_client import ApiClient
 from rscapi.api_response import ApiResponse
@@ -180,7 +181,7 @@ class TrackerLinksApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '201': "TrackerLink",
@@ -324,7 +325,7 @@ class TrackerLinksApi:
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {}
 
@@ -477,7 +478,7 @@ class TrackerLinksApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '201': "TrackerLinkInvalidateObject",
@@ -501,27 +502,27 @@ class TrackerLinksApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    async def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, **kwargs) -> TrackerLinkStats:  # noqa: E501
         ...
 
     @overload
-    def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, async_req: Optional[bool]=True, **kwargs) -> TrackerLinkStats:  # noqa: E501
         ...
 
     @validate_arguments
-    def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TrackerLink], Awaitable[List[TrackerLink]]]:  # noqa: E501
+    def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[TrackerLinkStats, Awaitable[TrackerLinkStats]]:  # noqa: E501
         """tracker_links_links_stats  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_links_stats(status, member, async_req=True)
+        >>> thread = api.tracker_links_links_stats(status, member_name, async_req=True)
         >>> result = thread.get()
 
         :param status: status
         :type status: str
-        :param member: member
-        :type member: str
+        :param member_name: member_name
+        :type member_name: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -531,7 +532,7 @@ class TrackerLinksApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: List[TrackerLink]
+        :rtype: TrackerLinkStats
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -539,22 +540,22 @@ class TrackerLinksApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.tracker_links_links_stats_with_http_info(status, member, **kwargs)  # noqa: E501
+        return self.tracker_links_links_stats_with_http_info(status, member_name, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tracker_links_links_stats_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def tracker_links_links_stats_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """tracker_links_links_stats  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_links_stats_with_http_info(status, member, async_req=True)
+        >>> thread = api.tracker_links_links_stats_with_http_info(status, member_name, async_req=True)
         >>> result = thread.get()
 
         :param status: status
         :type status: str
-        :param member: member
-        :type member: str
+        :param member_name: member_name
+        :type member_name: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -577,14 +578,14 @@ class TrackerLinksApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(List[TrackerLink], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TrackerLinkStats, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
 
         _all_params = [
             'status',
-            'member'
+            'member_name'
         ]
         _all_params.extend(
             [
@@ -618,8 +619,8 @@ class TrackerLinksApi:
         if _params.get('status') is not None:  # noqa: E501
             _query_params.append(('status', _params['status']))
 
-        if _params.get('member') is not None:  # noqa: E501
-            _query_params.append(('member', _params['member']))
+        if _params.get('member_name') is not None:  # noqa: E501
+            _query_params.append(('member_name', _params['member_name']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -633,10 +634,10 @@ class TrackerLinksApi:
             ['application/json', 'text/csv'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "List[TrackerLink]",
+            '200': "TrackerLinkStats",
         }
 
         return self.api_client.call_api(
@@ -657,27 +658,27 @@ class TrackerLinksApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    async def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, **kwargs) -> List[TrackerLink]:  # noqa: E501
         ...
 
     @overload
-    def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TrackerLink]:  # noqa: E501
         ...
 
     @validate_arguments
-    def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TrackerLink], Awaitable[List[TrackerLink]]]:  # noqa: E501
+    def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TrackerLink], Awaitable[List[TrackerLink]]]:  # noqa: E501
         """tracker_links_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_list(status, member, async_req=True)
+        >>> thread = api.tracker_links_list(status, member_name, async_req=True)
         >>> result = thread.get()
 
         :param status: Tracker Link Status (Pulled, Failed, etc.)
         :type status: str
-        :param member: member
-        :type member: str
+        :param member_name: member_name
+        :type member_name: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -695,22 +696,22 @@ class TrackerLinksApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.tracker_links_list_with_http_info(status, member, **kwargs)  # noqa: E501
+        return self.tracker_links_list_with_http_info(status, member_name, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tracker_links_list_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def tracker_links_list_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """tracker_links_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_list_with_http_info(status, member, async_req=True)
+        >>> thread = api.tracker_links_list_with_http_info(status, member_name, async_req=True)
         >>> result = thread.get()
 
         :param status: Tracker Link Status (Pulled, Failed, etc.)
         :type status: str
-        :param member: member
-        :type member: str
+        :param member_name: member_name
+        :type member_name: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -740,7 +741,7 @@ class TrackerLinksApi:
 
         _all_params = [
             'status',
-            'member'
+            'member_name'
         ]
         _all_params.extend(
             [
@@ -774,8 +775,8 @@ class TrackerLinksApi:
         if _params.get('status') is not None:  # noqa: E501
             _query_params.append(('status', _params['status']))
 
-        if _params.get('member') is not None:  # noqa: E501
-            _query_params.append(('member', _params['member']))
+        if _params.get('member_name') is not None:  # noqa: E501
+            _query_params.append(('member_name', _params['member_name']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -789,7 +790,7 @@ class TrackerLinksApi:
             ['application/json', 'text/csv'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "List[TrackerLink]",
@@ -813,27 +814,27 @@ class TrackerLinksApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    async def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, **kwargs) -> List[TrackerLink]:  # noqa: E501
         ...
 
     @overload
-    def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TrackerLink]:  # noqa: E501
         ...
 
     @validate_arguments
-    def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TrackerLink], Awaitable[List[TrackerLink]]]:  # noqa: E501
+    def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TrackerLink], Awaitable[List[TrackerLink]]]:  # noqa: E501
         """tracker_links_next  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_next(status, member, limit, async_req=True)
+        >>> thread = api.tracker_links_next(status, member_name, limit, async_req=True)
         >>> result = thread.get()
 
         :param status: status
         :type status: str
-        :param member: member
-        :type member: str
+        :param member_name: member_name
+        :type member_name: str
         :param limit: Number of tracker links to grab (Default: 1, Max:25)
         :type limit: int
         :param async_req: Whether to execute the request asynchronously.
@@ -853,22 +854,22 @@ class TrackerLinksApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.tracker_links_next_with_http_info(status, member, limit, **kwargs)  # noqa: E501
+        return self.tracker_links_next_with_http_info(status, member_name, limit, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tracker_links_next_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member : Annotated[Optional[StrictStr], Field(description="member")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def tracker_links_next_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """tracker_links_next  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_next_with_http_info(status, member, limit, async_req=True)
+        >>> thread = api.tracker_links_next_with_http_info(status, member_name, limit, async_req=True)
         >>> result = thread.get()
 
         :param status: status
         :type status: str
-        :param member: member
-        :type member: str
+        :param member_name: member_name
+        :type member_name: str
         :param limit: Number of tracker links to grab (Default: 1, Max:25)
         :type limit: int
         :param async_req: Whether to execute the request asynchronously.
@@ -900,7 +901,7 @@ class TrackerLinksApi:
 
         _all_params = [
             'status',
-            'member',
+            'member_name',
             'limit'
         ]
         _all_params.extend(
@@ -935,8 +936,8 @@ class TrackerLinksApi:
         if _params.get('status') is not None:  # noqa: E501
             _query_params.append(('status', _params['status']))
 
-        if _params.get('member') is not None:  # noqa: E501
-            _query_params.append(('member', _params['member']))
+        if _params.get('member_name') is not None:  # noqa: E501
+            _query_params.append(('member_name', _params['member_name']))
 
         if _params.get('limit') is not None:  # noqa: E501
             _query_params.append(('limit', _params['limit']))
@@ -953,7 +954,7 @@ class TrackerLinksApi:
             ['application/json', 'text/csv'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "List[TrackerLink]",
@@ -1116,7 +1117,7 @@ class TrackerLinksApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "TrackerLink",
@@ -1264,7 +1265,7 @@ class TrackerLinksApi:
             ['application/json', 'text/csv'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "TrackerLink",
@@ -1427,7 +1428,7 @@ class TrackerLinksApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['api_key']  # noqa: E501
+        _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
             '200': "TrackerLink",

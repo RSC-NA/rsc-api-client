@@ -57,7 +57,8 @@ class TestMatch(unittest.TestCase):
                             captain = True, 
                             base_mmr = 56, 
                             current_mmr = 56, 
-                            last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                            last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            discord_id = 56, )
                         ], 
                     latest_season = 56, ),
                 away_team = rscapi.models.team.Team(
@@ -73,7 +74,8 @@ class TestMatch(unittest.TestCase):
                             captain = True, 
                             base_mmr = 56, 
                             current_mmr = 56, 
-                            last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                            last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            discord_id = 56, )
                         ], 
                     latest_season = 56, ),
                 id = 56,
@@ -95,7 +97,8 @@ class TestMatch(unittest.TestCase):
                                         captain = True, 
                                         base_mmr = 56, 
                                         current_mmr = 56, 
-                                        last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                                        last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                        discord_id = 56, )
                                     ], 
                                 latest_season = 56, ), 
                             forfeit = True, 
@@ -120,7 +123,8 @@ class TestMatch(unittest.TestCase):
                             captain = True, 
                             base_mmr = 56, 
                             current_mmr = 56, 
-                            last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                            last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            discord_id = 56, )
                         ], 
                     latest_season = 56, ),
                 away_team = rscapi.models.team.Team(
@@ -136,7 +140,8 @@ class TestMatch(unittest.TestCase):
                             captain = True, 
                             base_mmr = 56, 
                             current_mmr = 56, 
-                            last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                            last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            discord_id = 56, )
                         ], 
                     latest_season = 56, ),
                 results = rscapi.models.match_results.MatchResults(
@@ -157,7 +162,8 @@ class TestMatch(unittest.TestCase):
                                         captain = True, 
                                         base_mmr = 56, 
                                         current_mmr = 56, 
-                                        last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                                        last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                        discord_id = 56, )
                                     ], 
                                 latest_season = 56, ), 
                             forfeit = True, 

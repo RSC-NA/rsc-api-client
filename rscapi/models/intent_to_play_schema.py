@@ -19,18 +19,16 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, constr
+from typing import List
+from pydantic import BaseModel, Field, StrictInt, conlist
 
-class TeamList(BaseModel):
+class IntentToPlaySchema(BaseModel):
     """
-    TeamList
+    Request body object containing intent to play data.  # noqa: E501
     """
-    id: Optional[StrictInt] = None
-    name: Optional[constr(strict=True, min_length=1)] = None
-    franchise: constr(strict=True, min_length=1) = Field(...)
-    tier: constr(strict=True, min_length=1) = Field(...)
-    __properties = ["id", "name", "franchise", "tier"]
+    players: conlist(StrictInt) = Field(..., description="List of players to fill out intent for.")
+    league: StrictInt = Field(..., description="League players are returning to.")
+    __properties = ["players", "league"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,34 +44,30 @@ class TeamList(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TeamList:
-        """Create an instance of TeamList from a JSON string"""
+    def from_json(cls, json_str: str) -> IntentToPlaySchema:
+        """Create an instance of IntentToPlaySchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "id",
-                            "name",
                           },
                           exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TeamList:
-        """Create an instance of TeamList from a dict"""
+    def from_dict(cls, obj: dict) -> IntentToPlaySchema:
+        """Create an instance of IntentToPlaySchema from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TeamList.parse_obj(obj)
+            return IntentToPlaySchema.parse_obj(obj)
 
-        _obj = TeamList.parse_obj({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "tier": obj.get("tier")
+        _obj = IntentToPlaySchema.parse_obj({
+            "players": obj.get("players"),
+            "league": obj.get("league")
         })
         return _obj
 

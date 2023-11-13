@@ -16,10 +16,10 @@
 import unittest
 import datetime
 
-from rscapi.models.player_list import PlayerList  # noqa: E501
+from rscapi.models.franchise_tier import FranchiseTier  # noqa: E501
 
-class TestPlayerList(unittest.TestCase):
-    """PlayerList unit test stubs"""
+class TestFranchiseTier(unittest.TestCase):
+    """FranchiseTier unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,27 +27,26 @@ class TestPlayerList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PlayerList:
-        """Test PlayerList
+    def make_instance(self, include_optional) -> FranchiseTier:
+        """Test FranchiseTier
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PlayerList`
+        # uncomment below to create an instance of `FranchiseTier`
         """
-        model = PlayerList()  # noqa: E501
+        model = FranchiseTier()  # noqa: E501
         if include_optional:
-            return PlayerList(
-                id = 56,
-                name = '0'
+            return FranchiseTier(
+                name = '0',
+                id = 56
             )
         else:
-            return PlayerList(
-                name = '0',
+            return FranchiseTier(
         )
         """
 
-    def testPlayerList(self):
-        """Test PlayerList"""
+    def testFranchiseTier(self):
+        """Test FranchiseTier"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -16,10 +16,10 @@
 import unittest
 import datetime
 
-from rscapi.models.franchise_gm import FranchiseGM  # noqa: E501
+from rscapi.models.franchise_team import FranchiseTeam  # noqa: E501
 
-class TestFranchiseGM(unittest.TestCase):
-    """FranchiseGM unit test stubs"""
+class TestFranchiseTeam(unittest.TestCase):
+    """FranchiseTeam unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,26 +27,26 @@ class TestFranchiseGM(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> FranchiseGM:
-        """Test FranchiseGM
+    def make_instance(self, include_optional) -> FranchiseTeam:
+        """Test FranchiseTeam
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `FranchiseGM`
+        # uncomment below to create an instance of `FranchiseTeam`
         """
-        model = FranchiseGM()  # noqa: E501
+        model = FranchiseTeam()  # noqa: E501
         if include_optional:
-            return FranchiseGM(
-                rsc_name = '0',
-                discord_id = 56
+            return FranchiseTeam(
+                id = 56,
+                name = '0'
             )
         else:
-            return FranchiseGM(
+            return FranchiseTeam(
         )
         """
 
-    def testFranchiseGM(self):
-        """Test FranchiseGM"""
+    def testFranchiseTeam(self):
+        """Test FranchiseTeam"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

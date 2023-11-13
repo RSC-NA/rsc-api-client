@@ -374,13 +374,13 @@ conf = rscapi.Configuration(
         :return: The Auth Settings information dict.
         """
         auth = {}
-        if 'api_key' in self.api_key:
-            auth['api_key'] = {
+        if 'Api-Key' in self.api_key:
+            auth['Api-Key'] = {
                 'type': 'api_key',
                 'in': 'header',
                 'key': 'Authorization',
                 'value': self.get_api_key_with_prefix(
-                    'api_key',
+                    'Api-Key',
                 ),
             }
         return auth

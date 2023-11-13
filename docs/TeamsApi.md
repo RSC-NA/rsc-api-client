@@ -21,7 +21,7 @@ Method | HTTP request | Description
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -41,11 +41,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -55,7 +55,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     franchise = 'franchise_example' # str | franchise (optional)
     name = 'name_example' # str | name (optional)
     tier = 'tier_example' # str | tier (optional)
-    league = 'league_example' # str | league (optional)
+    league = 56 # int | League Database ID (optional)
 
     try:
         api_response = await api_instance.teams_list(seasons=seasons, franchise=franchise, name=name, tier=tier, league=league)
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
  **franchise** | **str**| franchise | [optional] 
  **name** | **str**| name | [optional] 
  **tier** | **str**| tier | [optional] 
- **league** | **str**| league | [optional] 
+ **league** | **int**| League Database ID | [optional] 
 
 ### Return type
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_match**
-> Match teams_match(id, day, preseason=preseason)
+> Match teams_match(day, id, preseason=preseason)
 
 
 
@@ -106,7 +106,7 @@ Get a match details for a specific day for the given team
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -126,22 +126,22 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 'id_example' # str | 
     day = 56 # int | Match day to find
+    id = 56 # int | ID of the team to retrieve.
     preseason = 56 # int | 1 if this is a preseason match. (optional)
 
     try:
-        api_response = await api_instance.teams_match(id, day, preseason=preseason)
+        api_response = await api_instance.teams_match(day, id, preseason=preseason)
         print("The response of TeamsApi->teams_match:\n")
         pprint(api_response)
     except Exception as e:
@@ -154,8 +154,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
  **day** | **int**| Match day to find | 
+ **id** | **int**| ID of the team to retrieve. | 
  **preseason** | **int**| 1 if this is a preseason match. | [optional] 
 
 ### Return type
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -187,7 +187,7 @@ Get the next match for a given team
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -207,17 +207,17 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | ID of the team to retrieve.
 
     try:
         api_response = await api_instance.teams_next_match(id)
@@ -233,7 +233,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**| ID of the team to retrieve. | 
 
 ### Return type
 
@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -264,7 +264,7 @@ Get the players for a given team.
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -284,17 +284,17 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | ID of the team to retrieve.
 
     try:
         api_response = await api_instance.teams_players(id)
@@ -310,7 +310,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**| ID of the team to retrieve. | 
 
 ### Return type
 
@@ -318,7 +318,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -341,7 +341,7 @@ Get postseason stats for a given team. (Default: Current Season)
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -361,17 +361,17 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | ID of the team to retrieve.
     season = 56 # int | Specific season number to get stats for. (optional)
 
     try:
@@ -388,7 +388,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**| ID of the team to retrieve. | 
  **season** | **int**| Specific season number to get stats for. | [optional] 
 
 ### Return type
@@ -397,7 +397,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -418,7 +418,7 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -438,17 +438,17 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | ID of the team to retrieve.
 
     try:
         api_response = await api_instance.teams_read(id)
@@ -464,7 +464,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**| ID of the team to retrieve. | 
 
 ### Return type
 
@@ -472,7 +472,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -495,7 +495,7 @@ Get all matches for a given team.
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -515,17 +515,17 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | ID of the team to retrieve.
     preseason = True # bool | If true, get preseason matches (Default: Regular) (optional)
     season = 56 # int | Season number to get matches for (Default: Current Season) (optional)
 
@@ -543,7 +543,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**| ID of the team to retrieve. | 
  **preseason** | **bool**| If true, get preseason matches (Default: Regular) | [optional] 
  **season** | **int**| Season number to get matches for (Default: Current Season) | [optional] 
 
@@ -553,7 +553,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -576,7 +576,7 @@ Get regular season stats for a given team. (Default: Current Season)
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -596,17 +596,17 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | ID of the team to retrieve.
     season = 56 # int | Specific season number to get stats for. (optional)
 
     try:
@@ -623,7 +623,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**| ID of the team to retrieve. | 
  **season** | **int**| Specific season number to get stats for. | [optional] 
 
 ### Return type
@@ -632,7 +632,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 

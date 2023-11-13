@@ -9,13 +9,13 @@ Method | HTTP request | Description
 
 
 # **numbers_mmr_list**
-> List[PlayerMMR] numbers_mmr_list(pulled=pulled, rscid=rscid)
+> List[PlayerMMR] numbers_mmr_list(pulled=pulled, rscid=rscid, pulled_before=pulled_before, pulled_after=pulled_after)
 
 
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -35,21 +35,23 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.NumbersApi(api_client)
     pulled = 'pulled_example' # str | pulled (optional)
-    rscid = 'rscid_example' # str | rscid (optional)
+    rscid = 'rscid_example' # str | Member RSC ID (E.g: RSC002918) (optional)
+    pulled_before = 'pulled_before_example' # str | MMR pulled before date in YYYY-MM-DD format. (optional)
+    pulled_after = 'pulled_after_example' # str | MMR pulled after date in YYYY-MM-DD format. (optional)
 
     try:
-        api_response = await api_instance.numbers_mmr_list(pulled=pulled, rscid=rscid)
+        api_response = await api_instance.numbers_mmr_list(pulled=pulled, rscid=rscid, pulled_before=pulled_before, pulled_after=pulled_after)
         print("The response of NumbersApi->numbers_mmr_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -63,7 +65,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pulled** | **str**| pulled | [optional] 
- **rscid** | **str**| rscid | [optional] 
+ **rscid** | **str**| Member RSC ID (E.g: RSC002918) | [optional] 
+ **pulled_before** | **str**| MMR pulled before date in YYYY-MM-DD format. | [optional] 
+ **pulled_after** | **str**| MMR pulled after date in YYYY-MM-DD format. | [optional] 
 
 ### Return type
 
@@ -71,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -92,7 +96,7 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -112,11 +116,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -146,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 

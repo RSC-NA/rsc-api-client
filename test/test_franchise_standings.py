@@ -39,8 +39,8 @@ class TestFranchiseStandings(unittest.TestCase):
             return FranchiseStandings(
                 franchise = '0',
                 gm = '0',
-                wins = -9223372036854775808,
-                losses = -9223372036854775808,
+                wins = -2147483648,
+                losses = -2147483648,
                 win_percentage = 1.337,
                 franchise_standings_rank = 56
             )

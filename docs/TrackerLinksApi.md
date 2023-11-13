@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -42,11 +42,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -116,11 +116,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -148,7 +148,7 @@ void (empty response body)
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -169,7 +169,7 @@ void (empty response body)
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -189,11 +189,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -238,18 +238,18 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_links_stats**
-> List[TrackerLink] tracker_links_links_stats(status=status, member=member)
+> TrackerLinkStats tracker_links_links_stats(status=status, member_name=member_name)
 
 
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
 import rscapi
-from rscapi.models.tracker_link import TrackerLink
+from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -264,21 +264,21 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | status (optional)
-    member = 'member_example' # str | member (optional)
+    member_name = 'member_name_example' # str | member_name (optional)
 
     try:
-        api_response = await api_instance.tracker_links_links_stats(status=status, member=member)
+        api_response = await api_instance.tracker_links_links_stats(status=status, member_name=member_name)
         print("The response of TrackerLinksApi->tracker_links_links_stats:\n")
         pprint(api_response)
     except Exception as e:
@@ -292,15 +292,15 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **str**| status | [optional] 
- **member** | **str**| member | [optional] 
+ **member_name** | **str**| member_name | [optional] 
 
 ### Return type
 
-[**List[TrackerLink]**](TrackerLink.md)
+[**TrackerLinkStats**](TrackerLinkStats.md)
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -315,13 +315,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_list**
-> List[TrackerLink] tracker_links_list(status=status, member=member)
+> List[TrackerLink] tracker_links_list(status=status, member_name=member_name)
 
 
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -341,21 +341,21 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | Tracker Link Status (Pulled, Failed, etc.) (optional)
-    member = 'member_example' # str | member (optional)
+    member_name = 'member_name_example' # str | member_name (optional)
 
     try:
-        api_response = await api_instance.tracker_links_list(status=status, member=member)
+        api_response = await api_instance.tracker_links_list(status=status, member_name=member_name)
         print("The response of TrackerLinksApi->tracker_links_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -369,7 +369,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **str**| Tracker Link Status (Pulled, Failed, etc.) | [optional] 
- **member** | **str**| member | [optional] 
+ **member_name** | **str**| member_name | [optional] 
 
 ### Return type
 
@@ -377,7 +377,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -392,13 +392,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_next**
-> List[TrackerLink] tracker_links_next(status=status, member=member, limit=limit)
+> List[TrackerLink] tracker_links_next(status=status, member_name=member_name, limit=limit)
 
 
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -418,22 +418,22 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | status (optional)
-    member = 'member_example' # str | member (optional)
+    member_name = 'member_name_example' # str | member_name (optional)
     limit = 56 # int | Number of tracker links to grab (Default: 1, Max:25) (optional)
 
     try:
-        api_response = await api_instance.tracker_links_next(status=status, member=member, limit=limit)
+        api_response = await api_instance.tracker_links_next(status=status, member_name=member_name, limit=limit)
         print("The response of TrackerLinksApi->tracker_links_next:\n")
         pprint(api_response)
     except Exception as e:
@@ -447,7 +447,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **str**| status | [optional] 
- **member** | **str**| member | [optional] 
+ **member_name** | **str**| member_name | [optional] 
  **limit** | **int**| Number of tracker links to grab (Default: 1, Max:25) | [optional] 
 
 ### Return type
@@ -456,7 +456,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -477,7 +477,7 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -497,11 +497,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -533,7 +533,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -554,7 +554,7 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -574,11 +574,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -608,7 +608,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -629,7 +629,7 @@ Name | Type | Description  | Notes
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -649,11 +649,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -685,7 +685,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 

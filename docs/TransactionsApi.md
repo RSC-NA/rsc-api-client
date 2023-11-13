@@ -17,7 +17,7 @@ Cut a player
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -37,11 +37,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 
@@ -94,7 +94,7 @@ Sign a player
 
 ### Example
 
-* Api Key Authentication (api_key):
+* Api Key Authentication (Api-Key):
 ```python
 import time
 import os
@@ -114,11 +114,11 @@ configuration = rscapi.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: api_key
-configuration.api_key['api_key'] = os.environ["API_KEY"]
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['api_key'] = 'Bearer'
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key](../README.md#api_key)
+[Api-Key](../README.md#Api-Key)
 
 ### HTTP request headers
 

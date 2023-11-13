@@ -45,7 +45,9 @@ class TestSeasonTierData(unittest.TestCase):
                 schedule = rscapi.models.season_schedule.SeasonSchedule(
                     matches_per_season = 56, 
                     matches_per_night = 56, 
-                    match_nights = '', )
+                    match_nights = [
+                        ''
+                        ], )
             )
         else:
             return SeasonTierData(

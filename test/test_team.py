@@ -49,7 +49,8 @@ class TestTeam(unittest.TestCase):
                         captain = True, 
                         base_mmr = 56, 
                         current_mmr = 56, 
-                        last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        discord_id = 56, )
                     ],
                 latest_season = 56
             )
@@ -65,7 +66,8 @@ class TestTeam(unittest.TestCase):
                         captain = True, 
                         base_mmr = 56, 
                         current_mmr = 56, 
-                        last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                        last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        discord_id = 56, )
                     ],
                 latest_season = 56,
         )

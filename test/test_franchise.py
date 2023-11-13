@@ -37,22 +37,45 @@ class TestFranchise(unittest.TestCase):
         model = Franchise()  # noqa: E501
         if include_optional:
             return Franchise(
-                id = 56,
                 name = '0',
                 prefix = '0',
+                id = 56,
                 gm = rscapi.models.franchise_gm.FranchiseGM(
-                    rsc_name = '0', ),
+                    rsc_name = '0', 
+                    discord_id = 56, ),
                 league = rscapi.models.league.League(
                     id = 56, 
                     name = '0', 
                     guild_id = 56, 
                     league_data = rscapi.models.league_data.LeagueData(
-                        max_num_players = -9223372036854775808, 
+                        max_num_players = -2147483648, 
                         game_mode = '0', 
-                        match_format = -9223372036854775808, ), ),
-                tiers = rscapi.models.tiers.Tiers(),
+                        match_format = -2147483648, ), ),
+                tiers = [
+                    rscapi.models.franchise_tier.FranchiseTier(
+                        name = '0', 
+                        id = 56, )
+                    ],
                 active = True,
-                teams = rscapi.models.teams.Teams(),
+                teams = [
+                    rscapi.models.team.Team(
+                        id = 56, 
+                        name = '0', 
+                        franchise = '0', 
+                        tier = '0', 
+                        players = [
+                            rscapi.models.player.Player(
+                                id = 56, 
+                                name = '0', 
+                                status = '0', 
+                                captain = True, 
+                                base_mmr = 56, 
+                                current_mmr = 56, 
+                                last_updated = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                discord_id = 56, )
+                            ], 
+                        latest_season = 56, )
+                    ],
                 logo = ''
             )
         else:
@@ -64,9 +87,9 @@ class TestFranchise(unittest.TestCase):
                     name = '0', 
                     guild_id = 56, 
                     league_data = rscapi.models.league_data.LeagueData(
-                        max_num_players = -9223372036854775808, 
+                        max_num_players = -2147483648, 
                         game_mode = '0', 
-                        match_format = -9223372036854775808, ), ),
+                        match_format = -2147483648, ), ),
         )
         """
 

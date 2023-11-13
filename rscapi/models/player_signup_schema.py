@@ -19,18 +19,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, constr
+from typing import List
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
 
-class TeamList(BaseModel):
+class PlayerSignupSchema(BaseModel):
     """
-    TeamList
+    Request body object containing league player signup data.  # noqa: E501
     """
-    id: Optional[StrictInt] = None
-    name: Optional[constr(strict=True, min_length=1)] = None
-    franchise: constr(strict=True, min_length=1) = Field(...)
-    tier: constr(strict=True, min_length=1) = Field(...)
-    __properties = ["id", "name", "franchise", "tier"]
+    league: StrictInt = Field(..., description="League of team player will be captain in")
+    tracker_links: conlist(StrictStr) = Field(..., description="List of players tracker links")
+    rsc_name: StrictStr = Field(..., description="Discord display name of player")
+    __properties = ["league", "tracker_links", "rsc_name"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,34 +45,31 @@ class TeamList(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TeamList:
-        """Create an instance of TeamList from a JSON string"""
+    def from_json(cls, json_str: str) -> PlayerSignupSchema:
+        """Create an instance of PlayerSignupSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "id",
-                            "name",
                           },
                           exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TeamList:
-        """Create an instance of TeamList from a dict"""
+    def from_dict(cls, obj: dict) -> PlayerSignupSchema:
+        """Create an instance of PlayerSignupSchema from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TeamList.parse_obj(obj)
+            return PlayerSignupSchema.parse_obj(obj)
 
-        _obj = TeamList.parse_obj({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "tier": obj.get("tier")
+        _obj = PlayerSignupSchema.parse_obj({
+            "league": obj.get("league"),
+            "tracker_links": obj.get("tracker_links"),
+            "rsc_name": obj.get("rsc_name")
         })
         return _obj
 
