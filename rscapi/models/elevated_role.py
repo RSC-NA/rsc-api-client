@@ -28,11 +28,11 @@ class ElevatedRole(BaseModel):
     ElevatedRole
     """
     league: League = Field(...)
-    position: constr(strict=True, min_length=1) = Field(...)
+    position: Optional[constr(strict=True, min_length=1)] = Field(...)
     gm: Optional[StrictBool] = None
     agm: Optional[StrictBool] = None
     arbiter: Optional[StrictBool] = None
-    project_role: Optional[constr(strict=True, min_length=1)] = None
+    project_role: constr(strict=True, min_length=0) = Field(...)
     __properties = ["league", "position", "gm", "agm", "arbiter", "project_role"]
 
     class Config:
@@ -60,16 +60,15 @@ class ElevatedRole(BaseModel):
                             "gm",
                             "agm",
                             "arbiter",
-                            "project_role",
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of league
         if self.league:
             _dict['league'] = self.league.to_dict()
-        # set to None if project_role (nullable) is None
+        # set to None if position (nullable) is None
         # and __fields_set__ contains the field
-        if self.project_role is None and "project_role" in self.__fields_set__:
-            _dict['project_role'] = None
+        if self.position is None and "position" in self.__fields_set__:
+            _dict['position'] = None
 
         return _dict
 

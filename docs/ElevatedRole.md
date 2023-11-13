@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **gm** | **bool** |  | [optional] [readonly] 
 **agm** | **bool** |  | [optional] [readonly] 
 **arbiter** | **bool** |  | [optional] [readonly] 
-**project_role** | **str** |  | [optional] [readonly] 
+**project_role** | **str** |  | 
 
 ## Example
 
