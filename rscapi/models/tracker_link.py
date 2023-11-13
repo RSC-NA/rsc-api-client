@@ -29,12 +29,12 @@ class TrackerLink(BaseModel):
     link: Optional[constr(strict=True, min_length=1)] = None
     rscid: constr(strict=True, min_length=1) = Field(...)
     id: Optional[StrictInt] = None
-    name: Optional[constr(strict=True, min_length=1)] = None
+    name: constr(strict=True, min_length=0) = Field(...)
     platform: Optional[StrictStr] = None
     status: StrictStr = Field(...)
     last_updated: Optional[datetime] = None
     member_name: constr(strict=True, min_length=1) = Field(...)
-    platform_id: Optional[constr(strict=True, min_length=1)] = None
+    platform_id: constr(strict=True, min_length=0) = Field(...)
     __properties = ["link", "rscid", "id", "name", "platform", "status", "last_updated", "member_name", "platform_id"]
 
     @validator('platform')
@@ -77,10 +77,8 @@ class TrackerLink(BaseModel):
         _dict = self.dict(by_alias=True,
                           exclude={
                             "id",
-                            "name",
                             "platform",
                             "last_updated",
-                            "platform_id",
                           },
                           exclude_none=True)
         return _dict

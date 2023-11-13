@@ -28,6 +28,7 @@ from typing import List, Optional
 from rscapi.models.intent_to_play_schema import IntentToPlaySchema
 from rscapi.models.league_player import LeaguePlayer
 from rscapi.models.member import Member
+from rscapi.models.member_tracker import MemberTracker
 from rscapi.models.members_list200_response import MembersList200Response
 from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.models.player_signup_schema import PlayerSignupSchema
@@ -53,15 +54,15 @@ class MembersApi:
         self.api_client = api_client
 
     @overload
-    async def members_accounts(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], **kwargs) -> Member:  # noqa: E501
+    async def members_accounts(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], **kwargs) -> MemberTracker:  # noqa: E501
         ...
 
     @overload
-    def members_accounts(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], async_req: Optional[bool]=True, **kwargs) -> Member:  # noqa: E501
+    def members_accounts(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], async_req: Optional[bool]=True, **kwargs) -> MemberTracker:  # noqa: E501
         ...
 
     @validate_arguments
-    def members_accounts(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], async_req: Optional[bool]=None, **kwargs) -> Union[Member, Awaitable[Member]]:  # noqa: E501
+    def members_accounts(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], async_req: Optional[bool]=None, **kwargs) -> Union[MemberTracker, Awaitable[MemberTracker]]:  # noqa: E501
         """members_accounts  # noqa: E501
 
         Get accounts for a user  # noqa: E501
@@ -82,7 +83,7 @@ class MembersApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Member
+        :rtype: MemberTracker
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -127,7 +128,7 @@ class MembersApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Member, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(MemberTracker, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -182,7 +183,7 @@ class MembersApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "Member",
+            '200': "MemberTracker",
         }
 
         return self.api_client.call_api(

@@ -68,7 +68,9 @@ configuration = rscapi.Configuration(
 
 # Configure API key authorization: Api-Key
 configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-configuration.api_key_prefix['Api-Key'] = 'Api-Key'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
 
 
 # Enter a context with an instance of the API client
@@ -204,6 +206,7 @@ Class | Method | HTTP request | Description
  - [MatchResults](docs/MatchResults.md)
  - [MatchesList200Response](docs/MatchesList200Response.md)
  - [Member](docs/Member.md)
+ - [MemberTracker](docs/MemberTracker.md)
  - [MembersList200Response](docs/MembersList200Response.md)
  - [Player](docs/Player.md)
  - [PlayerMMR](docs/PlayerMMR.md)

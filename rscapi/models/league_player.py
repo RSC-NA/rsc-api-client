@@ -38,7 +38,7 @@ class LeaguePlayer(BaseModel):
     base_mmr: Optional[StrictInt] = None
     current_mmr: Optional[StrictInt] = None
     contract_length: Optional[StrictInt] = None
-    team: PlayerTeam = Field(...)
+    team: Optional[PlayerTeam] = Field(...)
     last_updated: Optional[datetime] = None
     previous_teams: conlist(PreviousTeam) = Field(...)
     player: LeaguePlayerMember = Field(...)
@@ -101,6 +101,11 @@ class LeaguePlayer(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of player
         if self.player:
             _dict['player'] = self.player.to_dict()
+        # set to None if team (nullable) is None
+        # and __fields_set__ contains the field
+        if self.team is None and "team" in self.__fields_set__:
+            _dict['team'] = None
+
         return _dict
 
     @classmethod

@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **members_accounts**
-> Member members_accounts(id)
+> MemberTracker members_accounts(id)
 
 
 
@@ -32,7 +32,7 @@ Get accounts for a user
 import time
 import os
 import rscapi
-from rscapi.models.member import Member
+from rscapi.models.member_tracker import MemberTracker
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Member**](Member.md)
+[**MemberTracker**](MemberTracker.md)
 
 ### Authorization
 

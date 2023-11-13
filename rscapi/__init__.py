@@ -62,6 +62,7 @@ from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
 from rscapi.models.matches_list200_response import MatchesList200Response
 from rscapi.models.member import Member
+from rscapi.models.member_tracker import MemberTracker
 from rscapi.models.members_list200_response import MembersList200Response
 from rscapi.models.player import Player
 from rscapi.models.player_mmr import PlayerMMR

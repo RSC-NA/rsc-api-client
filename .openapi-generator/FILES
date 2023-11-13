@@ -27,6 +27,7 @@ docs/MatchResults.md
 docs/MatchesApi.md
 docs/MatchesList200Response.md
 docs/Member.md
+docs/MemberTracker.md
 docs/MembersApi.md
 docs/MembersList200Response.md
 docs/NumbersApi.md
@@ -98,6 +99,7 @@ rscapi/models/match_list.py
 rscapi/models/match_results.py
 rscapi/models/matches_list200_response.py
 rscapi/models/member.py
+rscapi/models/member_tracker.py
 rscapi/models/members_list200_response.py
 rscapi/models/player.py
 rscapi/models/player_mmr.py

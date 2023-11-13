@@ -38,7 +38,7 @@ class Match(BaseModel):
     home_team: Team = Field(...)
     away_team: Team = Field(...)
     id: Optional[StrictInt] = None
-    results: MatchResults = Field(...)
+    results: Optional[MatchResults] = Field(...)
     __properties = ["day", "date", "game_name", "game_pass", "num_games", "match_format", "match_type", "home_team", "away_team", "id", "results"]
 
     @validator('match_format')
@@ -106,6 +106,11 @@ class Match(BaseModel):
         # and __fields_set__ contains the field
         if self.var_date is None and "var_date" in self.__fields_set__:
             _dict['date'] = None
+
+        # set to None if results (nullable) is None
+        # and __fields_set__ contains the field
+        if self.results is None and "results" in self.__fields_set__:
+            _dict['results'] = None
 
         return _dict
 

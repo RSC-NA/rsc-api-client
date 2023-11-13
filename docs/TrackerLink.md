@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 **link** | **str** |  | [optional] 
 **rscid** | **str** |  | 
 **id** | **int** |  | [optional] [readonly] 
-**name** | **str** |  | [optional] [readonly] 
+**name** | **str** |  | 
 **platform** | **str** |  | [optional] [readonly] 
 **status** | **str** |  | 
 **last_updated** | **datetime** |  | [optional] [readonly] 
 **member_name** | **str** |  | 
-**platform_id** | **str** |  | [optional] [readonly] 
+**platform_id** | **str** |  | 
 
 ## Example
 
