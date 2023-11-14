@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_league_season**
-> List[Season] seasons_league_season(league)
+> Season seasons_league_season(league)
 
 
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[Season]**](Season.md)
+[**Season**](Season.md)
 
 ### Authorization
 

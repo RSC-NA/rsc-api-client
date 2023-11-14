@@ -497,15 +497,15 @@ class SeasonsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def seasons_league_season(self, league : Annotated[StrictInt, Field(..., description="League to get current season for.")], **kwargs) -> List[Season]:  # noqa: E501
+    async def seasons_league_season(self, league : Annotated[StrictInt, Field(..., description="League to get current season for.")], **kwargs) -> Season:  # noqa: E501
         ...
 
     @overload
-    def seasons_league_season(self, league : Annotated[StrictInt, Field(..., description="League to get current season for.")], async_req: Optional[bool]=True, **kwargs) -> List[Season]:  # noqa: E501
+    def seasons_league_season(self, league : Annotated[StrictInt, Field(..., description="League to get current season for.")], async_req: Optional[bool]=True, **kwargs) -> Season:  # noqa: E501
         ...
 
     @validate_arguments
-    def seasons_league_season(self, league : Annotated[StrictInt, Field(..., description="League to get current season for.")], async_req: Optional[bool]=None, **kwargs) -> Union[List[Season], Awaitable[List[Season]]]:  # noqa: E501
+    def seasons_league_season(self, league : Annotated[StrictInt, Field(..., description="League to get current season for.")], async_req: Optional[bool]=None, **kwargs) -> Union[Season, Awaitable[Season]]:  # noqa: E501
         """seasons_league_season  # noqa: E501
 
         Get current season for a given league.  # noqa: E501
@@ -526,7 +526,7 @@ class SeasonsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: List[Season]
+        :rtype: Season
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -571,7 +571,7 @@ class SeasonsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(List[Season], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Season, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -626,7 +626,7 @@ class SeasonsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "List[Season]",
+            '200': "Season",
         }
 
         return self.api_client.call_api(
