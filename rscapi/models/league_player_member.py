@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, constr
+from pydantic import BaseModel, Field, StrictInt, StrictStr, constr
 
 class LeaguePlayerMember(BaseModel):
     """
@@ -28,7 +28,8 @@ class LeaguePlayerMember(BaseModel):
     """
     name: constr(strict=True, min_length=1) = Field(...)
     rsc_id: Optional[StrictStr] = None
-    __properties = ["name", "rsc_id"]
+    discord_id: Optional[StrictInt] = None
+    __properties = ["name", "rsc_id", "discord_id"]
 
     class Config:
         """Pydantic configuration"""
@@ -53,6 +54,7 @@ class LeaguePlayerMember(BaseModel):
         _dict = self.dict(by_alias=True,
                           exclude={
                             "rsc_id",
+                            "discord_id",
                           },
                           exclude_none=True)
         return _dict
@@ -68,7 +70,8 @@ class LeaguePlayerMember(BaseModel):
 
         _obj = LeaguePlayerMember.parse_obj({
             "name": obj.get("name"),
-            "rsc_id": obj.get("rsc_id")
+            "rsc_id": obj.get("rsc_id"),
+            "discord_id": obj.get("discord_id")
         })
         return _obj
 

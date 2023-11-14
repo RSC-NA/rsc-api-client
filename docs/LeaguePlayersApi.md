@@ -201,11 +201,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.LeaguePlayersApi(api_client)
     status = 'status_example' # str | Player Status (Rostered, IR, etc.) (optional)
     name = 'name_example' # str | name (optional)
-    tier = 'tier_example' # str | tier (optional)
+    tier = 56 # int | ID of Tier players are in. (optional)
     tier_name = 'tier_name_example' # str | tier_name (optional)
-    season = 'season_example' # str | season (optional)
-    season_number = 'season_number_example' # str | season_number (optional)
-    league = 'league_example' # str | league (optional)
+    season = 56 # int | ID of season players played in. (optional)
+    season_number = 56 # int | Number of season players played in. (optional)
+    league = 56 # int | ID of League player is in. (optional)
     team_name = 'team_name_example' # str | team_name (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
@@ -226,11 +226,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **str**| Player Status (Rostered, IR, etc.) | [optional] 
  **name** | **str**| name | [optional] 
- **tier** | **str**| tier | [optional] 
+ **tier** | **int**| ID of Tier players are in. | [optional] 
  **tier_name** | **str**| tier_name | [optional] 
- **season** | **str**| season | [optional] 
- **season_number** | **str**| season_number | [optional] 
- **league** | **str**| league | [optional] 
+ **season** | **int**| ID of season players played in. | [optional] 
+ **season_number** | **int**| Number of season players played in. | [optional] 
+ **league** | **int**| ID of League player is in. | [optional] 
  **team_name** | **str**| team_name | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 

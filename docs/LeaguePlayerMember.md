@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
 **rsc_id** | **str** |  | [optional] [readonly] 
+**discord_id** | **int** |  | [optional] [readonly] 
 
 ## Example
 
