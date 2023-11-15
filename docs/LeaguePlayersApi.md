@@ -163,7 +163,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_list**
-> LeaguePlayersList200Response league_players_list(status=status, name=name, tier=tier, tier_name=tier_name, season=season, season_number=season_number, league=league, team_name=team_name, limit=limit, offset=offset)
+> LeaguePlayersList200Response league_players_list(status=status, name=name, tier=tier, tier_name=tier_name, season=season, season_number=season_number, league=league, team_name=team_name, discord_id=discord_id, limit=limit, offset=offset)
 
 
 
@@ -207,11 +207,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     season_number = 56 # int | Number of season players played in. (optional)
     league = 56 # int | ID of League player is in. (optional)
     team_name = 'team_name_example' # str | team_name (optional)
+    discord_id = 56 # int | Discord ID of League Player (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
 
     try:
-        api_response = await api_instance.league_players_list(status=status, name=name, tier=tier, tier_name=tier_name, season=season, season_number=season_number, league=league, team_name=team_name, limit=limit, offset=offset)
+        api_response = await api_instance.league_players_list(status=status, name=name, tier=tier, tier_name=tier_name, season=season, season_number=season_number, league=league, team_name=team_name, discord_id=discord_id, limit=limit, offset=offset)
         print("The response of LeaguePlayersApi->league_players_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -232,6 +233,7 @@ Name | Type | Description  | Notes
  **season_number** | **int**| Number of season players played in. | [optional] 
  **league** | **int**| ID of League player is in. | [optional] 
  **team_name** | **str**| team_name | [optional] 
+ **discord_id** | **int**| Discord ID of League Player | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
 

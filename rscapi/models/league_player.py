@@ -25,6 +25,7 @@ from rscapi.models.league import League
 from rscapi.models.league_player_member import LeaguePlayerMember
 from rscapi.models.player_team import PlayerTeam
 from rscapi.models.previous_team import PreviousTeam
+from rscapi.models.tier import Tier
 
 class LeaguePlayer(BaseModel):
     """
@@ -42,7 +43,8 @@ class LeaguePlayer(BaseModel):
     last_updated: Optional[datetime] = None
     previous_teams: conlist(PreviousTeam) = Field(...)
     player: LeaguePlayerMember = Field(...)
-    __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player"]
+    tier: Tier = Field(...)
+    __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player", "tier"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -101,6 +103,9 @@ class LeaguePlayer(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of player
         if self.player:
             _dict['player'] = self.player.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tier
+        if self.tier:
+            _dict['tier'] = self.tier.to_dict()
         # set to None if team (nullable) is None
         # and __fields_set__ contains the field
         if self.team is None and "team" in self.__fields_set__:
@@ -129,7 +134,8 @@ class LeaguePlayer(BaseModel):
             "team": PlayerTeam.from_dict(obj.get("team")) if obj.get("team") is not None else None,
             "last_updated": obj.get("last_updated"),
             "previous_teams": [PreviousTeam.from_dict(_item) for _item in obj.get("previous_teams")] if obj.get("previous_teams") is not None else None,
-            "player": LeaguePlayerMember.from_dict(obj.get("player")) if obj.get("player") is not None else None
+            "player": LeaguePlayerMember.from_dict(obj.get("player")) if obj.get("player") is not None else None,
+            "tier": Tier.from_dict(obj.get("tier")) if obj.get("tier") is not None else None
         })
         return _obj
 

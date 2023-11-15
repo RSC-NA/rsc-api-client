@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **last_updated** | **datetime** |  | [optional] [readonly] 
 **previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | 
 **player** | [**LeaguePlayerMember**](LeaguePlayerMember.md) |  | 
+**tier** | [**Tier**](Tier.md) |  | 
 
 ## Example
 
