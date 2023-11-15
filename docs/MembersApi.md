@@ -438,7 +438,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.MembersApi(api_client)
     rsc_name = 'rsc_name_example' # str | rsc_name (optional)
     discord_username = 'discord_username_example' # str | discord_username (optional)
-    discord_id = 'discord_id_example' # str | discord_id (optional)
+    discord_id = 56 # int | Discord ID of member to search for (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
 
@@ -458,7 +458,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **rsc_name** | **str**| rsc_name | [optional] 
  **discord_username** | **str**| discord_username | [optional] 
- **discord_id** | **str**| discord_id | [optional] 
+ **discord_id** | **int**| Discord ID of member to search for | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
 

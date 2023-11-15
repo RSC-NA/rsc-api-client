@@ -816,15 +816,15 @@ class MembersApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def members_list(self, rsc_name : Annotated[Optional[StrictStr], Field(description="rsc_name")] = None, discord_username : Annotated[Optional[StrictStr], Field(description="discord_username")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> MembersList200Response:  # noqa: E501
+    async def members_list(self, rsc_name : Annotated[Optional[StrictStr], Field(description="rsc_name")] = None, discord_username : Annotated[Optional[StrictStr], Field(description="discord_username")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> MembersList200Response:  # noqa: E501
         ...
 
     @overload
-    def members_list(self, rsc_name : Annotated[Optional[StrictStr], Field(description="rsc_name")] = None, discord_username : Annotated[Optional[StrictStr], Field(description="discord_username")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=True, **kwargs) -> MembersList200Response:  # noqa: E501
+    def members_list(self, rsc_name : Annotated[Optional[StrictStr], Field(description="rsc_name")] = None, discord_username : Annotated[Optional[StrictStr], Field(description="discord_username")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=True, **kwargs) -> MembersList200Response:  # noqa: E501
         ...
 
     @validate_arguments
-    def members_list(self, rsc_name : Annotated[Optional[StrictStr], Field(description="rsc_name")] = None, discord_username : Annotated[Optional[StrictStr], Field(description="discord_username")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[MembersList200Response, Awaitable[MembersList200Response]]:  # noqa: E501
+    def members_list(self, rsc_name : Annotated[Optional[StrictStr], Field(description="rsc_name")] = None, discord_username : Annotated[Optional[StrictStr], Field(description="discord_username")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[MembersList200Response, Awaitable[MembersList200Response]]:  # noqa: E501
         """members_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -837,8 +837,8 @@ class MembersApi:
         :type rsc_name: str
         :param discord_username: discord_username
         :type discord_username: str
-        :param discord_id: discord_id
-        :type discord_id: str
+        :param discord_id: Discord ID of member to search for
+        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
@@ -863,7 +863,7 @@ class MembersApi:
         return self.members_list_with_http_info(rsc_name, discord_username, discord_id, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def members_list_with_http_info(self, rsc_name : Annotated[Optional[StrictStr], Field(description="rsc_name")] = None, discord_username : Annotated[Optional[StrictStr], Field(description="discord_username")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def members_list_with_http_info(self, rsc_name : Annotated[Optional[StrictStr], Field(description="rsc_name")] = None, discord_username : Annotated[Optional[StrictStr], Field(description="discord_username")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """members_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -876,8 +876,8 @@ class MembersApi:
         :type rsc_name: str
         :param discord_username: discord_username
         :type discord_username: str
-        :param discord_id: discord_id
-        :type discord_id: str
+        :param discord_id: Discord ID of member to search for
+        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
