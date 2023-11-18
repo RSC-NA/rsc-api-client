@@ -22,16 +22,16 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
 
-class SignAPlayerToATeamInALeague(BaseModel):
+class ReSignPlayer(BaseModel):
     """
-    Signs a player to a team in a given league..  # noqa: E501
+    Re-sign a player to a franchise.  # noqa: E501
     """
     player: StrictInt = Field(..., description="Specific player to perform transaction on.")
-    league: StrictInt = Field(..., description="Guild ID of the discord transaction is for.")
     team: StrictStr = Field(..., description="Specific team name for the transaction.")
+    league: StrictInt = Field(..., description="Guild ID of the discord transaction is for.")
     executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
     admin_override: Optional[StrictInt] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
-    __properties = ["player", "league", "team", "executor", "admin_override"]
+    __properties = ["player", "team", "league", "executor", "admin_override"]
 
     class Config:
         """Pydantic configuration"""
@@ -47,8 +47,8 @@ class SignAPlayerToATeamInALeague(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SignAPlayerToATeamInALeague:
-        """Create an instance of SignAPlayerToATeamInALeague from a JSON string"""
+    def from_json(cls, json_str: str) -> ReSignPlayer:
+        """Create an instance of ReSignPlayer from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -60,18 +60,18 @@ class SignAPlayerToATeamInALeague(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SignAPlayerToATeamInALeague:
-        """Create an instance of SignAPlayerToATeamInALeague from a dict"""
+    def from_dict(cls, obj: dict) -> ReSignPlayer:
+        """Create an instance of ReSignPlayer from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SignAPlayerToATeamInALeague.parse_obj(obj)
+            return ReSignPlayer.parse_obj(obj)
 
-        _obj = SignAPlayerToATeamInALeague.parse_obj({
+        _obj = ReSignPlayer.parse_obj({
             "player": obj.get("player"),
-            "league": obj.get("league"),
             "team": obj.get("team"),
+            "league": obj.get("league"),
             "executor": obj.get("executor"),
             "admin_override": obj.get("admin_override")
         })

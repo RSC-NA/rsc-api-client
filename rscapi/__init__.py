@@ -71,6 +71,7 @@ from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.models.player_signup_schema import PlayerSignupSchema
 from rscapi.models.player_team import PlayerTeam
 from rscapi.models.previous_team import PreviousTeam
+from rscapi.models.re_sign_player import ReSignPlayer
 from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
 from rscapi.models.season import Season
 from rscapi.models.season_league import SeasonLeague

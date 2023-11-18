@@ -1,32 +1,32 @@
-# SignAPlayerToATeamInALeague
+# ReSignPlayer
 
-Signs a player to a team in a given league..
+Re-sign a player to a franchise.
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **int** | Specific player to perform transaction on. | 
-**league** | **int** | Guild ID of the discord transaction is for. | 
 **team** | **str** | Specific team name for the transaction. | 
+**league** | **int** | Guild ID of the discord transaction is for. | 
 **executor** | **int** | Discord ID of specific member who ran the transaction. | 
 **admin_override** | **int** | Boolean indicating whether or not an admin is overriding this command. | [optional] 
 
 ## Example
 
 ```python
-from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.models.re_sign_player import ReSignPlayer
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of SignAPlayerToATeamInALeague from a JSON string
-sign_a_player_to_a_team_in_a_league_instance = SignAPlayerToATeamInALeague.from_json(json)
+# create an instance of ReSignPlayer from a JSON string
+re_sign_player_instance = ReSignPlayer.from_json(json)
 # print the JSON string representation of the object
-print SignAPlayerToATeamInALeague.to_json()
+print ReSignPlayer.to_json()
 
 # convert the object into a dict
-sign_a_player_to_a_team_in_a_league_dict = sign_a_player_to_a_team_in_a_league_instance.to_dict()
-# create an instance of SignAPlayerToATeamInALeague from a dict
-sign_a_player_to_a_team_in_a_league_form_dict = sign_a_player_to_a_team_in_a_league.from_dict(sign_a_player_to_a_team_in_a_league_dict)
+re_sign_player_dict = re_sign_player_instance.to_dict()
+# create an instance of ReSignPlayer from a dict
+re_sign_player_form_dict = re_sign_player.from_dict(re_sign_player_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

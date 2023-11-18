@@ -26,9 +26,11 @@ class CutAPlayerFromALeague(BaseModel):
     """
     Cuts a player from their team in a given league.  # noqa: E501
     """
-    player: Optional[StrictInt] = Field(None, description="Specific player to cut.")
-    league: Optional[StrictInt] = Field(None, description="Guild ID of the discord the player is being cut from.")
-    __properties = ["player", "league"]
+    player: StrictInt = Field(..., description="Specific player to perform transaction on.")
+    league: StrictInt = Field(..., description="Guild ID of the discord transaction is for.")
+    executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
+    admin_override: Optional[StrictInt] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
+    __properties = ["player", "league", "executor", "admin_override"]
 
     class Config:
         """Pydantic configuration"""
@@ -67,7 +69,9 @@ class CutAPlayerFromALeague(BaseModel):
 
         _obj = CutAPlayerFromALeague.parse_obj({
             "player": obj.get("player"),
-            "league": obj.get("league")
+            "league": obj.get("league"),
+            "executor": obj.get("executor"),
+            "admin_override": obj.get("admin_override")
         })
         return _obj
 

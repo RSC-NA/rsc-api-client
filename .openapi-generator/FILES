@@ -38,6 +38,7 @@ docs/PlayerSeasonStatsInDepth.md
 docs/PlayerSignupSchema.md
 docs/PlayerTeam.md
 docs/PreviousTeam.md
+docs/ReSignPlayer.md
 docs/ScheduleIngestRequestBody.md
 docs/Season.md
 docs/SeasonLeague.md
@@ -108,6 +109,7 @@ rscapi/models/player_season_stats_in_depth.py
 rscapi/models/player_signup_schema.py
 rscapi/models/player_team.py
 rscapi/models/previous_team.py
+rscapi/models/re_sign_player.py
 rscapi/models/schedule_ingest_request_body.py
 rscapi/models/season.py
 rscapi/models/season_league.py
@@ -129,4 +131,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_re_sign_player.py
 tox.ini

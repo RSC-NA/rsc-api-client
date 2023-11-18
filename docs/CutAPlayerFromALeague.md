@@ -5,8 +5,10 @@ Cuts a player from their team in a given league.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**player** | **int** | Specific player to cut. | [optional] 
-**league** | **int** | Guild ID of the discord the player is being cut from. | [optional] 
+**player** | **int** | Specific player to perform transaction on. | 
+**league** | **int** | Guild ID of the discord transaction is for. | 
+**executor** | **int** | Discord ID of specific member who ran the transaction. | 
+**admin_override** | **int** | Boolean indicating whether or not an admin is overriding this command. | [optional] 
 
 ## Example
 
