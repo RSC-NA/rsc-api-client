@@ -66,6 +66,7 @@ from rscapi.models.member import Member
 from rscapi.models.member_tracker import MemberTracker
 from rscapi.models.members_list200_response import MembersList200Response
 from rscapi.models.player import Player
+from rscapi.models.player_franchise import PlayerFranchise
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth

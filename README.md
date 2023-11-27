@@ -212,6 +212,7 @@ Class | Method | HTTP request | Description
  - [MemberTracker](docs/MemberTracker.md)
  - [MembersList200Response](docs/MembersList200Response.md)
  - [Player](docs/Player.md)
+ - [PlayerFranchise](docs/PlayerFranchise.md)
  - [PlayerMMR](docs/PlayerMMR.md)
  - [PlayerSeasonStats](docs/PlayerSeasonStats.md)
  - [PlayerSeasonStatsInDepth](docs/PlayerSeasonStatsInDepth.md)
