@@ -409,7 +409,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_transfer_franchise**
-> TransferFranchise franchises_transfer_franchise(id, data)
+> Franchise franchises_transfer_franchise(id, data)
 
 
 
@@ -422,6 +422,7 @@ PUT /franchises/{id}/transfer_franchise/
 import time
 import os
 import rscapi
+from rscapi.models.franchise import Franchise
 from rscapi.models.transfer_franchise import TransferFranchise
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -469,7 +470,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TransferFranchise**](TransferFranchise.md)
+[**Franchise**](Franchise.md)
 
 ### Authorization
 
@@ -483,7 +484,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -567,7 +570,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_upload_logo**
-> FranchiseList franchises_upload_logo(id, logo)
+> Franchise franchises_upload_logo(id, logo)
 
 
 
@@ -580,7 +583,7 @@ Update a franchise logo.
 import time
 import os
 import rscapi
-from rscapi.models.franchise_list import FranchiseList
+from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -627,7 +630,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FranchiseList**](FranchiseList.md)
+[**Franchise**](Franchise.md)
 
 ### Authorization
 
@@ -641,7 +644,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -3,8 +3,8 @@ import rscapi
 
 def get_config(host):
 	config = rscapi.Configuration(host, 
-				      api_key={'api_key': 'EM59MHbM.Cpdg0DA8mwqLFly4SQ43HnbF8Z97p24F'},
-				      api_key_prefix={'api_key': 'Api-Key'})
+				      api_key={'Api-Key': 'a2ooxauj.B8gVfrllKA1POuZaUZmOSHSUhrGeLyp5'},
+				      api_key_prefix={'Api-Key': 'Api-Key'})
 
 	return config
 

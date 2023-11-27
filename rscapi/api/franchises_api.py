@@ -856,15 +856,15 @@ class FranchisesApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def franchises_transfer_franchise(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : TransferFranchise, **kwargs) -> TransferFranchise:  # noqa: E501
+    async def franchises_transfer_franchise(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : TransferFranchise, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @overload
-    def franchises_transfer_franchise(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : TransferFranchise, async_req: Optional[bool]=True, **kwargs) -> TransferFranchise:  # noqa: E501
+    def franchises_transfer_franchise(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : TransferFranchise, async_req: Optional[bool]=True, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @validate_arguments
-    def franchises_transfer_franchise(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : TransferFranchise, async_req: Optional[bool]=None, **kwargs) -> Union[TransferFranchise, Awaitable[TransferFranchise]]:  # noqa: E501
+    def franchises_transfer_franchise(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : TransferFranchise, async_req: Optional[bool]=None, **kwargs) -> Union[Franchise, Awaitable[Franchise]]:  # noqa: E501
         """franchises_transfer_franchise  # noqa: E501
 
         PUT /franchises/{id}/transfer_franchise/  # noqa: E501
@@ -887,7 +887,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: TransferFranchise
+        :rtype: Franchise
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -934,7 +934,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(TransferFranchise, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Franchise, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1000,7 +1000,9 @@ class FranchisesApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "TransferFranchise",
+            '202': "Franchise",
+            '404': "Error",
+            '400': "Error",
         }
 
         return self.api_client.call_api(
@@ -1186,15 +1188,15 @@ class FranchisesApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def franchises_upload_logo(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], logo : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Logo content.")], **kwargs) -> FranchiseList:  # noqa: E501
+    async def franchises_upload_logo(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], logo : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Logo content.")], **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @overload
-    def franchises_upload_logo(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], logo : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Logo content.")], async_req: Optional[bool]=True, **kwargs) -> FranchiseList:  # noqa: E501
+    def franchises_upload_logo(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], logo : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Logo content.")], async_req: Optional[bool]=True, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @validate_arguments
-    def franchises_upload_logo(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], logo : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Logo content.")], async_req: Optional[bool]=None, **kwargs) -> Union[FranchiseList, Awaitable[FranchiseList]]:  # noqa: E501
+    def franchises_upload_logo(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], logo : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Logo content.")], async_req: Optional[bool]=None, **kwargs) -> Union[Franchise, Awaitable[Franchise]]:  # noqa: E501
         """franchises_upload_logo  # noqa: E501
 
         Update a franchise logo.  # noqa: E501
@@ -1217,7 +1219,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: FranchiseList
+        :rtype: Franchise
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -1264,7 +1266,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(FranchiseList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Franchise, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1330,7 +1332,8 @@ class FranchisesApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "FranchiseList",
+            '202': "Franchise",
+            '400': "Error",
         }
 
         return self.api_client.call_api(

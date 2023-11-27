@@ -28,7 +28,7 @@ class ReSignPlayer(BaseModel):
     """
     player: StrictInt = Field(..., description="Specific player to perform transaction on.")
     team: StrictStr = Field(..., description="Specific team name for the transaction.")
-    league: StrictInt = Field(..., description="Guild ID of the discord transaction is for.")
+    league: StrictInt = Field(..., description="ID of the league transaction is for.")
     executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
     admin_override: Optional[StrictInt] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
     __properties = ["player", "team", "league", "executor", "admin_override"]

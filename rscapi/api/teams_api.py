@@ -378,6 +378,8 @@ class TeamsApi:
 
         _response_types_map = {
             '200': "Match",
+            '400': "Error",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -528,6 +530,7 @@ class TeamsApi:
 
         _response_types_map = {
             '200': "Match",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -836,6 +839,7 @@ class TeamsApi:
 
         _response_types_map = {
             '200': "TeamSeasonStats",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -856,15 +860,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_read(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], **kwargs) -> Team:  # noqa: E501
+    async def teams_read(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> Team:  # noqa: E501
         ...
 
     @overload
-    def teams_read(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], async_req: Optional[bool]=True, **kwargs) -> Team:  # noqa: E501
+    def teams_read(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=True, **kwargs) -> Team:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_read(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], async_req: Optional[bool]=None, **kwargs) -> Union[Team, Awaitable[Team]]:  # noqa: E501
+    def teams_read(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=None, **kwargs) -> Union[Team, Awaitable[Team]]:  # noqa: E501
         """teams_read  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -873,7 +877,7 @@ class TeamsApi:
         >>> thread = api.teams_read(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -895,7 +899,7 @@ class TeamsApi:
         return self.teams_read_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_read_with_http_info(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_read_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> ApiResponse:  # noqa: E501
         """teams_read  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -904,7 +908,7 @@ class TeamsApi:
         >>> thread = api.teams_read_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1150,6 +1154,7 @@ class TeamsApi:
 
         _response_types_map = {
             '200': "List[Match]",
+            '400': "Error",
         }
 
         return self.api_client.call_api(

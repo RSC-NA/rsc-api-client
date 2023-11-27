@@ -19,18 +19,15 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt
 
-class CutAPlayerFromALeague(BaseModel):
+from pydantic import BaseModel, Field, constr
+
+class SimpleResponse(BaseModel):
     """
-    Cuts a player from their team in a given league.  # noqa: E501
+    SimpleResponse
     """
-    player: StrictInt = Field(..., description="Specific player to perform transaction on.")
-    league: StrictInt = Field(..., description="ID of the league transaction is for.")
-    executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
-    admin_override: Optional[StrictInt] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
-    __properties = ["player", "league", "executor", "admin_override"]
+    detail: constr(strict=True, min_length=1) = Field(...)
+    __properties = ["detail"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,8 +43,8 @@ class CutAPlayerFromALeague(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CutAPlayerFromALeague:
-        """Create an instance of CutAPlayerFromALeague from a JSON string"""
+    def from_json(cls, json_str: str) -> SimpleResponse:
+        """Create an instance of SimpleResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -59,19 +56,16 @@ class CutAPlayerFromALeague(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CutAPlayerFromALeague:
-        """Create an instance of CutAPlayerFromALeague from a dict"""
+    def from_dict(cls, obj: dict) -> SimpleResponse:
+        """Create an instance of SimpleResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CutAPlayerFromALeague.parse_obj(obj)
+            return SimpleResponse.parse_obj(obj)
 
-        _obj = CutAPlayerFromALeague.parse_obj({
-            "player": obj.get("player"),
-            "league": obj.get("league"),
-            "executor": obj.get("executor"),
-            "admin_override": obj.get("admin_override")
+        _obj = SimpleResponse.parse_obj({
+            "detail": obj.get("detail")
         })
         return _obj
 

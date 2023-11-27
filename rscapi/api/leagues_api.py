@@ -27,6 +27,7 @@ from typing import List
 
 from rscapi.models.league import League
 from rscapi.models.season import Season
+from rscapi.models.start_new_season import StartNewSeason
 
 from rscapi.api_client import ApiClient
 from rscapi.api_response import ApiResponse
@@ -1097,15 +1098,15 @@ class LeaguesApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def leagues_start_new_season(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this league.")], data : League, **kwargs) -> Season:  # noqa: E501
+    async def leagues_start_new_season(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this league.")], data : StartNewSeason, **kwargs) -> Season:  # noqa: E501
         ...
 
     @overload
-    def leagues_start_new_season(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this league.")], data : League, async_req: Optional[bool]=True, **kwargs) -> Season:  # noqa: E501
+    def leagues_start_new_season(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this league.")], data : StartNewSeason, async_req: Optional[bool]=True, **kwargs) -> Season:  # noqa: E501
         ...
 
     @validate_arguments
-    def leagues_start_new_season(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this league.")], data : League, async_req: Optional[bool]=None, **kwargs) -> Union[Season, Awaitable[Season]]:  # noqa: E501
+    def leagues_start_new_season(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this league.")], data : StartNewSeason, async_req: Optional[bool]=None, **kwargs) -> Union[Season, Awaitable[Season]]:  # noqa: E501
         """leagues_start_new_season  # noqa: E501
 
         Start a new season for a given league  # noqa: E501
@@ -1118,7 +1119,7 @@ class LeaguesApi:
         :param id: A unique integer value identifying this league. (required)
         :type id: int
         :param data: (required)
-        :type data: League
+        :type data: StartNewSeason
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -1139,7 +1140,7 @@ class LeaguesApi:
         return self.leagues_start_new_season_with_http_info(id, data, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def leagues_start_new_season_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this league.")], data : League, **kwargs) -> ApiResponse:  # noqa: E501
+    def leagues_start_new_season_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this league.")], data : StartNewSeason, **kwargs) -> ApiResponse:  # noqa: E501
         """leagues_start_new_season  # noqa: E501
 
         Start a new season for a given league  # noqa: E501
@@ -1152,7 +1153,7 @@ class LeaguesApi:
         :param id: A unique integer value identifying this league. (required)
         :type id: int
         :param data: (required)
-        :type data: League
+        :type data: StartNewSeason
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1242,6 +1243,7 @@ class LeaguesApi:
 
         _response_types_map = {
             '201': "Season",
+            '400': "Error",
         }
 
         return self.api_client.call_api(

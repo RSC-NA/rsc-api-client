@@ -44,6 +44,7 @@ from rscapi.exceptions import ApiException
 # import models into sdk package
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole
+from rscapi.models.error import Error
 from rscapi.models.franchise import Franchise
 from rscapi.models.franchise_gm import FranchiseGM
 from rscapi.models.franchise_list import FranchiseList
@@ -78,6 +79,8 @@ from rscapi.models.season_league import SeasonLeague
 from rscapi.models.season_schedule import SeasonSchedule
 from rscapi.models.season_tier_data import SeasonTierData
 from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.models.simple_response import SimpleResponse
+from rscapi.models.start_new_season import StartNewSeason
 from rscapi.models.team import Team
 from rscapi.models.team_list import TeamList
 from rscapi.models.team_season_stats import TeamSeasonStats
@@ -87,3 +90,4 @@ from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateOb
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_mmr import TrackerMMR
 from rscapi.models.transfer_franchise import TransferFranchise
+from rscapi.models.update_member_rsc_name import UpdateMemberRSCName

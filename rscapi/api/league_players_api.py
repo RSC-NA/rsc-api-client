@@ -868,6 +868,7 @@ class LeaguePlayersApi:
 
         _response_types_map = {
             '200': "PlayerSeasonStats",
+            '400': "Error",
         }
 
         return self.api_client.call_api(
@@ -1331,6 +1332,7 @@ class LeaguePlayersApi:
 
         _response_types_map = {
             '200': "PlayerSeasonStats",
+            '400': "Error",
         }
 
         return self.api_client.call_api(

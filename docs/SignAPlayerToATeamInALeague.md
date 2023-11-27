@@ -6,7 +6,7 @@ Signs a player to a team in a given league..
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **int** | Specific player to perform transaction on. | 
-**league** | **int** | Guild ID of the discord transaction is for. | 
+**league** | **int** | ID of the league transaction is for. | 
 **team** | **str** | Specific team name for the transaction. | 
 **executor** | **int** | Discord ID of specific member who ran the transaction. | 
 **admin_override** | **int** | Boolean indicating whether or not an admin is overriding this command. | [optional] 

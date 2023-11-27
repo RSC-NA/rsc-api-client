@@ -313,6 +313,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -540,7 +541,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_submit_schedule**
-> ScheduleIngestRequestBody seasons_submit_schedule(id, data)
+> SimpleResponse seasons_submit_schedule(id, data)
 
 
 
@@ -554,6 +555,7 @@ import time
 import os
 import rscapi
 from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
+from rscapi.models.simple_response import SimpleResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -600,7 +602,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScheduleIngestRequestBody**](ScheduleIngestRequestBody.md)
+[**SimpleResponse**](SimpleResponse.md)
 
 ### Authorization
 
@@ -614,7 +616,8 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**202** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

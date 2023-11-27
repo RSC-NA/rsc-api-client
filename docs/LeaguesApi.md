@@ -553,8 +553,8 @@ Start a new season for a given league
 import time
 import os
 import rscapi
-from rscapi.models.league import League
 from rscapi.models.season import Season
+from rscapi.models.start_new_season import StartNewSeason
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -580,7 +580,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguesApi(api_client)
     id = 56 # int | A unique integer value identifying this league.
-    data = rscapi.League() # League | 
+    data = rscapi.StartNewSeason() # StartNewSeason | 
 
     try:
         api_response = await api_instance.leagues_start_new_season(id, data)
@@ -597,7 +597,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
- **data** | [**League**](League.md)|  | 
+ **data** | [**StartNewSeason**](StartNewSeason.md)|  | 
 
 ### Return type
 
@@ -616,6 +616,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

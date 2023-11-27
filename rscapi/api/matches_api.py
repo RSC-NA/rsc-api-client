@@ -566,6 +566,7 @@ class MatchesApi:
 
         _response_types_map = {
             '200': "List[Match]",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -1271,6 +1272,8 @@ class MatchesApi:
 
         _response_types_map = {
             '200': "MatchResults",
+            '400': "Error",
+            '404': "Error",
         }
 
         return self.api_client.call_api(

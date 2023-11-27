@@ -182,6 +182,8 @@ class TransactionsApi:
 
         _response_types_map = {
             '201': "CutAPlayerFromALeague",
+            '404': "Error",
+            '403': "Error",
         }
 
         return self.api_client.call_api(
@@ -339,6 +341,8 @@ class TransactionsApi:
 
         _response_types_map = {
             '201': "ReSignPlayer",
+            '404': "Error",
+            '403': "Error",
         }
 
         return self.api_client.call_api(
@@ -496,6 +500,8 @@ class TransactionsApi:
 
         _response_types_map = {
             '201': "SignAPlayerToATeamInALeague",
+            '404': "Error",
+            '403': "Error",
         }
 
         return self.api_client.call_api(

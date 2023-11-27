@@ -134,6 +134,7 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**members_delete**](docs/MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
 *MembersApi* | [**members_intent_to_play**](docs/MembersApi.md#members_intent_to_play) | **POST** /members/intent_to_play/ | 
 *MembersApi* | [**members_list**](docs/MembersApi.md#members_list) | **GET** /members/ | 
+*MembersApi* | [**members_name_change**](docs/MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 *MembersApi* | [**members_partial_update**](docs/MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
 *MembersApi* | [**members_postseason_stats**](docs/MembersApi.md#members_postseason_stats) | **GET** /members/{id}/postseason_stats/ | 
 *MembersApi* | [**members_read**](docs/MembersApi.md#members_read) | **GET** /members/{id}/ | 
@@ -189,6 +190,7 @@ Class | Method | HTTP request | Description
 
  - [CutAPlayerFromALeague](docs/CutAPlayerFromALeague.md)
  - [ElevatedRole](docs/ElevatedRole.md)
+ - [Error](docs/Error.md)
  - [Franchise](docs/Franchise.md)
  - [FranchiseGM](docs/FranchiseGM.md)
  - [FranchiseList](docs/FranchiseList.md)
@@ -223,6 +225,8 @@ Class | Method | HTTP request | Description
  - [SeasonSchedule](docs/SeasonSchedule.md)
  - [SeasonTierData](docs/SeasonTierData.md)
  - [SignAPlayerToATeamInALeague](docs/SignAPlayerToATeamInALeague.md)
+ - [SimpleResponse](docs/SimpleResponse.md)
+ - [StartNewSeason](docs/StartNewSeason.md)
  - [Team](docs/Team.md)
  - [TeamList](docs/TeamList.md)
  - [TeamSeasonStats](docs/TeamSeasonStats.md)
@@ -232,6 +236,7 @@ Class | Method | HTTP request | Description
  - [TrackerLinkStats](docs/TrackerLinkStats.md)
  - [TrackerMMR](docs/TrackerMMR.md)
  - [TransferFranchise](docs/TransferFranchise.md)
+ - [UpdateMemberRSCName](docs/UpdateMemberRSCName.md)
 
 
 <a id="documentation-for-authorization"></a>

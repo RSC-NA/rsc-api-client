@@ -822,6 +822,7 @@ class TiersApi:
 
         _response_types_map = {
             '200': "List[PlayerSeasonStatsInDepth]",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -988,6 +989,7 @@ class TiersApi:
 
         _response_types_map = {
             '200': "List[LeaguePlayer]",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -1154,6 +1156,7 @@ class TiersApi:
 
         _response_types_map = {
             '200': "List[PlayerSeasonStatsInDepth]",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -1320,6 +1323,7 @@ class TiersApi:
 
         _response_types_map = {
             '200': "List[TeamSeasonStats]",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -1636,6 +1640,7 @@ class TiersApi:
 
         _response_types_map = {
             '200': "List[TeamSeasonStats]",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -1802,6 +1807,7 @@ class TiersApi:
 
         _response_types_map = {
             '200': "List[Team]",
+            '404': "Error",
         }
 
         return self.api_client.call_api(

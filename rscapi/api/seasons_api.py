@@ -28,6 +28,7 @@ from typing import List
 from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
 from rscapi.models.season import Season
+from rscapi.models.simple_response import SimpleResponse
 
 from rscapi.api_client import ApiClient
 from rscapi.api_response import ApiResponse
@@ -627,6 +628,7 @@ class SeasonsApi:
 
         _response_types_map = {
             '200': "Season",
+            '404': "Error",
         }
 
         return self.api_client.call_api(
@@ -1098,15 +1100,15 @@ class SeasonsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def seasons_submit_schedule(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], data : ScheduleIngestRequestBody, **kwargs) -> ScheduleIngestRequestBody:  # noqa: E501
+    async def seasons_submit_schedule(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], data : ScheduleIngestRequestBody, **kwargs) -> SimpleResponse:  # noqa: E501
         ...
 
     @overload
-    def seasons_submit_schedule(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], data : ScheduleIngestRequestBody, async_req: Optional[bool]=True, **kwargs) -> ScheduleIngestRequestBody:  # noqa: E501
+    def seasons_submit_schedule(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], data : ScheduleIngestRequestBody, async_req: Optional[bool]=True, **kwargs) -> SimpleResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def seasons_submit_schedule(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], data : ScheduleIngestRequestBody, async_req: Optional[bool]=None, **kwargs) -> Union[ScheduleIngestRequestBody, Awaitable[ScheduleIngestRequestBody]]:  # noqa: E501
+    def seasons_submit_schedule(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], data : ScheduleIngestRequestBody, async_req: Optional[bool]=None, **kwargs) -> Union[SimpleResponse, Awaitable[SimpleResponse]]:  # noqa: E501
         """seasons_submit_schedule  # noqa: E501
 
         Endpoint to provide a schedule for a given season  # noqa: E501
@@ -1129,7 +1131,7 @@ class SeasonsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: ScheduleIngestRequestBody
+        :rtype: SimpleResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -1176,7 +1178,7 @@ class SeasonsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(ScheduleIngestRequestBody, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(SimpleResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1242,7 +1244,8 @@ class SeasonsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '201': "ScheduleIngestRequestBody",
+            '202': "SimpleResponse",
+            '400': "Error",
         }
 
         return self.api_client.call_api(
