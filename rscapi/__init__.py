@@ -83,6 +83,7 @@ from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeam
 from rscapi.models.simple_response import SimpleResponse
 from rscapi.models.start_new_season import StartNewSeason
 from rscapi.models.team import Team
+from rscapi.models.team_franchise import TeamFranchise
 from rscapi.models.team_list import TeamList
 from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.models.tier import Tier

@@ -23,14 +23,14 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, constr
 from rscapi.models.franchise_gm import FranchiseGM
 
-class PlayerFranchise(BaseModel):
+class TeamFranchise(BaseModel):
     """
-    PlayerFranchise
+    TeamFranchise
     """
-    name: Optional[constr(strict=True, min_length=1)] = None
     id: Optional[StrictInt] = None
     gm: FranchiseGM = Field(...)
-    __properties = ["name", "id", "gm"]
+    name: constr(strict=True, min_length=1) = Field(...)
+    __properties = ["id", "gm", "name"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,15 +46,14 @@ class PlayerFranchise(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PlayerFranchise:
-        """Create an instance of PlayerFranchise from a JSON string"""
+    def from_json(cls, json_str: str) -> TeamFranchise:
+        """Create an instance of TeamFranchise from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "name",
                             "id",
                           },
                           exclude_none=True)
@@ -64,18 +63,18 @@ class PlayerFranchise(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PlayerFranchise:
-        """Create an instance of PlayerFranchise from a dict"""
+    def from_dict(cls, obj: dict) -> TeamFranchise:
+        """Create an instance of TeamFranchise from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PlayerFranchise.parse_obj(obj)
+            return TeamFranchise.parse_obj(obj)
 
-        _obj = PlayerFranchise.parse_obj({
-            "name": obj.get("name"),
+        _obj = TeamFranchise.parse_obj({
             "id": obj.get("id"),
-            "gm": FranchiseGM.from_dict(obj.get("gm")) if obj.get("gm") is not None else None
+            "gm": FranchiseGM.from_dict(obj.get("gm")) if obj.get("gm") is not None else None,
+            "name": obj.get("name")
         })
         return _obj
 

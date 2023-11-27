@@ -229,6 +229,7 @@ Class | Method | HTTP request | Description
  - [SimpleResponse](docs/SimpleResponse.md)
  - [StartNewSeason](docs/StartNewSeason.md)
  - [Team](docs/Team.md)
+ - [TeamFranchise](docs/TeamFranchise.md)
  - [TeamList](docs/TeamList.md)
  - [TeamSeasonStats](docs/TeamSeasonStats.md)
  - [Tier](docs/Tier.md)

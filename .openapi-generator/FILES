@@ -51,6 +51,7 @@ docs/SignAPlayerToATeamInALeague.md
 docs/SimpleResponse.md
 docs/StartNewSeason.md
 docs/Team.md
+docs/TeamFranchise.md
 docs/TeamList.md
 docs/TeamSeasonStats.md
 docs/TeamsApi.md
@@ -126,6 +127,7 @@ rscapi/models/sign_a_player_to_a_team_in_a_league.py
 rscapi/models/simple_response.py
 rscapi/models/start_new_season.py
 rscapi/models/team.py
+rscapi/models/team_franchise.py
 rscapi/models/team_list.py
 rscapi/models/team_season_stats.py
 rscapi/models/tier.py
@@ -141,5 +143,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_player_franchise.py
 tox.ini

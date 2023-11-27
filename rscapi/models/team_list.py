@@ -21,6 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, constr
+from rscapi.models.team_franchise import TeamFranchise
+from rscapi.models.tier import Tier
 
 class TeamList(BaseModel):
     """
@@ -28,8 +30,8 @@ class TeamList(BaseModel):
     """
     id: Optional[StrictInt] = None
     name: Optional[constr(strict=True, min_length=1)] = None
-    franchise: constr(strict=True, min_length=1) = Field(...)
-    tier: constr(strict=True, min_length=1) = Field(...)
+    franchise: TeamFranchise = Field(...)
+    tier: Tier = Field(...)
     __properties = ["id", "name", "franchise", "tier"]
 
     class Config:
@@ -58,6 +60,12 @@ class TeamList(BaseModel):
                             "name",
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of franchise
+        if self.franchise:
+            _dict['franchise'] = self.franchise.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tier
+        if self.tier:
+            _dict['tier'] = self.tier.to_dict()
         return _dict
 
     @classmethod
@@ -72,8 +80,8 @@ class TeamList(BaseModel):
         _obj = TeamList.parse_obj({
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "tier": obj.get("tier")
+            "franchise": TeamFranchise.from_dict(obj.get("franchise")) if obj.get("franchise") is not None else None,
+            "tier": Tier.from_dict(obj.get("tier")) if obj.get("tier") is not None else None
         })
         return _obj
 
