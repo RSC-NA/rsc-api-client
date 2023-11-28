@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **transactions_cut_create**
-> CutAPlayerFromALeague transactions_cut_create(data)
+> TransactionResponse transactions_cut_create(data)
 
 
 
@@ -24,6 +24,7 @@ import time
 import os
 import rscapi
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
+from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -68,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CutAPlayerFromALeague**](CutAPlayerFromALeague.md)
+[**TransactionResponse**](TransactionResponse.md)
 
 ### Authorization
 
@@ -82,7 +83,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**200** |  |  -  |
 **404** |  |  -  |
 **403** |  |  -  |
 **400** |  |  -  |
@@ -90,7 +91,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_resign_create**
-> ReSignPlayer transactions_resign_create(data)
+> TransactionResponse transactions_resign_create(data)
 
 
 
@@ -104,6 +105,7 @@ import time
 import os
 import rscapi
 from rscapi.models.re_sign_player import ReSignPlayer
+from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -148,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ReSignPlayer**](ReSignPlayer.md)
+[**TransactionResponse**](TransactionResponse.md)
 
 ### Authorization
 
@@ -162,14 +164,15 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**200** |  |  -  |
+**400** |  |  -  |
 **404** |  |  -  |
 **403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_sign_create**
-> SignAPlayerToATeamInALeague transactions_sign_create(data)
+> TransactionResponse transactions_sign_create(data)
 
 
 
@@ -183,6 +186,7 @@ import time
 import os
 import rscapi
 from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -227,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SignAPlayerToATeamInALeague**](SignAPlayerToATeamInALeague.md)
+[**TransactionResponse**](TransactionResponse.md)
 
 ### Authorization
 
@@ -241,7 +245,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**200** |  |  -  |
 **404** |  |  -  |
 **403** |  |  -  |
 **400** |  |  -  |

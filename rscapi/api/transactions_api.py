@@ -23,6 +23,7 @@ from typing import overload, Optional, Union, Awaitable
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.re_sign_player import ReSignPlayer
 from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.models.transaction_response import TransactionResponse
 
 from rscapi.api_client import ApiClient
 from rscapi.api_response import ApiResponse
@@ -45,15 +46,15 @@ class TransactionsApi:
         self.api_client = api_client
 
     @overload
-    async def transactions_cut_create(self, data : CutAPlayerFromALeague, **kwargs) -> CutAPlayerFromALeague:  # noqa: E501
+    async def transactions_cut_create(self, data : CutAPlayerFromALeague, **kwargs) -> TransactionResponse:  # noqa: E501
         ...
 
     @overload
-    def transactions_cut_create(self, data : CutAPlayerFromALeague, async_req: Optional[bool]=True, **kwargs) -> CutAPlayerFromALeague:  # noqa: E501
+    def transactions_cut_create(self, data : CutAPlayerFromALeague, async_req: Optional[bool]=True, **kwargs) -> TransactionResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def transactions_cut_create(self, data : CutAPlayerFromALeague, async_req: Optional[bool]=None, **kwargs) -> Union[CutAPlayerFromALeague, Awaitable[CutAPlayerFromALeague]]:  # noqa: E501
+    def transactions_cut_create(self, data : CutAPlayerFromALeague, async_req: Optional[bool]=None, **kwargs) -> Union[TransactionResponse, Awaitable[TransactionResponse]]:  # noqa: E501
         """transactions_cut_create  # noqa: E501
 
         Cut a player  # noqa: E501
@@ -74,7 +75,7 @@ class TransactionsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: CutAPlayerFromALeague
+        :rtype: TransactionResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -119,7 +120,7 @@ class TransactionsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(CutAPlayerFromALeague, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TransactionResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -181,7 +182,7 @@ class TransactionsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '201': "CutAPlayerFromALeague",
+            '200': "TransactionResponse",
             '404': "Error",
             '403': "Error",
             '400': "Error",
@@ -205,15 +206,15 @@ class TransactionsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def transactions_resign_create(self, data : ReSignPlayer, **kwargs) -> ReSignPlayer:  # noqa: E501
+    async def transactions_resign_create(self, data : ReSignPlayer, **kwargs) -> TransactionResponse:  # noqa: E501
         ...
 
     @overload
-    def transactions_resign_create(self, data : ReSignPlayer, async_req: Optional[bool]=True, **kwargs) -> ReSignPlayer:  # noqa: E501
+    def transactions_resign_create(self, data : ReSignPlayer, async_req: Optional[bool]=True, **kwargs) -> TransactionResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def transactions_resign_create(self, data : ReSignPlayer, async_req: Optional[bool]=None, **kwargs) -> Union[ReSignPlayer, Awaitable[ReSignPlayer]]:  # noqa: E501
+    def transactions_resign_create(self, data : ReSignPlayer, async_req: Optional[bool]=None, **kwargs) -> Union[TransactionResponse, Awaitable[TransactionResponse]]:  # noqa: E501
         """transactions_resign_create  # noqa: E501
 
         Re-sign a player  # noqa: E501
@@ -234,7 +235,7 @@ class TransactionsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: ReSignPlayer
+        :rtype: TransactionResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -279,7 +280,7 @@ class TransactionsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(ReSignPlayer, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TransactionResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -341,7 +342,8 @@ class TransactionsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '201': "ReSignPlayer",
+            '200': "TransactionResponse",
+            '400': "Error",
             '404': "Error",
             '403': "Error",
         }
@@ -364,15 +366,15 @@ class TransactionsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def transactions_sign_create(self, data : SignAPlayerToATeamInALeague, **kwargs) -> SignAPlayerToATeamInALeague:  # noqa: E501
+    async def transactions_sign_create(self, data : SignAPlayerToATeamInALeague, **kwargs) -> TransactionResponse:  # noqa: E501
         ...
 
     @overload
-    def transactions_sign_create(self, data : SignAPlayerToATeamInALeague, async_req: Optional[bool]=True, **kwargs) -> SignAPlayerToATeamInALeague:  # noqa: E501
+    def transactions_sign_create(self, data : SignAPlayerToATeamInALeague, async_req: Optional[bool]=True, **kwargs) -> TransactionResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def transactions_sign_create(self, data : SignAPlayerToATeamInALeague, async_req: Optional[bool]=None, **kwargs) -> Union[SignAPlayerToATeamInALeague, Awaitable[SignAPlayerToATeamInALeague]]:  # noqa: E501
+    def transactions_sign_create(self, data : SignAPlayerToATeamInALeague, async_req: Optional[bool]=None, **kwargs) -> Union[TransactionResponse, Awaitable[TransactionResponse]]:  # noqa: E501
         """transactions_sign_create  # noqa: E501
 
         Sign a player  # noqa: E501
@@ -393,7 +395,7 @@ class TransactionsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: SignAPlayerToATeamInALeague
+        :rtype: TransactionResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -438,7 +440,7 @@ class TransactionsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(SignAPlayerToATeamInALeague, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TransactionResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -500,7 +502,7 @@ class TransactionsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '201': "SignAPlayerToATeamInALeague",
+            '200': "TransactionResponse",
             '404': "Error",
             '403': "Error",
             '400': "Error",

@@ -67,5 +67,6 @@ from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_mmr import TrackerMMR
+from rscapi.models.transaction_response import TransactionResponse
 from rscapi.models.transfer_franchise import TransferFranchise
 from rscapi.models.update_member_rsc_name import UpdateMemberRSCName
