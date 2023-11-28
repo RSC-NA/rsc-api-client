@@ -149,7 +149,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_high_level_match.py
-test/test_list_games.py
-test/test_list_match_results.py
 tox.ini

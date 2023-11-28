@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **winner** | **str** |  | 
 **replay_id** | **str** |  | [optional] [readonly] 
-**stats** | **str** |  | [optional] [readonly] 
+**stats** | **Dict[str, str]** |  | [optional] [readonly] 
 
 ## Example
 

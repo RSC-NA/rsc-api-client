@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+from typing import Dict, Optional
 from pydantic import BaseModel, Field, StrictStr, constr
 
 class ListGames(BaseModel):
@@ -28,7 +28,7 @@ class ListGames(BaseModel):
     """
     winner: constr(strict=True, min_length=1) = Field(...)
     replay_id: Optional[StrictStr] = None
-    stats: Optional[StrictStr] = None
+    stats: Optional[Dict[str, StrictStr]] = None
     __properties = ["winner", "replay_id", "stats"]
 
     class Config:

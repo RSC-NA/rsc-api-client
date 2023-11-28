@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
 
 class SignAPlayerToATeamInALeague(BaseModel):
     """
@@ -30,7 +30,7 @@ class SignAPlayerToATeamInALeague(BaseModel):
     league: StrictInt = Field(..., description="ID of the league transaction is for.")
     team: StrictStr = Field(..., description="Specific team name for the transaction.")
     executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
-    admin_override: Optional[StrictInt] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
+    admin_override: Optional[StrictBool] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
     __properties = ["player", "league", "team", "executor", "admin_override"]
 
     class Config:

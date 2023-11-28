@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **player** | **int** | Specific player to perform transaction on. | 
 **league** | **int** | ID of the league transaction is for. | 
 **executor** | **int** | Discord ID of specific member who ran the transaction. | 
-**admin_override** | **int** | Boolean indicating whether or not an admin is overriding this command. | [optional] 
+**admin_override** | **bool** | Boolean indicating whether or not an admin is overriding this command. | [optional] 
 
 ## Example
 
