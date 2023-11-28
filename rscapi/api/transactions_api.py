@@ -184,6 +184,7 @@ class TransactionsApi:
             '201': "CutAPlayerFromALeague",
             '404': "Error",
             '403': "Error",
+            '400': "Error",
         }
 
         return self.api_client.call_api(
@@ -502,6 +503,7 @@ class TransactionsApi:
             '201': "SignAPlayerToATeamInALeague",
             '404': "Error",
             '403': "Error",
+            '400': "Error",
         }
 
         return self.api_client.call_api(

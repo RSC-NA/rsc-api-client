@@ -491,7 +491,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_season_matches**
-> List[Match] teams_season_matches(id, preseason=preseason, season=season)
+> List[HighLevelMatch] teams_season_matches(id, preseason=preseason, season=season)
 
 
 
@@ -504,7 +504,7 @@ Get all matches for a given team.
 import time
 import os
 import rscapi
-from rscapi.models.match import Match
+from rscapi.models.high_level_match import HighLevelMatch
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -553,7 +553,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[Match]**](Match.md)
+[**List[HighLevelMatch]**](HighLevelMatch.md)
 
 ### Authorization
 

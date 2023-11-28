@@ -25,6 +25,7 @@ from pydantic import Field, StrictBool, StrictInt, StrictStr
 
 from typing import List, Optional
 
+from rscapi.models.high_level_match import HighLevelMatch
 from rscapi.models.match import Match
 from rscapi.models.player import Player
 from rscapi.models.team import Team
@@ -1008,15 +1009,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, **kwargs) -> List[Match]:  # noqa: E501
+    async def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, **kwargs) -> List[HighLevelMatch]:  # noqa: E501
         ...
 
     @overload
-    def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, async_req: Optional[bool]=True, **kwargs) -> List[Match]:  # noqa: E501
+    def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, async_req: Optional[bool]=True, **kwargs) -> List[HighLevelMatch]:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[Match], Awaitable[List[Match]]]:  # noqa: E501
+    def teams_season_matches(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None, season : Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[HighLevelMatch], Awaitable[List[HighLevelMatch]]]:  # noqa: E501
         """teams_season_matches  # noqa: E501
 
         Get all matches for a given team.  # noqa: E501
@@ -1041,7 +1042,7 @@ class TeamsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: List[Match]
+        :rtype: List[HighLevelMatch]
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -1090,7 +1091,7 @@ class TeamsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(List[Match], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(List[HighLevelMatch], status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1153,7 +1154,7 @@ class TeamsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "List[Match]",
+            '200': "List[HighLevelMatch]",
             '400': "Error",
         }
 

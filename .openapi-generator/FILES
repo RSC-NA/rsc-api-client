@@ -14,6 +14,7 @@ docs/FranchiseTeam.md
 docs/FranchiseTier.md
 docs/FranchisesApi.md
 docs/Game.md
+docs/HighLevelMatch.md
 docs/IntentToPlaySchema.md
 docs/League.md
 docs/LeagueData.md
@@ -22,6 +23,8 @@ docs/LeaguePlayerMember.md
 docs/LeaguePlayersApi.md
 docs/LeaguePlayersList200Response.md
 docs/LeaguesApi.md
+docs/ListGames.md
+docs/ListMatchResults.md
 docs/Match.md
 docs/MatchList.md
 docs/MatchResults.md
@@ -96,12 +99,15 @@ rscapi/models/franchise_standings.py
 rscapi/models/franchise_team.py
 rscapi/models/franchise_tier.py
 rscapi/models/game.py
+rscapi/models/high_level_match.py
 rscapi/models/intent_to_play_schema.py
 rscapi/models/league.py
 rscapi/models/league_data.py
 rscapi/models/league_player.py
 rscapi/models/league_player_member.py
 rscapi/models/league_players_list200_response.py
+rscapi/models/list_games.py
+rscapi/models/list_match_results.py
 rscapi/models/match.py
 rscapi/models/match_list.py
 rscapi/models/match_results.py
@@ -143,4 +149,7 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_high_level_match.py
+test/test_list_games.py
+test/test_list_match_results.py
 tox.ini
