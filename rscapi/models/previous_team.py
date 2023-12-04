@@ -20,13 +20,14 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, constr
+from pydantic import BaseModel, Field, constr
+from rscapi.models.base_team import BaseTeam
 
 class PreviousTeam(BaseModel):
     """
     PreviousTeam
     """
-    team: Optional[StrictInt] = None
+    team: BaseTeam = Field(...)
     sign_date: Optional[datetime] = None
     release_date: Optional[datetime] = None
     player: constr(strict=True, min_length=1) = Field(...)
@@ -54,11 +55,13 @@ class PreviousTeam(BaseModel):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "team",
                             "sign_date",
                             "release_date",
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of team
+        if self.team:
+            _dict['team'] = self.team.to_dict()
         return _dict
 
     @classmethod
@@ -71,7 +74,7 @@ class PreviousTeam(BaseModel):
             return PreviousTeam.parse_obj(obj)
 
         _obj = PreviousTeam.parse_obj({
-            "team": obj.get("team"),
+            "team": BaseTeam.from_dict(obj.get("team")) if obj.get("team") is not None else None,
             "sign_date": obj.get("sign_date"),
             "release_date": obj.get("release_date"),
             "player": obj.get("player")

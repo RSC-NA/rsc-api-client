@@ -188,6 +188,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [BaseTeam](docs/BaseTeam.md)
  - [CutAPlayerFromALeague](docs/CutAPlayerFromALeague.md)
  - [ElevatedRole](docs/ElevatedRole.md)
  - [Error](docs/Error.md)

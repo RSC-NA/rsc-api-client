@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] [readonly] 
 **id** | **int** |  | [optional] [readonly] 
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | 
+**prefix** | **str** |  | [optional] [readonly] 
 
 ## Example
 

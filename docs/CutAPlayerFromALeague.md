@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **league** | **int** | ID of the league transaction is for. | 
 **executor** | **int** | Discord ID of specific member who ran the transaction. | 
 **admin_override** | **bool** | Boolean indicating whether or not an admin is overriding this command. | [optional] 
+**notes** | **str** | Notes for the transaction from the TM running it. | [optional] 
 
 ## Example
 

@@ -41,7 +41,7 @@ class LeaguePlayer(BaseModel):
     contract_length: Optional[StrictInt] = None
     team: Optional[PlayerTeam] = Field(...)
     last_updated: Optional[datetime] = None
-    previous_teams: conlist(PreviousTeam) = Field(...)
+    previous_teams: Optional[conlist(PreviousTeam)] = None
     player: LeaguePlayerMember = Field(...)
     tier: Tier = Field(...)
     __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player", "tier"]
@@ -52,8 +52,8 @@ class LeaguePlayer(BaseModel):
         if value is None:
             return value
 
-        if value not in ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF'):
-            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF')")
+        if value not in ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'WC'):
+            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'WC')")
         return value
 
     class Config:
@@ -85,6 +85,7 @@ class LeaguePlayer(BaseModel):
                             "current_mmr",
                             "contract_length",
                             "last_updated",
+                            "previous_teams",
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of league

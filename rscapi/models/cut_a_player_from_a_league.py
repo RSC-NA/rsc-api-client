@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
 
 class CutAPlayerFromALeague(BaseModel):
     """
@@ -30,7 +30,8 @@ class CutAPlayerFromALeague(BaseModel):
     league: StrictInt = Field(..., description="ID of the league transaction is for.")
     executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
     admin_override: Optional[StrictBool] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
-    __properties = ["player", "league", "executor", "admin_override"]
+    notes: Optional[StrictStr] = Field(None, description="Notes for the transaction from the TM running it.")
+    __properties = ["player", "league", "executor", "admin_override", "notes"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,7 +72,8 @@ class CutAPlayerFromALeague(BaseModel):
             "player": obj.get("player"),
             "league": obj.get("league"),
             "executor": obj.get("executor"),
-            "admin_override": obj.get("admin_override")
+            "admin_override": obj.get("admin_override"),
+            "notes": obj.get("notes")
         })
         return _obj
 

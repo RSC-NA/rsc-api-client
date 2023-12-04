@@ -21,17 +21,14 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, constr
-from rscapi.models.franchise_gm import FranchiseGM
 
-class PlayerFranchise(BaseModel):
+class BaseTeam(BaseModel):
     """
-    PlayerFranchise
+    BaseTeam
     """
-    name: Optional[constr(strict=True, min_length=1)] = None
     id: Optional[StrictInt] = None
-    gm: FranchiseGM = Field(...)
-    prefix: Optional[constr(strict=True, min_length=1)] = None
-    __properties = ["name", "id", "gm", "prefix"]
+    name: constr(strict=True, max_length=16, min_length=1) = Field(...)
+    __properties = ["id", "name"]
 
     class Config:
         """Pydantic configuration"""
@@ -47,38 +44,31 @@ class PlayerFranchise(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PlayerFranchise:
-        """Create an instance of PlayerFranchise from a JSON string"""
+    def from_json(cls, json_str: str) -> BaseTeam:
+        """Create an instance of BaseTeam from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "name",
                             "id",
-                            "prefix",
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of gm
-        if self.gm:
-            _dict['gm'] = self.gm.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PlayerFranchise:
-        """Create an instance of PlayerFranchise from a dict"""
+    def from_dict(cls, obj: dict) -> BaseTeam:
+        """Create an instance of BaseTeam from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PlayerFranchise.parse_obj(obj)
+            return BaseTeam.parse_obj(obj)
 
-        _obj = PlayerFranchise.parse_obj({
-            "name": obj.get("name"),
+        _obj = BaseTeam.parse_obj({
             "id": obj.get("id"),
-            "gm": FranchiseGM.from_dict(obj.get("gm")) if obj.get("gm") is not None else None,
-            "prefix": obj.get("prefix")
+            "name": obj.get("name")
         })
         return _obj
 

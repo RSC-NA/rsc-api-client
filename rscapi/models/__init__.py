@@ -15,6 +15,7 @@
 
 
 # import models into model package
+from rscapi.models.base_team import BaseTeam
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.error import Error

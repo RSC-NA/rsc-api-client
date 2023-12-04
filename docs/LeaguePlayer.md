@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **contract_length** | **int** |  | [optional] [readonly] 
 **team** | [**PlayerTeam**](PlayerTeam.md) |  | 
 **last_updated** | **datetime** |  | [optional] [readonly] 
-**previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | 
+**previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | [optional] [readonly] 
 **player** | [**LeaguePlayerMember**](LeaguePlayerMember.md) |  | 
 **tier** | [**Tier**](Tier.md) |  | 
 

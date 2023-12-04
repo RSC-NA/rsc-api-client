@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**team** | **int** |  | [optional] [readonly] 
+**team** | [**BaseTeam**](BaseTeam.md) |  | 
 **sign_date** | **datetime** |  | [optional] [readonly] 
 **release_date** | **datetime** |  | [optional] [readonly] 
 **player** | **str** |  | 
