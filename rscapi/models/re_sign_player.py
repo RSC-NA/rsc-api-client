@@ -29,9 +29,10 @@ class ReSignPlayer(BaseModel):
     player: StrictInt = Field(..., description="Specific player to perform transaction on.")
     team: StrictStr = Field(..., description="Specific team name for the transaction.")
     league: StrictInt = Field(..., description="ID of the league transaction is for.")
+    notes: Optional[StrictStr] = Field(None, description="Notes for the transaction from the TM running it.")
     executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
     admin_override: Optional[StrictBool] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
-    __properties = ["player", "team", "league", "executor", "admin_override"]
+    __properties = ["player", "team", "league", "notes", "executor", "admin_override"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,6 +73,7 @@ class ReSignPlayer(BaseModel):
             "player": obj.get("player"),
             "team": obj.get("team"),
             "league": obj.get("league"),
+            "notes": obj.get("notes"),
             "executor": obj.get("executor"),
             "admin_override": obj.get("admin_override")
         })

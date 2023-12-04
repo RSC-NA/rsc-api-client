@@ -184,6 +184,7 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 *TransactionsApi* | [**transactions_resign_create**](docs/TransactionsApi.md#transactions_resign_create) | **POST** /transactions/resign/ | 
 *TransactionsApi* | [**transactions_sign_create**](docs/TransactionsApi.md#transactions_sign_create) | **POST** /transactions/sign/ | 
+*TransactionsApi* | [**transactions_substitution_create**](docs/TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
 
 
 ## Documentation For Models
@@ -222,6 +223,7 @@ Class | Method | HTTP request | Description
  - [PlayerSeasonStatsInDepth](docs/PlayerSeasonStatsInDepth.md)
  - [PlayerSignupSchema](docs/PlayerSignupSchema.md)
  - [PlayerTeam](docs/PlayerTeam.md)
+ - [PlayerTransactionUpdates](docs/PlayerTransactionUpdates.md)
  - [PreviousTeam](docs/PreviousTeam.md)
  - [ReSignPlayer](docs/ReSignPlayer.md)
  - [ScheduleIngestRequestBody](docs/ScheduleIngestRequestBody.md)
@@ -236,12 +238,14 @@ Class | Method | HTTP request | Description
  - [TeamFranchise](docs/TeamFranchise.md)
  - [TeamList](docs/TeamList.md)
  - [TeamSeasonStats](docs/TeamSeasonStats.md)
+ - [TemporaryFASub](docs/TemporaryFASub.md)
  - [Tier](docs/Tier.md)
  - [TrackerLink](docs/TrackerLink.md)
  - [TrackerLinkInvalidateObject](docs/TrackerLinkInvalidateObject.md)
  - [TrackerLinkStats](docs/TrackerLinkStats.md)
  - [TrackerMMR](docs/TrackerMMR.md)
  - [TransactionResponse](docs/TransactionResponse.md)
+ - [TransactionTeam](docs/TransactionTeam.md)
  - [TransferFranchise](docs/TransferFranchise.md)
  - [UpdateMemberRSCName](docs/UpdateMemberRSCName.md)
 

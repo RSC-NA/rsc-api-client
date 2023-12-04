@@ -18,16 +18,41 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, constr
+from datetime import datetime
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conint, conlist, constr, validator
+from rscapi.models.member import Member
+from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 
 class TransactionResponse(BaseModel):
     """
     TransactionResponse
     """
-    result: Optional[constr(strict=True, min_length=1)] = 'success'
-    __properties = ["result"]
+    player_updates: conlist(PlayerTransactionUpdates) = Field(...)
+    var_date: Optional[datetime] = Field(None, alias="date", description="Date transaction occurred")
+    week: StrictStr = Field(...)
+    week_no: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Week no of transaction (if applicable)")
+    match_day: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Specific match day of the transactions.")
+    type: StrictStr = Field(...)
+    notes: constr(strict=True, min_length=1) = Field(..., description="Notes associated with the transaction.")
+    first_gm: Member = Field(...)
+    second_gm: Member = Field(...)
+    executor: Member = Field(...)
+    __properties = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_gm", "second_gm", "executor"]
+
+    @validator('week')
+    def week_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('OFF', 'PRE', 'REG'):
+            raise ValueError("must be one of enum values ('OFF', 'PRE', 'REG')")
+        return value
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('NON', 'CUT', 'PKU', 'TRD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'DFT'):
+            raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'DFT')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -51,8 +76,25 @@ class TransactionResponse(BaseModel):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
+                            "var_date",
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in player_updates (list)
+        _items = []
+        if self.player_updates:
+            for _item in self.player_updates:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['player_updates'] = _items
+        # override the default output from pydantic by calling `to_dict()` of first_gm
+        if self.first_gm:
+            _dict['first_gm'] = self.first_gm.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of second_gm
+        if self.second_gm:
+            _dict['second_gm'] = self.second_gm.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of executor
+        if self.executor:
+            _dict['executor'] = self.executor.to_dict()
         return _dict
 
     @classmethod
@@ -65,7 +107,16 @@ class TransactionResponse(BaseModel):
             return TransactionResponse.parse_obj(obj)
 
         _obj = TransactionResponse.parse_obj({
-            "result": obj.get("result") if obj.get("result") is not None else 'success'
+            "player_updates": [PlayerTransactionUpdates.from_dict(_item) for _item in obj.get("player_updates")] if obj.get("player_updates") is not None else None,
+            "var_date": obj.get("date"),
+            "week": obj.get("week"),
+            "week_no": obj.get("week_no"),
+            "match_day": obj.get("match_day"),
+            "type": obj.get("type"),
+            "notes": obj.get("notes"),
+            "first_gm": Member.from_dict(obj.get("first_gm")) if obj.get("first_gm") is not None else None,
+            "second_gm": Member.from_dict(obj.get("second_gm")) if obj.get("second_gm") is not None else None,
+            "executor": Member.from_dict(obj.get("executor")) if obj.get("executor") is not None else None
         })
         return _obj
 

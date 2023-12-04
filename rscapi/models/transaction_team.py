@@ -18,19 +18,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field
-from rscapi.models.base_team import BaseTeam
 
-class PreviousTeam(BaseModel):
+from typing import Optional
+from pydantic import BaseModel, StrictInt, constr
+
+class TransactionTeam(BaseModel):
     """
-    PreviousTeam
+    TransactionTeam
     """
-    team: BaseTeam = Field(...)
-    sign_date: Optional[datetime] = None
-    release_date: Optional[datetime] = None
-    __properties = ["team", "sign_date", "release_date"]
+    id: Optional[StrictInt] = None
+    name: Optional[constr(strict=True, min_length=1)] = None
+    __properties = ["id", "name"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,36 +44,32 @@ class PreviousTeam(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PreviousTeam:
-        """Create an instance of PreviousTeam from a JSON string"""
+    def from_json(cls, json_str: str) -> TransactionTeam:
+        """Create an instance of TransactionTeam from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "sign_date",
-                            "release_date",
+                            "id",
+                            "name",
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of team
-        if self.team:
-            _dict['team'] = self.team.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PreviousTeam:
-        """Create an instance of PreviousTeam from a dict"""
+    def from_dict(cls, obj: dict) -> TransactionTeam:
+        """Create an instance of TransactionTeam from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PreviousTeam.parse_obj(obj)
+            return TransactionTeam.parse_obj(obj)
 
-        _obj = PreviousTeam.parse_obj({
-            "team": BaseTeam.from_dict(obj.get("team")) if obj.get("team") is not None else None,
-            "sign_date": obj.get("sign_date"),
-            "release_date": obj.get("release_date")
+        _obj = TransactionTeam.parse_obj({
+            "id": obj.get("id"),
+            "name": obj.get("name")
         })
         return _obj
 

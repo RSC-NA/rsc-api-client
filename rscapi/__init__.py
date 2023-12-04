@@ -76,6 +76,7 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.models.player_signup_schema import PlayerSignupSchema
 from rscapi.models.player_team import PlayerTeam
+from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.previous_team import PreviousTeam
 from rscapi.models.re_sign_player import ReSignPlayer
 from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
@@ -90,11 +91,13 @@ from rscapi.models.team import Team
 from rscapi.models.team_franchise import TeamFranchise
 from rscapi.models.team_list import TeamList
 from rscapi.models.team_season_stats import TeamSeasonStats
+from rscapi.models.temporary_fa_sub import TemporaryFASub
 from rscapi.models.tier import Tier
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_mmr import TrackerMMR
 from rscapi.models.transaction_response import TransactionResponse
+from rscapi.models.transaction_team import TransactionTeam
 from rscapi.models.transfer_franchise import TransferFranchise
 from rscapi.models.update_member_rsc_name import UpdateMemberRSCName

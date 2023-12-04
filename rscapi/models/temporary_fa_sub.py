@@ -22,17 +22,17 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
 
-class SignAPlayerToATeamInALeague(BaseModel):
+class TemporaryFASub(BaseModel):
     """
-    Signs a player to a team in a given league..  # noqa: E501
+    Temporarily sub a free agent to a team.  # noqa: E501
     """
-    player: StrictInt = Field(..., description="Specific player to perform transaction on.")
+    player_in: StrictInt = Field(..., description="Specific player to perform transaction on.")
+    player_out: StrictInt = Field(..., description="Specific player to perform transaction on.")
     league: StrictInt = Field(..., description="ID of the league transaction is for.")
-    team: StrictStr = Field(..., description="Specific team name for the transaction.")
     executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
     notes: Optional[StrictStr] = Field(None, description="Notes for the transaction from the TM running it.")
     admin_override: Optional[StrictBool] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
-    __properties = ["player", "league", "team", "executor", "notes", "admin_override"]
+    __properties = ["player_in", "player_out", "league", "executor", "notes", "admin_override"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +48,8 @@ class SignAPlayerToATeamInALeague(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SignAPlayerToATeamInALeague:
-        """Create an instance of SignAPlayerToATeamInALeague from a JSON string"""
+    def from_json(cls, json_str: str) -> TemporaryFASub:
+        """Create an instance of TemporaryFASub from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -61,18 +61,18 @@ class SignAPlayerToATeamInALeague(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SignAPlayerToATeamInALeague:
-        """Create an instance of SignAPlayerToATeamInALeague from a dict"""
+    def from_dict(cls, obj: dict) -> TemporaryFASub:
+        """Create an instance of TemporaryFASub from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SignAPlayerToATeamInALeague.parse_obj(obj)
+            return TemporaryFASub.parse_obj(obj)
 
-        _obj = SignAPlayerToATeamInALeague.parse_obj({
-            "player": obj.get("player"),
+        _obj = TemporaryFASub.parse_obj({
+            "player_in": obj.get("player_in"),
+            "player_out": obj.get("player_out"),
             "league": obj.get("league"),
-            "team": obj.get("team"),
             "executor": obj.get("executor"),
             "notes": obj.get("notes"),
             "admin_override": obj.get("admin_override")

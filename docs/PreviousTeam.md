@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **team** | [**BaseTeam**](BaseTeam.md) |  | 
 **sign_date** | **datetime** |  | [optional] [readonly] 
 **release_date** | **datetime** |  | [optional] [readonly] 
-**player** | **str** |  | 
 
 ## Example
 

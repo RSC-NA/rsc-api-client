@@ -4,7 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**result** | **str** |  | [optional] [default to 'success']
+**player_updates** | [**List[PlayerTransactionUpdates]**](PlayerTransactionUpdates.md) |  | 
+**var_date** | **datetime** | Date transaction occurred | [optional] [readonly] 
+**week** | **str** |  | 
+**week_no** | **int** | Week no of transaction (if applicable) | [optional] 
+**match_day** | **int** | Specific match day of the transactions. | [optional] 
+**type** | **str** |  | 
+**notes** | **str** | Notes associated with the transaction. | 
+**first_gm** | [**Member**](Member.md) |  | 
+**second_gm** | [**Member**](Member.md) |  | 
+**executor** | [**Member**](Member.md) |  | 
 
 ## Example
 
