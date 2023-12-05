@@ -35,8 +35,8 @@ class TransactionResponse(BaseModel):
     match_day: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Specific match day of the transactions.")
     type: StrictStr = Field(...)
     notes: constr(strict=True, min_length=1) = Field(..., description="Notes associated with the transaction.")
-    first_gm: Member = Field(...)
-    second_gm: Member = Field(...)
+    first_gm: Optional[Member] = None
+    second_gm: Optional[Member] = None
     executor: Member = Field(...)
     __properties = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_gm", "second_gm", "executor"]
 

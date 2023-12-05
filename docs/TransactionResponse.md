@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **match_day** | **int** | Specific match day of the transactions. | [optional] 
 **type** | **str** |  | 
 **notes** | **str** | Notes associated with the transaction. | 
-**first_gm** | [**Member**](Member.md) |  | 
-**second_gm** | [**Member**](Member.md) |  | 
+**first_gm** | [**Member**](Member.md) |  | [optional] 
+**second_gm** | [**Member**](Member.md) |  | [optional] 
 **executor** | [**Member**](Member.md) |  | 
 
 ## Example
