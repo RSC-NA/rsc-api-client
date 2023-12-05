@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictInt, constr
+from pydantic import BaseModel, Field, StrictInt, constr
 
 class TransactionTeam(BaseModel):
     """
@@ -28,7 +28,8 @@ class TransactionTeam(BaseModel):
     """
     id: Optional[StrictInt] = None
     name: Optional[constr(strict=True, min_length=1)] = None
-    __properties = ["id", "name"]
+    tier: constr(strict=True, min_length=1) = Field(...)
+    __properties = ["id", "name", "tier"]
 
     class Config:
         """Pydantic configuration"""
@@ -69,7 +70,8 @@ class TransactionTeam(BaseModel):
 
         _obj = TransactionTeam.parse_obj({
             "id": obj.get("id"),
-            "name": obj.get("name")
+            "name": obj.get("name"),
+            "tier": obj.get("tier")
         })
         return _obj
 

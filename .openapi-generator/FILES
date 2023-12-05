@@ -163,6 +163,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_rebrand_a_franchise.py
-test/test_team_details.py
 tox.ini
