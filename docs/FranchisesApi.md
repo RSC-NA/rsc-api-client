@@ -9,13 +9,14 @@ Method | HTTP request | Description
 [**franchises_list**](FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
 [**franchises_partial_update**](FranchisesApi.md#franchises_partial_update) | **PATCH** /franchises/{id}/ | 
 [**franchises_read**](FranchisesApi.md#franchises_read) | **GET** /franchises/{id}/ | 
+[**franchises_rebrand**](FranchisesApi.md#franchises_rebrand) | **PUT** /franchises/{id}/rebrand/ | 
 [**franchises_transfer_franchise**](FranchisesApi.md#franchises_transfer_franchise) | **PUT** /franchises/{id}/transfer_franchise/ | 
 [**franchises_update**](FranchisesApi.md#franchises_update) | **PUT** /franchises/{id}/ | 
 [**franchises_upload_logo**](FranchisesApi.md#franchises_upload_logo) | **PUT** /franchises/{id}/upload_logo/ | 
 
 
 # **franchises_create**
-> FranchiseList franchises_create(data)
+> Franchise franchises_create(data)
 
 
 
@@ -28,7 +29,7 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 import time
 import os
 import rscapi
-from rscapi.models.franchise_list import FranchiseList
+from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -53,7 +54,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
-    data = rscapi.FranchiseList() # FranchiseList | 
+    data = rscapi.Franchise() # Franchise | 
 
     try:
         api_response = await api_instance.franchises_create(data)
@@ -69,11 +70,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**FranchiseList**](FranchiseList.md)|  | 
+ **data** | [**Franchise**](Franchise.md)|  | 
 
 ### Return type
 
-[**FranchiseList**](FranchiseList.md)
+[**Franchise**](Franchise.md)
 
 ### Authorization
 
@@ -253,7 +254,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_partial_update**
-> FranchiseList franchises_partial_update(id, data)
+> Franchise franchises_partial_update(id, data)
 
 
 
@@ -266,7 +267,7 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 import time
 import os
 import rscapi
-from rscapi.models.franchise_list import FranchiseList
+from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -292,7 +293,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    data = rscapi.FranchiseList() # FranchiseList | 
+    data = rscapi.Franchise() # Franchise | 
 
     try:
         api_response = await api_instance.franchises_partial_update(id, data)
@@ -309,11 +310,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **data** | [**FranchiseList**](FranchiseList.md)|  | 
+ **data** | [**Franchise**](Franchise.md)|  | 
 
 ### Return type
 
-[**FranchiseList**](FranchiseList.md)
+[**Franchise**](Franchise.md)
 
 ### Authorization
 
@@ -408,6 +409,87 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **franchises_rebrand**
+> Franchise franchises_rebrand(id, data)
+
+
+
+Rebrand a franchise.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+```python
+import time
+import os
+import rscapi
+from rscapi.models.franchise import Franchise
+from rscapi.models.rebrand_a_franchise import RebrandAFranchise
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.FranchisesApi(api_client)
+    id = 56 # int | A unique integer value identifying this franchise.
+    data = rscapi.RebrandAFranchise() # RebrandAFranchise | 
+
+    try:
+        api_response = await api_instance.franchises_rebrand(id, data)
+        print("The response of FranchisesApi->franchises_rebrand:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FranchisesApi->franchises_rebrand: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this franchise. | 
+ **data** | [**RebrandAFranchise**](RebrandAFranchise.md)|  | 
+
+### Return type
+
+[**Franchise**](Franchise.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **franchises_transfer_franchise**
 > Franchise franchises_transfer_franchise(id, data)
 
@@ -491,7 +573,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_update**
-> FranchiseList franchises_update(id, data)
+> Franchise franchises_update(id, data)
 
 
 
@@ -504,7 +586,7 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 import time
 import os
 import rscapi
-from rscapi.models.franchise_list import FranchiseList
+from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -530,7 +612,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    data = rscapi.FranchiseList() # FranchiseList | 
+    data = rscapi.Franchise() # Franchise | 
 
     try:
         api_response = await api_instance.franchises_update(id, data)
@@ -547,11 +629,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **data** | [**FranchiseList**](FranchiseList.md)|  | 
+ **data** | [**Franchise**](Franchise.md)|  | 
 
 ### Return type
 
-[**FranchiseList**](FranchiseList.md)
+[**Franchise**](Franchise.md)
 
 ### Authorization
 

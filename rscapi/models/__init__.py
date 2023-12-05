@@ -52,6 +52,7 @@ from rscapi.models.player_team import PlayerTeam
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.previous_team import PreviousTeam
 from rscapi.models.re_sign_player import ReSignPlayer
+from rscapi.models.rebrand_a_franchise import RebrandAFranchise
 from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
 from rscapi.models.season import Season
 from rscapi.models.season_league import SeasonLeague
@@ -61,6 +62,7 @@ from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeam
 from rscapi.models.simple_response import SimpleResponse
 from rscapi.models.start_new_season import StartNewSeason
 from rscapi.models.team import Team
+from rscapi.models.team_details import TeamDetails
 from rscapi.models.team_franchise import TeamFranchise
 from rscapi.models.team_list import TeamList
 from rscapi.models.team_season_stats import TeamSeasonStats

@@ -46,6 +46,7 @@ docs/PlayerTeam.md
 docs/PlayerTransactionUpdates.md
 docs/PreviousTeam.md
 docs/ReSignPlayer.md
+docs/RebrandAFranchise.md
 docs/ScheduleIngestRequestBody.md
 docs/Season.md
 docs/SeasonLeague.md
@@ -56,6 +57,7 @@ docs/SignAPlayerToATeamInALeague.md
 docs/SimpleResponse.md
 docs/StartNewSeason.md
 docs/Team.md
+docs/TeamDetails.md
 docs/TeamFranchise.md
 docs/TeamList.md
 docs/TeamSeasonStats.md
@@ -131,6 +133,7 @@ rscapi/models/player_team.py
 rscapi/models/player_transaction_updates.py
 rscapi/models/previous_team.py
 rscapi/models/re_sign_player.py
+rscapi/models/rebrand_a_franchise.py
 rscapi/models/schedule_ingest_request_body.py
 rscapi/models/season.py
 rscapi/models/season_league.py
@@ -140,6 +143,7 @@ rscapi/models/sign_a_player_to_a_team_in_a_league.py
 rscapi/models/simple_response.py
 rscapi/models/start_new_season.py
 rscapi/models/team.py
+rscapi/models/team_details.py
 rscapi/models/team_franchise.py
 rscapi/models/team_list.py
 rscapi/models/team_season_stats.py
@@ -159,4 +163,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_rebrand_a_franchise.py
+test/test_team_details.py
 tox.ini

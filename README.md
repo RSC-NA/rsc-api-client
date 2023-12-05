@@ -77,7 +77,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
-    data = rscapi.FranchiseList() # FranchiseList | 
+    data = rscapi.Franchise() # Franchise | 
 
     try:
         api_response = await api_instance.franchises_create(data)
@@ -99,6 +99,7 @@ Class | Method | HTTP request | Description
 *FranchisesApi* | [**franchises_list**](docs/FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
 *FranchisesApi* | [**franchises_partial_update**](docs/FranchisesApi.md#franchises_partial_update) | **PATCH** /franchises/{id}/ | 
 *FranchisesApi* | [**franchises_read**](docs/FranchisesApi.md#franchises_read) | **GET** /franchises/{id}/ | 
+*FranchisesApi* | [**franchises_rebrand**](docs/FranchisesApi.md#franchises_rebrand) | **PUT** /franchises/{id}/rebrand/ | 
 *FranchisesApi* | [**franchises_transfer_franchise**](docs/FranchisesApi.md#franchises_transfer_franchise) | **PUT** /franchises/{id}/transfer_franchise/ | 
 *FranchisesApi* | [**franchises_update**](docs/FranchisesApi.md#franchises_update) | **PUT** /franchises/{id}/ | 
 *FranchisesApi* | [**franchises_upload_logo**](docs/FranchisesApi.md#franchises_upload_logo) | **PUT** /franchises/{id}/upload_logo/ | 
@@ -226,6 +227,7 @@ Class | Method | HTTP request | Description
  - [PlayerTransactionUpdates](docs/PlayerTransactionUpdates.md)
  - [PreviousTeam](docs/PreviousTeam.md)
  - [ReSignPlayer](docs/ReSignPlayer.md)
+ - [RebrandAFranchise](docs/RebrandAFranchise.md)
  - [ScheduleIngestRequestBody](docs/ScheduleIngestRequestBody.md)
  - [Season](docs/Season.md)
  - [SeasonLeague](docs/SeasonLeague.md)
@@ -235,6 +237,7 @@ Class | Method | HTTP request | Description
  - [SimpleResponse](docs/SimpleResponse.md)
  - [StartNewSeason](docs/StartNewSeason.md)
  - [Team](docs/Team.md)
+ - [TeamDetails](docs/TeamDetails.md)
  - [TeamFranchise](docs/TeamFranchise.md)
  - [TeamList](docs/TeamList.md)
  - [TeamSeasonStats](docs/TeamSeasonStats.md)

@@ -27,6 +27,7 @@ from typing import List, Optional, Union
 
 from rscapi.models.franchise import Franchise
 from rscapi.models.franchise_list import FranchiseList
+from rscapi.models.rebrand_a_franchise import RebrandAFranchise
 from rscapi.models.transfer_franchise import TransferFranchise
 
 from rscapi.api_client import ApiClient
@@ -50,15 +51,15 @@ class FranchisesApi:
         self.api_client = api_client
 
     @overload
-    async def franchises_create(self, data : FranchiseList, **kwargs) -> FranchiseList:  # noqa: E501
+    async def franchises_create(self, data : Franchise, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @overload
-    def franchises_create(self, data : FranchiseList, async_req: Optional[bool]=True, **kwargs) -> FranchiseList:  # noqa: E501
+    def franchises_create(self, data : Franchise, async_req: Optional[bool]=True, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @validate_arguments
-    def franchises_create(self, data : FranchiseList, async_req: Optional[bool]=None, **kwargs) -> Union[FranchiseList, Awaitable[FranchiseList]]:  # noqa: E501
+    def franchises_create(self, data : Franchise, async_req: Optional[bool]=None, **kwargs) -> Union[Franchise, Awaitable[Franchise]]:  # noqa: E501
         """franchises_create  # noqa: E501
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.  # noqa: E501
@@ -69,7 +70,7 @@ class FranchisesApi:
         >>> result = thread.get()
 
         :param data: (required)
-        :type data: FranchiseList
+        :type data: Franchise
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -79,7 +80,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: FranchiseList
+        :rtype: Franchise
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -90,7 +91,7 @@ class FranchisesApi:
         return self.franchises_create_with_http_info(data, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def franchises_create_with_http_info(self, data : FranchiseList, **kwargs) -> ApiResponse:  # noqa: E501
+    def franchises_create_with_http_info(self, data : Franchise, **kwargs) -> ApiResponse:  # noqa: E501
         """franchises_create  # noqa: E501
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.  # noqa: E501
@@ -101,7 +102,7 @@ class FranchisesApi:
         >>> result = thread.get()
 
         :param data: (required)
-        :type data: FranchiseList
+        :type data: Franchise
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -124,7 +125,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(FranchiseList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Franchise, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -186,7 +187,7 @@ class FranchisesApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '201': "FranchiseList",
+            '201': "Franchise",
         }
 
         return self.api_client.call_api(
@@ -541,15 +542,15 @@ class FranchisesApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def franchises_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : FranchiseList, **kwargs) -> FranchiseList:  # noqa: E501
+    async def franchises_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : Franchise, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @overload
-    def franchises_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : FranchiseList, async_req: Optional[bool]=True, **kwargs) -> FranchiseList:  # noqa: E501
+    def franchises_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : Franchise, async_req: Optional[bool]=True, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @validate_arguments
-    def franchises_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : FranchiseList, async_req: Optional[bool]=None, **kwargs) -> Union[FranchiseList, Awaitable[FranchiseList]]:  # noqa: E501
+    def franchises_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : Franchise, async_req: Optional[bool]=None, **kwargs) -> Union[Franchise, Awaitable[Franchise]]:  # noqa: E501
         """franchises_partial_update  # noqa: E501
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.  # noqa: E501
@@ -562,7 +563,7 @@ class FranchisesApi:
         :param id: A unique integer value identifying this franchise. (required)
         :type id: int
         :param data: (required)
-        :type data: FranchiseList
+        :type data: Franchise
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -572,7 +573,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: FranchiseList
+        :rtype: Franchise
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -583,7 +584,7 @@ class FranchisesApi:
         return self.franchises_partial_update_with_http_info(id, data, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def franchises_partial_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : FranchiseList, **kwargs) -> ApiResponse:  # noqa: E501
+    def franchises_partial_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : Franchise, **kwargs) -> ApiResponse:  # noqa: E501
         """franchises_partial_update  # noqa: E501
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.  # noqa: E501
@@ -596,7 +597,7 @@ class FranchisesApi:
         :param id: A unique integer value identifying this franchise. (required)
         :type id: int
         :param data: (required)
-        :type data: FranchiseList
+        :type data: Franchise
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -619,7 +620,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(FranchiseList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Franchise, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -685,7 +686,7 @@ class FranchisesApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "FranchiseList",
+            '200': "Franchise",
         }
 
         return self.api_client.call_api(
@@ -840,6 +841,172 @@ class FranchisesApi:
 
         return self.api_client.call_api(
             '/franchises/{id}/', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def franchises_rebrand(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : RebrandAFranchise, **kwargs) -> Franchise:  # noqa: E501
+        ...
+
+    @overload
+    def franchises_rebrand(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : RebrandAFranchise, async_req: Optional[bool]=True, **kwargs) -> Franchise:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def franchises_rebrand(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : RebrandAFranchise, async_req: Optional[bool]=None, **kwargs) -> Union[Franchise, Awaitable[Franchise]]:  # noqa: E501
+        """franchises_rebrand  # noqa: E501
+
+        Rebrand a franchise.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.franchises_rebrand(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this franchise. (required)
+        :type id: int
+        :param data: (required)
+        :type data: RebrandAFranchise
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: Franchise
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the franchises_rebrand_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.franchises_rebrand_with_http_info(id, data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def franchises_rebrand_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : RebrandAFranchise, **kwargs) -> ApiResponse:  # noqa: E501
+        """franchises_rebrand  # noqa: E501
+
+        Rebrand a franchise.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.franchises_rebrand_with_http_info(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this franchise. (required)
+        :type id: int
+        :param data: (required)
+        :type data: RebrandAFranchise
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(Franchise, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method franchises_rebrand" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '202': "Franchise",
+            '400': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/franchises/{id}/rebrand/', 'PUT',
             _path_params,
             _query_params,
             _header_params,
@@ -1023,15 +1190,15 @@ class FranchisesApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def franchises_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : FranchiseList, **kwargs) -> FranchiseList:  # noqa: E501
+    async def franchises_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : Franchise, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @overload
-    def franchises_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : FranchiseList, async_req: Optional[bool]=True, **kwargs) -> FranchiseList:  # noqa: E501
+    def franchises_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : Franchise, async_req: Optional[bool]=True, **kwargs) -> Franchise:  # noqa: E501
         ...
 
     @validate_arguments
-    def franchises_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : FranchiseList, async_req: Optional[bool]=None, **kwargs) -> Union[FranchiseList, Awaitable[FranchiseList]]:  # noqa: E501
+    def franchises_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : Franchise, async_req: Optional[bool]=None, **kwargs) -> Union[Franchise, Awaitable[Franchise]]:  # noqa: E501
         """franchises_update  # noqa: E501
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.  # noqa: E501
@@ -1044,7 +1211,7 @@ class FranchisesApi:
         :param id: A unique integer value identifying this franchise. (required)
         :type id: int
         :param data: (required)
-        :type data: FranchiseList
+        :type data: Franchise
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -1054,7 +1221,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: FranchiseList
+        :rtype: Franchise
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -1065,7 +1232,7 @@ class FranchisesApi:
         return self.franchises_update_with_http_info(id, data, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def franchises_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : FranchiseList, **kwargs) -> ApiResponse:  # noqa: E501
+    def franchises_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this franchise.")], data : Franchise, **kwargs) -> ApiResponse:  # noqa: E501
         """franchises_update  # noqa: E501
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.  # noqa: E501
@@ -1078,7 +1245,7 @@ class FranchisesApi:
         :param id: A unique integer value identifying this franchise. (required)
         :type id: int
         :param data: (required)
-        :type data: FranchiseList
+        :type data: Franchise
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1101,7 +1268,7 @@ class FranchisesApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(FranchiseList, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Franchise, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1167,7 +1334,7 @@ class FranchisesApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "FranchiseList",
+            '200': "Franchise",
         }
 
         return self.api_client.call_api(
