@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
 **404** |  |  -  |
 **403** |  |  -  |
 **400** |  |  -  |
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
 **404** |  |  -  |
 **403** |  |  -  |
 **400** |  |  -  |
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
 **400** |  |  -  |
 **404** |  |  -  |
 **403** |  |  -  |

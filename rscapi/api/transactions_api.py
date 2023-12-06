@@ -183,7 +183,7 @@ class TransactionsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "TransactionResponse",
+            '202': "TransactionResponse",
             '404': "Error",
             '403': "Error",
             '400': "Error",
@@ -503,7 +503,7 @@ class TransactionsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "TransactionResponse",
+            '202': "TransactionResponse",
             '404': "Error",
             '403': "Error",
             '400': "Error",
@@ -663,7 +663,7 @@ class TransactionsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "TransactionResponse",
+            '202': "TransactionResponse",
             '400': "Error",
             '404': "Error",
             '403': "Error",

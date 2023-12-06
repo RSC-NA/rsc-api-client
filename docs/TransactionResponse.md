@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**player_updates** | [**List[PlayerTransactionUpdates]**](PlayerTransactionUpdates.md) |  | 
+**player_updates** | [**List[PlayerTransactionUpdates]**](PlayerTransactionUpdates.md) |  | [optional] 
 **var_date** | **datetime** | Date transaction occurred | [optional] [readonly] 
 **week** | **str** |  | 
 **week_no** | **int** | Week no of transaction (if applicable) | [optional] 

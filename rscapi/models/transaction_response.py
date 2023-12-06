@@ -28,7 +28,7 @@ class TransactionResponse(BaseModel):
     """
     TransactionResponse
     """
-    player_updates: conlist(PlayerTransactionUpdates) = Field(...)
+    player_updates: Optional[conlist(PlayerTransactionUpdates)] = None
     var_date: Optional[datetime] = Field(None, alias="date", description="Date transaction occurred")
     week: StrictStr = Field(...)
     week_no: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Week no of transaction (if applicable)")
@@ -95,6 +95,11 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of executor
         if self.executor:
             _dict['executor'] = self.executor.to_dict()
+        # set to None if player_updates (nullable) is None
+        # and __fields_set__ contains the field
+        if self.player_updates is None and "player_updates" in self.__fields_set__:
+            _dict['player_updates'] = None
+
         return _dict
 
     @classmethod
