@@ -47,6 +47,7 @@ from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.deleted import Deleted
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.error import Error
+from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.franchise import Franchise
 from rscapi.models.franchise_gm import FranchiseGM
 from rscapi.models.franchise_list import FranchiseList

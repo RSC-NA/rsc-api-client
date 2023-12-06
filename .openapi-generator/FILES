@@ -8,6 +8,7 @@ docs/CutAPlayerFromALeague.md
 docs/Deleted.md
 docs/ElevatedRole.md
 docs/Error.md
+docs/ExpireAPlayerSub.md
 docs/Franchise.md
 docs/FranchiseGM.md
 docs/FranchiseList.md
@@ -102,6 +103,7 @@ rscapi/models/cut_a_player_from_a_league.py
 rscapi/models/deleted.py
 rscapi/models/elevated_role.py
 rscapi/models/error.py
+rscapi/models/expire_a_player_sub.py
 rscapi/models/franchise.py
 rscapi/models/franchise_gm.py
 rscapi/models/franchise_list.py
@@ -165,4 +167,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_expire_a_player_sub.py
 tox.ini

@@ -183,6 +183,7 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_read**](docs/TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
 *TrackerLinksApi* | [**tracker_links_update**](docs/TrackerLinksApi.md#tracker_links_update) | **PUT** /tracker-links/{id}/ | 
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
+*TransactionsApi* | [**transactions_expire_create**](docs/TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
 *TransactionsApi* | [**transactions_resign_create**](docs/TransactionsApi.md#transactions_resign_create) | **POST** /transactions/resign/ | 
 *TransactionsApi* | [**transactions_sign_create**](docs/TransactionsApi.md#transactions_sign_create) | **POST** /transactions/sign/ | 
 *TransactionsApi* | [**transactions_substitution_create**](docs/TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
@@ -195,6 +196,7 @@ Class | Method | HTTP request | Description
  - [Deleted](docs/Deleted.md)
  - [ElevatedRole](docs/ElevatedRole.md)
  - [Error](docs/Error.md)
+ - [ExpireAPlayerSub](docs/ExpireAPlayerSub.md)
  - [Franchise](docs/Franchise.md)
  - [FranchiseGM](docs/FranchiseGM.md)
  - [FranchiseList](docs/FranchiseList.md)
