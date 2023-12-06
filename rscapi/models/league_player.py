@@ -44,9 +44,8 @@ class LeaguePlayer(BaseModel):
     previous_teams: Optional[conlist(PreviousTeam)] = None
     player: LeaguePlayerMember = Field(...)
     tier: Optional[Tier] = Field(...)
-    subbing: Optional[StrictBool] = None
-    subbed_out: Optional[StrictBool] = None
-    __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "subbing", "subbed_out"]
+    sub_status: StrictInt = Field(...)
+    __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "sub_status"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -88,8 +87,6 @@ class LeaguePlayer(BaseModel):
                             "contract_length",
                             "last_updated",
                             "previous_teams",
-                            "subbing",
-                            "subbed_out",
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of league
@@ -146,8 +143,7 @@ class LeaguePlayer(BaseModel):
             "previous_teams": [PreviousTeam.from_dict(_item) for _item in obj.get("previous_teams")] if obj.get("previous_teams") is not None else None,
             "player": LeaguePlayerMember.from_dict(obj.get("player")) if obj.get("player") is not None else None,
             "tier": Tier.from_dict(obj.get("tier")) if obj.get("tier") is not None else None,
-            "subbing": obj.get("subbing"),
-            "subbed_out": obj.get("subbed_out")
+            "sub_status": obj.get("sub_status")
         })
         return _obj
 

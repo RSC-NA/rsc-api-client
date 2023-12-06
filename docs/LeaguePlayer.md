@@ -17,8 +17,7 @@ Name | Type | Description | Notes
 **previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | [optional] [readonly] 
 **player** | [**LeaguePlayerMember**](LeaguePlayerMember.md) |  | 
 **tier** | [**Tier**](Tier.md) |  | 
-**subbing** | **bool** |  | [optional] [readonly] 
-**subbed_out** | **bool** |  | [optional] [readonly] 
+**sub_status** | **int** |  | 
 
 ## Example
 
