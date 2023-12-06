@@ -8,6 +8,14 @@ Name | Type | Description | Notes
 **league** | **int** | League of team player will be captain in | 
 **tracker_links** | **List[str]** | List of players tracker links | 
 **rsc_name** | **str** | Discord display name of player | 
+**accepted_rules** | **bool** | Acknowledgement of player accepting rules | 
+**accepted_match_nights** | **bool** | Acknowledgement of player accepting rules | 
+**platform** | **str** | Platform the user plays on. | 
+**referrer** | **str** | Who referred the player | 
+**new_or_returning** | **str** | Is the player new or returning? | 
+**region_preference** | **str** | Players specific region preference | 
+**admin_override** | **bool** | Admin overriding signup | [optional] 
+**executor** | **int** | Admin override executor | [optional] 
 
 ## Example
 

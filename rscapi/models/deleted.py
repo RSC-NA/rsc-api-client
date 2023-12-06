@@ -20,17 +20,14 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt
+from pydantic import BaseModel, constr
 
-class IntentToPlaySchema(BaseModel):
+class Deleted(BaseModel):
     """
-    Request body object containing intent to play data.  # noqa: E501
+    Deleted
     """
-    league: StrictInt = Field(..., description="League players are returning to.")
-    returning: StrictBool = Field(..., description="Whether player is returning or not next season.")
-    admin_override: Optional[StrictBool] = Field(None, description="Admin overriding signup")
-    executor: Optional[StrictInt] = Field(None, description="Admin override executor")
-    __properties = ["league", "returning", "admin_override", "executor"]
+    detail: Optional[constr(strict=True, min_length=1)] = 'Player removed from playing'
+    __properties = ["detail"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,8 +43,8 @@ class IntentToPlaySchema(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IntentToPlaySchema:
-        """Create an instance of IntentToPlaySchema from a JSON string"""
+    def from_json(cls, json_str: str) -> Deleted:
+        """Create an instance of Deleted from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -59,19 +56,16 @@ class IntentToPlaySchema(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IntentToPlaySchema:
-        """Create an instance of IntentToPlaySchema from a dict"""
+    def from_dict(cls, obj: dict) -> Deleted:
+        """Create an instance of Deleted from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IntentToPlaySchema.parse_obj(obj)
+            return Deleted.parse_obj(obj)
 
-        _obj = IntentToPlaySchema.parse_obj({
-            "league": obj.get("league"),
-            "returning": obj.get("returning"),
-            "admin_override": obj.get("admin_override"),
-            "executor": obj.get("executor")
+        _obj = Deleted.parse_obj({
+            "detail": obj.get("detail") if obj.get("detail") is not None else 'Player removed from playing'
         })
         return _obj
 

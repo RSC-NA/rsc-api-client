@@ -52,15 +52,15 @@ class TiersApi:
         self.api_client = api_client
 
     @overload
-    async def tiers_create(self, data : Tier, **kwargs) -> Tier:  # noqa: E501
+    async def tiers_create(self, data : Optional[Tier], **kwargs) -> Tier:  # noqa: E501
         ...
 
     @overload
-    def tiers_create(self, data : Tier, async_req: Optional[bool]=True, **kwargs) -> Tier:  # noqa: E501
+    def tiers_create(self, data : Optional[Tier], async_req: Optional[bool]=True, **kwargs) -> Tier:  # noqa: E501
         ...
 
     @validate_arguments
-    def tiers_create(self, data : Tier, async_req: Optional[bool]=None, **kwargs) -> Union[Tier, Awaitable[Tier]]:  # noqa: E501
+    def tiers_create(self, data : Optional[Tier], async_req: Optional[bool]=None, **kwargs) -> Union[Tier, Awaitable[Tier]]:  # noqa: E501
         """tiers_create  # noqa: E501
 
         Viewset for the Tier model.  # noqa: E501
@@ -92,7 +92,7 @@ class TiersApi:
         return self.tiers_create_with_http_info(data, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tiers_create_with_http_info(self, data : Tier, **kwargs) -> ApiResponse:  # noqa: E501
+    def tiers_create_with_http_info(self, data : Optional[Tier], **kwargs) -> ApiResponse:  # noqa: E501
         """tiers_create  # noqa: E501
 
         Viewset for the Tier model.  # noqa: E501
@@ -511,15 +511,15 @@ class TiersApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def tiers_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Tier, **kwargs) -> Tier:  # noqa: E501
+    async def tiers_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Optional[Tier], **kwargs) -> Tier:  # noqa: E501
         ...
 
     @overload
-    def tiers_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Tier, async_req: Optional[bool]=True, **kwargs) -> Tier:  # noqa: E501
+    def tiers_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Optional[Tier], async_req: Optional[bool]=True, **kwargs) -> Tier:  # noqa: E501
         ...
 
     @validate_arguments
-    def tiers_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Tier, async_req: Optional[bool]=None, **kwargs) -> Union[Tier, Awaitable[Tier]]:  # noqa: E501
+    def tiers_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Optional[Tier], async_req: Optional[bool]=None, **kwargs) -> Union[Tier, Awaitable[Tier]]:  # noqa: E501
         """tiers_partial_update  # noqa: E501
 
         Viewset for the Tier model.  # noqa: E501
@@ -553,7 +553,7 @@ class TiersApi:
         return self.tiers_partial_update_with_http_info(id, data, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tiers_partial_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Tier, **kwargs) -> ApiResponse:  # noqa: E501
+    def tiers_partial_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Optional[Tier], **kwargs) -> ApiResponse:  # noqa: E501
         """tiers_partial_update  # noqa: E501
 
         Viewset for the Tier model.  # noqa: E501
@@ -1828,15 +1828,15 @@ class TiersApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def tiers_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Tier, **kwargs) -> Tier:  # noqa: E501
+    async def tiers_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Optional[Tier], **kwargs) -> Tier:  # noqa: E501
         ...
 
     @overload
-    def tiers_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Tier, async_req: Optional[bool]=True, **kwargs) -> Tier:  # noqa: E501
+    def tiers_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Optional[Tier], async_req: Optional[bool]=True, **kwargs) -> Tier:  # noqa: E501
         ...
 
     @validate_arguments
-    def tiers_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Tier, async_req: Optional[bool]=None, **kwargs) -> Union[Tier, Awaitable[Tier]]:  # noqa: E501
+    def tiers_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Optional[Tier], async_req: Optional[bool]=None, **kwargs) -> Union[Tier, Awaitable[Tier]]:  # noqa: E501
         """tiers_update  # noqa: E501
 
         Viewset for the Tier model.  # noqa: E501
@@ -1870,7 +1870,7 @@ class TiersApi:
         return self.tiers_update_with_http_info(id, data, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tiers_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Tier, **kwargs) -> ApiResponse:  # noqa: E501
+    def tiers_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this tier.")], data : Optional[Tier], **kwargs) -> ApiResponse:  # noqa: E501
         """tiers_update  # noqa: E501
 
         Viewset for the Tier model.  # noqa: E501

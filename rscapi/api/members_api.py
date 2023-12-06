@@ -23,8 +23,9 @@ from typing import overload, Optional, Union, Awaitable
 from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr
 
-from typing import List, Optional
+from typing import Optional
 
+from rscapi.models.deleted import Deleted
 from rscapi.models.intent_to_play_schema import IntentToPlaySchema
 from rscapi.models.league_player import LeaguePlayer
 from rscapi.models.member import Member
@@ -662,24 +663,26 @@ class MembersApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def members_intent_to_play(self, data : IntentToPlaySchema, **kwargs) -> List[LeaguePlayer]:  # noqa: E501
+    async def members_intent_to_play(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], data : IntentToPlaySchema, **kwargs) -> Deleted:  # noqa: E501
         ...
 
     @overload
-    def members_intent_to_play(self, data : IntentToPlaySchema, async_req: Optional[bool]=True, **kwargs) -> List[LeaguePlayer]:  # noqa: E501
+    def members_intent_to_play(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], data : IntentToPlaySchema, async_req: Optional[bool]=True, **kwargs) -> Deleted:  # noqa: E501
         ...
 
     @validate_arguments
-    def members_intent_to_play(self, data : IntentToPlaySchema, async_req: Optional[bool]=None, **kwargs) -> Union[List[LeaguePlayer], Awaitable[List[LeaguePlayer]]]:  # noqa: E501
+    def members_intent_to_play(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], data : IntentToPlaySchema, async_req: Optional[bool]=None, **kwargs) -> Union[Deleted, Awaitable[Deleted]]:  # noqa: E501
         """members_intent_to_play  # noqa: E501
 
         Intent to play endpoint for returning players.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.members_intent_to_play(data, async_req=True)
+        >>> thread = api.members_intent_to_play(id, data, async_req=True)
         >>> result = thread.get()
 
+        :param id: A unique integer value identifying this user. (required)
+        :type id: int
         :param data: (required)
         :type data: IntentToPlaySchema
         :param async_req: Whether to execute the request asynchronously.
@@ -691,7 +694,7 @@ class MembersApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: List[LeaguePlayer]
+        :rtype: Deleted
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -699,19 +702,21 @@ class MembersApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.members_intent_to_play_with_http_info(data, **kwargs)  # noqa: E501
+        return self.members_intent_to_play_with_http_info(id, data, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def members_intent_to_play_with_http_info(self, data : IntentToPlaySchema, **kwargs) -> ApiResponse:  # noqa: E501
+    def members_intent_to_play_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this user.")], data : IntentToPlaySchema, **kwargs) -> ApiResponse:  # noqa: E501
         """members_intent_to_play  # noqa: E501
 
         Intent to play endpoint for returning players.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.members_intent_to_play_with_http_info(data, async_req=True)
+        >>> thread = api.members_intent_to_play_with_http_info(id, data, async_req=True)
         >>> result = thread.get()
 
+        :param id: A unique integer value identifying this user. (required)
+        :type id: int
         :param data: (required)
         :type data: IntentToPlaySchema
         :param async_req: Whether to execute the request asynchronously.
@@ -736,12 +741,13 @@ class MembersApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(List[LeaguePlayer], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(Deleted, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
 
         _all_params = [
+            'id',
             'data'
         ]
         _all_params.extend(
@@ -770,6 +776,9 @@ class MembersApi:
 
         # process the path parameters
         _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
 
         # process the query parameters
         _query_params = []
@@ -798,13 +807,15 @@ class MembersApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "List[LeaguePlayer]",
+            '200': "Deleted",
+            '201': "LeaguePlayer",
             '403': "Error",
             '404': "Error",
+            '405': "Error",
         }
 
         return self.api_client.call_api(
-            '/members/intent_to_play/', 'POST',
+            '/members/{id}/intent_to_play/', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -1788,7 +1799,7 @@ class MembersApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "LeaguePlayer",
+            '201': "LeaguePlayer",
             '400': "Error",
             '403': "Error",
             '405': "Error",

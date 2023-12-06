@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**members_contract_status**](MembersApi.md#members_contract_status) | **GET** /members/{id}/contract_status/ | 
 [**members_create**](MembersApi.md#members_create) | **POST** /members/ | 
 [**members_delete**](MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
-[**members_intent_to_play**](MembersApi.md#members_intent_to_play) | **POST** /members/intent_to_play/ | 
+[**members_intent_to_play**](MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
 [**members_name_change**](MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 [**members_partial_update**](MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
@@ -325,7 +325,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_intent_to_play**
-> List[LeaguePlayer] members_intent_to_play(data)
+> Deleted members_intent_to_play(id, data)
 
 
 
@@ -338,8 +338,8 @@ Intent to play endpoint for returning players.
 import time
 import os
 import rscapi
+from rscapi.models.deleted import Deleted
 from rscapi.models.intent_to_play_schema import IntentToPlaySchema
-from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -364,10 +364,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
     data = rscapi.IntentToPlaySchema() # IntentToPlaySchema | 
 
     try:
-        api_response = await api_instance.members_intent_to_play(data)
+        api_response = await api_instance.members_intent_to_play(id, data)
         print("The response of MembersApi->members_intent_to_play:\n")
         pprint(api_response)
     except Exception as e:
@@ -380,11 +381,12 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
  **data** | [**IntentToPlaySchema**](IntentToPlaySchema.md)|  | 
 
 ### Return type
 
-[**List[LeaguePlayer]**](LeaguePlayer.md)
+[**Deleted**](Deleted.md)
 
 ### Authorization
 
@@ -399,8 +401,10 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**201** |  |  -  |
 **403** |  |  -  |
 **404** |  |  -  |
+**405** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -877,7 +881,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**201** |  |  -  |
 **400** |  |  -  |
 **403** |  |  -  |
 **405** |  |  -  |

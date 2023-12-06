@@ -44,6 +44,7 @@ from rscapi.exceptions import ApiException
 # import models into sdk package
 from rscapi.models.base_team import BaseTeam
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
+from rscapi.models.deleted import Deleted
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.error import Error
 from rscapi.models.franchise import Franchise

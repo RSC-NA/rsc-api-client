@@ -133,7 +133,7 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**members_contract_status**](docs/MembersApi.md#members_contract_status) | **GET** /members/{id}/contract_status/ | 
 *MembersApi* | [**members_create**](docs/MembersApi.md#members_create) | **POST** /members/ | 
 *MembersApi* | [**members_delete**](docs/MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
-*MembersApi* | [**members_intent_to_play**](docs/MembersApi.md#members_intent_to_play) | **POST** /members/intent_to_play/ | 
+*MembersApi* | [**members_intent_to_play**](docs/MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 *MembersApi* | [**members_list**](docs/MembersApi.md#members_list) | **GET** /members/ | 
 *MembersApi* | [**members_name_change**](docs/MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 *MembersApi* | [**members_partial_update**](docs/MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
@@ -192,6 +192,7 @@ Class | Method | HTTP request | Description
 
  - [BaseTeam](docs/BaseTeam.md)
  - [CutAPlayerFromALeague](docs/CutAPlayerFromALeague.md)
+ - [Deleted](docs/Deleted.md)
  - [ElevatedRole](docs/ElevatedRole.md)
  - [Error](docs/Error.md)
  - [Franchise](docs/Franchise.md)

@@ -8,6 +8,11 @@ Name | Type | Description | Notes
 **number** | **int** |  | [optional] [readonly] 
 **season_tier_data** | [**List[SeasonTierData]**](SeasonTierData.md) |  | 
 **current** | **bool** |  | [optional] [readonly] 
+**start_date** | **datetime** |  | [optional] [readonly] 
+**end_date** | **datetime** |  | [optional] [readonly] 
+**preseason_start_date** | **datetime** |  | [optional] [readonly] 
+**signup_close** | **datetime** |  | [optional] [readonly] 
+**draft_date** | **datetime** |  | [optional] [readonly] 
 
 ## Example
 

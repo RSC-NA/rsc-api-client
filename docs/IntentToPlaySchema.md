@@ -5,8 +5,10 @@ Request body object containing intent to play data.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**players** | **List[int]** | List of players to fill out intent for. | 
 **league** | **int** | League players are returning to. | 
+**returning** | **bool** | Whether player is returning or not next season. | 
+**admin_override** | **bool** | Admin overriding signup | [optional] 
+**executor** | **int** | Admin override executor | [optional] 
 
 ## Example
 

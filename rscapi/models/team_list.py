@@ -31,7 +31,7 @@ class TeamList(BaseModel):
     id: Optional[StrictInt] = None
     name: Optional[constr(strict=True, min_length=1)] = None
     franchise: TeamFranchise = Field(...)
-    tier: Tier = Field(...)
+    tier: Optional[Tier] = Field(...)
     __properties = ["id", "name", "franchise", "tier"]
 
     class Config:
@@ -66,6 +66,11 @@ class TeamList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tier
         if self.tier:
             _dict['tier'] = self.tier.to_dict()
+        # set to None if tier (nullable) is None
+        # and __fields_set__ contains the field
+        if self.tier is None and "tier" in self.__fields_set__:
+            _dict['tier'] = None
+
         return _dict
 
     @classmethod

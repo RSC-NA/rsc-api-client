@@ -43,7 +43,7 @@ class LeaguePlayer(BaseModel):
     last_updated: Optional[datetime] = None
     previous_teams: Optional[conlist(PreviousTeam)] = None
     player: LeaguePlayerMember = Field(...)
-    tier: Tier = Field(...)
+    tier: Optional[Tier] = Field(...)
     subbing: Optional[StrictBool] = None
     subbed_out: Optional[StrictBool] = None
     __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "subbing", "subbed_out"]
@@ -115,6 +115,11 @@ class LeaguePlayer(BaseModel):
         # and __fields_set__ contains the field
         if self.team is None and "team" in self.__fields_set__:
             _dict['team'] = None
+
+        # set to None if tier (nullable) is None
+        # and __fields_set__ contains the field
+        if self.tier is None and "tier" in self.__fields_set__:
+            _dict['tier'] = None
 
         return _dict
 

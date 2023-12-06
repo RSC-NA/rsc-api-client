@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
 
 class PlayerSignupSchema(BaseModel):
     """
@@ -29,7 +29,43 @@ class PlayerSignupSchema(BaseModel):
     league: StrictInt = Field(..., description="League of team player will be captain in")
     tracker_links: conlist(StrictStr) = Field(..., description="List of players tracker links")
     rsc_name: StrictStr = Field(..., description="Discord display name of player")
-    __properties = ["league", "tracker_links", "rsc_name"]
+    accepted_rules: StrictBool = Field(..., description="Acknowledgement of player accepting rules")
+    accepted_match_nights: StrictBool = Field(..., description="Acknowledgement of player accepting rules")
+    platform: StrictStr = Field(..., description="Platform the user plays on.")
+    referrer: StrictStr = Field(..., description="Who referred the player")
+    new_or_returning: StrictStr = Field(..., description="Is the player new or returning?")
+    region_preference: StrictStr = Field(..., description="Players specific region preference")
+    admin_override: Optional[StrictBool] = Field(None, description="Admin overriding signup")
+    executor: Optional[StrictInt] = Field(None, description="Admin override executor")
+    __properties = ["league", "tracker_links", "rsc_name", "accepted_rules", "accepted_match_nights", "platform", "referrer", "new_or_returning", "region_preference", "admin_override", "executor"]
+
+    @validator('platform')
+    def platform_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('STEAM', 'EPIC', 'XBOX', 'PS', 'SWTCH'):
+            raise ValueError("must be one of enum values ('STEAM', 'EPIC', 'XBOX', 'PS', 'SWTCH')")
+        return value
+
+    @validator('referrer')
+    def referrer_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('REDDIT', 'TWITCH', 'FRIEND', 'MLE', 'BALLCHASING', 'OTHER'):
+            raise ValueError("must be one of enum values ('REDDIT', 'TWITCH', 'FRIEND', 'MLE', 'BALLCHASING', 'OTHER')")
+        return value
+
+    @validator('new_or_returning')
+    def new_or_returning_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('NEW', 'FORMER'):
+            raise ValueError("must be one of enum values ('NEW', 'FORMER')")
+        return value
+
+    @validator('region_preference')
+    def region_preference_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('EST', 'WST', 'EU'):
+            raise ValueError("must be one of enum values ('EST', 'WST', 'EU')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -69,7 +105,15 @@ class PlayerSignupSchema(BaseModel):
         _obj = PlayerSignupSchema.parse_obj({
             "league": obj.get("league"),
             "tracker_links": obj.get("tracker_links"),
-            "rsc_name": obj.get("rsc_name")
+            "rsc_name": obj.get("rsc_name"),
+            "accepted_rules": obj.get("accepted_rules"),
+            "accepted_match_nights": obj.get("accepted_match_nights"),
+            "platform": obj.get("platform"),
+            "referrer": obj.get("referrer"),
+            "new_or_returning": obj.get("new_or_returning"),
+            "region_preference": obj.get("region_preference"),
+            "admin_override": obj.get("admin_override"),
+            "executor": obj.get("executor")
         })
         return _obj
 

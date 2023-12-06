@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, conlist
 from rscapi.models.season_league import SeasonLeague
@@ -32,7 +32,12 @@ class Season(BaseModel):
     number: Optional[StrictInt] = None
     season_tier_data: conlist(SeasonTierData) = Field(...)
     current: Optional[StrictBool] = None
-    __properties = ["league", "number", "season_tier_data", "current"]
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+    preseason_start_date: Optional[datetime] = None
+    signup_close: Optional[datetime] = None
+    draft_date: Optional[datetime] = None
+    __properties = ["league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "signup_close", "draft_date"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,6 +63,11 @@ class Season(BaseModel):
                           exclude={
                             "number",
                             "current",
+                            "start_date",
+                            "end_date",
+                            "preseason_start_date",
+                            "signup_close",
+                            "draft_date",
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of league
@@ -70,6 +80,31 @@ class Season(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['season_tier_data'] = _items
+        # set to None if start_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.start_date is None and "start_date" in self.__fields_set__:
+            _dict['start_date'] = None
+
+        # set to None if end_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.end_date is None and "end_date" in self.__fields_set__:
+            _dict['end_date'] = None
+
+        # set to None if preseason_start_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.preseason_start_date is None and "preseason_start_date" in self.__fields_set__:
+            _dict['preseason_start_date'] = None
+
+        # set to None if signup_close (nullable) is None
+        # and __fields_set__ contains the field
+        if self.signup_close is None and "signup_close" in self.__fields_set__:
+            _dict['signup_close'] = None
+
+        # set to None if draft_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.draft_date is None and "draft_date" in self.__fields_set__:
+            _dict['draft_date'] = None
+
         return _dict
 
     @classmethod
@@ -85,7 +120,12 @@ class Season(BaseModel):
             "league": SeasonLeague.from_dict(obj.get("league")) if obj.get("league") is not None else None,
             "number": obj.get("number"),
             "season_tier_data": [SeasonTierData.from_dict(_item) for _item in obj.get("season_tier_data")] if obj.get("season_tier_data") is not None else None,
-            "current": obj.get("current")
+            "current": obj.get("current"),
+            "start_date": obj.get("start_date"),
+            "end_date": obj.get("end_date"),
+            "preseason_start_date": obj.get("preseason_start_date"),
+            "signup_close": obj.get("signup_close"),
+            "draft_date": obj.get("draft_date")
         })
         return _obj
 
