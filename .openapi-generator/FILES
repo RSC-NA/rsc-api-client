@@ -12,6 +12,7 @@ docs/ExpireAPlayerSub.md
 docs/Franchise.md
 docs/FranchiseGM.md
 docs/FranchiseList.md
+docs/FranchiseLogo.md
 docs/FranchiseStandings.md
 docs/FranchiseTeam.md
 docs/FranchiseTier.md
@@ -108,6 +109,7 @@ rscapi/models/expire_a_player_sub.py
 rscapi/models/franchise.py
 rscapi/models/franchise_gm.py
 rscapi/models/franchise_list.py
+rscapi/models/franchise_logo.py
 rscapi/models/franchise_standings.py
 rscapi/models/franchise_team.py
 rscapi/models/franchise_tier.py
@@ -169,4 +171,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_franchise_logo.py
 tox.ini

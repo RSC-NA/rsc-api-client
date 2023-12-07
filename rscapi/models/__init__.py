@@ -24,6 +24,7 @@ from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.franchise import Franchise
 from rscapi.models.franchise_gm import FranchiseGM
 from rscapi.models.franchise_list import FranchiseList
+from rscapi.models.franchise_logo import FranchiseLogo
 from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.models.franchise_team import FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier

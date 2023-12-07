@@ -347,21 +347,21 @@ class LeaguePlayersApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def league_players_list(self, status : Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None, league : Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None, team_name : Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None, franchise : Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> LeaguePlayersList200Response:  # noqa: E501
+    async def league_players_list(self, status : Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None, league : Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None, team_name : Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None, franchise : Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None, sub_status : Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> LeaguePlayersList200Response:  # noqa: E501
         ...
 
     @overload
-    def league_players_list(self, status : Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None, league : Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None, team_name : Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None, franchise : Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=True, **kwargs) -> LeaguePlayersList200Response:  # noqa: E501
+    def league_players_list(self, status : Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None, league : Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None, team_name : Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None, franchise : Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None, sub_status : Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=True, **kwargs) -> LeaguePlayersList200Response:  # noqa: E501
         ...
 
     @validate_arguments
-    def league_players_list(self, status : Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None, league : Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None, team_name : Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None, franchise : Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[LeaguePlayersList200Response, Awaitable[LeaguePlayersList200Response]]:  # noqa: E501
+    def league_players_list(self, status : Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None, league : Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None, team_name : Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None, franchise : Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None, sub_status : Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[LeaguePlayersList200Response, Awaitable[LeaguePlayersList200Response]]:  # noqa: E501
         """league_players_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.league_players_list(status, name, tier, tier_name, season, season_number, league, team_name, franchise, discord_id, limit, offset, async_req=True)
+        >>> thread = api.league_players_list(status, name, tier, tier_name, season, season_number, league, team_name, franchise, sub_status, discord_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
         :param status: Player Status (Rostered, IR, etc.)
@@ -382,6 +382,8 @@ class LeaguePlayersApi:
         :type team_name: str
         :param franchise: Name of franchise players are in.
         :type franchise: str
+        :param sub_status: Player current substitution status.
+        :type sub_status: int
         :param discord_id: Discord ID of League Player
         :type discord_id: int
         :param limit: Number of results to return per page.
@@ -405,16 +407,16 @@ class LeaguePlayersApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.league_players_list_with_http_info(status, name, tier, tier_name, season, season_number, league, team_name, franchise, discord_id, limit, offset, **kwargs)  # noqa: E501
+        return self.league_players_list_with_http_info(status, name, tier, tier_name, season, season_number, league, team_name, franchise, sub_status, discord_id, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def league_players_list_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None, league : Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None, team_name : Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None, franchise : Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def league_players_list_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None, league : Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None, team_name : Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None, franchise : Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None, sub_status : Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """league_players_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.league_players_list_with_http_info(status, name, tier, tier_name, season, season_number, league, team_name, franchise, discord_id, limit, offset, async_req=True)
+        >>> thread = api.league_players_list_with_http_info(status, name, tier, tier_name, season, season_number, league, team_name, franchise, sub_status, discord_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
         :param status: Player Status (Rostered, IR, etc.)
@@ -435,6 +437,8 @@ class LeaguePlayersApi:
         :type team_name: str
         :param franchise: Name of franchise players are in.
         :type franchise: str
+        :param sub_status: Player current substitution status.
+        :type sub_status: int
         :param discord_id: Discord ID of League Player
         :type discord_id: int
         :param limit: Number of results to return per page.
@@ -478,6 +482,7 @@ class LeaguePlayersApi:
             'league',
             'team_name',
             'franchise',
+            'sub_status',
             'discord_id',
             'limit',
             'offset'
@@ -537,6 +542,9 @@ class LeaguePlayersApi:
 
         if _params.get('franchise') is not None:  # noqa: E501
             _query_params.append(('franchise', _params['franchise']))
+
+        if _params.get('sub_status') is not None:  # noqa: E501
+            _query_params.append(('sub_status', _params['sub_status']))
 
         if _params.get('discord_id') is not None:  # noqa: E501
             _query_params.append(('discord_id', _params['discord_id']))

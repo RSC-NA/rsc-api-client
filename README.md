@@ -97,6 +97,7 @@ Class | Method | HTTP request | Description
 *FranchisesApi* | [**franchises_create**](docs/FranchisesApi.md#franchises_create) | **POST** /franchises/ | 
 *FranchisesApi* | [**franchises_delete**](docs/FranchisesApi.md#franchises_delete) | **DELETE** /franchises/{id}/ | 
 *FranchisesApi* | [**franchises_list**](docs/FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
+*FranchisesApi* | [**franchises_logo**](docs/FranchisesApi.md#franchises_logo) | **GET** /franchises/{id}/logo/ | 
 *FranchisesApi* | [**franchises_partial_update**](docs/FranchisesApi.md#franchises_partial_update) | **PATCH** /franchises/{id}/ | 
 *FranchisesApi* | [**franchises_read**](docs/FranchisesApi.md#franchises_read) | **GET** /franchises/{id}/ | 
 *FranchisesApi* | [**franchises_rebrand**](docs/FranchisesApi.md#franchises_rebrand) | **PUT** /franchises/{id}/rebrand/ | 
@@ -200,6 +201,7 @@ Class | Method | HTTP request | Description
  - [Franchise](docs/Franchise.md)
  - [FranchiseGM](docs/FranchiseGM.md)
  - [FranchiseList](docs/FranchiseList.md)
+ - [FranchiseLogo](docs/FranchiseLogo.md)
  - [FranchiseStandings](docs/FranchiseStandings.md)
  - [FranchiseTeam](docs/FranchiseTeam.md)
  - [FranchiseTier](docs/FranchiseTier.md)
