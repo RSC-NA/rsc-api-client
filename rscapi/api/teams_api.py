@@ -401,15 +401,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], **kwargs) -> Match:  # noqa: E501
+    async def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> Match:  # noqa: E501
         ...
 
     @overload
-    def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], async_req: Optional[bool]=True, **kwargs) -> Match:  # noqa: E501
+    def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=True, **kwargs) -> Match:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], async_req: Optional[bool]=None, **kwargs) -> Union[Match, Awaitable[Match]]:  # noqa: E501
+    def teams_next_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=None, **kwargs) -> Union[Match, Awaitable[Match]]:  # noqa: E501
         """teams_next_match  # noqa: E501
 
         Get the next match for a given team  # noqa: E501
@@ -419,7 +419,7 @@ class TeamsApi:
         >>> thread = api.teams_next_match(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -441,7 +441,7 @@ class TeamsApi:
         return self.teams_next_match_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_next_match_with_http_info(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_next_match_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> ApiResponse:  # noqa: E501
         """teams_next_match  # noqa: E501
 
         Get the next match for a given team  # noqa: E501
@@ -451,7 +451,7 @@ class TeamsApi:
         >>> thread = api.teams_next_match_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -552,15 +552,15 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_players(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], **kwargs) -> List[Player]:  # noqa: E501
+    async def teams_players(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> List[Player]:  # noqa: E501
         ...
 
     @overload
-    def teams_players(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], async_req: Optional[bool]=True, **kwargs) -> List[Player]:  # noqa: E501
+    def teams_players(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=True, **kwargs) -> List[Player]:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_players(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], async_req: Optional[bool]=None, **kwargs) -> Union[List[Player], Awaitable[List[Player]]]:  # noqa: E501
+    def teams_players(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], async_req: Optional[bool]=None, **kwargs) -> Union[List[Player], Awaitable[List[Player]]]:  # noqa: E501
         """teams_players  # noqa: E501
 
         Get the players for a given team.  # noqa: E501
@@ -570,7 +570,7 @@ class TeamsApi:
         >>> thread = api.teams_players(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -592,7 +592,7 @@ class TeamsApi:
         return self.teams_players_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_players_with_http_info(self, id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_players_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], **kwargs) -> ApiResponse:  # noqa: E501
         """teams_players  # noqa: E501
 
         Get the players for a given team.  # noqa: E501
@@ -602,7 +602,7 @@ class TeamsApi:
         >>> thread = api.teams_players_with_http_info(id, async_req=True)
         >>> result = thread.get()
 
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

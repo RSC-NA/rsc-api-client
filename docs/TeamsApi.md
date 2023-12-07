@@ -219,7 +219,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | ID of the team to retrieve.
+    id = 56 # int | A unique integer value identifying this teams.
 
     try:
         api_response = await api_instance.teams_next_match(id)
@@ -235,7 +235,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| ID of the team to retrieve. | 
+ **id** | **int**| A unique integer value identifying this teams. | 
 
 ### Return type
 
@@ -297,7 +297,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | ID of the team to retrieve.
+    id = 56 # int | A unique integer value identifying this teams.
 
     try:
         api_response = await api_instance.teams_players(id)
@@ -313,7 +313,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| ID of the team to retrieve. | 
+ **id** | **int**| A unique integer value identifying this teams. | 
 
 ### Return type
 
