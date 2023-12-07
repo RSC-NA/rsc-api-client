@@ -250,6 +250,7 @@ Class | Method | HTTP request | Description
  - [TrackerLinkInvalidateObject](docs/TrackerLinkInvalidateObject.md)
  - [TrackerLinkStats](docs/TrackerLinkStats.md)
  - [TrackerMMR](docs/TrackerMMR.md)
+ - [TransactionFranchise](docs/TransactionFranchise.md)
  - [TransactionResponse](docs/TransactionResponse.md)
  - [TransactionTeam](docs/TransactionTeam.md)
  - [TransferFranchise](docs/TransferFranchise.md)

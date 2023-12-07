@@ -53,8 +53,8 @@ class LeaguePlayer(BaseModel):
         if value is None:
             return value
 
-        if value not in ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'WC'):
-            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'WC')")
+        if value not in ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'WC', 'WR'):
+            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'WC', 'WR')")
         return value
 
     class Config:

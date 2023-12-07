@@ -23,6 +23,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conint, conlist, constr, validator
 from rscapi.models.member import Member
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
+from rscapi.models.transaction_franchise import TransactionFranchise
 
 class TransactionResponse(BaseModel):
     """
@@ -34,11 +35,11 @@ class TransactionResponse(BaseModel):
     week_no: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Week no of transaction (if applicable)")
     match_day: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Specific match day of the transactions.")
     type: StrictStr = Field(...)
-    notes: constr(strict=True, min_length=1) = Field(..., description="Notes associated with the transaction.")
-    first_gm: Optional[Member] = None
-    second_gm: Optional[Member] = None
+    notes: Optional[constr(strict=True, min_length=1)] = Field(None, description="Notes associated with the transaction.")
+    first_franchise: Optional[TransactionFranchise] = None
+    second_franchise: Optional[TransactionFranchise] = None
     executor: Member = Field(...)
-    __properties = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_gm", "second_gm", "executor"]
+    __properties = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor"]
 
     @validator('week')
     def week_validate_enum(cls, value):
@@ -86,12 +87,12 @@ class TransactionResponse(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['player_updates'] = _items
-        # override the default output from pydantic by calling `to_dict()` of first_gm
-        if self.first_gm:
-            _dict['first_gm'] = self.first_gm.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of second_gm
-        if self.second_gm:
-            _dict['second_gm'] = self.second_gm.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of first_franchise
+        if self.first_franchise:
+            _dict['first_franchise'] = self.first_franchise.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of second_franchise
+        if self.second_franchise:
+            _dict['second_franchise'] = self.second_franchise.to_dict()
         # override the default output from pydantic by calling `to_dict()` of executor
         if self.executor:
             _dict['executor'] = self.executor.to_dict()
@@ -99,6 +100,16 @@ class TransactionResponse(BaseModel):
         # and __fields_set__ contains the field
         if self.player_updates is None and "player_updates" in self.__fields_set__:
             _dict['player_updates'] = None
+
+        # set to None if first_franchise (nullable) is None
+        # and __fields_set__ contains the field
+        if self.first_franchise is None and "first_franchise" in self.__fields_set__:
+            _dict['first_franchise'] = None
+
+        # set to None if second_franchise (nullable) is None
+        # and __fields_set__ contains the field
+        if self.second_franchise is None and "second_franchise" in self.__fields_set__:
+            _dict['second_franchise'] = None
 
         return _dict
 
@@ -119,8 +130,8 @@ class TransactionResponse(BaseModel):
             "match_day": obj.get("match_day"),
             "type": obj.get("type"),
             "notes": obj.get("notes"),
-            "first_gm": Member.from_dict(obj.get("first_gm")) if obj.get("first_gm") is not None else None,
-            "second_gm": Member.from_dict(obj.get("second_gm")) if obj.get("second_gm") is not None else None,
+            "first_franchise": TransactionFranchise.from_dict(obj.get("first_franchise")) if obj.get("first_franchise") is not None else None,
+            "second_franchise": TransactionFranchise.from_dict(obj.get("second_franchise")) if obj.get("second_franchise") is not None else None,
             "executor": Member.from_dict(obj.get("executor")) if obj.get("executor") is not None else None
         })
         return _obj

@@ -72,6 +72,7 @@ docs/TrackerLinkInvalidateObject.md
 docs/TrackerLinkStats.md
 docs/TrackerLinksApi.md
 docs/TrackerMMR.md
+docs/TransactionFranchise.md
 docs/TransactionResponse.md
 docs/TransactionTeam.md
 docs/TransactionsApi.md
@@ -157,6 +158,7 @@ rscapi/models/tracker_link.py
 rscapi/models/tracker_link_invalidate_object.py
 rscapi/models/tracker_link_stats.py
 rscapi/models/tracker_mmr.py
+rscapi/models/transaction_franchise.py
 rscapi/models/transaction_response.py
 rscapi/models/transaction_team.py
 rscapi/models/transfer_franchise.py
@@ -167,5 +169,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_expire_a_player_sub.py
 tox.ini
