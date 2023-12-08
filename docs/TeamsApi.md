@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_match**
-> Match teams_match(id, day, preseason=preseason)
+> Match teams_match(day, id, preseason=preseason)
 
 
 
@@ -136,12 +136,12 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
     day = 56 # int | Match day to find
+    id = 56 # int | ID of the team to retrieve.
     preseason = 56 # int | 1 if this is a preseason match. (optional)
 
     try:
-        api_response = await api_instance.teams_match(id, day, preseason=preseason)
+        api_response = await api_instance.teams_match(day, id, preseason=preseason)
         print("The response of TeamsApi->teams_match:\n")
         pprint(api_response)
     except Exception as e:
@@ -154,8 +154,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
  **day** | **int**| Match day to find | 
+ **id** | **int**| ID of the team to retrieve. | 
  **preseason** | **int**| 1 if this is a preseason match. | [optional] 
 
 ### Return type

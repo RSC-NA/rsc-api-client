@@ -3,6 +3,7 @@
 .gitlab-ci.yml
 .travis.yml
 README.md
+docs/AddTierToLeague.md
 docs/BaseTeam.md
 docs/BulkMMRSchemaSubmission.md
 docs/CutAPlayerFromALeague.md
@@ -12,6 +13,7 @@ docs/Error.md
 docs/ExpireAPlayerSub.md
 docs/Franchise.md
 docs/FranchiseGM.md
+docs/FranchiseLeague.md
 docs/FranchiseList.md
 docs/FranchiseLogo.md
 docs/FranchiseStandings.md
@@ -51,6 +53,7 @@ docs/PlayerTransactionUpdates.md
 docs/PreviousTeam.md
 docs/ReSignPlayer.md
 docs/RebrandAFranchise.md
+docs/RemoveTierFromALeague.md
 docs/ScheduleIngestRequestBody.md
 docs/Season.md
 docs/SeasonLeague.md
@@ -101,6 +104,7 @@ rscapi/api_response.py
 rscapi/configuration.py
 rscapi/exceptions.py
 rscapi/models/__init__.py
+rscapi/models/add_tier_to_league.py
 rscapi/models/base_team.py
 rscapi/models/bulk_mmr_schema_submission.py
 rscapi/models/cut_a_player_from_a_league.py
@@ -110,6 +114,7 @@ rscapi/models/error.py
 rscapi/models/expire_a_player_sub.py
 rscapi/models/franchise.py
 rscapi/models/franchise_gm.py
+rscapi/models/franchise_league.py
 rscapi/models/franchise_list.py
 rscapi/models/franchise_logo.py
 rscapi/models/franchise_standings.py
@@ -143,6 +148,7 @@ rscapi/models/player_transaction_updates.py
 rscapi/models/previous_team.py
 rscapi/models/re_sign_player.py
 rscapi/models/rebrand_a_franchise.py
+rscapi/models/remove_tier_from_a_league.py
 rscapi/models/schedule_ingest_request_body.py
 rscapi/models/season.py
 rscapi/models/season_league.py
@@ -173,4 +179,7 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_add_tier_to_league.py
+test/test_franchise_league.py
+test/test_remove_tier_from_a_league.py
 tox.ini

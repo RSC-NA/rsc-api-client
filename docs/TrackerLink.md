@@ -4,15 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**link** | **str** |  | [optional] 
-**rscid** | **str** |  | 
+**link** | **str** |  | 
+**discord_id** | **int** |  | 
 **id** | **int** |  | [optional] [readonly] 
-**name** | **str** |  | 
+**name** | **str** |  | [optional] [readonly] 
 **platform** | **str** |  | [optional] [readonly] 
-**status** | **str** |  | 
+**status** | **str** |  | [optional] [readonly] 
 **last_updated** | **datetime** |  | [optional] [readonly] 
-**member_name** | **str** |  | 
-**platform_id** | **str** |  | 
+**member_name** | **str** |  | [optional] [readonly] 
+**platform_id** | **str** |  | [optional] [readonly] 
+**rscid** | **str** |  | [optional] [readonly] 
 
 ## Example
 

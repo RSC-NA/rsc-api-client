@@ -43,7 +43,7 @@ class LeaguePlayer(BaseModel):
     last_updated: Optional[datetime] = None
     previous_teams: Optional[conlist(PreviousTeam)] = None
     player: LeaguePlayerMember = Field(...)
-    tier: Optional[Tier] = Field(...)
+    tier: Tier = Field(...)
     sub_status: StrictInt = Field(...)
     waiver_period_end_date: Optional[datetime] = Field(...)
     signed_date: Optional[datetime] = Field(...)
@@ -114,11 +114,6 @@ class LeaguePlayer(BaseModel):
         # and __fields_set__ contains the field
         if self.team is None and "team" in self.__fields_set__:
             _dict['team'] = None
-
-        # set to None if tier (nullable) is None
-        # and __fields_set__ contains the field
-        if self.tier is None and "tier" in self.__fields_set__:
-            _dict['tier'] = None
 
         # set to None if waiver_period_end_date (nullable) is None
         # and __fields_set__ contains the field

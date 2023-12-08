@@ -15,6 +15,7 @@
 
 
 # import models into model package
+from rscapi.models.add_tier_to_league import AddTierToLeague
 from rscapi.models.base_team import BaseTeam
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
@@ -24,6 +25,7 @@ from rscapi.models.error import Error
 from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.franchise import Franchise
 from rscapi.models.franchise_gm import FranchiseGM
+from rscapi.models.franchise_league import FranchiseLeague
 from rscapi.models.franchise_list import FranchiseList
 from rscapi.models.franchise_logo import FranchiseLogo
 from rscapi.models.franchise_standings import FranchiseStandings
@@ -57,6 +59,7 @@ from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.previous_team import PreviousTeam
 from rscapi.models.re_sign_player import ReSignPlayer
 from rscapi.models.rebrand_a_franchise import RebrandAFranchise
+from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague
 from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
 from rscapi.models.season import Season
 from rscapi.models.season_league import SeasonLeague

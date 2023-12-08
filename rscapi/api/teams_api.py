@@ -233,28 +233,28 @@ class TeamsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def teams_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, **kwargs) -> Match:  # noqa: E501
+    async def teams_match(self, day : Annotated[StrictInt, Field(..., description="Match day to find")], id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, **kwargs) -> Match:  # noqa: E501
         ...
 
     @overload
-    def teams_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, async_req: Optional[bool]=True, **kwargs) -> Match:  # noqa: E501
+    def teams_match(self, day : Annotated[StrictInt, Field(..., description="Match day to find")], id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, async_req: Optional[bool]=True, **kwargs) -> Match:  # noqa: E501
         ...
 
     @validate_arguments
-    def teams_match(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[Match, Awaitable[Match]]:  # noqa: E501
+    def teams_match(self, day : Annotated[StrictInt, Field(..., description="Match day to find")], id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[Match, Awaitable[Match]]:  # noqa: E501
         """teams_match  # noqa: E501
 
         Get a match details for a specific day for the given team  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.teams_match(id, day, preseason, async_req=True)
+        >>> thread = api.teams_match(day, id, preseason, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
         :param day: Match day to find (required)
         :type day: int
+        :param id: ID of the team to retrieve. (required)
+        :type id: int
         :param preseason: 1 if this is a preseason match.
         :type preseason: int
         :param async_req: Whether to execute the request asynchronously.
@@ -274,23 +274,23 @@ class TeamsApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.teams_match_with_http_info(id, day, preseason, **kwargs)  # noqa: E501
+        return self.teams_match_with_http_info(day, id, preseason, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def teams_match_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this teams.")], day : Annotated[StrictInt, Field(..., description="Match day to find")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def teams_match_with_http_info(self, day : Annotated[StrictInt, Field(..., description="Match day to find")], id : Annotated[StrictInt, Field(..., description="ID of the team to retrieve.")], preseason : Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """teams_match  # noqa: E501
 
         Get a match details for a specific day for the given team  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.teams_match_with_http_info(id, day, preseason, async_req=True)
+        >>> thread = api.teams_match_with_http_info(day, id, preseason, async_req=True)
         >>> result = thread.get()
 
-        :param id: A unique integer value identifying this teams. (required)
-        :type id: int
         :param day: Match day to find (required)
         :type day: int
+        :param id: ID of the team to retrieve. (required)
+        :type id: int
         :param preseason: 1 if this is a preseason match.
         :type preseason: int
         :param async_req: Whether to execute the request asynchronously.
@@ -321,8 +321,8 @@ class TeamsApi:
         _params = locals()
 
         _all_params = [
-            'id',
             'day',
+            'id',
             'preseason'
         ]
         _all_params.extend(

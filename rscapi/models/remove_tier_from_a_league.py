@@ -19,16 +19,15 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, constr
 
-class FranchiseGM(BaseModel):
+from pydantic import BaseModel, Field, StrictInt
+
+class RemoveTierFromALeague(BaseModel):
     """
-    FranchiseGM
+    Remove an existing tier from a league  # noqa: E501
     """
-    rsc_name: Optional[constr(strict=True, min_length=1)] = None
-    discord_id: StrictInt = Field(...)
-    __properties = ["rsc_name", "discord_id"]
+    tier: StrictInt = Field(..., description="Tier to add to the league")
+    __properties = ["tier"]
 
     class Config:
         """Pydantic configuration"""
@@ -44,31 +43,29 @@ class FranchiseGM(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> FranchiseGM:
-        """Create an instance of FranchiseGM from a JSON string"""
+    def from_json(cls, json_str: str) -> RemoveTierFromALeague:
+        """Create an instance of RemoveTierFromALeague from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "rsc_name",
                           },
                           exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> FranchiseGM:
-        """Create an instance of FranchiseGM from a dict"""
+    def from_dict(cls, obj: dict) -> RemoveTierFromALeague:
+        """Create an instance of RemoveTierFromALeague from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return FranchiseGM.parse_obj(obj)
+            return RemoveTierFromALeague.parse_obj(obj)
 
-        _obj = FranchiseGM.parse_obj({
-            "rsc_name": obj.get("rsc_name"),
-            "discord_id": obj.get("discord_id")
+        _obj = RemoveTierFromALeague.parse_obj({
+            "tier": obj.get("tier")
         })
         return _obj
 

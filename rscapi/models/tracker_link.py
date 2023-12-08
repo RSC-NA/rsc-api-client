@@ -26,16 +26,17 @@ class TrackerLink(BaseModel):
     """
     TrackerLink
     """
-    link: Optional[constr(strict=True, min_length=1)] = None
-    rscid: constr(strict=True, min_length=1) = Field(...)
+    link: constr(strict=True, min_length=1) = Field(...)
+    discord_id: StrictInt = Field(...)
     id: Optional[StrictInt] = None
-    name: constr(strict=True, min_length=0) = Field(...)
+    name: Optional[constr(strict=True, min_length=0)] = None
     platform: Optional[StrictStr] = None
-    status: StrictStr = Field(...)
+    status: Optional[StrictStr] = None
     last_updated: Optional[datetime] = None
-    member_name: constr(strict=True, min_length=1) = Field(...)
-    platform_id: constr(strict=True, min_length=0) = Field(...)
-    __properties = ["link", "rscid", "id", "name", "platform", "status", "last_updated", "member_name", "platform_id"]
+    member_name: Optional[constr(strict=True, min_length=1)] = None
+    platform_id: Optional[constr(strict=True, min_length=0)] = None
+    rscid: Optional[constr(strict=True, min_length=1)] = None
+    __properties = ["link", "discord_id", "id", "name", "platform", "status", "last_updated", "member_name", "platform_id", "rscid"]
 
     @validator('platform')
     def platform_validate_enum(cls, value):
@@ -50,6 +51,9 @@ class TrackerLink(BaseModel):
     @validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in ('NEW', 'STL', 'PLD', 'FLD'):
             raise ValueError("must be one of enum values ('NEW', 'STL', 'PLD', 'FLD')")
         return value
@@ -77,8 +81,13 @@ class TrackerLink(BaseModel):
         _dict = self.dict(by_alias=True,
                           exclude={
                             "id",
+                            "name",
                             "platform",
+                            "status",
                             "last_updated",
+                            "member_name",
+                            "platform_id",
+                            "rscid",
                           },
                           exclude_none=True)
         return _dict
@@ -94,14 +103,15 @@ class TrackerLink(BaseModel):
 
         _obj = TrackerLink.parse_obj({
             "link": obj.get("link"),
-            "rscid": obj.get("rscid"),
+            "discord_id": obj.get("discord_id"),
             "id": obj.get("id"),
             "name": obj.get("name"),
             "platform": obj.get("platform"),
             "status": obj.get("status"),
             "last_updated": obj.get("last_updated"),
             "member_name": obj.get("member_name"),
-            "platform_id": obj.get("platform_id")
+            "platform_id": obj.get("platform_id"),
+            "rscid": obj.get("rscid")
         })
         return _obj
 

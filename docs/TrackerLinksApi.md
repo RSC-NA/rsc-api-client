@@ -10,9 +10,7 @@ Method | HTTP request | Description
 [**tracker_links_links_stats**](TrackerLinksApi.md#tracker_links_links_stats) | **GET** /tracker-links/links_stats/ | 
 [**tracker_links_list**](TrackerLinksApi.md#tracker_links_list) | **GET** /tracker-links/ | 
 [**tracker_links_next**](TrackerLinksApi.md#tracker_links_next) | **GET** /tracker-links/next/ | 
-[**tracker_links_partial_update**](TrackerLinksApi.md#tracker_links_partial_update) | **PATCH** /tracker-links/{id}/ | 
 [**tracker_links_read**](TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
-[**tracker_links_update**](TrackerLinksApi.md#tracker_links_update) | **PUT** /tracker-links/{id}/ | 
 
 
 # **tracker_links_create**
@@ -470,83 +468,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tracker_links_partial_update**
-> TrackerLink tracker_links_partial_update(id, data)
-
-
-
-### Example
-
-* Api Key Authentication (Api-Key):
-```python
-import time
-import os
-import rscapi
-from rscapi.models.tracker_link import TrackerLink
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker links.
-    data = rscapi.TrackerLink() # TrackerLink | 
-
-    try:
-        api_response = await api_instance.tracker_links_partial_update(id, data)
-        print("The response of TrackerLinksApi->tracker_links_partial_update:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TrackerLinksApi->tracker_links_partial_update: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker links. | 
- **data** | [**TrackerLink**](TrackerLink.md)|  | 
-
-### Return type
-
-[**TrackerLink**](TrackerLink.md)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json, text/csv
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **tracker_links_read**
 > TrackerLink tracker_links_read(id)
 
@@ -613,83 +534,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, text/csv
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **tracker_links_update**
-> TrackerLink tracker_links_update(id, data)
-
-
-
-### Example
-
-* Api Key Authentication (Api-Key):
-```python
-import time
-import os
-import rscapi
-from rscapi.models.tracker_link import TrackerLink
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker links.
-    data = rscapi.TrackerLink() # TrackerLink | 
-
-    try:
-        api_response = await api_instance.tracker_links_update(id, data)
-        print("The response of TrackerLinksApi->tracker_links_update:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TrackerLinksApi->tracker_links_update: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker links. | 
- **data** | [**TrackerLink**](TrackerLink.md)|  | 
-
-### Return type
-
-[**TrackerLink**](TrackerLink.md)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json, text/csv
 
 ### HTTP response details

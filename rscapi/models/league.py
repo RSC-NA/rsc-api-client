@@ -19,9 +19,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, constr
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictInt, conlist, constr
 from rscapi.models.league_data import LeagueData
+from rscapi.models.tier import Tier
 
 class League(BaseModel):
     """
@@ -31,7 +32,8 @@ class League(BaseModel):
     name: constr(strict=True, min_length=1) = Field(...)
     guild_id: StrictInt = Field(...)
     league_data: LeagueData = Field(...)
-    __properties = ["id", "name", "guild_id", "league_data"]
+    tiers: conlist(Tier) = Field(...)
+    __properties = ["id", "name", "guild_id", "league_data", "tiers"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,6 +63,13 @@ class League(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of league_data
         if self.league_data:
             _dict['league_data'] = self.league_data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in tiers (list)
+        _items = []
+        if self.tiers:
+            for _item in self.tiers:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['tiers'] = _items
         return _dict
 
     @classmethod
@@ -76,7 +85,8 @@ class League(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "guild_id": obj.get("guild_id"),
-            "league_data": LeagueData.from_dict(obj.get("league_data")) if obj.get("league_data") is not None else None
+            "league_data": LeagueData.from_dict(obj.get("league_data")) if obj.get("league_data") is not None else None,
+            "tiers": [Tier.from_dict(_item) for _item in obj.get("tiers")] if obj.get("tiers") is not None else None
         })
         return _obj
 

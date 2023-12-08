@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **guild_id** | **int** |  | 
 **league_data** | [**LeagueData**](LeagueData.md) |  | 
+**tiers** | [**List[Tier]**](Tier.md) |  | 
 
 ## Example
 
