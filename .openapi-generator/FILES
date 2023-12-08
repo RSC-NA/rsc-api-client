@@ -4,6 +4,7 @@
 .travis.yml
 README.md
 docs/BaseTeam.md
+docs/BulkMMRSchemaSubmission.md
 docs/CutAPlayerFromALeague.md
 docs/Deleted.md
 docs/ElevatedRole.md
@@ -101,6 +102,7 @@ rscapi/configuration.py
 rscapi/exceptions.py
 rscapi/models/__init__.py
 rscapi/models/base_team.py
+rscapi/models/bulk_mmr_schema_submission.py
 rscapi/models/cut_a_player_from_a_league.py
 rscapi/models/deleted.py
 rscapi/models/elevated_role.py

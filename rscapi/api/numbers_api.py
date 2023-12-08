@@ -25,6 +25,7 @@ from pydantic import Field, StrictInt, StrictStr
 
 from typing import List, Optional
 
+from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
 from rscapi.models.player_mmr import PlayerMMR
 
 from rscapi.api_client import ApiClient
@@ -46,6 +47,458 @@ class NumbersApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+    @overload
+    async def numbers_mmr_bulk_submit(self, data : BulkMMRSchemaSubmission, **kwargs) -> List[PlayerMMR]:  # noqa: E501
+        ...
+
+    @overload
+    def numbers_mmr_bulk_submit(self, data : BulkMMRSchemaSubmission, async_req: Optional[bool]=True, **kwargs) -> List[PlayerMMR]:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def numbers_mmr_bulk_submit(self, data : BulkMMRSchemaSubmission, async_req: Optional[bool]=None, **kwargs) -> Union[List[PlayerMMR], Awaitable[List[PlayerMMR]]]:  # noqa: E501
+        """numbers_mmr_bulk_submit  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_bulk_submit(data, async_req=True)
+        >>> result = thread.get()
+
+        :param data: (required)
+        :type data: BulkMMRSchemaSubmission
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: List[PlayerMMR]
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the numbers_mmr_bulk_submit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.numbers_mmr_bulk_submit_with_http_info(data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def numbers_mmr_bulk_submit_with_http_info(self, data : BulkMMRSchemaSubmission, **kwargs) -> ApiResponse:  # noqa: E501
+        """numbers_mmr_bulk_submit  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_bulk_submit_with_http_info(data, async_req=True)
+        >>> result = thread.get()
+
+        :param data: (required)
+        :type data: BulkMMRSchemaSubmission
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(List[PlayerMMR], status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method numbers_mmr_bulk_submit" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/csv'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '200': "List[PlayerMMR]",
+        }
+
+        return self.api_client.call_api(
+            '/numbers/mmr/bulk_submit/', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def numbers_mmr_create(self, data : PlayerMMR, **kwargs) -> PlayerMMR:  # noqa: E501
+        ...
+
+    @overload
+    def numbers_mmr_create(self, data : PlayerMMR, async_req: Optional[bool]=True, **kwargs) -> PlayerMMR:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def numbers_mmr_create(self, data : PlayerMMR, async_req: Optional[bool]=None, **kwargs) -> Union[PlayerMMR, Awaitable[PlayerMMR]]:  # noqa: E501
+        """numbers_mmr_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_create(data, async_req=True)
+        >>> result = thread.get()
+
+        :param data: (required)
+        :type data: PlayerMMR
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PlayerMMR
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the numbers_mmr_create_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.numbers_mmr_create_with_http_info(data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def numbers_mmr_create_with_http_info(self, data : PlayerMMR, **kwargs) -> ApiResponse:  # noqa: E501
+        """numbers_mmr_create  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_create_with_http_info(data, async_req=True)
+        >>> result = thread.get()
+
+        :param data: (required)
+        :type data: PlayerMMR
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PlayerMMR, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method numbers_mmr_create" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/csv'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '201': "PlayerMMR",
+        }
+
+        return self.api_client.call_api(
+            '/numbers/mmr/', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def numbers_mmr_delete(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], **kwargs) -> None:  # noqa: E501
+        ...
+
+    @overload
+    def numbers_mmr_delete(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def numbers_mmr_delete(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+        """numbers_mmr_delete  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_delete(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this player mmr pull. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the numbers_mmr_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.numbers_mmr_delete_with_http_info(id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def numbers_mmr_delete_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """numbers_mmr_delete  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_delete_with_http_info(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this player mmr pull. (required)
+        :type id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method numbers_mmr_delete" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/numbers/mmr/{id}/', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
 
     @overload
     async def numbers_mmr_list(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, **kwargs) -> List[PlayerMMR]:  # noqa: E501
@@ -220,6 +673,169 @@ class NumbersApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
+    async def numbers_mmr_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], data : PlayerMMR, **kwargs) -> PlayerMMR:  # noqa: E501
+        ...
+
+    @overload
+    def numbers_mmr_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], data : PlayerMMR, async_req: Optional[bool]=True, **kwargs) -> PlayerMMR:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def numbers_mmr_partial_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], data : PlayerMMR, async_req: Optional[bool]=None, **kwargs) -> Union[PlayerMMR, Awaitable[PlayerMMR]]:  # noqa: E501
+        """numbers_mmr_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_partial_update(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this player mmr pull. (required)
+        :type id: int
+        :param data: (required)
+        :type data: PlayerMMR
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PlayerMMR
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the numbers_mmr_partial_update_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.numbers_mmr_partial_update_with_http_info(id, data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def numbers_mmr_partial_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], data : PlayerMMR, **kwargs) -> ApiResponse:  # noqa: E501
+        """numbers_mmr_partial_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_partial_update_with_http_info(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this player mmr pull. (required)
+        :type id: int
+        :param data: (required)
+        :type data: PlayerMMR
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PlayerMMR, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method numbers_mmr_partial_update" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/csv'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PlayerMMR",
+        }
+
+        return self.api_client.call_api(
+            '/numbers/mmr/{id}/', 'PATCH',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
     async def numbers_mmr_read(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], **kwargs) -> PlayerMMR:  # noqa: E501
         ...
 
@@ -352,6 +968,169 @@ class NumbersApi:
 
         return self.api_client.call_api(
             '/numbers/mmr/{id}/', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def numbers_mmr_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], data : PlayerMMR, **kwargs) -> PlayerMMR:  # noqa: E501
+        ...
+
+    @overload
+    def numbers_mmr_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], data : PlayerMMR, async_req: Optional[bool]=True, **kwargs) -> PlayerMMR:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def numbers_mmr_update(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], data : PlayerMMR, async_req: Optional[bool]=None, **kwargs) -> Union[PlayerMMR, Awaitable[PlayerMMR]]:  # noqa: E501
+        """numbers_mmr_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_update(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this player mmr pull. (required)
+        :type id: int
+        :param data: (required)
+        :type data: PlayerMMR
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: PlayerMMR
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the numbers_mmr_update_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.numbers_mmr_update_with_http_info(id, data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def numbers_mmr_update_with_http_info(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this player mmr pull.")], data : PlayerMMR, **kwargs) -> ApiResponse:  # noqa: E501
+        """numbers_mmr_update  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.numbers_mmr_update_with_http_info(id, data, async_req=True)
+        >>> result = thread.get()
+
+        :param id: A unique integer value identifying this player mmr pull. (required)
+        :type id: int
+        :param data: (required)
+        :type data: PlayerMMR
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(PlayerMMR, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method numbers_mmr_update" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/csv'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '200': "PlayerMMR",
+        }
+
+        return self.api_client.call_api(
+            '/numbers/mmr/{id}/', 'PUT',
             _path_params,
             _query_params,
             _header_params,

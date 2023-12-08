@@ -45,7 +45,9 @@ class LeaguePlayer(BaseModel):
     player: LeaguePlayerMember = Field(...)
     tier: Optional[Tier] = Field(...)
     sub_status: StrictInt = Field(...)
-    __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "sub_status"]
+    waiver_period_end_date: Optional[datetime] = Field(...)
+    signed_date: Optional[datetime] = Field(...)
+    __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "sub_status", "waiver_period_end_date", "signed_date"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -118,6 +120,16 @@ class LeaguePlayer(BaseModel):
         if self.tier is None and "tier" in self.__fields_set__:
             _dict['tier'] = None
 
+        # set to None if waiver_period_end_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.waiver_period_end_date is None and "waiver_period_end_date" in self.__fields_set__:
+            _dict['waiver_period_end_date'] = None
+
+        # set to None if signed_date (nullable) is None
+        # and __fields_set__ contains the field
+        if self.signed_date is None and "signed_date" in self.__fields_set__:
+            _dict['signed_date'] = None
+
         return _dict
 
     @classmethod
@@ -143,7 +155,9 @@ class LeaguePlayer(BaseModel):
             "previous_teams": [PreviousTeam.from_dict(_item) for _item in obj.get("previous_teams")] if obj.get("previous_teams") is not None else None,
             "player": LeaguePlayerMember.from_dict(obj.get("player")) if obj.get("player") is not None else None,
             "tier": Tier.from_dict(obj.get("tier")) if obj.get("tier") is not None else None,
-            "sub_status": obj.get("sub_status")
+            "sub_status": obj.get("sub_status"),
+            "waiver_period_end_date": obj.get("waiver_period_end_date"),
+            "signed_date": obj.get("signed_date")
         })
         return _obj
 

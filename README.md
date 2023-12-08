@@ -143,8 +143,13 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**members_signup**](docs/MembersApi.md#members_signup) | **POST** /members/{id}/signup/ | 
 *MembersApi* | [**members_stats**](docs/MembersApi.md#members_stats) | **GET** /members/{id}/stats/ | 
 *MembersApi* | [**members_update**](docs/MembersApi.md#members_update) | **PUT** /members/{id}/ | 
+*NumbersApi* | [**numbers_mmr_bulk_submit**](docs/NumbersApi.md#numbers_mmr_bulk_submit) | **POST** /numbers/mmr/bulk_submit/ | 
+*NumbersApi* | [**numbers_mmr_create**](docs/NumbersApi.md#numbers_mmr_create) | **POST** /numbers/mmr/ | 
+*NumbersApi* | [**numbers_mmr_delete**](docs/NumbersApi.md#numbers_mmr_delete) | **DELETE** /numbers/mmr/{id}/ | 
 *NumbersApi* | [**numbers_mmr_list**](docs/NumbersApi.md#numbers_mmr_list) | **GET** /numbers/mmr/ | 
+*NumbersApi* | [**numbers_mmr_partial_update**](docs/NumbersApi.md#numbers_mmr_partial_update) | **PATCH** /numbers/mmr/{id}/ | 
 *NumbersApi* | [**numbers_mmr_read**](docs/NumbersApi.md#numbers_mmr_read) | **GET** /numbers/mmr/{id}/ | 
+*NumbersApi* | [**numbers_mmr_update**](docs/NumbersApi.md#numbers_mmr_update) | **PUT** /numbers/mmr/{id}/ | 
 *SeasonsApi* | [**seasons_create**](docs/SeasonsApi.md#seasons_create) | **POST** /seasons/ | 
 *SeasonsApi* | [**seasons_delete**](docs/SeasonsApi.md#seasons_delete) | **DELETE** /seasons/{id}/ | 
 *SeasonsApi* | [**seasons_franchise_standings**](docs/SeasonsApi.md#seasons_franchise_standings) | **GET** /seasons/{id}/franchise_standings/ | 
@@ -193,6 +198,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [BaseTeam](docs/BaseTeam.md)
+ - [BulkMMRSchemaSubmission](docs/BulkMMRSchemaSubmission.md)
  - [CutAPlayerFromALeague](docs/CutAPlayerFromALeague.md)
  - [Deleted](docs/Deleted.md)
  - [ElevatedRole](docs/ElevatedRole.md)

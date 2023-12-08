@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **player** | [**LeaguePlayerMember**](LeaguePlayerMember.md) |  | 
 **tier** | [**Tier**](Tier.md) |  | 
 **sub_status** | **int** |  | 
+**waiver_period_end_date** | **datetime** |  | 
+**signed_date** | **datetime** |  | 
 
 ## Example
 
