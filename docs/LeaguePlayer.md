@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**league** | [**League**](League.md) |  | 
+**league** | [**LeaguePlayerLeague**](LeaguePlayerLeague.md) |  | 
 **status** | **str** |  | [optional] [readonly] 
 **season** | **int** |  | 
 **captain** | **bool** |  | [optional] [readonly] 

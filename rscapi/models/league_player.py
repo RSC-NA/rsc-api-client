@@ -21,7 +21,7 @@ import json
 from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
-from rscapi.models.league import League
+from rscapi.models.league_player_league import LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember
 from rscapi.models.player_team import PlayerTeam
 from rscapi.models.previous_team import PreviousTeam
@@ -32,7 +32,7 @@ class LeaguePlayer(BaseModel):
     LeaguePlayer
     """
     id: Optional[StrictInt] = None
-    league: League = Field(...)
+    league: LeaguePlayerLeague = Field(...)
     status: Optional[StrictStr] = None
     season: StrictInt = Field(...)
     captain: Optional[StrictBool] = None
@@ -43,7 +43,7 @@ class LeaguePlayer(BaseModel):
     last_updated: Optional[datetime] = None
     previous_teams: Optional[conlist(PreviousTeam)] = None
     player: LeaguePlayerMember = Field(...)
-    tier: Tier = Field(...)
+    tier: Optional[Tier] = Field(...)
     sub_status: StrictInt = Field(...)
     waiver_period_end_date: Optional[datetime] = Field(...)
     signed_date: Optional[datetime] = Field(...)
@@ -115,6 +115,11 @@ class LeaguePlayer(BaseModel):
         if self.team is None and "team" in self.__fields_set__:
             _dict['team'] = None
 
+        # set to None if tier (nullable) is None
+        # and __fields_set__ contains the field
+        if self.tier is None and "tier" in self.__fields_set__:
+            _dict['tier'] = None
+
         # set to None if waiver_period_end_date (nullable) is None
         # and __fields_set__ contains the field
         if self.waiver_period_end_date is None and "waiver_period_end_date" in self.__fields_set__:
@@ -138,7 +143,7 @@ class LeaguePlayer(BaseModel):
 
         _obj = LeaguePlayer.parse_obj({
             "id": obj.get("id"),
-            "league": League.from_dict(obj.get("league")) if obj.get("league") is not None else None,
+            "league": LeaguePlayerLeague.from_dict(obj.get("league")) if obj.get("league") is not None else None,
             "status": obj.get("status"),
             "season": obj.get("season"),
             "captain": obj.get("captain"),

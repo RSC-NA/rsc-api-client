@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_links_stats**
-> TrackerLinkStats tracker_links_links_stats(status=status, member_name=member_name)
+> TrackerLinkStats tracker_links_links_stats(status=status, member_name=member_name, discord_id=discord_id)
 
 
 
@@ -274,9 +274,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | status (optional)
     member_name = 'member_name_example' # str | member_name (optional)
+    discord_id = 'discord_id_example' # str | discord_id (optional)
 
     try:
-        api_response = await api_instance.tracker_links_links_stats(status=status, member_name=member_name)
+        api_response = await api_instance.tracker_links_links_stats(status=status, member_name=member_name, discord_id=discord_id)
         print("The response of TrackerLinksApi->tracker_links_links_stats:\n")
         pprint(api_response)
     except Exception as e:
@@ -291,6 +292,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **str**| status | [optional] 
  **member_name** | **str**| member_name | [optional] 
+ **discord_id** | **str**| discord_id | [optional] 
 
 ### Return type
 
@@ -313,7 +315,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_list**
-> List[TrackerLink] tracker_links_list(status=status, member_name=member_name)
+> List[TrackerLink] tracker_links_list(status=status, member_name=member_name, discord_id=discord_id)
 
 
 
@@ -351,9 +353,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | Tracker Link Status (Pulled, Failed, etc.) (optional)
     member_name = 'member_name_example' # str | member_name (optional)
+    discord_id = 56 # int | Discord ID of member to find tracker links for. (optional)
 
     try:
-        api_response = await api_instance.tracker_links_list(status=status, member_name=member_name)
+        api_response = await api_instance.tracker_links_list(status=status, member_name=member_name, discord_id=discord_id)
         print("The response of TrackerLinksApi->tracker_links_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -368,6 +371,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **str**| Tracker Link Status (Pulled, Failed, etc.) | [optional] 
  **member_name** | **str**| member_name | [optional] 
+ **discord_id** | **int**| Discord ID of member to find tracker links for. | [optional] 
 
 ### Return type
 
@@ -390,7 +394,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_next**
-> List[TrackerLink] tracker_links_next(status=status, member_name=member_name, limit=limit)
+> List[TrackerLink] tracker_links_next(status=status, member_name=member_name, discord_id=discord_id, limit=limit)
 
 
 
@@ -428,10 +432,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TrackerLinksApi(api_client)
     status = 'status_example' # str | status (optional)
     member_name = 'member_name_example' # str | member_name (optional)
+    discord_id = 'discord_id_example' # str | discord_id (optional)
     limit = 56 # int | Number of tracker links to grab (Default: 1, Max:25) (optional)
 
     try:
-        api_response = await api_instance.tracker_links_next(status=status, member_name=member_name, limit=limit)
+        api_response = await api_instance.tracker_links_next(status=status, member_name=member_name, discord_id=discord_id, limit=limit)
         print("The response of TrackerLinksApi->tracker_links_next:\n")
         pprint(api_response)
     except Exception as e:
@@ -446,6 +451,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **str**| status | [optional] 
  **member_name** | **str**| member_name | [optional] 
+ **discord_id** | **str**| discord_id | [optional] 
  **limit** | **int**| Number of tracker links to grab (Default: 1, Max:25) | [optional] 
 
 ### Return type

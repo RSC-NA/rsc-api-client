@@ -20,19 +20,16 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, constr
-from rscapi.models.team_franchise import TeamFranchise
-from rscapi.models.tier import Tier
+from pydantic import BaseModel, Field, StrictInt, conint, constr
 
-class TeamList(BaseModel):
+class LeaguePlayerLeague(BaseModel):
     """
-    TeamList
+    LeaguePlayerLeague
     """
     id: Optional[StrictInt] = None
-    name: Optional[constr(strict=True, min_length=1)] = None
-    franchise: TeamFranchise = Field(...)
-    tier: Optional[Tier] = Field(...)
-    __properties = ["id", "name", "franchise", "tier"]
+    name: constr(strict=True, min_length=1) = Field(...)
+    guild_id: conint(strict=True, le=9223372036854775807, ge=-9223372036854775808) = Field(...)
+    __properties = ["id", "name", "guild_id"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +45,8 @@ class TeamList(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TeamList:
-        """Create an instance of TeamList from a JSON string"""
+    def from_json(cls, json_str: str) -> LeaguePlayerLeague:
+        """Create an instance of LeaguePlayerLeague from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -57,36 +54,23 @@ class TeamList(BaseModel):
         _dict = self.dict(by_alias=True,
                           exclude={
                             "id",
-                            "name",
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of franchise
-        if self.franchise:
-            _dict['franchise'] = self.franchise.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of tier
-        if self.tier:
-            _dict['tier'] = self.tier.to_dict()
-        # set to None if tier (nullable) is None
-        # and __fields_set__ contains the field
-        if self.tier is None and "tier" in self.__fields_set__:
-            _dict['tier'] = None
-
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TeamList:
-        """Create an instance of TeamList from a dict"""
+    def from_dict(cls, obj: dict) -> LeaguePlayerLeague:
+        """Create an instance of LeaguePlayerLeague from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TeamList.parse_obj(obj)
+            return LeaguePlayerLeague.parse_obj(obj)
 
-        _obj = TeamList.parse_obj({
+        _obj = LeaguePlayerLeague.parse_obj({
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "franchise": TeamFranchise.from_dict(obj.get("franchise")) if obj.get("franchise") is not None else None,
-            "tier": Tier.from_dict(obj.get("tier")) if obj.get("tier") is not None else None
+            "guild_id": obj.get("guild_id")
         })
         return _obj
 

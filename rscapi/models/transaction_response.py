@@ -44,15 +44,15 @@ class TransactionResponse(BaseModel):
     @validator('week')
     def week_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('OFF', 'PRE', 'REG'):
-            raise ValueError("must be one of enum values ('OFF', 'PRE', 'REG')")
+        if value not in ('OFF', 'PRE', 'PST', 'REG'):
+            raise ValueError("must be one of enum values ('OFF', 'PRE', 'PST', 'REG')")
         return value
 
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('NON', 'CUT', 'PKU', 'TRD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'DFT'):
-            raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'DFT')")
+        if value not in ('NON', 'CUT', 'PKU', 'TRD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT'):
+            raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT')")
         return value
 
     class Config:

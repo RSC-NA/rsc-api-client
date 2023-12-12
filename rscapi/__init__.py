@@ -60,10 +60,12 @@ from rscapi.models.franchise_team import FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier
 from rscapi.models.game import Game
 from rscapi.models.high_level_match import HighLevelMatch
+from rscapi.models.inactive_reserve import InactiveReserve
 from rscapi.models.intent_to_play_schema import IntentToPlaySchema
 from rscapi.models.league import League
 from rscapi.models.league_data import LeagueData
 from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.league_player_league import LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember
 from rscapi.models.league_players_list200_response import LeaguePlayersList200Response
 from rscapi.models.list_games import ListGames
@@ -87,6 +89,7 @@ from rscapi.models.previous_team import PreviousTeam
 from rscapi.models.re_sign_player import ReSignPlayer
 from rscapi.models.rebrand_a_franchise import RebrandAFranchise
 from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague
+from rscapi.models.retire_a_player import RetireAPlayer
 from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
 from rscapi.models.season import Season
 from rscapi.models.season_league import SeasonLeague

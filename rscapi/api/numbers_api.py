@@ -501,27 +501,29 @@ class NumbersApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def numbers_mmr_list(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, **kwargs) -> List[PlayerMMR]:  # noqa: E501
+    async def numbers_mmr_list(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, **kwargs) -> List[PlayerMMR]:  # noqa: E501
         ...
 
     @overload
-    def numbers_mmr_list(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, async_req: Optional[bool]=True, **kwargs) -> List[PlayerMMR]:  # noqa: E501
+    def numbers_mmr_list(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, async_req: Optional[bool]=True, **kwargs) -> List[PlayerMMR]:  # noqa: E501
         ...
 
     @validate_arguments
-    def numbers_mmr_list(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[PlayerMMR], Awaitable[List[PlayerMMR]]]:  # noqa: E501
+    def numbers_mmr_list(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[PlayerMMR], Awaitable[List[PlayerMMR]]]:  # noqa: E501
         """numbers_mmr_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.numbers_mmr_list(pulled, rscid, pulled_before, pulled_after, async_req=True)
+        >>> thread = api.numbers_mmr_list(pulled, rscid, discord_id, pulled_before, pulled_after, async_req=True)
         >>> result = thread.get()
 
         :param pulled: pulled
         :type pulled: str
         :param rscid: Member RSC ID (E.g: RSC002918)
         :type rscid: str
+        :param discord_id: Member discord ID
+        :type discord_id: int
         :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
         :type pulled_before: str
         :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
@@ -543,22 +545,24 @@ class NumbersApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.numbers_mmr_list_with_http_info(pulled, rscid, pulled_before, pulled_after, **kwargs)  # noqa: E501
+        return self.numbers_mmr_list_with_http_info(pulled, rscid, discord_id, pulled_before, pulled_after, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def numbers_mmr_list_with_http_info(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def numbers_mmr_list_with_http_info(self, pulled : Annotated[Optional[StrictStr], Field(description="pulled")] = None, rscid : Annotated[Optional[StrictStr], Field(description="Member RSC ID (E.g: RSC002918)")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None, pulled_before : Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None, pulled_after : Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """numbers_mmr_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.numbers_mmr_list_with_http_info(pulled, rscid, pulled_before, pulled_after, async_req=True)
+        >>> thread = api.numbers_mmr_list_with_http_info(pulled, rscid, discord_id, pulled_before, pulled_after, async_req=True)
         >>> result = thread.get()
 
         :param pulled: pulled
         :type pulled: str
         :param rscid: Member RSC ID (E.g: RSC002918)
         :type rscid: str
+        :param discord_id: Member discord ID
+        :type discord_id: int
         :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
         :type pulled_before: str
         :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
@@ -593,6 +597,7 @@ class NumbersApi:
         _all_params = [
             'pulled',
             'rscid',
+            'discord_id',
             'pulled_before',
             'pulled_after'
         ]
@@ -630,6 +635,9 @@ class NumbersApi:
 
         if _params.get('rscid') is not None:  # noqa: E501
             _query_params.append(('rscid', _params['rscid']))
+
+        if _params.get('discord_id') is not None:  # noqa: E501
+            _query_params.append(('discord_id', _params['discord_id']))
 
         if _params.get('pulled_before') is not None:  # noqa: E501
             _query_params.append(('pulled_before', _params['pulled_before']))

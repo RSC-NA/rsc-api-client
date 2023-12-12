@@ -190,7 +190,9 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_read**](docs/TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 *TransactionsApi* | [**transactions_expire_create**](docs/TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
+*TransactionsApi* | [**transactions_inactive_reserve_create**](docs/TransactionsApi.md#transactions_inactive_reserve_create) | **POST** /transactions/inactive-reserve/ | 
 *TransactionsApi* | [**transactions_resign_create**](docs/TransactionsApi.md#transactions_resign_create) | **POST** /transactions/resign/ | 
+*TransactionsApi* | [**transactions_retire_create**](docs/TransactionsApi.md#transactions_retire_create) | **POST** /transactions/retire/ | 
 *TransactionsApi* | [**transactions_sign_create**](docs/TransactionsApi.md#transactions_sign_create) | **POST** /transactions/sign/ | 
 *TransactionsApi* | [**transactions_substitution_create**](docs/TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
 
@@ -215,10 +217,12 @@ Class | Method | HTTP request | Description
  - [FranchiseTier](docs/FranchiseTier.md)
  - [Game](docs/Game.md)
  - [HighLevelMatch](docs/HighLevelMatch.md)
+ - [InactiveReserve](docs/InactiveReserve.md)
  - [IntentToPlaySchema](docs/IntentToPlaySchema.md)
  - [League](docs/League.md)
  - [LeagueData](docs/LeagueData.md)
  - [LeaguePlayer](docs/LeaguePlayer.md)
+ - [LeaguePlayerLeague](docs/LeaguePlayerLeague.md)
  - [LeaguePlayerMember](docs/LeaguePlayerMember.md)
  - [LeaguePlayersList200Response](docs/LeaguePlayersList200Response.md)
  - [ListGames](docs/ListGames.md)
@@ -242,6 +246,7 @@ Class | Method | HTTP request | Description
  - [ReSignPlayer](docs/ReSignPlayer.md)
  - [RebrandAFranchise](docs/RebrandAFranchise.md)
  - [RemoveTierFromALeague](docs/RemoveTierFromALeague.md)
+ - [RetireAPlayer](docs/RetireAPlayer.md)
  - [ScheduleIngestRequestBody](docs/ScheduleIngestRequestBody.md)
  - [Season](docs/Season.md)
  - [SeasonLeague](docs/SeasonLeague.md)

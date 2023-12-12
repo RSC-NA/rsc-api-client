@@ -22,10 +22,12 @@ docs/FranchiseTier.md
 docs/FranchisesApi.md
 docs/Game.md
 docs/HighLevelMatch.md
+docs/InactiveReserve.md
 docs/IntentToPlaySchema.md
 docs/League.md
 docs/LeagueData.md
 docs/LeaguePlayer.md
+docs/LeaguePlayerLeague.md
 docs/LeaguePlayerMember.md
 docs/LeaguePlayersApi.md
 docs/LeaguePlayersList200Response.md
@@ -54,6 +56,7 @@ docs/PreviousTeam.md
 docs/ReSignPlayer.md
 docs/RebrandAFranchise.md
 docs/RemoveTierFromALeague.md
+docs/RetireAPlayer.md
 docs/ScheduleIngestRequestBody.md
 docs/Season.md
 docs/SeasonLeague.md
@@ -122,10 +125,12 @@ rscapi/models/franchise_team.py
 rscapi/models/franchise_tier.py
 rscapi/models/game.py
 rscapi/models/high_level_match.py
+rscapi/models/inactive_reserve.py
 rscapi/models/intent_to_play_schema.py
 rscapi/models/league.py
 rscapi/models/league_data.py
 rscapi/models/league_player.py
+rscapi/models/league_player_league.py
 rscapi/models/league_player_member.py
 rscapi/models/league_players_list200_response.py
 rscapi/models/list_games.py
@@ -149,6 +154,7 @@ rscapi/models/previous_team.py
 rscapi/models/re_sign_player.py
 rscapi/models/rebrand_a_franchise.py
 rscapi/models/remove_tier_from_a_league.py
+rscapi/models/retire_a_player.py
 rscapi/models/schedule_ingest_request_body.py
 rscapi/models/season.py
 rscapi/models/season_league.py
@@ -179,7 +185,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_add_tier_to_league.py
-test/test_franchise_league.py
-test/test_remove_tier_from_a_league.py
 tox.ini
