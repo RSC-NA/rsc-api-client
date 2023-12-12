@@ -38,7 +38,7 @@ class PlayerMMR(BaseModel):
     ones_rating: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     ones_season_peak: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     ones_games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    notes: Optional[constr(strict=True, min_length=1)] = None
+    notes: Optional[StrictStr] = Field(...)
     member: Optional[constr(strict=True, min_length=1)] = None
     type: Optional[StrictStr] = None
     rscid: Optional[constr(strict=True, min_length=1)] = None
@@ -128,6 +128,11 @@ class PlayerMMR(BaseModel):
         # and __fields_set__ contains the field
         if self.ones_games_played is None and "ones_games_played" in self.__fields_set__:
             _dict['ones_games_played'] = None
+
+        # set to None if notes (nullable) is None
+        # and __fields_set__ contains the field
+        if self.notes is None and "notes" in self.__fields_set__:
+            _dict['notes'] = None
 
         return _dict
 

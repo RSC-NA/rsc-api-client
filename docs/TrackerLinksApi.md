@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_links_stats**
-> TrackerLinkStats tracker_links_links_stats(status=status, member_name=member_name, discord_id=discord_id)
+> TrackerLinkStats tracker_links_links_stats()
 
 
 
@@ -272,12 +272,9 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    status = 'status_example' # str | status (optional)
-    member_name = 'member_name_example' # str | member_name (optional)
-    discord_id = 'discord_id_example' # str | discord_id (optional)
 
     try:
-        api_response = await api_instance.tracker_links_links_stats(status=status, member_name=member_name, discord_id=discord_id)
+        api_response = await api_instance.tracker_links_links_stats()
         print("The response of TrackerLinksApi->tracker_links_links_stats:\n")
         pprint(api_response)
     except Exception as e:
@@ -287,12 +284,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **status** | **str**| status | [optional] 
- **member_name** | **str**| member_name | [optional] 
- **discord_id** | **str**| discord_id | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -315,7 +307,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_list**
-> List[TrackerLink] tracker_links_list(status=status, member_name=member_name, discord_id=discord_id)
+> TrackerLinksList200Response tracker_links_list(status=status, member_name=member_name, discord_id=discord_id, limit=limit, offset=offset)
 
 
 
@@ -326,86 +318,7 @@ Name | Type | Description  | Notes
 import time
 import os
 import rscapi
-from rscapi.models.tracker_link import TrackerLink
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.TrackerLinksApi(api_client)
-    status = 'status_example' # str | Tracker Link Status (Pulled, Failed, etc.) (optional)
-    member_name = 'member_name_example' # str | member_name (optional)
-    discord_id = 56 # int | Discord ID of member to find tracker links for. (optional)
-
-    try:
-        api_response = await api_instance.tracker_links_list(status=status, member_name=member_name, discord_id=discord_id)
-        print("The response of TrackerLinksApi->tracker_links_list:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TrackerLinksApi->tracker_links_list: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **status** | **str**| Tracker Link Status (Pulled, Failed, etc.) | [optional] 
- **member_name** | **str**| member_name | [optional] 
- **discord_id** | **int**| Discord ID of member to find tracker links for. | [optional] 
-
-### Return type
-
-[**List[TrackerLink]**](TrackerLink.md)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/csv
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **tracker_links_next**
-> List[TrackerLink] tracker_links_next(status=status, member_name=member_name, discord_id=discord_id, limit=limit)
-
-
-
-### Example
-
-* Api Key Authentication (Api-Key):
-```python
-import time
-import os
-import rscapi
-from rscapi.models.tracker_link import TrackerLink
+from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -433,10 +346,90 @@ async with rscapi.ApiClient(configuration) as api_client:
     status = 'status_example' # str | status (optional)
     member_name = 'member_name_example' # str | member_name (optional)
     discord_id = 'discord_id_example' # str | discord_id (optional)
+    limit = 56 # int | Number of results to return per page. (optional)
+    offset = 56 # int | The initial index from which to return the results. (optional)
+
+    try:
+        api_response = await api_instance.tracker_links_list(status=status, member_name=member_name, discord_id=discord_id, limit=limit, offset=offset)
+        print("The response of TrackerLinksApi->tracker_links_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TrackerLinksApi->tracker_links_list: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **str**| status | [optional] 
+ **member_name** | **str**| member_name | [optional] 
+ **discord_id** | **str**| discord_id | [optional] 
+ **limit** | **int**| Number of results to return per page. | [optional] 
+ **offset** | **int**| The initial index from which to return the results. | [optional] 
+
+### Return type
+
+[**TrackerLinksList200Response**](TrackerLinksList200Response.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/csv
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tracker_links_next**
+> List[TrackerLink] tracker_links_next(limit=limit)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+```python
+import time
+import os
+import rscapi
+from rscapi.models.tracker_link import TrackerLink
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TrackerLinksApi(api_client)
     limit = 56 # int | Number of tracker links to grab (Default: 1, Max:25) (optional)
 
     try:
-        api_response = await api_instance.tracker_links_next(status=status, member_name=member_name, discord_id=discord_id, limit=limit)
+        api_response = await api_instance.tracker_links_next(limit=limit)
         print("The response of TrackerLinksApi->tracker_links_next:\n")
         pprint(api_response)
     except Exception as e:
@@ -449,9 +442,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | **str**| status | [optional] 
- **member_name** | **str**| member_name | [optional] 
- **discord_id** | **str**| discord_id | [optional] 
  **limit** | **int**| Number of tracker links to grab (Default: 1, Max:25) | [optional] 
 
 ### Return type

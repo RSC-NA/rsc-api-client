@@ -28,6 +28,7 @@ from typing import List, Optional
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_stats import TrackerLinkStats
+from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response
 
 from rscapi.api_client import ApiClient
 from rscapi.api_response import ApiResponse
@@ -502,29 +503,23 @@ class TrackerLinksApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, **kwargs) -> TrackerLinkStats:  # noqa: E501
+    async def tracker_links_links_stats(self, **kwargs) -> TrackerLinkStats:  # noqa: E501
         ...
 
     @overload
-    def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, async_req: Optional[bool]=True, **kwargs) -> TrackerLinkStats:  # noqa: E501
+    def tracker_links_links_stats(self, async_req: Optional[bool]=True, **kwargs) -> TrackerLinkStats:  # noqa: E501
         ...
 
     @validate_arguments
-    def tracker_links_links_stats(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[TrackerLinkStats, Awaitable[TrackerLinkStats]]:  # noqa: E501
+    def tracker_links_links_stats(self, async_req: Optional[bool]=None, **kwargs) -> Union[TrackerLinkStats, Awaitable[TrackerLinkStats]]:  # noqa: E501
         """tracker_links_links_stats  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_links_stats(status, member_name, discord_id, async_req=True)
+        >>> thread = api.tracker_links_links_stats(async_req=True)
         >>> result = thread.get()
 
-        :param status: status
-        :type status: str
-        :param member_name: member_name
-        :type member_name: str
-        :param discord_id: discord_id
-        :type discord_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -542,24 +537,18 @@ class TrackerLinksApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.tracker_links_links_stats_with_http_info(status, member_name, discord_id, **kwargs)  # noqa: E501
+        return self.tracker_links_links_stats_with_http_info(**kwargs)  # noqa: E501
 
     @validate_arguments
-    def tracker_links_links_stats_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def tracker_links_links_stats_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """tracker_links_links_stats  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_links_stats_with_http_info(status, member_name, discord_id, async_req=True)
+        >>> thread = api.tracker_links_links_stats_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param status: status
-        :type status: str
-        :param member_name: member_name
-        :type member_name: str
-        :param discord_id: discord_id
-        :type discord_id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -588,9 +577,6 @@ class TrackerLinksApi:
         _params = locals()
 
         _all_params = [
-            'status',
-            'member_name',
-            'discord_id'
         ]
         _all_params.extend(
             [
@@ -621,15 +607,6 @@ class TrackerLinksApi:
 
         # process the query parameters
         _query_params = []
-        if _params.get('status') is not None:  # noqa: E501
-            _query_params.append(('status', _params['status']))
-
-        if _params.get('member_name') is not None:  # noqa: E501
-            _query_params.append(('member_name', _params['member_name']))
-
-        if _params.get('discord_id') is not None:  # noqa: E501
-            _query_params.append(('discord_id', _params['discord_id']))
-
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -666,29 +643,33 @@ class TrackerLinksApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of member to find tracker links for.")] = None, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    async def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> TrackerLinksList200Response:  # noqa: E501
         ...
 
     @overload
-    def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of member to find tracker links for.")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=True, **kwargs) -> TrackerLinksList200Response:  # noqa: E501
         ...
 
     @validate_arguments
-    def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of member to find tracker links for.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TrackerLink], Awaitable[List[TrackerLink]]]:  # noqa: E501
+    def tracker_links_list(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[TrackerLinksList200Response, Awaitable[TrackerLinksList200Response]]:  # noqa: E501
         """tracker_links_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_list(status, member_name, discord_id, async_req=True)
+        >>> thread = api.tracker_links_list(status, member_name, discord_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param status: Tracker Link Status (Pulled, Failed, etc.)
+        :param status: status
         :type status: str
         :param member_name: member_name
         :type member_name: str
-        :param discord_id: Discord ID of member to find tracker links for.
-        :type discord_id: int
+        :param discord_id: discord_id
+        :type discord_id: str
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -698,7 +679,7 @@ class TrackerLinksApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: List[TrackerLink]
+        :rtype: TrackerLinksList200Response
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -706,24 +687,28 @@ class TrackerLinksApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.tracker_links_list_with_http_info(status, member_name, discord_id, **kwargs)  # noqa: E501
+        return self.tracker_links_list_with_http_info(status, member_name, discord_id, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tracker_links_list_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="Tracker Link Status (Pulled, Failed, etc.)")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictInt], Field(description="Discord ID of member to find tracker links for.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def tracker_links_list_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """tracker_links_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_list_with_http_info(status, member_name, discord_id, async_req=True)
+        >>> thread = api.tracker_links_list_with_http_info(status, member_name, discord_id, limit, offset, async_req=True)
         >>> result = thread.get()
 
-        :param status: Tracker Link Status (Pulled, Failed, etc.)
+        :param status: status
         :type status: str
         :param member_name: member_name
         :type member_name: str
-        :param discord_id: Discord ID of member to find tracker links for.
-        :type discord_id: int
+        :param discord_id: discord_id
+        :type discord_id: str
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -746,7 +731,7 @@ class TrackerLinksApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(List[TrackerLink], status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(TrackerLinksList200Response, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -754,7 +739,9 @@ class TrackerLinksApi:
         _all_params = [
             'status',
             'member_name',
-            'discord_id'
+            'discord_id',
+            'limit',
+            'offset'
         ]
         _all_params.extend(
             [
@@ -794,6 +781,12 @@ class TrackerLinksApi:
         if _params.get('discord_id') is not None:  # noqa: E501
             _query_params.append(('discord_id', _params['discord_id']))
 
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        if _params.get('offset') is not None:  # noqa: E501
+            _query_params.append(('offset', _params['offset']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -809,7 +802,7 @@ class TrackerLinksApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "List[TrackerLink]",
+            '200': "TrackerLinksList200Response",
         }
 
         return self.api_client.call_api(
@@ -830,29 +823,23 @@ class TrackerLinksApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    async def tracker_links_next(self, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, **kwargs) -> List[TrackerLink]:  # noqa: E501
         ...
 
     @overload
-    def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TrackerLink]:  # noqa: E501
+    def tracker_links_next(self, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TrackerLink]:  # noqa: E501
         ...
 
     @validate_arguments
-    def tracker_links_next(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TrackerLink], Awaitable[List[TrackerLink]]]:  # noqa: E501
+    def tracker_links_next(self, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TrackerLink], Awaitable[List[TrackerLink]]]:  # noqa: E501
         """tracker_links_next  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_next(status, member_name, discord_id, limit, async_req=True)
+        >>> thread = api.tracker_links_next(limit, async_req=True)
         >>> result = thread.get()
 
-        :param status: status
-        :type status: str
-        :param member_name: member_name
-        :type member_name: str
-        :param discord_id: discord_id
-        :type discord_id: str
         :param limit: Number of tracker links to grab (Default: 1, Max:25)
         :type limit: int
         :param async_req: Whether to execute the request asynchronously.
@@ -872,24 +859,18 @@ class TrackerLinksApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.tracker_links_next_with_http_info(status, member_name, discord_id, limit, **kwargs)  # noqa: E501
+        return self.tracker_links_next_with_http_info(limit, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def tracker_links_next_with_http_info(self, status : Annotated[Optional[StrictStr], Field(description="status")] = None, member_name : Annotated[Optional[StrictStr], Field(description="member_name")] = None, discord_id : Annotated[Optional[StrictStr], Field(description="discord_id")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def tracker_links_next_with_http_info(self, limit : Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """tracker_links_next  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.tracker_links_next_with_http_info(status, member_name, discord_id, limit, async_req=True)
+        >>> thread = api.tracker_links_next_with_http_info(limit, async_req=True)
         >>> result = thread.get()
 
-        :param status: status
-        :type status: str
-        :param member_name: member_name
-        :type member_name: str
-        :param discord_id: discord_id
-        :type discord_id: str
         :param limit: Number of tracker links to grab (Default: 1, Max:25)
         :type limit: int
         :param async_req: Whether to execute the request asynchronously.
@@ -920,9 +901,6 @@ class TrackerLinksApi:
         _params = locals()
 
         _all_params = [
-            'status',
-            'member_name',
-            'discord_id',
             'limit'
         ]
         _all_params.extend(
@@ -954,15 +932,6 @@ class TrackerLinksApi:
 
         # process the query parameters
         _query_params = []
-        if _params.get('status') is not None:  # noqa: E501
-            _query_params.append(('status', _params['status']))
-
-        if _params.get('member_name') is not None:  # noqa: E501
-            _query_params.append(('member_name', _params['member_name']))
-
-        if _params.get('discord_id') is not None:  # noqa: E501
-            _query_params.append(('discord_id', _params['discord_id']))
-
         if _params.get('limit') is not None:  # noqa: E501
             _query_params.append(('limit', _params['limit']))
 

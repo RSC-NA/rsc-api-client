@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **ones_rating** | **int** |  | [optional] 
 **ones_season_peak** | **int** |  | [optional] 
 **ones_games_played** | **int** |  | [optional] 
-**notes** | **str** |  | [optional] 
+**notes** | **str** |  | 
 **member** | **str** |  | [optional] [readonly] 
 **type** | **str** |  | [optional] [readonly] 
 **rscid** | **str** |  | [optional] [readonly] 
