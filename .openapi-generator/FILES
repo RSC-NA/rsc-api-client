@@ -187,5 +187,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_tracker_links_list200_response.py
 tox.ini
