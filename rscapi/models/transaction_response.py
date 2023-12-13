@@ -20,7 +20,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conint, conlist, constr, validator
+from pydantic import BaseModel, Field, StrictStr, conint, conlist, validator
 from rscapi.models.member import Member
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.transaction_franchise import TransactionFranchise
@@ -35,7 +35,7 @@ class TransactionResponse(BaseModel):
     week_no: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Week no of transaction (if applicable)")
     match_day: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Specific match day of the transactions.")
     type: StrictStr = Field(...)
-    notes: Optional[constr(strict=True, min_length=1)] = Field(None, description="Notes associated with the transaction.")
+    notes: Optional[StrictStr] = Field(...)
     first_franchise: Optional[TransactionFranchise] = None
     second_franchise: Optional[TransactionFranchise] = None
     executor: Member = Field(...)
@@ -100,6 +100,11 @@ class TransactionResponse(BaseModel):
         # and __fields_set__ contains the field
         if self.player_updates is None and "player_updates" in self.__fields_set__:
             _dict['player_updates'] = None
+
+        # set to None if notes (nullable) is None
+        # and __fields_set__ contains the field
+        if self.notes is None and "notes" in self.__fields_set__:
+            _dict['notes'] = None
 
         # set to None if first_franchise (nullable) is None
         # and __fields_set__ contains the field
