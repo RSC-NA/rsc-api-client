@@ -51,8 +51,8 @@ class TransactionResponse(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('NON', 'CUT', 'PKU', 'TRD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT'):
-            raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT')")
+        if value not in ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT'):
+            raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT')")
         return value
 
     class Config:

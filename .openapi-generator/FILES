@@ -51,6 +51,7 @@ docs/PlayerSeasonStats.md
 docs/PlayerSeasonStatsInDepth.md
 docs/PlayerSignupSchema.md
 docs/PlayerTeam.md
+docs/PlayerTrade.md
 docs/PlayerTransactionUpdates.md
 docs/PreviousTeam.md
 docs/ReSignPlayer.md
@@ -66,9 +67,11 @@ docs/SeasonsApi.md
 docs/SignAPlayerToATeamInALeague.md
 docs/SimpleResponse.md
 docs/StartNewSeason.md
+docs/StatsDict.md
 docs/Team.md
 docs/TeamDetails.md
 docs/TeamFranchise.md
+docs/TeamGameListResults.md
 docs/TeamList.md
 docs/TeamSeasonStats.md
 docs/TeamsApi.md
@@ -150,6 +153,7 @@ rscapi/models/player_season_stats.py
 rscapi/models/player_season_stats_in_depth.py
 rscapi/models/player_signup_schema.py
 rscapi/models/player_team.py
+rscapi/models/player_trade.py
 rscapi/models/player_transaction_updates.py
 rscapi/models/previous_team.py
 rscapi/models/re_sign_player.py
@@ -164,9 +168,11 @@ rscapi/models/season_tier_data.py
 rscapi/models/sign_a_player_to_a_team_in_a_league.py
 rscapi/models/simple_response.py
 rscapi/models/start_new_season.py
+rscapi/models/stats_dict.py
 rscapi/models/team.py
 rscapi/models/team_details.py
 rscapi/models/team_franchise.py
+rscapi/models/team_game_list_results.py
 rscapi/models/team_list.py
 rscapi/models/team_season_stats.py
 rscapi/models/temporary_fa_sub.py
@@ -187,4 +193,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_stats_dict.py
+test/test_team_game_list_results.py
 tox.ini

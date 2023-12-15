@@ -19,18 +19,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, constr
-from rscapi.models.stats_dict import StatsDict
+from typing import List
+from pydantic import BaseModel, Field, StrictInt, conlist, constr
 
-class ListGames(BaseModel):
+class TeamGameListResults(BaseModel):
     """
-    ListGames
+    TeamGameListResults
     """
-    winner: constr(strict=True, min_length=1) = Field(...)
-    replay_id: Optional[StrictStr] = None
-    stats: Optional[StatsDict] = None
-    __properties = ["winner", "replay_id", "stats"]
+    team: constr(strict=True, min_length=1) = Field(...)
+    goals: StrictInt = Field(...)
+    shots: StrictInt = Field(...)
+    players: conlist(constr(strict=True, min_length=1), max_items=10, min_items=0) = Field(...)
+    __properties = ["team", "goals", "shots", "players"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,35 +46,32 @@ class ListGames(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ListGames:
-        """Create an instance of ListGames from a JSON string"""
+    def from_json(cls, json_str: str) -> TeamGameListResults:
+        """Create an instance of TeamGameListResults from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "replay_id",
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of stats
-        if self.stats:
-            _dict['stats'] = self.stats.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ListGames:
-        """Create an instance of ListGames from a dict"""
+    def from_dict(cls, obj: dict) -> TeamGameListResults:
+        """Create an instance of TeamGameListResults from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ListGames.parse_obj(obj)
+            return TeamGameListResults.parse_obj(obj)
 
-        _obj = ListGames.parse_obj({
-            "winner": obj.get("winner"),
-            "replay_id": obj.get("replay_id"),
-            "stats": StatsDict.from_dict(obj.get("stats")) if obj.get("stats") is not None else None
+        _obj = TeamGameListResults.parse_obj({
+            "team": obj.get("team"),
+            "goals": obj.get("goals"),
+            "shots": obj.get("shots"),
+            "players": obj.get("players")
         })
         return _obj
 

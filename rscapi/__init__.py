@@ -84,6 +84,7 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.models.player_signup_schema import PlayerSignupSchema
 from rscapi.models.player_team import PlayerTeam
+from rscapi.models.player_trade import PlayerTrade
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.previous_team import PreviousTeam
 from rscapi.models.re_sign_player import ReSignPlayer
@@ -98,9 +99,11 @@ from rscapi.models.season_tier_data import SeasonTierData
 from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
 from rscapi.models.simple_response import SimpleResponse
 from rscapi.models.start_new_season import StartNewSeason
+from rscapi.models.stats_dict import StatsDict
 from rscapi.models.team import Team
 from rscapi.models.team_details import TeamDetails
 from rscapi.models.team_franchise import TeamFranchise
+from rscapi.models.team_game_list_results import TeamGameListResults
 from rscapi.models.team_list import TeamList
 from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.models.temporary_fa_sub import TemporaryFASub

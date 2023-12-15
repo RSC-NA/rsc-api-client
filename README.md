@@ -191,6 +191,7 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 *TransactionsApi* | [**transactions_expire_create**](docs/TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
 *TransactionsApi* | [**transactions_inactive_reserve_create**](docs/TransactionsApi.md#transactions_inactive_reserve_create) | **POST** /transactions/inactive-reserve/ | 
+*TransactionsApi* | [**transactions_player_trade_create**](docs/TransactionsApi.md#transactions_player_trade_create) | **POST** /transactions/player-trade/ | 
 *TransactionsApi* | [**transactions_resign_create**](docs/TransactionsApi.md#transactions_resign_create) | **POST** /transactions/resign/ | 
 *TransactionsApi* | [**transactions_retire_create**](docs/TransactionsApi.md#transactions_retire_create) | **POST** /transactions/retire/ | 
 *TransactionsApi* | [**transactions_sign_create**](docs/TransactionsApi.md#transactions_sign_create) | **POST** /transactions/sign/ | 
@@ -241,6 +242,7 @@ Class | Method | HTTP request | Description
  - [PlayerSeasonStatsInDepth](docs/PlayerSeasonStatsInDepth.md)
  - [PlayerSignupSchema](docs/PlayerSignupSchema.md)
  - [PlayerTeam](docs/PlayerTeam.md)
+ - [PlayerTrade](docs/PlayerTrade.md)
  - [PlayerTransactionUpdates](docs/PlayerTransactionUpdates.md)
  - [PreviousTeam](docs/PreviousTeam.md)
  - [ReSignPlayer](docs/ReSignPlayer.md)
@@ -255,9 +257,11 @@ Class | Method | HTTP request | Description
  - [SignAPlayerToATeamInALeague](docs/SignAPlayerToATeamInALeague.md)
  - [SimpleResponse](docs/SimpleResponse.md)
  - [StartNewSeason](docs/StartNewSeason.md)
+ - [StatsDict](docs/StatsDict.md)
  - [Team](docs/Team.md)
  - [TeamDetails](docs/TeamDetails.md)
  - [TeamFranchise](docs/TeamFranchise.md)
+ - [TeamGameListResults](docs/TeamGameListResults.md)
  - [TeamList](docs/TeamList.md)
  - [TeamSeasonStats](docs/TeamSeasonStats.md)
  - [TemporaryFASub](docs/TemporaryFASub.md)

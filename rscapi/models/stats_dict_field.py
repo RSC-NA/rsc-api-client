@@ -19,18 +19,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, constr
-from rscapi.models.stats_dict import StatsDict
 
-class ListGames(BaseModel):
+from pydantic import BaseModel, Field
+from rscapi.models.team_game_list_results_field import TeamGameListResultsField
+
+class StatsDictField(BaseModel):
     """
-    ListGames
+    StatsDictField
     """
-    winner: constr(strict=True, min_length=1) = Field(...)
-    replay_id: Optional[StrictStr] = None
-    stats: Optional[StatsDict] = None
-    __properties = ["winner", "replay_id", "stats"]
+    blue: TeamGameListResultsField = Field(...)
+    orange: TeamGameListResultsField = Field(...)
+    __properties = ["blue", "orange"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,35 +45,36 @@ class ListGames(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ListGames:
-        """Create an instance of ListGames from a JSON string"""
+    def from_json(cls, json_str: str) -> StatsDictField:
+        """Create an instance of StatsDictField from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
-                            "replay_id",
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of stats
-        if self.stats:
-            _dict['stats'] = self.stats.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of blue
+        if self.blue:
+            _dict['blue'] = self.blue.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of orange
+        if self.orange:
+            _dict['orange'] = self.orange.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ListGames:
-        """Create an instance of ListGames from a dict"""
+    def from_dict(cls, obj: dict) -> StatsDictField:
+        """Create an instance of StatsDictField from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ListGames.parse_obj(obj)
+            return StatsDictField.parse_obj(obj)
 
-        _obj = ListGames.parse_obj({
-            "winner": obj.get("winner"),
-            "replay_id": obj.get("replay_id"),
-            "stats": StatsDict.from_dict(obj.get("stats")) if obj.get("stats") is not None else None
+        _obj = StatsDictField.parse_obj({
+            "blue": TeamGameListResultsField.from_dict(obj.get("blue")) if obj.get("blue") is not None else None,
+            "orange": TeamGameListResultsField.from_dict(obj.get("orange")) if obj.get("orange") is not None else None
         })
         return _obj
 

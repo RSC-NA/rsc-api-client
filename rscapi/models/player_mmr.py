@@ -38,7 +38,7 @@ class PlayerMMR(BaseModel):
     ones_rating: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     ones_season_peak: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
     ones_games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    notes: Optional[StrictStr] = Field(...)
+    notes: Optional[StrictStr] = None
     member: Optional[constr(strict=True, min_length=1)] = None
     type: Optional[StrictStr] = None
     rscid: Optional[constr(strict=True, min_length=1)] = None
