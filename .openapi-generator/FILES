@@ -193,6 +193,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_stats_dict.py
-test/test_team_game_list_results.py
 tox.ini
