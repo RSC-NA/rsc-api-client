@@ -31,7 +31,7 @@ class Team(BaseModel):
     name: Optional[constr(strict=True, min_length=1)] = None
     franchise: constr(strict=True, min_length=1) = Field(...)
     tier: constr(strict=True, min_length=1) = Field(...)
-    players: Optional[conlist(Player)] = Field(...)
+    players: Optional[conlist(Player)] = None
     latest_season: StrictInt = Field(...)
     __properties = ["id", "name", "franchise", "tier", "players", "latest_season"]
 
@@ -59,6 +59,7 @@ class Team(BaseModel):
                           exclude={
                             "id",
                             "name",
+                            "players",
                           },
                           exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in players (list)
@@ -68,11 +69,6 @@ class Team(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['players'] = _items
-        # set to None if players (nullable) is None
-        # and __fields_set__ contains the field
-        if self.players is None and "players" in self.__fields_set__:
-            _dict['players'] = None
-
         return _dict
 
     @classmethod

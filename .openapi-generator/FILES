@@ -8,11 +8,13 @@ docs/BaseTeam.md
 docs/BulkMMRSchemaSubmission.md
 docs/CutAPlayerFromALeague.md
 docs/Deleted.md
+docs/DraftPick.md
 docs/ElevatedRole.md
 docs/Error.md
 docs/ExpireAPlayerSub.md
 docs/Franchise.md
 docs/FranchiseGM.md
+docs/FranchiseIdentifier.md
 docs/FranchiseLeague.md
 docs/FranchiseList.md
 docs/FranchiseLogo.md
@@ -51,7 +53,6 @@ docs/PlayerSeasonStats.md
 docs/PlayerSeasonStatsInDepth.md
 docs/PlayerSignupSchema.md
 docs/PlayerTeam.md
-docs/PlayerTrade.md
 docs/PlayerTransactionUpdates.md
 docs/PreviousTeam.md
 docs/ReSignPlayer.md
@@ -84,6 +85,9 @@ docs/TrackerLinkStats.md
 docs/TrackerLinksApi.md
 docs/TrackerLinksList200Response.md
 docs/TrackerMMR.md
+docs/TradeItem.md
+docs/TradeSchema.md
+docs/TradeValue.md
 docs/TransactionFranchise.md
 docs/TransactionResponse.md
 docs/TransactionTeam.md
@@ -116,11 +120,13 @@ rscapi/models/base_team.py
 rscapi/models/bulk_mmr_schema_submission.py
 rscapi/models/cut_a_player_from_a_league.py
 rscapi/models/deleted.py
+rscapi/models/draft_pick.py
 rscapi/models/elevated_role.py
 rscapi/models/error.py
 rscapi/models/expire_a_player_sub.py
 rscapi/models/franchise.py
 rscapi/models/franchise_gm.py
+rscapi/models/franchise_identifier.py
 rscapi/models/franchise_league.py
 rscapi/models/franchise_list.py
 rscapi/models/franchise_logo.py
@@ -153,7 +159,6 @@ rscapi/models/player_season_stats.py
 rscapi/models/player_season_stats_in_depth.py
 rscapi/models/player_signup_schema.py
 rscapi/models/player_team.py
-rscapi/models/player_trade.py
 rscapi/models/player_transaction_updates.py
 rscapi/models/previous_team.py
 rscapi/models/re_sign_player.py
@@ -182,6 +187,9 @@ rscapi/models/tracker_link_invalidate_object.py
 rscapi/models/tracker_link_stats.py
 rscapi/models/tracker_links_list200_response.py
 rscapi/models/tracker_mmr.py
+rscapi/models/trade_item.py
+rscapi/models/trade_schema.py
+rscapi/models/trade_value.py
 rscapi/models/transaction_franchise.py
 rscapi/models/transaction_response.py
 rscapi/models/transaction_team.py

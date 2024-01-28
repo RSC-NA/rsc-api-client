@@ -20,11 +20,13 @@ from rscapi.models.base_team import BaseTeam
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.deleted import Deleted
+from rscapi.models.draft_pick import DraftPick
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.error import Error
 from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.franchise import Franchise
 from rscapi.models.franchise_gm import FranchiseGM
+from rscapi.models.franchise_identifier import FranchiseIdentifier
 from rscapi.models.franchise_league import FranchiseLeague
 from rscapi.models.franchise_list import FranchiseList
 from rscapi.models.franchise_logo import FranchiseLogo
@@ -57,7 +59,6 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.models.player_signup_schema import PlayerSignupSchema
 from rscapi.models.player_team import PlayerTeam
-from rscapi.models.player_trade import PlayerTrade
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.previous_team import PreviousTeam
 from rscapi.models.re_sign_player import ReSignPlayer
@@ -86,6 +87,9 @@ from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateOb
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response
 from rscapi.models.tracker_mmr import TrackerMMR
+from rscapi.models.trade_item import TradeItem
+from rscapi.models.trade_schema import TradeSchema
+from rscapi.models.trade_value import TradeValue
 from rscapi.models.transaction_franchise import TransactionFranchise
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.models.transaction_team import TransactionTeam

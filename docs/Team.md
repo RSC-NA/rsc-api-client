@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] [readonly] 
 **franchise** | **str** |  | 
 **tier** | **str** |  | 
-**players** | [**List[Player]**](Player.md) |  | 
+**players** | [**List[Player]**](Player.md) |  | [optional] [readonly] 
 **latest_season** | **int** |  | 
 
 ## Example

@@ -191,11 +191,11 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 *TransactionsApi* | [**transactions_expire_create**](docs/TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
 *TransactionsApi* | [**transactions_inactive_reserve_create**](docs/TransactionsApi.md#transactions_inactive_reserve_create) | **POST** /transactions/inactive-reserve/ | 
-*TransactionsApi* | [**transactions_player_trade_create**](docs/TransactionsApi.md#transactions_player_trade_create) | **POST** /transactions/player-trade/ | 
 *TransactionsApi* | [**transactions_resign_create**](docs/TransactionsApi.md#transactions_resign_create) | **POST** /transactions/resign/ | 
 *TransactionsApi* | [**transactions_retire_create**](docs/TransactionsApi.md#transactions_retire_create) | **POST** /transactions/retire/ | 
 *TransactionsApi* | [**transactions_sign_create**](docs/TransactionsApi.md#transactions_sign_create) | **POST** /transactions/sign/ | 
 *TransactionsApi* | [**transactions_substitution_create**](docs/TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
+*TransactionsApi* | [**transactions_trade_create**](docs/TransactionsApi.md#transactions_trade_create) | **POST** /transactions/trade/ | 
 
 
 ## Documentation For Models
@@ -205,11 +205,13 @@ Class | Method | HTTP request | Description
  - [BulkMMRSchemaSubmission](docs/BulkMMRSchemaSubmission.md)
  - [CutAPlayerFromALeague](docs/CutAPlayerFromALeague.md)
  - [Deleted](docs/Deleted.md)
+ - [DraftPick](docs/DraftPick.md)
  - [ElevatedRole](docs/ElevatedRole.md)
  - [Error](docs/Error.md)
  - [ExpireAPlayerSub](docs/ExpireAPlayerSub.md)
  - [Franchise](docs/Franchise.md)
  - [FranchiseGM](docs/FranchiseGM.md)
+ - [FranchiseIdentifier](docs/FranchiseIdentifier.md)
  - [FranchiseLeague](docs/FranchiseLeague.md)
  - [FranchiseList](docs/FranchiseList.md)
  - [FranchiseLogo](docs/FranchiseLogo.md)
@@ -242,7 +244,6 @@ Class | Method | HTTP request | Description
  - [PlayerSeasonStatsInDepth](docs/PlayerSeasonStatsInDepth.md)
  - [PlayerSignupSchema](docs/PlayerSignupSchema.md)
  - [PlayerTeam](docs/PlayerTeam.md)
- - [PlayerTrade](docs/PlayerTrade.md)
  - [PlayerTransactionUpdates](docs/PlayerTransactionUpdates.md)
  - [PreviousTeam](docs/PreviousTeam.md)
  - [ReSignPlayer](docs/ReSignPlayer.md)
@@ -271,6 +272,9 @@ Class | Method | HTTP request | Description
  - [TrackerLinkStats](docs/TrackerLinkStats.md)
  - [TrackerLinksList200Response](docs/TrackerLinksList200Response.md)
  - [TrackerMMR](docs/TrackerMMR.md)
+ - [TradeItem](docs/TradeItem.md)
+ - [TradeSchema](docs/TradeSchema.md)
+ - [TradeValue](docs/TradeValue.md)
  - [TransactionFranchise](docs/TransactionFranchise.md)
  - [TransactionResponse](docs/TransactionResponse.md)
  - [TransactionTeam](docs/TransactionTeam.md)
