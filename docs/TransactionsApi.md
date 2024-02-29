@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**transactions_cut_create**](TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 [**transactions_expire_create**](TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
+[**transactions_history_list**](TransactionsApi.md#transactions_history_list) | **GET** /transactions/history/ | 
+[**transactions_history_read**](TransactionsApi.md#transactions_history_read) | **GET** /transactions/history/{id}/ | 
 [**transactions_inactive_reserve_create**](TransactionsApi.md#transactions_inactive_reserve_create) | **POST** /transactions/inactive-reserve/ | 
 [**transactions_resign_create**](TransactionsApi.md#transactions_resign_create) | **POST** /transactions/resign/ | 
 [**transactions_retire_create**](TransactionsApi.md#transactions_retire_create) | **POST** /transactions/retire/ | 
@@ -172,6 +174,162 @@ Name | Type | Description  | Notes
 **202** |  |  -  |
 **400** |  |  -  |
 **403** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transactions_history_list**
+> List[TransactionResponse] transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+```python
+import time
+import os
+import rscapi
+from rscapi.models.transaction_response import TransactionResponse
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TransactionsApi(api_client)
+    league = 56 # int | ID of the league to get team matches for
+    season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
+    player = 56 # int | Discord ID of player for transaction history search. (optional)
+    transaction_type = 'transaction_type_example' # str | transaction_type (optional)
+
+    try:
+        api_response = await api_instance.transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type)
+        print("The response of TransactionsApi->transactions_history_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->transactions_history_list: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **league** | **int**| ID of the league to get team matches for | 
+ **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
+ **player** | **int**| Discord ID of player for transaction history search. | [optional] 
+ **transaction_type** | **str**| transaction_type | [optional] 
+
+### Return type
+
+[**List[TransactionResponse]**](TransactionResponse.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transactions_history_read**
+> TransactionResponse transactions_history_read(id)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+```python
+import time
+import os
+import rscapi
+from rscapi.models.transaction_response import TransactionResponse
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TransactionsApi(api_client)
+    id = 56 # int | A unique integer value identifying this transactions.
+
+    try:
+        api_response = await api_instance.transactions_history_read(id)
+        print("The response of TransactionsApi->transactions_history_read:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->transactions_history_read: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this transactions. | 
+
+### Return type
+
+[**TransactionResponse**](TransactionResponse.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

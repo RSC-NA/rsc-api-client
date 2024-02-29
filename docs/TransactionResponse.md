@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **notes** | **str** |  | 
 **first_franchise** | [**TransactionFranchise**](TransactionFranchise.md) |  | [optional] 
 **second_franchise** | [**TransactionFranchise**](TransactionFranchise.md) |  | [optional] 
-**executor** | [**Member**](Member.md) |  | 
+**executor** | [**SimpleMember**](SimpleMember.md) |  | 
 
 ## Example
 

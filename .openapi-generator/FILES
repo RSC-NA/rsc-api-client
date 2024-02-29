@@ -66,6 +66,7 @@ docs/SeasonSchedule.md
 docs/SeasonTierData.md
 docs/SeasonsApi.md
 docs/SignAPlayerToATeamInALeague.md
+docs/SimpleMember.md
 docs/SimpleResponse.md
 docs/StartNewSeason.md
 docs/StatsDict.md
@@ -171,6 +172,7 @@ rscapi/models/season_league.py
 rscapi/models/season_schedule.py
 rscapi/models/season_tier_data.py
 rscapi/models/sign_a_player_to_a_team_in_a_league.py
+rscapi/models/simple_member.py
 rscapi/models/simple_response.py
 rscapi/models/start_new_season.py
 rscapi/models/stats_dict.py
@@ -201,4 +203,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_simple_member.py
 tox.ini

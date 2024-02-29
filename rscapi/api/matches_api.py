@@ -348,22 +348,22 @@ class MatchesApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], teams : Annotated[StrictStr, Field(..., description="Comma delimited list of teams to get names for.")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, **kwargs) -> List[Match]:  # noqa: E501
+    async def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], teams : Annotated[StrictStr, Field(..., description="Comma delimited list of teams to get names for.")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> List[Match]:  # noqa: E501
         ...
 
     @overload
-    def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], teams : Annotated[StrictStr, Field(..., description="Comma delimited list of teams to get names for.")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, async_req: Optional[bool]=True, **kwargs) -> List[Match]:  # noqa: E501
+    def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], teams : Annotated[StrictStr, Field(..., description="Comma delimited list of teams to get names for.")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=True, **kwargs) -> List[Match]:  # noqa: E501
         ...
 
     @validate_arguments
-    def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], teams : Annotated[StrictStr, Field(..., description="Comma delimited list of teams to get names for.")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[Match], Awaitable[List[Match]]]:  # noqa: E501
+    def matches_find_match(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], teams : Annotated[StrictStr, Field(..., description="Comma delimited list of teams to get names for.")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[Match], Awaitable[List[Match]]]:  # noqa: E501
         """matches_find_match  # noqa: E501
 
         Find a match for a team or teams.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.matches_find_match(league, teams, date__lt, date__gt, season, season_number, day, match_type, match_format, limit, offset, preseason, async_req=True)
+        >>> thread = api.matches_find_match(league, teams, date__lt, date__gt, season, season_number, day, match_type, match_format, limit, offset, async_req=True)
         >>> result = thread.get()
 
         :param league: ID of the league to get team matches for (required)
@@ -388,8 +388,6 @@ class MatchesApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param preseason: 1 If these matches are preseason, otherwise 0
-        :type preseason: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -407,17 +405,17 @@ class MatchesApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.matches_find_match_with_http_info(league, teams, date__lt, date__gt, season, season_number, day, match_type, match_format, limit, offset, preseason, **kwargs)  # noqa: E501
+        return self.matches_find_match_with_http_info(league, teams, date__lt, date__gt, season, season_number, day, match_type, match_format, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def matches_find_match_with_http_info(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], teams : Annotated[StrictStr, Field(..., description="Comma delimited list of teams to get names for.")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def matches_find_match_with_http_info(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], teams : Annotated[StrictStr, Field(..., description="Comma delimited list of teams to get names for.")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """matches_find_match  # noqa: E501
 
         Find a match for a team or teams.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.matches_find_match_with_http_info(league, teams, date__lt, date__gt, season, season_number, day, match_type, match_format, limit, offset, preseason, async_req=True)
+        >>> thread = api.matches_find_match_with_http_info(league, teams, date__lt, date__gt, season, season_number, day, match_type, match_format, limit, offset, async_req=True)
         >>> result = thread.get()
 
         :param league: ID of the league to get team matches for (required)
@@ -442,8 +440,6 @@ class MatchesApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param preseason: 1 If these matches are preseason, otherwise 0
-        :type preseason: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -482,8 +478,7 @@ class MatchesApi:
             'match_type',
             'match_format',
             'limit',
-            'offset',
-            'preseason'
+            'offset'
         ]
         _all_params.extend(
             [
@@ -547,9 +542,6 @@ class MatchesApi:
         if _params.get('teams') is not None:  # noqa: E501
             _query_params.append(('teams', _params['teams']))
 
-        if _params.get('preseason') is not None:  # noqa: E501
-            _query_params.append(('preseason', _params['preseason']))
-
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -587,21 +579,21 @@ class MatchesApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def matches_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, match_team_type : Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None, team_name : Annotated[Optional[StrictStr], Field(description="team_name")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, **kwargs) -> MatchesList200Response:  # noqa: E501
+    async def matches_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, match_team_type : Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None, team_name : Annotated[Optional[StrictStr], Field(description="team_name")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> MatchesList200Response:  # noqa: E501
         ...
 
     @overload
-    def matches_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, match_team_type : Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None, team_name : Annotated[Optional[StrictStr], Field(description="team_name")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, async_req: Optional[bool]=True, **kwargs) -> MatchesList200Response:  # noqa: E501
+    def matches_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, match_team_type : Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None, team_name : Annotated[Optional[StrictStr], Field(description="team_name")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=True, **kwargs) -> MatchesList200Response:  # noqa: E501
         ...
 
     @validate_arguments
-    def matches_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, match_team_type : Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None, team_name : Annotated[Optional[StrictStr], Field(description="team_name")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[MatchesList200Response, Awaitable[MatchesList200Response]]:  # noqa: E501
+    def matches_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, match_team_type : Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None, team_name : Annotated[Optional[StrictStr], Field(description="team_name")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[MatchesList200Response, Awaitable[MatchesList200Response]]:  # noqa: E501
         """matches_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.matches_list(league, date__lt, date__gt, season, season_number, match_team_type, team_name, day, match_type, match_format, limit, offset, preseason, async_req=True)
+        >>> thread = api.matches_list(league, date__lt, date__gt, season, season_number, match_team_type, team_name, day, match_type, match_format, limit, offset, async_req=True)
         >>> result = thread.get()
 
         :param league: ID of the league to get team matches for (required)
@@ -628,8 +620,6 @@ class MatchesApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param preseason: 1 If these matches are preseason, otherwise 0
-        :type preseason: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -647,16 +637,16 @@ class MatchesApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.matches_list_with_http_info(league, date__lt, date__gt, season, season_number, match_team_type, team_name, day, match_type, match_format, limit, offset, preseason, **kwargs)  # noqa: E501
+        return self.matches_list_with_http_info(league, date__lt, date__gt, season, season_number, match_team_type, team_name, day, match_type, match_format, limit, offset, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def matches_list_with_http_info(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, match_team_type : Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None, team_name : Annotated[Optional[StrictStr], Field(description="team_name")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, preseason : Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def matches_list_with_http_info(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], date__lt : Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None, date__gt : Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None, season : Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None, season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, match_team_type : Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None, team_name : Annotated[Optional[StrictStr], Field(description="team_name")] = None, day : Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None, match_type : Annotated[Optional[StrictStr], Field(description="match_type")] = None, match_format : Annotated[Optional[StrictStr], Field(description="match_format")] = None, limit : Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None, offset : Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """matches_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.matches_list_with_http_info(league, date__lt, date__gt, season, season_number, match_team_type, team_name, day, match_type, match_format, limit, offset, preseason, async_req=True)
+        >>> thread = api.matches_list_with_http_info(league, date__lt, date__gt, season, season_number, match_team_type, team_name, day, match_type, match_format, limit, offset, async_req=True)
         >>> result = thread.get()
 
         :param league: ID of the league to get team matches for (required)
@@ -683,8 +673,6 @@ class MatchesApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param preseason: 1 If these matches are preseason, otherwise 0
-        :type preseason: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -724,8 +712,7 @@ class MatchesApi:
             'match_type',
             'match_format',
             'limit',
-            'offset',
-            'preseason'
+            'offset'
         ]
         _all_params.extend(
             [
@@ -791,9 +778,6 @@ class MatchesApi:
 
         if _params.get('offset') is not None:  # noqa: E501
             _query_params.append(('offset', _params['offset']))
-
-        if _params.get('preseason') is not None:  # noqa: E501
-            _query_params.append(('preseason', _params['preseason']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

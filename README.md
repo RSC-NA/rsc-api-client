@@ -190,6 +190,8 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_read**](docs/TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 *TransactionsApi* | [**transactions_expire_create**](docs/TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
+*TransactionsApi* | [**transactions_history_list**](docs/TransactionsApi.md#transactions_history_list) | **GET** /transactions/history/ | 
+*TransactionsApi* | [**transactions_history_read**](docs/TransactionsApi.md#transactions_history_read) | **GET** /transactions/history/{id}/ | 
 *TransactionsApi* | [**transactions_inactive_reserve_create**](docs/TransactionsApi.md#transactions_inactive_reserve_create) | **POST** /transactions/inactive-reserve/ | 
 *TransactionsApi* | [**transactions_resign_create**](docs/TransactionsApi.md#transactions_resign_create) | **POST** /transactions/resign/ | 
 *TransactionsApi* | [**transactions_retire_create**](docs/TransactionsApi.md#transactions_retire_create) | **POST** /transactions/retire/ | 
@@ -256,6 +258,7 @@ Class | Method | HTTP request | Description
  - [SeasonSchedule](docs/SeasonSchedule.md)
  - [SeasonTierData](docs/SeasonTierData.md)
  - [SignAPlayerToATeamInALeague](docs/SignAPlayerToATeamInALeague.md)
+ - [SimpleMember](docs/SimpleMember.md)
  - [SimpleResponse](docs/SimpleResponse.md)
  - [StartNewSeason](docs/StartNewSeason.md)
  - [StatsDict](docs/StatsDict.md)

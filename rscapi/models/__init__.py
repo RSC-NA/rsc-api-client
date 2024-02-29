@@ -71,6 +71,7 @@ from rscapi.models.season_league import SeasonLeague
 from rscapi.models.season_schedule import SeasonSchedule
 from rscapi.models.season_tier_data import SeasonTierData
 from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.models.simple_member import SimpleMember
 from rscapi.models.simple_response import SimpleResponse
 from rscapi.models.start_new_season import StartNewSeason
 from rscapi.models.stats_dict import StatsDict

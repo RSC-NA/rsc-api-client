@@ -21,8 +21,8 @@ import json
 from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conint, conlist, validator
-from rscapi.models.member import Member
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
+from rscapi.models.simple_member import SimpleMember
 from rscapi.models.transaction_franchise import TransactionFranchise
 
 class TransactionResponse(BaseModel):
@@ -38,7 +38,7 @@ class TransactionResponse(BaseModel):
     notes: Optional[StrictStr] = Field(...)
     first_franchise: Optional[TransactionFranchise] = None
     second_franchise: Optional[TransactionFranchise] = None
-    executor: Member = Field(...)
+    executor: SimpleMember = Field(...)
     __properties = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor"]
 
     @validator('week')
@@ -137,7 +137,7 @@ class TransactionResponse(BaseModel):
             "notes": obj.get("notes"),
             "first_franchise": TransactionFranchise.from_dict(obj.get("first_franchise")) if obj.get("first_franchise") is not None else None,
             "second_franchise": TransactionFranchise.from_dict(obj.get("second_franchise")) if obj.get("second_franchise") is not None else None,
-            "executor": Member.from_dict(obj.get("executor")) if obj.get("executor") is not None else None
+            "executor": SimpleMember.from_dict(obj.get("executor")) if obj.get("executor") is not None else None
         })
         return _obj
 
