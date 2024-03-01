@@ -19,20 +19,20 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
-from rscapi.models.trade_item import TradeItem
+from typing import Optional
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
 
-class TradeSchema(BaseModel):
+class CutAPlayerAndSignAnother(BaseModel):
     """
-    Schema for Pick/Player trades  # noqa: E501
+    Cuts a player from a team and signs another.  # noqa: E501
     """
-    trades: conlist(TradeItem) = Field(..., description="List of trades to execute")
+    cut_player: StrictInt = Field(..., description="Specific player to perform transaction on.")
+    sign_player: StrictInt = Field(..., description="Specific player to perform transaction on.")
     league: StrictInt = Field(..., description="ID of the league transaction is for.")
     executor: StrictInt = Field(..., description="Discord ID of specific member who ran the transaction.")
     admin_override: Optional[StrictBool] = Field(None, description="Boolean indicating whether or not an admin is overriding this command.")
     notes: Optional[StrictStr] = Field(None, description="Notes for the transaction from the TM running it.")
-    __properties = ["trades", "league", "executor", "admin_override", "notes"]
+    __properties = ["cut_player", "sign_player", "league", "executor", "admin_override", "notes"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +48,8 @@ class TradeSchema(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TradeSchema:
-        """Create an instance of TradeSchema from a JSON string"""
+    def from_json(cls, json_str: str) -> CutAPlayerAndSignAnother:
+        """Create an instance of CutAPlayerAndSignAnother from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -58,26 +58,20 @@ class TradeSchema(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in trades (list)
-        _items = []
-        if self.trades:
-            for _item in self.trades:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['trades'] = _items
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TradeSchema:
-        """Create an instance of TradeSchema from a dict"""
+    def from_dict(cls, obj: dict) -> CutAPlayerAndSignAnother:
+        """Create an instance of CutAPlayerAndSignAnother from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TradeSchema.parse_obj(obj)
+            return CutAPlayerAndSignAnother.parse_obj(obj)
 
-        _obj = TradeSchema.parse_obj({
-            "trades": [TradeItem.from_dict(_item) for _item in obj.get("trades")] if obj.get("trades") is not None else None,
+        _obj = CutAPlayerAndSignAnother.parse_obj({
+            "cut_player": obj.get("cut_player"),
+            "sign_player": obj.get("sign_player"),
             "league": obj.get("league"),
             "executor": obj.get("executor"),
             "admin_override": obj.get("admin_override"),

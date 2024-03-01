@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
 [**members_name_change**](MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 [**members_partial_update**](MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
+[**members_permfa_signup**](MembersApi.md#members_permfa_signup) | **POST** /members/{id}/permfa_signup/ | 
 [**members_postseason_stats**](MembersApi.md#members_postseason_stats) | **GET** /members/{id}/postseason_stats/ | 
 [**members_read**](MembersApi.md#members_read) | **GET** /members/{id}/ | 
 [**members_signup**](MembersApi.md#members_signup) | **POST** /members/{id}/signup/ | 
@@ -645,6 +646,90 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_permfa_signup**
+> LeaguePlayer members_permfa_signup(id, data)
+
+
+
+PermFA signup endpoint
+
+### Example
+
+* Api Key Authentication (Api-Key):
+```python
+import time
+import os
+import rscapi
+from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.player_signup_schema import PlayerSignupSchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.PlayerSignupSchema() # PlayerSignupSchema | 
+
+    try:
+        api_response = await api_instance.members_permfa_signup(id, data)
+        print("The response of MembersApi->members_permfa_signup:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_permfa_signup: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**PlayerSignupSchema**](PlayerSignupSchema.md)|  | 
+
+### Return type
+
+[**LeaguePlayer**](LeaguePlayer.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
+**403** |  |  -  |
+**405** |  |  -  |
+**409** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

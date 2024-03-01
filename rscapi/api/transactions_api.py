@@ -25,6 +25,7 @@ from pydantic import Field, StrictInt, StrictStr
 
 from typing import List, Optional
 
+from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.inactive_reserve import InactiveReserve
@@ -55,6 +56,166 @@ class TransactionsApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+    @overload
+    async def transactions_cut_and_sign_create(self, data : CutAPlayerAndSignAnother, **kwargs) -> List[TransactionResponse]:  # noqa: E501
+        ...
+
+    @overload
+    def transactions_cut_and_sign_create(self, data : CutAPlayerAndSignAnother, async_req: Optional[bool]=True, **kwargs) -> List[TransactionResponse]:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def transactions_cut_and_sign_create(self, data : CutAPlayerAndSignAnother, async_req: Optional[bool]=None, **kwargs) -> Union[List[TransactionResponse], Awaitable[List[TransactionResponse]]]:  # noqa: E501
+        """transactions_cut_and_sign_create  # noqa: E501
+
+        Cut a player and sign another.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.transactions_cut_and_sign_create(data, async_req=True)
+        >>> result = thread.get()
+
+        :param data: (required)
+        :type data: CutAPlayerAndSignAnother
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: List[TransactionResponse]
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the transactions_cut_and_sign_create_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.transactions_cut_and_sign_create_with_http_info(data, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def transactions_cut_and_sign_create_with_http_info(self, data : CutAPlayerAndSignAnother, **kwargs) -> ApiResponse:  # noqa: E501
+        """transactions_cut_and_sign_create  # noqa: E501
+
+        Cut a player and sign another.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.transactions_cut_and_sign_create_with_http_info(data, async_req=True)
+        >>> result = thread.get()
+
+        :param data: (required)
+        :type data: CutAPlayerAndSignAnother
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(List[TransactionResponse], status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'data'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method transactions_cut_and_sign_create" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['data'] is not None:
+            _body_params = _params['data']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Api-Key']  # noqa: E501
+
+        _response_types_map = {
+            '202': "List[TransactionResponse]",
+            '404': "Error",
+            '403': "Error",
+            '400': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/transactions/cut_and_sign/', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
 
     @overload
     async def transactions_cut_create(self, data : CutAPlayerFromALeague, **kwargs) -> TransactionResponse:  # noqa: E501
@@ -376,21 +537,21 @@ class TransactionsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def transactions_history_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, player : Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None, transaction_type : Annotated[Optional[StrictStr], Field(description="transaction_type")] = None, **kwargs) -> List[TransactionResponse]:  # noqa: E501
+    async def transactions_history_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, player : Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None, transaction_type : Annotated[Optional[StrictStr], Field(description="transaction_type")] = None, executor : Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None, **kwargs) -> List[TransactionResponse]:  # noqa: E501
         ...
 
     @overload
-    def transactions_history_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, player : Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None, transaction_type : Annotated[Optional[StrictStr], Field(description="transaction_type")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TransactionResponse]:  # noqa: E501
+    def transactions_history_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, player : Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None, transaction_type : Annotated[Optional[StrictStr], Field(description="transaction_type")] = None, executor : Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None, async_req: Optional[bool]=True, **kwargs) -> List[TransactionResponse]:  # noqa: E501
         ...
 
     @validate_arguments
-    def transactions_history_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, player : Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None, transaction_type : Annotated[Optional[StrictStr], Field(description="transaction_type")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TransactionResponse], Awaitable[List[TransactionResponse]]]:  # noqa: E501
+    def transactions_history_list(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, player : Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None, transaction_type : Annotated[Optional[StrictStr], Field(description="transaction_type")] = None, executor : Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[TransactionResponse], Awaitable[List[TransactionResponse]]]:  # noqa: E501
         """transactions_history_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.transactions_history_list(league, season_number, player, transaction_type, async_req=True)
+        >>> thread = api.transactions_history_list(league, season_number, player, transaction_type, executor, async_req=True)
         >>> result = thread.get()
 
         :param league: ID of the league to get team matches for (required)
@@ -401,6 +562,8 @@ class TransactionsApi:
         :type player: int
         :param transaction_type: transaction_type
         :type transaction_type: str
+        :param executor: Discord ID of the member who ran the transaction.
+        :type executor: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -418,16 +581,16 @@ class TransactionsApi:
             raise ValueError(message)
         if async_req is not None:
             kwargs['async_req'] = async_req
-        return self.transactions_history_list_with_http_info(league, season_number, player, transaction_type, **kwargs)  # noqa: E501
+        return self.transactions_history_list_with_http_info(league, season_number, player, transaction_type, executor, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def transactions_history_list_with_http_info(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, player : Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None, transaction_type : Annotated[Optional[StrictStr], Field(description="transaction_type")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def transactions_history_list_with_http_info(self, league : Annotated[StrictInt, Field(..., description="ID of the league to get team matches for")], season_number : Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None, player : Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None, transaction_type : Annotated[Optional[StrictStr], Field(description="transaction_type")] = None, executor : Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """transactions_history_list  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.transactions_history_list_with_http_info(league, season_number, player, transaction_type, async_req=True)
+        >>> thread = api.transactions_history_list_with_http_info(league, season_number, player, transaction_type, executor, async_req=True)
         >>> result = thread.get()
 
         :param league: ID of the league to get team matches for (required)
@@ -438,6 +601,8 @@ class TransactionsApi:
         :type player: int
         :param transaction_type: transaction_type
         :type transaction_type: str
+        :param executor: Discord ID of the member who ran the transaction.
+        :type executor: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -469,7 +634,8 @@ class TransactionsApi:
             'league',
             'season_number',
             'player',
-            'transaction_type'
+            'transaction_type',
+            'executor'
         ]
         _all_params.extend(
             [
@@ -511,6 +677,9 @@ class TransactionsApi:
 
         if _params.get('transaction_type') is not None:  # noqa: E501
             _query_params.append(('transaction_type', _params['transaction_type']))
+
+        if _params.get('executor') is not None:  # noqa: E501
+            _query_params.append(('executor', _params['executor']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

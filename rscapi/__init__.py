@@ -45,6 +45,7 @@ from rscapi.exceptions import ApiException
 from rscapi.models.add_tier_to_league import AddTierToLeague
 from rscapi.models.base_team import BaseTeam
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
+from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.deleted import Deleted
 from rscapi.models.draft_pick import DraftPick
@@ -80,6 +81,7 @@ from rscapi.models.member import Member
 from rscapi.models.member_tracker import MemberTracker
 from rscapi.models.members_list200_response import MembersList200Response
 from rscapi.models.player import Player
+from rscapi.models.player1 import Player1
 from rscapi.models.player_franchise import PlayerFranchise
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.models.player_season_stats import PlayerSeasonStats

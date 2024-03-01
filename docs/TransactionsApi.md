@@ -4,6 +4,7 @@ All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**transactions_cut_and_sign_create**](TransactionsApi.md#transactions_cut_and_sign_create) | **POST** /transactions/cut_and_sign/ | 
 [**transactions_cut_create**](TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 [**transactions_expire_create**](TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
 [**transactions_history_list**](TransactionsApi.md#transactions_history_list) | **GET** /transactions/history/ | 
@@ -15,6 +16,87 @@ Method | HTTP request | Description
 [**transactions_substitution_create**](TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
 [**transactions_trade_create**](TransactionsApi.md#transactions_trade_create) | **POST** /transactions/trade/ | 
 
+
+# **transactions_cut_and_sign_create**
+> List[TransactionResponse] transactions_cut_and_sign_create(data)
+
+
+
+Cut a player and sign another.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+```python
+import time
+import os
+import rscapi
+from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother
+from rscapi.models.transaction_response import TransactionResponse
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TransactionsApi(api_client)
+    data = rscapi.CutAPlayerAndSignAnother() # CutAPlayerAndSignAnother | 
+
+    try:
+        api_response = await api_instance.transactions_cut_and_sign_create(data)
+        print("The response of TransactionsApi->transactions_cut_and_sign_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->transactions_cut_and_sign_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **data** | [**CutAPlayerAndSignAnother**](CutAPlayerAndSignAnother.md)|  | 
+
+### Return type
+
+[**List[TransactionResponse]**](TransactionResponse.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**404** |  |  -  |
+**403** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_cut_create**
 > TransactionResponse transactions_cut_create(data)
@@ -178,7 +260,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_history_list**
-> List[TransactionResponse] transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type)
+> List[TransactionResponse] transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type, executor=executor)
 
 
 
@@ -218,9 +300,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
     player = 56 # int | Discord ID of player for transaction history search. (optional)
     transaction_type = 'transaction_type_example' # str | transaction_type (optional)
+    executor = 56 # int | Discord ID of the member who ran the transaction. (optional)
 
     try:
-        api_response = await api_instance.transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type)
+        api_response = await api_instance.transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type, executor=executor)
         print("The response of TransactionsApi->transactions_history_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -237,6 +320,7 @@ Name | Type | Description  | Notes
  **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
  **player** | **int**| Discord ID of player for transaction history search. | [optional] 
  **transaction_type** | **str**| transaction_type | [optional] 
+ **executor** | **int**| Discord ID of the member who ran the transaction. | [optional] 
 
 ### Return type
 

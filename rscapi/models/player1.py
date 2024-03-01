@@ -20,17 +20,15 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
-from rscapi.models.draft_pick import DraftPick
-from rscapi.models.player1 import Player1
+from pydantic import BaseModel, Field, StrictInt, StrictStr
 
-class TradeValue(BaseModel):
+class Player1(BaseModel):
     """
-    The specific item being traded (player or pick)  # noqa: E501
+    Details of Player being traded.  # noqa: E501
     """
-    player: Optional[Player1] = None
-    pick: Optional[DraftPick] = None
-    __properties = ["player", "pick"]
+    id: Optional[StrictInt] = Field(None, description="Discord ID of player being traded.")
+    team: Optional[StrictStr] = Field(None, description="Name of the team player is being traded to.")
+    __properties = ["id", "team"]
 
     class Config:
         """Pydantic configuration"""
@@ -46,8 +44,8 @@ class TradeValue(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TradeValue:
-        """Create an instance of TradeValue from a JSON string"""
+    def from_json(cls, json_str: str) -> Player1:
+        """Create an instance of Player1 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -56,26 +54,20 @@ class TradeValue(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of player
-        if self.player:
-            _dict['player'] = self.player.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of pick
-        if self.pick:
-            _dict['pick'] = self.pick.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TradeValue:
-        """Create an instance of TradeValue from a dict"""
+    def from_dict(cls, obj: dict) -> Player1:
+        """Create an instance of Player1 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TradeValue.parse_obj(obj)
+            return Player1.parse_obj(obj)
 
-        _obj = TradeValue.parse_obj({
-            "player": Player1.from_dict(obj.get("player")) if obj.get("player") is not None else None,
-            "pick": DraftPick.from_dict(obj.get("pick")) if obj.get("pick") is not None else None
+        _obj = Player1.parse_obj({
+            "id": obj.get("id"),
+            "team": obj.get("team")
         })
         return _obj
 

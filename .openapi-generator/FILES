@@ -6,6 +6,7 @@ README.md
 docs/AddTierToLeague.md
 docs/BaseTeam.md
 docs/BulkMMRSchemaSubmission.md
+docs/CutAPlayerAndSignAnother.md
 docs/CutAPlayerFromALeague.md
 docs/Deleted.md
 docs/DraftPick.md
@@ -47,6 +48,7 @@ docs/MembersApi.md
 docs/MembersList200Response.md
 docs/NumbersApi.md
 docs/Player.md
+docs/Player1.md
 docs/PlayerFranchise.md
 docs/PlayerMMR.md
 docs/PlayerSeasonStats.md
@@ -119,6 +121,7 @@ rscapi/models/__init__.py
 rscapi/models/add_tier_to_league.py
 rscapi/models/base_team.py
 rscapi/models/bulk_mmr_schema_submission.py
+rscapi/models/cut_a_player_and_sign_another.py
 rscapi/models/cut_a_player_from_a_league.py
 rscapi/models/deleted.py
 rscapi/models/draft_pick.py
@@ -154,6 +157,7 @@ rscapi/models/member.py
 rscapi/models/member_tracker.py
 rscapi/models/members_list200_response.py
 rscapi/models/player.py
+rscapi/models/player1.py
 rscapi/models/player_franchise.py
 rscapi/models/player_mmr.py
 rscapi/models/player_season_stats.py
@@ -203,5 +207,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_simple_member.py
+test/test_cut_a_player_and_sign_another.py
+test/test_player1.py
 tox.ini

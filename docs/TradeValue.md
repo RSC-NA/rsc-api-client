@@ -5,7 +5,7 @@ The specific item being traded (player or pick)
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**player** | **int** | Discord ID of Player being traded. | [optional] 
+**player** | [**Player1**](Player1.md) |  | [optional] 
 **pick** | [**DraftPick**](DraftPick.md) |  | [optional] 
 
 ## Example

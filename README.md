@@ -140,6 +140,7 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**members_list**](docs/MembersApi.md#members_list) | **GET** /members/ | 
 *MembersApi* | [**members_name_change**](docs/MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 *MembersApi* | [**members_partial_update**](docs/MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
+*MembersApi* | [**members_permfa_signup**](docs/MembersApi.md#members_permfa_signup) | **POST** /members/{id}/permfa_signup/ | 
 *MembersApi* | [**members_postseason_stats**](docs/MembersApi.md#members_postseason_stats) | **GET** /members/{id}/postseason_stats/ | 
 *MembersApi* | [**members_read**](docs/MembersApi.md#members_read) | **GET** /members/{id}/ | 
 *MembersApi* | [**members_signup**](docs/MembersApi.md#members_signup) | **POST** /members/{id}/signup/ | 
@@ -161,14 +162,18 @@ Class | Method | HTTP request | Description
 *SeasonsApi* | [**seasons_read**](docs/SeasonsApi.md#seasons_read) | **GET** /seasons/{id}/ | 
 *SeasonsApi* | [**seasons_submit_schedule**](docs/SeasonsApi.md#seasons_submit_schedule) | **POST** /seasons/{id}/submit_schedule/ | 
 *SeasonsApi* | [**seasons_update**](docs/SeasonsApi.md#seasons_update) | **PUT** /seasons/{id}/ | 
+*TeamsApi* | [**teams_create**](docs/TeamsApi.md#teams_create) | **POST** /teams/ | 
+*TeamsApi* | [**teams_delete**](docs/TeamsApi.md#teams_delete) | **DELETE** /teams/{id}/ | 
 *TeamsApi* | [**teams_list**](docs/TeamsApi.md#teams_list) | **GET** /teams/ | 
 *TeamsApi* | [**teams_match**](docs/TeamsApi.md#teams_match) | **GET** /teams/{id}/match/ | 
 *TeamsApi* | [**teams_next_match**](docs/TeamsApi.md#teams_next_match) | **GET** /teams/{id}/next_match/ | 
+*TeamsApi* | [**teams_partial_update**](docs/TeamsApi.md#teams_partial_update) | **PATCH** /teams/{id}/ | 
 *TeamsApi* | [**teams_players**](docs/TeamsApi.md#teams_players) | **GET** /teams/{id}/players/ | 
 *TeamsApi* | [**teams_postseason_stats**](docs/TeamsApi.md#teams_postseason_stats) | **GET** /teams/{id}/postseason_stats/ | 
 *TeamsApi* | [**teams_read**](docs/TeamsApi.md#teams_read) | **GET** /teams/{id}/ | 
 *TeamsApi* | [**teams_season_matches**](docs/TeamsApi.md#teams_season_matches) | **GET** /teams/{id}/season_matches/ | 
 *TeamsApi* | [**teams_stats**](docs/TeamsApi.md#teams_stats) | **GET** /teams/{id}/stats/ | 
+*TeamsApi* | [**teams_update**](docs/TeamsApi.md#teams_update) | **PUT** /teams/{id}/ | 
 *TiersApi* | [**tiers_create**](docs/TiersApi.md#tiers_create) | **POST** /tiers/ | 
 *TiersApi* | [**tiers_delete**](docs/TiersApi.md#tiers_delete) | **DELETE** /tiers/{id}/ | 
 *TiersApi* | [**tiers_list**](docs/TiersApi.md#tiers_list) | **GET** /tiers/ | 
@@ -188,6 +193,7 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_list**](docs/TrackerLinksApi.md#tracker_links_list) | **GET** /tracker-links/ | 
 *TrackerLinksApi* | [**tracker_links_next**](docs/TrackerLinksApi.md#tracker_links_next) | **GET** /tracker-links/next/ | 
 *TrackerLinksApi* | [**tracker_links_read**](docs/TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
+*TransactionsApi* | [**transactions_cut_and_sign_create**](docs/TransactionsApi.md#transactions_cut_and_sign_create) | **POST** /transactions/cut_and_sign/ | 
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 *TransactionsApi* | [**transactions_expire_create**](docs/TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
 *TransactionsApi* | [**transactions_history_list**](docs/TransactionsApi.md#transactions_history_list) | **GET** /transactions/history/ | 
@@ -205,6 +211,7 @@ Class | Method | HTTP request | Description
  - [AddTierToLeague](docs/AddTierToLeague.md)
  - [BaseTeam](docs/BaseTeam.md)
  - [BulkMMRSchemaSubmission](docs/BulkMMRSchemaSubmission.md)
+ - [CutAPlayerAndSignAnother](docs/CutAPlayerAndSignAnother.md)
  - [CutAPlayerFromALeague](docs/CutAPlayerFromALeague.md)
  - [Deleted](docs/Deleted.md)
  - [DraftPick](docs/DraftPick.md)
@@ -240,6 +247,7 @@ Class | Method | HTTP request | Description
  - [MemberTracker](docs/MemberTracker.md)
  - [MembersList200Response](docs/MembersList200Response.md)
  - [Player](docs/Player.md)
+ - [Player1](docs/Player1.md)
  - [PlayerFranchise](docs/PlayerFranchise.md)
  - [PlayerMMR](docs/PlayerMMR.md)
  - [PlayerSeasonStats](docs/PlayerSeasonStats.md)
