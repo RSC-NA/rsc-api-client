@@ -36,8 +36,6 @@ class LeaguePlayer(BaseModel):
     status: Optional[StrictStr] = None
     season: StrictInt = Field(...)
     captain: Optional[StrictBool] = None
-    base_mmr: Optional[StrictInt] = None
-    current_mmr: Optional[StrictInt] = None
     contract_length: Optional[StrictInt] = None
     team: Optional[PlayerTeam] = Field(...)
     last_updated: Optional[datetime] = None
@@ -47,7 +45,7 @@ class LeaguePlayer(BaseModel):
     sub_status: StrictInt = Field(...)
     waiver_period_end_date: Optional[datetime] = Field(...)
     signed_date: Optional[datetime] = Field(...)
-    __properties = ["id", "league", "status", "season", "captain", "base_mmr", "current_mmr", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "sub_status", "waiver_period_end_date", "signed_date"]
+    __properties = ["id", "league", "status", "season", "captain", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "sub_status", "waiver_period_end_date", "signed_date"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -84,8 +82,6 @@ class LeaguePlayer(BaseModel):
                             "id",
                             "status",
                             "captain",
-                            "base_mmr",
-                            "current_mmr",
                             "contract_length",
                             "last_updated",
                             "previous_teams",
@@ -147,8 +143,6 @@ class LeaguePlayer(BaseModel):
             "status": obj.get("status"),
             "season": obj.get("season"),
             "captain": obj.get("captain"),
-            "base_mmr": obj.get("base_mmr"),
-            "current_mmr": obj.get("current_mmr"),
             "contract_length": obj.get("contract_length"),
             "team": PlayerTeam.from_dict(obj.get("team")) if obj.get("team") is not None else None,
             "last_updated": obj.get("last_updated"),

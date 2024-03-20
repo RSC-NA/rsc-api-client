@@ -9,8 +9,6 @@ Name | Type | Description | Notes
 **status** | **str** |  | [optional] [readonly] 
 **season** | **int** |  | 
 **captain** | **bool** |  | [optional] [readonly] 
-**base_mmr** | **int** |  | [optional] [readonly] 
-**current_mmr** | **int** |  | [optional] [readonly] 
 **contract_length** | **int** |  | [optional] [readonly] 
 **team** | [**PlayerTeam**](PlayerTeam.md) |  | 
 **last_updated** | **datetime** |  | [optional] [readonly] 
