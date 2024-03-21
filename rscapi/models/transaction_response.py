@@ -34,7 +34,7 @@ class TransactionResponse(BaseModel):
     week: StrictStr = Field(...)
     week_no: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Week no of transaction (if applicable)")
     match_day: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Specific match day of the transactions.")
-    type: StrictStr = Field(...)
+    type: Optional[StrictStr] = Field(...)
     notes: Optional[StrictStr] = Field(...)
     first_franchise: Optional[TransactionFranchise] = None
     second_franchise: Optional[TransactionFranchise] = None
@@ -51,6 +51,9 @@ class TransactionResponse(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT'):
             raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT')")
         return value
@@ -100,6 +103,11 @@ class TransactionResponse(BaseModel):
         # and __fields_set__ contains the field
         if self.player_updates is None and "player_updates" in self.__fields_set__:
             _dict['player_updates'] = None
+
+        # set to None if type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.type is None and "type" in self.__fields_set__:
+            _dict['type'] = None
 
         # set to None if notes (nullable) is None
         # and __fields_set__ contains the field
