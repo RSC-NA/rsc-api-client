@@ -353,15 +353,15 @@ class FranchisesApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def franchises_list(self, prefix : Annotated[Optional[StrictStr], Field(description="prefix")] = None, league : Annotated[Optional[StrictStr], Field(description="league")] = None, gm_name : Annotated[Optional[StrictStr], Field(description="gm_name")] = None, gm_discord_id : Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="tier_name")] = None, **kwargs) -> List[FranchiseList]:  # noqa: E501
+    async def franchises_list(self, prefix : Annotated[Optional[StrictStr], Field(description="prefix")] = None, league : Annotated[Optional[StrictInt], Field(description="League id")] = None, gm_name : Annotated[Optional[StrictStr], Field(description="gm_name")] = None, gm_discord_id : Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="tier_name")] = None, **kwargs) -> List[FranchiseList]:  # noqa: E501
         ...
 
     @overload
-    def franchises_list(self, prefix : Annotated[Optional[StrictStr], Field(description="prefix")] = None, league : Annotated[Optional[StrictStr], Field(description="league")] = None, gm_name : Annotated[Optional[StrictStr], Field(description="gm_name")] = None, gm_discord_id : Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="tier_name")] = None, async_req: Optional[bool]=True, **kwargs) -> List[FranchiseList]:  # noqa: E501
+    def franchises_list(self, prefix : Annotated[Optional[StrictStr], Field(description="prefix")] = None, league : Annotated[Optional[StrictInt], Field(description="League id")] = None, gm_name : Annotated[Optional[StrictStr], Field(description="gm_name")] = None, gm_discord_id : Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="tier_name")] = None, async_req: Optional[bool]=True, **kwargs) -> List[FranchiseList]:  # noqa: E501
         ...
 
     @validate_arguments
-    def franchises_list(self, prefix : Annotated[Optional[StrictStr], Field(description="prefix")] = None, league : Annotated[Optional[StrictStr], Field(description="league")] = None, gm_name : Annotated[Optional[StrictStr], Field(description="gm_name")] = None, gm_discord_id : Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="tier_name")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[FranchiseList], Awaitable[List[FranchiseList]]]:  # noqa: E501
+    def franchises_list(self, prefix : Annotated[Optional[StrictStr], Field(description="prefix")] = None, league : Annotated[Optional[StrictInt], Field(description="League id")] = None, gm_name : Annotated[Optional[StrictStr], Field(description="gm_name")] = None, gm_discord_id : Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="tier_name")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[List[FranchiseList], Awaitable[List[FranchiseList]]]:  # noqa: E501
         """franchises_list  # noqa: E501
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.  # noqa: E501
@@ -373,8 +373,8 @@ class FranchisesApi:
 
         :param prefix: prefix
         :type prefix: str
-        :param league: league
-        :type league: str
+        :param league: League id
+        :type league: int
         :param gm_name: gm_name
         :type gm_name: str
         :param gm_discord_id: Discord id of GM
@@ -405,7 +405,7 @@ class FranchisesApi:
         return self.franchises_list_with_http_info(prefix, league, gm_name, gm_discord_id, name, tier, tier_name, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def franchises_list_with_http_info(self, prefix : Annotated[Optional[StrictStr], Field(description="prefix")] = None, league : Annotated[Optional[StrictStr], Field(description="league")] = None, gm_name : Annotated[Optional[StrictStr], Field(description="gm_name")] = None, gm_discord_id : Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="tier_name")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def franchises_list_with_http_info(self, prefix : Annotated[Optional[StrictStr], Field(description="prefix")] = None, league : Annotated[Optional[StrictInt], Field(description="League id")] = None, gm_name : Annotated[Optional[StrictStr], Field(description="gm_name")] = None, gm_discord_id : Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None, name : Annotated[Optional[StrictStr], Field(description="name")] = None, tier : Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None, tier_name : Annotated[Optional[StrictStr], Field(description="tier_name")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """franchises_list  # noqa: E501
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.  # noqa: E501
@@ -417,8 +417,8 @@ class FranchisesApi:
 
         :param prefix: prefix
         :type prefix: str
-        :param league: league
-        :type league: str
+        :param league: League id
+        :type league: int
         :param gm_name: gm_name
         :type gm_name: str
         :param gm_discord_id: Discord id of GM

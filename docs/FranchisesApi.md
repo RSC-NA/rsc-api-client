@@ -207,7 +207,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     prefix = 'prefix_example' # str | prefix (optional)
-    league = 'league_example' # str | league (optional)
+    league = 56 # int | League id (optional)
     gm_name = 'gm_name_example' # str | gm_name (optional)
     gm_discord_id = 56 # int | Discord id of GM (optional)
     name = 'name_example' # str | name (optional)
@@ -229,7 +229,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **prefix** | **str**| prefix | [optional] 
- **league** | **str**| league | [optional] 
+ **league** | **int**| League id | [optional] 
  **gm_name** | **str**| gm_name | [optional] 
  **gm_discord_id** | **int**| Discord id of GM | [optional] 
  **name** | **str**| name | [optional] 
