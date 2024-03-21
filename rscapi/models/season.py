@@ -28,6 +28,7 @@ class Season(BaseModel):
     """
     Season
     """
+    id: Optional[StrictInt] = None
     league: SeasonLeague = Field(...)
     number: Optional[StrictInt] = None
     season_tier_data: conlist(SeasonTierData) = Field(...)
@@ -37,7 +38,7 @@ class Season(BaseModel):
     preseason_start_date: Optional[datetime] = None
     signup_close: Optional[datetime] = None
     draft_date: Optional[datetime] = None
-    __properties = ["league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "signup_close", "draft_date"]
+    __properties = ["id", "league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "signup_close", "draft_date"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,6 +62,7 @@ class Season(BaseModel):
         """Returns the dictionary representation of the model using alias"""
         _dict = self.dict(by_alias=True,
                           exclude={
+                            "id",
                             "number",
                             "current",
                             "start_date",
@@ -117,6 +119,7 @@ class Season(BaseModel):
             return Season.parse_obj(obj)
 
         _obj = Season.parse_obj({
+            "id": obj.get("id"),
             "league": SeasonLeague.from_dict(obj.get("league")) if obj.get("league") is not None else None,
             "number": obj.get("number"),
             "season_tier_data": [SeasonTierData.from_dict(_item) for _item in obj.get("season_tier_data")] if obj.get("season_tier_data") is not None else None,

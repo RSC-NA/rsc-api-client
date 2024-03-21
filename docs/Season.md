@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] [readonly] 
 **league** | [**SeasonLeague**](SeasonLeague.md) |  | 
 **number** | **int** |  | [optional] [readonly] 
 **season_tier_data** | [**List[SeasonTierData]**](SeasonTierData.md) |  | 
