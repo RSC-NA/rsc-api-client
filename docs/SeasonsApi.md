@@ -467,7 +467,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_player_intents**
-> IntentToPlay seasons_player_intents(id)
+> List[IntentToPlay] seasons_player_intents(id)
 
 
 
@@ -525,7 +525,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IntentToPlay**](IntentToPlay.md)
+[**List[IntentToPlay]**](IntentToPlay.md)
 
 ### Authorization
 

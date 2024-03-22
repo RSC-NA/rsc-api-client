@@ -953,15 +953,15 @@ class SeasonsApi:
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def seasons_player_intents(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], **kwargs) -> IntentToPlay:  # noqa: E501
+    async def seasons_player_intents(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], **kwargs) -> List[IntentToPlay]:  # noqa: E501
         ...
 
     @overload
-    def seasons_player_intents(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], async_req: Optional[bool]=True, **kwargs) -> IntentToPlay:  # noqa: E501
+    def seasons_player_intents(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], async_req: Optional[bool]=True, **kwargs) -> List[IntentToPlay]:  # noqa: E501
         ...
 
     @validate_arguments
-    def seasons_player_intents(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], async_req: Optional[bool]=None, **kwargs) -> Union[IntentToPlay, Awaitable[IntentToPlay]]:  # noqa: E501
+    def seasons_player_intents(self, id : Annotated[StrictInt, Field(..., description="A unique integer value identifying this seasons.")], async_req: Optional[bool]=None, **kwargs) -> Union[List[IntentToPlay], Awaitable[List[IntentToPlay]]]:  # noqa: E501
         """seasons_player_intents  # noqa: E501
 
         Get player intents for a specific season  # noqa: E501
@@ -982,7 +982,7 @@ class SeasonsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: IntentToPlay
+        :rtype: List[IntentToPlay]
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -1027,7 +1027,7 @@ class SeasonsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(IntentToPlay, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(List[IntentToPlay], status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -1082,7 +1082,7 @@ class SeasonsApi:
         _auth_settings = ['Api-Key']  # noqa: E501
 
         _response_types_map = {
-            '200': "IntentToPlay",
+            '200': "List[IntentToPlay]",
             '404': "Error",
         }
 
