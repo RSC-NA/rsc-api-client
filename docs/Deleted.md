@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **detail** | **str** |  | [optional] [default to 'Player removed from playing']
@@ -16,7 +17,7 @@ json = "{}"
 # create an instance of Deleted from a JSON string
 deleted_instance = Deleted.from_json(json)
 # print the JSON string representation of the object
-print Deleted.to_json()
+print(Deleted.to_json())
 
 # convert the object into a dict
 deleted_dict = deleted_instance.to_dict()

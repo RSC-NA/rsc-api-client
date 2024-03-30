@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **link** | **str** |  | 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of TrackerLink from a JSON string
 tracker_link_instance = TrackerLink.from_json(json)
 # print the JSON string representation of the object
-print TrackerLink.to_json()
+print(TrackerLink.to_json())
 
 # convert the object into a dict
 tracker_link_dict = tracker_link_instance.to_dict()

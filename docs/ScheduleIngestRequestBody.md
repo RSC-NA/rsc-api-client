@@ -3,6 +3,7 @@
 Values required for schedule submitting for a given season.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sheet_link** | **str** | The link to the google sheet containing scheduling information. | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of ScheduleIngestRequestBody from a JSON string
 schedule_ingest_request_body_instance = ScheduleIngestRequestBody.from_json(json)
 # print the JSON string representation of the object
-print ScheduleIngestRequestBody.to_json()
+print(ScheduleIngestRequestBody.to_json())
 
 # convert the object into a dict
 schedule_ingest_request_body_dict = schedule_ingest_request_body_instance.to_dict()

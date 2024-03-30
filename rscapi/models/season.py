@@ -19,59 +19,84 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, conlist
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.season_league import SeasonLeague
 from rscapi.models.season_tier_data import SeasonTierData
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Season(BaseModel):
     """
     Season
-    """
+    """ # noqa: E501
     id: Optional[StrictInt] = None
-    league: SeasonLeague = Field(...)
+    league: SeasonLeague
     number: Optional[StrictInt] = None
-    season_tier_data: conlist(SeasonTierData) = Field(...)
+    season_tier_data: List[SeasonTierData]
     current: Optional[StrictBool] = None
     start_date: Optional[datetime] = None
     end_date: Optional[datetime] = None
     preseason_start_date: Optional[datetime] = None
     signup_close: Optional[datetime] = None
     draft_date: Optional[datetime] = None
-    __properties = ["id", "league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "signup_close", "draft_date"]
+    __properties: ClassVar[List[str]] = ["id", "league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "signup_close", "draft_date"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Season:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Season from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "id",
-                            "number",
-                            "current",
-                            "start_date",
-                            "end_date",
-                            "preseason_start_date",
-                            "signup_close",
-                            "draft_date",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "id",
+            "number",
+            "current",
+            "start_date",
+            "end_date",
+            "preseason_start_date",
+            "signup_close",
+            "draft_date",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of league
         if self.league:
             _dict['league'] = self.league.to_dict()
@@ -83,46 +108,46 @@ class Season(BaseModel):
                     _items.append(_item.to_dict())
             _dict['season_tier_data'] = _items
         # set to None if start_date (nullable) is None
-        # and __fields_set__ contains the field
-        if self.start_date is None and "start_date" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.start_date is None and "start_date" in self.model_fields_set:
             _dict['start_date'] = None
 
         # set to None if end_date (nullable) is None
-        # and __fields_set__ contains the field
-        if self.end_date is None and "end_date" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.end_date is None and "end_date" in self.model_fields_set:
             _dict['end_date'] = None
 
         # set to None if preseason_start_date (nullable) is None
-        # and __fields_set__ contains the field
-        if self.preseason_start_date is None and "preseason_start_date" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.preseason_start_date is None and "preseason_start_date" in self.model_fields_set:
             _dict['preseason_start_date'] = None
 
         # set to None if signup_close (nullable) is None
-        # and __fields_set__ contains the field
-        if self.signup_close is None and "signup_close" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.signup_close is None and "signup_close" in self.model_fields_set:
             _dict['signup_close'] = None
 
         # set to None if draft_date (nullable) is None
-        # and __fields_set__ contains the field
-        if self.draft_date is None and "draft_date" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.draft_date is None and "draft_date" in self.model_fields_set:
             _dict['draft_date'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Season:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Season from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Season.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Season.parse_obj({
+        _obj = cls.model_validate({
             "id": obj.get("id"),
-            "league": SeasonLeague.from_dict(obj.get("league")) if obj.get("league") is not None else None,
+            "league": SeasonLeague.from_dict(obj["league"]) if obj.get("league") is not None else None,
             "number": obj.get("number"),
-            "season_tier_data": [SeasonTierData.from_dict(_item) for _item in obj.get("season_tier_data")] if obj.get("season_tier_data") is not None else None,
+            "season_tier_data": [SeasonTierData.from_dict(_item) for _item in obj["season_tier_data"]] if obj.get("season_tier_data") is not None else None,
             "current": obj.get("current"),
             "start_date": obj.get("start_date"),
             "end_date": obj.get("end_date"),

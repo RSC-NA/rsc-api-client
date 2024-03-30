@@ -18,58 +18,80 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, constr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.franchise_gm import FranchiseGM
 from rscapi.models.franchise_league import FranchiseLeague
 from rscapi.models.franchise_tier import FranchiseTier
 from rscapi.models.team import Team
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Franchise(BaseModel):
     """
     Franchise
-    """
-    name: constr(strict=True, min_length=1) = Field(...)
-    prefix: constr(strict=True, max_length=3, min_length=1) = Field(...)
-    gm: FranchiseGM = Field(...)
+    """ # noqa: E501
+    name: Annotated[str, Field(min_length=1, strict=True)]
+    prefix: Annotated[str, Field(min_length=1, strict=True, max_length=3)]
+    gm: FranchiseGM
     id: Optional[StrictInt] = None
-    league: FranchiseLeague = Field(...)
-    tiers: Optional[conlist(FranchiseTier)] = None
+    league: FranchiseLeague
+    tiers: Optional[List[FranchiseTier]] = None
     active: Optional[StrictBool] = None
-    teams: Optional[conlist(Team)] = None
+    teams: Optional[List[Team]] = None
     logo: Optional[StrictStr] = None
-    __properties = ["name", "prefix", "gm", "id", "league", "tiers", "active", "teams", "logo"]
+    __properties: ClassVar[List[str]] = ["name", "prefix", "gm", "id", "league", "tiers", "active", "teams", "logo"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Franchise:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Franchise from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "id",
-                            "tiers",
-                            "active",
-                            "teams",
-                            "logo",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "id",
+            "tiers",
+            "active",
+            "teams",
+            "logo",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of gm
         if self.gm:
             _dict['gm'] = self.gm.to_dict()
@@ -93,23 +115,23 @@ class Franchise(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Franchise:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Franchise from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Franchise.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Franchise.parse_obj({
+        _obj = cls.model_validate({
             "name": obj.get("name"),
             "prefix": obj.get("prefix"),
-            "gm": FranchiseGM.from_dict(obj.get("gm")) if obj.get("gm") is not None else None,
+            "gm": FranchiseGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None,
             "id": obj.get("id"),
-            "league": FranchiseLeague.from_dict(obj.get("league")) if obj.get("league") is not None else None,
-            "tiers": [FranchiseTier.from_dict(_item) for _item in obj.get("tiers")] if obj.get("tiers") is not None else None,
+            "league": FranchiseLeague.from_dict(obj["league"]) if obj.get("league") is not None else None,
+            "tiers": [FranchiseTier.from_dict(_item) for _item in obj["tiers"]] if obj.get("tiers") is not None else None,
             "active": obj.get("active"),
-            "teams": [Team.from_dict(_item) for _item in obj.get("teams")] if obj.get("teams") is not None else None,
+            "teams": [Team.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None,
             "logo": obj.get("logo")
         })
         return _obj

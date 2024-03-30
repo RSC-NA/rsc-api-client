@@ -27,9 +27,8 @@ Add a tier to a league
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.add_tier_to_league import AddTierToLeague
 from rscapi.models.league import League
@@ -72,6 +71,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -91,6 +91,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -106,9 +107,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.league import League
 from rscapi.rest import ApiException
@@ -149,6 +149,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**League**](League.md)|  | 
@@ -167,6 +168,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
@@ -183,9 +185,8 @@ Get current season for a given league
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
@@ -226,6 +227,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -244,6 +246,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -258,9 +261,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -298,6 +300,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -316,6 +319,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** |  |  -  |
@@ -330,9 +334,8 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.league import League
 from rscapi.rest import ApiException
@@ -371,6 +374,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -387,6 +391,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -401,9 +406,8 @@ This endpoint does not need any parameter.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.league import League
 from rscapi.rest import ApiException
@@ -445,6 +449,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -464,6 +469,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -478,9 +484,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.league import League
 from rscapi.rest import ApiException
@@ -521,6 +526,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -539,6 +545,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -555,9 +562,8 @@ Remove a tier from a league
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.deleted import Deleted
 from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague
@@ -600,6 +606,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -619,6 +626,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -636,9 +644,8 @@ Get all seasons for a given league.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
@@ -679,6 +686,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -697,6 +705,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -713,9 +722,8 @@ Start a new season for a given league
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.models.start_new_season import StartNewSeason
@@ -758,6 +766,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -777,6 +786,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
@@ -792,9 +802,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.league import League
 from rscapi.rest import ApiException
@@ -836,6 +845,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
@@ -855,6 +865,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |

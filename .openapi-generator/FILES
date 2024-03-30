@@ -45,6 +45,7 @@ docs/MatchesApi.md
 docs/MatchesList200Response.md
 docs/Member.md
 docs/MemberIntent.md
+docs/MemberIntentData.md
 docs/MemberTracker.md
 docs/MembersApi.md
 docs/MembersList200Response.md
@@ -158,6 +159,7 @@ rscapi/models/match_results.py
 rscapi/models/matches_list200_response.py
 rscapi/models/member.py
 rscapi/models/member_intent.py
+rscapi/models/member_intent_data.py
 rscapi/models/member_tracker.py
 rscapi/models/members_list200_response.py
 rscapi/models/player.py
@@ -211,4 +213,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_member_intent_data.py
 tox.ini

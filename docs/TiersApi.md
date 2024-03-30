@@ -28,9 +28,8 @@ Viewset for the Tier model.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
@@ -71,6 +70,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**Tier**](Tier.md)|  | 
@@ -89,6 +89,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
@@ -105,9 +106,8 @@ Viewset for the Tier model.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -145,6 +145,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -163,6 +164,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** |  |  -  |
@@ -179,9 +181,8 @@ Viewset for the Tier model.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
@@ -223,6 +224,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name | [optional] 
@@ -242,6 +244,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -258,9 +261,8 @@ Viewset for the Tier model.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
@@ -302,6 +304,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -321,6 +324,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -337,9 +341,8 @@ Get player stats for a given tier and season in a league. (Default: Current Seas
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.rest import ApiException
@@ -382,6 +385,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -402,6 +406,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -419,9 +424,8 @@ Get all players for a specific tier in a league
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
@@ -464,6 +468,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -484,6 +489,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -501,9 +507,8 @@ Get player postseason stats for a given tier and season in a league. (Default: C
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.rest import ApiException
@@ -546,6 +551,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -566,6 +572,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -583,9 +590,8 @@ Get postseason team stats for a given tier and season in a league. (Default: Cur
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.rest import ApiException
@@ -628,6 +634,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -648,6 +655,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -665,9 +673,8 @@ Viewset for the Tier model.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
@@ -708,6 +715,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -726,6 +734,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -742,9 +751,8 @@ Get team based stats for a given tier and season in a league. (Default: Current 
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.rest import ApiException
@@ -787,6 +795,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -807,6 +816,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -824,9 +834,8 @@ Get all teams for a specific tier in a league.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.team import Team
 from rscapi.rest import ApiException
@@ -869,6 +878,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -889,6 +899,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -906,9 +917,8 @@ Viewset for the Tier model.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
@@ -950,6 +960,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
@@ -969,6 +980,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |

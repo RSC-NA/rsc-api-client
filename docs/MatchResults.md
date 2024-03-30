@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **home_wins** | **int** |  | [optional] [readonly] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of MatchResults from a JSON string
 match_results_instance = MatchResults.from_json(json)
 # print the JSON string representation of the object
-print MatchResults.to_json()
+print(MatchResults.to_json())
 
 # convert the object into a dict
 match_results_dict = match_results_instance.to_dict()

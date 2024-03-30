@@ -3,6 +3,7 @@
 Rebrand a franchise to new details.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Name you would like to give the rebranded franchise. | 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of RebrandAFranchise from a JSON string
 rebrand_a_franchise_instance = RebrandAFranchise.from_json(json)
 # print the JSON string representation of the object
-print RebrandAFranchise.to_json()
+print(RebrandAFranchise.to_json())
 
 # convert the object into a dict
 rebrand_a_franchise_dict = rebrand_a_franchise_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **detail** | **str** |  | 
@@ -16,7 +17,7 @@ json = "{}"
 # create an instance of SimpleResponse from a JSON string
 simple_response_instance = SimpleResponse.from_json(json)
 # print the JSON string representation of the object
-print SimpleResponse.to_json()
+print(SimpleResponse.to_json())
 
 # convert the object into a dict
 simple_response_dict = simple_response_instance.to_dict()

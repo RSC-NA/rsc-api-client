@@ -26,9 +26,8 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
@@ -69,6 +68,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**Franchise**](Franchise.md)|  | 
@@ -87,6 +87,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
@@ -103,9 +104,8 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -143,6 +143,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
@@ -161,6 +162,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** |  |  -  |
@@ -177,9 +179,8 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise_list import FranchiseList
 from rscapi.rest import ApiException
@@ -226,6 +227,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **prefix** | **str**| prefix | [optional] 
@@ -250,6 +252,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -266,9 +269,8 @@ Get direct link for logo of a franchise
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise_logo import FranchiseLogo
 from rscapi.rest import ApiException
@@ -309,6 +311,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
@@ -327,6 +330,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -343,9 +347,8 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
@@ -387,6 +390,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
@@ -406,6 +410,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -422,9 +427,8 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
@@ -465,6 +469,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
@@ -483,6 +488,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -499,9 +505,8 @@ Rebrand a franchise.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise import Franchise
 from rscapi.models.rebrand_a_franchise import RebrandAFranchise
@@ -544,6 +549,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
@@ -563,6 +569,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -580,9 +587,8 @@ PUT /franchises/{id}/transfer_franchise/
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise import Franchise
 from rscapi.models.transfer_franchise import TransferFranchise
@@ -625,6 +631,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
@@ -644,6 +651,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -662,9 +670,8 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
@@ -706,6 +713,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
@@ -725,6 +733,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -741,9 +750,8 @@ Update a franchise logo.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
@@ -785,6 +793,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
@@ -804,6 +813,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |

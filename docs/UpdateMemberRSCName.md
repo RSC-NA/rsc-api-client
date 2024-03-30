@@ -3,6 +3,7 @@
 Update a players RSC name with a new name.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The Players new RSC Name | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of UpdateMemberRSCName from a JSON string
 update_member_rsc_name_instance = UpdateMemberRSCName.from_json(json)
 # print the JSON string representation of the object
-print UpdateMemberRSCName.to_json()
+print(UpdateMemberRSCName.to_json())
 
 # convert the object into a dict
 update_member_rsc_name_dict = update_member_rsc_name_instance.to_dict()

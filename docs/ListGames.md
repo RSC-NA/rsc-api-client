@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **winner** | **str** |  | 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ListGames from a JSON string
 list_games_instance = ListGames.from_json(json)
 # print the JSON string representation of the object
-print ListGames.to_json()
+print(ListGames.to_json())
 
 # convert the object into a dict
 list_games_dict = list_games_instance.to_dict()

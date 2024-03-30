@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **int** |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of MembersList200Response from a JSON string
 members_list200_response_instance = MembersList200Response.from_json(json)
 # print the JSON string representation of the object
-print MembersList200Response.to_json()
+print(MembersList200Response.to_json())
 
 # convert the object into a dict
 members_list200_response_dict = members_list200_response_instance.to_dict()

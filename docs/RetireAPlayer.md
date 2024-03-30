@@ -3,6 +3,7 @@
 Retire a player from playing in a given league
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **int** | Specific player to perform transaction on. | 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of RetireAPlayer from a JSON string
 retire_a_player_instance = RetireAPlayer.from_json(json)
 # print the JSON string representation of the object
-print RetireAPlayer.to_json()
+print(RetireAPlayer.to_json())
 
 # convert the object into a dict
 retire_a_player_dict = retire_a_player_instance.to_dict()

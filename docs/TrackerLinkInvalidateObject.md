@@ -3,6 +3,7 @@
 Request body object containing a dictionary 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **links** | **List[str]** | List of links to invalidate | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of TrackerLinkInvalidateObject from a JSON string
 tracker_link_invalidate_object_instance = TrackerLinkInvalidateObject.from_json(json)
 # print the JSON string representation of the object
-print TrackerLinkInvalidateObject.to_json()
+print(TrackerLinkInvalidateObject.to_json())
 
 # convert the object into a dict
 tracker_link_invalidate_object_dict = tracker_link_invalidate_object_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **int** |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of LeaguePlayersList200Response from a JSON string
 league_players_list200_response_instance = LeaguePlayersList200Response.from_json(json)
 # print the JSON string representation of the object
-print LeaguePlayersList200Response.to_json()
+print(LeaguePlayersList200Response.to_json())
 
 # convert the object into a dict
 league_players_list200_response_dict = league_players_list200_response_instance.to_dict()

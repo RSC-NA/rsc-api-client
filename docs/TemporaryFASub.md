@@ -3,6 +3,7 @@
 Temporarily sub a free agent to a team.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player_in** | **int** | Specific player to perform transaction on. | 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of TemporaryFASub from a JSON string
 temporary_fa_sub_instance = TemporaryFASub.from_json(json)
 # print the JSON string representation of the object
-print TemporaryFASub.to_json()
+print(TemporaryFASub.to_json())
 
 # convert the object into a dict
 temporary_fa_sub_dict = temporary_fa_sub_instance.to_dict()

@@ -3,6 +3,7 @@
 An item in a trade detailing what's being traded.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **source** | [**FranchiseIdentifier**](FranchiseIdentifier.md) |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of TradeItem from a JSON string
 trade_item_instance = TradeItem.from_json(json)
 # print the JSON string representation of the object
-print TradeItem.to_json()
+print(TradeItem.to_json())
 
 # convert the object into a dict
 trade_item_dict = trade_item_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **str** |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of MemberTracker from a JSON string
 member_tracker_instance = MemberTracker.from_json(json)
 # print the JSON string representation of the object
-print MemberTracker.to_json()
+print(MemberTracker.to_json())
 
 # convert the object into a dict
 member_tracker_dict = member_tracker_instance.to_dict()

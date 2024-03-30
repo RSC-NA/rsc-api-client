@@ -3,6 +3,7 @@
 Remove an existing tier from a league
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tier** | **int** | Tier to add to the league | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of RemoveTierFromALeague from a JSON string
 remove_tier_from_a_league_instance = RemoveTierFromALeague.from_json(json)
 # print the JSON string representation of the object
-print RemoveTierFromALeague.to_json()
+print(RemoveTierFromALeague.to_json())
 
 # convert the object into a dict
 remove_tier_from_a_league_dict = remove_tier_from_a_league_instance.to_dict()

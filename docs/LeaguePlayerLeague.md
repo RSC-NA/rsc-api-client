@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of LeaguePlayerLeague from a JSON string
 league_player_league_instance = LeaguePlayerLeague.from_json(json)
 # print the JSON string representation of the object
-print LeaguePlayerLeague.to_json()
+print(LeaguePlayerLeague.to_json())
 
 # convert the object into a dict
 league_player_league_dict = league_player_league_instance.to_dict()

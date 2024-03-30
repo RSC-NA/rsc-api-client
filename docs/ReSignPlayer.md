@@ -3,6 +3,7 @@
 Re-sign a player to a franchise.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **int** | Specific player to perform transaction on. | 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of ReSignPlayer from a JSON string
 re_sign_player_instance = ReSignPlayer.from_json(json)
 # print the JSON string representation of the object
-print ReSignPlayer.to_json()
+print(ReSignPlayer.to_json())
 
 # convert the object into a dict
 re_sign_player_dict = re_sign_player_instance.to_dict()

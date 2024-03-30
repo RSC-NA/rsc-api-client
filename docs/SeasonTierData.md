@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tier** | **str** |  | 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of SeasonTierData from a JSON string
 season_tier_data_instance = SeasonTierData.from_json(json)
 # print the JSON string representation of the object
-print SeasonTierData.to_json()
+print(SeasonTierData.to_json())
 
 # convert the object into a dict
 season_tier_data_dict = season_tier_data_instance.to_dict()

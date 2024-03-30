@@ -3,6 +3,7 @@
 Add an existing tier to a league
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tier** | **int** | Tier to add to the league | 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of AddTierToLeague from a JSON string
 add_tier_to_league_instance = AddTierToLeague.from_json(json)
 # print the JSON string representation of the object
-print AddTierToLeague.to_json()
+print(AddTierToLeague.to_json())
 
 # convert the object into a dict
 add_tier_to_league_dict = add_tier_to_league_instance.to_dict()

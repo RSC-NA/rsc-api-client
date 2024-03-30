@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **team** | [**BaseTeam**](BaseTeam.md) |  | 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of PreviousTeam from a JSON string
 previous_team_instance = PreviousTeam.from_json(json)
 # print the JSON string representation of the object
-print PreviousTeam.to_json()
+print(PreviousTeam.to_json())
 
 # convert the object into a dict
 previous_team_dict = previous_team_instance.to_dict()

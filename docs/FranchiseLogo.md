@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **logo** | **str** |  | [optional] [readonly] 
@@ -16,7 +17,7 @@ json = "{}"
 # create an instance of FranchiseLogo from a JSON string
 franchise_logo_instance = FranchiseLogo.from_json(json)
 # print the JSON string representation of the object
-print FranchiseLogo.to_json()
+print(FranchiseLogo.to_json())
 
 # convert the object into a dict
 franchise_logo_dict = franchise_logo_instance.to_dict()

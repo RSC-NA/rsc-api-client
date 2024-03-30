@@ -19,70 +19,89 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conint, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.simple_member import SimpleMember
 from rscapi.models.transaction_franchise import TransactionFranchise
+from typing import Optional, Set
+from typing_extensions import Self
 
 class TransactionResponse(BaseModel):
     """
     TransactionResponse
-    """
-    player_updates: Optional[conlist(PlayerTransactionUpdates)] = None
-    var_date: Optional[datetime] = Field(None, alias="date", description="Date transaction occurred")
-    week: StrictStr = Field(...)
-    week_no: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Week no of transaction (if applicable)")
-    match_day: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = Field(None, description="Specific match day of the transactions.")
-    type: Optional[StrictStr] = Field(...)
-    notes: Optional[StrictStr] = Field(...)
+    """ # noqa: E501
+    player_updates: Optional[List[Optional[PlayerTransactionUpdates]]] = None
+    var_date: Optional[datetime] = Field(default=None, description="Date transaction occurred", alias="date")
+    week: StrictStr
+    week_no: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Week no of transaction (if applicable)")
+    match_day: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Specific match day of the transactions.")
+    type: Optional[StrictStr]
+    notes: Optional[StrictStr]
     first_franchise: Optional[TransactionFranchise] = None
     second_franchise: Optional[TransactionFranchise] = None
-    executor: SimpleMember = Field(...)
-    __properties = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor"]
+    executor: SimpleMember
+    __properties: ClassVar[List[str]] = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor"]
 
-    @validator('week')
+    @field_validator('week')
     def week_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('OFF', 'PRE', 'PST', 'REG'):
+        if value not in set(['OFF', 'PRE', 'PST', 'REG']):
             raise ValueError("must be one of enum values ('OFF', 'PRE', 'PST', 'REG')")
         return value
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT'):
+        if value not in set(['NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT']):
             raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TransactionResponse:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TransactionResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "var_date",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "var_date",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in player_updates (list)
         _items = []
         if self.player_updates:
@@ -100,52 +119,52 @@ class TransactionResponse(BaseModel):
         if self.executor:
             _dict['executor'] = self.executor.to_dict()
         # set to None if player_updates (nullable) is None
-        # and __fields_set__ contains the field
-        if self.player_updates is None and "player_updates" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.player_updates is None and "player_updates" in self.model_fields_set:
             _dict['player_updates'] = None
 
         # set to None if type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.type is None and "type" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.type is None and "type" in self.model_fields_set:
             _dict['type'] = None
 
         # set to None if notes (nullable) is None
-        # and __fields_set__ contains the field
-        if self.notes is None and "notes" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.notes is None and "notes" in self.model_fields_set:
             _dict['notes'] = None
 
         # set to None if first_franchise (nullable) is None
-        # and __fields_set__ contains the field
-        if self.first_franchise is None and "first_franchise" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.first_franchise is None and "first_franchise" in self.model_fields_set:
             _dict['first_franchise'] = None
 
         # set to None if second_franchise (nullable) is None
-        # and __fields_set__ contains the field
-        if self.second_franchise is None and "second_franchise" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.second_franchise is None and "second_franchise" in self.model_fields_set:
             _dict['second_franchise'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TransactionResponse:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TransactionResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TransactionResponse.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = TransactionResponse.parse_obj({
-            "player_updates": [PlayerTransactionUpdates.from_dict(_item) for _item in obj.get("player_updates")] if obj.get("player_updates") is not None else None,
-            "var_date": obj.get("date"),
+        _obj = cls.model_validate({
+            "player_updates": [PlayerTransactionUpdates.from_dict(_item) for _item in obj["player_updates"]] if obj.get("player_updates") is not None else None,
+            "date": obj.get("date"),
             "week": obj.get("week"),
             "week_no": obj.get("week_no"),
             "match_day": obj.get("match_day"),
             "type": obj.get("type"),
             "notes": obj.get("notes"),
-            "first_franchise": TransactionFranchise.from_dict(obj.get("first_franchise")) if obj.get("first_franchise") is not None else None,
-            "second_franchise": TransactionFranchise.from_dict(obj.get("second_franchise")) if obj.get("second_franchise") is not None else None,
-            "executor": SimpleMember.from_dict(obj.get("executor")) if obj.get("executor") is not None else None
+            "first_franchise": TransactionFranchise.from_dict(obj["first_franchise"]) if obj.get("first_franchise") is not None else None,
+            "second_franchise": TransactionFranchise.from_dict(obj["second_franchise"]) if obj.get("second_franchise") is not None else None,
+            "executor": SimpleMember.from_dict(obj["executor"]) if obj.get("executor") is not None else None
         })
         return _obj
 

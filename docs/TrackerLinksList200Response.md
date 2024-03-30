@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **int** |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of TrackerLinksList200Response from a JSON string
 tracker_links_list200_response_instance = TrackerLinksList200Response.from_json(json)
 # print the JSON string representation of the object
-print TrackerLinksList200Response.to_json()
+print(TrackerLinksList200Response.to_json())
 
 # convert the object into a dict
 tracker_links_list200_response_dict = tracker_links_list200_response_instance.to_dict()

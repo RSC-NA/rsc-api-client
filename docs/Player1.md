@@ -3,6 +3,7 @@
 Details of Player being traded.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Discord ID of player being traded. | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of Player1 from a JSON string
 player1_instance = Player1.from_json(json)
 # print the JSON string representation of the object
-print Player1.to_json()
+print(Player1.to_json())
 
 # convert the object into a dict
 player1_dict = player1_instance.to_dict()

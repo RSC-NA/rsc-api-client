@@ -19,135 +19,156 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, conint, constr, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.tracker_mmr import TrackerMMR
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PlayerMMR(BaseModel):
     """
     PlayerMMR
-    """
-    date_pulled: datetime = Field(...)
-    tracker_link: TrackerMMR = Field(...)
-    threes_rating: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    threes_season_peak: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    threes_games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    twos_rating: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    twos_season_peak: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    twos_games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    ones_rating: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    ones_season_peak: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    ones_games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    """ # noqa: E501
+    date_pulled: datetime
+    tracker_link: TrackerMMR
+    threes_rating: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    threes_season_peak: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    threes_games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    twos_rating: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    twos_season_peak: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    twos_games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    ones_rating: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    ones_season_peak: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    ones_games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     notes: Optional[StrictStr] = None
-    member: Optional[constr(strict=True, min_length=1)] = None
+    member: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     type: Optional[StrictStr] = None
-    rscid: Optional[constr(strict=True, min_length=1)] = None
-    __properties = ["date_pulled", "tracker_link", "threes_rating", "threes_season_peak", "threes_games_played", "twos_rating", "twos_season_peak", "twos_games_played", "ones_rating", "ones_season_peak", "ones_games_played", "notes", "member", "type", "rscid"]
+    rscid: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    __properties: ClassVar[List[str]] = ["date_pulled", "tracker_link", "threes_rating", "threes_season_peak", "threes_games_played", "twos_rating", "twos_season_peak", "twos_games_played", "ones_rating", "ones_season_peak", "ones_games_played", "notes", "member", "type", "rscid"]
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('SN', 'HS'):
-            raise ValueError("must be one of enum values ('SN', 'HS')")
+        if value not in set(['SN', 'HS', 'DA']):
+            raise ValueError("must be one of enum values ('SN', 'HS', 'DA')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PlayerMMR:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PlayerMMR from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "member",
-                            "type",
-                            "rscid",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "member",
+            "type",
+            "rscid",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of tracker_link
         if self.tracker_link:
             _dict['tracker_link'] = self.tracker_link.to_dict()
         # set to None if threes_rating (nullable) is None
-        # and __fields_set__ contains the field
-        if self.threes_rating is None and "threes_rating" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.threes_rating is None and "threes_rating" in self.model_fields_set:
             _dict['threes_rating'] = None
 
         # set to None if threes_season_peak (nullable) is None
-        # and __fields_set__ contains the field
-        if self.threes_season_peak is None and "threes_season_peak" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.threes_season_peak is None and "threes_season_peak" in self.model_fields_set:
             _dict['threes_season_peak'] = None
 
         # set to None if threes_games_played (nullable) is None
-        # and __fields_set__ contains the field
-        if self.threes_games_played is None and "threes_games_played" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.threes_games_played is None and "threes_games_played" in self.model_fields_set:
             _dict['threes_games_played'] = None
 
         # set to None if twos_rating (nullable) is None
-        # and __fields_set__ contains the field
-        if self.twos_rating is None and "twos_rating" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.twos_rating is None and "twos_rating" in self.model_fields_set:
             _dict['twos_rating'] = None
 
         # set to None if twos_season_peak (nullable) is None
-        # and __fields_set__ contains the field
-        if self.twos_season_peak is None and "twos_season_peak" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.twos_season_peak is None and "twos_season_peak" in self.model_fields_set:
             _dict['twos_season_peak'] = None
 
         # set to None if twos_games_played (nullable) is None
-        # and __fields_set__ contains the field
-        if self.twos_games_played is None and "twos_games_played" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.twos_games_played is None and "twos_games_played" in self.model_fields_set:
             _dict['twos_games_played'] = None
 
         # set to None if ones_rating (nullable) is None
-        # and __fields_set__ contains the field
-        if self.ones_rating is None and "ones_rating" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.ones_rating is None and "ones_rating" in self.model_fields_set:
             _dict['ones_rating'] = None
 
         # set to None if ones_season_peak (nullable) is None
-        # and __fields_set__ contains the field
-        if self.ones_season_peak is None and "ones_season_peak" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.ones_season_peak is None and "ones_season_peak" in self.model_fields_set:
             _dict['ones_season_peak'] = None
 
         # set to None if ones_games_played (nullable) is None
-        # and __fields_set__ contains the field
-        if self.ones_games_played is None and "ones_games_played" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.ones_games_played is None and "ones_games_played" in self.model_fields_set:
             _dict['ones_games_played'] = None
 
         # set to None if notes (nullable) is None
-        # and __fields_set__ contains the field
-        if self.notes is None and "notes" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.notes is None and "notes" in self.model_fields_set:
             _dict['notes'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PlayerMMR:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PlayerMMR from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PlayerMMR.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PlayerMMR.parse_obj({
+        _obj = cls.model_validate({
             "date_pulled": obj.get("date_pulled"),
-            "tracker_link": TrackerMMR.from_dict(obj.get("tracker_link")) if obj.get("tracker_link") is not None else None,
+            "tracker_link": TrackerMMR.from_dict(obj["tracker_link"]) if obj.get("tracker_link") is not None else None,
             "threes_rating": obj.get("threes_rating"),
             "threes_season_peak": obj.get("threes_season_peak"),
             "threes_games_played": obj.get("threes_games_played"),

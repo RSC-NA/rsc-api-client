@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **league** | [**League**](League.md) |  | 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of ElevatedRole from a JSON string
 elevated_role_instance = ElevatedRole.from_json(json)
 # print the JSON string representation of the object
-print ElevatedRole.to_json()
+print(ElevatedRole.to_json())
 
 # convert the object into a dict
 elevated_role_dict = elevated_role_instance.to_dict()

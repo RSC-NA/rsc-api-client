@@ -18,50 +18,70 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, conlist, constr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.player import Player
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Team(BaseModel):
     """
     Team
-    """
+    """ # noqa: E501
     id: Optional[StrictInt] = None
-    name: Optional[constr(strict=True, min_length=1)] = None
-    franchise: constr(strict=True, min_length=1) = Field(...)
-    tier: constr(strict=True, min_length=1) = Field(...)
-    players: Optional[conlist(Player)] = None
-    latest_season: StrictInt = Field(...)
-    __properties = ["id", "name", "franchise", "tier", "players", "latest_season"]
+    name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    franchise: Annotated[str, Field(min_length=1, strict=True)]
+    tier: Annotated[str, Field(min_length=1, strict=True)]
+    players: Optional[List[Player]] = None
+    latest_season: StrictInt
+    __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Team:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Team from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "id",
-                            "name",
-                            "players",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "id",
+            "name",
+            "players",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in players (list)
         _items = []
         if self.players:
@@ -72,20 +92,20 @@ class Team(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Team:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Team from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Team.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Team.parse_obj({
+        _obj = cls.model_validate({
             "id": obj.get("id"),
             "name": obj.get("name"),
             "franchise": obj.get("franchise"),
             "tier": obj.get("tier"),
-            "players": [Player.from_dict(_item) for _item in obj.get("players")] if obj.get("players") is not None else None,
+            "players": [Player.from_dict(_item) for _item in obj["players"]] if obj.get("players") is not None else None,
             "latest_season": obj.get("latest_season")
         })
         return _obj

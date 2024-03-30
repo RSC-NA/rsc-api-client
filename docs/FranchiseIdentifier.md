@@ -3,6 +3,7 @@
 Identifier for the franchise in question. (Provide at least 1)
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **gm** | **int** | Discord ID of current GM of the franchise | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of FranchiseIdentifier from a JSON string
 franchise_identifier_instance = FranchiseIdentifier.from_json(json)
 # print the JSON string representation of the object
-print FranchiseIdentifier.to_json()
+print(FranchiseIdentifier.to_json())
 
 # convert the object into a dict
 franchise_identifier_dict = franchise_identifier_instance.to_dict()

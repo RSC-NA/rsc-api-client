@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of TransactionTeam from a JSON string
 transaction_team_instance = TransactionTeam.from_json(json)
 # print the JSON string representation of the object
-print TransactionTeam.to_json()
+print(TransactionTeam.to_json())
 
 # convert the object into a dict
 transaction_team_dict = transaction_team_instance.to_dict()

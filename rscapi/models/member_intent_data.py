@@ -18,18 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TrackerMMR(BaseModel):
+class MemberIntentData(BaseModel):
     """
-    TrackerMMR
+    MemberIntentData
     """ # noqa: E501
-    link: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    __properties: ClassVar[List[str]] = ["link"]
+    rsc_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    discord_id: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["rsc_name", "discord_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +50,7 @@ class TrackerMMR(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TrackerMMR from a JSON string"""
+        """Create an instance of MemberIntentData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -61,8 +62,12 @@ class TrackerMMR(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "rsc_name",
+            "discord_id",
         ])
 
         _dict = self.model_dump(
@@ -74,7 +79,7 @@ class TrackerMMR(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TrackerMMR from a dict"""
+        """Create an instance of MemberIntentData from a dict"""
         if obj is None:
             return None
 
@@ -82,7 +87,8 @@ class TrackerMMR(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "link": obj.get("link")
+            "rsc_name": obj.get("rsc_name"),
+            "discord_id": obj.get("discord_id")
         })
         return _obj
 

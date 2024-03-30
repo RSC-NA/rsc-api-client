@@ -18,91 +18,107 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PlayerSignupSchema(BaseModel):
     """
-    Request body object containing league player signup data.  # noqa: E501
-    """
-    league: StrictInt = Field(..., description="League of team player will be captain in")
-    tracker_links: conlist(StrictStr) = Field(..., description="List of players tracker links")
-    rsc_name: StrictStr = Field(..., description="Discord display name of player")
-    accepted_rules: StrictBool = Field(..., description="Acknowledgement of player accepting rules")
-    accepted_match_nights: StrictBool = Field(..., description="Acknowledgement of player accepting rules")
-    platform: StrictStr = Field(..., description="Platform the user plays on.")
-    referrer: StrictStr = Field(..., description="Who referred the player")
-    new_or_returning: StrictStr = Field(..., description="Is the player new or returning?")
-    region_preference: StrictStr = Field(..., description="Players specific region preference")
-    admin_override: Optional[StrictBool] = Field(None, description="Admin overriding signup")
-    executor: Optional[StrictInt] = Field(None, description="Admin override executor")
-    __properties = ["league", "tracker_links", "rsc_name", "accepted_rules", "accepted_match_nights", "platform", "referrer", "new_or_returning", "region_preference", "admin_override", "executor"]
+    Request body object containing league player signup data.
+    """ # noqa: E501
+    league: StrictInt = Field(description="League of team player will be captain in")
+    tracker_links: List[StrictStr] = Field(description="List of players tracker links")
+    rsc_name: StrictStr = Field(description="Discord display name of player")
+    accepted_rules: StrictBool = Field(description="Acknowledgement of player accepting rules")
+    accepted_match_nights: StrictBool = Field(description="Acknowledgement of player accepting rules")
+    platform: StrictStr = Field(description="Platform the user plays on.")
+    referrer: StrictStr = Field(description="Who referred the player")
+    new_or_returning: StrictStr = Field(description="Is the player new or returning?")
+    region_preference: StrictStr = Field(description="Players specific region preference")
+    admin_override: Optional[StrictBool] = Field(default=None, description="Admin overriding signup")
+    executor: Optional[StrictInt] = Field(default=None, description="Admin override executor")
+    __properties: ClassVar[List[str]] = ["league", "tracker_links", "rsc_name", "accepted_rules", "accepted_match_nights", "platform", "referrer", "new_or_returning", "region_preference", "admin_override", "executor"]
 
-    @validator('platform')
+    @field_validator('platform')
     def platform_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('STEAM', 'EPIC', 'XBOX', 'PS', 'SWTCH'):
+        if value not in set(['STEAM', 'EPIC', 'XBOX', 'PS', 'SWTCH']):
             raise ValueError("must be one of enum values ('STEAM', 'EPIC', 'XBOX', 'PS', 'SWTCH')")
         return value
 
-    @validator('referrer')
+    @field_validator('referrer')
     def referrer_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('REDDIT', 'TWITCH', 'FRIEND', 'MLE', 'BALLCHASING', 'OTHER'):
+        if value not in set(['REDDIT', 'TWITCH', 'FRIEND', 'MLE', 'BALLCHASING', 'OTHER']):
             raise ValueError("must be one of enum values ('REDDIT', 'TWITCH', 'FRIEND', 'MLE', 'BALLCHASING', 'OTHER')")
         return value
 
-    @validator('new_or_returning')
+    @field_validator('new_or_returning')
     def new_or_returning_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('NEW', 'FORMER'):
+        if value not in set(['NEW', 'FORMER']):
             raise ValueError("must be one of enum values ('NEW', 'FORMER')")
         return value
 
-    @validator('region_preference')
+    @field_validator('region_preference')
     def region_preference_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('EST', 'WST', 'EU'):
+        if value not in set(['EST', 'WST', 'EU']):
             raise ValueError("must be one of enum values ('EST', 'WST', 'EU')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PlayerSignupSchema:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PlayerSignupSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PlayerSignupSchema:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PlayerSignupSchema from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PlayerSignupSchema.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PlayerSignupSchema.parse_obj({
+        _obj = cls.model_validate({
             "league": obj.get("league"),
             "tracker_links": obj.get("tracker_links"),
             "rsc_name": obj.get("rsc_name"),

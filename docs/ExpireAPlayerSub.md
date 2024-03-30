@@ -3,6 +3,7 @@
 Expire a sub for a player who's subbing in on a team
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **league** | **int** | ID of the league transaction is for. | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ExpireAPlayerSub from a JSON string
 expire_a_player_sub_instance = ExpireAPlayerSub.from_json(json)
 # print the JSON string representation of the object
-print ExpireAPlayerSub.to_json()
+print(ExpireAPlayerSub.to_json())
 
 # convert the object into a dict
 expire_a_player_sub_dict = expire_a_player_sub_instance.to_dict()

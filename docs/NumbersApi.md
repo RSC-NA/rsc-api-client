@@ -21,9 +21,8 @@ Method | HTTP request | Description
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
 from rscapi.models.player_mmr import PlayerMMR
@@ -65,6 +64,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**BulkMMRSchemaSubmission**](BulkMMRSchemaSubmission.md)|  | 
@@ -83,6 +83,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -97,9 +98,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
@@ -140,6 +140,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**PlayerMMR**](PlayerMMR.md)|  | 
@@ -158,6 +159,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
@@ -172,9 +174,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -212,6 +213,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this player mmr pull. | 
@@ -230,6 +232,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** |  |  -  |
@@ -244,9 +247,8 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
@@ -291,6 +293,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pulled** | **str**| pulled | [optional] 
@@ -313,6 +316,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -327,9 +331,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
@@ -371,6 +374,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this player mmr pull. | 
@@ -390,6 +394,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -404,9 +409,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
@@ -447,6 +451,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this player mmr pull. | 
@@ -465,6 +470,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -479,9 +485,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
@@ -523,6 +528,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this player mmr pull. | 
@@ -542,6 +548,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |

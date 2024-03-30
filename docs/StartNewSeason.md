@@ -3,6 +3,7 @@
 Endpoint to start new season for a given league
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **start_date** | **str** | Season start date | 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of StartNewSeason from a JSON string
 start_new_season_instance = StartNewSeason.from_json(json)
 # print the JSON string representation of the object
-print StartNewSeason.to_json()
+print(StartNewSeason.to_json())
 
 # convert the object into a dict
 start_new_season_dict = start_new_season_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **day** | **int** |  | [optional] [readonly] 
@@ -26,7 +27,7 @@ json = "{}"
 # create an instance of Match from a JSON string
 match_instance = Match.from_json(json)
 # print the JSON string representation of the object
-print Match.to_json()
+print(Match.to_json())
 
 # convert the object into a dict
 match_dict = match_instance.to_dict()

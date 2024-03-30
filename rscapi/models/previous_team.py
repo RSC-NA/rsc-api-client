@@ -19,61 +19,80 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.base_team import BaseTeam
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PreviousTeam(BaseModel):
     """
     PreviousTeam
-    """
-    team: BaseTeam = Field(...)
+    """ # noqa: E501
+    team: BaseTeam
     sign_date: Optional[datetime] = None
     release_date: Optional[datetime] = None
-    __properties = ["team", "sign_date", "release_date"]
+    __properties: ClassVar[List[str]] = ["team", "sign_date", "release_date"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PreviousTeam:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PreviousTeam from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "sign_date",
-                            "release_date",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "sign_date",
+            "release_date",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of team
         if self.team:
             _dict['team'] = self.team.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PreviousTeam:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PreviousTeam from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PreviousTeam.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PreviousTeam.parse_obj({
-            "team": BaseTeam.from_dict(obj.get("team")) if obj.get("team") is not None else None,
+        _obj = cls.model_validate({
+            "team": BaseTeam.from_dict(obj["team"]) if obj.get("team") is not None else None,
             "sign_date": obj.get("sign_date"),
             "release_date": obj.get("release_date")
         })

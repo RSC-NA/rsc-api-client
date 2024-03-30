@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **season** | **int** |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of IntentToPlay from a JSON string
 intent_to_play_instance = IntentToPlay.from_json(json)
 # print the JSON string representation of the object
-print IntentToPlay.to_json()
+print(IntentToPlay.to_json())
 
 # convert the object into a dict
 intent_to_play_dict = intent_to_play_instance.to_dict()

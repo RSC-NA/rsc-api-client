@@ -21,9 +21,8 @@ Method | HTTP request | Description
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
@@ -64,6 +63,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**TrackerLink**](TrackerLink.md)|  | 
@@ -82,6 +82,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
@@ -96,9 +97,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -136,6 +136,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tracker links. | 
@@ -154,6 +155,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** |  |  -  |
@@ -168,9 +170,8 @@ void (empty response body)
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
 from rscapi.rest import ApiException
@@ -211,6 +212,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**TrackerLinkInvalidateObject**](TrackerLinkInvalidateObject.md)|  | 
@@ -229,6 +231,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
@@ -243,9 +246,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.rest import ApiException
@@ -284,6 +286,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -300,6 +303,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -314,9 +318,8 @@ This endpoint does not need any parameter.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response
 from rscapi.rest import ApiException
@@ -361,6 +364,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **str**| status | [optional] 
@@ -383,6 +387,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -397,9 +402,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
@@ -440,6 +444,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int**| Number of tracker links to grab (Default: 1, Max:25) | [optional] 
@@ -458,6 +463,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -472,9 +478,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
@@ -515,6 +520,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tracker links. | 
@@ -533,6 +539,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/csv
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |

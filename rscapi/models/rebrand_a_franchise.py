@@ -18,45 +18,61 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.team_details import TeamDetails
+from typing import Optional, Set
+from typing_extensions import Self
 
 class RebrandAFranchise(BaseModel):
     """
-    Rebrand a franchise to new details.  # noqa: E501
-    """
-    name: StrictStr = Field(..., description="Name you would like to give the rebranded franchise.")
-    prefix: StrictStr = Field(..., description="New prefix of the franchise")
-    teams: conlist(TeamDetails) = Field(..., description="List of team names and their tier.")
-    admin_override: Optional[StrictBool] = Field(None, description="Override any checks and approve the rebrand.")
-    __properties = ["name", "prefix", "teams", "admin_override"]
+    Rebrand a franchise to new details.
+    """ # noqa: E501
+    name: StrictStr = Field(description="Name you would like to give the rebranded franchise.")
+    prefix: StrictStr = Field(description="New prefix of the franchise")
+    teams: List[TeamDetails] = Field(description="List of team names and their tier.")
+    admin_override: Optional[StrictBool] = Field(default=None, description="Override any checks and approve the rebrand.")
+    __properties: ClassVar[List[str]] = ["name", "prefix", "teams", "admin_override"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> RebrandAFranchise:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of RebrandAFranchise from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in teams (list)
         _items = []
         if self.teams:
@@ -67,18 +83,18 @@ class RebrandAFranchise(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> RebrandAFranchise:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of RebrandAFranchise from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return RebrandAFranchise.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = RebrandAFranchise.parse_obj({
+        _obj = cls.model_validate({
             "name": obj.get("name"),
             "prefix": obj.get("prefix"),
-            "teams": [TeamDetails.from_dict(_item) for _item in obj.get("teams")] if obj.get("teams") is not None else None,
+            "teams": [TeamDetails.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None,
             "admin_override": obj.get("admin_override")
         })
         return _obj

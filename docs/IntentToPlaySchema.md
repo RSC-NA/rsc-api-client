@@ -3,6 +3,7 @@
 Request body object containing intent to play data.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **league** | **int** | League players are returning to. | 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of IntentToPlaySchema from a JSON string
 intent_to_play_schema_instance = IntentToPlaySchema.from_json(json)
 # print the JSON string representation of the object
-print IntentToPlaySchema.to_json()
+print(IntentToPlaySchema.to_json())
 
 # convert the object into a dict
 intent_to_play_schema_dict = intent_to_play_schema_instance.to_dict()

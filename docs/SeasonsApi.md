@@ -24,9 +24,8 @@ Method | HTTP request | Description
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
@@ -67,6 +66,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**Season**](Season.md)|  | 
@@ -85,6 +85,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
@@ -99,9 +100,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -139,6 +139,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this seasons. | 
@@ -157,6 +158,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** |  |  -  |
@@ -173,9 +175,8 @@ Get franchise standings for a given season
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.rest import ApiException
@@ -216,6 +217,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this seasons. | 
@@ -234,6 +236,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -250,9 +253,8 @@ Get current season for a given league.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
@@ -293,6 +295,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **league** | **int**| League to get current season for. | 
@@ -311,6 +314,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -326,9 +330,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
@@ -367,6 +370,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -383,6 +387,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -397,9 +402,8 @@ This endpoint does not need any parameter.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
@@ -441,6 +445,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this seasons. | 
@@ -460,6 +465,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -467,7 +473,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_player_intents**
-> List[IntentToPlay] seasons_player_intents(id)
+> List[IntentToPlay] seasons_player_intents(id, discord_id=discord_id, returning=returning, missing=missing)
 
 
 
@@ -476,9 +482,8 @@ Get player intents for a specific season
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.intent_to_play import IntentToPlay
 from rscapi.rest import ApiException
@@ -506,9 +511,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
     id = 56 # int | A unique integer value identifying this seasons.
+    discord_id = 56 # int | Discord ID of player intent to search for. (optional)
+    returning = True # bool | If the player is returning or not. (optional)
+    missing = True # bool | If the player has filled out their intent form or not. (optional)
 
     try:
-        api_response = await api_instance.seasons_player_intents(id)
+        api_response = await api_instance.seasons_player_intents(id, discord_id=discord_id, returning=returning, missing=missing)
         print("The response of SeasonsApi->seasons_player_intents:\n")
         pprint(api_response)
     except Exception as e:
@@ -519,9 +527,13 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this seasons. | 
+ **discord_id** | **int**| Discord ID of player intent to search for. | [optional] 
+ **returning** | **bool**| If the player is returning or not. | [optional] 
+ **missing** | **bool**| If the player has filled out their intent form or not. | [optional] 
 
 ### Return type
 
@@ -537,6 +549,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -552,9 +565,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
@@ -595,6 +607,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this seasons. | 
@@ -613,6 +626,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -629,9 +643,8 @@ Endpoint to provide a schedule for a given season
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.schedule_ingest_request_body import ScheduleIngestRequestBody
 from rscapi.models.simple_response import SimpleResponse
@@ -674,6 +687,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this seasons. | 
@@ -693,6 +707,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -708,9 +723,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
@@ -752,6 +766,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this seasons. | 
@@ -771,6 +786,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |

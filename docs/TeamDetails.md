@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tier** | **int** | ID of the Tier | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of TeamDetails from a JSON string
 team_details_instance = TeamDetails.from_json(json)
 # print the JSON string representation of the object
-print TeamDetails.to_json()
+print(TeamDetails.to_json())
 
 # convert the object into a dict
 team_details_dict = team_details_instance.to_dict()

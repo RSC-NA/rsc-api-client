@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of TransactionFranchise from a JSON string
 transaction_franchise_instance = TransactionFranchise.from_json(json)
 # print the JSON string representation of the object
-print TransactionFranchise.to_json()
+print(TransactionFranchise.to_json())
 
 # convert the object into a dict
 transaction_franchise_dict = transaction_franchise_instance.to_dict()

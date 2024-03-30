@@ -18,86 +18,104 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conint, constr, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
+from typing import Optional, Set
+from typing_extensions import Self
 
 class TeamSeasonStats(BaseModel):
     """
     TeamSeasonStats
-    """
+    """ # noqa: E501
     id: Optional[StrictInt] = None
-    team: constr(strict=True, min_length=1) = Field(...)
-    type: constr(strict=True, min_length=1) = Field(...)
-    shooting_percentage: Union[StrictFloat, StrictInt] = Field(...)
-    win_percentage: Union[StrictFloat, StrictInt] = Field(...)
-    goal_differential: StrictInt = Field(...)
-    opponent_shooting_percentage: Union[StrictFloat, StrictInt] = Field(...)
+    team: Annotated[str, Field(min_length=1, strict=True)]
+    type: Annotated[str, Field(min_length=1, strict=True)]
+    shooting_percentage: Union[StrictFloat, StrictInt]
+    win_percentage: Union[StrictFloat, StrictInt]
+    goal_differential: StrictInt
+    opponent_shooting_percentage: Union[StrictFloat, StrictInt]
     stats_type: Optional[StrictStr] = None
-    games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    games_won: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    games_lost: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    points: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    goals: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    assists: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    saves: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    shots: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    opponent_points: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    opponent_goals: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    opponent_assists: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    opponent_saves: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    opponent_shots: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    demos_inflicted: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    demos_taken: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    __properties = ["id", "team", "type", "shooting_percentage", "win_percentage", "goal_differential", "opponent_shooting_percentage", "stats_type", "games_played", "games_won", "games_lost", "points", "goals", "assists", "saves", "shots", "opponent_points", "opponent_goals", "opponent_assists", "opponent_saves", "opponent_shots", "demos_inflicted", "demos_taken"]
+    games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    games_won: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    games_lost: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    points: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    goals: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    assists: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    saves: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    shots: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    opponent_points: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    opponent_goals: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    opponent_assists: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    opponent_saves: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    opponent_shots: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    demos_inflicted: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    demos_taken: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    __properties: ClassVar[List[str]] = ["id", "team", "type", "shooting_percentage", "win_percentage", "goal_differential", "opponent_shooting_percentage", "stats_type", "games_played", "games_won", "games_lost", "points", "goals", "assists", "saves", "shots", "opponent_points", "opponent_goals", "opponent_assists", "opponent_saves", "opponent_shots", "demos_inflicted", "demos_taken"]
 
-    @validator('stats_type')
+    @field_validator('stats_type')
     def stats_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('REG', 'PST'):
+        if value not in set(['REG', 'PST']):
             raise ValueError("must be one of enum values ('REG', 'PST')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TeamSeasonStats:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TeamSeasonStats from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "id",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "id",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TeamSeasonStats:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TeamSeasonStats from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TeamSeasonStats.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = TeamSeasonStats.parse_obj({
+        _obj = cls.model_validate({
             "id": obj.get("id"),
             "team": obj.get("team"),
             "type": obj.get("type"),

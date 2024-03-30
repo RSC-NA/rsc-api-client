@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **date_pulled** | **datetime** |  | 
@@ -30,7 +31,7 @@ json = "{}"
 # create an instance of PlayerMMR from a JSON string
 player_mmr_instance = PlayerMMR.from_json(json)
 # print the JSON string representation of the object
-print PlayerMMR.to_json()
+print(PlayerMMR.to_json())
 
 # convert the object into a dict
 player_mmr_dict = player_mmr_instance.to_dict()

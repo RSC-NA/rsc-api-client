@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] [readonly] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PlayerFranchise from a JSON string
 player_franchise_instance = PlayerFranchise.from_json(json)
 # print the JSON string representation of the object
-print PlayerFranchise.to_json()
+print(PlayerFranchise.to_json())
 
 # convert the object into a dict
 player_franchise_dict = player_franchise_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of Tier from a JSON string
 tier_instance = Tier.from_json(json)
 # print the JSON string representation of the object
-print Tier.to_json()
+print(Tier.to_json())
 
 # convert the object into a dict
 tier_dict = tier_instance.to_dict()

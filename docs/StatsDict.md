@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **blue** | [**TeamGameListResults**](TeamGameListResults.md) |  | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of StatsDict from a JSON string
 stats_dict_instance = StatsDict.from_json(json)
 # print the JSON string representation of the object
-print StatsDict.to_json()
+print(StatsDict.to_json())
 
 # convert the object into a dict
 stats_dict_dict = stats_dict_instance.to_dict()

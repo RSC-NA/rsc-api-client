@@ -3,6 +3,7 @@
 Draft pick being traded. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tier** | **str** | Tier the pick is in | 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of DraftPick from a JSON string
 draft_pick_instance = DraftPick.from_json(json)
 # print the JSON string representation of the object
-print DraftPick.to_json()
+print(DraftPick.to_json())
 
 # convert the object into a dict
 draft_pick_dict = draft_pick_instance.to_dict()

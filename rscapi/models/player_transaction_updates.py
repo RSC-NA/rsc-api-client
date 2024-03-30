@@ -18,45 +18,61 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.league_player import LeaguePlayer
 from rscapi.models.transaction_team import TransactionTeam
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PlayerTransactionUpdates(BaseModel):
     """
     PlayerTransactionUpdates
-    """
-    player: LeaguePlayer = Field(...)
-    old_team: Optional[TransactionTeam] = Field(...)
-    new_team: Optional[TransactionTeam] = Field(...)
-    __properties = ["player", "old_team", "new_team"]
+    """ # noqa: E501
+    player: LeaguePlayer
+    old_team: Optional[TransactionTeam]
+    new_team: Optional[TransactionTeam]
+    __properties: ClassVar[List[str]] = ["player", "old_team", "new_team"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PlayerTransactionUpdates:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PlayerTransactionUpdates from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of player
         if self.player:
             _dict['player'] = self.player.to_dict()
@@ -67,30 +83,30 @@ class PlayerTransactionUpdates(BaseModel):
         if self.new_team:
             _dict['new_team'] = self.new_team.to_dict()
         # set to None if old_team (nullable) is None
-        # and __fields_set__ contains the field
-        if self.old_team is None and "old_team" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.old_team is None and "old_team" in self.model_fields_set:
             _dict['old_team'] = None
 
         # set to None if new_team (nullable) is None
-        # and __fields_set__ contains the field
-        if self.new_team is None and "new_team" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.new_team is None and "new_team" in self.model_fields_set:
             _dict['new_team'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PlayerTransactionUpdates:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PlayerTransactionUpdates from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PlayerTransactionUpdates.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PlayerTransactionUpdates.parse_obj({
-            "player": LeaguePlayer.from_dict(obj.get("player")) if obj.get("player") is not None else None,
-            "old_team": TransactionTeam.from_dict(obj.get("old_team")) if obj.get("old_team") is not None else None,
-            "new_team": TransactionTeam.from_dict(obj.get("new_team")) if obj.get("new_team") is not None else None
+        _obj = cls.model_validate({
+            "player": LeaguePlayer.from_dict(obj["player"]) if obj.get("player") is not None else None,
+            "old_team": TransactionTeam.from_dict(obj["old_team"]) if obj.get("old_team") is not None else None,
+            "new_team": TransactionTeam.from_dict(obj["new_team"]) if obj.get("new_team") is not None else None
         })
         return _obj
 

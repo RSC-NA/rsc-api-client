@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
@@ -232,7 +233,7 @@ json = "{}"
 # create an instance of PlayerSeasonStatsInDepth from a JSON string
 player_season_stats_in_depth_instance = PlayerSeasonStatsInDepth.from_json(json)
 # print the JSON string representation of the object
-print PlayerSeasonStatsInDepth.to_json()
+print(PlayerSeasonStatsInDepth.to_json())
 
 # convert the object into a dict
 player_season_stats_in_depth_dict = player_season_stats_in_depth_instance.to_dict()

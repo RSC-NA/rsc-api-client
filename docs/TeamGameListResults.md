@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **team** | **str** |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of TeamGameListResults from a JSON string
 team_game_list_results_instance = TeamGameListResults.from_json(json)
 # print the JSON string representation of the object
-print TeamGameListResults.to_json()
+print(TeamGameListResults.to_json())
 
 # convert the object into a dict
 team_game_list_results_dict = team_game_list_results_instance.to_dict()

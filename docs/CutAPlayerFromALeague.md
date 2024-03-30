@@ -3,6 +3,7 @@
 Cuts a player from their team in a given league.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **int** | Specific player to perform transaction on. | 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of CutAPlayerFromALeague from a JSON string
 cut_a_player_from_a_league_instance = CutAPlayerFromALeague.from_json(json)
 # print the JSON string representation of the object
-print CutAPlayerFromALeague.to_json()
+print(CutAPlayerFromALeague.to_json())
 
 # convert the object into a dict
 cut_a_player_from_a_league_dict = cut_a_player_from_a_league_instance.to_dict()

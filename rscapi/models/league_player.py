@@ -19,74 +19,97 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.league_player_league import LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember
 from rscapi.models.player_team import PlayerTeam
 from rscapi.models.previous_team import PreviousTeam
 from rscapi.models.tier import Tier
+from typing import Optional, Set
+from typing_extensions import Self
 
 class LeaguePlayer(BaseModel):
     """
     LeaguePlayer
-    """
+    """ # noqa: E501
     id: Optional[StrictInt] = None
-    league: LeaguePlayerLeague = Field(...)
+    league: LeaguePlayerLeague
     status: Optional[StrictStr] = None
-    season: StrictInt = Field(...)
+    season: StrictInt
     captain: Optional[StrictBool] = None
     contract_length: Optional[StrictInt] = None
-    team: Optional[PlayerTeam] = Field(...)
+    team: Optional[PlayerTeam]
     last_updated: Optional[datetime] = None
-    previous_teams: Optional[conlist(PreviousTeam)] = None
-    player: LeaguePlayerMember = Field(...)
-    tier: Optional[Tier] = Field(...)
-    sub_status: StrictInt = Field(...)
-    waiver_period_end_date: Optional[datetime] = Field(...)
-    signed_date: Optional[datetime] = Field(...)
-    __properties = ["id", "league", "status", "season", "captain", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "sub_status", "waiver_period_end_date", "signed_date"]
+    previous_teams: Optional[List[PreviousTeam]] = None
+    player: LeaguePlayerMember
+    tier: Optional[Tier]
+    sub_status: StrictInt
+    waiver_period_end_date: Optional[datetime]
+    signed_date: Optional[datetime]
+    __properties: ClassVar[List[str]] = ["id", "league", "status", "season", "captain", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "sub_status", "waiver_period_end_date", "signed_date"]
 
-    @validator('status')
+    @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR'):
-            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR')")
+        if value not in set(['DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR']):
+            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> LeaguePlayer:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of LeaguePlayer from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "id",
-                            "status",
-                            "captain",
-                            "contract_length",
-                            "last_updated",
-                            "previous_teams",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "id",
+            "status",
+            "captain",
+            "contract_length",
+            "last_updated",
+            "previous_teams",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of league
         if self.league:
             _dict['league'] = self.league.to_dict()
@@ -107,48 +130,48 @@ class LeaguePlayer(BaseModel):
         if self.tier:
             _dict['tier'] = self.tier.to_dict()
         # set to None if team (nullable) is None
-        # and __fields_set__ contains the field
-        if self.team is None and "team" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.team is None and "team" in self.model_fields_set:
             _dict['team'] = None
 
         # set to None if tier (nullable) is None
-        # and __fields_set__ contains the field
-        if self.tier is None and "tier" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.tier is None and "tier" in self.model_fields_set:
             _dict['tier'] = None
 
         # set to None if waiver_period_end_date (nullable) is None
-        # and __fields_set__ contains the field
-        if self.waiver_period_end_date is None and "waiver_period_end_date" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.waiver_period_end_date is None and "waiver_period_end_date" in self.model_fields_set:
             _dict['waiver_period_end_date'] = None
 
         # set to None if signed_date (nullable) is None
-        # and __fields_set__ contains the field
-        if self.signed_date is None and "signed_date" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.signed_date is None and "signed_date" in self.model_fields_set:
             _dict['signed_date'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> LeaguePlayer:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of LeaguePlayer from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return LeaguePlayer.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = LeaguePlayer.parse_obj({
+        _obj = cls.model_validate({
             "id": obj.get("id"),
-            "league": LeaguePlayerLeague.from_dict(obj.get("league")) if obj.get("league") is not None else None,
+            "league": LeaguePlayerLeague.from_dict(obj["league"]) if obj.get("league") is not None else None,
             "status": obj.get("status"),
             "season": obj.get("season"),
             "captain": obj.get("captain"),
             "contract_length": obj.get("contract_length"),
-            "team": PlayerTeam.from_dict(obj.get("team")) if obj.get("team") is not None else None,
+            "team": PlayerTeam.from_dict(obj["team"]) if obj.get("team") is not None else None,
             "last_updated": obj.get("last_updated"),
-            "previous_teams": [PreviousTeam.from_dict(_item) for _item in obj.get("previous_teams")] if obj.get("previous_teams") is not None else None,
-            "player": LeaguePlayerMember.from_dict(obj.get("player")) if obj.get("player") is not None else None,
-            "tier": Tier.from_dict(obj.get("tier")) if obj.get("tier") is not None else None,
+            "previous_teams": [PreviousTeam.from_dict(_item) for _item in obj["previous_teams"]] if obj.get("previous_teams") is not None else None,
+            "player": LeaguePlayerMember.from_dict(obj["player"]) if obj.get("player") is not None else None,
+            "tier": Tier.from_dict(obj["tier"]) if obj.get("tier") is not None else None,
             "sub_status": obj.get("sub_status"),
             "waiver_period_end_date": obj.get("waiver_period_end_date"),
             "signed_date": obj.get("signed_date")

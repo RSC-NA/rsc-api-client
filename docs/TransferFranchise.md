@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **general_manager** | **int** | General manager to transfer franchise to | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of TransferFranchise from a JSON string
 transfer_franchise_instance = TransferFranchise.from_json(json)
 # print the JSON string representation of the object
-print TransferFranchise.to_json()
+print(TransferFranchise.to_json())
 
 # convert the object into a dict
 transfer_franchise_dict = transfer_franchise_instance.to_dict()

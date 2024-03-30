@@ -3,6 +3,7 @@
 Place a player on IR
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **int** | Specific player to perform transaction on. | 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of InactiveReserve from a JSON string
 inactive_reserve_instance = InactiveReserve.from_json(json)
 # print the JSON string representation of the object
-print InactiveReserve.to_json()
+print(InactiveReserve.to_json())
 
 # convert the object into a dict
 inactive_reserve_dict = inactive_reserve_instance.to_dict()

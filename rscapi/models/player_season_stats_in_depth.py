@@ -18,177 +18,179 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conint, constr, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PlayerSeasonStatsInDepth(BaseModel):
     """
     PlayerSeasonStatsInDepth
-    """
+    """ # noqa: E501
     id: Optional[StrictInt] = None
-    player: constr(strict=True, min_length=1) = Field(...)
-    season: StrictInt = Field(...)
-    type: constr(strict=True, min_length=1) = Field(...)
-    shooting_percentage: Union[StrictFloat, StrictInt] = Field(...)
-    bpm: Union[StrictFloat, StrictInt] = Field(...)
-    bcpm: Union[StrictFloat, StrictInt] = Field(...)
-    avg_amount: Union[StrictFloat, StrictInt] = Field(...)
-    percent_zero_boost: Union[StrictFloat, StrictInt] = Field(...)
-    percent_full_boost: Union[StrictFloat, StrictInt] = Field(...)
-    percent_boost_0_25: Union[StrictFloat, StrictInt] = Field(...)
-    percent_boost_25_50: Union[StrictFloat, StrictInt] = Field(...)
-    percent_boost_50_75: Union[StrictFloat, StrictInt] = Field(...)
-    percent_boost_75_100: Union[StrictFloat, StrictInt] = Field(...)
-    avg_speed: StrictInt = Field(...)
-    avg_powerslide_duration: Union[StrictFloat, StrictInt] = Field(...)
-    avg_speed_percentage: Union[StrictFloat, StrictInt] = Field(...)
-    percent_slow_speed: Union[StrictFloat, StrictInt] = Field(...)
-    percent_boost_speed: Union[StrictFloat, StrictInt] = Field(...)
-    percent_supersonic_speed: Union[StrictFloat, StrictInt] = Field(...)
-    percent_ground: Union[StrictFloat, StrictInt] = Field(...)
-    percent_low_air: Union[StrictFloat, StrictInt] = Field(...)
-    percent_high_air: Union[StrictFloat, StrictInt] = Field(...)
-    avg_distance_to_ball: StrictInt = Field(...)
-    avg_distance_to_ball_possession: StrictInt = Field(...)
-    avg_distance_to_ball_no_possession: StrictInt = Field(...)
-    avg_distance_to_mates: StrictInt = Field(...)
-    percent_defensive_third: Union[StrictFloat, StrictInt] = Field(...)
-    percent_offensive_third: Union[StrictFloat, StrictInt] = Field(...)
-    percent_neutral_third: Union[StrictFloat, StrictInt] = Field(...)
-    percent_defensive_half: Union[StrictFloat, StrictInt] = Field(...)
-    percent_offensive_half: Union[StrictFloat, StrictInt] = Field(...)
-    percent_behind_ball: Union[StrictFloat, StrictInt] = Field(...)
-    percent_infront_ball: Union[StrictFloat, StrictInt] = Field(...)
-    percent_most_back: Union[StrictFloat, StrictInt] = Field(...)
-    percent_most_forward: Union[StrictFloat, StrictInt] = Field(...)
-    percent_closest_to_ball: Union[StrictFloat, StrictInt] = Field(...)
-    percent_farthest_from_ball: Union[StrictFloat, StrictInt] = Field(...)
-    mvps_rank: StrictInt = Field(...)
-    shots_rank: StrictInt = Field(...)
-    shots_against_rank: StrictInt = Field(...)
-    goals_rank: StrictInt = Field(...)
-    goals_against_rank: StrictInt = Field(...)
-    saves_rank: StrictInt = Field(...)
-    assists_rank: StrictInt = Field(...)
-    points_rank: StrictInt = Field(...)
-    hat_tricks_rank: StrictInt = Field(...)
-    playmakers_rank: StrictInt = Field(...)
-    saviors_rank: StrictInt = Field(...)
-    goals_against_while_last_defender_rank: StrictInt = Field(...)
-    time_powerslide_rank: StrictInt = Field(...)
-    count_powerslide_rank: StrictInt = Field(...)
-    amount_collected_rank: StrictInt = Field(...)
-    amount_stolen_rank: StrictInt = Field(...)
-    amount_collected_big_rank: StrictInt = Field(...)
-    amount_stolen_big_rank: StrictInt = Field(...)
-    amount_collected_small_rank: StrictInt = Field(...)
-    amount_stolen_small_rank: StrictInt = Field(...)
-    count_collected_big_rank: StrictInt = Field(...)
-    count_stolen_big_rank: StrictInt = Field(...)
-    count_collected_small_rank: StrictInt = Field(...)
-    count_stolen_small_rank: StrictInt = Field(...)
-    amount_overfill_rank: StrictInt = Field(...)
-    amount_overfill_stolen_rank: StrictInt = Field(...)
-    amount_used_while_supersonic_rank: StrictInt = Field(...)
-    time_zero_boost_rank: StrictInt = Field(...)
-    time_full_boost_rank: StrictInt = Field(...)
-    time_boost_0_25_rank: StrictInt = Field(...)
-    time_boost_25_50_rank: StrictInt = Field(...)
-    time_boost_50_75_rank: StrictInt = Field(...)
-    time_boost_75_100_rank: StrictInt = Field(...)
-    total_distance_rank: StrictInt = Field(...)
-    time_supersonic_speed_rank: StrictInt = Field(...)
-    time_boost_speed_rank: StrictInt = Field(...)
-    time_slow_speed_rank: StrictInt = Field(...)
-    time_ground_rank: StrictInt = Field(...)
-    time_low_air_rank: StrictInt = Field(...)
-    time_high_air_rank: StrictInt = Field(...)
-    time_defensive_third_rank: StrictInt = Field(...)
-    time_neutral_third_rank: StrictInt = Field(...)
-    time_offensive_third_rank: StrictInt = Field(...)
-    time_defensive_half_rank: StrictInt = Field(...)
-    time_offensive_half_rank: StrictInt = Field(...)
-    time_behind_ball_rank: StrictInt = Field(...)
-    time_infront_ball_rank: StrictInt = Field(...)
-    time_most_back_rank: StrictInt = Field(...)
-    time_most_forward_rank: StrictInt = Field(...)
-    time_closest_to_ball_rank: StrictInt = Field(...)
-    time_farthest_from_ball_rank: StrictInt = Field(...)
-    demos_inflicted_rank: StrictInt = Field(...)
-    demos_taken_rank: StrictInt = Field(...)
-    shooting_percentage_rank: StrictInt = Field(...)
-    bpm_rank: StrictInt = Field(...)
-    bcpm_rank: StrictInt = Field(...)
-    avg_amount_rank: StrictInt = Field(...)
-    percent_zero_boost_rank: StrictInt = Field(...)
-    percent_full_boost_rank: StrictInt = Field(...)
-    percent_boost_0_25_rank: StrictInt = Field(...)
-    percent_boost_25_50_rank: StrictInt = Field(...)
-    percent_boost_50_75_rank: StrictInt = Field(...)
-    percent_boost_75_100_rank: StrictInt = Field(...)
-    avg_speed_rank: StrictInt = Field(...)
-    avg_powerslide_duration_rank: StrictInt = Field(...)
-    avg_speed_percentage_rank: StrictInt = Field(...)
-    percent_slow_speed_rank: StrictInt = Field(...)
-    percent_boost_speed_rank: StrictInt = Field(...)
-    percent_supersonic_speed_rank: StrictInt = Field(...)
-    percent_ground_rank: StrictInt = Field(...)
-    percent_low_air_rank: StrictInt = Field(...)
-    percent_high_air_rank: StrictInt = Field(...)
-    avg_distance_to_ball_rank: StrictInt = Field(...)
-    avg_distance_to_ball_possession_rank: StrictInt = Field(...)
-    avg_distance_to_ball_no_possession_rank: StrictInt = Field(...)
-    avg_distance_to_mates_rank: StrictInt = Field(...)
-    percent_defensive_third_rank: StrictInt = Field(...)
-    percent_offensive_third_rank: StrictInt = Field(...)
-    percent_neutral_third_rank: StrictInt = Field(...)
-    percent_defensive_half_rank: StrictInt = Field(...)
-    percent_offensive_half_rank: StrictInt = Field(...)
-    percent_behind_ball_rank: StrictInt = Field(...)
-    percent_infront_ball_rank: StrictInt = Field(...)
-    percent_most_back_rank: StrictInt = Field(...)
-    percent_most_forward_rank: StrictInt = Field(...)
-    percent_closest_to_ball_rank: StrictInt = Field(...)
-    percent_farthest_from_ball_rank: StrictInt = Field(...)
+    player: Annotated[str, Field(min_length=1, strict=True)]
+    season: StrictInt
+    type: Annotated[str, Field(min_length=1, strict=True)]
+    shooting_percentage: Union[StrictFloat, StrictInt]
+    bpm: Union[StrictFloat, StrictInt]
+    bcpm: Union[StrictFloat, StrictInt]
+    avg_amount: Union[StrictFloat, StrictInt]
+    percent_zero_boost: Union[StrictFloat, StrictInt]
+    percent_full_boost: Union[StrictFloat, StrictInt]
+    percent_boost_0_25: Union[StrictFloat, StrictInt]
+    percent_boost_25_50: Union[StrictFloat, StrictInt]
+    percent_boost_50_75: Union[StrictFloat, StrictInt]
+    percent_boost_75_100: Union[StrictFloat, StrictInt]
+    avg_speed: StrictInt
+    avg_powerslide_duration: Union[StrictFloat, StrictInt]
+    avg_speed_percentage: Union[StrictFloat, StrictInt]
+    percent_slow_speed: Union[StrictFloat, StrictInt]
+    percent_boost_speed: Union[StrictFloat, StrictInt]
+    percent_supersonic_speed: Union[StrictFloat, StrictInt]
+    percent_ground: Union[StrictFloat, StrictInt]
+    percent_low_air: Union[StrictFloat, StrictInt]
+    percent_high_air: Union[StrictFloat, StrictInt]
+    avg_distance_to_ball: StrictInt
+    avg_distance_to_ball_possession: StrictInt
+    avg_distance_to_ball_no_possession: StrictInt
+    avg_distance_to_mates: StrictInt
+    percent_defensive_third: Union[StrictFloat, StrictInt]
+    percent_offensive_third: Union[StrictFloat, StrictInt]
+    percent_neutral_third: Union[StrictFloat, StrictInt]
+    percent_defensive_half: Union[StrictFloat, StrictInt]
+    percent_offensive_half: Union[StrictFloat, StrictInt]
+    percent_behind_ball: Union[StrictFloat, StrictInt]
+    percent_infront_ball: Union[StrictFloat, StrictInt]
+    percent_most_back: Union[StrictFloat, StrictInt]
+    percent_most_forward: Union[StrictFloat, StrictInt]
+    percent_closest_to_ball: Union[StrictFloat, StrictInt]
+    percent_farthest_from_ball: Union[StrictFloat, StrictInt]
+    mvps_rank: StrictInt
+    shots_rank: StrictInt
+    shots_against_rank: StrictInt
+    goals_rank: StrictInt
+    goals_against_rank: StrictInt
+    saves_rank: StrictInt
+    assists_rank: StrictInt
+    points_rank: StrictInt
+    hat_tricks_rank: StrictInt
+    playmakers_rank: StrictInt
+    saviors_rank: StrictInt
+    goals_against_while_last_defender_rank: StrictInt
+    time_powerslide_rank: StrictInt
+    count_powerslide_rank: StrictInt
+    amount_collected_rank: StrictInt
+    amount_stolen_rank: StrictInt
+    amount_collected_big_rank: StrictInt
+    amount_stolen_big_rank: StrictInt
+    amount_collected_small_rank: StrictInt
+    amount_stolen_small_rank: StrictInt
+    count_collected_big_rank: StrictInt
+    count_stolen_big_rank: StrictInt
+    count_collected_small_rank: StrictInt
+    count_stolen_small_rank: StrictInt
+    amount_overfill_rank: StrictInt
+    amount_overfill_stolen_rank: StrictInt
+    amount_used_while_supersonic_rank: StrictInt
+    time_zero_boost_rank: StrictInt
+    time_full_boost_rank: StrictInt
+    time_boost_0_25_rank: StrictInt
+    time_boost_25_50_rank: StrictInt
+    time_boost_50_75_rank: StrictInt
+    time_boost_75_100_rank: StrictInt
+    total_distance_rank: StrictInt
+    time_supersonic_speed_rank: StrictInt
+    time_boost_speed_rank: StrictInt
+    time_slow_speed_rank: StrictInt
+    time_ground_rank: StrictInt
+    time_low_air_rank: StrictInt
+    time_high_air_rank: StrictInt
+    time_defensive_third_rank: StrictInt
+    time_neutral_third_rank: StrictInt
+    time_offensive_third_rank: StrictInt
+    time_defensive_half_rank: StrictInt
+    time_offensive_half_rank: StrictInt
+    time_behind_ball_rank: StrictInt
+    time_infront_ball_rank: StrictInt
+    time_most_back_rank: StrictInt
+    time_most_forward_rank: StrictInt
+    time_closest_to_ball_rank: StrictInt
+    time_farthest_from_ball_rank: StrictInt
+    demos_inflicted_rank: StrictInt
+    demos_taken_rank: StrictInt
+    shooting_percentage_rank: StrictInt
+    bpm_rank: StrictInt
+    bcpm_rank: StrictInt
+    avg_amount_rank: StrictInt
+    percent_zero_boost_rank: StrictInt
+    percent_full_boost_rank: StrictInt
+    percent_boost_0_25_rank: StrictInt
+    percent_boost_25_50_rank: StrictInt
+    percent_boost_50_75_rank: StrictInt
+    percent_boost_75_100_rank: StrictInt
+    avg_speed_rank: StrictInt
+    avg_powerslide_duration_rank: StrictInt
+    avg_speed_percentage_rank: StrictInt
+    percent_slow_speed_rank: StrictInt
+    percent_boost_speed_rank: StrictInt
+    percent_supersonic_speed_rank: StrictInt
+    percent_ground_rank: StrictInt
+    percent_low_air_rank: StrictInt
+    percent_high_air_rank: StrictInt
+    avg_distance_to_ball_rank: StrictInt
+    avg_distance_to_ball_possession_rank: StrictInt
+    avg_distance_to_ball_no_possession_rank: StrictInt
+    avg_distance_to_mates_rank: StrictInt
+    percent_defensive_third_rank: StrictInt
+    percent_offensive_third_rank: StrictInt
+    percent_neutral_third_rank: StrictInt
+    percent_defensive_half_rank: StrictInt
+    percent_offensive_half_rank: StrictInt
+    percent_behind_ball_rank: StrictInt
+    percent_infront_ball_rank: StrictInt
+    percent_most_back_rank: StrictInt
+    percent_most_forward_rank: StrictInt
+    percent_closest_to_ball_rank: StrictInt
+    percent_farthest_from_ball_rank: StrictInt
     stats_type: Optional[StrictStr] = None
-    games_played: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    games_won: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    games_lost: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    mvps: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    shots: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    shots_against: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    goals: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    goals_against: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    saves: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    assists: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    points: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    hat_tricks: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    playmakers: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    saviors: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    goals_against_while_last_defender: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    games_won: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    games_lost: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    mvps: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    shots: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    shots_against: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    goals: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    goals_against: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    saves: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    assists: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    points: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    hat_tricks: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    playmakers: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    saviors: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    goals_against_while_last_defender: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     time_powerslide: Optional[Union[StrictFloat, StrictInt]] = None
-    count_powerslide: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_collected: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_stolen: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_collected_big: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_stolen_big: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_collected_small: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_stolen_small: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    count_collected_big: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    count_stolen_big: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    count_collected_small: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    count_stolen_small: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_overfill: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_overfill_stolen: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    amount_used_while_supersonic: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    count_powerslide: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_collected: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_stolen: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_collected_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_stolen_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_collected_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_stolen_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    count_collected_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    count_stolen_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    count_collected_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    count_stolen_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_overfill: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_overfill_stolen: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_used_while_supersonic: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     time_zero_boost: Optional[Union[StrictFloat, StrictInt]] = None
     time_full_boost: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_0_25: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_25_50: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_50_75: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_75_100: Optional[Union[StrictFloat, StrictInt]] = None
-    total_distance: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    total_distance: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     time_supersonic_speed: Optional[Union[StrictFloat, StrictInt]] = None
     time_boost_speed: Optional[Union[StrictFloat, StrictInt]] = None
     time_slow_speed: Optional[Union[StrictFloat, StrictInt]] = None
@@ -206,8 +208,8 @@ class PlayerSeasonStatsInDepth(BaseModel):
     time_most_forward: Optional[Union[StrictFloat, StrictInt]] = None
     time_closest_to_ball: Optional[Union[StrictFloat, StrictInt]] = None
     time_farthest_from_ball: Optional[Union[StrictFloat, StrictInt]] = None
-    demos_inflicted: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    demos_taken: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    demos_inflicted: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    demos_taken: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     raw_shooting_percentage: Optional[Union[StrictFloat, StrictInt]] = None
     raw_bpm: Optional[Union[StrictFloat, StrictInt]] = None
     raw_bcpm: Optional[Union[StrictFloat, StrictInt]] = None
@@ -218,7 +220,7 @@ class PlayerSeasonStatsInDepth(BaseModel):
     raw_percent_boost_25_50: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_boost_50_75: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_boost_75_100: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_avg_speed: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    raw_avg_speed: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     raw_avg_powerslide_duration: Optional[Union[StrictFloat, StrictInt]] = None
     raw_avg_speed_percentage: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_slow_speed: Optional[Union[StrictFloat, StrictInt]] = None
@@ -227,10 +229,10 @@ class PlayerSeasonStatsInDepth(BaseModel):
     raw_percent_ground: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_low_air: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_high_air: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_avg_distance_to_ball: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    raw_avg_distance_to_ball_possession: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    raw_avg_distance_to_ball_no_possession: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
-    raw_avg_distance_to_mates: Optional[conint(strict=True, le=2147483647, ge=-2147483648)] = None
+    raw_avg_distance_to_ball: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    raw_avg_distance_to_ball_possession: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    raw_avg_distance_to_ball_no_possession: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    raw_avg_distance_to_mates: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     raw_percent_defensive_third: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_offensive_third: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_neutral_third: Optional[Union[StrictFloat, StrictInt]] = None
@@ -242,56 +244,72 @@ class PlayerSeasonStatsInDepth(BaseModel):
     raw_percent_most_forward: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_closest_to_ball: Optional[Union[StrictFloat, StrictInt]] = None
     raw_percent_farthest_from_ball: Optional[Union[StrictFloat, StrictInt]] = None
-    tier: StrictInt = Field(...)
-    __properties = ["id", "player", "season", "type", "shooting_percentage", "bpm", "bcpm", "avg_amount", "percent_zero_boost", "percent_full_boost", "percent_boost_0_25", "percent_boost_25_50", "percent_boost_50_75", "percent_boost_75_100", "avg_speed", "avg_powerslide_duration", "avg_speed_percentage", "percent_slow_speed", "percent_boost_speed", "percent_supersonic_speed", "percent_ground", "percent_low_air", "percent_high_air", "avg_distance_to_ball", "avg_distance_to_ball_possession", "avg_distance_to_ball_no_possession", "avg_distance_to_mates", "percent_defensive_third", "percent_offensive_third", "percent_neutral_third", "percent_defensive_half", "percent_offensive_half", "percent_behind_ball", "percent_infront_ball", "percent_most_back", "percent_most_forward", "percent_closest_to_ball", "percent_farthest_from_ball", "mvps_rank", "shots_rank", "shots_against_rank", "goals_rank", "goals_against_rank", "saves_rank", "assists_rank", "points_rank", "hat_tricks_rank", "playmakers_rank", "saviors_rank", "goals_against_while_last_defender_rank", "time_powerslide_rank", "count_powerslide_rank", "amount_collected_rank", "amount_stolen_rank", "amount_collected_big_rank", "amount_stolen_big_rank", "amount_collected_small_rank", "amount_stolen_small_rank", "count_collected_big_rank", "count_stolen_big_rank", "count_collected_small_rank", "count_stolen_small_rank", "amount_overfill_rank", "amount_overfill_stolen_rank", "amount_used_while_supersonic_rank", "time_zero_boost_rank", "time_full_boost_rank", "time_boost_0_25_rank", "time_boost_25_50_rank", "time_boost_50_75_rank", "time_boost_75_100_rank", "total_distance_rank", "time_supersonic_speed_rank", "time_boost_speed_rank", "time_slow_speed_rank", "time_ground_rank", "time_low_air_rank", "time_high_air_rank", "time_defensive_third_rank", "time_neutral_third_rank", "time_offensive_third_rank", "time_defensive_half_rank", "time_offensive_half_rank", "time_behind_ball_rank", "time_infront_ball_rank", "time_most_back_rank", "time_most_forward_rank", "time_closest_to_ball_rank", "time_farthest_from_ball_rank", "demos_inflicted_rank", "demos_taken_rank", "shooting_percentage_rank", "bpm_rank", "bcpm_rank", "avg_amount_rank", "percent_zero_boost_rank", "percent_full_boost_rank", "percent_boost_0_25_rank", "percent_boost_25_50_rank", "percent_boost_50_75_rank", "percent_boost_75_100_rank", "avg_speed_rank", "avg_powerslide_duration_rank", "avg_speed_percentage_rank", "percent_slow_speed_rank", "percent_boost_speed_rank", "percent_supersonic_speed_rank", "percent_ground_rank", "percent_low_air_rank", "percent_high_air_rank", "avg_distance_to_ball_rank", "avg_distance_to_ball_possession_rank", "avg_distance_to_ball_no_possession_rank", "avg_distance_to_mates_rank", "percent_defensive_third_rank", "percent_offensive_third_rank", "percent_neutral_third_rank", "percent_defensive_half_rank", "percent_offensive_half_rank", "percent_behind_ball_rank", "percent_infront_ball_rank", "percent_most_back_rank", "percent_most_forward_rank", "percent_closest_to_ball_rank", "percent_farthest_from_ball_rank", "stats_type", "games_played", "games_won", "games_lost", "mvps", "shots", "shots_against", "goals", "goals_against", "saves", "assists", "points", "hat_tricks", "playmakers", "saviors", "goals_against_while_last_defender", "time_powerslide", "count_powerslide", "amount_collected", "amount_stolen", "amount_collected_big", "amount_stolen_big", "amount_collected_small", "amount_stolen_small", "count_collected_big", "count_stolen_big", "count_collected_small", "count_stolen_small", "amount_overfill", "amount_overfill_stolen", "amount_used_while_supersonic", "time_zero_boost", "time_full_boost", "time_boost_0_25", "time_boost_25_50", "time_boost_50_75", "time_boost_75_100", "total_distance", "time_supersonic_speed", "time_boost_speed", "time_slow_speed", "time_ground", "time_low_air", "time_high_air", "time_defensive_third", "time_neutral_third", "time_offensive_third", "time_defensive_half", "time_offensive_half", "time_behind_ball", "time_infront_ball", "time_most_back", "time_most_forward", "time_closest_to_ball", "time_farthest_from_ball", "demos_inflicted", "demos_taken", "raw_shooting_percentage", "raw_bpm", "raw_bcpm", "raw_avg_amount", "raw_percent_zero_boost", "raw_percent_full_boost", "raw_percent_boost_0_25", "raw_percent_boost_25_50", "raw_percent_boost_50_75", "raw_percent_boost_75_100", "raw_avg_speed", "raw_avg_powerslide_duration", "raw_avg_speed_percentage", "raw_percent_slow_speed", "raw_percent_boost_speed", "raw_percent_supersonic_speed", "raw_percent_ground", "raw_percent_low_air", "raw_percent_high_air", "raw_avg_distance_to_ball", "raw_avg_distance_to_ball_possession", "raw_avg_distance_to_ball_no_possession", "raw_avg_distance_to_mates", "raw_percent_defensive_third", "raw_percent_offensive_third", "raw_percent_neutral_third", "raw_percent_defensive_half", "raw_percent_offensive_half", "raw_percent_behind_ball", "raw_percent_infront_ball", "raw_percent_most_back", "raw_percent_most_forward", "raw_percent_closest_to_ball", "raw_percent_farthest_from_ball", "tier"]
+    tier: StrictInt
+    __properties: ClassVar[List[str]] = ["id", "player", "season", "type", "shooting_percentage", "bpm", "bcpm", "avg_amount", "percent_zero_boost", "percent_full_boost", "percent_boost_0_25", "percent_boost_25_50", "percent_boost_50_75", "percent_boost_75_100", "avg_speed", "avg_powerslide_duration", "avg_speed_percentage", "percent_slow_speed", "percent_boost_speed", "percent_supersonic_speed", "percent_ground", "percent_low_air", "percent_high_air", "avg_distance_to_ball", "avg_distance_to_ball_possession", "avg_distance_to_ball_no_possession", "avg_distance_to_mates", "percent_defensive_third", "percent_offensive_third", "percent_neutral_third", "percent_defensive_half", "percent_offensive_half", "percent_behind_ball", "percent_infront_ball", "percent_most_back", "percent_most_forward", "percent_closest_to_ball", "percent_farthest_from_ball", "mvps_rank", "shots_rank", "shots_against_rank", "goals_rank", "goals_against_rank", "saves_rank", "assists_rank", "points_rank", "hat_tricks_rank", "playmakers_rank", "saviors_rank", "goals_against_while_last_defender_rank", "time_powerslide_rank", "count_powerslide_rank", "amount_collected_rank", "amount_stolen_rank", "amount_collected_big_rank", "amount_stolen_big_rank", "amount_collected_small_rank", "amount_stolen_small_rank", "count_collected_big_rank", "count_stolen_big_rank", "count_collected_small_rank", "count_stolen_small_rank", "amount_overfill_rank", "amount_overfill_stolen_rank", "amount_used_while_supersonic_rank", "time_zero_boost_rank", "time_full_boost_rank", "time_boost_0_25_rank", "time_boost_25_50_rank", "time_boost_50_75_rank", "time_boost_75_100_rank", "total_distance_rank", "time_supersonic_speed_rank", "time_boost_speed_rank", "time_slow_speed_rank", "time_ground_rank", "time_low_air_rank", "time_high_air_rank", "time_defensive_third_rank", "time_neutral_third_rank", "time_offensive_third_rank", "time_defensive_half_rank", "time_offensive_half_rank", "time_behind_ball_rank", "time_infront_ball_rank", "time_most_back_rank", "time_most_forward_rank", "time_closest_to_ball_rank", "time_farthest_from_ball_rank", "demos_inflicted_rank", "demos_taken_rank", "shooting_percentage_rank", "bpm_rank", "bcpm_rank", "avg_amount_rank", "percent_zero_boost_rank", "percent_full_boost_rank", "percent_boost_0_25_rank", "percent_boost_25_50_rank", "percent_boost_50_75_rank", "percent_boost_75_100_rank", "avg_speed_rank", "avg_powerslide_duration_rank", "avg_speed_percentage_rank", "percent_slow_speed_rank", "percent_boost_speed_rank", "percent_supersonic_speed_rank", "percent_ground_rank", "percent_low_air_rank", "percent_high_air_rank", "avg_distance_to_ball_rank", "avg_distance_to_ball_possession_rank", "avg_distance_to_ball_no_possession_rank", "avg_distance_to_mates_rank", "percent_defensive_third_rank", "percent_offensive_third_rank", "percent_neutral_third_rank", "percent_defensive_half_rank", "percent_offensive_half_rank", "percent_behind_ball_rank", "percent_infront_ball_rank", "percent_most_back_rank", "percent_most_forward_rank", "percent_closest_to_ball_rank", "percent_farthest_from_ball_rank", "stats_type", "games_played", "games_won", "games_lost", "mvps", "shots", "shots_against", "goals", "goals_against", "saves", "assists", "points", "hat_tricks", "playmakers", "saviors", "goals_against_while_last_defender", "time_powerslide", "count_powerslide", "amount_collected", "amount_stolen", "amount_collected_big", "amount_stolen_big", "amount_collected_small", "amount_stolen_small", "count_collected_big", "count_stolen_big", "count_collected_small", "count_stolen_small", "amount_overfill", "amount_overfill_stolen", "amount_used_while_supersonic", "time_zero_boost", "time_full_boost", "time_boost_0_25", "time_boost_25_50", "time_boost_50_75", "time_boost_75_100", "total_distance", "time_supersonic_speed", "time_boost_speed", "time_slow_speed", "time_ground", "time_low_air", "time_high_air", "time_defensive_third", "time_neutral_third", "time_offensive_third", "time_defensive_half", "time_offensive_half", "time_behind_ball", "time_infront_ball", "time_most_back", "time_most_forward", "time_closest_to_ball", "time_farthest_from_ball", "demos_inflicted", "demos_taken", "raw_shooting_percentage", "raw_bpm", "raw_bcpm", "raw_avg_amount", "raw_percent_zero_boost", "raw_percent_full_boost", "raw_percent_boost_0_25", "raw_percent_boost_25_50", "raw_percent_boost_50_75", "raw_percent_boost_75_100", "raw_avg_speed", "raw_avg_powerslide_duration", "raw_avg_speed_percentage", "raw_percent_slow_speed", "raw_percent_boost_speed", "raw_percent_supersonic_speed", "raw_percent_ground", "raw_percent_low_air", "raw_percent_high_air", "raw_avg_distance_to_ball", "raw_avg_distance_to_ball_possession", "raw_avg_distance_to_ball_no_possession", "raw_avg_distance_to_mates", "raw_percent_defensive_third", "raw_percent_offensive_third", "raw_percent_neutral_third", "raw_percent_defensive_half", "raw_percent_offensive_half", "raw_percent_behind_ball", "raw_percent_infront_ball", "raw_percent_most_back", "raw_percent_most_forward", "raw_percent_closest_to_ball", "raw_percent_farthest_from_ball", "tier"]
 
-    @validator('stats_type')
+    @field_validator('stats_type')
     def stats_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('REG', 'PST'):
+        if value not in set(['REG', 'PST']):
             raise ValueError("must be one of enum values ('REG', 'PST')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PlayerSeasonStatsInDepth:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PlayerSeasonStatsInDepth from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "id",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "id",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PlayerSeasonStatsInDepth:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PlayerSeasonStatsInDepth from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PlayerSeasonStatsInDepth.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PlayerSeasonStatsInDepth.parse_obj({
+        _obj = cls.model_validate({
             "id": obj.get("id"),
             "player": obj.get("player"),
             "season": obj.get("season"),

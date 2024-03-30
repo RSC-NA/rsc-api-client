@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **day** | **int** |  | [optional] [readonly] 
@@ -26,7 +27,7 @@ json = "{}"
 # create an instance of HighLevelMatch from a JSON string
 high_level_match_instance = HighLevelMatch.from_json(json)
 # print the JSON string representation of the object
-print HighLevelMatch.to_json()
+print(HighLevelMatch.to_json())
 
 # convert the object into a dict
 high_level_match_dict = high_level_match_instance.to_dict()

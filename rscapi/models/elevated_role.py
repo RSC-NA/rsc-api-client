@@ -18,71 +18,91 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, constr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.league import League
+from typing import Optional, Set
+from typing_extensions import Self
 
 class ElevatedRole(BaseModel):
     """
     ElevatedRole
-    """
-    league: League = Field(...)
-    position: Optional[constr(strict=True, min_length=1)] = Field(...)
+    """ # noqa: E501
+    league: League
+    position: Optional[Annotated[str, Field(min_length=1, strict=True)]]
     gm: Optional[StrictBool] = None
     agm: Optional[StrictBool] = None
     arbiter: Optional[StrictBool] = None
-    project_role: constr(strict=True, min_length=0) = Field(...)
-    __properties = ["league", "position", "gm", "agm", "arbiter", "project_role"]
+    project_role: Annotated[str, Field(min_length=0, strict=True)]
+    __properties: ClassVar[List[str]] = ["league", "position", "gm", "agm", "arbiter", "project_role"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ElevatedRole:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of ElevatedRole from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "gm",
-                            "agm",
-                            "arbiter",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "gm",
+            "agm",
+            "arbiter",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of league
         if self.league:
             _dict['league'] = self.league.to_dict()
         # set to None if position (nullable) is None
-        # and __fields_set__ contains the field
-        if self.position is None and "position" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.position is None and "position" in self.model_fields_set:
             _dict['position'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ElevatedRole:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of ElevatedRole from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ElevatedRole.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = ElevatedRole.parse_obj({
-            "league": League.from_dict(obj.get("league")) if obj.get("league") is not None else None,
+        _obj = cls.model_validate({
+            "league": League.from_dict(obj["league"]) if obj.get("league") is not None else None,
             "position": obj.get("position"),
             "gm": obj.get("gm"),
             "agm": obj.get("agm"),

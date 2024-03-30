@@ -3,6 +3,7 @@
 Schema for Pick/Player trades
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **trades** | [**List[TradeItem]**](TradeItem.md) | List of trades to execute | 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of TradeSchema from a JSON string
 trade_schema_instance = TradeSchema.from_json(json)
 # print the JSON string representation of the object
-print TradeSchema.to_json()
+print(TradeSchema.to_json())
 
 # convert the object into a dict
 trade_schema_dict = trade_schema_instance.to_dict()

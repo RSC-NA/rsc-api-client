@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **matches_per_season** | **int** |  | [optional] [readonly] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SeasonSchedule from a JSON string
 season_schedule_instance = SeasonSchedule.from_json(json)
 # print the JSON string representation of the object
-print SeasonSchedule.to_json()
+print(SeasonSchedule.to_json())
 
 # convert the object into a dict
 season_schedule_dict = season_schedule_instance.to_dict()

@@ -3,6 +3,7 @@
 Signs a player to a team in a given league..
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **int** | Specific player to perform transaction on. | 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of SignAPlayerToATeamInALeague from a JSON string
 sign_a_player_to_a_team_in_a_league_instance = SignAPlayerToATeamInALeague.from_json(json)
 # print the JSON string representation of the object
-print SignAPlayerToATeamInALeague.to_json()
+print(SignAPlayerToATeamInALeague.to_json())
 
 # convert the object into a dict
 sign_a_player_to_a_team_in_a_league_dict = sign_a_player_to_a_team_in_a_league_instance.to_dict()

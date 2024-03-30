@@ -3,6 +3,7 @@
 The specific item being traded (player or pick)
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | [**Player1**](Player1.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of TradeValue from a JSON string
 trade_value_instance = TradeValue.from_json(json)
 # print the JSON string representation of the object
-print TradeValue.to_json()
+print(TradeValue.to_json())
 
 # convert the object into a dict
 trade_value_dict = trade_value_instance.to_dict()

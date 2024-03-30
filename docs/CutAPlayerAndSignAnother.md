@@ -3,6 +3,7 @@
 Cuts a player from a team and signs another.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cut_player** | **int** | Specific player to perform transaction on. | 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of CutAPlayerAndSignAnother from a JSON string
 cut_a_player_and_sign_another_instance = CutAPlayerAndSignAnother.from_json(json)
 # print the JSON string representation of the object
-print CutAPlayerAndSignAnother.to_json()
+print(CutAPlayerAndSignAnother.to_json())
 
 # convert the object into a dict
 cut_a_player_and_sign_another_dict = cut_a_player_and_sign_another_instance.to_dict()

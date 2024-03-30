@@ -27,9 +27,8 @@ Cut a player and sign another.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother
 from rscapi.models.transaction_response import TransactionResponse
@@ -71,6 +70,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**CutAPlayerAndSignAnother**](CutAPlayerAndSignAnother.md)|  | 
@@ -89,6 +89,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -108,9 +109,8 @@ Cut a player
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.transaction_response import TransactionResponse
@@ -152,6 +152,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**CutAPlayerFromALeague**](CutAPlayerFromALeague.md)|  | 
@@ -170,6 +171,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -189,9 +191,8 @@ Manually expire a sub for a team.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.league_player import LeaguePlayer
@@ -233,6 +234,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**ExpireAPlayerSub**](ExpireAPlayerSub.md)|  | 
@@ -251,6 +253,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -267,9 +270,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
@@ -314,6 +316,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **league** | **int**| ID of the league to get team matches for | 
@@ -336,6 +339,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -350,9 +354,8 @@ Name | Type | Description  | Notes
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
@@ -393,6 +396,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this transactions. | 
@@ -411,6 +415,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -427,9 +432,8 @@ Set or remove a player to IR
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.inactive_reserve import InactiveReserve
 from rscapi.models.transaction_response import TransactionResponse
@@ -471,6 +475,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**InactiveReserve**](InactiveReserve.md)|  | 
@@ -489,6 +494,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -507,9 +513,8 @@ Re-sign a player
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.re_sign_player import ReSignPlayer
 from rscapi.models.transaction_response import TransactionResponse
@@ -551,6 +556,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**ReSignPlayer**](ReSignPlayer.md)|  | 
@@ -569,6 +575,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -588,9 +595,8 @@ Retire a player from a league.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.retire_a_player import RetireAPlayer
 from rscapi.models.transaction_response import TransactionResponse
@@ -632,6 +638,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**RetireAPlayer**](RetireAPlayer.md)|  | 
@@ -650,6 +657,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -668,9 +676,8 @@ Sign a player
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
 from rscapi.models.transaction_response import TransactionResponse
@@ -712,6 +719,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**SignAPlayerToATeamInALeague**](SignAPlayerToATeamInALeague.md)|  | 
@@ -730,6 +738,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -749,9 +758,8 @@ Substitute a player on a team
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.temporary_fa_sub import TemporaryFASub
 from rscapi.models.transaction_response import TransactionResponse
@@ -793,6 +801,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**TemporaryFASub**](TemporaryFASub.md)|  | 
@@ -811,6 +820,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
@@ -830,9 +840,8 @@ Trade a player to a franchise, or two players to two franchises.
 ### Example
 
 * Api Key Authentication (Api-Key):
+
 ```python
-import time
-import os
 import rscapi
 from rscapi.models.trade_schema import TradeSchema
 from rscapi.models.transaction_response import TransactionResponse
@@ -874,6 +883,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**TradeSchema**](TradeSchema.md)|  | 
@@ -892,6 +902,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
