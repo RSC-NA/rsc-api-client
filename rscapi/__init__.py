@@ -18,6 +18,7 @@
 __version__ = "1.0.0"
 
 # import apis into sdk package
+from rscapi.api.csv_api import CsvApi
 from rscapi.api.franchises_api import FranchisesApi
 from rscapi.api.league_players_api import LeaguePlayersApi
 from rscapi.api.leagues_api import LeaguesApi
@@ -53,6 +54,7 @@ from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.error import Error
 from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.franchise import Franchise
+from rscapi.models.franchise_contracts import FranchiseContracts
 from rscapi.models.franchise_gm import FranchiseGM
 from rscapi.models.franchise_identifier import FranchiseIdentifier
 from rscapi.models.franchise_league import FranchiseLeague
@@ -74,6 +76,7 @@ from rscapi.models.league_player_member import LeaguePlayerMember
 from rscapi.models.league_players_list200_response import LeaguePlayersList200Response
 from rscapi.models.list_games import ListGames
 from rscapi.models.list_match_results import ListMatchResults
+from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.models.match import Match
 from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
@@ -113,12 +116,14 @@ from rscapi.models.team_franchise import TeamFranchise
 from rscapi.models.team_game_list_results import TeamGameListResults
 from rscapi.models.team_list import TeamList
 from rscapi.models.team_season_stats import TeamSeasonStats
+from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.models.temporary_fa_sub import TemporaryFASub
 from rscapi.models.tier import Tier
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response
+from rscapi.models.tracker_links_sheet import TrackerLinksSheet
 from rscapi.models.tracker_mmr import TrackerMMR
 from rscapi.models.trade_item import TradeItem
 from rscapi.models.trade_schema import TradeSchema
@@ -126,5 +131,6 @@ from rscapi.models.trade_value import TradeValue
 from rscapi.models.transaction_franchise import TransactionFranchise
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.models.transaction_team import TransactionTeam
+from rscapi.models.transactions_history_list200_response import TransactionsHistoryList200Response
 from rscapi.models.transfer_franchise import TransferFranchise
 from rscapi.models.update_member_rsc_name import UpdateMemberRSCName

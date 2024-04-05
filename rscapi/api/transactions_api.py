@@ -31,6 +31,7 @@ from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeam
 from rscapi.models.temporary_fa_sub import TemporaryFASub
 from rscapi.models.trade_schema import TradeSchema
 from rscapi.models.transaction_response import TransactionResponse
+from rscapi.models.transactions_history_list200_response import TransactionsHistoryList200Response
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -895,6 +896,8 @@ class TransactionsApi:
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -907,7 +910,7 @@ class TransactionsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[TransactionResponse]:
+    ) -> TransactionsHistoryList200Response:
         """transactions_history_list
 
 
@@ -921,6 +924,10 @@ class TransactionsApi:
         :type transaction_type: str
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -949,6 +956,8 @@ class TransactionsApi:
             player=player,
             transaction_type=transaction_type,
             executor=executor,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -956,7 +965,7 @@ class TransactionsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[TransactionResponse]",
+            '200': "TransactionsHistoryList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -977,6 +986,8 @@ class TransactionsApi:
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -989,7 +1000,7 @@ class TransactionsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[TransactionResponse]]:
+    ) -> ApiResponse[TransactionsHistoryList200Response]:
         """transactions_history_list
 
 
@@ -1003,6 +1014,10 @@ class TransactionsApi:
         :type transaction_type: str
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1031,6 +1046,8 @@ class TransactionsApi:
             player=player,
             transaction_type=transaction_type,
             executor=executor,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1038,7 +1055,7 @@ class TransactionsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[TransactionResponse]",
+            '200': "TransactionsHistoryList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1059,6 +1076,8 @@ class TransactionsApi:
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1085,6 +1104,10 @@ class TransactionsApi:
         :type transaction_type: str
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1113,6 +1136,8 @@ class TransactionsApi:
             player=player,
             transaction_type=transaction_type,
             executor=executor,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1120,7 +1145,7 @@ class TransactionsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[TransactionResponse]",
+            '200': "TransactionsHistoryList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1136,6 +1161,8 @@ class TransactionsApi:
         player,
         transaction_type,
         executor,
+        limit,
+        offset,
         _request_auth,
         _content_type,
         _headers,
@@ -1175,6 +1202,14 @@ class TransactionsApi:
         if executor is not None:
             
             _query_params.append(('executor', executor))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
             
         # process the header parameters
         # process the form parameters

@@ -76,15 +76,15 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 # Enter a context with an instance of the API client
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = rscapi.FranchisesApi(api_client)
-    data = rscapi.Franchise() # Franchise | 
+    api_instance = rscapi.CsvApi(api_client)
+    league = 'league_example' # str | League name to search for franchises in. (optional)
 
     try:
-        api_response = await api_instance.franchises_create(data)
-        print("The response of FranchisesApi->franchises_create:\n")
+        api_response = await api_instance.csv_franchise_contracts_data_list(league=league)
+        print("The response of CsvApi->csv_franchise_contracts_data_list:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling FranchisesApi->franchises_create: %s\n" % e)
+        print("Exception when calling CsvApi->csv_franchise_contracts_data_list: %s\n" % e)
 
 ```
 
@@ -94,6 +94,14 @@ All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CsvApi* | [**csv_franchise_contracts_data_list**](docs/CsvApi.md#csv_franchise_contracts_data_list) | **GET** /csv/franchise-contracts-data/ | 
+*CsvApi* | [**csv_franchise_contracts_data_read**](docs/CsvApi.md#csv_franchise_contracts_data_read) | **GET** /csv/franchise-contracts-data/{id}/ | 
+*CsvApi* | [**csv_master_member_sheet_list**](docs/CsvApi.md#csv_master_member_sheet_list) | **GET** /csv/master-member-sheet/ | 
+*CsvApi* | [**csv_master_member_sheet_read**](docs/CsvApi.md#csv_master_member_sheet_read) | **GET** /csv/master-member-sheet/{id}/ | 
+*CsvApi* | [**csv_teams_contracts_data_list**](docs/CsvApi.md#csv_teams_contracts_data_list) | **GET** /csv/teams-contracts-data/ | 
+*CsvApi* | [**csv_teams_contracts_data_read**](docs/CsvApi.md#csv_teams_contracts_data_read) | **GET** /csv/teams-contracts-data/{id}/ | 
+*CsvApi* | [**csv_tracker_links_data_list**](docs/CsvApi.md#csv_tracker_links_data_list) | **GET** /csv/tracker-links-data/ | 
+*CsvApi* | [**csv_tracker_links_data_read**](docs/CsvApi.md#csv_tracker_links_data_read) | **GET** /csv/tracker-links-data/{id}/ | 
 *FranchisesApi* | [**franchises_create**](docs/FranchisesApi.md#franchises_create) | **POST** /franchises/ | 
 *FranchisesApi* | [**franchises_delete**](docs/FranchisesApi.md#franchises_delete) | **DELETE** /franchises/{id}/ | 
 *FranchisesApi* | [**franchises_list**](docs/FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
@@ -220,6 +228,7 @@ Class | Method | HTTP request | Description
  - [Error](docs/Error.md)
  - [ExpireAPlayerSub](docs/ExpireAPlayerSub.md)
  - [Franchise](docs/Franchise.md)
+ - [FranchiseContracts](docs/FranchiseContracts.md)
  - [FranchiseGM](docs/FranchiseGM.md)
  - [FranchiseIdentifier](docs/FranchiseIdentifier.md)
  - [FranchiseLeague](docs/FranchiseLeague.md)
@@ -241,6 +250,7 @@ Class | Method | HTTP request | Description
  - [LeaguePlayersList200Response](docs/LeaguePlayersList200Response.md)
  - [ListGames](docs/ListGames.md)
  - [ListMatchResults](docs/ListMatchResults.md)
+ - [MasterMemberSheet](docs/MasterMemberSheet.md)
  - [Match](docs/Match.md)
  - [MatchList](docs/MatchList.md)
  - [MatchResults](docs/MatchResults.md)
@@ -280,12 +290,14 @@ Class | Method | HTTP request | Description
  - [TeamGameListResults](docs/TeamGameListResults.md)
  - [TeamList](docs/TeamList.md)
  - [TeamSeasonStats](docs/TeamSeasonStats.md)
+ - [TeamsContracts](docs/TeamsContracts.md)
  - [TemporaryFASub](docs/TemporaryFASub.md)
  - [Tier](docs/Tier.md)
  - [TrackerLink](docs/TrackerLink.md)
  - [TrackerLinkInvalidateObject](docs/TrackerLinkInvalidateObject.md)
  - [TrackerLinkStats](docs/TrackerLinkStats.md)
  - [TrackerLinksList200Response](docs/TrackerLinksList200Response.md)
+ - [TrackerLinksSheet](docs/TrackerLinksSheet.md)
  - [TrackerMMR](docs/TrackerMMR.md)
  - [TradeItem](docs/TradeItem.md)
  - [TradeSchema](docs/TradeSchema.md)
@@ -293,6 +305,7 @@ Class | Method | HTTP request | Description
  - [TransactionFranchise](docs/TransactionFranchise.md)
  - [TransactionResponse](docs/TransactionResponse.md)
  - [TransactionTeam](docs/TransactionTeam.md)
+ - [TransactionsHistoryList200Response](docs/TransactionsHistoryList200Response.md)
  - [TransferFranchise](docs/TransferFranchise.md)
  - [UpdateMemberRSCName](docs/UpdateMemberRSCName.md)
 

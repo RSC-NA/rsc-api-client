@@ -6,6 +6,7 @@ README.md
 docs/AddTierToLeague.md
 docs/BaseTeam.md
 docs/BulkMMRSchemaSubmission.md
+docs/CsvApi.md
 docs/CutAPlayerAndSignAnother.md
 docs/CutAPlayerFromALeague.md
 docs/Deleted.md
@@ -14,6 +15,7 @@ docs/ElevatedRole.md
 docs/Error.md
 docs/ExpireAPlayerSub.md
 docs/Franchise.md
+docs/FranchiseContracts.md
 docs/FranchiseGM.md
 docs/FranchiseIdentifier.md
 docs/FranchiseLeague.md
@@ -38,6 +40,7 @@ docs/LeaguePlayersList200Response.md
 docs/LeaguesApi.md
 docs/ListGames.md
 docs/ListMatchResults.md
+docs/MasterMemberSheet.md
 docs/Match.md
 docs/MatchList.md
 docs/MatchResults.md
@@ -82,6 +85,7 @@ docs/TeamGameListResults.md
 docs/TeamList.md
 docs/TeamSeasonStats.md
 docs/TeamsApi.md
+docs/TeamsContracts.md
 docs/TemporaryFASub.md
 docs/Tier.md
 docs/TiersApi.md
@@ -90,6 +94,7 @@ docs/TrackerLinkInvalidateObject.md
 docs/TrackerLinkStats.md
 docs/TrackerLinksApi.md
 docs/TrackerLinksList200Response.md
+docs/TrackerLinksSheet.md
 docs/TrackerMMR.md
 docs/TradeItem.md
 docs/TradeSchema.md
@@ -98,6 +103,7 @@ docs/TransactionFranchise.md
 docs/TransactionResponse.md
 docs/TransactionTeam.md
 docs/TransactionsApi.md
+docs/TransactionsHistoryList200Response.md
 docs/TransferFranchise.md
 docs/UpdateMemberRSCName.md
 git_push.sh
@@ -105,6 +111,7 @@ pyproject.toml
 requirements.txt
 rscapi/__init__.py
 rscapi/api/__init__.py
+rscapi/api/csv_api.py
 rscapi/api/franchises_api.py
 rscapi/api/league_players_api.py
 rscapi/api/leagues_api.py
@@ -132,6 +139,7 @@ rscapi/models/elevated_role.py
 rscapi/models/error.py
 rscapi/models/expire_a_player_sub.py
 rscapi/models/franchise.py
+rscapi/models/franchise_contracts.py
 rscapi/models/franchise_gm.py
 rscapi/models/franchise_identifier.py
 rscapi/models/franchise_league.py
@@ -153,6 +161,7 @@ rscapi/models/league_player_member.py
 rscapi/models/league_players_list200_response.py
 rscapi/models/list_games.py
 rscapi/models/list_match_results.py
+rscapi/models/master_member_sheet.py
 rscapi/models/match.py
 rscapi/models/match_list.py
 rscapi/models/match_results.py
@@ -192,12 +201,14 @@ rscapi/models/team_franchise.py
 rscapi/models/team_game_list_results.py
 rscapi/models/team_list.py
 rscapi/models/team_season_stats.py
+rscapi/models/teams_contracts.py
 rscapi/models/temporary_fa_sub.py
 rscapi/models/tier.py
 rscapi/models/tracker_link.py
 rscapi/models/tracker_link_invalidate_object.py
 rscapi/models/tracker_link_stats.py
 rscapi/models/tracker_links_list200_response.py
+rscapi/models/tracker_links_sheet.py
 rscapi/models/tracker_mmr.py
 rscapi/models/trade_item.py
 rscapi/models/trade_schema.py
@@ -205,6 +216,7 @@ rscapi/models/trade_value.py
 rscapi/models/transaction_franchise.py
 rscapi/models/transaction_response.py
 rscapi/models/transaction_team.py
+rscapi/models/transactions_history_list200_response.py
 rscapi/models/transfer_franchise.py
 rscapi/models/update_member_rsc_name.py
 rscapi/py.typed

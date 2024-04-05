@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **member** | **str** |  | [optional] [readonly] 
 **type** | **str** |  | [optional] [readonly] 
 **rscid** | **str** |  | [optional] [readonly] 
+**psyonix_season** | **int** |  | [optional] [readonly] 
 
 ## Example
 

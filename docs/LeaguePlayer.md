@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **season** | **int** |  | 
 **captain** | **bool** |  | [optional] [readonly] 
 **contract_length** | **int** |  | [optional] [readonly] 
+**current_mmr** | **int** |  | [optional] [readonly] 
+**base_mmr** | **int** |  | [optional] [readonly] 
 **team** | [**PlayerTeam**](PlayerTeam.md) |  | 
 **last_updated** | **datetime** |  | [optional] [readonly] 
 **previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | [optional] [readonly] 

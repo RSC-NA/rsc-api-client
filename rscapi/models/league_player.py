@@ -39,6 +39,8 @@ class LeaguePlayer(BaseModel):
     season: StrictInt
     captain: Optional[StrictBool] = None
     contract_length: Optional[StrictInt] = None
+    current_mmr: Optional[StrictInt] = None
+    base_mmr: Optional[StrictInt] = None
     team: Optional[PlayerTeam]
     last_updated: Optional[datetime] = None
     previous_teams: Optional[List[PreviousTeam]] = None
@@ -47,7 +49,7 @@ class LeaguePlayer(BaseModel):
     sub_status: StrictInt
     waiver_period_end_date: Optional[datetime]
     signed_date: Optional[datetime]
-    __properties: ClassVar[List[str]] = ["id", "league", "status", "season", "captain", "contract_length", "team", "last_updated", "previous_teams", "player", "tier", "sub_status", "waiver_period_end_date", "signed_date"]
+    __properties: ClassVar[List[str]] = ["id", "league", "status", "season", "captain", "contract_length", "current_mmr", "base_mmr", "team", "last_updated", "previous_teams", "player", "tier", "sub_status", "waiver_period_end_date", "signed_date"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -95,12 +97,16 @@ class LeaguePlayer(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "status",
             "captain",
             "contract_length",
+            "current_mmr",
+            "base_mmr",
             "last_updated",
             "previous_teams",
         ])
@@ -167,6 +173,8 @@ class LeaguePlayer(BaseModel):
             "season": obj.get("season"),
             "captain": obj.get("captain"),
             "contract_length": obj.get("contract_length"),
+            "current_mmr": obj.get("current_mmr"),
+            "base_mmr": obj.get("base_mmr"),
             "team": PlayerTeam.from_dict(obj["team"]) if obj.get("team") is not None else None,
             "last_updated": obj.get("last_updated"),
             "previous_teams": [PreviousTeam.from_dict(_item) for _item in obj["previous_teams"]] if obj.get("previous_teams") is not None else None,

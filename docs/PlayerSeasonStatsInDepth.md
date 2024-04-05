@@ -96,40 +96,15 @@ Name | Type | Description | Notes
 **time_farthest_from_ball_rank** | **int** |  | 
 **demos_inflicted_rank** | **int** |  | 
 **demos_taken_rank** | **int** |  | 
-**shooting_percentage_rank** | **int** |  | 
 **bpm_rank** | **int** |  | 
 **bcpm_rank** | **int** |  | 
 **avg_amount_rank** | **int** |  | 
-**percent_zero_boost_rank** | **int** |  | 
-**percent_full_boost_rank** | **int** |  | 
-**percent_boost_0_25_rank** | **int** |  | 
-**percent_boost_25_50_rank** | **int** |  | 
-**percent_boost_50_75_rank** | **int** |  | 
-**percent_boost_75_100_rank** | **int** |  | 
 **avg_speed_rank** | **int** |  | 
-**avg_powerslide_duration_rank** | **int** |  | 
 **avg_speed_percentage_rank** | **int** |  | 
-**percent_slow_speed_rank** | **int** |  | 
-**percent_boost_speed_rank** | **int** |  | 
-**percent_supersonic_speed_rank** | **int** |  | 
-**percent_ground_rank** | **int** |  | 
-**percent_low_air_rank** | **int** |  | 
-**percent_high_air_rank** | **int** |  | 
 **avg_distance_to_ball_rank** | **int** |  | 
 **avg_distance_to_ball_possession_rank** | **int** |  | 
 **avg_distance_to_ball_no_possession_rank** | **int** |  | 
 **avg_distance_to_mates_rank** | **int** |  | 
-**percent_defensive_third_rank** | **int** |  | 
-**percent_offensive_third_rank** | **int** |  | 
-**percent_neutral_third_rank** | **int** |  | 
-**percent_defensive_half_rank** | **int** |  | 
-**percent_offensive_half_rank** | **int** |  | 
-**percent_behind_ball_rank** | **int** |  | 
-**percent_infront_ball_rank** | **int** |  | 
-**percent_most_back_rank** | **int** |  | 
-**percent_most_forward_rank** | **int** |  | 
-**percent_closest_to_ball_rank** | **int** |  | 
-**percent_farthest_from_ball_rank** | **int** |  | 
 **stats_type** | **str** |  | [optional] 
 **games_played** | **int** |  | [optional] 
 **games_won** | **int** |  | [optional] 
@@ -187,40 +162,18 @@ Name | Type | Description | Notes
 **time_farthest_from_ball** | **float** |  | [optional] 
 **demos_inflicted** | **int** |  | [optional] 
 **demos_taken** | **int** |  | [optional] 
-**raw_shooting_percentage** | **float** |  | [optional] 
+**raw_boost_time** | **float** |  | [optional] 
 **raw_bpm** | **float** |  | [optional] 
 **raw_bcpm** | **float** |  | [optional] 
 **raw_avg_amount** | **float** |  | [optional] 
-**raw_percent_zero_boost** | **float** |  | [optional] 
-**raw_percent_full_boost** | **float** |  | [optional] 
-**raw_percent_boost_0_25** | **float** |  | [optional] 
-**raw_percent_boost_25_50** | **float** |  | [optional] 
-**raw_percent_boost_50_75** | **float** |  | [optional] 
-**raw_percent_boost_75_100** | **float** |  | [optional] 
+**raw_movement_time** | **float** |  | [optional] 
 **raw_avg_speed** | **int** |  | [optional] 
-**raw_avg_powerslide_duration** | **float** |  | [optional] 
 **raw_avg_speed_percentage** | **float** |  | [optional] 
-**raw_percent_slow_speed** | **float** |  | [optional] 
-**raw_percent_boost_speed** | **float** |  | [optional] 
-**raw_percent_supersonic_speed** | **float** |  | [optional] 
-**raw_percent_ground** | **float** |  | [optional] 
-**raw_percent_low_air** | **float** |  | [optional] 
-**raw_percent_high_air** | **float** |  | [optional] 
+**raw_positioning_time** | **float** |  | [optional] 
 **raw_avg_distance_to_ball** | **int** |  | [optional] 
 **raw_avg_distance_to_ball_possession** | **int** |  | [optional] 
 **raw_avg_distance_to_ball_no_possession** | **int** |  | [optional] 
 **raw_avg_distance_to_mates** | **int** |  | [optional] 
-**raw_percent_defensive_third** | **float** |  | [optional] 
-**raw_percent_offensive_third** | **float** |  | [optional] 
-**raw_percent_neutral_third** | **float** |  | [optional] 
-**raw_percent_defensive_half** | **float** |  | [optional] 
-**raw_percent_offensive_half** | **float** |  | [optional] 
-**raw_percent_behind_ball** | **float** |  | [optional] 
-**raw_percent_infront_ball** | **float** |  | [optional] 
-**raw_percent_most_back** | **float** |  | [optional] 
-**raw_percent_most_forward** | **float** |  | [optional] 
-**raw_percent_closest_to_ball** | **float** |  | [optional] 
-**raw_percent_farthest_from_ball** | **float** |  | [optional] 
 **tier** | **int** |  | 
 
 ## Example
