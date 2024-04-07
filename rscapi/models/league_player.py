@@ -57,8 +57,8 @@ class LeaguePlayer(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR']):
-            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR')")
+        if value not in set(['DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR', 'DR']):
+            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR', 'DR')")
         return value
 
     model_config = ConfigDict(

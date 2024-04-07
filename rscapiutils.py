@@ -22,7 +22,7 @@ def grab_api(host, api_key):
 async def do_things():
 	api = grab_api('http://localhost:3000/api/v1', api_key='XEb03FNA.Sqff9r4Ktg809gQ0WsJK3aeekZOwV5BG')
 	transapi = rscapi.TransactionsApi(api)
-	res = await transapi.transactions_history_list(player=181204305993400320, league=1)
+	res = await transapi.transactions_history_list(player=181204305993400321, league=1, season_number=None)
 	print(res)
 
 

@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**members_delete**](MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
 [**members_intent_to_play**](MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
+[**members_member_league_drop**](MembersApi.md#members_member_league_drop) | **POST** /members/{id}/member_league_drop/ | 
 [**members_name_change**](MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 [**members_partial_update**](MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
 [**members_permfa_signup**](MembersApi.md#members_permfa_signup) | **POST** /members/{id}/permfa_signup/ | 
@@ -495,6 +496,87 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_member_league_drop**
+> Member members_member_league_drop(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
+from rscapi.models.member import Member
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.DropAPlayerFromALeague() # DropAPlayerFromALeague | 
+
+    try:
+        api_response = await api_instance.members_member_league_drop(id, data)
+        print("The response of MembersApi->members_member_league_drop:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_member_league_drop: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**DropAPlayerFromALeague**](DropAPlayerFromALeague.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**404** |  |  -  |
+**403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

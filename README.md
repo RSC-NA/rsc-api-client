@@ -146,6 +146,7 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**members_delete**](docs/MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
 *MembersApi* | [**members_intent_to_play**](docs/MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 *MembersApi* | [**members_list**](docs/MembersApi.md#members_list) | **GET** /members/ | 
+*MembersApi* | [**members_member_league_drop**](docs/MembersApi.md#members_member_league_drop) | **POST** /members/{id}/member_league_drop/ | 
 *MembersApi* | [**members_name_change**](docs/MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 *MembersApi* | [**members_partial_update**](docs/MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
 *MembersApi* | [**members_permfa_signup**](docs/MembersApi.md#members_permfa_signup) | **POST** /members/{id}/permfa_signup/ | 
@@ -224,6 +225,7 @@ Class | Method | HTTP request | Description
  - [CutAPlayerFromALeague](docs/CutAPlayerFromALeague.md)
  - [Deleted](docs/Deleted.md)
  - [DraftPick](docs/DraftPick.md)
+ - [DropAPlayerFromALeague](docs/DropAPlayerFromALeague.md)
  - [ElevatedRole](docs/ElevatedRole.md)
  - [Error](docs/Error.md)
  - [ExpireAPlayerSub](docs/ExpireAPlayerSub.md)
