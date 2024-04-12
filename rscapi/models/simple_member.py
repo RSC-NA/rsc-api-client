@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -30,7 +30,7 @@ class SimpleMember(BaseModel):
     """ # noqa: E501
     rsc_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     rsc_id: Optional[StrictStr] = None
-    discord_id: Optional[StrictInt] = None
+    discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]] = None
     __properties: ClassVar[List[str]] = ["rsc_name", "rsc_id", "discord_id"]
 
     model_config = ConfigDict(
@@ -64,13 +64,9 @@ class SimpleMember(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "rsc_name",
             "rsc_id",
-            "discord_id",
         ])
 
         _dict = self.model_dump(

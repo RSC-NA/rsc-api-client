@@ -1,6 +1,6 @@
 # rscapi.MembersApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to *http://localhost:3000/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,13 +12,16 @@ Method | HTTP request | Description
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
 [**members_member_league_drop**](MembersApi.md#members_member_league_drop) | **POST** /members/{id}/member_league_drop/ | 
 [**members_name_change**](MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
+[**members_name_changes**](MembersApi.md#members_name_changes) | **GET** /members/{id}/name_changes/ | 
 [**members_partial_update**](MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
 [**members_permfa_signup**](MembersApi.md#members_permfa_signup) | **POST** /members/{id}/permfa_signup/ | 
 [**members_postseason_stats**](MembersApi.md#members_postseason_stats) | **GET** /members/{id}/postseason_stats/ | 
 [**members_read**](MembersApi.md#members_read) | **GET** /members/{id}/ | 
 [**members_signup**](MembersApi.md#members_signup) | **POST** /members/{id}/signup/ | 
 [**members_stats**](MembersApi.md#members_stats) | **GET** /members/{id}/stats/ | 
+[**members_transfer_account**](MembersApi.md#members_transfer_account) | **POST** /members/{id}/transfer_account/ | 
 [**members_update**](MembersApi.md#members_update) | **PUT** /members/{id}/ | 
+[**members_update_discord_id**](MembersApi.md#members_update_discord_id) | **POST** /members/{id}/update_discord_id/ | 
 
 
 # **members_accounts**
@@ -38,10 +41,10 @@ from rscapi.models.member_tracker import MemberTracker
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -116,10 +119,10 @@ from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -196,10 +199,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -271,10 +274,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -348,10 +351,10 @@ from rscapi.models.intent_to_play_schema import IntentToPlaySchema
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -430,10 +433,10 @@ from rscapi.models.members_list200_response import MembersList200Response
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -515,10 +518,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -596,10 +599,10 @@ from rscapi.models.update_member_rsc_name import UpdateMemberRSCName
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -661,6 +664,82 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **members_name_changes**
+> List[NameChangeHistory] members_name_changes(id)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.name_change_history import NameChangeHistory
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "http://localhost:3000/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+
+    try:
+        api_response = await api_instance.members_name_changes(id)
+        print("The response of MembersApi->members_name_changes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_name_changes: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+
+### Return type
+
+[**List[NameChangeHistory]**](NameChangeHistory.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **members_partial_update**
 > Member members_partial_update(id, data)
 
@@ -676,10 +755,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -757,10 +836,10 @@ from rscapi.models.player_signup_schema import PlayerSignupSchema
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -841,10 +920,10 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -922,10 +1001,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1001,10 +1080,10 @@ from rscapi.models.player_signup_schema import PlayerSignupSchema
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1085,10 +1164,10 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1151,6 +1230,86 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **members_transfer_account**
+> Member members_transfer_account(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.member import Member
+from rscapi.models.member_transfer_schema import MemberTransferSchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "http://localhost:3000/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.MemberTransferSchema() # MemberTransferSchema | 
+
+    try:
+        api_response = await api_instance.members_transfer_account(id, data)
+        print("The response of MembersApi->members_transfer_account:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_transfer_account: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**MemberTransferSchema**](MemberTransferSchema.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **members_update**
 > Member members_update(id, data)
 
@@ -1166,10 +1325,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1226,6 +1385,86 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_update_discord_id**
+> Member members_update_discord_id(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.member import Member
+from rscapi.models.member_transfer_schema import MemberTransferSchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "http://localhost:3000/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.MemberTransferSchema() # MemberTransferSchema | 
+
+    try:
+        api_response = await api_instance.members_update_discord_id(id, data)
+        print("The response of MembersApi->members_update_discord_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_update_discord_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**MemberTransferSchema**](MemberTransferSchema.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

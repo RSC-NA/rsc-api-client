@@ -9,10 +9,10 @@ Name | Type | Description | Notes
 **league** | [**LeaguePlayerLeague**](LeaguePlayerLeague.md) |  | 
 **status** | **str** |  | [optional] [readonly] 
 **season** | **int** |  | 
-**captain** | **bool** |  | [optional] [readonly] 
-**contract_length** | **int** |  | [optional] [readonly] 
-**current_mmr** | **int** |  | [optional] [readonly] 
-**base_mmr** | **int** |  | [optional] [readonly] 
+**captain** | **bool** |  | [optional] 
+**contract_length** | **int** |  | 
+**current_mmr** | **int** |  | [optional] 
+**base_mmr** | **int** |  | [optional] 
 **team** | [**PlayerTeam**](PlayerTeam.md) |  | 
 **last_updated** | **datetime** |  | [optional] [readonly] 
 **previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | [optional] [readonly] 

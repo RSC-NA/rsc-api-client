@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.league_player_league import LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember
 from rscapi.models.player_team import PlayerTeam
@@ -38,9 +39,9 @@ class LeaguePlayer(BaseModel):
     status: Optional[StrictStr] = None
     season: StrictInt
     captain: Optional[StrictBool] = None
-    contract_length: Optional[StrictInt] = None
-    current_mmr: Optional[StrictInt] = None
-    base_mmr: Optional[StrictInt] = None
+    contract_length: Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]
+    current_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    base_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     team: Optional[PlayerTeam]
     last_updated: Optional[datetime] = None
     previous_teams: Optional[List[PreviousTeam]] = None
@@ -95,18 +96,10 @@ class LeaguePlayer(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "status",
-            "captain",
-            "contract_length",
-            "current_mmr",
-            "base_mmr",
             "last_updated",
             "previous_teams",
         ])

@@ -51,8 +51,10 @@ docs/Member.md
 docs/MemberIntent.md
 docs/MemberIntentData.md
 docs/MemberTracker.md
+docs/MemberTransferSchema.md
 docs/MembersApi.md
 docs/MembersList200Response.md
+docs/NameChangeHistory.md
 docs/NumbersApi.md
 docs/Player.md
 docs/Player1.md
@@ -172,7 +174,9 @@ rscapi/models/member.py
 rscapi/models/member_intent.py
 rscapi/models/member_intent_data.py
 rscapi/models/member_tracker.py
+rscapi/models/member_transfer_schema.py
 rscapi/models/members_list200_response.py
+rscapi/models/name_change_history.py
 rscapi/models/player.py
 rscapi/models/player1.py
 rscapi/models/player_franchise.py
@@ -227,5 +231,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_drop_a_player_from_a_league.py
+test/test_member_transfer_schema.py
+test/test_name_change_history.py
 tox.ini

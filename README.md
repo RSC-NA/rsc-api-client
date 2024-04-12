@@ -55,10 +55,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://localhost:3000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://localhost:3000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -90,7 +90,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to *http://localhost:3000/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -148,13 +148,16 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**members_list**](docs/MembersApi.md#members_list) | **GET** /members/ | 
 *MembersApi* | [**members_member_league_drop**](docs/MembersApi.md#members_member_league_drop) | **POST** /members/{id}/member_league_drop/ | 
 *MembersApi* | [**members_name_change**](docs/MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
+*MembersApi* | [**members_name_changes**](docs/MembersApi.md#members_name_changes) | **GET** /members/{id}/name_changes/ | 
 *MembersApi* | [**members_partial_update**](docs/MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
 *MembersApi* | [**members_permfa_signup**](docs/MembersApi.md#members_permfa_signup) | **POST** /members/{id}/permfa_signup/ | 
 *MembersApi* | [**members_postseason_stats**](docs/MembersApi.md#members_postseason_stats) | **GET** /members/{id}/postseason_stats/ | 
 *MembersApi* | [**members_read**](docs/MembersApi.md#members_read) | **GET** /members/{id}/ | 
 *MembersApi* | [**members_signup**](docs/MembersApi.md#members_signup) | **POST** /members/{id}/signup/ | 
 *MembersApi* | [**members_stats**](docs/MembersApi.md#members_stats) | **GET** /members/{id}/stats/ | 
+*MembersApi* | [**members_transfer_account**](docs/MembersApi.md#members_transfer_account) | **POST** /members/{id}/transfer_account/ | 
 *MembersApi* | [**members_update**](docs/MembersApi.md#members_update) | **PUT** /members/{id}/ | 
+*MembersApi* | [**members_update_discord_id**](docs/MembersApi.md#members_update_discord_id) | **POST** /members/{id}/update_discord_id/ | 
 *NumbersApi* | [**numbers_mmr_bulk_submit**](docs/NumbersApi.md#numbers_mmr_bulk_submit) | **POST** /numbers/mmr/bulk_submit/ | 
 *NumbersApi* | [**numbers_mmr_create**](docs/NumbersApi.md#numbers_mmr_create) | **POST** /numbers/mmr/ | 
 *NumbersApi* | [**numbers_mmr_delete**](docs/NumbersApi.md#numbers_mmr_delete) | **DELETE** /numbers/mmr/{id}/ | 
@@ -261,7 +264,9 @@ Class | Method | HTTP request | Description
  - [MemberIntent](docs/MemberIntent.md)
  - [MemberIntentData](docs/MemberIntentData.md)
  - [MemberTracker](docs/MemberTracker.md)
+ - [MemberTransferSchema](docs/MemberTransferSchema.md)
  - [MembersList200Response](docs/MembersList200Response.md)
+ - [NameChangeHistory](docs/NameChangeHistory.md)
  - [Player](docs/Player.md)
  - [Player1](docs/Player1.md)
  - [PlayerFranchise](docs/PlayerFranchise.md)

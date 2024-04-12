@@ -18,22 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from rscapi.models.tracker_link import TrackerLink
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MemberTracker(BaseModel):
+class NameChangeHistory(BaseModel):
     """
-    MemberTracker
+    NameChangeHistory
     """ # noqa: E501
-    player: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    rscid: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    discord_id: Optional[StrictInt] = None
-    accounts: Optional[List[TrackerLink]] = None
-    __properties: ClassVar[List[str]] = ["player", "rscid", "discord_id", "accounts"]
+    old_name: Annotated[str, Field(min_length=1, strict=True, max_length=255)]
+    date_changed: Optional[datetime] = None
+    __properties: ClassVar[List[str]] = ["old_name", "date_changed"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +51,7 @@ class MemberTracker(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MemberTracker from a JSON string"""
+        """Create an instance of NameChangeHistory from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -65,16 +63,8 @@ class MemberTracker(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "player",
-            "rscid",
-            "discord_id",
-            "accounts",
         ])
 
         _dict = self.model_dump(
@@ -82,18 +72,11 @@ class MemberTracker(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in accounts (list)
-        _items = []
-        if self.accounts:
-            for _item in self.accounts:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['accounts'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MemberTracker from a dict"""
+        """Create an instance of NameChangeHistory from a dict"""
         if obj is None:
             return None
 
@@ -101,10 +84,8 @@ class MemberTracker(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "player": obj.get("player"),
-            "rscid": obj.get("rscid"),
-            "discord_id": obj.get("discord_id"),
-            "accounts": [TrackerLink.from_dict(_item) for _item in obj["accounts"]] if obj.get("accounts") is not None else None
+            "old_name": obj.get("old_name"),
+            "date_changed": obj.get("date_changed")
         })
         return _obj
 

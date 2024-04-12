@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.tracker_mmr import TrackerMMR
@@ -42,11 +42,11 @@ class PlayerMMR(BaseModel):
     ones_season_peak: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     ones_games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     notes: Optional[StrictStr] = None
+    psyonix_season: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     member: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     type: Optional[StrictStr] = None
     rscid: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    psyonix_season: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["date_pulled", "tracker_link", "threes_rating", "threes_season_peak", "threes_games_played", "twos_rating", "twos_season_peak", "twos_games_played", "ones_rating", "ones_season_peak", "ones_games_played", "notes", "member", "type", "rscid", "psyonix_season"]
+    __properties: ClassVar[List[str]] = ["date_pulled", "tracker_link", "threes_rating", "threes_season_peak", "threes_games_played", "twos_rating", "twos_season_peak", "twos_games_played", "ones_rating", "ones_season_peak", "ones_games_played", "notes", "psyonix_season", "member", "type", "rscid"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -91,13 +91,11 @@ class PlayerMMR(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "member",
             "type",
             "rscid",
-            "psyonix_season",
         ])
 
         _dict = self.model_dump(
@@ -187,10 +185,10 @@ class PlayerMMR(BaseModel):
             "ones_season_peak": obj.get("ones_season_peak"),
             "ones_games_played": obj.get("ones_games_played"),
             "notes": obj.get("notes"),
+            "psyonix_season": obj.get("psyonix_season"),
             "member": obj.get("member"),
             "type": obj.get("type"),
-            "rscid": obj.get("rscid"),
-            "psyonix_season": obj.get("psyonix_season")
+            "rscid": obj.get("rscid")
         })
         return _obj
 

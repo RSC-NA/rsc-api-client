@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**player** | **str** |  | 
-**rscid** | **str** |  | 
+**player** | **str** |  | [optional] [readonly] 
+**rscid** | **str** |  | [optional] [readonly] 
 **discord_id** | **int** |  | [optional] [readonly] 
-**accounts** | [**List[TrackerLink]**](TrackerLink.md) |  | 
+**accounts** | [**List[TrackerLink]**](TrackerLink.md) |  | [optional] [readonly] 
 
 ## Example
 

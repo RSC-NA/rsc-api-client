@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.elevated_role import ElevatedRole
@@ -31,7 +31,7 @@ class Member(BaseModel):
     Member
     """ # noqa: E501
     username: Annotated[str, Field(min_length=1, strict=True, max_length=100)]
-    rsc_id: Optional[StrictStr] = None
+    rsc_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     elevated_roles: Optional[List[ElevatedRole]] = None
     player_leagues: Optional[List[LeaguePlayer]] = None
     rsc_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
