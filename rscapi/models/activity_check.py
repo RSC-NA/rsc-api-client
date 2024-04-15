@@ -18,19 +18,24 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MemberIntentData(BaseModel):
+class ActivityCheck(BaseModel):
     """
-    MemberIntentData
+    ActivityCheck
     """ # noqa: E501
-    rsc_name: Annotated[str, Field(min_length=1, strict=True)]
+    missing: Optional[StrictBool] = None
+    completed: Optional[StrictBool] = None
+    season: StrictInt
+    member: Annotated[str, Field(min_length=1, strict=True)]
+    rsc_id: Annotated[str, Field(min_length=1, strict=True)]
     discord_id: StrictInt
-    __properties: ClassVar[List[str]] = ["rsc_name", "discord_id"]
+    returning_status: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["missing", "completed", "season", "member", "rsc_id", "discord_id", "returning_status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +55,7 @@ class MemberIntentData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MemberIntentData from a JSON string"""
+        """Create an instance of ActivityCheck from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +80,7 @@ class MemberIntentData(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MemberIntentData from a dict"""
+        """Create an instance of ActivityCheck from a dict"""
         if obj is None:
             return None
 
@@ -83,8 +88,13 @@ class MemberIntentData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "rsc_name": obj.get("rsc_name"),
-            "discord_id": obj.get("discord_id")
+            "missing": obj.get("missing"),
+            "completed": obj.get("completed"),
+            "season": obj.get("season"),
+            "member": obj.get("member"),
+            "rsc_id": obj.get("rsc_id"),
+            "discord_id": obj.get("discord_id"),
+            "returning_status": obj.get("returning_status")
         })
         return _obj
 

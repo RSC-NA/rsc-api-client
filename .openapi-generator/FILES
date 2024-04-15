@@ -3,6 +3,7 @@
 .gitlab-ci.yml
 .travis.yml
 README.md
+docs/ActivityCheck.md
 docs/AddTierToLeague.md
 docs/BaseTeam.md
 docs/BulkMMRSchemaSubmission.md
@@ -58,6 +59,7 @@ docs/NameChangeHistory.md
 docs/NumbersApi.md
 docs/Player.md
 docs/Player1.md
+docs/PlayerActivityCheckSchema.md
 docs/PlayerFranchise.md
 docs/PlayerMMR.md
 docs/PlayerSeasonStats.md
@@ -131,6 +133,7 @@ rscapi/api_response.py
 rscapi/configuration.py
 rscapi/exceptions.py
 rscapi/models/__init__.py
+rscapi/models/activity_check.py
 rscapi/models/add_tier_to_league.py
 rscapi/models/base_team.py
 rscapi/models/bulk_mmr_schema_submission.py
@@ -179,6 +182,7 @@ rscapi/models/members_list200_response.py
 rscapi/models/name_change_history.py
 rscapi/models/player.py
 rscapi/models/player1.py
+rscapi/models/player_activity_check_schema.py
 rscapi/models/player_franchise.py
 rscapi/models/player_mmr.py
 rscapi/models/player_season_stats.py
@@ -231,6 +235,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_member_transfer_schema.py
-test/test_name_change_history.py
+test/test_activity_check.py
+test/test_player_activity_check_schema.py
 tox.ini

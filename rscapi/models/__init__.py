@@ -15,6 +15,7 @@
 
 
 # import models into model package
+from rscapi.models.activity_check import ActivityCheck
 from rscapi.models.add_tier_to_league import AddTierToLeague
 from rscapi.models.base_team import BaseTeam
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
@@ -63,6 +64,7 @@ from rscapi.models.members_list200_response import MembersList200Response
 from rscapi.models.name_change_history import NameChangeHistory
 from rscapi.models.player import Player
 from rscapi.models.player1 import Player1
+from rscapi.models.player_activity_check_schema import PlayerActivityCheckSchema
 from rscapi.models.player_franchise import PlayerFranchise
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.models.player_season_stats import PlayerSeasonStats

@@ -1,6 +1,6 @@
 # rscapi.LeaguesApi
 
-All URIs are relative to *http://localhost:3000/api/v1*
+All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -35,10 +35,10 @@ from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -114,10 +114,10 @@ from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -192,10 +192,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -267,10 +267,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -341,10 +341,10 @@ from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -413,10 +413,10 @@ from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -491,10 +491,10 @@ from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -570,10 +570,10 @@ from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -651,10 +651,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -730,10 +730,10 @@ from rscapi.models.start_new_season import StartNewSeason
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -809,10 +809,10 @@ from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters

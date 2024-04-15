@@ -55,10 +55,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://localhost:3000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -90,7 +90,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:3000/api/v1*
+All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -141,6 +141,7 @@ Class | Method | HTTP request | Description
 *MatchesApi* | [**matches_results**](docs/MatchesApi.md#matches_results) | **GET** /matches/{id}/results/ | 
 *MatchesApi* | [**matches_update**](docs/MatchesApi.md#matches_update) | **PUT** /matches/{id}/ | 
 *MembersApi* | [**members_accounts**](docs/MembersApi.md#members_accounts) | **GET** /members/{id}/accounts/ | 
+*MembersApi* | [**members_activity_check**](docs/MembersApi.md#members_activity_check) | **POST** /members/{id}/activity_check/ | 
 *MembersApi* | [**members_contract_status**](docs/MembersApi.md#members_contract_status) | **GET** /members/{id}/contract_status/ | 
 *MembersApi* | [**members_create**](docs/MembersApi.md#members_create) | **POST** /members/ | 
 *MembersApi* | [**members_delete**](docs/MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
@@ -221,6 +222,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ActivityCheck](docs/ActivityCheck.md)
  - [AddTierToLeague](docs/AddTierToLeague.md)
  - [BaseTeam](docs/BaseTeam.md)
  - [BulkMMRSchemaSubmission](docs/BulkMMRSchemaSubmission.md)
@@ -269,6 +271,7 @@ Class | Method | HTTP request | Description
  - [NameChangeHistory](docs/NameChangeHistory.md)
  - [Player](docs/Player.md)
  - [Player1](docs/Player1.md)
+ - [PlayerActivityCheckSchema](docs/PlayerActivityCheckSchema.md)
  - [PlayerFranchise](docs/PlayerFranchise.md)
  - [PlayerMMR](docs/PlayerMMR.md)
  - [PlayerSeasonStats](docs/PlayerSeasonStats.md)

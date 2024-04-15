@@ -18,19 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MemberIntentData(BaseModel):
+class PlayerActivityCheckSchema(BaseModel):
     """
-    MemberIntentData
+    Request body for player activity check
     """ # noqa: E501
-    rsc_name: Annotated[str, Field(min_length=1, strict=True)]
-    discord_id: StrictInt
-    __properties: ClassVar[List[str]] = ["rsc_name", "discord_id"]
+    league: StrictInt = Field(description="League that action is being performed on.")
+    admin_override: Optional[StrictBool] = Field(default=None, description="Admin overriding signup")
+    executor: Optional[StrictInt] = Field(default=None, description="Admin override executor")
+    returning_status: StrictBool = Field(description="If the player is staying in this season or dropping the league")
+    __properties: ClassVar[List[str]] = ["league", "admin_override", "executor", "returning_status"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +51,7 @@ class MemberIntentData(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MemberIntentData from a JSON string"""
+        """Create an instance of PlayerActivityCheckSchema from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +76,7 @@ class MemberIntentData(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MemberIntentData from a dict"""
+        """Create an instance of PlayerActivityCheckSchema from a dict"""
         if obj is None:
             return None
 
@@ -83,8 +84,10 @@ class MemberIntentData(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "rsc_name": obj.get("rsc_name"),
-            "discord_id": obj.get("discord_id")
+            "league": obj.get("league"),
+            "admin_override": obj.get("admin_override"),
+            "executor": obj.get("executor"),
+            "returning_status": obj.get("returning_status")
         })
         return _obj
 
