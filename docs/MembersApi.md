@@ -5,12 +5,24 @@ All URIs are relative to *https://staging-api.rscna.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**members_accounts**](MembersApi.md#members_accounts) | **GET** /members/{id}/accounts/ | 
+[**members_activity_check**](MembersApi.md#members_activity_check) | **POST** /members/{id}/activity_check/ | 
 [**members_contract_status**](MembersApi.md#members_contract_status) | **GET** /members/{id}/contract_status/ | 
+[**members_create**](MembersApi.md#members_create) | **POST** /members/ | 
+[**members_delete**](MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
+[**members_intent_to_play**](MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
+[**members_member_league_drop**](MembersApi.md#members_member_league_drop) | **POST** /members/{id}/member_league_drop/ | 
+[**members_name_change**](MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 [**members_name_changes**](MembersApi.md#members_name_changes) | **GET** /members/{id}/name_changes/ | 
+[**members_partial_update**](MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
+[**members_permfa_signup**](MembersApi.md#members_permfa_signup) | **POST** /members/{id}/permfa_signup/ | 
 [**members_postseason_stats**](MembersApi.md#members_postseason_stats) | **GET** /members/{id}/postseason_stats/ | 
 [**members_read**](MembersApi.md#members_read) | **GET** /members/{id}/ | 
+[**members_signup**](MembersApi.md#members_signup) | **POST** /members/{id}/signup/ | 
 [**members_stats**](MembersApi.md#members_stats) | **GET** /members/{id}/stats/ | 
+[**members_transfer_account**](MembersApi.md#members_transfer_account) | **POST** /members/{id}/transfer_account/ | 
+[**members_update**](MembersApi.md#members_update) | **PUT** /members/{id}/ | 
+[**members_update_discord_id**](MembersApi.md#members_update_discord_id) | **POST** /members/{id}/update_discord_id/ | 
 
 
 # **members_accounts**
@@ -88,6 +100,88 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_activity_check**
+> ActivityCheck members_activity_check(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.activity_check import ActivityCheck
+from rscapi.models.player_activity_check_schema import PlayerActivityCheckSchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.PlayerActivityCheckSchema() # PlayerActivityCheckSchema | 
+
+    try:
+        api_response = await api_instance.members_activity_check(id, data)
+        print("The response of MembersApi->members_activity_check:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_activity_check: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**PlayerActivityCheckSchema**](PlayerActivityCheckSchema.md)|  | 
+
+### Return type
+
+[**ActivityCheck**](ActivityCheck.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**404** |  |  -  |
+**403** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -170,6 +264,240 @@ Name | Type | Description  | Notes
 **200** |  |  -  |
 **400** |  |  -  |
 **404** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_create**
+> Member members_create(data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.member import Member
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    data = rscapi.Member() # Member | 
+
+    try:
+        api_response = await api_instance.members_create(data)
+        print("The response of MembersApi->members_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **data** | [**Member**](Member.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_delete**
+> members_delete(id)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+
+    try:
+        await api_instance.members_delete(id)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_intent_to_play**
+> Deleted members_intent_to_play(id, data)
+
+
+
+Intent to play endpoint for returning players.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.deleted import Deleted
+from rscapi.models.intent_to_play_schema import IntentToPlaySchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.IntentToPlaySchema() # IntentToPlaySchema | 
+
+    try:
+        api_response = await api_instance.members_intent_to_play(id, data)
+        print("The response of MembersApi->members_intent_to_play:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_intent_to_play: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**IntentToPlaySchema**](IntentToPlaySchema.md)|  | 
+
+### Return type
+
+[**Deleted**](Deleted.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**201** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+**405** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -257,6 +585,168 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **members_member_league_drop**
+> Member members_member_league_drop(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
+from rscapi.models.member import Member
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.DropAPlayerFromALeague() # DropAPlayerFromALeague | 
+
+    try:
+        api_response = await api_instance.members_member_league_drop(id, data)
+        print("The response of MembersApi->members_member_league_drop:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_member_league_drop: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**DropAPlayerFromALeague**](DropAPlayerFromALeague.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**404** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_name_change**
+> Member members_name_change(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.member import Member
+from rscapi.models.update_member_rsc_name import UpdateMemberRSCName
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.UpdateMemberRSCName() # UpdateMemberRSCName | 
+
+    try:
+        api_response = await api_instance.members_name_change(id, data)
+        print("The response of MembersApi->members_name_change:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_name_change: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**UpdateMemberRSCName**](UpdateMemberRSCName.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **members_name_changes**
 > List[NameChangeHistory] members_name_changes(id)
 
@@ -330,6 +820,169 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_partial_update**
+> Member members_partial_update(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.member import Member
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.Member() # Member | 
+
+    try:
+        api_response = await api_instance.members_partial_update(id, data)
+        print("The response of MembersApi->members_partial_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_partial_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**Member**](Member.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_permfa_signup**
+> LeaguePlayer members_permfa_signup(id, data)
+
+
+
+PermFA signup endpoint
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.player_signup_schema import PlayerSignupSchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.PlayerSignupSchema() # PlayerSignupSchema | 
+
+    try:
+        api_response = await api_instance.members_permfa_signup(id, data)
+        print("The response of MembersApi->members_permfa_signup:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_permfa_signup: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**PlayerSignupSchema**](PlayerSignupSchema.md)|  | 
+
+### Return type
+
+[**LeaguePlayer**](LeaguePlayer.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
+**403** |  |  -  |
+**405** |  |  -  |
+**409** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -492,6 +1145,91 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **members_signup**
+> LeaguePlayer members_signup(id, data)
+
+
+
+Member signup endpoint so a player can play.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.player_signup_schema import PlayerSignupSchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.PlayerSignupSchema() # PlayerSignupSchema | 
+
+    try:
+        api_response = await api_instance.members_signup(id, data)
+        print("The response of MembersApi->members_signup:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_signup: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**PlayerSignupSchema**](PlayerSignupSchema.md)|  | 
+
+### Return type
+
+[**LeaguePlayer**](LeaguePlayer.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**400** |  |  -  |
+**403** |  |  -  |
+**405** |  |  -  |
+**409** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **members_stats**
 > PlayerSeasonStats members_stats(id, league, season=season)
 
@@ -572,6 +1310,244 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** |  |  -  |
 **403** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_transfer_account**
+> Member members_transfer_account(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.member import Member
+from rscapi.models.member_transfer_schema import MemberTransferSchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.MemberTransferSchema() # MemberTransferSchema | 
+
+    try:
+        api_response = await api_instance.members_transfer_account(id, data)
+        print("The response of MembersApi->members_transfer_account:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_transfer_account: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**MemberTransferSchema**](MemberTransferSchema.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_update**
+> Member members_update(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.member import Member
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.Member() # Member | 
+
+    try:
+        api_response = await api_instance.members_update(id, data)
+        print("The response of MembersApi->members_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**Member**](Member.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_update_discord_id**
+> Member members_update_discord_id(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.member import Member
+from rscapi.models.member_transfer_schema import MemberTransferSchema
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.MemberTransferSchema() # MemberTransferSchema | 
+
+    try:
+        api_response = await api_instance.members_update_discord_id(id, data)
+        print("The response of MembersApi->members_update_discord_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_update_discord_id: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**MemberTransferSchema**](MemberTransferSchema.md)|  | 
+
+### Return type
+
+[**Member**](Member.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
