@@ -29,7 +29,7 @@ class FranchiseGM(BaseModel):
     FranchiseGM
     """ # noqa: E501
     rsc_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    discord_id: StrictInt
+    discord_id: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["rsc_name", "discord_id"]
 
     model_config = ConfigDict(
@@ -63,9 +63,11 @@ class FranchiseGM(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "rsc_name",
+            "discord_id",
         ])
 
         _dict = self.model_dump(

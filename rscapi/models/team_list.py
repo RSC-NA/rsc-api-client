@@ -31,7 +31,7 @@ class TeamList(BaseModel):
     TeamList
     """ # noqa: E501
     id: Optional[StrictInt] = None
-    name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    name: Annotated[str, Field(min_length=1, strict=True, max_length=16)]
     franchise: TeamFranchise
     tier: Optional[Tier]
     __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier"]
@@ -67,11 +67,9 @@ class TeamList(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
-            "name",
         ])
 
         _dict = self.model_dump(

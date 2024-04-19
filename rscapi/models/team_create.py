@@ -21,18 +21,21 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from rscapi.models.team_franchise import TeamFranchise
+from rscapi.models.tier import Tier
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Tier(BaseModel):
+class TeamCreate(BaseModel):
     """
-    Tier
+    TeamCreate
     """ # noqa: E501
-    name: Annotated[str, Field(min_length=1, strict=True)]
     id: Optional[StrictInt] = None
-    color: Optional[StrictInt] = None
-    position: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["name", "id", "color", "position"]
+    name: Annotated[str, Field(min_length=1, strict=True, max_length=16)]
+    franchise: TeamFranchise
+    tier: Optional[Tier]
+    league: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "league"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +55,7 @@ class Tier(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Tier from a JSON string"""
+        """Create an instance of TeamCreate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -65,13 +68,9 @@ class Tier(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
-            "color",
-            "position",
         ])
 
         _dict = self.model_dump(
@@ -79,16 +78,22 @@ class Tier(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if color (nullable) is None
+        # override the default output from pydantic by calling `to_dict()` of franchise
+        if self.franchise:
+            _dict['franchise'] = self.franchise.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tier
+        if self.tier:
+            _dict['tier'] = self.tier.to_dict()
+        # set to None if tier (nullable) is None
         # and model_fields_set contains the field
-        if self.color is None and "color" in self.model_fields_set:
-            _dict['color'] = None
+        if self.tier is None and "tier" in self.model_fields_set:
+            _dict['tier'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Tier from a dict"""
+        """Create an instance of TeamCreate from a dict"""
         if obj is None:
             return None
 
@@ -96,10 +101,11 @@ class Tier(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "id": obj.get("id"),
-            "color": obj.get("color"),
-            "position": obj.get("position")
+            "name": obj.get("name"),
+            "franchise": TeamFranchise.from_dict(obj["franchise"]) if obj.get("franchise") is not None else None,
+            "tier": Tier.from_dict(obj["tier"]) if obj.get("tier") is not None else None,
+            "league": obj.get("league")
         })
         return _obj
 

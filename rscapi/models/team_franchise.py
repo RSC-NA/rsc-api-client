@@ -30,7 +30,7 @@ class TeamFranchise(BaseModel):
     TeamFranchise
     """ # noqa: E501
     id: Optional[StrictInt] = None
-    gm: FranchiseGM
+    gm: Optional[FranchiseGM] = None
     name: Annotated[str, Field(min_length=1, strict=True)]
     __properties: ClassVar[List[str]] = ["id", "gm", "name"]
 

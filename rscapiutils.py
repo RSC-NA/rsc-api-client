@@ -24,6 +24,13 @@ async def do_things():
 	transapi = rscapi.TransactionsApi(api)
 	res = await transapi.transactions_history_list(player=181204305993400321, league=1, season_number=None)
 	print(res)
+	teams_api = rscapi.TeamsApi(api)
+	franchise = rscapi.TeamFranchise(name="The Garden")
+	tier = rscapi.Tier(name="Master")
+	create = rscapi.TeamCreate(name="Eggplants", tier=tier, franchise=franchise, league=1)
+	res = await teams_api.teams_create(data=create)
+	print(res)
+		
 
 
 loop = asyncio.new_event_loop()

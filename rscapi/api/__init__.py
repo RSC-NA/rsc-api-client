@@ -12,5 +12,4 @@ from rscapi.api.seasons_api import SeasonsApi
 from rscapi.api.teams_api import TeamsApi
 from rscapi.api.tiers_api import TiersApi
 from rscapi.api.tracker_links_api import TrackerLinksApi
-from rscapi.api.transactions_api import TransactionsApi
 
