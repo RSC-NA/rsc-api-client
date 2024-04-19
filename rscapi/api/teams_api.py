@@ -100,6 +100,7 @@ class TeamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "TeamCreate",
+            '400': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -166,6 +167,7 @@ class TeamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "TeamCreate",
+            '400': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -232,6 +234,7 @@ class TeamsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '201': "TeamCreate",
+            '400': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
