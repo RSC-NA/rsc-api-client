@@ -55,10 +55,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -90,12 +90,14 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to *https://api.rscna.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *CsvApi* | [**csv_franchise_contracts_data_list**](docs/CsvApi.md#csv_franchise_contracts_data_list) | **GET** /csv/franchise-contracts-data/ | 
 *CsvApi* | [**csv_franchise_contracts_data_read**](docs/CsvApi.md#csv_franchise_contracts_data_read) | **GET** /csv/franchise-contracts-data/{id}/ | 
+*CsvApi* | [**csv_master_contracts_data_list**](docs/CsvApi.md#csv_master_contracts_data_list) | **GET** /csv/master-contracts-data/ | 
+*CsvApi* | [**csv_master_contracts_data_read**](docs/CsvApi.md#csv_master_contracts_data_read) | **GET** /csv/master-contracts-data/{id}/ | 
 *CsvApi* | [**csv_master_member_sheet_list**](docs/CsvApi.md#csv_master_member_sheet_list) | **GET** /csv/master-member-sheet/ | 
 *CsvApi* | [**csv_master_member_sheet_read**](docs/CsvApi.md#csv_master_member_sheet_read) | **GET** /csv/master-member-sheet/{id}/ | 
 *CsvApi* | [**csv_teams_contracts_data_list**](docs/CsvApi.md#csv_teams_contracts_data_list) | **GET** /csv/teams-contracts-data/ | 
@@ -257,6 +259,7 @@ Class | Method | HTTP request | Description
  - [LeaguePlayersList200Response](docs/LeaguePlayersList200Response.md)
  - [ListGames](docs/ListGames.md)
  - [ListMatchResults](docs/ListMatchResults.md)
+ - [MasterContracts](docs/MasterContracts.md)
  - [MasterMemberSheet](docs/MasterMemberSheet.md)
  - [Match](docs/Match.md)
  - [MatchList](docs/MatchList.md)
@@ -300,6 +303,7 @@ Class | Method | HTTP request | Description
  - [TeamFranchise](docs/TeamFranchise.md)
  - [TeamGameListResults](docs/TeamGameListResults.md)
  - [TeamList](docs/TeamList.md)
+ - [TeamPatch](docs/TeamPatch.md)
  - [TeamSeasonStats](docs/TeamSeasonStats.md)
  - [TeamsContracts](docs/TeamsContracts.md)
  - [TemporaryFASub](docs/TemporaryFASub.md)

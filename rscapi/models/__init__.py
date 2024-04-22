@@ -50,6 +50,7 @@ from rscapi.models.league_player_member import LeaguePlayerMember
 from rscapi.models.league_players_list200_response import LeaguePlayersList200Response
 from rscapi.models.list_games import ListGames
 from rscapi.models.list_match_results import ListMatchResults
+from rscapi.models.master_contracts import MasterContracts
 from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.models.match import Match
 from rscapi.models.match_list import MatchList
@@ -93,6 +94,7 @@ from rscapi.models.team_details import TeamDetails
 from rscapi.models.team_franchise import TeamFranchise
 from rscapi.models.team_game_list_results import TeamGameListResults
 from rscapi.models.team_list import TeamList
+from rscapi.models.team_patch import TeamPatch
 from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.models.temporary_fa_sub import TemporaryFASub

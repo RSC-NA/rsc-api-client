@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | [optional] [readonly] 
-**tier** | **str** |  | 
+**tier** | **str** |  | [optional] [readonly] 
 
 ## Example
 

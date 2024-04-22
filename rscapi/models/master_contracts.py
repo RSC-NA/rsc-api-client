@@ -18,20 +18,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TransactionTeam(BaseModel):
+class MasterContracts(BaseModel):
     """
-    TransactionTeam
+    MasterContracts
     """ # noqa: E501
-    id: Optional[StrictInt] = None
-    name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    tier: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "name", "tier"]
+    active: StrictBool
+    rsc_id: Annotated[str, Field(min_length=1, strict=True)]
+    name: Annotated[str, Field(min_length=1, strict=True)]
+    franchise: Optional[StrictStr] = None
+    contract_length: Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]
+    current_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    status: Optional[StrictStr] = None
+    base_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    team_name: Optional[StrictStr] = None
+    waiver_period_end_date: Optional[datetime] = None
+    __properties: ClassVar[List[str]] = ["active", "rsc_id", "name", "franchise", "contract_length", "current_mmr", "status", "base_mmr", "team_name", "waiver_period_end_date"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +59,7 @@ class TransactionTeam(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TransactionTeam from a JSON string"""
+        """Create an instance of MasterContracts from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -68,9 +76,9 @@ class TransactionTeam(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "id",
-            "name",
-            "tier",
+            "franchise",
+            "status",
+            "team_name",
         ])
 
         _dict = self.model_dump(
@@ -78,11 +86,16 @@ class TransactionTeam(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if waiver_period_end_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.waiver_period_end_date is None and "waiver_period_end_date" in self.model_fields_set:
+            _dict['waiver_period_end_date'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TransactionTeam from a dict"""
+        """Create an instance of MasterContracts from a dict"""
         if obj is None:
             return None
 
@@ -90,9 +103,16 @@ class TransactionTeam(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
+            "active": obj.get("active"),
+            "rsc_id": obj.get("rsc_id"),
             "name": obj.get("name"),
-            "tier": obj.get("tier")
+            "franchise": obj.get("franchise"),
+            "contract_length": obj.get("contract_length"),
+            "current_mmr": obj.get("current_mmr"),
+            "status": obj.get("status"),
+            "base_mmr": obj.get("base_mmr"),
+            "team_name": obj.get("team_name"),
+            "waiver_period_end_date": obj.get("waiver_period_end_date")
         })
         return _obj
 

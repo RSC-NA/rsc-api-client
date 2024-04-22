@@ -18,20 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TransactionTeam(BaseModel):
+class TeamPatch(BaseModel):
     """
-    TransactionTeam
+    TeamPatch
     """ # noqa: E501
-    id: Optional[StrictInt] = None
-    name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    tier: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "name", "tier"]
+    name: Annotated[str, Field(min_length=1, strict=True, max_length=16)]
+    __properties: ClassVar[List[str]] = ["name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +49,7 @@ class TransactionTeam(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TransactionTeam from a JSON string"""
+        """Create an instance of TeamPatch from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -63,14 +61,8 @@ class TransactionTeam(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "id",
-            "name",
-            "tier",
         ])
 
         _dict = self.model_dump(
@@ -82,7 +74,7 @@ class TransactionTeam(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TransactionTeam from a dict"""
+        """Create an instance of TeamPatch from a dict"""
         if obj is None:
             return None
 
@@ -90,9 +82,7 @@ class TransactionTeam(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "tier": obj.get("tier")
+            "name": obj.get("name")
         })
         return _obj
 

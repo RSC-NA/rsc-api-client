@@ -26,6 +26,7 @@ from rscapi.models.player import Player
 from rscapi.models.team import Team
 from rscapi.models.team_create import TeamCreate
 from rscapi.models.team_list import TeamList
+from rscapi.models.team_patch import TeamPatch
 from rscapi.models.team_season_stats import TeamSeasonStats
 
 from rscapi.api_client import ApiClient, RequestSerialized
@@ -3098,7 +3099,7 @@ class TeamsApi:
     async def teams_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
-        data: TeamList,
+        data: TeamPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3111,14 +3112,14 @@ class TeamsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TeamList:
+    ) -> TeamPatch:
         """teams_update
 
 
         :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param data: (required)
-        :type data: TeamList
+        :type data: TeamPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3151,7 +3152,8 @@ class TeamsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TeamList",
+            '200': "TeamPatch",
+            '400': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3168,7 +3170,7 @@ class TeamsApi:
     async def teams_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
-        data: TeamList,
+        data: TeamPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3181,14 +3183,14 @@ class TeamsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TeamList]:
+    ) -> ApiResponse[TeamPatch]:
         """teams_update
 
 
         :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param data: (required)
-        :type data: TeamList
+        :type data: TeamPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3221,7 +3223,8 @@ class TeamsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TeamList",
+            '200': "TeamPatch",
+            '400': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3238,7 +3241,7 @@ class TeamsApi:
     async def teams_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
-        data: TeamList,
+        data: TeamPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3258,7 +3261,7 @@ class TeamsApi:
         :param id: A unique integer value identifying this teams. (required)
         :type id: int
         :param data: (required)
-        :type data: TeamList
+        :type data: TeamPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3291,7 +3294,8 @@ class TeamsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TeamList",
+            '200': "TeamPatch",
+            '400': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
