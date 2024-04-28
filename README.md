@@ -55,10 +55,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -90,7 +90,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.rscna.com/api/v1*
+All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -211,6 +211,7 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_read**](docs/TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
 *TransactionsApi* | [**transactions_cut_and_sign_create**](docs/TransactionsApi.md#transactions_cut_and_sign_create) | **POST** /transactions/cut_and_sign/ | 
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
+*TransactionsApi* | [**transactions_draft_create**](docs/TransactionsApi.md#transactions_draft_create) | **POST** /transactions/draft/ | 
 *TransactionsApi* | [**transactions_expire_create**](docs/TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
 *TransactionsApi* | [**transactions_history_list**](docs/TransactionsApi.md#transactions_history_list) | **GET** /transactions/history/ | 
 *TransactionsApi* | [**transactions_history_read**](docs/TransactionsApi.md#transactions_history_read) | **GET** /transactions/history/{id}/ | 
@@ -231,6 +232,7 @@ Class | Method | HTTP request | Description
  - [CutAPlayerAndSignAnother](docs/CutAPlayerAndSignAnother.md)
  - [CutAPlayerFromALeague](docs/CutAPlayerFromALeague.md)
  - [Deleted](docs/Deleted.md)
+ - [DraftAPlayerToATeam](docs/DraftAPlayerToATeam.md)
  - [DraftPick](docs/DraftPick.md)
  - [DropAPlayerFromALeague](docs/DropAPlayerFromALeague.md)
  - [ElevatedRole](docs/ElevatedRole.md)

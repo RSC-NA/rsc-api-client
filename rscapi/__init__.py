@@ -50,6 +50,7 @@ from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
 from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother
 from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.deleted import Deleted
+from rscapi.models.draft_a_player_to_a_team import DraftAPlayerToATeam
 from rscapi.models.draft_pick import DraftPick
 from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole
