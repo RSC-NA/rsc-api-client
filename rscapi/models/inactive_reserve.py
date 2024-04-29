@@ -32,8 +32,9 @@ class InactiveReserve(BaseModel):
     executor: StrictInt = Field(description="Discord ID of specific member who ran the transaction.")
     notes: Optional[StrictStr] = Field(default=None, description="Notes for the transaction from the TM running it.")
     admin_override: Optional[StrictBool] = Field(default=None, description="Boolean indicating whether or not an admin is overriding this command.")
+    redshirt: Optional[StrictBool] = Field(default=None, description="Redshirt an AGM")
     remove_from_ir: Optional[StrictBool] = Field(default=None, description="Boolean indicating whether or not the player is returning from IR.")
-    __properties: ClassVar[List[str]] = ["player", "league", "executor", "notes", "admin_override", "remove_from_ir"]
+    __properties: ClassVar[List[str]] = ["player", "league", "executor", "notes", "admin_override", "redshirt", "remove_from_ir"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,6 +92,7 @@ class InactiveReserve(BaseModel):
             "executor": obj.get("executor"),
             "notes": obj.get("notes"),
             "admin_override": obj.get("admin_override"),
+            "redshirt": obj.get("redshirt"),
             "remove_from_ir": obj.get("remove_from_ir")
         })
         return _obj

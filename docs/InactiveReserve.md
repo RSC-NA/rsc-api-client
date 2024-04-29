@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **executor** | **int** | Discord ID of specific member who ran the transaction. | 
 **notes** | **str** | Notes for the transaction from the TM running it. | [optional] 
 **admin_override** | **bool** | Boolean indicating whether or not an admin is overriding this command. | [optional] 
+**redshirt** | **bool** | Redshirt an AGM | [optional] 
 **remove_from_ir** | **bool** | Boolean indicating whether or not the player is returning from IR. | [optional] 
 
 ## Example

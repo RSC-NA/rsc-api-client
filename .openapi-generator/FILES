@@ -243,5 +243,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_draft_a_player_to_a_team.py
 tox.ini
