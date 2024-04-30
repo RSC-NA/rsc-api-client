@@ -34,7 +34,7 @@ class Team(BaseModel):
     franchise: Annotated[str, Field(min_length=1, strict=True)]
     tier: Annotated[str, Field(min_length=1, strict=True)]
     players: Optional[List[Player]] = None
-    latest_season: StrictInt
+    latest_season: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season"]
 
     model_config = ConfigDict(
@@ -70,11 +70,13 @@ class Team(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "name",
             "players",
+            "latest_season",
         ])
 
         _dict = self.model_dump(
