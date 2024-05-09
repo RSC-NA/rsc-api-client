@@ -266,6 +266,7 @@ Class | Method | HTTP request | Description
  - [Match](docs/Match.md)
  - [MatchList](docs/MatchList.md)
  - [MatchResults](docs/MatchResults.md)
+ - [MatchTeam](docs/MatchTeam.md)
  - [MatchesList200Response](docs/MatchesList200Response.md)
  - [Member](docs/Member.md)
  - [MemberIntent](docs/MemberIntent.md)

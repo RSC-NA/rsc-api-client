@@ -48,6 +48,7 @@ docs/MasterMemberSheet.md
 docs/Match.md
 docs/MatchList.md
 docs/MatchResults.md
+docs/MatchTeam.md
 docs/MatchesApi.md
 docs/MatchesList200Response.md
 docs/Member.md
@@ -178,6 +179,7 @@ rscapi/models/master_member_sheet.py
 rscapi/models/match.py
 rscapi/models/match_list.py
 rscapi/models/match_results.py
+rscapi/models/match_team.py
 rscapi/models/matches_list200_response.py
 rscapi/models/member.py
 rscapi/models/member_intent.py
@@ -243,4 +245,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_match_team.py
 tox.ini

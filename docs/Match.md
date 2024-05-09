@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **num_games** | **int** |  | [optional] [readonly] 
 **match_format** | **str** |  | [optional] [readonly] 
 **match_type** | **str** |  | [optional] [readonly] 
-**home_team** | [**Team**](Team.md) |  | 
-**away_team** | [**Team**](Team.md) |  | 
+**home_team** | [**MatchTeam**](MatchTeam.md) |  | 
+**away_team** | [**MatchTeam**](MatchTeam.md) |  | 
 **id** | **int** |  | [optional] [readonly] 
 **results** | [**MatchResults**](MatchResults.md) |  | 
 

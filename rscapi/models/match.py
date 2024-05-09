@@ -23,7 +23,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.match_results import MatchResults
-from rscapi.models.team import Team
+from rscapi.models.match_team import MatchTeam
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -38,8 +38,8 @@ class Match(BaseModel):
     num_games: Optional[StrictInt] = None
     match_format: Optional[StrictStr] = None
     match_type: Optional[StrictStr] = None
-    home_team: Team
-    away_team: Team
+    home_team: MatchTeam
+    away_team: MatchTeam
     id: Optional[StrictInt] = None
     results: Optional[MatchResults]
     __properties: ClassVar[List[str]] = ["day", "date", "game_name", "game_pass", "num_games", "match_format", "match_type", "home_team", "away_team", "id", "results"]
@@ -157,8 +157,8 @@ class Match(BaseModel):
             "num_games": obj.get("num_games"),
             "match_format": obj.get("match_format"),
             "match_type": obj.get("match_type"),
-            "home_team": Team.from_dict(obj["home_team"]) if obj.get("home_team") is not None else None,
-            "away_team": Team.from_dict(obj["away_team"]) if obj.get("away_team") is not None else None,
+            "home_team": MatchTeam.from_dict(obj["home_team"]) if obj.get("home_team") is not None else None,
+            "away_team": MatchTeam.from_dict(obj["away_team"]) if obj.get("away_team") is not None else None,
             "id": obj.get("id"),
             "results": MatchResults.from_dict(obj["results"]) if obj.get("results") is not None else None
         })
