@@ -84,6 +84,7 @@ from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.models.match import Match
 from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
+from rscapi.models.match_score_report import MatchScoreReport
 from rscapi.models.match_team import MatchTeam
 from rscapi.models.matches_list200_response import MatchesList200Response
 from rscapi.models.member import Member

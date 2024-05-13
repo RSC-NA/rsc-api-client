@@ -18,23 +18,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from rscapi.models.game import Game
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MatchResults(BaseModel):
+class MatchScoreReport(BaseModel):
     """
-    MatchResults
+    Data to score report a match.
     """ # noqa: E501
-    home_wins: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    away_wins: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    games: Optional[List[Game]] = None
-    manual: Optional[StrictBool] = None
-    ballchasing_group: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=64)]] = None
-    __properties: ClassVar[List[str]] = ["home_wins", "away_wins", "games", "manual", "ballchasing_group"]
+    home_score: Optional[StrictInt] = Field(default=None, description="Number of games Home won.")
+    away_score: Optional[StrictInt] = Field(default=None, description="Number of games Away won.")
+    executor: Optional[StrictInt] = Field(default=None, description="Person executing the score report")
+    admin_override: Optional[StrictBool] = Field(default=None, description="Is an admin overriding the score report.")
+    stats_override: Optional[StrictBool] = Field(default=None, description="Is a stats member overriding the score report.")
+    ballchasing_group: Optional[StrictStr] = Field(default=None, description="ID of the ballchasing group of match results.")
+    __properties: ClassVar[List[str]] = ["home_score", "away_score", "executor", "admin_override", "stats_override", "ballchasing_group"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +53,7 @@ class MatchResults(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MatchResults from a JSON string"""
+        """Create an instance of MatchScoreReport from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,18 +74,11 @@ class MatchResults(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in games (list)
-        _items = []
-        if self.games:
-            for _item in self.games:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['games'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MatchResults from a dict"""
+        """Create an instance of MatchScoreReport from a dict"""
         if obj is None:
             return None
 
@@ -94,10 +86,11 @@ class MatchResults(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "home_wins": obj.get("home_wins"),
-            "away_wins": obj.get("away_wins"),
-            "games": [Game.from_dict(_item) for _item in obj["games"]] if obj.get("games") is not None else None,
-            "manual": obj.get("manual"),
+            "home_score": obj.get("home_score"),
+            "away_score": obj.get("away_score"),
+            "executor": obj.get("executor"),
+            "admin_override": obj.get("admin_override"),
+            "stats_override": obj.get("stats_override"),
             "ballchasing_group": obj.get("ballchasing_group")
         })
         return _obj

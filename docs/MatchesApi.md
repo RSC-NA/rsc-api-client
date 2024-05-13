@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**matches_partial_update**](MatchesApi.md#matches_partial_update) | **PATCH** /matches/{id}/ | 
 [**matches_read**](MatchesApi.md#matches_read) | **GET** /matches/{id}/ | 
 [**matches_results**](MatchesApi.md#matches_results) | **GET** /matches/{id}/results/ | 
+[**matches_score_report**](MatchesApi.md#matches_score_report) | **POST** /matches/{id}/score_report/ | 
 [**matches_update**](MatchesApi.md#matches_update) | **PUT** /matches/{id}/ | 
 
 
@@ -593,6 +594,88 @@ Name | Type | Description  | Notes
 **200** |  |  -  |
 **400** |  |  -  |
 **404** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **matches_score_report**
+> MatchResults matches_score_report(id, data)
+
+
+
+Score report for initial match
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.match_results import MatchResults
+from rscapi.models.match_score_report import MatchScoreReport
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MatchesApi(api_client)
+    id = 56 # int | A unique integer value identifying this matches.
+    data = rscapi.MatchScoreReport() # MatchScoreReport | 
+
+    try:
+        api_response = await api_instance.matches_score_report(id, data)
+        print("The response of MatchesApi->matches_score_report:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MatchesApi->matches_score_report: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this matches. | 
+ **data** | [**MatchScoreReport**](MatchScoreReport.md)|  | 
+
+### Return type
+
+[**MatchResults**](MatchResults.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

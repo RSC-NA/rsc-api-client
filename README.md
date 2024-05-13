@@ -141,6 +141,7 @@ Class | Method | HTTP request | Description
 *MatchesApi* | [**matches_partial_update**](docs/MatchesApi.md#matches_partial_update) | **PATCH** /matches/{id}/ | 
 *MatchesApi* | [**matches_read**](docs/MatchesApi.md#matches_read) | **GET** /matches/{id}/ | 
 *MatchesApi* | [**matches_results**](docs/MatchesApi.md#matches_results) | **GET** /matches/{id}/results/ | 
+*MatchesApi* | [**matches_score_report**](docs/MatchesApi.md#matches_score_report) | **POST** /matches/{id}/score_report/ | 
 *MatchesApi* | [**matches_update**](docs/MatchesApi.md#matches_update) | **PUT** /matches/{id}/ | 
 *MembersApi* | [**members_accounts**](docs/MembersApi.md#members_accounts) | **GET** /members/{id}/accounts/ | 
 *MembersApi* | [**members_activity_check**](docs/MembersApi.md#members_activity_check) | **POST** /members/{id}/activity_check/ | 
@@ -266,6 +267,7 @@ Class | Method | HTTP request | Description
  - [Match](docs/Match.md)
  - [MatchList](docs/MatchList.md)
  - [MatchResults](docs/MatchResults.md)
+ - [MatchScoreReport](docs/MatchScoreReport.md)
  - [MatchTeam](docs/MatchTeam.md)
  - [MatchesList200Response](docs/MatchesList200Response.md)
  - [Member](docs/Member.md)

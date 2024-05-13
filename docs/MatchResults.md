@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**home_wins** | **int** |  | [optional] [readonly] 
-**away_wins** | **int** |  | [optional] [readonly] 
-**games** | [**List[Game]**](Game.md) |  | 
-**manual** | **bool** |  | [optional] [readonly] 
-**ballchasing_group** | **str** |  | [optional] [readonly] 
+**home_wins** | **int** |  | [optional] 
+**away_wins** | **int** |  | [optional] 
+**games** | [**List[Game]**](Game.md) |  | [optional] 
+**manual** | **bool** |  | [optional] 
+**ballchasing_group** | **str** |  | [optional] 
 
 ## Example
 
