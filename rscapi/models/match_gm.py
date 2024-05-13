@@ -18,26 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from rscapi.models.match_gm import MatchGM
-from rscapi.models.player import Player
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MatchTeam(BaseModel):
+class MatchGM(BaseModel):
     """
-    MatchTeam
+    MatchGM
     """ # noqa: E501
-    id: Optional[StrictInt] = None
-    name: Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    franchise: Annotated[str, Field(min_length=1, strict=True)]
-    tier: Annotated[str, Field(min_length=1, strict=True)]
-    players: Optional[List[Player]] = None
-    latest_season: Optional[StrictInt] = None
-    gm: MatchGM
-    __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season", "gm"]
+    rsc_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]] = None
+    __properties: ClassVar[List[str]] = ["rsc_name", "discord_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,7 +50,7 @@ class MatchTeam(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MatchTeam from a JSON string"""
+        """Create an instance of MatchGM from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +62,8 @@ class MatchTeam(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "id",
-            "players",
-            "latest_season",
         ])
 
         _dict = self.model_dump(
@@ -84,21 +71,11 @@ class MatchTeam(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in players (list)
-        _items = []
-        if self.players:
-            for _item in self.players:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['players'] = _items
-        # override the default output from pydantic by calling `to_dict()` of gm
-        if self.gm:
-            _dict['gm'] = self.gm.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MatchTeam from a dict"""
+        """Create an instance of MatchGM from a dict"""
         if obj is None:
             return None
 
@@ -106,13 +83,8 @@ class MatchTeam(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "tier": obj.get("tier"),
-            "players": [Player.from_dict(_item) for _item in obj["players"]] if obj.get("players") is not None else None,
-            "latest_season": obj.get("latest_season"),
-            "gm": MatchGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None
+            "rsc_name": obj.get("rsc_name"),
+            "discord_id": obj.get("discord_id")
         })
         return _obj
 

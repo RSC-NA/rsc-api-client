@@ -9,8 +9,7 @@ Name | Type | Description | Notes
 **home_score** | **int** | Number of games Home won. | [optional] 
 **away_score** | **int** | Number of games Away won. | [optional] 
 **executor** | **int** | Person executing the score report | [optional] 
-**admin_override** | **bool** | Is an admin overriding the score report. | [optional] 
-**stats_override** | **bool** | Is a stats member overriding the score report. | [optional] 
+**override** | **bool** | Is an admin overriding the score report. | [optional] 
 **ballchasing_group** | **str** | ID of the ballchasing group of match results. | [optional] 
 
 ## Example

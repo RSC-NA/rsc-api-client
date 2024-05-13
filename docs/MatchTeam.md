@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **tier** | **str** |  | 
 **players** | [**List[Player]**](Player.md) |  | [optional] [readonly] 
 **latest_season** | **int** |  | [optional] [readonly] 
-**gm** | **str** |  | 
+**gm** | [**MatchGM**](MatchGM.md) |  | 
 
 ## Example
 

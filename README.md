@@ -265,6 +265,7 @@ Class | Method | HTTP request | Description
  - [MasterContracts](docs/MasterContracts.md)
  - [MasterMemberSheet](docs/MasterMemberSheet.md)
  - [Match](docs/Match.md)
+ - [MatchGM](docs/MatchGM.md)
  - [MatchList](docs/MatchList.md)
  - [MatchResults](docs/MatchResults.md)
  - [MatchScoreReport](docs/MatchScoreReport.md)

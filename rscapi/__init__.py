@@ -82,6 +82,7 @@ from rscapi.models.list_match_results import ListMatchResults
 from rscapi.models.master_contracts import MasterContracts
 from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.models.match import Match
+from rscapi.models.match_gm import MatchGM
 from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
 from rscapi.models.match_score_report import MatchScoreReport

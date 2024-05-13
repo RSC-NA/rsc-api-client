@@ -30,10 +30,9 @@ class MatchScoreReport(BaseModel):
     home_score: Optional[StrictInt] = Field(default=None, description="Number of games Home won.")
     away_score: Optional[StrictInt] = Field(default=None, description="Number of games Away won.")
     executor: Optional[StrictInt] = Field(default=None, description="Person executing the score report")
-    admin_override: Optional[StrictBool] = Field(default=None, description="Is an admin overriding the score report.")
-    stats_override: Optional[StrictBool] = Field(default=None, description="Is a stats member overriding the score report.")
+    override: Optional[StrictBool] = Field(default=None, description="Is an admin overriding the score report.")
     ballchasing_group: Optional[StrictStr] = Field(default=None, description="ID of the ballchasing group of match results.")
-    __properties: ClassVar[List[str]] = ["home_score", "away_score", "executor", "admin_override", "stats_override", "ballchasing_group"]
+    __properties: ClassVar[List[str]] = ["home_score", "away_score", "executor", "override", "ballchasing_group"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,8 +88,7 @@ class MatchScoreReport(BaseModel):
             "home_score": obj.get("home_score"),
             "away_score": obj.get("away_score"),
             "executor": obj.get("executor"),
-            "admin_override": obj.get("admin_override"),
-            "stats_override": obj.get("stats_override"),
+            "override": obj.get("override"),
             "ballchasing_group": obj.get("ballchasing_group")
         })
         return _obj

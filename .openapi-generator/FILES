@@ -46,6 +46,7 @@ docs/ListMatchResults.md
 docs/MasterContracts.md
 docs/MasterMemberSheet.md
 docs/Match.md
+docs/MatchGM.md
 docs/MatchList.md
 docs/MatchResults.md
 docs/MatchScoreReport.md
@@ -178,6 +179,7 @@ rscapi/models/list_match_results.py
 rscapi/models/master_contracts.py
 rscapi/models/master_member_sheet.py
 rscapi/models/match.py
+rscapi/models/match_gm.py
 rscapi/models/match_list.py
 rscapi/models/match_results.py
 rscapi/models/match_score_report.py
@@ -247,5 +249,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_match_score_report.py
+test/test_match_gm.py
 tox.ini
