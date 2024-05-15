@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -31,13 +31,24 @@ class Player(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = None
     name: Annotated[str, Field(min_length=1, strict=True)]
-    status: Annotated[str, Field(min_length=1, strict=True)]
+    status: Optional[StrictStr] = None
     captain: Optional[StrictBool] = None
     base_mmr: Optional[StrictInt] = None
     current_mmr: Optional[StrictInt] = None
     last_updated: Optional[datetime] = None
     discord_id: StrictInt
-    __properties: ClassVar[List[str]] = ["id", "name", "status", "captain", "base_mmr", "current_mmr", "last_updated", "discord_id"]
+    sub_status: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["id", "name", "status", "captain", "base_mmr", "current_mmr", "last_updated", "discord_id", "sub_status"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR', 'DR']):
+            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR', 'DR')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,13 +85,17 @@ class Player(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
+            "status",
             "captain",
             "base_mmr",
             "current_mmr",
             "last_updated",
+            "sub_status",
         ])
 
         _dict = self.model_dump(
@@ -107,7 +122,8 @@ class Player(BaseModel):
             "base_mmr": obj.get("base_mmr"),
             "current_mmr": obj.get("current_mmr"),
             "last_updated": obj.get("last_updated"),
-            "discord_id": obj.get("discord_id")
+            "discord_id": obj.get("discord_id"),
+            "sub_status": obj.get("sub_status")
         })
         return _obj
 

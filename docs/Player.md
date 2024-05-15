@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
-**status** | **str** |  | 
+**status** | **str** |  | [optional] [readonly] 
 **captain** | **bool** |  | [optional] [readonly] 
 **base_mmr** | **int** |  | [optional] [readonly] 
 **current_mmr** | **int** |  | [optional] [readonly] 
 **last_updated** | **datetime** |  | [optional] [readonly] 
 **discord_id** | **int** |  | 
+**sub_status** | **int** |  | [optional] [readonly] 
 
 ## Example
 
