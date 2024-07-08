@@ -21,6 +21,7 @@ from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.league_player_patch import LeaguePlayerPatch
 from rscapi.models.league_players_list200_response import LeaguePlayersList200Response
 from rscapi.models.player_season_stats import PlayerSeasonStats
 
@@ -1024,7 +1025,7 @@ class LeaguePlayersApi:
     async def league_players_partial_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        data: LeaguePlayer,
+        data: LeaguePlayerPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1037,14 +1038,14 @@ class LeaguePlayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> LeaguePlayer:
+    ) -> LeaguePlayerPatch:
         """league_players_partial_update
 
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
         :param data: (required)
-        :type data: LeaguePlayer
+        :type data: LeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1077,7 +1078,7 @@ class LeaguePlayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaguePlayer",
+            '200': "LeaguePlayerPatch",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1094,7 +1095,7 @@ class LeaguePlayersApi:
     async def league_players_partial_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        data: LeaguePlayer,
+        data: LeaguePlayerPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1107,14 +1108,14 @@ class LeaguePlayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[LeaguePlayer]:
+    ) -> ApiResponse[LeaguePlayerPatch]:
         """league_players_partial_update
 
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
         :param data: (required)
-        :type data: LeaguePlayer
+        :type data: LeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1147,7 +1148,7 @@ class LeaguePlayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaguePlayer",
+            '200': "LeaguePlayerPatch",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1164,7 +1165,7 @@ class LeaguePlayersApi:
     async def league_players_partial_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        data: LeaguePlayer,
+        data: LeaguePlayerPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1184,7 +1185,7 @@ class LeaguePlayersApi:
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
         :param data: (required)
-        :type data: LeaguePlayer
+        :type data: LeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1217,7 +1218,7 @@ class LeaguePlayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaguePlayer",
+            '200': "LeaguePlayerPatch",
         }
         response_data = await self.api_client.call_api(
             *_param,

@@ -127,6 +127,7 @@ Class | Method | HTTP request | Description
 *LeaguesApi* | [**leagues_create**](docs/LeaguesApi.md#leagues_create) | **POST** /leagues/ | 
 *LeaguesApi* | [**leagues_current_season**](docs/LeaguesApi.md#leagues_current_season) | **GET** /leagues/{id}/current_season/ | 
 *LeaguesApi* | [**leagues_delete**](docs/LeaguesApi.md#leagues_delete) | **DELETE** /leagues/{id}/ | 
+*LeaguesApi* | [**leagues_expire_subs**](docs/LeaguesApi.md#leagues_expire_subs) | **POST** /leagues/{id}/expire_subs/ | 
 *LeaguesApi* | [**leagues_list**](docs/LeaguesApi.md#leagues_list) | **GET** /leagues/ | 
 *LeaguesApi* | [**leagues_partial_update**](docs/LeaguesApi.md#leagues_partial_update) | **PATCH** /leagues/{id}/ | 
 *LeaguesApi* | [**leagues_read**](docs/LeaguesApi.md#leagues_read) | **GET** /leagues/{id}/ | 
@@ -259,6 +260,7 @@ Class | Method | HTTP request | Description
  - [LeaguePlayer](docs/LeaguePlayer.md)
  - [LeaguePlayerLeague](docs/LeaguePlayerLeague.md)
  - [LeaguePlayerMember](docs/LeaguePlayerMember.md)
+ - [LeaguePlayerPatch](docs/LeaguePlayerPatch.md)
  - [LeaguePlayersList200Response](docs/LeaguePlayersList200Response.md)
  - [ListGames](docs/ListGames.md)
  - [ListMatchResults](docs/ListMatchResults.md)
@@ -269,6 +271,7 @@ Class | Method | HTTP request | Description
  - [MatchList](docs/MatchList.md)
  - [MatchResults](docs/MatchResults.md)
  - [MatchScoreReport](docs/MatchScoreReport.md)
+ - [MatchSubmission](docs/MatchSubmission.md)
  - [MatchTeam](docs/MatchTeam.md)
  - [MatchesList200Response](docs/MatchesList200Response.md)
  - [Member](docs/Member.md)

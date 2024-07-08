@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **first_franchise** | [**TransactionFranchise**](TransactionFranchise.md) |  | [optional] 
 **second_franchise** | [**TransactionFranchise**](TransactionFranchise.md) |  | [optional] 
 **executor** | [**SimpleMember**](SimpleMember.md) |  | 
+**id** | **int** |  | [optional] [readonly] 
 
 ## Example
 

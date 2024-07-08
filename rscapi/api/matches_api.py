@@ -24,6 +24,7 @@ from rscapi.models.match import Match
 from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
 from rscapi.models.match_score_report import MatchScoreReport
+from rscapi.models.match_submission import MatchSubmission
 from rscapi.models.matches_list200_response import MatchesList200Response
 
 from rscapi.api_client import ApiClient, RequestSerialized
@@ -47,7 +48,7 @@ class MatchesApi:
     @validate_call
     async def matches_create(
         self,
-        data: MatchList,
+        data: MatchSubmission,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -60,12 +61,12 @@ class MatchesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> MatchList:
+    ) -> Match:
         """matches_create
 
 
         :param data: (required)
-        :type data: MatchList
+        :type data: MatchSubmission
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -97,7 +98,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "MatchList",
+            '201': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -113,7 +114,7 @@ class MatchesApi:
     @validate_call
     async def matches_create_with_http_info(
         self,
-        data: MatchList,
+        data: MatchSubmission,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -126,12 +127,12 @@ class MatchesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[MatchList]:
+    ) -> ApiResponse[Match]:
         """matches_create
 
 
         :param data: (required)
-        :type data: MatchList
+        :type data: MatchSubmission
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -163,7 +164,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "MatchList",
+            '201': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -179,7 +180,7 @@ class MatchesApi:
     @validate_call
     async def matches_create_without_preload_content(
         self,
-        data: MatchList,
+        data: MatchSubmission,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -197,7 +198,7 @@ class MatchesApi:
 
 
         :param data: (required)
-        :type data: MatchList
+        :type data: MatchSubmission
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -229,7 +230,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "MatchList",
+            '201': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,

@@ -38,6 +38,7 @@ docs/LeagueData.md
 docs/LeaguePlayer.md
 docs/LeaguePlayerLeague.md
 docs/LeaguePlayerMember.md
+docs/LeaguePlayerPatch.md
 docs/LeaguePlayersApi.md
 docs/LeaguePlayersList200Response.md
 docs/LeaguesApi.md
@@ -50,6 +51,7 @@ docs/MatchGM.md
 docs/MatchList.md
 docs/MatchResults.md
 docs/MatchScoreReport.md
+docs/MatchSubmission.md
 docs/MatchTeam.md
 docs/MatchesApi.md
 docs/MatchesList200Response.md
@@ -173,6 +175,7 @@ rscapi/models/league_data.py
 rscapi/models/league_player.py
 rscapi/models/league_player_league.py
 rscapi/models/league_player_member.py
+rscapi/models/league_player_patch.py
 rscapi/models/league_players_list200_response.py
 rscapi/models/list_games.py
 rscapi/models/list_match_results.py
@@ -183,6 +186,7 @@ rscapi/models/match_gm.py
 rscapi/models/match_list.py
 rscapi/models/match_results.py
 rscapi/models/match_score_report.py
+rscapi/models/match_submission.py
 rscapi/models/match_team.py
 rscapi/models/matches_list200_response.py
 rscapi/models/member.py
@@ -249,4 +253,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_league_player_patch.py
+test/test_match_submission.py
 tox.ini

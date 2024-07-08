@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **matches_create**
-> MatchList matches_create(data)
+> Match matches_create(data)
 
 
 
@@ -26,7 +26,8 @@ Method | HTTP request | Description
 
 ```python
 import rscapi
-from rscapi.models.match_list import MatchList
+from rscapi.models.match import Match
+from rscapi.models.match_submission import MatchSubmission
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -51,7 +52,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    data = rscapi.MatchList() # MatchList | 
+    data = rscapi.MatchSubmission() # MatchSubmission | 
 
     try:
         api_response = await api_instance.matches_create(data)
@@ -68,11 +69,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**MatchList**](MatchList.md)|  | 
+ **data** | [**MatchSubmission**](MatchSubmission.md)|  | 
 
 ### Return type
 
-[**MatchList**](MatchList.md)
+[**Match**](Match.md)
 
 ### Authorization
 

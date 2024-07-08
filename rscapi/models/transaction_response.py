@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
@@ -42,7 +42,8 @@ class TransactionResponse(BaseModel):
     first_franchise: Optional[TransactionFranchise] = None
     second_franchise: Optional[TransactionFranchise] = None
     executor: SimpleMember
-    __properties: ClassVar[List[str]] = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor"]
+    id: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor", "id"]
 
     @field_validator('week')
     def week_validate_enum(cls, value):
@@ -92,9 +93,11 @@ class TransactionResponse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "var_date",
+            "id",
         ])
 
         _dict = self.model_dump(
@@ -164,7 +167,8 @@ class TransactionResponse(BaseModel):
             "notes": obj.get("notes"),
             "first_franchise": TransactionFranchise.from_dict(obj["first_franchise"]) if obj.get("first_franchise") is not None else None,
             "second_franchise": TransactionFranchise.from_dict(obj["second_franchise"]) if obj.get("second_franchise") is not None else None,
-            "executor": SimpleMember.from_dict(obj["executor"]) if obj.get("executor") is not None else None
+            "executor": SimpleMember.from_dict(obj["executor"]) if obj.get("executor") is not None else None,
+            "id": obj.get("id")
         })
         return _obj
 

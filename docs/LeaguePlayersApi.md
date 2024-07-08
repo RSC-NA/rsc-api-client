@@ -265,7 +265,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_partial_update**
-> LeaguePlayer league_players_partial_update(id, data)
+> LeaguePlayerPatch league_players_partial_update(id, data)
 
 
 
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.league_player_patch import LeaguePlayerPatch
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -301,7 +301,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
     id = 56 # int | A unique integer value identifying this league player.
-    data = rscapi.LeaguePlayer() # LeaguePlayer | 
+    data = rscapi.LeaguePlayerPatch() # LeaguePlayerPatch | 
 
     try:
         api_response = await api_instance.league_players_partial_update(id, data)
@@ -319,11 +319,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league player. | 
- **data** | [**LeaguePlayer**](LeaguePlayer.md)|  | 
+ **data** | [**LeaguePlayerPatch**](LeaguePlayerPatch.md)|  | 
 
 ### Return type
 
-[**LeaguePlayer**](LeaguePlayer.md)
+[**LeaguePlayerPatch**](LeaguePlayerPatch.md)
 
 ### Authorization
 
