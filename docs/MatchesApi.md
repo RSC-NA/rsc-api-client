@@ -210,7 +210,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     season = 56 # int | ID of the season to search for match. (optional)
     season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
     day = 56 # int | Match day to query for. (optional)
-    match_type = 'match_type_example' # str | match_type (optional)
+    match_type = 'match_type_example' # str | Match Type (optional)
     match_format = 'match_format_example' # str | match_format (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
  **season** | **int**| ID of the season to search for match. | [optional] 
  **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
  **day** | **int**| Match day to query for. | [optional] 
- **match_type** | **str**| match_type | [optional] 
+ **match_type** | **str**| Match Type | [optional] 
  **match_format** | **str**| match_format | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 

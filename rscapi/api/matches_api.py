@@ -572,7 +572,7 @@ class MatchesApi:
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="match_type")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
@@ -608,7 +608,7 @@ class MatchesApi:
         :type season_number: int
         :param day: Match day to query for.
         :type day: int
-        :param match_type: match_type
+        :param match_type: Match Type
         :type match_type: str
         :param match_format: match_format
         :type match_format: str
@@ -684,7 +684,7 @@ class MatchesApi:
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="match_type")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
@@ -720,7 +720,7 @@ class MatchesApi:
         :type season_number: int
         :param day: Match day to query for.
         :type day: int
-        :param match_type: match_type
+        :param match_type: Match Type
         :type match_type: str
         :param match_format: match_format
         :type match_format: str
@@ -796,7 +796,7 @@ class MatchesApi:
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="match_type")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
@@ -832,7 +832,7 @@ class MatchesApi:
         :type season_number: int
         :param day: Match day to query for.
         :type day: int
-        :param match_type: match_type
+        :param match_type: Match Type
         :type match_type: str
         :param match_format: match_format
         :type match_format: str

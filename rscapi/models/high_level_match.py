@@ -60,8 +60,8 @@ class HighLevelMatch(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['REG', 'PRE', 'PST', 'FNL']):
-            raise ValueError("must be one of enum values ('REG', 'PRE', 'PST', 'FNL')")
+        if value not in set(['REG', 'PRE', 'PST', 'FNL', 'ANY']):
+            raise ValueError("must be one of enum values ('REG', 'PRE', 'PST', 'FNL', 'ANY')")
         return value
 
     model_config = ConfigDict(
