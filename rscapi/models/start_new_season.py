@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,10 +30,12 @@ class StartNewSeason(BaseModel):
     start_date: StrictStr = Field(description="Season start date")
     end_date: StrictStr = Field(description="Season end date")
     regular_season_start: StrictStr = Field(description="When Regular season starts")
+    regular_season_end: Optional[StrictStr] = Field(default=None, description="When Regular season starts")
     signups_close: StrictStr = Field(description="When signups close.")
     preseason_start_date: StrictStr = Field(description="When the preseason starts")
     draft_date: StrictStr = Field(description="Planned draft night")
-    __properties: ClassVar[List[str]] = ["start_date", "end_date", "regular_season_start", "signups_close", "preseason_start_date", "draft_date"]
+    season_number: Optional[StrictInt] = Field(default=None, description="Season Number")
+    __properties: ClassVar[List[str]] = ["start_date", "end_date", "regular_season_start", "regular_season_end", "signups_close", "preseason_start_date", "draft_date", "season_number"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,9 +91,11 @@ class StartNewSeason(BaseModel):
             "start_date": obj.get("start_date"),
             "end_date": obj.get("end_date"),
             "regular_season_start": obj.get("regular_season_start"),
+            "regular_season_end": obj.get("regular_season_end"),
             "signups_close": obj.get("signups_close"),
             "preseason_start_date": obj.get("preseason_start_date"),
-            "draft_date": obj.get("draft_date")
+            "draft_date": obj.get("draft_date"),
+            "season_number": obj.get("season_number")
         })
         return _obj
 

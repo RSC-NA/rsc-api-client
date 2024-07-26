@@ -9,9 +9,11 @@ Name | Type | Description | Notes
 **start_date** | **str** | Season start date | 
 **end_date** | **str** | Season end date | 
 **regular_season_start** | **str** | When Regular season starts | 
+**regular_season_end** | **str** | When Regular season starts | [optional] 
 **signups_close** | **str** | When signups close. | 
 **preseason_start_date** | **str** | When the preseason starts | 
 **draft_date** | **str** | Planned draft night | 
+**season_number** | **int** | Season Number | [optional] 
 
 ## Example
 

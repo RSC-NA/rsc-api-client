@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
 **prefix** | **str** |  | 
-**gm** | [**FranchiseGM**](FranchiseGM.md) |  | 
 **id** | **int** |  | [optional] [readonly] 
 **league** | [**FranchiseLeague**](FranchiseLeague.md) |  | 
 **tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [optional] [readonly] 
 **active** | **bool** |  | [optional] [readonly] 
 **teams** | [**List[Team]**](Team.md) |  | [optional] [readonly] 
 **logo** | **str** |  | [optional] [readonly] 
+**gm** | [**FranchiseGM**](FranchiseGM.md) |  | 
 
 ## Example
 
