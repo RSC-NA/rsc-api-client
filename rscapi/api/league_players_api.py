@@ -1038,7 +1038,7 @@ class LeaguePlayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> LeaguePlayerPatch:
+    ) -> LeaguePlayer:
         """league_players_partial_update
 
 
@@ -1078,7 +1078,7 @@ class LeaguePlayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaguePlayerPatch",
+            '200': "LeaguePlayer",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1108,7 +1108,7 @@ class LeaguePlayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[LeaguePlayerPatch]:
+    ) -> ApiResponse[LeaguePlayer]:
         """league_players_partial_update
 
 
@@ -1148,7 +1148,7 @@ class LeaguePlayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaguePlayerPatch",
+            '200': "LeaguePlayer",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1218,7 +1218,7 @@ class LeaguePlayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LeaguePlayerPatch",
+            '200': "LeaguePlayer",
         }
         response_data = await self.api_client.call_api(
             *_param,

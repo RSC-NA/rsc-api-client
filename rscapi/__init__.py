@@ -19,6 +19,7 @@ __version__ = "1.0.0"
 
 # import apis into sdk package
 from rscapi.api.csv_api import CsvApi
+from rscapi.api.draft_picks_api import DraftPicksApi
 from rscapi.api.franchises_api import FranchisesApi
 from rscapi.api.league_players_api import LeaguePlayersApi
 from rscapi.api.leagues_api import LeaguesApi
@@ -52,6 +53,11 @@ from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.deleted import Deleted
 from rscapi.models.draft_a_player_to_a_team import DraftAPlayerToATeam
 from rscapi.models.draft_pick import DraftPick
+from rscapi.models.draft_pick_season_tier import DraftPickSeasonTier
+from rscapi.models.draft_pick_swap import DraftPickSwap
+from rscapi.models.draft_picks import DraftPicks
+from rscapi.models.draft_picks_list200_response import DraftPicksList200Response
+from rscapi.models.draft_tier import DraftTier
 from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.error import Error
@@ -77,6 +83,7 @@ from rscapi.models.league_player import LeaguePlayer
 from rscapi.models.league_player_league import LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember
 from rscapi.models.league_player_patch import LeaguePlayerPatch
+from rscapi.models.league_player_signup import LeaguePlayerSignup
 from rscapi.models.league_players_list200_response import LeaguePlayersList200Response
 from rscapi.models.list_games import ListGames
 from rscapi.models.list_match_results import ListMatchResults

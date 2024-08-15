@@ -55,10 +55,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -90,7 +90,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.rscna.com/api/v1*
+All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -104,6 +104,9 @@ Class | Method | HTTP request | Description
 *CsvApi* | [**csv_teams_contracts_data_read**](docs/CsvApi.md#csv_teams_contracts_data_read) | **GET** /csv/teams-contracts-data/{id}/ | 
 *CsvApi* | [**csv_tracker_links_data_list**](docs/CsvApi.md#csv_tracker_links_data_list) | **GET** /csv/tracker-links-data/ | 
 *CsvApi* | [**csv_tracker_links_data_read**](docs/CsvApi.md#csv_tracker_links_data_read) | **GET** /csv/tracker-links-data/{id}/ | 
+*DraftPicksApi* | [**draft_picks_list**](docs/DraftPicksApi.md#draft_picks_list) | **GET** /draft-picks/ | 
+*DraftPicksApi* | [**draft_picks_read**](docs/DraftPicksApi.md#draft_picks_read) | **GET** /draft-picks/{id}/ | 
+*DraftPicksApi* | [**draft_picks_swap**](docs/DraftPicksApi.md#draft_picks_swap) | **POST** /draft-picks/swap/ | 
 *FranchisesApi* | [**franchises_create**](docs/FranchisesApi.md#franchises_create) | **POST** /franchises/ | 
 *FranchisesApi* | [**franchises_delete**](docs/FranchisesApi.md#franchises_delete) | **DELETE** /franchises/{id}/ | 
 *FranchisesApi* | [**franchises_list**](docs/FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
@@ -151,6 +154,7 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**members_delete**](docs/MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
 *MembersApi* | [**members_intent_to_play**](docs/MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 *MembersApi* | [**members_list**](docs/MembersApi.md#members_list) | **GET** /members/ | 
+*MembersApi* | [**members_make_player**](docs/MembersApi.md#members_make_player) | **POST** /members/{id}/make_player/ | 
 *MembersApi* | [**members_member_league_drop**](docs/MembersApi.md#members_member_league_drop) | **POST** /members/{id}/member_league_drop/ | 
 *MembersApi* | [**members_name_change**](docs/MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
 *MembersApi* | [**members_name_changes**](docs/MembersApi.md#members_name_changes) | **GET** /members/{id}/name_changes/ | 
@@ -236,6 +240,11 @@ Class | Method | HTTP request | Description
  - [Deleted](docs/Deleted.md)
  - [DraftAPlayerToATeam](docs/DraftAPlayerToATeam.md)
  - [DraftPick](docs/DraftPick.md)
+ - [DraftPickSeasonTier](docs/DraftPickSeasonTier.md)
+ - [DraftPickSwap](docs/DraftPickSwap.md)
+ - [DraftPicks](docs/DraftPicks.md)
+ - [DraftPicksList200Response](docs/DraftPicksList200Response.md)
+ - [DraftTier](docs/DraftTier.md)
  - [DropAPlayerFromALeague](docs/DropAPlayerFromALeague.md)
  - [ElevatedRole](docs/ElevatedRole.md)
  - [Error](docs/Error.md)
@@ -261,6 +270,7 @@ Class | Method | HTTP request | Description
  - [LeaguePlayerLeague](docs/LeaguePlayerLeague.md)
  - [LeaguePlayerMember](docs/LeaguePlayerMember.md)
  - [LeaguePlayerPatch](docs/LeaguePlayerPatch.md)
+ - [LeaguePlayerSignup](docs/LeaguePlayerSignup.md)
  - [LeaguePlayersList200Response](docs/LeaguePlayersList200Response.md)
  - [ListGames](docs/ListGames.md)
  - [ListMatchResults](docs/ListMatchResults.md)

@@ -13,6 +13,12 @@ docs/CutAPlayerFromALeague.md
 docs/Deleted.md
 docs/DraftAPlayerToATeam.md
 docs/DraftPick.md
+docs/DraftPickSeasonTier.md
+docs/DraftPickSwap.md
+docs/DraftPicks.md
+docs/DraftPicksApi.md
+docs/DraftPicksList200Response.md
+docs/DraftTier.md
 docs/DropAPlayerFromALeague.md
 docs/ElevatedRole.md
 docs/Error.md
@@ -39,6 +45,7 @@ docs/LeaguePlayer.md
 docs/LeaguePlayerLeague.md
 docs/LeaguePlayerMember.md
 docs/LeaguePlayerPatch.md
+docs/LeaguePlayerSignup.md
 docs/LeaguePlayersApi.md
 docs/LeaguePlayersList200Response.md
 docs/LeaguesApi.md
@@ -126,6 +133,7 @@ requirements.txt
 rscapi/__init__.py
 rscapi/api/__init__.py
 rscapi/api/csv_api.py
+rscapi/api/draft_picks_api.py
 rscapi/api/franchises_api.py
 rscapi/api/league_players_api.py
 rscapi/api/leagues_api.py
@@ -151,6 +159,11 @@ rscapi/models/cut_a_player_from_a_league.py
 rscapi/models/deleted.py
 rscapi/models/draft_a_player_to_a_team.py
 rscapi/models/draft_pick.py
+rscapi/models/draft_pick_season_tier.py
+rscapi/models/draft_pick_swap.py
+rscapi/models/draft_picks.py
+rscapi/models/draft_picks_list200_response.py
+rscapi/models/draft_tier.py
 rscapi/models/drop_a_player_from_a_league.py
 rscapi/models/elevated_role.py
 rscapi/models/error.py
@@ -176,6 +189,7 @@ rscapi/models/league_player.py
 rscapi/models/league_player_league.py
 rscapi/models/league_player_member.py
 rscapi/models/league_player_patch.py
+rscapi/models/league_player_signup.py
 rscapi/models/league_players_list200_response.py
 rscapi/models/list_games.py
 rscapi/models/list_match_results.py
@@ -253,4 +267,11 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_draft_pick_season_tier.py
+test/test_draft_pick_swap.py
+test/test_draft_picks.py
+test/test_draft_picks_api.py
+test/test_draft_picks_list200_response.py
+test/test_draft_tier.py
+test/test_league_player_signup.py
 tox.ini

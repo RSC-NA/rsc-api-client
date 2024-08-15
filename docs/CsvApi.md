@@ -1,6 +1,6 @@
 # rscapi.CsvApi
 
-All URIs are relative to *https://api.rscna.com/api/v1*
+All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,10 +31,10 @@ from rscapi.models.franchise_contracts import FranchiseContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -107,10 +107,10 @@ from rscapi.models.franchise_contracts import FranchiseContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -183,10 +183,10 @@ from rscapi.models.master_contracts import MasterContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -255,10 +255,10 @@ from rscapi.models.master_contracts import MasterContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -331,10 +331,10 @@ from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -403,10 +403,10 @@ from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -479,10 +479,10 @@ from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -555,10 +555,10 @@ from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -631,10 +631,10 @@ from rscapi.models.tracker_links_sheet import TrackerLinksSheet
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -703,10 +703,10 @@ from rscapi.models.tracker_links_sheet import TrackerLinksSheet
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
