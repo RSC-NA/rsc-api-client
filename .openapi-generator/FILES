@@ -126,6 +126,7 @@ docs/TransactionTeam.md
 docs/TransactionsApi.md
 docs/TransactionsHistoryList200Response.md
 docs/TransferFranchise.md
+docs/TwosMasterMemberSheet.md
 docs/UpdateMemberRSCName.md
 git_push.sh
 pyproject.toml
@@ -260,6 +261,7 @@ rscapi/models/transaction_response.py
 rscapi/models/transaction_team.py
 rscapi/models/transactions_history_list200_response.py
 rscapi/models/transfer_franchise.py
+rscapi/models/twos_master_member_sheet.py
 rscapi/models/update_member_rsc_name.py
 rscapi/py.typed
 rscapi/rest.py
@@ -267,11 +269,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_draft_pick_season_tier.py
-test/test_draft_pick_swap.py
-test/test_draft_picks.py
-test/test_draft_picks_api.py
-test/test_draft_picks_list200_response.py
-test/test_draft_tier.py
-test/test_league_player_signup.py
+test/test_twos_master_member_sheet.py
 tox.ini

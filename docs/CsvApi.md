@@ -1,6 +1,6 @@
 # rscapi.CsvApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to *https://api.rscna.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -14,6 +14,8 @@ Method | HTTP request | Description
 [**csv_teams_contracts_data_read**](CsvApi.md#csv_teams_contracts_data_read) | **GET** /csv/teams-contracts-data/{id}/ | 
 [**csv_tracker_links_data_list**](CsvApi.md#csv_tracker_links_data_list) | **GET** /csv/tracker-links-data/ | 
 [**csv_tracker_links_data_read**](CsvApi.md#csv_tracker_links_data_read) | **GET** /csv/tracker-links-data/{id}/ | 
+[**csv_twos_master_member_sheet_list**](CsvApi.md#csv_twos_master_member_sheet_list) | **GET** /csv/twos-master-member-sheet/ | 
+[**csv_twos_master_member_sheet_read**](CsvApi.md#csv_twos_master_member_sheet_read) | **GET** /csv/twos-master-member-sheet/{id}/ | 
 
 
 # **csv_franchise_contracts_data_list**
@@ -31,10 +33,10 @@ from rscapi.models.franchise_contracts import FranchiseContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -107,10 +109,10 @@ from rscapi.models.franchise_contracts import FranchiseContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -183,10 +185,10 @@ from rscapi.models.master_contracts import MasterContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -255,10 +257,10 @@ from rscapi.models.master_contracts import MasterContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -331,10 +333,10 @@ from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -403,10 +405,10 @@ from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -479,10 +481,10 @@ from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -555,10 +557,10 @@ from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -631,10 +633,10 @@ from rscapi.models.tracker_links_sheet import TrackerLinksSheet
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -703,10 +705,10 @@ from rscapi.models.tracker_links_sheet import TrackerLinksSheet
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -746,6 +748,154 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TrackerLinksSheet**](TrackerLinksSheet.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/csv
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **csv_twos_master_member_sheet_list**
+> List[TwosMasterMemberSheet] csv_twos_master_member_sheet_list()
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.CsvApi(api_client)
+
+    try:
+        api_response = await api_instance.csv_twos_master_member_sheet_list()
+        print("The response of CsvApi->csv_twos_master_member_sheet_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CsvApi->csv_twos_master_member_sheet_list: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List[TwosMasterMemberSheet]**](TwosMasterMemberSheet.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/csv
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **csv_twos_master_member_sheet_read**
+> TwosMasterMemberSheet csv_twos_master_member_sheet_read(id)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.CsvApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+
+    try:
+        api_response = await api_instance.csv_twos_master_member_sheet_read(id)
+        print("The response of CsvApi->csv_twos_master_member_sheet_read:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CsvApi->csv_twos_master_member_sheet_read: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+
+### Return type
+
+[**TwosMasterMemberSheet**](TwosMasterMemberSheet.md)
 
 ### Authorization
 

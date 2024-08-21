@@ -1026,6 +1026,7 @@ class LeaguePlayersApi:
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
         data: LeaguePlayerPatch,
+        league: Annotated[Optional[StrictInt], Field(description="ID of league to update player in")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1046,6 +1047,8 @@ class LeaguePlayersApi:
         :type id: int
         :param data: (required)
         :type data: LeaguePlayerPatch
+        :param league: ID of league to update player in
+        :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1071,6 +1074,7 @@ class LeaguePlayersApi:
         _param = self._league_players_partial_update_serialize(
             id=id,
             data=data,
+            league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1096,6 +1100,7 @@ class LeaguePlayersApi:
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
         data: LeaguePlayerPatch,
+        league: Annotated[Optional[StrictInt], Field(description="ID of league to update player in")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1116,6 +1121,8 @@ class LeaguePlayersApi:
         :type id: int
         :param data: (required)
         :type data: LeaguePlayerPatch
+        :param league: ID of league to update player in
+        :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1141,6 +1148,7 @@ class LeaguePlayersApi:
         _param = self._league_players_partial_update_serialize(
             id=id,
             data=data,
+            league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1166,6 +1174,7 @@ class LeaguePlayersApi:
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
         data: LeaguePlayerPatch,
+        league: Annotated[Optional[StrictInt], Field(description="ID of league to update player in")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1186,6 +1195,8 @@ class LeaguePlayersApi:
         :type id: int
         :param data: (required)
         :type data: LeaguePlayerPatch
+        :param league: ID of league to update player in
+        :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1211,6 +1222,7 @@ class LeaguePlayersApi:
         _param = self._league_players_partial_update_serialize(
             id=id,
             data=data,
+            league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1231,6 +1243,7 @@ class LeaguePlayersApi:
         self,
         id,
         data,
+        league,
         _request_auth,
         _content_type,
         _headers,
@@ -1253,6 +1266,10 @@ class LeaguePlayersApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
+        if league is not None:
+            
+            _query_params.append(('league', league))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

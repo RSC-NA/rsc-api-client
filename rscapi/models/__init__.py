@@ -125,4 +125,5 @@ from rscapi.models.transaction_response import TransactionResponse
 from rscapi.models.transaction_team import TransactionTeam
 from rscapi.models.transactions_history_list200_response import TransactionsHistoryList200Response
 from rscapi.models.transfer_franchise import TransferFranchise
+from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
 from rscapi.models.update_member_rsc_name import UpdateMemberRSCName

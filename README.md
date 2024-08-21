@@ -55,10 +55,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "https://api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -90,7 +90,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to *https://api.rscna.com/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -104,6 +104,8 @@ Class | Method | HTTP request | Description
 *CsvApi* | [**csv_teams_contracts_data_read**](docs/CsvApi.md#csv_teams_contracts_data_read) | **GET** /csv/teams-contracts-data/{id}/ | 
 *CsvApi* | [**csv_tracker_links_data_list**](docs/CsvApi.md#csv_tracker_links_data_list) | **GET** /csv/tracker-links-data/ | 
 *CsvApi* | [**csv_tracker_links_data_read**](docs/CsvApi.md#csv_tracker_links_data_read) | **GET** /csv/tracker-links-data/{id}/ | 
+*CsvApi* | [**csv_twos_master_member_sheet_list**](docs/CsvApi.md#csv_twos_master_member_sheet_list) | **GET** /csv/twos-master-member-sheet/ | 
+*CsvApi* | [**csv_twos_master_member_sheet_read**](docs/CsvApi.md#csv_twos_master_member_sheet_read) | **GET** /csv/twos-master-member-sheet/{id}/ | 
 *DraftPicksApi* | [**draft_picks_list**](docs/DraftPicksApi.md#draft_picks_list) | **GET** /draft-picks/ | 
 *DraftPicksApi* | [**draft_picks_read**](docs/DraftPicksApi.md#draft_picks_read) | **GET** /draft-picks/{id}/ | 
 *DraftPicksApi* | [**draft_picks_swap**](docs/DraftPicksApi.md#draft_picks_swap) | **POST** /draft-picks/swap/ | 
@@ -341,6 +343,7 @@ Class | Method | HTTP request | Description
  - [TransactionTeam](docs/TransactionTeam.md)
  - [TransactionsHistoryList200Response](docs/TransactionsHistoryList200Response.md)
  - [TransferFranchise](docs/TransferFranchise.md)
+ - [TwosMasterMemberSheet](docs/TwosMasterMemberSheet.md)
  - [UpdateMemberRSCName](docs/UpdateMemberRSCName.md)
 
 
