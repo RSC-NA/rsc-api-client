@@ -154,6 +154,7 @@ Class | Method | HTTP request | Description
 *MembersApi* | [**members_contract_status**](docs/MembersApi.md#members_contract_status) | **GET** /members/{id}/contract_status/ | 
 *MembersApi* | [**members_create**](docs/MembersApi.md#members_create) | **POST** /members/ | 
 *MembersApi* | [**members_delete**](docs/MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
+*MembersApi* | [**members_elevated_roles**](docs/MembersApi.md#members_elevated_roles) | **POST** /members/{id}/elevated_roles/ | 
 *MembersApi* | [**members_intent_to_play**](docs/MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 *MembersApi* | [**members_list**](docs/MembersApi.md#members_list) | **GET** /members/ | 
 *MembersApi* | [**members_make_player**](docs/MembersApi.md#members_make_player) | **POST** /members/{id}/make_player/ | 
@@ -217,6 +218,7 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_list**](docs/TrackerLinksApi.md#tracker_links_list) | **GET** /tracker-links/ | 
 *TrackerLinksApi* | [**tracker_links_next**](docs/TrackerLinksApi.md#tracker_links_next) | **GET** /tracker-links/next/ | 
 *TrackerLinksApi* | [**tracker_links_read**](docs/TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
+*TrackerLinksApi* | [**tracker_links_unlink**](docs/TrackerLinksApi.md#tracker_links_unlink) | **POST** /tracker-links/{id}/unlink/ | 
 *TransactionsApi* | [**transactions_cut_and_sign_create**](docs/TransactionsApi.md#transactions_cut_and_sign_create) | **POST** /transactions/cut_and_sign/ | 
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
 *TransactionsApi* | [**transactions_draft_create**](docs/TransactionsApi.md#transactions_draft_create) | **POST** /transactions/draft/ | 
@@ -249,6 +251,7 @@ Class | Method | HTTP request | Description
  - [DraftTier](docs/DraftTier.md)
  - [DropAPlayerFromALeague](docs/DropAPlayerFromALeague.md)
  - [ElevatedRole](docs/ElevatedRole.md)
+ - [ElevatedRoleAdd](docs/ElevatedRoleAdd.md)
  - [Error](docs/Error.md)
  - [ExpireAPlayerSub](docs/ExpireAPlayerSub.md)
  - [Franchise](docs/Franchise.md)
@@ -331,6 +334,7 @@ Class | Method | HTTP request | Description
  - [Tier](docs/Tier.md)
  - [TrackerLink](docs/TrackerLink.md)
  - [TrackerLinkInvalidateObject](docs/TrackerLinkInvalidateObject.md)
+ - [TrackerLinkLinking](docs/TrackerLinkLinking.md)
  - [TrackerLinkStats](docs/TrackerLinkStats.md)
  - [TrackerLinksList200Response](docs/TrackerLinksList200Response.md)
  - [TrackerLinksSheet](docs/TrackerLinksSheet.md)

@@ -18,32 +18,26 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class LeaguePlayerPatch(BaseModel):
+class ElevatedRoleAdd(BaseModel):
     """
-    LeaguePlayerPatch
+    ElevatedRoleAdd
     """ # noqa: E501
-    base_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    current_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    team_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    tier: Optional[StrictInt] = None
-    status: Optional[StrictStr] = None
+    league: StrictInt
+    position: StrictStr
+    remove: StrictBool
     executor: StrictInt
-    __properties: ClassVar[List[str]] = ["base_mmr", "current_mmr", "team_name", "tier", "status", "executor"]
+    __properties: ClassVar[List[str]] = ["league", "position", "remove", "executor"]
 
-    @field_validator('status')
-    def status_validate_enum(cls, value):
+    @field_validator('position')
+    def position_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR', 'DR']):
-            raise ValueError("must be one of enum values ('DE', 'FA', 'RO', 'RN', 'IR', 'WV', 'AR', 'FR', 'BN', 'UG', 'PF', 'PW', 'WC', 'WR', 'DR')")
+        if value not in set(['TM', 'TMH', 'STATS', 'EVENTS', 'NUMS', 'MEDIA', 'DEV', 'ADM', 'STAFF', 'MMR']):
+            raise ValueError("must be one of enum values ('TM', 'TMH', 'STATS', 'EVENTS', 'NUMS', 'MEDIA', 'DEV', 'ADM', 'STAFF', 'MMR')")
         return value
 
     model_config = ConfigDict(
@@ -64,7 +58,7 @@ class LeaguePlayerPatch(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LeaguePlayerPatch from a JSON string"""
+        """Create an instance of ElevatedRoleAdd from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -85,16 +79,11 @@ class LeaguePlayerPatch(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if tier (nullable) is None
-        # and model_fields_set contains the field
-        if self.tier is None and "tier" in self.model_fields_set:
-            _dict['tier'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LeaguePlayerPatch from a dict"""
+        """Create an instance of ElevatedRoleAdd from a dict"""
         if obj is None:
             return None
 
@@ -102,11 +91,9 @@ class LeaguePlayerPatch(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "base_mmr": obj.get("base_mmr"),
-            "current_mmr": obj.get("current_mmr"),
-            "team_name": obj.get("team_name"),
-            "tier": obj.get("tier"),
-            "status": obj.get("status"),
+            "league": obj.get("league"),
+            "position": obj.get("position"),
+            "remove": obj.get("remove"),
             "executor": obj.get("executor")
         })
         return _obj

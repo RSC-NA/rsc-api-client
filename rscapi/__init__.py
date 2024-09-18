@@ -60,6 +60,7 @@ from rscapi.models.draft_picks_list200_response import DraftPicksList200Response
 from rscapi.models.draft_tier import DraftTier
 from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole
+from rscapi.models.elevated_role_add import ElevatedRoleAdd
 from rscapi.models.error import Error
 from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.franchise import Franchise
@@ -142,6 +143,7 @@ from rscapi.models.temporary_fa_sub import TemporaryFASub
 from rscapi.models.tier import Tier
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
+from rscapi.models.tracker_link_linking import TrackerLinkLinking
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response
 from rscapi.models.tracker_links_sheet import TrackerLinksSheet

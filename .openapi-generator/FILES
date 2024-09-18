@@ -21,6 +21,7 @@ docs/DraftPicksList200Response.md
 docs/DraftTier.md
 docs/DropAPlayerFromALeague.md
 docs/ElevatedRole.md
+docs/ElevatedRoleAdd.md
 docs/Error.md
 docs/ExpireAPlayerSub.md
 docs/Franchise.md
@@ -112,6 +113,7 @@ docs/Tier.md
 docs/TiersApi.md
 docs/TrackerLink.md
 docs/TrackerLinkInvalidateObject.md
+docs/TrackerLinkLinking.md
 docs/TrackerLinkStats.md
 docs/TrackerLinksApi.md
 docs/TrackerLinksList200Response.md
@@ -167,6 +169,7 @@ rscapi/models/draft_picks_list200_response.py
 rscapi/models/draft_tier.py
 rscapi/models/drop_a_player_from_a_league.py
 rscapi/models/elevated_role.py
+rscapi/models/elevated_role_add.py
 rscapi/models/error.py
 rscapi/models/expire_a_player_sub.py
 rscapi/models/franchise.py
@@ -249,6 +252,7 @@ rscapi/models/temporary_fa_sub.py
 rscapi/models/tier.py
 rscapi/models/tracker_link.py
 rscapi/models/tracker_link_invalidate_object.py
+rscapi/models/tracker_link_linking.py
 rscapi/models/tracker_link_stats.py
 rscapi/models/tracker_links_list200_response.py
 rscapi/models/tracker_links_sheet.py
@@ -269,5 +273,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_twos_master_member_sheet.py
+test/test_elevated_role_add.py
+test/test_tracker_link_linking.py
 tox.ini

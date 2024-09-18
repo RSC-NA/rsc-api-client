@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **team_name** | **str** |  | [optional] 
 **tier** | **int** |  | [optional] 
 **status** | **str** |  | [optional] 
+**executor** | **int** |  | 
 
 ## Example
 

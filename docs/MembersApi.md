@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**members_contract_status**](MembersApi.md#members_contract_status) | **GET** /members/{id}/contract_status/ | 
 [**members_create**](MembersApi.md#members_create) | **POST** /members/ | 
 [**members_delete**](MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
+[**members_elevated_roles**](MembersApi.md#members_elevated_roles) | **POST** /members/{id}/elevated_roles/ | 
 [**members_intent_to_play**](MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
 [**members_make_player**](MembersApi.md#members_make_player) | **POST** /members/{id}/make_player/ | 
@@ -414,6 +415,84 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **members_elevated_roles**
+> ElevatedRoleAdd members_elevated_roles(id, data)
+
+
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.elevated_role_add import ElevatedRoleAdd
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.MembersApi(api_client)
+    id = 56 # int | A unique integer value identifying this user.
+    data = rscapi.ElevatedRoleAdd() # ElevatedRoleAdd | 
+
+    try:
+        api_response = await api_instance.members_elevated_roles(id, data)
+        print("The response of MembersApi->members_elevated_roles:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MembersApi->members_elevated_roles: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this user. | 
+ **data** | [**ElevatedRoleAdd**](ElevatedRoleAdd.md)|  | 
+
+### Return type
+
+[**ElevatedRoleAdd**](ElevatedRoleAdd.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
