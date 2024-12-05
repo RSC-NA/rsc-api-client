@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player** | **str** |  | [optional] [readonly] 
+**rsc_name** | **str** |  | 
 **rscid** | **str** |  | [optional] [readonly] 
 **discord_id** | **int** |  | [optional] [readonly] 
 **accounts** | [**List[TrackerLink]**](TrackerLink.md) |  | [optional] [readonly] 

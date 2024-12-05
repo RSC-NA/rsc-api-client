@@ -84,6 +84,7 @@ docs/PlayerTeam.md
 docs/PlayerTransactionUpdates.md
 docs/PreviousTeam.md
 docs/ReSignPlayer.md
+docs/Really.md
 docs/RebrandAFranchise.md
 docs/RemoveTierFromALeague.md
 docs/RetireAPlayer.md
@@ -226,6 +227,7 @@ rscapi/models/player_team.py
 rscapi/models/player_transaction_updates.py
 rscapi/models/previous_team.py
 rscapi/models/re_sign_player.py
+rscapi/models/really.py
 rscapi/models/rebrand_a_franchise.py
 rscapi/models/remove_tier_from_a_league.py
 rscapi/models/retire_a_player.py
@@ -273,6 +275,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_elevated_role_add.py
-test/test_tracker_link_linking.py
+test/test_really.py
 tox.ini

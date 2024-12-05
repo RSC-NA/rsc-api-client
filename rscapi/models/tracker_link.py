@@ -22,6 +22,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from rscapi.models.really import Really
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,16 +31,17 @@ class TrackerLink(BaseModel):
     TrackerLink
     """ # noqa: E501
     link: Annotated[str, Field(min_length=1, strict=True)]
-    discord_id: StrictInt
+    member: Optional[Really]
     id: Optional[StrictInt] = None
     name: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
+    pulls: Optional[StrictInt] = None
     platform: Optional[StrictStr] = None
     status: Optional[StrictStr] = None
     last_updated: Optional[datetime] = None
     member_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     platform_id: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
     rscid: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    __properties: ClassVar[List[str]] = ["link", "discord_id", "id", "name", "platform", "status", "last_updated", "member_name", "platform_id", "rscid"]
+    __properties: ClassVar[List[str]] = ["link", "member", "id", "name", "pulls", "platform", "status", "last_updated", "member_name", "platform_id", "rscid"]
 
     @field_validator('platform')
     def platform_validate_enum(cls, value):
@@ -99,10 +101,12 @@ class TrackerLink(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "name",
+            "pulls",
             "platform",
             "status",
             "last_updated",
@@ -116,6 +120,14 @@ class TrackerLink(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of member
+        if self.member:
+            _dict['member'] = self.member.to_dict()
+        # set to None if member (nullable) is None
+        # and model_fields_set contains the field
+        if self.member is None and "member" in self.model_fields_set:
+            _dict['member'] = None
+
         return _dict
 
     @classmethod
@@ -129,9 +141,10 @@ class TrackerLink(BaseModel):
 
         _obj = cls.model_validate({
             "link": obj.get("link"),
-            "discord_id": obj.get("discord_id"),
+            "member": Really.from_dict(obj["member"]) if obj.get("member") is not None else None,
             "id": obj.get("id"),
             "name": obj.get("name"),
+            "pulls": obj.get("pulls"),
             "platform": obj.get("platform"),
             "status": obj.get("status"),
             "last_updated": obj.get("last_updated"),

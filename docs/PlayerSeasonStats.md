@@ -44,6 +44,7 @@ Name | Type | Description | Notes
 **percent_closest_to_ball** | **float** |  | 
 **percent_farthest_from_ball** | **float** |  | 
 **stats_type** | **str** |  | [optional] 
+**total_shots** | **int** |  | [optional] 
 **games_played** | **int** |  | [optional] 
 **games_won** | **int** |  | [optional] 
 **games_lost** | **int** |  | [optional] 

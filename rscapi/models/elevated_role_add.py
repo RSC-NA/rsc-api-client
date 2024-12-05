@@ -36,8 +36,8 @@ class ElevatedRoleAdd(BaseModel):
     @field_validator('position')
     def position_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['TM', 'TMH', 'STATS', 'EVENTS', 'NUMS', 'MEDIA', 'DEV', 'ADM', 'STAFF', 'MMR']):
-            raise ValueError("must be one of enum values ('TM', 'TMH', 'STATS', 'EVENTS', 'NUMS', 'MEDIA', 'DEV', 'ADM', 'STAFF', 'MMR')")
+        if value not in set(['TM', 'TMH', 'NH', 'STATS', 'EVENTS', 'NUMS', 'MEDIA', 'DEV', 'ADM', 'STAFF', 'MMR']):
+            raise ValueError("must be one of enum values ('TM', 'TMH', 'NH', 'STATS', 'EVENTS', 'NUMS', 'MEDIA', 'DEV', 'ADM', 'STAFF', 'MMR')")
         return value
 
     model_config = ConfigDict(

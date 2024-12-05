@@ -214,6 +214,7 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_create**](docs/TrackerLinksApi.md#tracker_links_create) | **POST** /tracker-links/ | 
 *TrackerLinksApi* | [**tracker_links_delete**](docs/TrackerLinksApi.md#tracker_links_delete) | **DELETE** /tracker-links/{id}/ | 
 *TrackerLinksApi* | [**tracker_links_invalidate_links**](docs/TrackerLinksApi.md#tracker_links_invalidate_links) | **POST** /tracker-links/invalidate_links/ | 
+*TrackerLinksApi* | [**tracker_links_link**](docs/TrackerLinksApi.md#tracker_links_link) | **POST** /tracker-links/{id}/link/ | 
 *TrackerLinksApi* | [**tracker_links_links_stats**](docs/TrackerLinksApi.md#tracker_links_links_stats) | **GET** /tracker-links/links_stats/ | 
 *TrackerLinksApi* | [**tracker_links_list**](docs/TrackerLinksApi.md#tracker_links_list) | **GET** /tracker-links/ | 
 *TrackerLinksApi* | [**tracker_links_next**](docs/TrackerLinksApi.md#tracker_links_next) | **GET** /tracker-links/next/ | 
@@ -308,6 +309,7 @@ Class | Method | HTTP request | Description
  - [PlayerTransactionUpdates](docs/PlayerTransactionUpdates.md)
  - [PreviousTeam](docs/PreviousTeam.md)
  - [ReSignPlayer](docs/ReSignPlayer.md)
+ - [Really](docs/Really.md)
  - [RebrandAFranchise](docs/RebrandAFranchise.md)
  - [RemoveTierFromALeague](docs/RemoveTierFromALeague.md)
  - [RetireAPlayer](docs/RetireAPlayer.md)

@@ -6,9 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **link** | **str** |  | 
-**discord_id** | **int** |  | 
+**member** | [**Really**](Really.md) |  | 
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | [optional] [readonly] 
+**pulls** | **int** |  | [optional] [readonly] 
 **platform** | **str** |  | [optional] [readonly] 
 **status** | **str** |  | [optional] [readonly] 
 **last_updated** | **datetime** |  | [optional] [readonly] 
