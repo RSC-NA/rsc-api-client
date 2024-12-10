@@ -32,6 +32,7 @@ class TrackerLink(BaseModel):
     """ # noqa: E501
     link: Annotated[str, Field(min_length=1, strict=True)]
     member: Optional[Really] = None
+    discord_id: StrictInt
     id: Optional[StrictInt] = None
     name: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
     pulls: Optional[StrictInt] = None
@@ -41,7 +42,7 @@ class TrackerLink(BaseModel):
     member_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     platform_id: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
     rscid: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    __properties: ClassVar[List[str]] = ["link", "member", "id", "name", "pulls", "platform", "status", "last_updated", "member_name", "platform_id", "rscid"]
+    __properties: ClassVar[List[str]] = ["link", "member", "discord_id", "id", "name", "pulls", "platform", "status", "last_updated", "member_name", "platform_id", "rscid"]
 
     @field_validator('platform')
     def platform_validate_enum(cls, value):
@@ -142,6 +143,7 @@ class TrackerLink(BaseModel):
         _obj = cls.model_validate({
             "link": obj.get("link"),
             "member": Really.from_dict(obj["member"]) if obj.get("member") is not None else None,
+            "discord_id": obj.get("discord_id"),
             "id": obj.get("id"),
             "name": obj.get("name"),
             "pulls": obj.get("pulls"),

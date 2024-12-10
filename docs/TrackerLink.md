@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **link** | **str** |  | 
 **member** | [**Really**](Really.md) |  | [optional] 
+**discord_id** | **int** |  | 
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | [optional] [readonly] 
 **pulls** | **int** |  | [optional] [readonly] 
