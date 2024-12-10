@@ -31,7 +31,7 @@ class TrackerLink(BaseModel):
     TrackerLink
     """ # noqa: E501
     link: Annotated[str, Field(min_length=1, strict=True)]
-    member: Optional[Really]
+    member: Optional[Really] = None
     id: Optional[StrictInt] = None
     name: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
     pulls: Optional[StrictInt] = None

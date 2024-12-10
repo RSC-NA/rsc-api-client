@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **link** | **str** |  | 
-**member** | [**Really**](Really.md) |  | 
+**member** | [**Really**](Really.md) |  | [optional] 
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | [optional] [readonly] 
 **pulls** | **int** |  | [optional] [readonly] 
