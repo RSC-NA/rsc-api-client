@@ -1361,7 +1361,7 @@ class TrackerLinksApi:
         self,
         status: Annotated[Optional[StrictStr], Field(description="status")] = None,
         member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
@@ -1384,8 +1384,8 @@ class TrackerLinksApi:
         :type status: str
         :param member_name: member_name
         :type member_name: str
-        :param discord_id: discord_id
-        :type discord_id: str
+        :param discord_id: Member Discord ID
+        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
@@ -1443,7 +1443,7 @@ class TrackerLinksApi:
         self,
         status: Annotated[Optional[StrictStr], Field(description="status")] = None,
         member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
@@ -1466,8 +1466,8 @@ class TrackerLinksApi:
         :type status: str
         :param member_name: member_name
         :type member_name: str
-        :param discord_id: discord_id
-        :type discord_id: str
+        :param discord_id: Member Discord ID
+        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
@@ -1525,7 +1525,7 @@ class TrackerLinksApi:
         self,
         status: Annotated[Optional[StrictStr], Field(description="status")] = None,
         member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
@@ -1548,8 +1548,8 @@ class TrackerLinksApi:
         :type status: str
         :param member_name: member_name
         :type member_name: str
-        :param discord_id: discord_id
-        :type discord_id: str
+        :param discord_id: Member Discord ID
+        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
