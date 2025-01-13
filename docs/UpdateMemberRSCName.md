@@ -7,6 +7,7 @@ Update a players RSC name with a new name.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The Players new RSC Name | 
+**admin_override** | **bool** | Whether to ignore profanity checking or not. | [optional] 
 
 ## Example
 

@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,8 @@ class UpdateMemberRSCName(BaseModel):
     Update a players RSC name with a new name.
     """ # noqa: E501
     name: StrictStr = Field(description="The Players new RSC Name")
-    __properties: ClassVar[List[str]] = ["name"]
+    admin_override: Optional[StrictBool] = Field(default=None, description="Whether to ignore profanity checking or not.")
+    __properties: ClassVar[List[str]] = ["name", "admin_override"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +82,8 @@ class UpdateMemberRSCName(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name")
+            "name": obj.get("name"),
+            "admin_override": obj.get("admin_override")
         })
         return _obj
 
