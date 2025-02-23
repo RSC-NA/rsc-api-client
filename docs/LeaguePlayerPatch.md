@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **tier** | **int** |  | [optional] 
 **status** | **str** |  | [optional] 
 **executor** | **int** |  | 
+**waiver_period** | **str** |  | [optional] 
+**contract_length** | **int** |  | [optional] 
 
 ## Example
 

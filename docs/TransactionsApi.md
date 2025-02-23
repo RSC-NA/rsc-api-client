@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_history_list**
-> TransactionsHistoryList200Response transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type, executor=executor, limit=limit, offset=offset)
+> TransactionsHistoryList200Response transactions_history_list(league, limit=limit, offset=offset, season_number=season_number, player=player, executor=executor)
 
 
 
@@ -380,15 +380,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
     league = 56 # int | ID of the league to get team matches for
-    season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
-    player = 56 # int | Discord ID of player for transaction history search. (optional)
-    transaction_type = 'transaction_type_example' # str | transaction_type (optional)
-    executor = 56 # int | Discord ID of the member who ran the transaction. (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
+    season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
+    player = 56 # int | Discord ID of player for transaction history search. (optional)
+    executor = 56 # int | Discord ID of the member who ran the transaction. (optional)
 
     try:
-        api_response = await api_instance.transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type, executor=executor, limit=limit, offset=offset)
+        api_response = await api_instance.transactions_history_list(league, limit=limit, offset=offset, season_number=season_number, player=player, executor=executor)
         print("The response of TransactionsApi->transactions_history_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -403,12 +402,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **league** | **int**| ID of the league to get team matches for | 
- **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
- **player** | **int**| Discord ID of player for transaction history search. | [optional] 
- **transaction_type** | **str**| transaction_type | [optional] 
- **executor** | **int**| Discord ID of the member who ran the transaction. | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
+ **player** | **int**| Discord ID of player for transaction history search. | [optional] 
+ **executor** | **int**| Discord ID of the member who ran the transaction. | [optional] 
 
 ### Return type
 

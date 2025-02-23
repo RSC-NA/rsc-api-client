@@ -172,7 +172,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_list**
-> List[Tier] tiers_list(name=name, league=league)
+> List[Tier] tiers_list(league=league)
 
 
 
@@ -209,11 +209,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
-    name = 'name_example' # str | name (optional)
     league = 56 # int | League Database ID (optional)
 
     try:
-        api_response = await api_instance.tiers_list(name=name, league=league)
+        api_response = await api_instance.tiers_list(league=league)
         print("The response of TiersApi->tiers_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -227,7 +226,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| name | [optional] 
  **league** | **int**| League Database ID | [optional] 
 
 ### Return type

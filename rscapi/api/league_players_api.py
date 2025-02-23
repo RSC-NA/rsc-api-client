@@ -563,19 +563,18 @@ class LeaguePlayersApi:
     @validate_call
     async def league_players_list(
         self,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
+        sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
-        tier_name: Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None,
-        team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
-        sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
+        team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -592,32 +591,30 @@ class LeaguePlayersApi:
         """league_players_list
 
 
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param status: Player Status (Rostered, IR, etc.)
         :type status: str
-        :param name: name
-        :type name: str
+        :param sub_status: Player current substitution status.
+        :type sub_status: int
         :param tier: ID of Tier players are in.
         :type tier: int
-        :param tier_name: Name of tier players are in.
-        :type tier_name: str
         :param season: ID of season players played in.
         :type season: int
         :param season_number: Number of season players played in.
         :type season_number: int
         :param league: ID of League player is in.
         :type league: int
-        :param team_name: Name of team players are on.
-        :type team_name: str
-        :param franchise: Name of franchise players are in.
-        :type franchise: str
-        :param sub_status: Player current substitution status.
-        :type sub_status: int
         :param discord_id: Discord ID of League Player
         :type discord_id: int
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
+        :param franchise: Name of franchise players are in.
+        :type franchise: str
+        :param team_name: Name of team players are on.
+        :type team_name: str
+        :param tier_name: Name of tier players are in.
+        :type tier_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -641,19 +638,18 @@ class LeaguePlayersApi:
         """ # noqa: E501
 
         _param = self._league_players_list_serialize(
+            limit=limit,
+            offset=offset,
             status=status,
-            name=name,
+            sub_status=sub_status,
             tier=tier,
-            tier_name=tier_name,
             season=season,
             season_number=season_number,
             league=league,
-            team_name=team_name,
-            franchise=franchise,
-            sub_status=sub_status,
             discord_id=discord_id,
-            limit=limit,
-            offset=offset,
+            franchise=franchise,
+            team_name=team_name,
+            tier_name=tier_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -677,19 +673,18 @@ class LeaguePlayersApi:
     @validate_call
     async def league_players_list_with_http_info(
         self,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
+        sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
-        tier_name: Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None,
-        team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
-        sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
+        team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -706,32 +701,30 @@ class LeaguePlayersApi:
         """league_players_list
 
 
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param status: Player Status (Rostered, IR, etc.)
         :type status: str
-        :param name: name
-        :type name: str
+        :param sub_status: Player current substitution status.
+        :type sub_status: int
         :param tier: ID of Tier players are in.
         :type tier: int
-        :param tier_name: Name of tier players are in.
-        :type tier_name: str
         :param season: ID of season players played in.
         :type season: int
         :param season_number: Number of season players played in.
         :type season_number: int
         :param league: ID of League player is in.
         :type league: int
-        :param team_name: Name of team players are on.
-        :type team_name: str
-        :param franchise: Name of franchise players are in.
-        :type franchise: str
-        :param sub_status: Player current substitution status.
-        :type sub_status: int
         :param discord_id: Discord ID of League Player
         :type discord_id: int
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
+        :param franchise: Name of franchise players are in.
+        :type franchise: str
+        :param team_name: Name of team players are on.
+        :type team_name: str
+        :param tier_name: Name of tier players are in.
+        :type tier_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -755,19 +748,18 @@ class LeaguePlayersApi:
         """ # noqa: E501
 
         _param = self._league_players_list_serialize(
+            limit=limit,
+            offset=offset,
             status=status,
-            name=name,
+            sub_status=sub_status,
             tier=tier,
-            tier_name=tier_name,
             season=season,
             season_number=season_number,
             league=league,
-            team_name=team_name,
-            franchise=franchise,
-            sub_status=sub_status,
             discord_id=discord_id,
-            limit=limit,
-            offset=offset,
+            franchise=franchise,
+            team_name=team_name,
+            tier_name=tier_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -791,19 +783,18 @@ class LeaguePlayersApi:
     @validate_call
     async def league_players_list_without_preload_content(
         self,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
+        sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
-        tier_name: Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None,
-        team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
-        sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
+        team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="Name of tier players are in.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -820,32 +811,30 @@ class LeaguePlayersApi:
         """league_players_list
 
 
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param status: Player Status (Rostered, IR, etc.)
         :type status: str
-        :param name: name
-        :type name: str
+        :param sub_status: Player current substitution status.
+        :type sub_status: int
         :param tier: ID of Tier players are in.
         :type tier: int
-        :param tier_name: Name of tier players are in.
-        :type tier_name: str
         :param season: ID of season players played in.
         :type season: int
         :param season_number: Number of season players played in.
         :type season_number: int
         :param league: ID of League player is in.
         :type league: int
-        :param team_name: Name of team players are on.
-        :type team_name: str
-        :param franchise: Name of franchise players are in.
-        :type franchise: str
-        :param sub_status: Player current substitution status.
-        :type sub_status: int
         :param discord_id: Discord ID of League Player
         :type discord_id: int
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
+        :param franchise: Name of franchise players are in.
+        :type franchise: str
+        :param team_name: Name of team players are on.
+        :type team_name: str
+        :param tier_name: Name of tier players are in.
+        :type tier_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -869,19 +858,18 @@ class LeaguePlayersApi:
         """ # noqa: E501
 
         _param = self._league_players_list_serialize(
+            limit=limit,
+            offset=offset,
             status=status,
-            name=name,
+            sub_status=sub_status,
             tier=tier,
-            tier_name=tier_name,
             season=season,
             season_number=season_number,
             league=league,
-            team_name=team_name,
-            franchise=franchise,
-            sub_status=sub_status,
             discord_id=discord_id,
-            limit=limit,
-            offset=offset,
+            franchise=franchise,
+            team_name=team_name,
+            tier_name=tier_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -900,19 +888,18 @@ class LeaguePlayersApi:
 
     def _league_players_list_serialize(
         self,
+        limit,
+        offset,
         status,
-        name,
+        sub_status,
         tier,
-        tier_name,
         season,
         season_number,
         league,
-        team_name,
-        franchise,
-        sub_status,
         discord_id,
-        limit,
-        offset,
+        franchise,
+        team_name,
+        tier_name,
         _request_auth,
         _content_type,
         _headers,
@@ -933,21 +920,25 @@ class LeaguePlayersApi:
 
         # process the path parameters
         # process the query parameters
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
+            
         if status is not None:
             
             _query_params.append(('status', status))
             
-        if name is not None:
+        if sub_status is not None:
             
-            _query_params.append(('name', name))
+            _query_params.append(('sub_status', sub_status))
             
         if tier is not None:
             
             _query_params.append(('tier', tier))
-            
-        if tier_name is not None:
-            
-            _query_params.append(('tier_name', tier_name))
             
         if season is not None:
             
@@ -961,29 +952,21 @@ class LeaguePlayersApi:
             
             _query_params.append(('league', league))
             
-        if team_name is not None:
+        if discord_id is not None:
             
-            _query_params.append(('team_name', team_name))
+            _query_params.append(('discord_id', discord_id))
             
         if franchise is not None:
             
             _query_params.append(('franchise', franchise))
             
-        if sub_status is not None:
+        if team_name is not None:
             
-            _query_params.append(('sub_status', sub_status))
+            _query_params.append(('team_name', team_name))
             
-        if discord_id is not None:
+        if tier_name is not None:
             
-            _query_params.append(('discord_id', discord_id))
-            
-        if limit is not None:
-            
-            _query_params.append(('limit', limit))
-            
-        if offset is not None:
-            
-            _query_params.append(('offset', offset))
+            _query_params.append(('tier_name', tier_name))
             
         # process the header parameters
         # process the form parameters

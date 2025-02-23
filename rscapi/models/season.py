@@ -38,9 +38,11 @@ class Season(BaseModel):
     start_date: Optional[datetime] = None
     end_date: Optional[datetime] = None
     preseason_start_date: Optional[datetime] = None
+    regular_season_start: Optional[datetime] = None
+    regular_season_end: Optional[datetime] = None
     signup_close: Optional[datetime] = None
     draft_date: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "signup_close", "draft_date"]
+    __properties: ClassVar[List[str]] = ["id", "league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "regular_season_start", "regular_season_end", "signup_close", "draft_date"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +82,8 @@ class Season(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
@@ -88,6 +92,8 @@ class Season(BaseModel):
             "start_date",
             "end_date",
             "preseason_start_date",
+            "regular_season_start",
+            "regular_season_end",
             "signup_close",
             "draft_date",
         ])
@@ -122,6 +128,16 @@ class Season(BaseModel):
         if self.preseason_start_date is None and "preseason_start_date" in self.model_fields_set:
             _dict['preseason_start_date'] = None
 
+        # set to None if regular_season_start (nullable) is None
+        # and model_fields_set contains the field
+        if self.regular_season_start is None and "regular_season_start" in self.model_fields_set:
+            _dict['regular_season_start'] = None
+
+        # set to None if regular_season_end (nullable) is None
+        # and model_fields_set contains the field
+        if self.regular_season_end is None and "regular_season_end" in self.model_fields_set:
+            _dict['regular_season_end'] = None
+
         # set to None if signup_close (nullable) is None
         # and model_fields_set contains the field
         if self.signup_close is None and "signup_close" in self.model_fields_set:
@@ -152,6 +168,8 @@ class Season(BaseModel):
             "start_date": obj.get("start_date"),
             "end_date": obj.get("end_date"),
             "preseason_start_date": obj.get("preseason_start_date"),
+            "regular_season_start": obj.get("regular_season_start"),
+            "regular_season_end": obj.get("regular_season_end"),
             "signup_close": obj.get("signup_close"),
             "draft_date": obj.get("draft_date")
         })

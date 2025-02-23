@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
+from pydantic import Field, StrictBool, StrictInt
 from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.high_level_match import HighLevelMatch
@@ -570,10 +570,6 @@ class TeamsApi:
     @validate_call
     async def teams_list(
         self,
-        seasons: Annotated[Optional[StrictStr], Field(description="seasons")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
         _request_timeout: Union[
             None,
@@ -591,14 +587,6 @@ class TeamsApi:
         """teams_list
 
 
-        :param seasons: seasons
-        :type seasons: str
-        :param franchise: franchise
-        :type franchise: str
-        :param name: name
-        :type name: str
-        :param tier: tier
-        :type tier: str
         :param league: League Database ID
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
@@ -624,10 +612,6 @@ class TeamsApi:
         """ # noqa: E501
 
         _param = self._teams_list_serialize(
-            seasons=seasons,
-            franchise=franchise,
-            name=name,
-            tier=tier,
             league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -652,10 +636,6 @@ class TeamsApi:
     @validate_call
     async def teams_list_with_http_info(
         self,
-        seasons: Annotated[Optional[StrictStr], Field(description="seasons")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
         _request_timeout: Union[
             None,
@@ -673,14 +653,6 @@ class TeamsApi:
         """teams_list
 
 
-        :param seasons: seasons
-        :type seasons: str
-        :param franchise: franchise
-        :type franchise: str
-        :param name: name
-        :type name: str
-        :param tier: tier
-        :type tier: str
         :param league: League Database ID
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
@@ -706,10 +678,6 @@ class TeamsApi:
         """ # noqa: E501
 
         _param = self._teams_list_serialize(
-            seasons=seasons,
-            franchise=franchise,
-            name=name,
-            tier=tier,
             league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -734,10 +702,6 @@ class TeamsApi:
     @validate_call
     async def teams_list_without_preload_content(
         self,
-        seasons: Annotated[Optional[StrictStr], Field(description="seasons")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
         _request_timeout: Union[
             None,
@@ -755,14 +719,6 @@ class TeamsApi:
         """teams_list
 
 
-        :param seasons: seasons
-        :type seasons: str
-        :param franchise: franchise
-        :type franchise: str
-        :param name: name
-        :type name: str
-        :param tier: tier
-        :type tier: str
         :param league: League Database ID
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
@@ -788,10 +744,6 @@ class TeamsApi:
         """ # noqa: E501
 
         _param = self._teams_list_serialize(
-            seasons=seasons,
-            franchise=franchise,
-            name=name,
-            tier=tier,
             league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -811,10 +763,6 @@ class TeamsApi:
 
     def _teams_list_serialize(
         self,
-        seasons,
-        franchise,
-        name,
-        tier,
         league,
         _request_auth,
         _content_type,
@@ -836,22 +784,6 @@ class TeamsApi:
 
         # process the path parameters
         # process the query parameters
-        if seasons is not None:
-            
-            _query_params.append(('seasons', seasons))
-            
-        if franchise is not None:
-            
-            _query_params.append(('franchise', franchise))
-            
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
-        if tier is not None:
-            
-            _query_params.append(('tier', tier))
-            
         if league is not None:
             
             _query_params.append(('league', league))

@@ -34,7 +34,9 @@ class LeaguePlayerPatch(BaseModel):
     tier: Optional[StrictInt] = None
     status: Optional[StrictStr] = None
     executor: StrictInt
-    __properties: ClassVar[List[str]] = ["base_mmr", "current_mmr", "team_name", "tier", "status", "executor"]
+    waiver_period: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    contract_length: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["base_mmr", "current_mmr", "team_name", "tier", "status", "executor", "waiver_period", "contract_length"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -107,7 +109,9 @@ class LeaguePlayerPatch(BaseModel):
             "team_name": obj.get("team_name"),
             "tier": obj.get("tier"),
             "status": obj.get("status"),
-            "executor": obj.get("executor")
+            "executor": obj.get("executor"),
+            "waiver_period": obj.get("waiver_period"),
+            "contract_length": obj.get("contract_length")
         })
         return _obj
 

@@ -582,7 +582,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_list**
-> MembersList200Response members_list(rsc_name=rsc_name, discord_username=discord_username, discord_id=discord_id, limit=limit, offset=offset)
+> MembersList200Response members_list(limit=limit, offset=offset, discord_id=discord_id)
 
 
 
@@ -617,14 +617,12 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    rsc_name = 'rsc_name_example' # str | rsc_name (optional)
-    discord_username = 'discord_username_example' # str | discord_username (optional)
-    discord_id = 56 # int | Discord ID of member to search for (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
+    discord_id = 56 # int | Discord ID of member to search for (optional)
 
     try:
-        api_response = await api_instance.members_list(rsc_name=rsc_name, discord_username=discord_username, discord_id=discord_id, limit=limit, offset=offset)
+        api_response = await api_instance.members_list(limit=limit, offset=offset, discord_id=discord_id)
         print("The response of MembersApi->members_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -638,11 +636,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rsc_name** | **str**| rsc_name | [optional] 
- **discord_username** | **str**| discord_username | [optional] 
- **discord_id** | **int**| Discord ID of member to search for | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **discord_id** | **int**| Discord ID of member to search for | [optional] 
 
 ### Return type
 

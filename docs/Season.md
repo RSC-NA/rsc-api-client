@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **start_date** | **datetime** |  | [optional] [readonly] 
 **end_date** | **datetime** |  | [optional] [readonly] 
 **preseason_start_date** | **datetime** |  | [optional] [readonly] 
+**regular_season_start** | **datetime** |  | [optional] [readonly] 
+**regular_season_end** | **datetime** |  | [optional] [readonly] 
 **signup_close** | **datetime** |  | [optional] [readonly] 
 **draft_date** | **datetime** |  | [optional] [readonly] 
 

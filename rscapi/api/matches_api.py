@@ -565,18 +565,17 @@ class MatchesApi:
     @validate_call
     async def matches_find_match(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         teams: Annotated[StrictStr, Field(description="Comma delimited list of teams to get names for.")],
-        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
-        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
-        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
-        match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
+        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
         preseason: Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
+        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -594,30 +593,28 @@ class MatchesApi:
 
         Find a match for a team or teams.
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param teams: Comma delimited list of teams to get names for. (required)
         :type teams: str
-        :param date__lt: Date less than in datetime isoformat.
-        :type date__lt: str
-        :param date__gt: Date greater than in datetime isoformat.
-        :type date__gt: str
-        :param season: ID of the season to search for match.
-        :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
-        :type season_number: int
-        :param day: Match day to query for.
-        :type day: int
-        :param match_type: Match Type
-        :type match_type: str
-        :param match_format: match_format
-        :type match_format: str
+        :param league: ID of the league to get team matches for (required)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param day: Match day to query for.
+        :type day: int
         :param preseason: 1 If these matches are preseason, otherwise 0
         :type preseason: int
+        :param season: ID of the season to search for match.
+        :type season: int
+        :param season_number: Season number to search for. (E.g: 18)
+        :type season_number: int
+        :param date__gt: Date greater than in datetime isoformat.
+        :type date__gt: str
+        :param date__lt: Date less than in datetime isoformat.
+        :type date__lt: str
+        :param match_type: Match Type
+        :type match_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -641,18 +638,17 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_find_match_serialize(
-            league=league,
             teams=teams,
-            date__lt=date__lt,
-            date__gt=date__gt,
-            season=season,
-            season_number=season_number,
-            day=day,
-            match_type=match_type,
-            match_format=match_format,
+            league=league,
             limit=limit,
             offset=offset,
+            day=day,
             preseason=preseason,
+            season=season,
+            season_number=season_number,
+            date__gt=date__gt,
+            date__lt=date__lt,
+            match_type=match_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -677,18 +673,17 @@ class MatchesApi:
     @validate_call
     async def matches_find_match_with_http_info(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         teams: Annotated[StrictStr, Field(description="Comma delimited list of teams to get names for.")],
-        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
-        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
-        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
-        match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
+        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
         preseason: Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
+        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -706,30 +701,28 @@ class MatchesApi:
 
         Find a match for a team or teams.
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param teams: Comma delimited list of teams to get names for. (required)
         :type teams: str
-        :param date__lt: Date less than in datetime isoformat.
-        :type date__lt: str
-        :param date__gt: Date greater than in datetime isoformat.
-        :type date__gt: str
-        :param season: ID of the season to search for match.
-        :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
-        :type season_number: int
-        :param day: Match day to query for.
-        :type day: int
-        :param match_type: Match Type
-        :type match_type: str
-        :param match_format: match_format
-        :type match_format: str
+        :param league: ID of the league to get team matches for (required)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param day: Match day to query for.
+        :type day: int
         :param preseason: 1 If these matches are preseason, otherwise 0
         :type preseason: int
+        :param season: ID of the season to search for match.
+        :type season: int
+        :param season_number: Season number to search for. (E.g: 18)
+        :type season_number: int
+        :param date__gt: Date greater than in datetime isoformat.
+        :type date__gt: str
+        :param date__lt: Date less than in datetime isoformat.
+        :type date__lt: str
+        :param match_type: Match Type
+        :type match_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -753,18 +746,17 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_find_match_serialize(
-            league=league,
             teams=teams,
-            date__lt=date__lt,
-            date__gt=date__gt,
-            season=season,
-            season_number=season_number,
-            day=day,
-            match_type=match_type,
-            match_format=match_format,
+            league=league,
             limit=limit,
             offset=offset,
+            day=day,
             preseason=preseason,
+            season=season,
+            season_number=season_number,
+            date__gt=date__gt,
+            date__lt=date__lt,
+            match_type=match_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -789,18 +781,17 @@ class MatchesApi:
     @validate_call
     async def matches_find_match_without_preload_content(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         teams: Annotated[StrictStr, Field(description="Comma delimited list of teams to get names for.")],
-        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
-        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
-        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
-        match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
+        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
         preseason: Annotated[Optional[StrictInt], Field(description="1 If these matches are preseason, otherwise 0")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
+        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -818,30 +809,28 @@ class MatchesApi:
 
         Find a match for a team or teams.
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param teams: Comma delimited list of teams to get names for. (required)
         :type teams: str
-        :param date__lt: Date less than in datetime isoformat.
-        :type date__lt: str
-        :param date__gt: Date greater than in datetime isoformat.
-        :type date__gt: str
-        :param season: ID of the season to search for match.
-        :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
-        :type season_number: int
-        :param day: Match day to query for.
-        :type day: int
-        :param match_type: Match Type
-        :type match_type: str
-        :param match_format: match_format
-        :type match_format: str
+        :param league: ID of the league to get team matches for (required)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param day: Match day to query for.
+        :type day: int
         :param preseason: 1 If these matches are preseason, otherwise 0
         :type preseason: int
+        :param season: ID of the season to search for match.
+        :type season: int
+        :param season_number: Season number to search for. (E.g: 18)
+        :type season_number: int
+        :param date__gt: Date greater than in datetime isoformat.
+        :type date__gt: str
+        :param date__lt: Date less than in datetime isoformat.
+        :type date__lt: str
+        :param match_type: Match Type
+        :type match_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -865,18 +854,17 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_find_match_serialize(
-            league=league,
             teams=teams,
-            date__lt=date__lt,
-            date__gt=date__gt,
-            season=season,
-            season_number=season_number,
-            day=day,
-            match_type=match_type,
-            match_format=match_format,
+            league=league,
             limit=limit,
             offset=offset,
+            day=day,
             preseason=preseason,
+            season=season,
+            season_number=season_number,
+            date__gt=date__gt,
+            date__lt=date__lt,
+            match_type=match_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -896,18 +884,17 @@ class MatchesApi:
 
     def _matches_find_match_serialize(
         self,
-        league,
         teams,
-        date__lt,
-        date__gt,
-        season,
-        season_number,
-        day,
-        match_type,
-        match_format,
+        league,
         limit,
         offset,
+        day,
         preseason,
+        season,
+        season_number,
+        date__gt,
+        date__lt,
+        match_type,
         _request_auth,
         _content_type,
         _headers,
@@ -928,13 +915,29 @@ class MatchesApi:
 
         # process the path parameters
         # process the query parameters
-        if date__lt is not None:
+        if limit is not None:
             
-            _query_params.append(('date__lt', date__lt))
+            _query_params.append(('limit', limit))
             
-        if date__gt is not None:
+        if offset is not None:
             
-            _query_params.append(('date__gt', date__gt))
+            _query_params.append(('offset', offset))
+            
+        if day is not None:
+            
+            _query_params.append(('day', day))
+            
+        if teams is not None:
+            
+            _query_params.append(('teams', teams))
+            
+        if league is not None:
+            
+            _query_params.append(('league', league))
+            
+        if preseason is not None:
+            
+            _query_params.append(('preseason', preseason))
             
         if season is not None:
             
@@ -944,37 +947,17 @@ class MatchesApi:
             
             _query_params.append(('season_number', season_number))
             
-        if league is not None:
+        if date__gt is not None:
             
-            _query_params.append(('league', league))
+            _query_params.append(('date__gt', date__gt))
             
-        if day is not None:
+        if date__lt is not None:
             
-            _query_params.append(('day', day))
+            _query_params.append(('date__lt', date__lt))
             
         if match_type is not None:
             
             _query_params.append(('match_type', match_type))
-            
-        if match_format is not None:
-            
-            _query_params.append(('match_format', match_format))
-            
-        if limit is not None:
-            
-            _query_params.append(('limit', limit))
-            
-        if offset is not None:
-            
-            _query_params.append(('offset', offset))
-            
-        if teams is not None:
-            
-            _query_params.append(('teams', teams))
-            
-        if preseason is not None:
-            
-            _query_params.append(('preseason', preseason))
             
         # process the header parameters
         # process the form parameters
@@ -1016,17 +999,14 @@ class MatchesApi:
     async def matches_list(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
-        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
-        match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
-        team_name: Annotated[Optional[StrictStr], Field(description="team_name")] = None,
-        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="match_type")] = None,
-        match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
+        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
+        match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1045,28 +1025,22 @@ class MatchesApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param date__lt: Date less than in datetime isoformat.
-        :type date__lt: str
-        :param date__gt: Date greater than in datetime isoformat.
-        :type date__gt: str
-        :param season: ID of the season to search for match.
-        :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
-        :type season_number: int
-        :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
-        :type match_team_type: str
-        :param team_name: team_name
-        :type team_name: str
-        :param day: Match day to query for.
-        :type day: int
-        :param match_type: match_type
-        :type match_type: str
-        :param match_format: match_format
-        :type match_format: str
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param day: Match day to query for.
+        :type day: int
+        :param season: ID of the season to search for match.
+        :type season: int
+        :param season_number: Season number to search for. (E.g: 18)
+        :type season_number: int
+        :param date__gt: Date greater than in datetime isoformat.
+        :type date__gt: str
+        :param date__lt: Date less than in datetime isoformat.
+        :type date__lt: str
+        :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
+        :type match_team_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1091,17 +1065,14 @@ class MatchesApi:
 
         _param = self._matches_list_serialize(
             league=league,
-            date__lt=date__lt,
-            date__gt=date__gt,
-            season=season,
-            season_number=season_number,
-            match_team_type=match_team_type,
-            team_name=team_name,
-            day=day,
-            match_type=match_type,
-            match_format=match_format,
             limit=limit,
             offset=offset,
+            day=day,
+            season=season,
+            season_number=season_number,
+            date__gt=date__gt,
+            date__lt=date__lt,
+            match_team_type=match_team_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1126,17 +1097,14 @@ class MatchesApi:
     async def matches_list_with_http_info(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
-        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
-        match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
-        team_name: Annotated[Optional[StrictStr], Field(description="team_name")] = None,
-        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="match_type")] = None,
-        match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
+        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
+        match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1155,28 +1123,22 @@ class MatchesApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param date__lt: Date less than in datetime isoformat.
-        :type date__lt: str
-        :param date__gt: Date greater than in datetime isoformat.
-        :type date__gt: str
-        :param season: ID of the season to search for match.
-        :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
-        :type season_number: int
-        :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
-        :type match_team_type: str
-        :param team_name: team_name
-        :type team_name: str
-        :param day: Match day to query for.
-        :type day: int
-        :param match_type: match_type
-        :type match_type: str
-        :param match_format: match_format
-        :type match_format: str
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param day: Match day to query for.
+        :type day: int
+        :param season: ID of the season to search for match.
+        :type season: int
+        :param season_number: Season number to search for. (E.g: 18)
+        :type season_number: int
+        :param date__gt: Date greater than in datetime isoformat.
+        :type date__gt: str
+        :param date__lt: Date less than in datetime isoformat.
+        :type date__lt: str
+        :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
+        :type match_team_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1201,17 +1163,14 @@ class MatchesApi:
 
         _param = self._matches_list_serialize(
             league=league,
-            date__lt=date__lt,
-            date__gt=date__gt,
-            season=season,
-            season_number=season_number,
-            match_team_type=match_team_type,
-            team_name=team_name,
-            day=day,
-            match_type=match_type,
-            match_format=match_format,
             limit=limit,
             offset=offset,
+            day=day,
+            season=season,
+            season_number=season_number,
+            date__gt=date__gt,
+            date__lt=date__lt,
+            match_team_type=match_team_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1236,17 +1195,14 @@ class MatchesApi:
     async def matches_list_without_preload_content(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
-        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
-        match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
-        team_name: Annotated[Optional[StrictStr], Field(description="team_name")] = None,
-        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="match_type")] = None,
-        match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
+        date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
+        match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1265,28 +1221,22 @@ class MatchesApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param date__lt: Date less than in datetime isoformat.
-        :type date__lt: str
-        :param date__gt: Date greater than in datetime isoformat.
-        :type date__gt: str
-        :param season: ID of the season to search for match.
-        :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
-        :type season_number: int
-        :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
-        :type match_team_type: str
-        :param team_name: team_name
-        :type team_name: str
-        :param day: Match day to query for.
-        :type day: int
-        :param match_type: match_type
-        :type match_type: str
-        :param match_format: match_format
-        :type match_format: str
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param day: Match day to query for.
+        :type day: int
+        :param season: ID of the season to search for match.
+        :type season: int
+        :param season_number: Season number to search for. (E.g: 18)
+        :type season_number: int
+        :param date__gt: Date greater than in datetime isoformat.
+        :type date__gt: str
+        :param date__lt: Date less than in datetime isoformat.
+        :type date__lt: str
+        :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
+        :type match_team_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1311,17 +1261,14 @@ class MatchesApi:
 
         _param = self._matches_list_serialize(
             league=league,
-            date__lt=date__lt,
-            date__gt=date__gt,
-            season=season,
-            season_number=season_number,
-            match_team_type=match_team_type,
-            team_name=team_name,
-            day=day,
-            match_type=match_type,
-            match_format=match_format,
             limit=limit,
             offset=offset,
+            day=day,
+            season=season,
+            season_number=season_number,
+            date__gt=date__gt,
+            date__lt=date__lt,
+            match_team_type=match_team_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1341,17 +1288,14 @@ class MatchesApi:
     def _matches_list_serialize(
         self,
         league,
-        date__lt,
-        date__gt,
-        season,
-        season_number,
-        match_team_type,
-        team_name,
-        day,
-        match_type,
-        match_format,
         limit,
         offset,
+        day,
+        season,
+        season_number,
+        date__gt,
+        date__lt,
+        match_team_type,
         _request_auth,
         _content_type,
         _headers,
@@ -1372,13 +1316,21 @@ class MatchesApi:
 
         # process the path parameters
         # process the query parameters
-        if date__lt is not None:
+        if limit is not None:
             
-            _query_params.append(('date__lt', date__lt))
+            _query_params.append(('limit', limit))
             
-        if date__gt is not None:
+        if offset is not None:
             
-            _query_params.append(('date__gt', date__gt))
+            _query_params.append(('offset', offset))
+            
+        if day is not None:
+            
+            _query_params.append(('day', day))
+            
+        if league is not None:
+            
+            _query_params.append(('league', league))
             
         if season is not None:
             
@@ -1388,37 +1340,17 @@ class MatchesApi:
             
             _query_params.append(('season_number', season_number))
             
-        if league is not None:
+        if date__gt is not None:
             
-            _query_params.append(('league', league))
+            _query_params.append(('date__gt', date__gt))
+            
+        if date__lt is not None:
+            
+            _query_params.append(('date__lt', date__lt))
             
         if match_team_type is not None:
             
             _query_params.append(('match_team_type', match_team_type))
-            
-        if team_name is not None:
-            
-            _query_params.append(('team_name', team_name))
-            
-        if day is not None:
-            
-            _query_params.append(('day', day))
-            
-        if match_type is not None:
-            
-            _query_params.append(('match_type', match_type))
-            
-        if match_format is not None:
-            
-            _query_params.append(('match_format', match_format))
-            
-        if limit is not None:
-            
-            _query_params.append(('limit', limit))
-            
-        if offset is not None:
-            
-            _query_params.append(('offset', offset))
             
         # process the header parameters
         # process the form parameters

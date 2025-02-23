@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictInt
 from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.tracker_link import TrackerLink
@@ -1359,11 +1359,9 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_list(
         self,
-        status: Annotated[Optional[StrictStr], Field(description="status")] = None,
-        member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1380,16 +1378,12 @@ class TrackerLinksApi:
         """tracker_links_list
 
 
-        :param status: status
-        :type status: str
-        :param member_name: member_name
-        :type member_name: str
-        :param discord_id: Member Discord ID
-        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param discord_id: Member Discord ID
+        :type discord_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1413,11 +1407,9 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_list_serialize(
-            status=status,
-            member_name=member_name,
-            discord_id=discord_id,
             limit=limit,
             offset=offset,
+            discord_id=discord_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1441,11 +1433,9 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_list_with_http_info(
         self,
-        status: Annotated[Optional[StrictStr], Field(description="status")] = None,
-        member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1462,16 +1452,12 @@ class TrackerLinksApi:
         """tracker_links_list
 
 
-        :param status: status
-        :type status: str
-        :param member_name: member_name
-        :type member_name: str
-        :param discord_id: Member Discord ID
-        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param discord_id: Member Discord ID
+        :type discord_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1495,11 +1481,9 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_list_serialize(
-            status=status,
-            member_name=member_name,
-            discord_id=discord_id,
             limit=limit,
             offset=offset,
+            discord_id=discord_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1523,11 +1507,9 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_list_without_preload_content(
         self,
-        status: Annotated[Optional[StrictStr], Field(description="status")] = None,
-        member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1544,16 +1526,12 @@ class TrackerLinksApi:
         """tracker_links_list
 
 
-        :param status: status
-        :type status: str
-        :param member_name: member_name
-        :type member_name: str
-        :param discord_id: Member Discord ID
-        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param discord_id: Member Discord ID
+        :type discord_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1577,11 +1555,9 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_list_serialize(
-            status=status,
-            member_name=member_name,
-            discord_id=discord_id,
             limit=limit,
             offset=offset,
+            discord_id=discord_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1600,11 +1576,9 @@ class TrackerLinksApi:
 
     def _tracker_links_list_serialize(
         self,
-        status,
-        member_name,
-        discord_id,
         limit,
         offset,
+        discord_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1625,18 +1599,6 @@ class TrackerLinksApi:
 
         # process the path parameters
         # process the query parameters
-        if status is not None:
-            
-            _query_params.append(('status', status))
-            
-        if member_name is not None:
-            
-            _query_params.append(('member_name', member_name))
-            
-        if discord_id is not None:
-            
-            _query_params.append(('discord_id', discord_id))
-            
         if limit is not None:
             
             _query_params.append(('limit', limit))
@@ -1644,6 +1606,10 @@ class TrackerLinksApi:
         if offset is not None:
             
             _query_params.append(('offset', offset))
+            
+        if discord_id is not None:
+            
+            _query_params.append(('discord_id', discord_id))
             
         # process the header parameters
         # process the form parameters
