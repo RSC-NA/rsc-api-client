@@ -392,7 +392,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_list**
-> TrackerLinksList200Response tracker_links_list(limit=limit, offset=offset, discord_id=discord_id)
+> TrackerLinksList200Response tracker_links_list(status=status, member_name=member_name, discord_id=discord_id, limit=limit, offset=offset)
 
 
 
@@ -427,12 +427,14 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
+    status = 'status_example' # str | status (optional)
+    member_name = 'member_name_example' # str | member_name (optional)
+    discord_id = 56 # int | Member Discord ID (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
-    discord_id = 56 # int | Member Discord ID (optional)
 
     try:
-        api_response = await api_instance.tracker_links_list(limit=limit, offset=offset, discord_id=discord_id)
+        api_response = await api_instance.tracker_links_list(status=status, member_name=member_name, discord_id=discord_id, limit=limit, offset=offset)
         print("The response of TrackerLinksApi->tracker_links_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -446,9 +448,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **status** | **str**| status | [optional] 
+ **member_name** | **str**| member_name | [optional] 
+ **discord_id** | **int**| Member Discord ID | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
- **discord_id** | **int**| Member Discord ID | [optional] 
 
 ### Return type
 

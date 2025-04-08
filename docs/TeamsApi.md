@@ -169,7 +169,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_list**
-> List[TeamList] teams_list(league=league)
+> List[TeamList] teams_list(seasons=seasons, franchise=franchise, name=name, tier=tier, league=league)
 
 
 
@@ -204,10 +204,14 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
+    seasons = 'seasons_example' # str | seasons (optional)
+    franchise = 'franchise_example' # str | franchise (optional)
+    name = 'name_example' # str | name (optional)
+    tier = 'tier_example' # str | tier (optional)
     league = 56 # int | League Database ID (optional)
 
     try:
-        api_response = await api_instance.teams_list(league=league)
+        api_response = await api_instance.teams_list(seasons=seasons, franchise=franchise, name=name, tier=tier, league=league)
         print("The response of TeamsApi->teams_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -221,6 +225,10 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **seasons** | **str**| seasons | [optional] 
+ **franchise** | **str**| franchise | [optional] 
+ **name** | **str**| name | [optional] 
+ **tier** | **str**| tier | [optional] 
  **league** | **int**| League Database ID | [optional] 
 
 ### Return type

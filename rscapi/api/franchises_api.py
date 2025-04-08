@@ -570,9 +570,13 @@ class FranchisesApi:
     @validate_call
     async def franchises_list(
         self,
-        tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
-        gm_discord_id: Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None,
+        prefix: Annotated[Optional[StrictStr], Field(description="prefix")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League id")] = None,
+        gm_name: Annotated[Optional[StrictStr], Field(description="gm_name")] = None,
+        gm_discord_id: Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None,
+        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
+        tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="tier_name")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -590,12 +594,20 @@ class FranchisesApi:
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.
 
-        :param tier: ID of Tier players are in.
-        :type tier: int
-        :param gm_discord_id: Discord id of GM
-        :type gm_discord_id: int
+        :param prefix: prefix
+        :type prefix: str
         :param league: League id
         :type league: int
+        :param gm_name: gm_name
+        :type gm_name: str
+        :param gm_discord_id: Discord id of GM
+        :type gm_discord_id: int
+        :param name: name
+        :type name: str
+        :param tier: ID of Tier players are in.
+        :type tier: int
+        :param tier_name: tier_name
+        :type tier_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -619,9 +631,13 @@ class FranchisesApi:
         """ # noqa: E501
 
         _param = self._franchises_list_serialize(
-            tier=tier,
-            gm_discord_id=gm_discord_id,
+            prefix=prefix,
             league=league,
+            gm_name=gm_name,
+            gm_discord_id=gm_discord_id,
+            name=name,
+            tier=tier,
+            tier_name=tier_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -645,9 +661,13 @@ class FranchisesApi:
     @validate_call
     async def franchises_list_with_http_info(
         self,
-        tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
-        gm_discord_id: Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None,
+        prefix: Annotated[Optional[StrictStr], Field(description="prefix")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League id")] = None,
+        gm_name: Annotated[Optional[StrictStr], Field(description="gm_name")] = None,
+        gm_discord_id: Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None,
+        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
+        tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="tier_name")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -665,12 +685,20 @@ class FranchisesApi:
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.
 
-        :param tier: ID of Tier players are in.
-        :type tier: int
-        :param gm_discord_id: Discord id of GM
-        :type gm_discord_id: int
+        :param prefix: prefix
+        :type prefix: str
         :param league: League id
         :type league: int
+        :param gm_name: gm_name
+        :type gm_name: str
+        :param gm_discord_id: Discord id of GM
+        :type gm_discord_id: int
+        :param name: name
+        :type name: str
+        :param tier: ID of Tier players are in.
+        :type tier: int
+        :param tier_name: tier_name
+        :type tier_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -694,9 +722,13 @@ class FranchisesApi:
         """ # noqa: E501
 
         _param = self._franchises_list_serialize(
-            tier=tier,
-            gm_discord_id=gm_discord_id,
+            prefix=prefix,
             league=league,
+            gm_name=gm_name,
+            gm_discord_id=gm_discord_id,
+            name=name,
+            tier=tier,
+            tier_name=tier_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -720,9 +752,13 @@ class FranchisesApi:
     @validate_call
     async def franchises_list_without_preload_content(
         self,
-        tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
-        gm_discord_id: Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None,
+        prefix: Annotated[Optional[StrictStr], Field(description="prefix")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League id")] = None,
+        gm_name: Annotated[Optional[StrictStr], Field(description="gm_name")] = None,
+        gm_discord_id: Annotated[Optional[StrictInt], Field(description="Discord id of GM")] = None,
+        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
+        tier: Annotated[Optional[StrictInt], Field(description="ID of Tier players are in.")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="tier_name")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -740,12 +776,20 @@ class FranchisesApi:
 
         Viewset for the franchise model. Contains endpoints related to working with franchises.
 
-        :param tier: ID of Tier players are in.
-        :type tier: int
-        :param gm_discord_id: Discord id of GM
-        :type gm_discord_id: int
+        :param prefix: prefix
+        :type prefix: str
         :param league: League id
         :type league: int
+        :param gm_name: gm_name
+        :type gm_name: str
+        :param gm_discord_id: Discord id of GM
+        :type gm_discord_id: int
+        :param name: name
+        :type name: str
+        :param tier: ID of Tier players are in.
+        :type tier: int
+        :param tier_name: tier_name
+        :type tier_name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -769,9 +813,13 @@ class FranchisesApi:
         """ # noqa: E501
 
         _param = self._franchises_list_serialize(
-            tier=tier,
-            gm_discord_id=gm_discord_id,
+            prefix=prefix,
             league=league,
+            gm_name=gm_name,
+            gm_discord_id=gm_discord_id,
+            name=name,
+            tier=tier,
+            tier_name=tier_name,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -790,9 +838,13 @@ class FranchisesApi:
 
     def _franchises_list_serialize(
         self,
-        tier,
-        gm_discord_id,
+        prefix,
         league,
+        gm_name,
+        gm_discord_id,
+        name,
+        tier,
+        tier_name,
         _request_auth,
         _content_type,
         _headers,
@@ -813,17 +865,33 @@ class FranchisesApi:
 
         # process the path parameters
         # process the query parameters
-        if tier is not None:
+        if prefix is not None:
             
-            _query_params.append(('tier', tier))
+            _query_params.append(('prefix', prefix))
+            
+        if league is not None:
+            
+            _query_params.append(('league', league))
+            
+        if gm_name is not None:
+            
+            _query_params.append(('gm_name', gm_name))
             
         if gm_discord_id is not None:
             
             _query_params.append(('gm_discord_id', gm_discord_id))
             
-        if league is not None:
+        if name is not None:
             
-            _query_params.append(('league', league))
+            _query_params.append(('name', name))
+            
+        if tier is not None:
+            
+            _query_params.append(('tier', tier))
+            
+        if tier_name is not None:
+            
+            _query_params.append(('tier_name', tier_name))
             
         # process the header parameters
         # process the form parameters

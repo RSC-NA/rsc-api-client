@@ -831,12 +831,14 @@ class NumbersApi:
     @validate_call
     async def numbers_mmr_list(
         self,
-        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
+        pulled: Annotated[Optional[StrictStr], Field(description="pulled")] = None,
         rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
+        psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
+        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
+        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -853,18 +855,22 @@ class NumbersApi:
         """numbers_mmr_list
 
 
-        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
-        :type pulled_before: str
-        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
-        :type pulled_after: str
+        :param pulled: pulled
+        :type pulled: str
         :param rscid: Specific Member RSC ID (E.g: RSC002918)
         :type rscid: str
+        :param discord_id: Member discord ID
+        :type discord_id: int
         :param rscid_begin: Starting RSC ID for a range of RSC IDs
         :type rscid_begin: str
         :param rscid_end: Ending RSC ID for a range of RSC IDs
         :type rscid_end: str
-        :param discord_id: Member discord ID
-        :type discord_id: int
+        :param psyonix_season: psyonix_season
+        :type psyonix_season: str
+        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
+        :type pulled_before: str
+        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
+        :type pulled_after: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -888,12 +894,14 @@ class NumbersApi:
         """ # noqa: E501
 
         _param = self._numbers_mmr_list_serialize(
-            pulled_before=pulled_before,
-            pulled_after=pulled_after,
+            pulled=pulled,
             rscid=rscid,
+            discord_id=discord_id,
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
-            discord_id=discord_id,
+            psyonix_season=psyonix_season,
+            pulled_before=pulled_before,
+            pulled_after=pulled_after,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -917,12 +925,14 @@ class NumbersApi:
     @validate_call
     async def numbers_mmr_list_with_http_info(
         self,
-        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
+        pulled: Annotated[Optional[StrictStr], Field(description="pulled")] = None,
         rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
+        psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
+        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
+        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -939,18 +949,22 @@ class NumbersApi:
         """numbers_mmr_list
 
 
-        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
-        :type pulled_before: str
-        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
-        :type pulled_after: str
+        :param pulled: pulled
+        :type pulled: str
         :param rscid: Specific Member RSC ID (E.g: RSC002918)
         :type rscid: str
+        :param discord_id: Member discord ID
+        :type discord_id: int
         :param rscid_begin: Starting RSC ID for a range of RSC IDs
         :type rscid_begin: str
         :param rscid_end: Ending RSC ID for a range of RSC IDs
         :type rscid_end: str
-        :param discord_id: Member discord ID
-        :type discord_id: int
+        :param psyonix_season: psyonix_season
+        :type psyonix_season: str
+        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
+        :type pulled_before: str
+        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
+        :type pulled_after: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -974,12 +988,14 @@ class NumbersApi:
         """ # noqa: E501
 
         _param = self._numbers_mmr_list_serialize(
-            pulled_before=pulled_before,
-            pulled_after=pulled_after,
+            pulled=pulled,
             rscid=rscid,
+            discord_id=discord_id,
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
-            discord_id=discord_id,
+            psyonix_season=psyonix_season,
+            pulled_before=pulled_before,
+            pulled_after=pulled_after,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1003,12 +1019,14 @@ class NumbersApi:
     @validate_call
     async def numbers_mmr_list_without_preload_content(
         self,
-        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
+        pulled: Annotated[Optional[StrictStr], Field(description="pulled")] = None,
         rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
+        psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
+        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
+        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1025,18 +1043,22 @@ class NumbersApi:
         """numbers_mmr_list
 
 
-        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
-        :type pulled_before: str
-        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
-        :type pulled_after: str
+        :param pulled: pulled
+        :type pulled: str
         :param rscid: Specific Member RSC ID (E.g: RSC002918)
         :type rscid: str
+        :param discord_id: Member discord ID
+        :type discord_id: int
         :param rscid_begin: Starting RSC ID for a range of RSC IDs
         :type rscid_begin: str
         :param rscid_end: Ending RSC ID for a range of RSC IDs
         :type rscid_end: str
-        :param discord_id: Member discord ID
-        :type discord_id: int
+        :param psyonix_season: psyonix_season
+        :type psyonix_season: str
+        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
+        :type pulled_before: str
+        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
+        :type pulled_after: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1060,12 +1082,14 @@ class NumbersApi:
         """ # noqa: E501
 
         _param = self._numbers_mmr_list_serialize(
-            pulled_before=pulled_before,
-            pulled_after=pulled_after,
+            pulled=pulled,
             rscid=rscid,
+            discord_id=discord_id,
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
-            discord_id=discord_id,
+            psyonix_season=psyonix_season,
+            pulled_before=pulled_before,
+            pulled_after=pulled_after,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1084,12 +1108,14 @@ class NumbersApi:
 
     def _numbers_mmr_list_serialize(
         self,
-        pulled_before,
-        pulled_after,
+        pulled,
         rscid,
+        discord_id,
         rscid_begin,
         rscid_end,
-        discord_id,
+        psyonix_season,
+        pulled_before,
+        pulled_after,
         _request_auth,
         _content_type,
         _headers,
@@ -1110,17 +1136,17 @@ class NumbersApi:
 
         # process the path parameters
         # process the query parameters
-        if pulled_before is not None:
+        if pulled is not None:
             
-            _query_params.append(('pulled_before', pulled_before))
-            
-        if pulled_after is not None:
-            
-            _query_params.append(('pulled_after', pulled_after))
+            _query_params.append(('pulled', pulled))
             
         if rscid is not None:
             
             _query_params.append(('rscid', rscid))
+            
+        if discord_id is not None:
+            
+            _query_params.append(('discord_id', discord_id))
             
         if rscid_begin is not None:
             
@@ -1130,9 +1156,17 @@ class NumbersApi:
             
             _query_params.append(('rscid_end', rscid_end))
             
-        if discord_id is not None:
+        if psyonix_season is not None:
             
-            _query_params.append(('discord_id', discord_id))
+            _query_params.append(('psyonix_season', psyonix_season))
+            
+        if pulled_before is not None:
+            
+            _query_params.append(('pulled_before', pulled_before))
+            
+        if pulled_after is not None:
+            
+            _query_params.append(('pulled_after', pulled_after))
             
         # process the header parameters
         # process the form parameters

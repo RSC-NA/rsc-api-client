@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt
+from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother
@@ -1170,11 +1170,12 @@ class TransactionsApi:
     async def transactions_history_list(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
+        transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1193,16 +1194,18 @@ class TransactionsApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
         :param player: Discord ID of player for transaction history search.
         :type player: int
+        :param transaction_type: transaction_type
+        :type transaction_type: str
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1227,11 +1230,12 @@ class TransactionsApi:
 
         _param = self._transactions_history_list_serialize(
             league=league,
-            limit=limit,
-            offset=offset,
             season_number=season_number,
             player=player,
+            transaction_type=transaction_type,
             executor=executor,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1256,11 +1260,12 @@ class TransactionsApi:
     async def transactions_history_list_with_http_info(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
+        transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1279,16 +1284,18 @@ class TransactionsApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
         :param player: Discord ID of player for transaction history search.
         :type player: int
+        :param transaction_type: transaction_type
+        :type transaction_type: str
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1313,11 +1320,12 @@ class TransactionsApi:
 
         _param = self._transactions_history_list_serialize(
             league=league,
-            limit=limit,
-            offset=offset,
             season_number=season_number,
             player=player,
+            transaction_type=transaction_type,
             executor=executor,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1342,11 +1350,12 @@ class TransactionsApi:
     async def transactions_history_list_without_preload_content(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
+        transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1365,16 +1374,18 @@ class TransactionsApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
         :param player: Discord ID of player for transaction history search.
         :type player: int
+        :param transaction_type: transaction_type
+        :type transaction_type: str
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1399,11 +1410,12 @@ class TransactionsApi:
 
         _param = self._transactions_history_list_serialize(
             league=league,
-            limit=limit,
-            offset=offset,
             season_number=season_number,
             player=player,
+            transaction_type=transaction_type,
             executor=executor,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1423,11 +1435,12 @@ class TransactionsApi:
     def _transactions_history_list_serialize(
         self,
         league,
-        limit,
-        offset,
         season_number,
         player,
+        transaction_type,
         executor,
+        limit,
+        offset,
         _request_auth,
         _content_type,
         _headers,
@@ -1448,14 +1461,6 @@ class TransactionsApi:
 
         # process the path parameters
         # process the query parameters
-        if limit is not None:
-            
-            _query_params.append(('limit', limit))
-            
-        if offset is not None:
-            
-            _query_params.append(('offset', offset))
-            
         if league is not None:
             
             _query_params.append(('league', league))
@@ -1468,9 +1473,21 @@ class TransactionsApi:
             
             _query_params.append(('player', player))
             
+        if transaction_type is not None:
+            
+            _query_params.append(('transaction_type', transaction_type))
+            
         if executor is not None:
             
             _query_params.append(('executor', executor))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
             
         # process the header parameters
         # process the form parameters

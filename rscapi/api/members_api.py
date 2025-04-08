@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt
+from pydantic import Field, StrictInt, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.activity_check import ActivityCheck
@@ -1988,9 +1988,11 @@ class MembersApi:
     @validate_call
     async def members_list(
         self,
+        rsc_name: Annotated[Optional[StrictStr], Field(description="rsc_name")] = None,
+        discord_username: Annotated[Optional[StrictStr], Field(description="discord_username")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2007,12 +2009,16 @@ class MembersApi:
         """members_list
 
 
+        :param rsc_name: rsc_name
+        :type rsc_name: str
+        :param discord_username: discord_username
+        :type discord_username: str
+        :param discord_id: Discord ID of member to search for
+        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param discord_id: Discord ID of member to search for
-        :type discord_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2036,9 +2042,11 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_list_serialize(
+            rsc_name=rsc_name,
+            discord_username=discord_username,
+            discord_id=discord_id,
             limit=limit,
             offset=offset,
-            discord_id=discord_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2062,9 +2070,11 @@ class MembersApi:
     @validate_call
     async def members_list_with_http_info(
         self,
+        rsc_name: Annotated[Optional[StrictStr], Field(description="rsc_name")] = None,
+        discord_username: Annotated[Optional[StrictStr], Field(description="discord_username")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2081,12 +2091,16 @@ class MembersApi:
         """members_list
 
 
+        :param rsc_name: rsc_name
+        :type rsc_name: str
+        :param discord_username: discord_username
+        :type discord_username: str
+        :param discord_id: Discord ID of member to search for
+        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param discord_id: Discord ID of member to search for
-        :type discord_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2110,9 +2124,11 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_list_serialize(
+            rsc_name=rsc_name,
+            discord_username=discord_username,
+            discord_id=discord_id,
             limit=limit,
             offset=offset,
-            discord_id=discord_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2136,9 +2152,11 @@ class MembersApi:
     @validate_call
     async def members_list_without_preload_content(
         self,
+        rsc_name: Annotated[Optional[StrictStr], Field(description="rsc_name")] = None,
+        discord_username: Annotated[Optional[StrictStr], Field(description="discord_username")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to search for")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2155,12 +2173,16 @@ class MembersApi:
         """members_list
 
 
+        :param rsc_name: rsc_name
+        :type rsc_name: str
+        :param discord_username: discord_username
+        :type discord_username: str
+        :param discord_id: Discord ID of member to search for
+        :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param discord_id: Discord ID of member to search for
-        :type discord_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2184,9 +2206,11 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_list_serialize(
+            rsc_name=rsc_name,
+            discord_username=discord_username,
+            discord_id=discord_id,
             limit=limit,
             offset=offset,
-            discord_id=discord_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2205,9 +2229,11 @@ class MembersApi:
 
     def _members_list_serialize(
         self,
+        rsc_name,
+        discord_username,
+        discord_id,
         limit,
         offset,
-        discord_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2228,6 +2254,18 @@ class MembersApi:
 
         # process the path parameters
         # process the query parameters
+        if rsc_name is not None:
+            
+            _query_params.append(('rsc_name', rsc_name))
+            
+        if discord_username is not None:
+            
+            _query_params.append(('discord_username', discord_username))
+            
+        if discord_id is not None:
+            
+            _query_params.append(('discord_id', discord_id))
+            
         if limit is not None:
             
             _query_params.append(('limit', limit))
@@ -2235,10 +2273,6 @@ class MembersApi:
         if offset is not None:
             
             _query_params.append(('offset', offset))
-            
-        if discord_id is not None:
-            
-            _query_params.append(('discord_id', discord_id))
             
         # process the header parameters
         # process the form parameters

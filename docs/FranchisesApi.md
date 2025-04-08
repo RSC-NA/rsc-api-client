@@ -170,7 +170,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_list**
-> List[FranchiseList] franchises_list(tier=tier, gm_discord_id=gm_discord_id, league=league)
+> List[FranchiseList] franchises_list(prefix=prefix, league=league, gm_name=gm_name, gm_discord_id=gm_discord_id, name=name, tier=tier, tier_name=tier_name)
 
 
 
@@ -207,12 +207,16 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
-    tier = 56 # int | ID of Tier players are in. (optional)
-    gm_discord_id = 56 # int | Discord id of GM (optional)
+    prefix = 'prefix_example' # str | prefix (optional)
     league = 56 # int | League id (optional)
+    gm_name = 'gm_name_example' # str | gm_name (optional)
+    gm_discord_id = 56 # int | Discord id of GM (optional)
+    name = 'name_example' # str | name (optional)
+    tier = 56 # int | ID of Tier players are in. (optional)
+    tier_name = 'tier_name_example' # str | tier_name (optional)
 
     try:
-        api_response = await api_instance.franchises_list(tier=tier, gm_discord_id=gm_discord_id, league=league)
+        api_response = await api_instance.franchises_list(prefix=prefix, league=league, gm_name=gm_name, gm_discord_id=gm_discord_id, name=name, tier=tier, tier_name=tier_name)
         print("The response of FranchisesApi->franchises_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -226,9 +230,13 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tier** | **int**| ID of Tier players are in. | [optional] 
- **gm_discord_id** | **int**| Discord id of GM | [optional] 
+ **prefix** | **str**| prefix | [optional] 
  **league** | **int**| League id | [optional] 
+ **gm_name** | **str**| gm_name | [optional] 
+ **gm_discord_id** | **int**| Discord id of GM | [optional] 
+ **name** | **str**| name | [optional] 
+ **tier** | **int**| ID of Tier players are in. | [optional] 
+ **tier_name** | **str**| tier_name | [optional] 
 
 ### Return type
 

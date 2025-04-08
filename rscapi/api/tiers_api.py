@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt
+from pydantic import Field, StrictInt, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.league_player import LeaguePlayer
@@ -570,6 +570,7 @@ class TiersApi:
     @validate_call
     async def tiers_list(
         self,
+        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
         _request_timeout: Union[
             None,
@@ -588,6 +589,8 @@ class TiersApi:
 
         Viewset for the Tier model.
 
+        :param name: name
+        :type name: str
         :param league: League Database ID
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
@@ -613,6 +616,7 @@ class TiersApi:
         """ # noqa: E501
 
         _param = self._tiers_list_serialize(
+            name=name,
             league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -637,6 +641,7 @@ class TiersApi:
     @validate_call
     async def tiers_list_with_http_info(
         self,
+        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
         _request_timeout: Union[
             None,
@@ -655,6 +660,8 @@ class TiersApi:
 
         Viewset for the Tier model.
 
+        :param name: name
+        :type name: str
         :param league: League Database ID
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
@@ -680,6 +687,7 @@ class TiersApi:
         """ # noqa: E501
 
         _param = self._tiers_list_serialize(
+            name=name,
             league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -704,6 +712,7 @@ class TiersApi:
     @validate_call
     async def tiers_list_without_preload_content(
         self,
+        name: Annotated[Optional[StrictStr], Field(description="name")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
         _request_timeout: Union[
             None,
@@ -722,6 +731,8 @@ class TiersApi:
 
         Viewset for the Tier model.
 
+        :param name: name
+        :type name: str
         :param league: League Database ID
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
@@ -747,6 +758,7 @@ class TiersApi:
         """ # noqa: E501
 
         _param = self._tiers_list_serialize(
+            name=name,
             league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -766,6 +778,7 @@ class TiersApi:
 
     def _tiers_list_serialize(
         self,
+        name,
         league,
         _request_auth,
         _content_type,
@@ -787,6 +800,10 @@ class TiersApi:
 
         # process the path parameters
         # process the query parameters
+        if name is not None:
+            
+            _query_params.append(('name', name))
+            
         if league is not None:
             
             _query_params.append(('league', league))

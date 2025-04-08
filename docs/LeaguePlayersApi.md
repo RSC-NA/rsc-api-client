@@ -165,7 +165,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_list**
-> LeaguePlayersList200Response league_players_list(limit=limit, offset=offset, status=status, sub_status=sub_status, tier=tier, season=season, season_number=season_number, league=league, discord_id=discord_id, franchise=franchise, team_name=team_name, tier_name=tier_name)
+> LeaguePlayersList200Response league_players_list(status=status, name=name, tier=tier, tier_name=tier_name, season=season, season_number=season_number, league=league, team_name=team_name, franchise=franchise, sub_status=sub_status, discord_id=discord_id, limit=limit, offset=offset)
 
 
 
@@ -200,21 +200,22 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
-    limit = 56 # int | Number of results to return per page. (optional)
-    offset = 56 # int | The initial index from which to return the results. (optional)
     status = 'status_example' # str | Player Status (Rostered, IR, etc.) (optional)
-    sub_status = 56 # int | Player current substitution status. (optional)
+    name = 'name_example' # str | name (optional)
     tier = 56 # int | ID of Tier players are in. (optional)
+    tier_name = 'tier_name_example' # str | Name of tier players are in. (optional)
     season = 56 # int | ID of season players played in. (optional)
     season_number = 56 # int | Number of season players played in. (optional)
     league = 56 # int | ID of League player is in. (optional)
-    discord_id = 56 # int | Discord ID of League Player (optional)
-    franchise = 'franchise_example' # str | Name of franchise players are in. (optional)
     team_name = 'team_name_example' # str | Name of team players are on. (optional)
-    tier_name = 'tier_name_example' # str | Name of tier players are in. (optional)
+    franchise = 'franchise_example' # str | Name of franchise players are in. (optional)
+    sub_status = 56 # int | Player current substitution status. (optional)
+    discord_id = 56 # int | Discord ID of League Player (optional)
+    limit = 56 # int | Number of results to return per page. (optional)
+    offset = 56 # int | The initial index from which to return the results. (optional)
 
     try:
-        api_response = await api_instance.league_players_list(limit=limit, offset=offset, status=status, sub_status=sub_status, tier=tier, season=season, season_number=season_number, league=league, discord_id=discord_id, franchise=franchise, team_name=team_name, tier_name=tier_name)
+        api_response = await api_instance.league_players_list(status=status, name=name, tier=tier, tier_name=tier_name, season=season, season_number=season_number, league=league, team_name=team_name, franchise=franchise, sub_status=sub_status, discord_id=discord_id, limit=limit, offset=offset)
         print("The response of LeaguePlayersApi->league_players_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -228,18 +229,19 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int**| Number of results to return per page. | [optional] 
- **offset** | **int**| The initial index from which to return the results. | [optional] 
  **status** | **str**| Player Status (Rostered, IR, etc.) | [optional] 
- **sub_status** | **int**| Player current substitution status. | [optional] 
+ **name** | **str**| name | [optional] 
  **tier** | **int**| ID of Tier players are in. | [optional] 
+ **tier_name** | **str**| Name of tier players are in. | [optional] 
  **season** | **int**| ID of season players played in. | [optional] 
  **season_number** | **int**| Number of season players played in. | [optional] 
  **league** | **int**| ID of League player is in. | [optional] 
- **discord_id** | **int**| Discord ID of League Player | [optional] 
- **franchise** | **str**| Name of franchise players are in. | [optional] 
  **team_name** | **str**| Name of team players are on. | [optional] 
- **tier_name** | **str**| Name of tier players are in. | [optional] 
+ **franchise** | **str**| Name of franchise players are in. | [optional] 
+ **sub_status** | **int**| Player current substitution status. | [optional] 
+ **discord_id** | **int**| Discord ID of League Player | [optional] 
+ **limit** | **int**| Number of results to return per page. | [optional] 
+ **offset** | **int**| The initial index from which to return the results. | [optional] 
 
 ### Return type
 
