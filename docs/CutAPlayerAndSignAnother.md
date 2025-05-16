@@ -28,7 +28,7 @@ print(CutAPlayerAndSignAnother.to_json())
 # convert the object into a dict
 cut_a_player_and_sign_another_dict = cut_a_player_and_sign_another_instance.to_dict()
 # create an instance of CutAPlayerAndSignAnother from a dict
-cut_a_player_and_sign_another_form_dict = cut_a_player_and_sign_another.from_dict(cut_a_player_and_sign_another_dict)
+cut_a_player_and_sign_another_from_dict = CutAPlayerAndSignAnother.from_dict(cut_a_player_and_sign_another_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

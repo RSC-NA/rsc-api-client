@@ -26,7 +26,7 @@ print(IntentToPlaySchema.to_json())
 # convert the object into a dict
 intent_to_play_schema_dict = intent_to_play_schema_instance.to_dict()
 # create an instance of IntentToPlaySchema from a dict
-intent_to_play_schema_form_dict = intent_to_play_schema.from_dict(intent_to_play_schema_dict)
+intent_to_play_schema_from_dict = IntentToPlaySchema.from_dict(intent_to_play_schema_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -24,7 +24,7 @@ print(TransactionTeam.to_json())
 # convert the object into a dict
 transaction_team_dict = transaction_team_instance.to_dict()
 # create an instance of TransactionTeam from a dict
-transaction_team_form_dict = transaction_team.from_dict(transaction_team_dict)
+transaction_team_from_dict = TransactionTeam.from_dict(transaction_team_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

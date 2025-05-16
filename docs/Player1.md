@@ -24,7 +24,7 @@ print(Player1.to_json())
 # convert the object into a dict
 player1_dict = player1_instance.to_dict()
 # create an instance of Player1 from a dict
-player1_form_dict = player1.from_dict(player1_dict)
+player1_from_dict = Player1.from_dict(player1_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

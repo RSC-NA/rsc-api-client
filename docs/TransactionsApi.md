@@ -21,8 +21,6 @@ Method | HTTP request | Description
 # **transactions_cut_and_sign_create**
 > List[TransactionResponse] transactions_cut_and_sign_create(data)
 
-
-
 Cut a player and sign another.
 
 ### Example
@@ -102,8 +100,6 @@ Name | Type | Description  | Notes
 
 # **transactions_cut_create**
 > TransactionResponse transactions_cut_create(data)
-
-
 
 Cut a player
 
@@ -185,8 +181,6 @@ Name | Type | Description  | Notes
 # **transactions_draft_create**
 > TransactionResponse transactions_draft_create(data)
 
-
-
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -264,8 +258,6 @@ Name | Type | Description  | Notes
 
 # **transactions_expire_create**
 > LeaguePlayer transactions_expire_create(data)
-
-
 
 Manually expire a sub for a team.
 
@@ -346,7 +338,7 @@ Name | Type | Description  | Notes
 # **transactions_history_list**
 > TransactionsHistoryList200Response transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type, executor=executor, limit=limit, offset=offset)
 
-
+List all transactions for a given league and season.
 
 ### Example
 
@@ -434,7 +426,7 @@ Name | Type | Description  | Notes
 # **transactions_history_read**
 > TransactionResponse transactions_history_read(id)
 
-
+Retrieve a specific transaction by ID.
 
 ### Example
 
@@ -509,8 +501,6 @@ Name | Type | Description  | Notes
 
 # **transactions_inactive_reserve_create**
 > TransactionResponse transactions_inactive_reserve_create(data)
-
-
 
 Set or remove a player to IR
 
@@ -590,8 +580,6 @@ Name | Type | Description  | Notes
 
 # **transactions_resign_create**
 > TransactionResponse transactions_resign_create(data)
-
-
 
 Re-sign a player
 
@@ -673,8 +661,6 @@ Name | Type | Description  | Notes
 # **transactions_retire_create**
 > TransactionResponse transactions_retire_create(data)
 
-
-
 Retire a player from a league.
 
 ### Example
@@ -753,8 +739,6 @@ Name | Type | Description  | Notes
 
 # **transactions_sign_create**
 > TransactionResponse transactions_sign_create(data)
-
-
 
 Sign a player
 
@@ -836,8 +820,6 @@ Name | Type | Description  | Notes
 # **transactions_substitution_create**
 > TransactionResponse transactions_substitution_create(data)
 
-
-
 Substitute a player on a team
 
 ### Example
@@ -917,8 +899,6 @@ Name | Type | Description  | Notes
 
 # **transactions_trade_create**
 > TransactionResponse transactions_trade_create(data)
-
-
 
 Trade a player to a franchise, or two players to two franchises.
 

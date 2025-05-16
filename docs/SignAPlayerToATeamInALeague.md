@@ -28,7 +28,7 @@ print(SignAPlayerToATeamInALeague.to_json())
 # convert the object into a dict
 sign_a_player_to_a_team_in_a_league_dict = sign_a_player_to_a_team_in_a_league_instance.to_dict()
 # create an instance of SignAPlayerToATeamInALeague from a dict
-sign_a_player_to_a_team_in_a_league_form_dict = sign_a_player_to_a_team_in_a_league.from_dict(sign_a_player_to_a_team_in_a_league_dict)
+sign_a_player_to_a_team_in_a_league_from_dict = SignAPlayerToATeamInALeague.from_dict(sign_a_player_to_a_team_in_a_league_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

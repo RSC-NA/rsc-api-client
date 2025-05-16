@@ -23,7 +23,7 @@ print(RemoveTierFromALeague.to_json())
 # convert the object into a dict
 remove_tier_from_a_league_dict = remove_tier_from_a_league_instance.to_dict()
 # create an instance of RemoveTierFromALeague from a dict
-remove_tier_from_a_league_form_dict = remove_tier_from_a_league.from_dict(remove_tier_from_a_league_dict)
+remove_tier_from_a_league_from_dict = RemoveTierFromALeague.from_dict(remove_tier_from_a_league_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

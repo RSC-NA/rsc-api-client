@@ -26,7 +26,7 @@ print(MatchSubmission.to_json())
 # convert the object into a dict
 match_submission_dict = match_submission_instance.to_dict()
 # create an instance of MatchSubmission from a dict
-match_submission_form_dict = match_submission.from_dict(match_submission_dict)
+match_submission_from_dict = MatchSubmission.from_dict(match_submission_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

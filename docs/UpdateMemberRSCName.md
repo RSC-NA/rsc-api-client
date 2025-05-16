@@ -24,7 +24,7 @@ print(UpdateMemberRSCName.to_json())
 # convert the object into a dict
 update_member_rsc_name_dict = update_member_rsc_name_instance.to_dict()
 # create an instance of UpdateMemberRSCName from a dict
-update_member_rsc_name_form_dict = update_member_rsc_name.from_dict(update_member_rsc_name_dict)
+update_member_rsc_name_from_dict = UpdateMemberRSCName.from_dict(update_member_rsc_name_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

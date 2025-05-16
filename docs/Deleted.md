@@ -22,7 +22,7 @@ print(Deleted.to_json())
 # convert the object into a dict
 deleted_dict = deleted_instance.to_dict()
 # create an instance of Deleted from a dict
-deleted_form_dict = deleted.from_dict(deleted_dict)
+deleted_from_dict = Deleted.from_dict(deleted_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

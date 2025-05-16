@@ -26,7 +26,7 @@ print(RebrandAFranchise.to_json())
 # convert the object into a dict
 rebrand_a_franchise_dict = rebrand_a_franchise_instance.to_dict()
 # create an instance of RebrandAFranchise from a dict
-rebrand_a_franchise_form_dict = rebrand_a_franchise.from_dict(rebrand_a_franchise_dict)
+rebrand_a_franchise_from_dict = RebrandAFranchise.from_dict(rebrand_a_franchise_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

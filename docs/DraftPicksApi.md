@@ -12,7 +12,7 @@ Method | HTTP request | Description
 # **draft_picks_list**
 > DraftPicksList200Response draft_picks_list(page=page)
 
-
+List all draft picks for a given league and season.
 
 ### Example
 
@@ -88,8 +88,6 @@ Name | Type | Description  | Notes
 # **draft_picks_read**
 > DraftPicks draft_picks_read(id)
 
-
-
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -163,8 +161,6 @@ Name | Type | Description  | Notes
 
 # **draft_picks_swap**
 > List[DraftPicks] draft_picks_swap(data)
-
-
 
 ### Example
 

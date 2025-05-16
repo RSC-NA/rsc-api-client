@@ -58,8 +58,8 @@ class TransactionResponse(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT']):
-            raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT')")
+        if value not in set(['NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT', 'PCH']):
+            raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT', 'PCH')")
         return value
 
     model_config = ConfigDict(
@@ -108,9 +108,9 @@ class TransactionResponse(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in player_updates (list)
         _items = []
         if self.player_updates:
-            for _item in self.player_updates:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_player_updates in self.player_updates:
+                if _item_player_updates:
+                    _items.append(_item_player_updates.to_dict())
             _dict['player_updates'] = _items
         # override the default output from pydantic by calling `to_dict()` of first_franchise
         if self.first_franchise:

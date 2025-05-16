@@ -27,7 +27,7 @@ print(TradeSchema.to_json())
 # convert the object into a dict
 trade_schema_dict = trade_schema_instance.to_dict()
 # create an instance of TradeSchema from a dict
-trade_schema_form_dict = trade_schema.from_dict(trade_schema_dict)
+trade_schema_from_dict = TradeSchema.from_dict(trade_schema_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

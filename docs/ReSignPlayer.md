@@ -28,7 +28,7 @@ print(ReSignPlayer.to_json())
 # convert the object into a dict
 re_sign_player_dict = re_sign_player_instance.to_dict()
 # create an instance of ReSignPlayer from a dict
-re_sign_player_form_dict = re_sign_player.from_dict(re_sign_player_dict)
+re_sign_player_from_dict = ReSignPlayer.from_dict(re_sign_player_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,7 +26,7 @@ print(TeamCreate.to_json())
 # convert the object into a dict
 team_create_dict = team_create_instance.to_dict()
 # create an instance of TeamCreate from a dict
-team_create_form_dict = team_create.from_dict(team_create_dict)
+team_create_from_dict = TeamCreate.from_dict(team_create_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

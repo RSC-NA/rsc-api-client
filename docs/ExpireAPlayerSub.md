@@ -25,7 +25,7 @@ print(ExpireAPlayerSub.to_json())
 # convert the object into a dict
 expire_a_player_sub_dict = expire_a_player_sub_instance.to_dict()
 # create an instance of ExpireAPlayerSub from a dict
-expire_a_player_sub_form_dict = expire_a_player_sub.from_dict(expire_a_player_sub_dict)
+expire_a_player_sub_from_dict = ExpireAPlayerSub.from_dict(expire_a_player_sub_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

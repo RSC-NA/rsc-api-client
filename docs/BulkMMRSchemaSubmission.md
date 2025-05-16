@@ -23,7 +23,7 @@ print(BulkMMRSchemaSubmission.to_json())
 # convert the object into a dict
 bulk_mmr_schema_submission_dict = bulk_mmr_schema_submission_instance.to_dict()
 # create an instance of BulkMMRSchemaSubmission from a dict
-bulk_mmr_schema_submission_form_dict = bulk_mmr_schema_submission.from_dict(bulk_mmr_schema_submission_dict)
+bulk_mmr_schema_submission_from_dict = BulkMMRSchemaSubmission.from_dict(bulk_mmr_schema_submission_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

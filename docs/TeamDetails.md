@@ -23,7 +23,7 @@ print(TeamDetails.to_json())
 # convert the object into a dict
 team_details_dict = team_details_instance.to_dict()
 # create an instance of TeamDetails from a dict
-team_details_form_dict = team_details.from_dict(team_details_dict)
+team_details_from_dict = TeamDetails.from_dict(team_details_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

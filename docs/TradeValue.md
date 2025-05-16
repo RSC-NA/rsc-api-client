@@ -24,7 +24,7 @@ print(TradeValue.to_json())
 # convert the object into a dict
 trade_value_dict = trade_value_instance.to_dict()
 # create an instance of TradeValue from a dict
-trade_value_form_dict = trade_value.from_dict(trade_value_dict)
+trade_value_from_dict = TradeValue.from_dict(trade_value_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

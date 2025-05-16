@@ -24,7 +24,7 @@ print(AddTierToLeague.to_json())
 # convert the object into a dict
 add_tier_to_league_dict = add_tier_to_league_instance.to_dict()
 # create an instance of AddTierToLeague from a dict
-add_tier_to_league_form_dict = add_tier_to_league.from_dict(add_tier_to_league_dict)
+add_tier_to_league_from_dict = AddTierToLeague.from_dict(add_tier_to_league_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

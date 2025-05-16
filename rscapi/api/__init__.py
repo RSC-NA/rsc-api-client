@@ -2,6 +2,7 @@
 
 # import apis into api package
 from rscapi.api.csv_api import CsvApi
+from rscapi.api.draft_picks_api import DraftPicksApi
 from rscapi.api.franchises_api import FranchisesApi
 from rscapi.api.league_players_api import LeaguePlayersApi
 from rscapi.api.leagues_api import LeaguesApi
@@ -12,4 +13,5 @@ from rscapi.api.seasons_api import SeasonsApi
 from rscapi.api.teams_api import TeamsApi
 from rscapi.api.tiers_api import TiersApi
 from rscapi.api.tracker_links_api import TrackerLinksApi
+from rscapi.api.transactions_api import TransactionsApi
 

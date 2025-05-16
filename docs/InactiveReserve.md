@@ -29,7 +29,7 @@ print(InactiveReserve.to_json())
 # convert the object into a dict
 inactive_reserve_dict = inactive_reserve_instance.to_dict()
 # create an instance of InactiveReserve from a dict
-inactive_reserve_form_dict = inactive_reserve.from_dict(inactive_reserve_dict)
+inactive_reserve_from_dict = InactiveReserve.from_dict(inactive_reserve_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -29,7 +29,7 @@ print(DraftAPlayerToATeam.to_json())
 # convert the object into a dict
 draft_a_player_to_a_team_dict = draft_a_player_to_a_team_instance.to_dict()
 # create an instance of DraftAPlayerToATeam from a dict
-draft_a_player_to_a_team_form_dict = draft_a_player_to_a_team.from_dict(draft_a_player_to_a_team_dict)
+draft_a_player_to_a_team_from_dict = DraftAPlayerToATeam.from_dict(draft_a_player_to_a_team_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

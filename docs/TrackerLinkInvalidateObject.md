@@ -23,7 +23,7 @@ print(TrackerLinkInvalidateObject.to_json())
 # convert the object into a dict
 tracker_link_invalidate_object_dict = tracker_link_invalidate_object_instance.to_dict()
 # create an instance of TrackerLinkInvalidateObject from a dict
-tracker_link_invalidate_object_form_dict = tracker_link_invalidate_object.from_dict(tracker_link_invalidate_object_dict)
+tracker_link_invalidate_object_from_dict = TrackerLinkInvalidateObject.from_dict(tracker_link_invalidate_object_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

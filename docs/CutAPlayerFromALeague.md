@@ -27,7 +27,7 @@ print(CutAPlayerFromALeague.to_json())
 # convert the object into a dict
 cut_a_player_from_a_league_dict = cut_a_player_from_a_league_instance.to_dict()
 # create an instance of CutAPlayerFromALeague from a dict
-cut_a_player_from_a_league_form_dict = cut_a_player_from_a_league.from_dict(cut_a_player_from_a_league_dict)
+cut_a_player_from_a_league_from_dict = CutAPlayerFromALeague.from_dict(cut_a_player_from_a_league_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

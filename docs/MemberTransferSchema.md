@@ -23,7 +23,7 @@ print(MemberTransferSchema.to_json())
 # convert the object into a dict
 member_transfer_schema_dict = member_transfer_schema_instance.to_dict()
 # create an instance of MemberTransferSchema from a dict
-member_transfer_schema_form_dict = member_transfer_schema.from_dict(member_transfer_schema_dict)
+member_transfer_schema_from_dict = MemberTransferSchema.from_dict(member_transfer_schema_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

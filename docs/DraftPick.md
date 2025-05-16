@@ -26,7 +26,7 @@ print(DraftPick.to_json())
 # convert the object into a dict
 draft_pick_dict = draft_pick_instance.to_dict()
 # create an instance of DraftPick from a dict
-draft_pick_form_dict = draft_pick.from_dict(draft_pick_dict)
+draft_pick_from_dict = DraftPick.from_dict(draft_pick_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

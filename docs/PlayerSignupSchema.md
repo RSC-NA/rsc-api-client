@@ -33,7 +33,7 @@ print(PlayerSignupSchema.to_json())
 # convert the object into a dict
 player_signup_schema_dict = player_signup_schema_instance.to_dict()
 # create an instance of PlayerSignupSchema from a dict
-player_signup_schema_form_dict = player_signup_schema.from_dict(player_signup_schema_dict)
+player_signup_schema_from_dict = PlayerSignupSchema.from_dict(player_signup_schema_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

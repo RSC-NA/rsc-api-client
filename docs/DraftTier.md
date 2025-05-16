@@ -22,7 +22,7 @@ print(DraftTier.to_json())
 # convert the object into a dict
 draft_tier_dict = draft_tier_instance.to_dict()
 # create an instance of DraftTier from a dict
-draft_tier_form_dict = draft_tier.from_dict(draft_tier_dict)
+draft_tier_from_dict = DraftTier.from_dict(draft_tier_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,7 +26,7 @@ print(PlayerActivityCheckSchema.to_json())
 # convert the object into a dict
 player_activity_check_schema_dict = player_activity_check_schema_instance.to_dict()
 # create an instance of PlayerActivityCheckSchema from a dict
-player_activity_check_schema_form_dict = player_activity_check_schema.from_dict(player_activity_check_schema_dict)
+player_activity_check_schema_from_dict = PlayerActivityCheckSchema.from_dict(player_activity_check_schema_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

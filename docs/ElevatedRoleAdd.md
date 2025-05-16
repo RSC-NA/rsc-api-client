@@ -25,7 +25,7 @@ print(ElevatedRoleAdd.to_json())
 # convert the object into a dict
 elevated_role_add_dict = elevated_role_add_instance.to_dict()
 # create an instance of ElevatedRoleAdd from a dict
-elevated_role_add_form_dict = elevated_role_add.from_dict(elevated_role_add_dict)
+elevated_role_add_from_dict = ElevatedRoleAdd.from_dict(elevated_role_add_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

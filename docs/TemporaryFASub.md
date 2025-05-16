@@ -28,7 +28,7 @@ print(TemporaryFASub.to_json())
 # convert the object into a dict
 temporary_fa_sub_dict = temporary_fa_sub_instance.to_dict()
 # create an instance of TemporaryFASub from a dict
-temporary_fa_sub_form_dict = temporary_fa_sub.from_dict(temporary_fa_sub_dict)
+temporary_fa_sub_from_dict = TemporaryFASub.from_dict(temporary_fa_sub_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

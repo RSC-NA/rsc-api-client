@@ -28,7 +28,7 @@ print(LeaguePlayerSignup.to_json())
 # convert the object into a dict
 league_player_signup_dict = league_player_signup_instance.to_dict()
 # create an instance of LeaguePlayerSignup from a dict
-league_player_signup_form_dict = league_player_signup.from_dict(league_player_signup_dict)
+league_player_signup_from_dict = LeaguePlayerSignup.from_dict(league_player_signup_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print(TransferFranchise.to_json())
 # convert the object into a dict
 transfer_franchise_dict = transfer_franchise_instance.to_dict()
 # create an instance of TransferFranchise from a dict
-transfer_franchise_form_dict = transfer_franchise.from_dict(transfer_franchise_dict)
+transfer_franchise_from_dict = TransferFranchise.from_dict(transfer_franchise_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

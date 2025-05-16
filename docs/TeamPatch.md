@@ -22,7 +22,7 @@ print(TeamPatch.to_json())
 # convert the object into a dict
 team_patch_dict = team_patch_instance.to_dict()
 # create an instance of TeamPatch from a dict
-team_patch_form_dict = team_patch.from_dict(team_patch_dict)
+team_patch_from_dict = TeamPatch.from_dict(team_patch_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

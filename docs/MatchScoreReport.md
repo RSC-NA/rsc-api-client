@@ -27,7 +27,7 @@ print(MatchScoreReport.to_json())
 # convert the object into a dict
 match_score_report_dict = match_score_report_instance.to_dict()
 # create an instance of MatchScoreReport from a dict
-match_score_report_form_dict = match_score_report.from_dict(match_score_report_dict)
+match_score_report_from_dict = MatchScoreReport.from_dict(match_score_report_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

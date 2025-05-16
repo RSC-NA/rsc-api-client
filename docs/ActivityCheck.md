@@ -28,7 +28,7 @@ print(ActivityCheck.to_json())
 # convert the object into a dict
 activity_check_dict = activity_check_instance.to_dict()
 # create an instance of ActivityCheck from a dict
-activity_check_form_dict = activity_check.from_dict(activity_check_dict)
+activity_check_from_dict = ActivityCheck.from_dict(activity_check_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
