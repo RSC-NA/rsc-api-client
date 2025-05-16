@@ -86,16 +86,16 @@ class Member(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in elevated_roles (list)
         _items = []
         if self.elevated_roles:
-            for _item in self.elevated_roles:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_elevated_roles in self.elevated_roles:
+                if _item_elevated_roles:
+                    _items.append(_item_elevated_roles.to_dict())
             _dict['elevated_roles'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in player_leagues (list)
         _items = []
         if self.player_leagues:
-            for _item in self.player_leagues:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_player_leagues in self.player_leagues:
+                if _item_player_leagues:
+                    _items.append(_item_player_leagues.to_dict())
             _dict['player_leagues'] = _items
         return _dict
 

@@ -24,7 +24,7 @@ print(PreviousTeam.to_json())
 # convert the object into a dict
 previous_team_dict = previous_team_instance.to_dict()
 # create an instance of PreviousTeam from a dict
-previous_team_form_dict = previous_team.from_dict(previous_team_dict)
+previous_team_from_dict = PreviousTeam.from_dict(previous_team_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

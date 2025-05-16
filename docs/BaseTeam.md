@@ -23,7 +23,7 @@ print(BaseTeam.to_json())
 # convert the object into a dict
 base_team_dict = base_team_instance.to_dict()
 # create an instance of BaseTeam from a dict
-base_team_form_dict = base_team.from_dict(base_team_dict)
+base_team_from_dict = BaseTeam.from_dict(base_team_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

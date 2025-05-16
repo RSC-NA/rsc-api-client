@@ -25,7 +25,7 @@ print(TrackerLinksList200Response.to_json())
 # convert the object into a dict
 tracker_links_list200_response_dict = tracker_links_list200_response_instance.to_dict()
 # create an instance of TrackerLinksList200Response from a dict
-tracker_links_list200_response_form_dict = tracker_links_list200_response.from_dict(tracker_links_list200_response_dict)
+tracker_links_list200_response_from_dict = TrackerLinksList200Response.from_dict(tracker_links_list200_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

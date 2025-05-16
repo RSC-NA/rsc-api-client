@@ -130,7 +130,7 @@ print(PlayerSeasonStats.to_json())
 # convert the object into a dict
 player_season_stats_dict = player_season_stats_instance.to_dict()
 # create an instance of PlayerSeasonStats from a dict
-player_season_stats_form_dict = player_season_stats.from_dict(player_season_stats_dict)
+player_season_stats_from_dict = PlayerSeasonStats.from_dict(player_season_stats_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

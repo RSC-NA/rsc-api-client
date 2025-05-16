@@ -25,7 +25,7 @@ print(MasterMemberSheet.to_json())
 # convert the object into a dict
 master_member_sheet_dict = master_member_sheet_instance.to_dict()
 # create an instance of MasterMemberSheet from a dict
-master_member_sheet_form_dict = master_member_sheet.from_dict(master_member_sheet_dict)
+master_member_sheet_from_dict = MasterMemberSheet.from_dict(master_member_sheet_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

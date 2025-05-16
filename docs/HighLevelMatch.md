@@ -32,7 +32,7 @@ print(HighLevelMatch.to_json())
 # convert the object into a dict
 high_level_match_dict = high_level_match_instance.to_dict()
 # create an instance of HighLevelMatch from a dict
-high_level_match_form_dict = high_level_match.from_dict(high_level_match_dict)
+high_level_match_from_dict = HighLevelMatch.from_dict(high_level_match_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

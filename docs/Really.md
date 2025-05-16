@@ -23,7 +23,7 @@ print(Really.to_json())
 # convert the object into a dict
 really_dict = really_instance.to_dict()
 # create an instance of Really from a dict
-really_form_dict = really.from_dict(really_dict)
+really_from_dict = Really.from_dict(really_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

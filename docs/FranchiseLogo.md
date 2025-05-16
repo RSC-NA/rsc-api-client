@@ -22,7 +22,7 @@ print(FranchiseLogo.to_json())
 # convert the object into a dict
 franchise_logo_dict = franchise_logo_instance.to_dict()
 # create an instance of FranchiseLogo from a dict
-franchise_logo_form_dict = franchise_logo.from_dict(franchise_logo_dict)
+franchise_logo_from_dict = FranchiseLogo.from_dict(franchise_logo_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

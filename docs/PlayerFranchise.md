@@ -25,7 +25,7 @@ print(PlayerFranchise.to_json())
 # convert the object into a dict
 player_franchise_dict = player_franchise_instance.to_dict()
 # create an instance of PlayerFranchise from a dict
-player_franchise_form_dict = player_franchise.from_dict(player_franchise_dict)
+player_franchise_from_dict = PlayerFranchise.from_dict(player_franchise_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

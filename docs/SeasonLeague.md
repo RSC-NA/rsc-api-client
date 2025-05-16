@@ -23,7 +23,7 @@ print(SeasonLeague.to_json())
 # convert the object into a dict
 season_league_dict = season_league_instance.to_dict()
 # create an instance of SeasonLeague from a dict
-season_league_form_dict = season_league.from_dict(season_league_dict)
+season_league_from_dict = SeasonLeague.from_dict(season_league_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

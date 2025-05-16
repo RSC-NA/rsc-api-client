@@ -24,7 +24,7 @@ print(LeagueData.to_json())
 # convert the object into a dict
 league_data_dict = league_data_instance.to_dict()
 # create an instance of LeagueData from a dict
-league_data_form_dict = league_data.from_dict(league_data_dict)
+league_data_from_dict = LeagueData.from_dict(league_data_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -32,7 +32,7 @@ print(Match.to_json())
 # convert the object into a dict
 match_dict = match_instance.to_dict()
 # create an instance of Match from a dict
-match_form_dict = match.from_dict(match_dict)
+match_from_dict = Match.from_dict(match_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,7 +22,7 @@ print(TrackerMMR.to_json())
 # convert the object into a dict
 tracker_mmr_dict = tracker_mmr_instance.to_dict()
 # create an instance of TrackerMMR from a dict
-tracker_mmr_form_dict = tracker_mmr.from_dict(tracker_mmr_dict)
+tracker_mmr_from_dict = TrackerMMR.from_dict(tracker_mmr_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

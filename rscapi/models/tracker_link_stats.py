@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +27,16 @@ class TrackerLinkStats(BaseModel):
     """
     TrackerLinkStats
     """ # noqa: E501
-    new: StrictInt
-    stale: StrictInt
-    __properties: ClassVar[List[str]] = ["new", "stale"]
+    status: StrictStr
+    count: StrictInt
+    __properties: ClassVar[List[str]] = ["status", "count"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['FLD', 'INV', 'MSG', 'NEW', 'PLD', 'RPL', 'STL']):
+            raise ValueError("must be one of enum values ('FLD', 'INV', 'MSG', 'NEW', 'PLD', 'RPL', 'STL')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -82,8 +89,8 @@ class TrackerLinkStats(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "new": obj.get("new"),
-            "stale": obj.get("stale")
+            "status": obj.get("status"),
+            "count": obj.get("count")
         })
         return _obj
 

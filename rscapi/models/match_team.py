@@ -87,9 +87,9 @@ class MatchTeam(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in players (list)
         _items = []
         if self.players:
-            for _item in self.players:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_players in self.players:
+                if _item_players:
+                    _items.append(_item_players.to_dict())
             _dict['players'] = _items
         # override the default output from pydantic by calling `to_dict()` of gm
         if self.gm:

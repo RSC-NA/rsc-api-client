@@ -25,7 +25,7 @@ print(IntentToPlay.to_json())
 # convert the object into a dict
 intent_to_play_dict = intent_to_play_instance.to_dict()
 # create an instance of IntentToPlay from a dict
-intent_to_play_form_dict = intent_to_play.from_dict(intent_to_play_dict)
+intent_to_play_from_dict = IntentToPlay.from_dict(intent_to_play_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

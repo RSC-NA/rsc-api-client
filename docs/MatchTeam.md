@@ -28,7 +28,7 @@ print(MatchTeam.to_json())
 # convert the object into a dict
 match_team_dict = match_team_instance.to_dict()
 # create an instance of MatchTeam from a dict
-match_team_form_dict = match_team.from_dict(match_team_dict)
+match_team_from_dict = MatchTeam.from_dict(match_team_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

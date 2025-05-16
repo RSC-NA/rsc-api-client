@@ -24,7 +24,7 @@ print(FranchiseContracts.to_json())
 # convert the object into a dict
 franchise_contracts_dict = franchise_contracts_instance.to_dict()
 # create an instance of FranchiseContracts from a dict
-franchise_contracts_form_dict = franchise_contracts.from_dict(franchise_contracts_dict)
+franchise_contracts_from_dict = FranchiseContracts.from_dict(franchise_contracts_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

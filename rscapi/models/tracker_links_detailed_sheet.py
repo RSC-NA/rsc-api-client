@@ -18,24 +18,35 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from rscapi.models.player import Player
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Team(BaseModel):
+class TrackerLinksDetailedSheet(BaseModel):
     """
-    Team
+    TrackerLinksDetailedSheet
     """ # noqa: E501
-    id: Optional[StrictInt] = None
+    active: Optional[StrictBool] = None
+    rsc_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    franchise: Annotated[str, Field(min_length=1, strict=True)]
-    tier: Annotated[str, Field(min_length=1, strict=True)]
-    players: Optional[List[Player]] = None
-    latest_season: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season"]
+    discord_id: Optional[StrictInt] = None
+    platform: Optional[StrictStr] = None
+    platform_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    platform_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    link: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    __properties: ClassVar[List[str]] = ["active", "rsc_id", "name", "discord_id", "platform", "platform_id", "platform_name", "link"]
+
+    @field_validator('platform')
+    def platform_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['STEAM', 'EPIC', 'XBOX', 'PS', 'SWTCH']):
+            raise ValueError("must be one of enum values ('STEAM', 'EPIC', 'XBOX', 'PS', 'SWTCH')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +66,7 @@ class Team(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Team from a JSON string"""
+        """Create an instance of TrackerLinksDetailedSheet from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,12 +82,20 @@ class Team(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "id",
+            "active",
+            "rsc_id",
             "name",
-            "players",
-            "latest_season",
+            "discord_id",
+            "platform",
+            "platform_id",
+            "platform_name",
+            "link",
         ])
 
         _dict = self.model_dump(
@@ -84,18 +103,11 @@ class Team(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in players (list)
-        _items = []
-        if self.players:
-            for _item_players in self.players:
-                if _item_players:
-                    _items.append(_item_players.to_dict())
-            _dict['players'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Team from a dict"""
+        """Create an instance of TrackerLinksDetailedSheet from a dict"""
         if obj is None:
             return None
 
@@ -103,12 +115,14 @@ class Team(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
+            "active": obj.get("active"),
+            "rsc_id": obj.get("rsc_id"),
             "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "tier": obj.get("tier"),
-            "players": [Player.from_dict(_item) for _item in obj["players"]] if obj.get("players") is not None else None,
-            "latest_season": obj.get("latest_season")
+            "discord_id": obj.get("discord_id"),
+            "platform": obj.get("platform"),
+            "platform_id": obj.get("platform_id"),
+            "platform_name": obj.get("platform_name"),
+            "link": obj.get("link")
         })
         return _obj
 

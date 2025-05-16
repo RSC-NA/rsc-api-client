@@ -109,9 +109,9 @@ class Season(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in season_tier_data (list)
         _items = []
         if self.season_tier_data:
-            for _item in self.season_tier_data:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_season_tier_data in self.season_tier_data:
+                if _item_season_tier_data:
+                    _items.append(_item_season_tier_data.to_dict())
             _dict['season_tier_data'] = _items
         # set to None if start_date (nullable) is None
         # and model_fields_set contains the field

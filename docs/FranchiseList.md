@@ -30,7 +30,7 @@ print(FranchiseList.to_json())
 # convert the object into a dict
 franchise_list_dict = franchise_list_instance.to_dict()
 # create an instance of FranchiseList from a dict
-franchise_list_form_dict = franchise_list.from_dict(franchise_list_dict)
+franchise_list_from_dict = FranchiseList.from_dict(franchise_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

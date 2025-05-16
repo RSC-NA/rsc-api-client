@@ -25,7 +25,7 @@ print(Tier.to_json())
 # convert the object into a dict
 tier_dict = tier_instance.to_dict()
 # create an instance of Tier from a dict
-tier_form_dict = tier.from_dict(tier_dict)
+tier_from_dict = Tier.from_dict(tier_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

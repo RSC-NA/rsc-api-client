@@ -37,7 +37,7 @@ print(PlayerMMR.to_json())
 # convert the object into a dict
 player_mmr_dict = player_mmr_instance.to_dict()
 # create an instance of PlayerMMR from a dict
-player_mmr_form_dict = player_mmr.from_dict(player_mmr_dict)
+player_mmr_from_dict = PlayerMMR.from_dict(player_mmr_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -192,7 +192,7 @@ print(PlayerSeasonStatsInDepth.to_json())
 # convert the object into a dict
 player_season_stats_in_depth_dict = player_season_stats_in_depth_instance.to_dict()
 # create an instance of PlayerSeasonStatsInDepth from a dict
-player_season_stats_in_depth_form_dict = player_season_stats_in_depth.from_dict(player_season_stats_in_depth_dict)
+player_season_stats_in_depth_from_dict = PlayerSeasonStatsInDepth.from_dict(player_season_stats_in_depth_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

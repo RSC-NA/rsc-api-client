@@ -60,8 +60,8 @@ class TrackerLink(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['NEW', 'STL', 'PLD', 'FLD', 'MSG', 'RPL']):
-            raise ValueError("must be one of enum values ('NEW', 'STL', 'PLD', 'FLD', 'MSG', 'RPL')")
+        if value not in set(['FLD', 'INV', 'MSG', 'NEW', 'PLD', 'RPL', 'STL']):
+            raise ValueError("must be one of enum values ('FLD', 'INV', 'MSG', 'NEW', 'PLD', 'RPL', 'STL')")
         return value
 
     model_config = ConfigDict(

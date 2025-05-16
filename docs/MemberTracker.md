@@ -26,7 +26,7 @@ print(MemberTracker.to_json())
 # convert the object into a dict
 member_tracker_dict = member_tracker_instance.to_dict()
 # create an instance of MemberTracker from a dict
-member_tracker_form_dict = member_tracker.from_dict(member_tracker_dict)
+member_tracker_from_dict = MemberTracker.from_dict(member_tracker_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

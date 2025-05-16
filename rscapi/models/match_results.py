@@ -78,9 +78,9 @@ class MatchResults(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in games (list)
         _items = []
         if self.games:
-            for _item in self.games:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_games in self.games:
+                if _item_games:
+                    _items.append(_item_games.to_dict())
             _dict['games'] = _items
         return _dict
 

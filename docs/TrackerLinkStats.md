@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**new** | **int** |  | 
-**stale** | **int** |  | 
+**status** | **str** |  | 
+**count** | **int** |  | 
 
 ## Example
 
@@ -23,7 +23,7 @@ print(TrackerLinkStats.to_json())
 # convert the object into a dict
 tracker_link_stats_dict = tracker_link_stats_instance.to_dict()
 # create an instance of TrackerLinkStats from a dict
-tracker_link_stats_form_dict = tracker_link_stats.from_dict(tracker_link_stats_dict)
+tracker_link_stats_from_dict = TrackerLinkStats.from_dict(tracker_link_stats_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -18,20 +18,34 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from rscapi.models.list_games import ListGames
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ListMatchResults(BaseModel):
+class TrackerPeak(BaseModel):
     """
-    ListMatchResults
+    TrackerPeak
     """ # noqa: E501
-    home_wins: Optional[StrictInt] = None
-    away_wins: Optional[StrictInt] = None
-    games: List[ListGames]
-    __properties: ClassVar[List[str]] = ["home_wins", "away_wins", "games"]
+    id: Optional[StrictInt] = None
+    rsc_id: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    discord_id: Optional[StrictInt] = None
+    status: Optional[StrictStr] = None
+    pulls: Optional[StrictInt] = None
+    peaks: Optional[Dict[str, Any]] = None
+    __properties: ClassVar[List[str]] = ["id", "rsc_id", "name", "discord_id", "status", "pulls", "peaks"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['FLD', 'INV', 'MSG', 'NEW', 'PLD', 'RPL', 'STL']):
+            raise ValueError("must be one of enum values ('FLD', 'INV', 'MSG', 'NEW', 'PLD', 'RPL', 'STL')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +65,7 @@ class ListMatchResults(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ListMatchResults from a JSON string"""
+        """Create an instance of TrackerPeak from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -65,10 +79,20 @@ class ListMatchResults(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "home_wins",
-            "away_wins",
+            "id",
+            "rsc_id",
+            "name",
+            "discord_id",
+            "status",
+            "pulls",
+            "peaks",
         ])
 
         _dict = self.model_dump(
@@ -76,18 +100,11 @@ class ListMatchResults(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in games (list)
-        _items = []
-        if self.games:
-            for _item_games in self.games:
-                if _item_games:
-                    _items.append(_item_games.to_dict())
-            _dict['games'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ListMatchResults from a dict"""
+        """Create an instance of TrackerPeak from a dict"""
         if obj is None:
             return None
 
@@ -95,9 +112,13 @@ class ListMatchResults(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "home_wins": obj.get("home_wins"),
-            "away_wins": obj.get("away_wins"),
-            "games": [ListGames.from_dict(_item) for _item in obj["games"]] if obj.get("games") is not None else None
+            "id": obj.get("id"),
+            "rsc_id": obj.get("rsc_id"),
+            "name": obj.get("name"),
+            "discord_id": obj.get("discord_id"),
+            "status": obj.get("status"),
+            "pulls": obj.get("pulls"),
+            "peaks": obj.get("peaks")
         })
         return _obj
 

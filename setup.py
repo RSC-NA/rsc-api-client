@@ -23,11 +23,11 @@ from setuptools import setup, find_packages  # noqa: H301
 # http://pypi.python.org/pypi/setuptools
 NAME = "rscapi"
 VERSION = "1.0.0"
-PYTHON_REQUIRES = ">=3.7"
+PYTHON_REQUIRES = ">= 3.9"
 REQUIRES = [
-    "urllib3 >= 1.25.3, < 2.1.0",
-    "python-dateutil",
-    "aiohttp >= 3.0.0",
+    "urllib3 >= 2.1.0, < 3.0.0",
+    "python-dateutil >= 2.8.2",
+    "aiohttp >= 3.8.4",
     "aiohttp-retry >= 2.8.3",
     "pydantic >= 2",
     "typing-extensions >= 4.7.1",

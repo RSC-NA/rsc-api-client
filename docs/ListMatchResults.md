@@ -24,7 +24,7 @@ print(ListMatchResults.to_json())
 # convert the object into a dict
 list_match_results_dict = list_match_results_instance.to_dict()
 # create an instance of ListMatchResults from a dict
-list_match_results_form_dict = list_match_results.from_dict(list_match_results_dict)
+list_match_results_from_dict = ListMatchResults.from_dict(list_match_results_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

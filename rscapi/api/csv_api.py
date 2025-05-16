@@ -17,14 +17,16 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr
-from typing import Optional
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
+from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.franchise_contracts import FranchiseContracts
 from rscapi.models.master_contracts import MasterContracts
 from rscapi.models.master_member_sheet import MasterMemberSheet
 from rscapi.models.teams_contracts import TeamsContracts
+from rscapi.models.tracker_links_detailed_sheet import TrackerLinksDetailedSheet
 from rscapi.models.tracker_links_sheet import TrackerLinksSheet
+from rscapi.models.tracker_peak import TrackerPeak
 from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
 
 from rscapi.api_client import ApiClient, RequestSerialized
@@ -48,7 +50,7 @@ class CsvApi:
     @validate_call
     async def csv_franchise_contracts_data_list(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in.")] = None,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -65,7 +67,7 @@ class CsvApi:
         """csv_franchise_contracts_data_list
 
 
-        :param league: League name to search for franchises in.
+        :param league: League name to search for franchises in. (required)
         :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -114,7 +116,7 @@ class CsvApi:
     @validate_call
     async def csv_franchise_contracts_data_list_with_http_info(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in.")] = None,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -131,7 +133,7 @@ class CsvApi:
         """csv_franchise_contracts_data_list
 
 
-        :param league: League name to search for franchises in.
+        :param league: League name to search for franchises in. (required)
         :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -180,7 +182,7 @@ class CsvApi:
     @validate_call
     async def csv_franchise_contracts_data_list_without_preload_content(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in.")] = None,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -197,7 +199,7 @@ class CsvApi:
         """csv_franchise_contracts_data_list
 
 
-        :param league: League name to search for franchises in.
+        :param league: League name to search for franchises in. (required)
         :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -257,7 +259,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -272,12 +276,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -515,7 +520,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -528,12 +535,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -562,6 +570,8 @@ class CsvApi:
     @validate_call
     async def csv_master_contracts_data_list(
         self,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
+        season: Annotated[StrictInt, Field(description="RSC season number to filter by.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -578,6 +588,10 @@ class CsvApi:
         """csv_master_contracts_data_list
 
 
+        :param league: League name to search for franchises in. (required)
+        :type league: str
+        :param season: RSC season number to filter by. (required)
+        :type season: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -601,6 +615,8 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_master_contracts_data_list_serialize(
+            league=league,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -624,6 +640,8 @@ class CsvApi:
     @validate_call
     async def csv_master_contracts_data_list_with_http_info(
         self,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
+        season: Annotated[StrictInt, Field(description="RSC season number to filter by.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -640,6 +658,10 @@ class CsvApi:
         """csv_master_contracts_data_list
 
 
+        :param league: League name to search for franchises in. (required)
+        :type league: str
+        :param season: RSC season number to filter by. (required)
+        :type season: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -663,6 +685,8 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_master_contracts_data_list_serialize(
+            league=league,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -686,6 +710,8 @@ class CsvApi:
     @validate_call
     async def csv_master_contracts_data_list_without_preload_content(
         self,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
+        season: Annotated[StrictInt, Field(description="RSC season number to filter by.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -702,6 +728,10 @@ class CsvApi:
         """csv_master_contracts_data_list
 
 
+        :param league: League name to search for franchises in. (required)
+        :type league: str
+        :param season: RSC season number to filter by. (required)
+        :type season: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -725,6 +755,8 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_master_contracts_data_list_serialize(
+            league=league,
+            season=season,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -743,6 +775,8 @@ class CsvApi:
 
     def _csv_master_contracts_data_list_serialize(
         self,
+        league,
+        season,
         _request_auth,
         _content_type,
         _headers,
@@ -758,23 +792,34 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
         # process the query parameters
+        if league is not None:
+            
+            _query_params.append(('league', league))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -1012,7 +1057,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1025,12 +1072,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -1255,7 +1303,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1266,12 +1316,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -1509,7 +1560,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1522,12 +1575,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -1556,7 +1610,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_list(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in.")] = None,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1573,7 +1627,7 @@ class CsvApi:
         """csv_teams_contracts_data_list
 
 
-        :param league: League name to search for franchises in.
+        :param league: League name to search for franchises in. (required)
         :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1622,7 +1676,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_list_with_http_info(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in.")] = None,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1639,7 +1693,7 @@ class CsvApi:
         """csv_teams_contracts_data_list
 
 
-        :param league: League name to search for franchises in.
+        :param league: League name to search for franchises in. (required)
         :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1688,7 +1742,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_list_without_preload_content(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in.")] = None,
+        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1705,7 +1759,7 @@ class CsvApi:
         """csv_teams_contracts_data_list
 
 
-        :param league: League name to search for franchises in.
+        :param league: League name to search for franchises in. (required)
         :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1765,7 +1819,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -1780,12 +1836,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -2023,7 +2080,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2036,12 +2095,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -2266,7 +2326,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2277,12 +2339,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -2520,7 +2583,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2533,12 +2598,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -2549,6 +2615,1165 @@ class CsvApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/csv/tracker-links-data/{id}/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def csv_tracker_links_detailed_data_list(
+        self,
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker links status.")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Filter by RSC member name (case-insensitive).")] = None,
+        is_active: Annotated[Optional[StrictBool], Field(description="Filter by active members only.")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Filter by Discord ID of the member.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[TrackerLinksDetailedSheet]:
+        """csv_tracker_links_detailed_data_list
+
+
+        :param status: Filter by tracker links status.
+        :type status: str
+        :param member_name: Filter by RSC member name (case-insensitive).
+        :type member_name: str
+        :param is_active: Filter by active members only.
+        :type is_active: bool
+        :param discord_id: Filter by Discord ID of the member.
+        :type discord_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_detailed_data_list_serialize(
+            status=status,
+            member_name=member_name,
+            is_active=is_active,
+            discord_id=discord_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerLinksDetailedSheet]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def csv_tracker_links_detailed_data_list_with_http_info(
+        self,
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker links status.")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Filter by RSC member name (case-insensitive).")] = None,
+        is_active: Annotated[Optional[StrictBool], Field(description="Filter by active members only.")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Filter by Discord ID of the member.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[TrackerLinksDetailedSheet]]:
+        """csv_tracker_links_detailed_data_list
+
+
+        :param status: Filter by tracker links status.
+        :type status: str
+        :param member_name: Filter by RSC member name (case-insensitive).
+        :type member_name: str
+        :param is_active: Filter by active members only.
+        :type is_active: bool
+        :param discord_id: Filter by Discord ID of the member.
+        :type discord_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_detailed_data_list_serialize(
+            status=status,
+            member_name=member_name,
+            is_active=is_active,
+            discord_id=discord_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerLinksDetailedSheet]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def csv_tracker_links_detailed_data_list_without_preload_content(
+        self,
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker links status.")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Filter by RSC member name (case-insensitive).")] = None,
+        is_active: Annotated[Optional[StrictBool], Field(description="Filter by active members only.")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Filter by Discord ID of the member.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """csv_tracker_links_detailed_data_list
+
+
+        :param status: Filter by tracker links status.
+        :type status: str
+        :param member_name: Filter by RSC member name (case-insensitive).
+        :type member_name: str
+        :param is_active: Filter by active members only.
+        :type is_active: bool
+        :param discord_id: Filter by Discord ID of the member.
+        :type discord_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_detailed_data_list_serialize(
+            status=status,
+            member_name=member_name,
+            is_active=is_active,
+            discord_id=discord_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerLinksDetailedSheet]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _csv_tracker_links_detailed_data_list_serialize(
+        self,
+        status,
+        member_name,
+        is_active,
+        discord_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if status is not None:
+            
+            _query_params.append(('status', status))
+            
+        if member_name is not None:
+            
+            _query_params.append(('member_name', member_name))
+            
+        if is_active is not None:
+            
+            _query_params.append(('is_active', is_active))
+            
+        if discord_id is not None:
+            
+            _query_params.append(('discord_id', discord_id))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/csv/tracker-links-detailed-data/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def csv_tracker_links_detailed_data_read(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TrackerLinksDetailedSheet:
+        """csv_tracker_links_detailed_data_read
+
+
+        :param id: A unique integer value identifying this tracker links. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_detailed_data_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerLinksDetailedSheet",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def csv_tracker_links_detailed_data_read_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TrackerLinksDetailedSheet]:
+        """csv_tracker_links_detailed_data_read
+
+
+        :param id: A unique integer value identifying this tracker links. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_detailed_data_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerLinksDetailedSheet",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def csv_tracker_links_detailed_data_read_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """csv_tracker_links_detailed_data_read
+
+
+        :param id: A unique integer value identifying this tracker links. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_detailed_data_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerLinksDetailedSheet",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _csv_tracker_links_detailed_data_read_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/csv/tracker-links-detailed-data/{id}/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def csv_tracker_links_peaks_list(
+        self,
+        pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker links status.")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Filter by RSC member name (case-insensitive).")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Filter by Discord ID of the member.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[TrackerPeak]:
+        """csv_tracker_links_peaks_list
+
+
+        :param pysonix_season: Psysonix season number to filter by. (required)
+        :type pysonix_season: int
+        :param status: Filter by tracker links status.
+        :type status: str
+        :param member_name: Filter by RSC member name (case-insensitive).
+        :type member_name: str
+        :param discord_id: Filter by Discord ID of the member.
+        :type discord_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_peaks_list_serialize(
+            pysonix_season=pysonix_season,
+            status=status,
+            member_name=member_name,
+            discord_id=discord_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerPeak]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def csv_tracker_links_peaks_list_with_http_info(
+        self,
+        pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker links status.")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Filter by RSC member name (case-insensitive).")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Filter by Discord ID of the member.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[TrackerPeak]]:
+        """csv_tracker_links_peaks_list
+
+
+        :param pysonix_season: Psysonix season number to filter by. (required)
+        :type pysonix_season: int
+        :param status: Filter by tracker links status.
+        :type status: str
+        :param member_name: Filter by RSC member name (case-insensitive).
+        :type member_name: str
+        :param discord_id: Filter by Discord ID of the member.
+        :type discord_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_peaks_list_serialize(
+            pysonix_season=pysonix_season,
+            status=status,
+            member_name=member_name,
+            discord_id=discord_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerPeak]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def csv_tracker_links_peaks_list_without_preload_content(
+        self,
+        pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker links status.")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Filter by RSC member name (case-insensitive).")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Filter by Discord ID of the member.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """csv_tracker_links_peaks_list
+
+
+        :param pysonix_season: Psysonix season number to filter by. (required)
+        :type pysonix_season: int
+        :param status: Filter by tracker links status.
+        :type status: str
+        :param member_name: Filter by RSC member name (case-insensitive).
+        :type member_name: str
+        :param discord_id: Filter by Discord ID of the member.
+        :type discord_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_peaks_list_serialize(
+            pysonix_season=pysonix_season,
+            status=status,
+            member_name=member_name,
+            discord_id=discord_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerPeak]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _csv_tracker_links_peaks_list_serialize(
+        self,
+        pysonix_season,
+        status,
+        member_name,
+        discord_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if status is not None:
+            
+            _query_params.append(('status', status))
+            
+        if member_name is not None:
+            
+            _query_params.append(('member_name', member_name))
+            
+        if discord_id is not None:
+            
+            _query_params.append(('discord_id', discord_id))
+            
+        if pysonix_season is not None:
+            
+            _query_params.append(('pysonix_season', pysonix_season))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/csv/tracker-links-peaks/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def csv_tracker_links_peaks_read(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TrackerPeak:
+        """csv_tracker_links_peaks_read
+
+
+        :param id: A unique integer value identifying this tracker links. (required)
+        :type id: int
+        :param pysonix_season: Psysonix season number to filter by. (required)
+        :type pysonix_season: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_peaks_read_serialize(
+            id=id,
+            pysonix_season=pysonix_season,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerPeak",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def csv_tracker_links_peaks_read_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TrackerPeak]:
+        """csv_tracker_links_peaks_read
+
+
+        :param id: A unique integer value identifying this tracker links. (required)
+        :type id: int
+        :param pysonix_season: Psysonix season number to filter by. (required)
+        :type pysonix_season: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_peaks_read_serialize(
+            id=id,
+            pysonix_season=pysonix_season,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerPeak",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def csv_tracker_links_peaks_read_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """csv_tracker_links_peaks_read
+
+
+        :param id: A unique integer value identifying this tracker links. (required)
+        :type id: int
+        :param pysonix_season: Psysonix season number to filter by. (required)
+        :type pysonix_season: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._csv_tracker_links_peaks_read_serialize(
+            id=id,
+            pysonix_season=pysonix_season,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerPeak",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _csv_tracker_links_peaks_read_serialize(
+        self,
+        id,
+        pysonix_season,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        if pysonix_season is not None:
+            
+            _query_params.append(('pysonix_season', pysonix_season))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/csv/tracker-links-peaks/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2763,7 +3988,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -2774,12 +4001,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting
@@ -3017,7 +4245,9 @@ class CsvApi:
         _query_params: List[Tuple[str, str]] = []
         _header_params: Dict[str, Optional[str]] = _headers or {}
         _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
         _body_params: Optional[bytes] = None
 
         # process the path parameters
@@ -3030,12 +4260,13 @@ class CsvApi:
 
 
         # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            [
-                'application/json', 
-                'text/csv'
-            ]
-        )
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
 
 
         # authentication setting

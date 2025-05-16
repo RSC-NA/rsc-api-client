@@ -31,7 +31,7 @@ print(MatchList.to_json())
 # convert the object into a dict
 match_list_dict = match_list_instance.to_dict()
 # create an instance of MatchList from a dict
-match_list_form_dict = match_list.from_dict(match_list_dict)
+match_list_from_dict = MatchList.from_dict(match_list_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

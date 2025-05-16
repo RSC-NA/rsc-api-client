@@ -24,7 +24,7 @@ print(TeamFranchise.to_json())
 # convert the object into a dict
 team_franchise_dict = team_franchise_instance.to_dict()
 # create an instance of TeamFranchise from a dict
-team_franchise_form_dict = team_franchise.from_dict(team_franchise_dict)
+team_franchise_from_dict = TeamFranchise.from_dict(team_franchise_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -24,7 +24,7 @@ print(TrackerLinksSheet.to_json())
 # convert the object into a dict
 tracker_links_sheet_dict = tracker_links_sheet_instance.to_dict()
 # create an instance of TrackerLinksSheet from a dict
-tracker_links_sheet_form_dict = tracker_links_sheet.from_dict(tracker_links_sheet_dict)
+tracker_links_sheet_from_dict = TrackerLinksSheet.from_dict(tracker_links_sheet_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

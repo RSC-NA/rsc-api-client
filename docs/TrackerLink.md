@@ -33,7 +33,7 @@ print(TrackerLink.to_json())
 # convert the object into a dict
 tracker_link_dict = tracker_link_instance.to_dict()
 # create an instance of TrackerLink from a dict
-tracker_link_form_dict = tracker_link.from_dict(tracker_link_dict)
+tracker_link_from_dict = TrackerLink.from_dict(tracker_link_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

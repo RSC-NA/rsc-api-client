@@ -23,7 +23,7 @@ print(StatsDict.to_json())
 # convert the object into a dict
 stats_dict_dict = stats_dict_instance.to_dict()
 # create an instance of StatsDict from a dict
-stats_dict_form_dict = stats_dict.from_dict(stats_dict_dict)
+stats_dict_from_dict = StatsDict.from_dict(stats_dict_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

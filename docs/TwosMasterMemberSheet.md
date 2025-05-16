@@ -25,7 +25,7 @@ print(TwosMasterMemberSheet.to_json())
 # convert the object into a dict
 twos_master_member_sheet_dict = twos_master_member_sheet_instance.to_dict()
 # create an instance of TwosMasterMemberSheet from a dict
-twos_master_member_sheet_form_dict = twos_master_member_sheet.from_dict(twos_master_member_sheet_dict)
+twos_master_member_sheet_from_dict = TwosMasterMemberSheet.from_dict(twos_master_member_sheet_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
