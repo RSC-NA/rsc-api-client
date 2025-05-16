@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_links_stats**
-> TrackerLinkStats tracker_links_links_stats()
+> List[TrackerLinkStats] tracker_links_links_stats()
 
 ### Example
 
@@ -363,7 +363,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TrackerLinkStats**](TrackerLinkStats.md)
+[**List[TrackerLinkStats]**](TrackerLinkStats.md)
 
 ### Authorization
 

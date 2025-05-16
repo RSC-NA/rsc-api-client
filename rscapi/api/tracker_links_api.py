@@ -1142,7 +1142,7 @@ class TrackerLinksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TrackerLinkStats:
+    ) -> List[TrackerLinkStats]:
         """tracker_links_links_stats
 
 
@@ -1176,7 +1176,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerLinkStats",
+            '200': "List[TrackerLinkStats]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1204,7 +1204,7 @@ class TrackerLinksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TrackerLinkStats]:
+    ) -> ApiResponse[List[TrackerLinkStats]]:
         """tracker_links_links_stats
 
 
@@ -1238,7 +1238,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerLinkStats",
+            '200': "List[TrackerLinkStats]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1300,7 +1300,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerLinkStats",
+            '200': "List[TrackerLinkStats]",
         }
         response_data = await self.api_client.call_api(
             *_param,
