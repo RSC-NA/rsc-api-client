@@ -971,6 +971,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
+**404** |  |  -  |
 **403** |  |  -  |
 **400** |  |  -  |
 

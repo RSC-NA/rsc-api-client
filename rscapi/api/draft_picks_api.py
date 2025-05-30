@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt
+from pydantic import Field, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.draft_pick_swap import DraftPickSwap
@@ -45,6 +45,16 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_list(
         self,
+        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
+        round: Annotated[Optional[StrictStr], Field(description="round")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
+        future: Annotated[Optional[StrictStr], Field(description="future")] = None,
+        future_season: Annotated[Optional[StrictStr], Field(description="future_season")] = None,
+        deleted: Annotated[Optional[StrictStr], Field(description="deleted")] = None,
+        pick_from: Annotated[Optional[StrictStr], Field(description="pick_from")] = None,
+        original_pick: Annotated[Optional[StrictStr], Field(description="original_pick")] = None,
+        season_number: Annotated[Optional[StrictStr], Field(description="season_number")] = None,
+        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
         page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
         _request_timeout: Union[
             None,
@@ -63,6 +73,26 @@ class DraftPicksApi:
 
         List all draft picks for a given league and season.
 
+        :param number: number
+        :type number: str
+        :param round: round
+        :type round: str
+        :param franchise: franchise
+        :type franchise: str
+        :param future: future
+        :type future: str
+        :param future_season: future_season
+        :type future_season: str
+        :param deleted: deleted
+        :type deleted: str
+        :param pick_from: pick_from
+        :type pick_from: str
+        :param original_pick: original_pick
+        :type original_pick: str
+        :param season_number: season_number
+        :type season_number: str
+        :param tier: tier
+        :type tier: str
         :param page: A page number within the paginated result set.
         :type page: int
         :param _request_timeout: timeout setting for this request. If one
@@ -88,6 +118,16 @@ class DraftPicksApi:
         """ # noqa: E501
 
         _param = self._draft_picks_list_serialize(
+            number=number,
+            round=round,
+            franchise=franchise,
+            future=future,
+            future_season=future_season,
+            deleted=deleted,
+            pick_from=pick_from,
+            original_pick=original_pick,
+            season_number=season_number,
+            tier=tier,
             page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -112,6 +152,16 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_list_with_http_info(
         self,
+        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
+        round: Annotated[Optional[StrictStr], Field(description="round")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
+        future: Annotated[Optional[StrictStr], Field(description="future")] = None,
+        future_season: Annotated[Optional[StrictStr], Field(description="future_season")] = None,
+        deleted: Annotated[Optional[StrictStr], Field(description="deleted")] = None,
+        pick_from: Annotated[Optional[StrictStr], Field(description="pick_from")] = None,
+        original_pick: Annotated[Optional[StrictStr], Field(description="original_pick")] = None,
+        season_number: Annotated[Optional[StrictStr], Field(description="season_number")] = None,
+        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
         page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
         _request_timeout: Union[
             None,
@@ -130,6 +180,26 @@ class DraftPicksApi:
 
         List all draft picks for a given league and season.
 
+        :param number: number
+        :type number: str
+        :param round: round
+        :type round: str
+        :param franchise: franchise
+        :type franchise: str
+        :param future: future
+        :type future: str
+        :param future_season: future_season
+        :type future_season: str
+        :param deleted: deleted
+        :type deleted: str
+        :param pick_from: pick_from
+        :type pick_from: str
+        :param original_pick: original_pick
+        :type original_pick: str
+        :param season_number: season_number
+        :type season_number: str
+        :param tier: tier
+        :type tier: str
         :param page: A page number within the paginated result set.
         :type page: int
         :param _request_timeout: timeout setting for this request. If one
@@ -155,6 +225,16 @@ class DraftPicksApi:
         """ # noqa: E501
 
         _param = self._draft_picks_list_serialize(
+            number=number,
+            round=round,
+            franchise=franchise,
+            future=future,
+            future_season=future_season,
+            deleted=deleted,
+            pick_from=pick_from,
+            original_pick=original_pick,
+            season_number=season_number,
+            tier=tier,
             page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -179,6 +259,16 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_list_without_preload_content(
         self,
+        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
+        round: Annotated[Optional[StrictStr], Field(description="round")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
+        future: Annotated[Optional[StrictStr], Field(description="future")] = None,
+        future_season: Annotated[Optional[StrictStr], Field(description="future_season")] = None,
+        deleted: Annotated[Optional[StrictStr], Field(description="deleted")] = None,
+        pick_from: Annotated[Optional[StrictStr], Field(description="pick_from")] = None,
+        original_pick: Annotated[Optional[StrictStr], Field(description="original_pick")] = None,
+        season_number: Annotated[Optional[StrictStr], Field(description="season_number")] = None,
+        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
         page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
         _request_timeout: Union[
             None,
@@ -197,6 +287,26 @@ class DraftPicksApi:
 
         List all draft picks for a given league and season.
 
+        :param number: number
+        :type number: str
+        :param round: round
+        :type round: str
+        :param franchise: franchise
+        :type franchise: str
+        :param future: future
+        :type future: str
+        :param future_season: future_season
+        :type future_season: str
+        :param deleted: deleted
+        :type deleted: str
+        :param pick_from: pick_from
+        :type pick_from: str
+        :param original_pick: original_pick
+        :type original_pick: str
+        :param season_number: season_number
+        :type season_number: str
+        :param tier: tier
+        :type tier: str
         :param page: A page number within the paginated result set.
         :type page: int
         :param _request_timeout: timeout setting for this request. If one
@@ -222,6 +332,16 @@ class DraftPicksApi:
         """ # noqa: E501
 
         _param = self._draft_picks_list_serialize(
+            number=number,
+            round=round,
+            franchise=franchise,
+            future=future,
+            future_season=future_season,
+            deleted=deleted,
+            pick_from=pick_from,
+            original_pick=original_pick,
+            season_number=season_number,
+            tier=tier,
             page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -241,6 +361,16 @@ class DraftPicksApi:
 
     def _draft_picks_list_serialize(
         self,
+        number,
+        round,
+        franchise,
+        future,
+        future_season,
+        deleted,
+        pick_from,
+        original_pick,
+        season_number,
+        tier,
         page,
         _request_auth,
         _content_type,
@@ -264,6 +394,46 @@ class DraftPicksApi:
 
         # process the path parameters
         # process the query parameters
+        if number is not None:
+            
+            _query_params.append(('number', number))
+            
+        if round is not None:
+            
+            _query_params.append(('round', round))
+            
+        if franchise is not None:
+            
+            _query_params.append(('franchise', franchise))
+            
+        if future is not None:
+            
+            _query_params.append(('future', future))
+            
+        if future_season is not None:
+            
+            _query_params.append(('future_season', future_season))
+            
+        if deleted is not None:
+            
+            _query_params.append(('deleted', deleted))
+            
+        if pick_from is not None:
+            
+            _query_params.append(('pick_from', pick_from))
+            
+        if original_pick is not None:
+            
+            _query_params.append(('original_pick', original_pick))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
+            
+        if tier is not None:
+            
+            _query_params.append(('tier', tier))
+            
         if page is not None:
             
             _query_params.append(('page', page))

@@ -133,17 +133,13 @@ Class | Method | HTTP request | Description
 *LeaguePlayersApi* | [**league_players_stats**](docs/LeaguePlayersApi.md#league_players_stats) | **GET** /league-players/{id}/stats/ | 
 *LeaguePlayersApi* | [**league_players_update**](docs/LeaguePlayersApi.md#league_players_update) | **PUT** /league-players/{id}/ | 
 *LeaguesApi* | [**leagues_add_tier**](docs/LeaguesApi.md#leagues_add_tier) | **PUT** /leagues/{id}/add_tier/ | 
-*LeaguesApi* | [**leagues_create**](docs/LeaguesApi.md#leagues_create) | **POST** /leagues/ | 
 *LeaguesApi* | [**leagues_current_season**](docs/LeaguesApi.md#leagues_current_season) | **GET** /leagues/{id}/current_season/ | 
-*LeaguesApi* | [**leagues_delete**](docs/LeaguesApi.md#leagues_delete) | **DELETE** /leagues/{id}/ | 
 *LeaguesApi* | [**leagues_expire_subs**](docs/LeaguesApi.md#leagues_expire_subs) | **POST** /leagues/{id}/expire_subs/ | 
 *LeaguesApi* | [**leagues_list**](docs/LeaguesApi.md#leagues_list) | **GET** /leagues/ | 
-*LeaguesApi* | [**leagues_partial_update**](docs/LeaguesApi.md#leagues_partial_update) | **PATCH** /leagues/{id}/ | 
 *LeaguesApi* | [**leagues_read**](docs/LeaguesApi.md#leagues_read) | **GET** /leagues/{id}/ | 
 *LeaguesApi* | [**leagues_remove_tier**](docs/LeaguesApi.md#leagues_remove_tier) | **PUT** /leagues/{id}/remove_tier/ | 
 *LeaguesApi* | [**leagues_seasons**](docs/LeaguesApi.md#leagues_seasons) | **GET** /leagues/{id}/seasons/ | 
 *LeaguesApi* | [**leagues_start_new_season**](docs/LeaguesApi.md#leagues_start_new_season) | **POST** /leagues/{id}/start_new_season/ | 
-*LeaguesApi* | [**leagues_update**](docs/LeaguesApi.md#leagues_update) | **PUT** /leagues/{id}/ | 
 *MatchesApi* | [**matches_create**](docs/MatchesApi.md#matches_create) | **POST** /matches/ | 
 *MatchesApi* | [**matches_delete**](docs/MatchesApi.md#matches_delete) | **DELETE** /matches/{id}/ | 
 *MatchesApi* | [**matches_find_match**](docs/MatchesApi.md#matches_find_match) | **GET** /matches/find_match/ | 
@@ -183,13 +179,10 @@ Class | Method | HTTP request | Description
 *NumbersApi* | [**numbers_mmr_update**](docs/NumbersApi.md#numbers_mmr_update) | **PUT** /numbers/mmr/{id}/ | 
 *SeasonsApi* | [**seasons_create**](docs/SeasonsApi.md#seasons_create) | **POST** /seasons/ | 
 *SeasonsApi* | [**seasons_delete**](docs/SeasonsApi.md#seasons_delete) | **DELETE** /seasons/{id}/ | 
-*SeasonsApi* | [**seasons_franchise_standings**](docs/SeasonsApi.md#seasons_franchise_standings) | **GET** /seasons/{id}/franchise_standings/ | 
 *SeasonsApi* | [**seasons_league_season**](docs/SeasonsApi.md#seasons_league_season) | **GET** /seasons/league_season/ | 
 *SeasonsApi* | [**seasons_list**](docs/SeasonsApi.md#seasons_list) | **GET** /seasons/ | 
 *SeasonsApi* | [**seasons_partial_update**](docs/SeasonsApi.md#seasons_partial_update) | **PATCH** /seasons/{id}/ | 
-*SeasonsApi* | [**seasons_player_intents**](docs/SeasonsApi.md#seasons_player_intents) | **GET** /seasons/{id}/player_intents/ | 
 *SeasonsApi* | [**seasons_read**](docs/SeasonsApi.md#seasons_read) | **GET** /seasons/{id}/ | 
-*SeasonsApi* | [**seasons_submit_schedule**](docs/SeasonsApi.md#seasons_submit_schedule) | **POST** /seasons/{id}/submit_schedule/ | 
 *SeasonsApi* | [**seasons_update**](docs/SeasonsApi.md#seasons_update) | **PUT** /seasons/{id}/ | 
 *TeamsApi* | [**teams_create**](docs/TeamsApi.md#teams_create) | **POST** /teams/ | 
 *TeamsApi* | [**teams_delete**](docs/TeamsApi.md#teams_delete) | **DELETE** /teams/{id}/ | 
@@ -217,10 +210,12 @@ Class | Method | HTTP request | Description
 *TiersApi* | [**tiers_update**](docs/TiersApi.md#tiers_update) | **PUT** /tiers/{id}/ | 
 *TrackerLinksApi* | [**tracker_links_create**](docs/TrackerLinksApi.md#tracker_links_create) | **POST** /tracker-links/ | 
 *TrackerLinksApi* | [**tracker_links_delete**](docs/TrackerLinksApi.md#tracker_links_delete) | **DELETE** /tracker-links/{id}/ | 
+*TrackerLinksApi* | [**tracker_links_fix_duplicate_links**](docs/TrackerLinksApi.md#tracker_links_fix_duplicate_links) | **GET** /tracker-links/fix_duplicate_links/ | 
 *TrackerLinksApi* | [**tracker_links_invalidate_links**](docs/TrackerLinksApi.md#tracker_links_invalidate_links) | **POST** /tracker-links/invalidate_links/ | 
 *TrackerLinksApi* | [**tracker_links_link**](docs/TrackerLinksApi.md#tracker_links_link) | **POST** /tracker-links/{id}/link/ | 
 *TrackerLinksApi* | [**tracker_links_links_stats**](docs/TrackerLinksApi.md#tracker_links_links_stats) | **GET** /tracker-links/links_stats/ | 
 *TrackerLinksApi* | [**tracker_links_list**](docs/TrackerLinksApi.md#tracker_links_list) | **GET** /tracker-links/ | 
+*TrackerLinksApi* | [**tracker_links_migrate_pulls**](docs/TrackerLinksApi.md#tracker_links_migrate_pulls) | **POST** /tracker-links/{id}/migrate_pulls/ | 
 *TrackerLinksApi* | [**tracker_links_next**](docs/TrackerLinksApi.md#tracker_links_next) | **GET** /tracker-links/next/ | 
 *TrackerLinksApi* | [**tracker_links_peak_stats**](docs/TrackerLinksApi.md#tracker_links_peak_stats) | **GET** /tracker-links/{id}/peak_stats/ | 
 *TrackerLinksApi* | [**tracker_links_read**](docs/TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
@@ -267,13 +262,11 @@ Class | Method | HTTP request | Description
  - [FranchiseLeague](docs/FranchiseLeague.md)
  - [FranchiseList](docs/FranchiseList.md)
  - [FranchiseLogo](docs/FranchiseLogo.md)
- - [FranchiseStandings](docs/FranchiseStandings.md)
  - [FranchiseTeam](docs/FranchiseTeam.md)
  - [FranchiseTier](docs/FranchiseTier.md)
  - [Game](docs/Game.md)
  - [HighLevelMatch](docs/HighLevelMatch.md)
  - [InactiveReserve](docs/InactiveReserve.md)
- - [IntentToPlay](docs/IntentToPlay.md)
  - [IntentToPlaySchema](docs/IntentToPlaySchema.md)
  - [League](docs/League.md)
  - [LeagueData](docs/LeagueData.md)
@@ -296,8 +289,6 @@ Class | Method | HTTP request | Description
  - [MatchTeam](docs/MatchTeam.md)
  - [MatchesList200Response](docs/MatchesList200Response.md)
  - [Member](docs/Member.md)
- - [MemberIntent](docs/MemberIntent.md)
- - [MemberIntentData](docs/MemberIntentData.md)
  - [MemberTracker](docs/MemberTracker.md)
  - [MemberTransferSchema](docs/MemberTransferSchema.md)
  - [MembersList200Response](docs/MembersList200Response.md)
@@ -318,14 +309,12 @@ Class | Method | HTTP request | Description
  - [RebrandAFranchise](docs/RebrandAFranchise.md)
  - [RemoveTierFromALeague](docs/RemoveTierFromALeague.md)
  - [RetireAPlayer](docs/RetireAPlayer.md)
- - [ScheduleIngestRequestBody](docs/ScheduleIngestRequestBody.md)
  - [Season](docs/Season.md)
  - [SeasonLeague](docs/SeasonLeague.md)
  - [SeasonSchedule](docs/SeasonSchedule.md)
  - [SeasonTierData](docs/SeasonTierData.md)
  - [SignAPlayerToATeamInALeague](docs/SignAPlayerToATeamInALeague.md)
  - [SimpleMember](docs/SimpleMember.md)
- - [SimpleResponse](docs/SimpleResponse.md)
  - [StartNewSeason](docs/StartNewSeason.md)
  - [StatsDict](docs/StatsDict.md)
  - [Team](docs/Team.md)
@@ -339,6 +328,7 @@ Class | Method | HTTP request | Description
  - [TeamsContracts](docs/TeamsContracts.md)
  - [TemporaryFASub](docs/TemporaryFASub.md)
  - [Tier](docs/Tier.md)
+ - [TrackerIDInput](docs/TrackerIDInput.md)
  - [TrackerLink](docs/TrackerLink.md)
  - [TrackerLinkInvalidateObject](docs/TrackerLinkInvalidateObject.md)
  - [TrackerLinkLinking](docs/TrackerLinkLinking.md)

@@ -234,7 +234,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **numbers_mmr_list**
-> List[PlayerMMR] numbers_mmr_list(pulled=pulled, rscid=rscid, discord_id=discord_id, rscid_begin=rscid_begin, rscid_end=rscid_end, psyonix_season=psyonix_season, pulled_before=pulled_before, pulled_after=pulled_after)
+> List[PlayerMMR] numbers_mmr_list(pulled=pulled, rscid=rscid, discord_id=discord_id, rscid_begin=rscid_begin, rscid_end=rscid_end, psyonix_season=psyonix_season, limit=limit, offset=offset, pulled_before=pulled_before, pulled_after=pulled_after)
 
 List all MMRs for a given league and season.
 
@@ -275,11 +275,13 @@ async with rscapi.ApiClient(configuration) as api_client:
     rscid_begin = 'rscid_begin_example' # str | Starting RSC ID for a range of RSC IDs (optional)
     rscid_end = 'rscid_end_example' # str | Ending RSC ID for a range of RSC IDs (optional)
     psyonix_season = 'psyonix_season_example' # str | psyonix_season (optional)
+    limit = 56 # int | Number of results to return per page. (optional)
+    offset = 56 # int | The initial index from which to return the results. (optional)
     pulled_before = 'pulled_before_example' # str | MMR pulled before date in YYYY-MM-DD format. (optional)
     pulled_after = 'pulled_after_example' # str | MMR pulled after date in YYYY-MM-DD format. (optional)
 
     try:
-        api_response = await api_instance.numbers_mmr_list(pulled=pulled, rscid=rscid, discord_id=discord_id, rscid_begin=rscid_begin, rscid_end=rscid_end, psyonix_season=psyonix_season, pulled_before=pulled_before, pulled_after=pulled_after)
+        api_response = await api_instance.numbers_mmr_list(pulled=pulled, rscid=rscid, discord_id=discord_id, rscid_begin=rscid_begin, rscid_end=rscid_end, psyonix_season=psyonix_season, limit=limit, offset=offset, pulled_before=pulled_before, pulled_after=pulled_after)
         print("The response of NumbersApi->numbers_mmr_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -299,6 +301,8 @@ Name | Type | Description  | Notes
  **rscid_begin** | **str**| Starting RSC ID for a range of RSC IDs | [optional] 
  **rscid_end** | **str**| Ending RSC ID for a range of RSC IDs | [optional] 
  **psyonix_season** | **str**| psyonix_season | [optional] 
+ **limit** | **int**| Number of results to return per page. | [optional] 
+ **offset** | **int**| The initial index from which to return the results. | [optional] 
  **pulled_before** | **str**| MMR pulled before date in YYYY-MM-DD format. | [optional] 
  **pulled_after** | **str**| MMR pulled after date in YYYY-MM-DD format. | [optional] 
 

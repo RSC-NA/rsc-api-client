@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**detail** | **str** |  | 
+**message** | **str** |  | 
 **type** | **str** |  | 
 **status_code** | **int** |  | 
+**extra** | **Dict[str, str]** |  | [optional] 
 
 ## Example
 

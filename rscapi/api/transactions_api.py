@@ -3268,6 +3268,7 @@ class TransactionsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '202': "TransactionResponse",
+            '404': "Error",
             '403': "Error",
             '400': "Error",
         }
@@ -3337,6 +3338,7 @@ class TransactionsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '202': "TransactionResponse",
+            '404': "Error",
             '403': "Error",
             '400': "Error",
         }
@@ -3406,6 +3408,7 @@ class TransactionsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '202': "TransactionResponse",
+            '404': "Error",
             '403': "Error",
             '400': "Error",
         }

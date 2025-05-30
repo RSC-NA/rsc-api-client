@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **draft_picks_list**
-> DraftPicksList200Response draft_picks_list(page=page)
+> DraftPicksList200Response draft_picks_list(number=number, round=round, franchise=franchise, future=future, future_season=future_season, deleted=deleted, pick_from=pick_from, original_pick=original_pick, season_number=season_number, tier=tier, page=page)
 
 List all draft picks for a given league and season.
 
@@ -45,10 +45,20 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
+    number = 'number_example' # str | number (optional)
+    round = 'round_example' # str | round (optional)
+    franchise = 'franchise_example' # str | franchise (optional)
+    future = 'future_example' # str | future (optional)
+    future_season = 'future_season_example' # str | future_season (optional)
+    deleted = 'deleted_example' # str | deleted (optional)
+    pick_from = 'pick_from_example' # str | pick_from (optional)
+    original_pick = 'original_pick_example' # str | original_pick (optional)
+    season_number = 'season_number_example' # str | season_number (optional)
+    tier = 'tier_example' # str | tier (optional)
     page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = await api_instance.draft_picks_list(page=page)
+        api_response = await api_instance.draft_picks_list(number=number, round=round, franchise=franchise, future=future, future_season=future_season, deleted=deleted, pick_from=pick_from, original_pick=original_pick, season_number=season_number, tier=tier, page=page)
         print("The response of DraftPicksApi->draft_picks_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -62,6 +72,16 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **number** | **str**| number | [optional] 
+ **round** | **str**| round | [optional] 
+ **franchise** | **str**| franchise | [optional] 
+ **future** | **str**| future | [optional] 
+ **future_season** | **str**| future_season | [optional] 
+ **deleted** | **str**| deleted | [optional] 
+ **pick_from** | **str**| pick_from | [optional] 
+ **original_pick** | **str**| original_pick | [optional] 
+ **season_number** | **str**| season_number | [optional] 
+ **tier** | **str**| tier | [optional] 
  **page** | **int**| A page number within the paginated result set. | [optional] 
 
 ### Return type

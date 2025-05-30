@@ -19,20 +19,16 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Error(BaseModel):
+class TrackerIDInput(BaseModel):
     """
-    Error
+    TrackerIDInput
     """ # noqa: E501
-    message: Annotated[str, Field(min_length=1, strict=True)]
-    type: Annotated[str, Field(min_length=1, strict=True)]
-    status_code: StrictInt
-    extra: Optional[Dict[str, Annotated[str, Field(min_length=1, strict=True)]]] = None
-    __properties: ClassVar[List[str]] = ["message", "type", "status_code", "extra"]
+    tracker_id: StrictInt = Field(description="The ID of the tracker link to be processed.")
+    __properties: ClassVar[List[str]] = ["tracker_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +48,7 @@ class Error(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Error from a JSON string"""
+        """Create an instance of TrackerIDInput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,16 +69,11 @@ class Error(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if extra (nullable) is None
-        # and model_fields_set contains the field
-        if self.extra is None and "extra" in self.model_fields_set:
-            _dict['extra'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Error from a dict"""
+        """Create an instance of TrackerIDInput from a dict"""
         if obj is None:
             return None
 
@@ -90,10 +81,7 @@ class Error(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "message": obj.get("message"),
-            "type": obj.get("type"),
-            "status_code": obj.get("status_code"),
-            "extra": obj.get("extra")
+            "tracker_id": obj.get("tracker_id")
         })
         return _obj
 

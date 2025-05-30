@@ -845,6 +845,8 @@ class NumbersApi:
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
         psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
         pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
@@ -876,6 +878,10 @@ class NumbersApi:
         :type rscid_end: str
         :param psyonix_season: psyonix_season
         :type psyonix_season: str
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
         :type pulled_before: str
         :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
@@ -909,6 +915,8 @@ class NumbersApi:
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
             psyonix_season=psyonix_season,
+            limit=limit,
+            offset=offset,
             pulled_before=pulled_before,
             pulled_after=pulled_after,
             _request_auth=_request_auth,
@@ -940,6 +948,8 @@ class NumbersApi:
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
         psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
         pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
@@ -971,6 +981,10 @@ class NumbersApi:
         :type rscid_end: str
         :param psyonix_season: psyonix_season
         :type psyonix_season: str
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
         :type pulled_before: str
         :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
@@ -1004,6 +1018,8 @@ class NumbersApi:
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
             psyonix_season=psyonix_season,
+            limit=limit,
+            offset=offset,
             pulled_before=pulled_before,
             pulled_after=pulled_after,
             _request_auth=_request_auth,
@@ -1035,6 +1051,8 @@ class NumbersApi:
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
         psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
         pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
@@ -1066,6 +1084,10 @@ class NumbersApi:
         :type rscid_end: str
         :param psyonix_season: psyonix_season
         :type psyonix_season: str
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
         :type pulled_before: str
         :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
@@ -1099,6 +1121,8 @@ class NumbersApi:
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
             psyonix_season=psyonix_season,
+            limit=limit,
+            offset=offset,
             pulled_before=pulled_before,
             pulled_after=pulled_after,
             _request_auth=_request_auth,
@@ -1125,6 +1149,8 @@ class NumbersApi:
         rscid_begin,
         rscid_end,
         psyonix_season,
+        limit,
+        offset,
         pulled_before,
         pulled_after,
         _request_auth,
@@ -1172,6 +1198,14 @@ class NumbersApi:
         if psyonix_season is not None:
             
             _query_params.append(('psyonix_season', psyonix_season))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
             
         if pulled_before is not None:
             
