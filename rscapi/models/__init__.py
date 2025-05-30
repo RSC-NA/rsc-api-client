@@ -72,6 +72,7 @@ from rscapi.models.member_tracker import MemberTracker
 from rscapi.models.member_transfer_schema import MemberTransferSchema
 from rscapi.models.members_list200_response import MembersList200Response
 from rscapi.models.name_change_history import NameChangeHistory
+from rscapi.models.numbers_mmr_list200_response import NumbersMmrList200Response
 from rscapi.models.player import Player
 from rscapi.models.player1 import Player1
 from rscapi.models.player_activity_check_schema import PlayerActivityCheckSchema

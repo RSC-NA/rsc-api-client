@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**tracker_links_create**](TrackerLinksApi.md#tracker_links_create) | **POST** /tracker-links/ | 
 [**tracker_links_delete**](TrackerLinksApi.md#tracker_links_delete) | **DELETE** /tracker-links/{id}/ | 
-[**tracker_links_fix_duplicate_links**](TrackerLinksApi.md#tracker_links_fix_duplicate_links) | **GET** /tracker-links/fix_duplicate_links/ | 
+[**tracker_links_fix_duplicate_links**](TrackerLinksApi.md#tracker_links_fix_duplicate_links) | **PATCH** /tracker-links/fix_duplicate_links/ | 
 [**tracker_links_invalidate_links**](TrackerLinksApi.md#tracker_links_invalidate_links) | **POST** /tracker-links/invalidate_links/ | 
 [**tracker_links_link**](TrackerLinksApi.md#tracker_links_link) | **POST** /tracker-links/{id}/link/ | 
 [**tracker_links_links_stats**](TrackerLinksApi.md#tracker_links_links_stats) | **GET** /tracker-links/links_stats/ | 
@@ -164,7 +164,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_fix_duplicate_links**
-> List[TrackerLink] tracker_links_fix_duplicate_links()
+> TrackerLink tracker_links_fix_duplicate_links(data)
 
 Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
@@ -199,9 +199,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
+    data = rscapi.TrackerLink() # TrackerLink | 
 
     try:
-        api_response = await api_instance.tracker_links_fix_duplicate_links()
+        api_response = await api_instance.tracker_links_fix_duplicate_links(data)
         print("The response of TrackerLinksApi->tracker_links_fix_duplicate_links:\n")
         pprint(api_response)
     except Exception as e:
@@ -212,11 +213,14 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **data** | [**TrackerLink**](TrackerLink.md)|  | 
 
 ### Return type
 
-[**List[TrackerLink]**](TrackerLink.md)
+[**TrackerLink**](TrackerLink.md)
 
 ### Authorization
 
@@ -224,7 +228,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json, text/csv
 
 ### HTTP response details

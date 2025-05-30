@@ -68,6 +68,7 @@ docs/MembersApi.md
 docs/MembersList200Response.md
 docs/NameChangeHistory.md
 docs/NumbersApi.md
+docs/NumbersMmrList200Response.md
 docs/Player.md
 docs/Player1.md
 docs/PlayerActivityCheckSchema.md
@@ -208,6 +209,7 @@ rscapi/models/member_tracker.py
 rscapi/models/member_transfer_schema.py
 rscapi/models/members_list200_response.py
 rscapi/models/name_change_history.py
+rscapi/models/numbers_mmr_list200_response.py
 rscapi/models/player.py
 rscapi/models/player1.py
 rscapi/models/player_activity_check_schema.py
@@ -269,5 +271,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_tracker_id_input.py
+test/test_numbers_mmr_list200_response.py
 tox.ini

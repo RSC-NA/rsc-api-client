@@ -21,6 +21,7 @@ from pydantic import Field, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
+from rscapi.models.numbers_mmr_list200_response import NumbersMmrList200Response
 from rscapi.models.player_mmr import PlayerMMR
 
 from rscapi.api_client import ApiClient, RequestSerialized
@@ -840,15 +841,13 @@ class NumbersApi:
     async def numbers_mmr_list(
         self,
         pulled: Annotated[Optional[StrictStr], Field(description="pulled")] = None,
-        rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
-        rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
-        rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
+        rscid: Annotated[Optional[StrictStr], Field(description="rscid")] = None,
+        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
+        rscid_begin: Annotated[Optional[StrictStr], Field(description="rscid_begin")] = None,
+        rscid_end: Annotated[Optional[StrictStr], Field(description="rscid_end")] = None,
         psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -861,20 +860,19 @@ class NumbersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[PlayerMMR]:
+    ) -> NumbersMmrList200Response:
         """numbers_mmr_list
 
-        List all MMRs for a given league and season.
 
         :param pulled: pulled
         :type pulled: str
-        :param rscid: Specific Member RSC ID (E.g: RSC002918)
+        :param rscid: rscid
         :type rscid: str
-        :param discord_id: Member discord ID
-        :type discord_id: int
-        :param rscid_begin: Starting RSC ID for a range of RSC IDs
+        :param discord_id: discord_id
+        :type discord_id: str
+        :param rscid_begin: rscid_begin
         :type rscid_begin: str
-        :param rscid_end: Ending RSC ID for a range of RSC IDs
+        :param rscid_end: rscid_end
         :type rscid_end: str
         :param psyonix_season: psyonix_season
         :type psyonix_season: str
@@ -882,10 +880,6 @@ class NumbersApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
-        :type pulled_before: str
-        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
-        :type pulled_after: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -917,8 +911,6 @@ class NumbersApi:
             psyonix_season=psyonix_season,
             limit=limit,
             offset=offset,
-            pulled_before=pulled_before,
-            pulled_after=pulled_after,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -926,7 +918,7 @@ class NumbersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[PlayerMMR]",
+            '200': "NumbersMmrList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -943,15 +935,13 @@ class NumbersApi:
     async def numbers_mmr_list_with_http_info(
         self,
         pulled: Annotated[Optional[StrictStr], Field(description="pulled")] = None,
-        rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
-        rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
-        rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
+        rscid: Annotated[Optional[StrictStr], Field(description="rscid")] = None,
+        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
+        rscid_begin: Annotated[Optional[StrictStr], Field(description="rscid_begin")] = None,
+        rscid_end: Annotated[Optional[StrictStr], Field(description="rscid_end")] = None,
         psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -964,20 +954,19 @@ class NumbersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[PlayerMMR]]:
+    ) -> ApiResponse[NumbersMmrList200Response]:
         """numbers_mmr_list
 
-        List all MMRs for a given league and season.
 
         :param pulled: pulled
         :type pulled: str
-        :param rscid: Specific Member RSC ID (E.g: RSC002918)
+        :param rscid: rscid
         :type rscid: str
-        :param discord_id: Member discord ID
-        :type discord_id: int
-        :param rscid_begin: Starting RSC ID for a range of RSC IDs
+        :param discord_id: discord_id
+        :type discord_id: str
+        :param rscid_begin: rscid_begin
         :type rscid_begin: str
-        :param rscid_end: Ending RSC ID for a range of RSC IDs
+        :param rscid_end: rscid_end
         :type rscid_end: str
         :param psyonix_season: psyonix_season
         :type psyonix_season: str
@@ -985,10 +974,6 @@ class NumbersApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
-        :type pulled_before: str
-        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
-        :type pulled_after: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1020,8 +1005,6 @@ class NumbersApi:
             psyonix_season=psyonix_season,
             limit=limit,
             offset=offset,
-            pulled_before=pulled_before,
-            pulled_after=pulled_after,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1029,7 +1012,7 @@ class NumbersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[PlayerMMR]",
+            '200': "NumbersMmrList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1046,15 +1029,13 @@ class NumbersApi:
     async def numbers_mmr_list_without_preload_content(
         self,
         pulled: Annotated[Optional[StrictStr], Field(description="pulled")] = None,
-        rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID")] = None,
-        rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
-        rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
+        rscid: Annotated[Optional[StrictStr], Field(description="rscid")] = None,
+        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
+        rscid_begin: Annotated[Optional[StrictStr], Field(description="rscid_begin")] = None,
+        rscid_end: Annotated[Optional[StrictStr], Field(description="rscid_end")] = None,
         psyonix_season: Annotated[Optional[StrictStr], Field(description="psyonix_season")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1070,17 +1051,16 @@ class NumbersApi:
     ) -> RESTResponseType:
         """numbers_mmr_list
 
-        List all MMRs for a given league and season.
 
         :param pulled: pulled
         :type pulled: str
-        :param rscid: Specific Member RSC ID (E.g: RSC002918)
+        :param rscid: rscid
         :type rscid: str
-        :param discord_id: Member discord ID
-        :type discord_id: int
-        :param rscid_begin: Starting RSC ID for a range of RSC IDs
+        :param discord_id: discord_id
+        :type discord_id: str
+        :param rscid_begin: rscid_begin
         :type rscid_begin: str
-        :param rscid_end: Ending RSC ID for a range of RSC IDs
+        :param rscid_end: rscid_end
         :type rscid_end: str
         :param psyonix_season: psyonix_season
         :type psyonix_season: str
@@ -1088,10 +1068,6 @@ class NumbersApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
-        :type pulled_before: str
-        :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
-        :type pulled_after: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1123,8 +1099,6 @@ class NumbersApi:
             psyonix_season=psyonix_season,
             limit=limit,
             offset=offset,
-            pulled_before=pulled_before,
-            pulled_after=pulled_after,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1132,7 +1106,7 @@ class NumbersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[PlayerMMR]",
+            '200': "NumbersMmrList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1151,8 +1125,6 @@ class NumbersApi:
         psyonix_season,
         limit,
         offset,
-        pulled_before,
-        pulled_after,
         _request_auth,
         _content_type,
         _headers,
@@ -1206,14 +1178,6 @@ class NumbersApi:
         if offset is not None:
             
             _query_params.append(('offset', offset))
-            
-        if pulled_before is not None:
-            
-            _query_params.append(('pulled_before', pulled_before))
-            
-        if pulled_after is not None:
-            
-            _query_params.append(('pulled_after', pulled_after))
             
         # process the header parameters
         # process the form parameters

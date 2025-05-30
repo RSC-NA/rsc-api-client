@@ -210,7 +210,7 @@ Class | Method | HTTP request | Description
 *TiersApi* | [**tiers_update**](docs/TiersApi.md#tiers_update) | **PUT** /tiers/{id}/ | 
 *TrackerLinksApi* | [**tracker_links_create**](docs/TrackerLinksApi.md#tracker_links_create) | **POST** /tracker-links/ | 
 *TrackerLinksApi* | [**tracker_links_delete**](docs/TrackerLinksApi.md#tracker_links_delete) | **DELETE** /tracker-links/{id}/ | 
-*TrackerLinksApi* | [**tracker_links_fix_duplicate_links**](docs/TrackerLinksApi.md#tracker_links_fix_duplicate_links) | **GET** /tracker-links/fix_duplicate_links/ | 
+*TrackerLinksApi* | [**tracker_links_fix_duplicate_links**](docs/TrackerLinksApi.md#tracker_links_fix_duplicate_links) | **PATCH** /tracker-links/fix_duplicate_links/ | 
 *TrackerLinksApi* | [**tracker_links_invalidate_links**](docs/TrackerLinksApi.md#tracker_links_invalidate_links) | **POST** /tracker-links/invalidate_links/ | 
 *TrackerLinksApi* | [**tracker_links_link**](docs/TrackerLinksApi.md#tracker_links_link) | **POST** /tracker-links/{id}/link/ | 
 *TrackerLinksApi* | [**tracker_links_links_stats**](docs/TrackerLinksApi.md#tracker_links_links_stats) | **GET** /tracker-links/links_stats/ | 
@@ -293,6 +293,7 @@ Class | Method | HTTP request | Description
  - [MemberTransferSchema](docs/MemberTransferSchema.md)
  - [MembersList200Response](docs/MembersList200Response.md)
  - [NameChangeHistory](docs/NameChangeHistory.md)
+ - [NumbersMmrList200Response](docs/NumbersMmrList200Response.md)
  - [Player](docs/Player.md)
  - [Player1](docs/Player1.md)
  - [PlayerActivityCheckSchema](docs/PlayerActivityCheckSchema.md)
