@@ -1,6 +1,6 @@
 # rscapi.NumbersApi
 
-All URIs are relative to *https://api.rscna.com/api/v1*
+All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,10 +27,10 @@ from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -101,10 +101,10 @@ from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -174,10 +174,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -234,7 +234,9 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **numbers_mmr_list**
-> NumbersMmrList200Response numbers_mmr_list(pulled=pulled, rscid=rscid, discord_id=discord_id, rscid_begin=rscid_begin, rscid_end=rscid_end, psyonix_season=psyonix_season, limit=limit, offset=offset)
+> NumbersMmrList200Response numbers_mmr_list(pulled=pulled, pulled_before=pulled_before, pulled_after=pulled_after, rscid=rscid, discord_id=discord_id, rscid_begin=rscid_begin, rscid_end=rscid_end, psyonix_season=psyonix_season, limit=limit, offset=offset)
+
+List all player MMRs.
 
 ### Example
 
@@ -246,10 +248,10 @@ from rscapi.models.numbers_mmr_list200_response import NumbersMmrList200Response
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -268,16 +270,18 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.NumbersApi(api_client)
     pulled = 'pulled_example' # str | pulled (optional)
-    rscid = 'rscid_example' # str | rscid (optional)
-    discord_id = 'discord_id_example' # str | discord_id (optional)
-    rscid_begin = 'rscid_begin_example' # str | rscid_begin (optional)
-    rscid_end = 'rscid_end_example' # str | rscid_end (optional)
-    psyonix_season = 'psyonix_season_example' # str | psyonix_season (optional)
+    pulled_before = 'pulled_before_example' # str | MMR pulled before date in YYYY-MM-DD format. (optional)
+    pulled_after = 'pulled_after_example' # str | MMR pulled after date in YYYY-MM-DD format. (optional)
+    rscid = 'rscid_example' # str | Specific Member RSC ID (E.g: RSC002918) (optional)
+    discord_id = 56 # int | Member discord ID (optional)
+    rscid_begin = 'rscid_begin_example' # str | Starting RSC ID for a range of RSC IDs (optional)
+    rscid_end = 'rscid_end_example' # str | Ending RSC ID for a range of RSC IDs (optional)
+    psyonix_season = 56 # int | Psyonix Season Number (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
 
     try:
-        api_response = await api_instance.numbers_mmr_list(pulled=pulled, rscid=rscid, discord_id=discord_id, rscid_begin=rscid_begin, rscid_end=rscid_end, psyonix_season=psyonix_season, limit=limit, offset=offset)
+        api_response = await api_instance.numbers_mmr_list(pulled=pulled, pulled_before=pulled_before, pulled_after=pulled_after, rscid=rscid, discord_id=discord_id, rscid_begin=rscid_begin, rscid_end=rscid_end, psyonix_season=psyonix_season, limit=limit, offset=offset)
         print("The response of NumbersApi->numbers_mmr_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -292,11 +296,13 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pulled** | **str**| pulled | [optional] 
- **rscid** | **str**| rscid | [optional] 
- **discord_id** | **str**| discord_id | [optional] 
- **rscid_begin** | **str**| rscid_begin | [optional] 
- **rscid_end** | **str**| rscid_end | [optional] 
- **psyonix_season** | **str**| psyonix_season | [optional] 
+ **pulled_before** | **str**| MMR pulled before date in YYYY-MM-DD format. | [optional] 
+ **pulled_after** | **str**| MMR pulled after date in YYYY-MM-DD format. | [optional] 
+ **rscid** | **str**| Specific Member RSC ID (E.g: RSC002918) | [optional] 
+ **discord_id** | **int**| Member discord ID | [optional] 
+ **rscid_begin** | **str**| Starting RSC ID for a range of RSC IDs | [optional] 
+ **rscid_end** | **str**| Ending RSC ID for a range of RSC IDs | [optional] 
+ **psyonix_season** | **int**| Psyonix Season Number | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
 
@@ -334,10 +340,10 @@ from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -410,10 +416,10 @@ from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -484,10 +490,10 @@ from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.rscna.com/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://api.rscna.com/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
