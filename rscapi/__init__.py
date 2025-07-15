@@ -17,143 +17,290 @@
 
 __version__ = "1.0.0"
 
+# Define package exports
+__all__ = [
+    "CsvApi",
+    "DraftPicksApi",
+    "FranchisesApi",
+    "LeaguePlayersApi",
+    "LeaguesApi",
+    "MatchesApi",
+    "MembersApi",
+    "NumbersApi",
+    "SeasonsApi",
+    "TeamsApi",
+    "TiersApi",
+    "TrackerLinksApi",
+    "TransactionsApi",
+    "ApiResponse",
+    "ApiClient",
+    "Configuration",
+    "OpenApiException",
+    "ApiTypeError",
+    "ApiValueError",
+    "ApiKeyError",
+    "ApiAttributeError",
+    "ApiException",
+    "ActivityCheck",
+    "AddTierToLeague",
+    "BaseTeam",
+    "BulkMMRSchemaSubmission",
+    "CutAPlayerAndSignAnother",
+    "CutAPlayerFromALeague",
+    "Deleted",
+    "DraftAPlayerToATeam",
+    "DraftPick",
+    "DraftPickSeasonTier",
+    "DraftPickSwap",
+    "DraftPicks",
+    "DraftPicksList200Response",
+    "DraftTier",
+    "DropAPlayerFromALeague",
+    "ElevatedRole",
+    "ElevatedRoleAdd",
+    "Error",
+    "ExpireAPlayerSub",
+    "Franchise",
+    "FranchiseContracts",
+    "FranchiseGM",
+    "FranchiseIdentifier",
+    "FranchiseLeague",
+    "FranchiseList",
+    "FranchiseLogo",
+    "FranchiseStandings",
+    "FranchiseTeam",
+    "FranchiseTier",
+    "Game",
+    "HighLevelMatch",
+    "InactiveReserve",
+    "IntentToPlay",
+    "IntentToPlaySchema",
+    "League",
+    "LeagueData",
+    "LeaguePlayer",
+    "LeaguePlayerLeague",
+    "LeaguePlayerMember",
+    "LeaguePlayerPatch",
+    "LeaguePlayerSignup",
+    "LeaguePlayersList200Response",
+    "ListGames",
+    "ListMatchResults",
+    "MasterContracts",
+    "MasterMemberSheet",
+    "Match",
+    "MatchGM",
+    "MatchList",
+    "MatchResults",
+    "MatchScoreReport",
+    "MatchSubmission",
+    "MatchTeam",
+    "MatchesList200Response",
+    "Member",
+    "MemberIntent",
+    "MemberIntentData",
+    "MemberTracker",
+    "MemberTransferSchema",
+    "MembersList200Response",
+    "NameChangeHistory",
+    "NumbersMmrList200Response",
+    "Player",
+    "Player1",
+    "PlayerActivityCheckSchema",
+    "PlayerFranchise",
+    "PlayerMMR",
+    "PlayerSeasonStats",
+    "PlayerSeasonStatsInDepth",
+    "PlayerSignupSchema",
+    "PlayerTeam",
+    "PlayerTransactionUpdates",
+    "PreviousTeam",
+    "ReSignPlayer",
+    "Really",
+    "RebrandAFranchise",
+    "RemoveTierFromALeague",
+    "RetireAPlayer",
+    "Season",
+    "SeasonLeague",
+    "SeasonSchedule",
+    "SeasonTierData",
+    "SignAPlayerToATeamInALeague",
+    "SimpleMember",
+    "StartNewSeason",
+    "StatsDict",
+    "Team",
+    "TeamCreate",
+    "TeamDetails",
+    "TeamFranchise",
+    "TeamGameListResults",
+    "TeamList",
+    "TeamPatch",
+    "TeamSeasonStats",
+    "TeamsContracts",
+    "TemporaryFASub",
+    "Tier",
+    "TrackerIDInput",
+    "TrackerLink",
+    "TrackerLinkInvalidateObject",
+    "TrackerLinkLinking",
+    "TrackerLinkStats",
+    "TrackerLinksDetailedSheet",
+    "TrackerLinksList200Response",
+    "TrackerLinksSheet",
+    "TrackerMMR",
+    "TrackerPeak",
+    "TradeItem",
+    "TradeSchema",
+    "TradeValue",
+    "TransactionFranchise",
+    "TransactionResponse",
+    "TransactionTeam",
+    "TransactionsHistoryList200Response",
+    "TransferFranchise",
+    "TwosMasterMemberSheet",
+    "UpdateMemberRSCName",
+]
+
 # import apis into sdk package
-from rscapi.api.csv_api import CsvApi
-from rscapi.api.draft_picks_api import DraftPicksApi
-from rscapi.api.franchises_api import FranchisesApi
-from rscapi.api.league_players_api import LeaguePlayersApi
-from rscapi.api.leagues_api import LeaguesApi
-from rscapi.api.matches_api import MatchesApi
-from rscapi.api.members_api import MembersApi
-from rscapi.api.numbers_api import NumbersApi
-from rscapi.api.seasons_api import SeasonsApi
-from rscapi.api.teams_api import TeamsApi
-from rscapi.api.tiers_api import TiersApi
-from rscapi.api.tracker_links_api import TrackerLinksApi
-from rscapi.api.transactions_api import TransactionsApi
+from rscapi.api.csv_api import CsvApi as CsvApi
+from rscapi.api.draft_picks_api import DraftPicksApi as DraftPicksApi
+from rscapi.api.franchises_api import FranchisesApi as FranchisesApi
+from rscapi.api.league_players_api import LeaguePlayersApi as LeaguePlayersApi
+from rscapi.api.leagues_api import LeaguesApi as LeaguesApi
+from rscapi.api.matches_api import MatchesApi as MatchesApi
+from rscapi.api.members_api import MembersApi as MembersApi
+from rscapi.api.numbers_api import NumbersApi as NumbersApi
+from rscapi.api.seasons_api import SeasonsApi as SeasonsApi
+from rscapi.api.teams_api import TeamsApi as TeamsApi
+from rscapi.api.tiers_api import TiersApi as TiersApi
+from rscapi.api.tracker_links_api import TrackerLinksApi as TrackerLinksApi
+from rscapi.api.transactions_api import TransactionsApi as TransactionsApi
 
 # import ApiClient
-from rscapi.api_response import ApiResponse
-from rscapi.api_client import ApiClient
-from rscapi.configuration import Configuration
-from rscapi.exceptions import OpenApiException
-from rscapi.exceptions import ApiTypeError
-from rscapi.exceptions import ApiValueError
-from rscapi.exceptions import ApiKeyError
-from rscapi.exceptions import ApiAttributeError
-from rscapi.exceptions import ApiException
+from rscapi.api_response import ApiResponse as ApiResponse
+from rscapi.api_client import ApiClient as ApiClient
+from rscapi.configuration import Configuration as Configuration
+from rscapi.exceptions import OpenApiException as OpenApiException
+from rscapi.exceptions import ApiTypeError as ApiTypeError
+from rscapi.exceptions import ApiValueError as ApiValueError
+from rscapi.exceptions import ApiKeyError as ApiKeyError
+from rscapi.exceptions import ApiAttributeError as ApiAttributeError
+from rscapi.exceptions import ApiException as ApiException
 
 # import models into sdk package
-from rscapi.models.activity_check import ActivityCheck
-from rscapi.models.add_tier_to_league import AddTierToLeague
-from rscapi.models.base_team import BaseTeam
-from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
-from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother
-from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
-from rscapi.models.deleted import Deleted
-from rscapi.models.draft_a_player_to_a_team import DraftAPlayerToATeam
-from rscapi.models.draft_pick import DraftPick
-from rscapi.models.draft_pick_season_tier import DraftPickSeasonTier
-from rscapi.models.draft_pick_swap import DraftPickSwap
-from rscapi.models.draft_picks import DraftPicks
-from rscapi.models.draft_picks_list200_response import DraftPicksList200Response
-from rscapi.models.draft_tier import DraftTier
-from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
-from rscapi.models.elevated_role import ElevatedRole
-from rscapi.models.elevated_role_add import ElevatedRoleAdd
-from rscapi.models.error import Error
-from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
-from rscapi.models.franchise import Franchise
-from rscapi.models.franchise_contracts import FranchiseContracts
-from rscapi.models.franchise_gm import FranchiseGM
-from rscapi.models.franchise_identifier import FranchiseIdentifier
-from rscapi.models.franchise_league import FranchiseLeague
-from rscapi.models.franchise_list import FranchiseList
-from rscapi.models.franchise_logo import FranchiseLogo
-from rscapi.models.franchise_team import FranchiseTeam
-from rscapi.models.franchise_tier import FranchiseTier
-from rscapi.models.game import Game
-from rscapi.models.high_level_match import HighLevelMatch
-from rscapi.models.inactive_reserve import InactiveReserve
-from rscapi.models.intent_to_play_schema import IntentToPlaySchema
-from rscapi.models.league import League
-from rscapi.models.league_data import LeagueData
-from rscapi.models.league_player import LeaguePlayer
-from rscapi.models.league_player_league import LeaguePlayerLeague
-from rscapi.models.league_player_member import LeaguePlayerMember
-from rscapi.models.league_player_patch import LeaguePlayerPatch
-from rscapi.models.league_player_signup import LeaguePlayerSignup
-from rscapi.models.league_players_list200_response import LeaguePlayersList200Response
-from rscapi.models.list_games import ListGames
-from rscapi.models.list_match_results import ListMatchResults
-from rscapi.models.master_contracts import MasterContracts
-from rscapi.models.master_member_sheet import MasterMemberSheet
-from rscapi.models.match import Match
-from rscapi.models.match_gm import MatchGM
-from rscapi.models.match_list import MatchList
-from rscapi.models.match_results import MatchResults
-from rscapi.models.match_score_report import MatchScoreReport
-from rscapi.models.match_submission import MatchSubmission
-from rscapi.models.match_team import MatchTeam
-from rscapi.models.matches_list200_response import MatchesList200Response
-from rscapi.models.member import Member
-from rscapi.models.member_tracker import MemberTracker
-from rscapi.models.member_transfer_schema import MemberTransferSchema
-from rscapi.models.members_list200_response import MembersList200Response
-from rscapi.models.name_change_history import NameChangeHistory
-from rscapi.models.numbers_mmr_list200_response import NumbersMmrList200Response
-from rscapi.models.player import Player
-from rscapi.models.player1 import Player1
-from rscapi.models.player_activity_check_schema import PlayerActivityCheckSchema
-from rscapi.models.player_franchise import PlayerFranchise
-from rscapi.models.player_mmr import PlayerMMR
-from rscapi.models.player_season_stats import PlayerSeasonStats
-from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
-from rscapi.models.player_signup_schema import PlayerSignupSchema
-from rscapi.models.player_team import PlayerTeam
-from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
-from rscapi.models.previous_team import PreviousTeam
-from rscapi.models.re_sign_player import ReSignPlayer
-from rscapi.models.really import Really
-from rscapi.models.rebrand_a_franchise import RebrandAFranchise
-from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague
-from rscapi.models.retire_a_player import RetireAPlayer
-from rscapi.models.season import Season
-from rscapi.models.season_league import SeasonLeague
-from rscapi.models.season_schedule import SeasonSchedule
-from rscapi.models.season_tier_data import SeasonTierData
-from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
-from rscapi.models.simple_member import SimpleMember
-from rscapi.models.start_new_season import StartNewSeason
-from rscapi.models.stats_dict import StatsDict
-from rscapi.models.team import Team
-from rscapi.models.team_create import TeamCreate
-from rscapi.models.team_details import TeamDetails
-from rscapi.models.team_franchise import TeamFranchise
-from rscapi.models.team_game_list_results import TeamGameListResults
-from rscapi.models.team_list import TeamList
-from rscapi.models.team_patch import TeamPatch
-from rscapi.models.team_season_stats import TeamSeasonStats
-from rscapi.models.teams_contracts import TeamsContracts
-from rscapi.models.temporary_fa_sub import TemporaryFASub
-from rscapi.models.tier import Tier
-from rscapi.models.tracker_id_input import TrackerIDInput
-from rscapi.models.tracker_link import TrackerLink
-from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
-from rscapi.models.tracker_link_linking import TrackerLinkLinking
-from rscapi.models.tracker_link_stats import TrackerLinkStats
-from rscapi.models.tracker_links_detailed_sheet import TrackerLinksDetailedSheet
-from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response
-from rscapi.models.tracker_links_sheet import TrackerLinksSheet
-from rscapi.models.tracker_mmr import TrackerMMR
-from rscapi.models.tracker_peak import TrackerPeak
-from rscapi.models.trade_item import TradeItem
-from rscapi.models.trade_schema import TradeSchema
-from rscapi.models.trade_value import TradeValue
-from rscapi.models.transaction_franchise import TransactionFranchise
-from rscapi.models.transaction_response import TransactionResponse
-from rscapi.models.transaction_team import TransactionTeam
-from rscapi.models.transactions_history_list200_response import TransactionsHistoryList200Response
-from rscapi.models.transfer_franchise import TransferFranchise
-from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
-from rscapi.models.update_member_rsc_name import UpdateMemberRSCName
+from rscapi.models.activity_check import ActivityCheck as ActivityCheck
+from rscapi.models.add_tier_to_league import AddTierToLeague as AddTierToLeague
+from rscapi.models.base_team import BaseTeam as BaseTeam
+from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission as BulkMMRSchemaSubmission
+from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother as CutAPlayerAndSignAnother
+from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague as CutAPlayerFromALeague
+from rscapi.models.deleted import Deleted as Deleted
+from rscapi.models.draft_a_player_to_a_team import DraftAPlayerToATeam as DraftAPlayerToATeam
+from rscapi.models.draft_pick import DraftPick as DraftPick
+from rscapi.models.draft_pick_season_tier import DraftPickSeasonTier as DraftPickSeasonTier
+from rscapi.models.draft_pick_swap import DraftPickSwap as DraftPickSwap
+from rscapi.models.draft_picks import DraftPicks as DraftPicks
+from rscapi.models.draft_picks_list200_response import DraftPicksList200Response as DraftPicksList200Response
+from rscapi.models.draft_tier import DraftTier as DraftTier
+from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague as DropAPlayerFromALeague
+from rscapi.models.elevated_role import ElevatedRole as ElevatedRole
+from rscapi.models.elevated_role_add import ElevatedRoleAdd as ElevatedRoleAdd
+from rscapi.models.error import Error as Error
+from rscapi.models.expire_a_player_sub import ExpireAPlayerSub as ExpireAPlayerSub
+from rscapi.models.franchise import Franchise as Franchise
+from rscapi.models.franchise_contracts import FranchiseContracts as FranchiseContracts
+from rscapi.models.franchise_gm import FranchiseGM as FranchiseGM
+from rscapi.models.franchise_identifier import FranchiseIdentifier as FranchiseIdentifier
+from rscapi.models.franchise_league import FranchiseLeague as FranchiseLeague
+from rscapi.models.franchise_list import FranchiseList as FranchiseList
+from rscapi.models.franchise_logo import FranchiseLogo as FranchiseLogo
+from rscapi.models.franchise_standings import FranchiseStandings as FranchiseStandings
+from rscapi.models.franchise_team import FranchiseTeam as FranchiseTeam
+from rscapi.models.franchise_tier import FranchiseTier as FranchiseTier
+from rscapi.models.game import Game as Game
+from rscapi.models.high_level_match import HighLevelMatch as HighLevelMatch
+from rscapi.models.inactive_reserve import InactiveReserve as InactiveReserve
+from rscapi.models.intent_to_play import IntentToPlay as IntentToPlay
+from rscapi.models.intent_to_play_schema import IntentToPlaySchema as IntentToPlaySchema
+from rscapi.models.league import League as League
+from rscapi.models.league_data import LeagueData as LeagueData
+from rscapi.models.league_player import LeaguePlayer as LeaguePlayer
+from rscapi.models.league_player_league import LeaguePlayerLeague as LeaguePlayerLeague
+from rscapi.models.league_player_member import LeaguePlayerMember as LeaguePlayerMember
+from rscapi.models.league_player_patch import LeaguePlayerPatch as LeaguePlayerPatch
+from rscapi.models.league_player_signup import LeaguePlayerSignup as LeaguePlayerSignup
+from rscapi.models.league_players_list200_response import LeaguePlayersList200Response as LeaguePlayersList200Response
+from rscapi.models.list_games import ListGames as ListGames
+from rscapi.models.list_match_results import ListMatchResults as ListMatchResults
+from rscapi.models.master_contracts import MasterContracts as MasterContracts
+from rscapi.models.master_member_sheet import MasterMemberSheet as MasterMemberSheet
+from rscapi.models.match import Match as Match
+from rscapi.models.match_gm import MatchGM as MatchGM
+from rscapi.models.match_list import MatchList as MatchList
+from rscapi.models.match_results import MatchResults as MatchResults
+from rscapi.models.match_score_report import MatchScoreReport as MatchScoreReport
+from rscapi.models.match_submission import MatchSubmission as MatchSubmission
+from rscapi.models.match_team import MatchTeam as MatchTeam
+from rscapi.models.matches_list200_response import MatchesList200Response as MatchesList200Response
+from rscapi.models.member import Member as Member
+from rscapi.models.member_intent import MemberIntent as MemberIntent
+from rscapi.models.member_intent_data import MemberIntentData as MemberIntentData
+from rscapi.models.member_tracker import MemberTracker as MemberTracker
+from rscapi.models.member_transfer_schema import MemberTransferSchema as MemberTransferSchema
+from rscapi.models.members_list200_response import MembersList200Response as MembersList200Response
+from rscapi.models.name_change_history import NameChangeHistory as NameChangeHistory
+from rscapi.models.numbers_mmr_list200_response import NumbersMmrList200Response as NumbersMmrList200Response
+from rscapi.models.player import Player as Player
+from rscapi.models.player1 import Player1 as Player1
+from rscapi.models.player_activity_check_schema import PlayerActivityCheckSchema as PlayerActivityCheckSchema
+from rscapi.models.player_franchise import PlayerFranchise as PlayerFranchise
+from rscapi.models.player_mmr import PlayerMMR as PlayerMMR
+from rscapi.models.player_season_stats import PlayerSeasonStats as PlayerSeasonStats
+from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth as PlayerSeasonStatsInDepth
+from rscapi.models.player_signup_schema import PlayerSignupSchema as PlayerSignupSchema
+from rscapi.models.player_team import PlayerTeam as PlayerTeam
+from rscapi.models.player_transaction_updates import PlayerTransactionUpdates as PlayerTransactionUpdates
+from rscapi.models.previous_team import PreviousTeam as PreviousTeam
+from rscapi.models.re_sign_player import ReSignPlayer as ReSignPlayer
+from rscapi.models.really import Really as Really
+from rscapi.models.rebrand_a_franchise import RebrandAFranchise as RebrandAFranchise
+from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague as RemoveTierFromALeague
+from rscapi.models.retire_a_player import RetireAPlayer as RetireAPlayer
+from rscapi.models.season import Season as Season
+from rscapi.models.season_league import SeasonLeague as SeasonLeague
+from rscapi.models.season_schedule import SeasonSchedule as SeasonSchedule
+from rscapi.models.season_tier_data import SeasonTierData as SeasonTierData
+from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague as SignAPlayerToATeamInALeague
+from rscapi.models.simple_member import SimpleMember as SimpleMember
+from rscapi.models.start_new_season import StartNewSeason as StartNewSeason
+from rscapi.models.stats_dict import StatsDict as StatsDict
+from rscapi.models.team import Team as Team
+from rscapi.models.team_create import TeamCreate as TeamCreate
+from rscapi.models.team_details import TeamDetails as TeamDetails
+from rscapi.models.team_franchise import TeamFranchise as TeamFranchise
+from rscapi.models.team_game_list_results import TeamGameListResults as TeamGameListResults
+from rscapi.models.team_list import TeamList as TeamList
+from rscapi.models.team_patch import TeamPatch as TeamPatch
+from rscapi.models.team_season_stats import TeamSeasonStats as TeamSeasonStats
+from rscapi.models.teams_contracts import TeamsContracts as TeamsContracts
+from rscapi.models.temporary_fa_sub import TemporaryFASub as TemporaryFASub
+from rscapi.models.tier import Tier as Tier
+from rscapi.models.tracker_id_input import TrackerIDInput as TrackerIDInput
+from rscapi.models.tracker_link import TrackerLink as TrackerLink
+from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject as TrackerLinkInvalidateObject
+from rscapi.models.tracker_link_linking import TrackerLinkLinking as TrackerLinkLinking
+from rscapi.models.tracker_link_stats import TrackerLinkStats as TrackerLinkStats
+from rscapi.models.tracker_links_detailed_sheet import TrackerLinksDetailedSheet as TrackerLinksDetailedSheet
+from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response as TrackerLinksList200Response
+from rscapi.models.tracker_links_sheet import TrackerLinksSheet as TrackerLinksSheet
+from rscapi.models.tracker_mmr import TrackerMMR as TrackerMMR
+from rscapi.models.tracker_peak import TrackerPeak as TrackerPeak
+from rscapi.models.trade_item import TradeItem as TradeItem
+from rscapi.models.trade_schema import TradeSchema as TradeSchema
+from rscapi.models.trade_value import TradeValue as TradeValue
+from rscapi.models.transaction_franchise import TransactionFranchise as TransactionFranchise
+from rscapi.models.transaction_response import TransactionResponse as TransactionResponse
+from rscapi.models.transaction_team import TransactionTeam as TransactionTeam
+from rscapi.models.transactions_history_list200_response import TransactionsHistoryList200Response as TransactionsHistoryList200Response
+from rscapi.models.transfer_franchise import TransferFranchise as TransferFranchise
+from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet as TwosMasterMemberSheet
+from rscapi.models.update_member_rsc_name import UpdateMemberRSCName as UpdateMemberRSCName

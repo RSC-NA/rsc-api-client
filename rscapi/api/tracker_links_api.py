@@ -572,7 +572,6 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_fix_duplicate_links(
         self,
-        data: TrackerLink,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -585,13 +584,11 @@ class TrackerLinksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TrackerLink:
+    ) -> List[TrackerLink]:
         """tracker_links_fix_duplicate_links
 
         Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
-        :param data: (required)
-        :type data: TrackerLink
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -615,7 +612,6 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_fix_duplicate_links_serialize(
-            data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -623,7 +619,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerLink",
+            '200': "List[TrackerLink]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -639,7 +635,6 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_fix_duplicate_links_with_http_info(
         self,
-        data: TrackerLink,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -652,13 +647,11 @@ class TrackerLinksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TrackerLink]:
+    ) -> ApiResponse[List[TrackerLink]]:
         """tracker_links_fix_duplicate_links
 
         Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
-        :param data: (required)
-        :type data: TrackerLink
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -682,7 +675,6 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_fix_duplicate_links_serialize(
-            data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -690,7 +682,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerLink",
+            '200': "List[TrackerLink]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -706,7 +698,6 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_fix_duplicate_links_without_preload_content(
         self,
-        data: TrackerLink,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -724,8 +715,6 @@ class TrackerLinksApi:
 
         Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
-        :param data: (required)
-        :type data: TrackerLink
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -749,7 +738,6 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_fix_duplicate_links_serialize(
-            data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -757,7 +745,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerLink",
+            '200': "List[TrackerLink]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -768,7 +756,6 @@ class TrackerLinksApi:
 
     def _tracker_links_fix_duplicate_links_serialize(
         self,
-        data,
         _request_auth,
         _content_type,
         _headers,
@@ -794,8 +781,6 @@ class TrackerLinksApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if data is not None:
-            _body_params = data
 
 
         # set the HTTP header `Accept`
@@ -807,19 +792,6 @@ class TrackerLinksApi:
                 ]
             )
 
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -827,7 +799,7 @@ class TrackerLinksApi:
         ]
 
         return self.api_client.param_serialize(
-            method='PATCH',
+            method='GET',
             resource_path='/tracker-links/fix_duplicate_links/',
             path_params=_path_params,
             query_params=_query_params,

@@ -41,11 +41,13 @@ from rscapi.models.franchise_identifier import FranchiseIdentifier
 from rscapi.models.franchise_league import FranchiseLeague
 from rscapi.models.franchise_list import FranchiseList
 from rscapi.models.franchise_logo import FranchiseLogo
+from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.models.franchise_team import FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier
 from rscapi.models.game import Game
 from rscapi.models.high_level_match import HighLevelMatch
 from rscapi.models.inactive_reserve import InactiveReserve
+from rscapi.models.intent_to_play import IntentToPlay
 from rscapi.models.intent_to_play_schema import IntentToPlaySchema
 from rscapi.models.league import League
 from rscapi.models.league_data import LeagueData
@@ -68,6 +70,8 @@ from rscapi.models.match_submission import MatchSubmission
 from rscapi.models.match_team import MatchTeam
 from rscapi.models.matches_list200_response import MatchesList200Response
 from rscapi.models.member import Member
+from rscapi.models.member_intent import MemberIntent
+from rscapi.models.member_intent_data import MemberIntentData
 from rscapi.models.member_tracker import MemberTracker
 from rscapi.models.member_transfer_schema import MemberTransferSchema
 from rscapi.models.members_list200_response import MembersList200Response

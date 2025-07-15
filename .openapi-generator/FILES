@@ -31,12 +31,14 @@ docs/FranchiseIdentifier.md
 docs/FranchiseLeague.md
 docs/FranchiseList.md
 docs/FranchiseLogo.md
+docs/FranchiseStandings.md
 docs/FranchiseTeam.md
 docs/FranchiseTier.md
 docs/FranchisesApi.md
 docs/Game.md
 docs/HighLevelMatch.md
 docs/InactiveReserve.md
+docs/IntentToPlay.md
 docs/IntentToPlaySchema.md
 docs/League.md
 docs/LeagueData.md
@@ -62,6 +64,8 @@ docs/MatchTeam.md
 docs/MatchesApi.md
 docs/MatchesList200Response.md
 docs/Member.md
+docs/MemberIntent.md
+docs/MemberIntentData.md
 docs/MemberTracker.md
 docs/MemberTransferSchema.md
 docs/MembersApi.md
@@ -178,11 +182,13 @@ rscapi/models/franchise_identifier.py
 rscapi/models/franchise_league.py
 rscapi/models/franchise_list.py
 rscapi/models/franchise_logo.py
+rscapi/models/franchise_standings.py
 rscapi/models/franchise_team.py
 rscapi/models/franchise_tier.py
 rscapi/models/game.py
 rscapi/models/high_level_match.py
 rscapi/models/inactive_reserve.py
+rscapi/models/intent_to_play.py
 rscapi/models/intent_to_play_schema.py
 rscapi/models/league.py
 rscapi/models/league_data.py
@@ -205,6 +211,8 @@ rscapi/models/match_submission.py
 rscapi/models/match_team.py
 rscapi/models/matches_list200_response.py
 rscapi/models/member.py
+rscapi/models/member_intent.py
+rscapi/models/member_intent_data.py
 rscapi/models/member_tracker.py
 rscapi/models/member_transfer_schema.py
 rscapi/models/members_list200_response.py
