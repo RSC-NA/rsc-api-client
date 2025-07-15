@@ -3,9 +3,9 @@ name = "rscapi"
 version = "1.0.0"
 description = "RSC API Docs"
 authors = [
-  {name = "OpenAPI Generator Community",email = "contact@snippets.local"},
+  { name = "OpenAPI Generator Community", email = "contact@snippets.local" },
 ]
-license = "BSD License"
+license = "BSD-3-Clause"
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "RSC API Docs"]
 requires-python = ">=3.9"
@@ -16,7 +16,7 @@ dependencies = [
   "aiohttp (>=3.8.4)",
   "aiohttp-retry (>=2.8.3)",
   "pydantic (>=2)",
-  "typing-extensions (>=4.7.1)"
+  "typing-extensions (>=4.7.1)",
 ]
 
 [project.urls]
@@ -80,9 +80,7 @@ disallow_any_generics = true
 #warn_return_any = true
 
 [[tool.mypy.overrides]]
-module = [
-  "rscapi.configuration",
-]
+module = ["rscapi.configuration"]
 warn_unused_ignores = true
 strict_equality = true
 extra_checks = true
