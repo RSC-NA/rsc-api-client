@@ -36,7 +36,7 @@ class MatchTeam(BaseModel):
     tier: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     players: Optional[List[Player]] = None
     latest_season: Optional[StrictInt] = None
-    gm: MatchGM
+    gm: Optional[MatchGM] = None
     __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season", "gm"]
 
     model_config = ConfigDict(
