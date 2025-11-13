@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from rscapi.models.activity_check import ActivityCheck
 from rscapi.models.base_team import BaseTeam
@@ -79,3 +78,4 @@ from rscapi.models.tracker_links_sheet import TrackerLinksSheet
 from rscapi.models.tracker_mmr import TrackerMMR
 from rscapi.models.tracker_peak import TrackerPeak
 from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
+
