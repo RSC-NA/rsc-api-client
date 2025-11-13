@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **day** | **int** |  | [optional] 
 **match_format** | **str** |  | 
 **match_type** | **str** |  | 
+**var_date** | **datetime** |  | [optional] 
 
 ## Example
 

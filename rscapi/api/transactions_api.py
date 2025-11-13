@@ -1182,7 +1182,7 @@ class TransactionsApi:
     async def transactions_history_list(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
@@ -1207,7 +1207,7 @@ class TransactionsApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param player: Discord ID of player for transaction history search.
         :type player: int
@@ -1273,7 +1273,7 @@ class TransactionsApi:
     async def transactions_history_list_with_http_info(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
@@ -1298,7 +1298,7 @@ class TransactionsApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param player: Discord ID of player for transaction history search.
         :type player: int
@@ -1364,7 +1364,7 @@ class TransactionsApi:
     async def transactions_history_list_without_preload_content(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="transaction_type")] = None,
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
@@ -1389,7 +1389,7 @@ class TransactionsApi:
 
         :param league: ID of the league to get team matches for (required)
         :type league: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param player: Discord ID of player for transaction history search.
         :type player: int

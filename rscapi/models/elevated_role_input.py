@@ -18,36 +18,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MatchSubmission(BaseModel):
+class ElevatedRoleInput(BaseModel):
     """
-    MatchSubmission
+    ElevatedRoleInput
     """ # noqa: E501
-    home_team: StrictInt
-    away_team: StrictInt
-    day: Optional[StrictInt] = None
-    match_format: StrictStr
-    match_type: StrictStr
-    var_date: Optional[datetime] = Field(default=None, alias="date")
-    __properties: ClassVar[List[str]] = ["home_team", "away_team", "day", "match_format", "match_type", "date"]
+    league: StrictInt
+    position: StrictStr
+    executor: StrictInt
+    gm: Optional[StrictBool] = False
+    agm: Optional[StrictBool] = False
+    franchise: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["league", "position", "executor", "gm", "agm", "franchise"]
 
-    @field_validator('match_format')
-    def match_format_validate_enum(cls, value):
+    @field_validator('position')
+    def position_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['GMS', 'BO3', 'BO5', 'BO7']):
-            raise ValueError("must be one of enum values ('GMS', 'BO3', 'BO5', 'BO7')")
-        return value
-
-    @field_validator('match_type')
-    def match_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['REG', 'PRE', 'PST', 'FNL', 'ANY']):
-            raise ValueError("must be one of enum values ('REG', 'PRE', 'PST', 'FNL', 'ANY')")
+        if value not in set(['TM', 'TMH', 'NH', 'STATS', 'EVENTS', 'NUMS', 'MEDIA', 'DEV', 'ADM', 'STAFF', 'MMR', 'FRAN']):
+            raise ValueError("must be one of enum values ('TM', 'TMH', 'NH', 'STATS', 'EVENTS', 'NUMS', 'MEDIA', 'DEV', 'ADM', 'STAFF', 'MMR', 'FRAN')")
         return value
 
     model_config = ConfigDict(
@@ -68,7 +60,7 @@ class MatchSubmission(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MatchSubmission from a JSON string"""
+        """Create an instance of ElevatedRoleInput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -89,11 +81,16 @@ class MatchSubmission(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if franchise (nullable) is None
+        # and model_fields_set contains the field
+        if self.franchise is None and "franchise" in self.model_fields_set:
+            _dict['franchise'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MatchSubmission from a dict"""
+        """Create an instance of ElevatedRoleInput from a dict"""
         if obj is None:
             return None
 
@@ -101,12 +98,12 @@ class MatchSubmission(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "home_team": obj.get("home_team"),
-            "away_team": obj.get("away_team"),
-            "day": obj.get("day"),
-            "match_format": obj.get("match_format"),
-            "match_type": obj.get("match_type"),
-            "date": obj.get("date")
+            "league": obj.get("league"),
+            "position": obj.get("position"),
+            "executor": obj.get("executor"),
+            "gm": obj.get("gm") if obj.get("gm") is not None else False,
+            "agm": obj.get("agm") if obj.get("agm") is not None else False,
+            "franchise": obj.get("franchise")
         })
         return _obj
 
