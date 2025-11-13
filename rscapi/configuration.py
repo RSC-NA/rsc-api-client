@@ -213,7 +213,7 @@ conf = rscapi.Configuration(
     ) -> None:
         """Constructor
         """
-        self._base_path = "http://127.0.0.1:8000/api/v1" if host is None else host
+        self._base_path = "https://staging-api.rscna.com/api/v1" if host is None else host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -542,7 +542,7 @@ conf = rscapi.Configuration(
         """
         return [
             {
-                'url': "http://127.0.0.1:8000/api/v1",
+                'url': "https://staging-api.rscna.com/api/v1",
                 'description': "No description provided",
             }
         ]
