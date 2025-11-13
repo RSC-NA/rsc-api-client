@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **day** | **int** |  | [optional] [readonly] 
 **var_date** | **datetime** |  | [optional] [readonly] 
 **game_name** | **str** |  | [optional] [readonly] 
+**season_number** | **int** |  | [optional] [readonly] 
 **game_pass** | **str** |  | [optional] [readonly] 
 **num_games** | **int** |  | [optional] [readonly] 
 **match_format** | **str** |  | [optional] [readonly] 

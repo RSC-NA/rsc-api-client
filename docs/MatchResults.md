@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **home_wins** | **int** |  | [optional] 
 **away_wins** | **int** |  | [optional] 
-**games** | [**List[Game]**](Game.md) |  | [optional] 
 **manual** | **bool** |  | [optional] 
 **ballchasing_group** | **str** |  | [optional] 
 

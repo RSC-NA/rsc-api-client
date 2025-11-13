@@ -18,26 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from rscapi.models.match_gm import MatchGM
-from rscapi.models.player import Player
+from rscapi.models.activity_check import ActivityCheck
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MatchTeam(BaseModel):
+class SeasonsActivityCheckList200Response(BaseModel):
     """
-    MatchTeam
+    SeasonsActivityCheckList200Response
     """ # noqa: E501
-    id: Optional[StrictInt] = None
-    name: Annotated[str, Field(min_length=1, strict=True, max_length=16)]
-    franchise: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    tier: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    players: Optional[List[Player]] = None
-    latest_season: Optional[StrictInt] = None
-    gm: MatchGM
-    __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season", "gm"]
+    count: StrictInt
+    next: Optional[StrictStr] = None
+    previous: Optional[StrictStr] = None
+    results: List[ActivityCheck]
+    __properties: ClassVar[List[str]] = ["count", "next", "previous", "results"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,7 +52,7 @@ class MatchTeam(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MatchTeam from a JSON string"""
+        """Create an instance of SeasonsActivityCheckList200Response from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +64,8 @@ class MatchTeam(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "id",
-            "players",
-            "latest_season",
         ])
 
         _dict = self.model_dump(
@@ -84,21 +73,28 @@ class MatchTeam(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in players (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
         _items = []
-        if self.players:
-            for _item_players in self.players:
-                if _item_players:
-                    _items.append(_item_players.to_dict())
-            _dict['players'] = _items
-        # override the default output from pydantic by calling `to_dict()` of gm
-        if self.gm:
-            _dict['gm'] = self.gm.to_dict()
+        if self.results:
+            for _item_results in self.results:
+                if _item_results:
+                    _items.append(_item_results.to_dict())
+            _dict['results'] = _items
+        # set to None if next (nullable) is None
+        # and model_fields_set contains the field
+        if self.next is None and "next" in self.model_fields_set:
+            _dict['next'] = None
+
+        # set to None if previous (nullable) is None
+        # and model_fields_set contains the field
+        if self.previous is None and "previous" in self.model_fields_set:
+            _dict['previous'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MatchTeam from a dict"""
+        """Create an instance of SeasonsActivityCheckList200Response from a dict"""
         if obj is None:
             return None
 
@@ -106,13 +102,10 @@ class MatchTeam(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "franchise": obj.get("franchise"),
-            "tier": obj.get("tier"),
-            "players": [Player.from_dict(_item) for _item in obj["players"]] if obj.get("players") is not None else None,
-            "latest_season": obj.get("latest_season"),
-            "gm": MatchGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None
+            "count": obj.get("count"),
+            "next": obj.get("next"),
+            "previous": obj.get("previous"),
+            "results": [ActivityCheck.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
         })
         return _obj
 

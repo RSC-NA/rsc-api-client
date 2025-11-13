@@ -21,7 +21,6 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from rscapi.models.game import Game
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,10 +30,9 @@ class MatchResults(BaseModel):
     """ # noqa: E501
     home_wins: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     away_wins: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    games: Optional[List[Game]] = None
     manual: Optional[StrictBool] = None
     ballchasing_group: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=64)]] = None
-    __properties: ClassVar[List[str]] = ["home_wins", "away_wins", "games", "manual", "ballchasing_group"]
+    __properties: ClassVar[List[str]] = ["home_wins", "away_wins", "manual", "ballchasing_group"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,13 +73,6 @@ class MatchResults(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in games (list)
-        _items = []
-        if self.games:
-            for _item_games in self.games:
-                if _item_games:
-                    _items.append(_item_games.to_dict())
-            _dict['games'] = _items
         return _dict
 
     @classmethod
@@ -96,7 +87,6 @@ class MatchResults(BaseModel):
         _obj = cls.model_validate({
             "home_wins": obj.get("home_wins"),
             "away_wins": obj.get("away_wins"),
-            "games": [Game.from_dict(_item) for _item in obj["games"]] if obj.get("games") is not None else None,
             "manual": obj.get("manual"),
             "ballchasing_group": obj.get("ballchasing_group")
         })

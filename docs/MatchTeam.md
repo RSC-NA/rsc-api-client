@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
-**franchise** | **str** |  | 
-**tier** | **str** |  | 
+**franchise** | **str** |  | [optional] 
+**tier** | **str** |  | [optional] 
 **players** | [**List[Player]**](Player.md) |  | [optional] [readonly] 
 **latest_season** | **int** |  | [optional] [readonly] 
 **gm** | [**MatchGM**](MatchGM.md) |  | 

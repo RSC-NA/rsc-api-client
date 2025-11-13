@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from rscapi.models.list_games import ListGames
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,8 +29,7 @@ class ListMatchResults(BaseModel):
     """ # noqa: E501
     home_wins: Optional[StrictInt] = None
     away_wins: Optional[StrictInt] = None
-    games: List[ListGames]
-    __properties: ClassVar[List[str]] = ["home_wins", "away_wins", "games"]
+    __properties: ClassVar[List[str]] = ["home_wins", "away_wins"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -76,13 +74,6 @@ class ListMatchResults(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in games (list)
-        _items = []
-        if self.games:
-            for _item_games in self.games:
-                if _item_games:
-                    _items.append(_item_games.to_dict())
-            _dict['games'] = _items
         return _dict
 
     @classmethod
@@ -96,8 +87,7 @@ class ListMatchResults(BaseModel):
 
         _obj = cls.model_validate({
             "home_wins": obj.get("home_wins"),
-            "away_wins": obj.get("away_wins"),
-            "games": [ListGames.from_dict(_item) for _item in obj["games"]] if obj.get("games") is not None else None
+            "away_wins": obj.get("away_wins")
         })
         return _obj
 

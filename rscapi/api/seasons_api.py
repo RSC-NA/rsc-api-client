@@ -20,9 +20,11 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
+from rscapi.models.activity_check import ActivityCheck
 from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.models.intent_to_play import IntentToPlay
 from rscapi.models.season import Season
+from rscapi.models.seasons_activity_check_list200_response import SeasonsActivityCheckList200Response
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -43,9 +45,16 @@ class SeasonsApi:
 
 
     @validate_call
-    async def seasons_create(
+    async def seasons_activity_check_list(
         self,
-        data: Season,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
+        completed: Annotated[Optional[StrictBool], Field(description="Check has been completed or not.")] = None,
+        returning_status: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
+        missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -58,12 +67,27 @@ class SeasonsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Season:
-        """seasons_create
+    ) -> SeasonsActivityCheckList200Response:
+        """seasons_activity_check_list
 
+        List all activity checks for a given season.
 
-        :param data: (required)
-        :type data: Season
+        :param discord_id: Discord ID of player intent to search for.
+        :type discord_id: int
+        :param completed: Check has been completed or not.
+        :type completed: bool
+        :param returning_status: If the player is returning or not.
+        :type returning_status: bool
+        :param missing: If the player has responded or not.
+        :type missing: bool
+        :param season: Season ID (E.g: 8)
+        :type season: int
+        :param season_number: Season Number (E.g: 24)
+        :type season_number: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -86,8 +110,15 @@ class SeasonsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._seasons_create_serialize(
-            data=data,
+        _param = self._seasons_activity_check_list_serialize(
+            discord_id=discord_id,
+            completed=completed,
+            returning_status=returning_status,
+            missing=missing,
+            season=season,
+            season_number=season_number,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -95,7 +126,7 @@ class SeasonsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Season",
+            '200': "SeasonsActivityCheckList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -109,9 +140,16 @@ class SeasonsApi:
 
 
     @validate_call
-    async def seasons_create_with_http_info(
+    async def seasons_activity_check_list_with_http_info(
         self,
-        data: Season,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
+        completed: Annotated[Optional[StrictBool], Field(description="Check has been completed or not.")] = None,
+        returning_status: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
+        missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -124,12 +162,27 @@ class SeasonsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Season]:
-        """seasons_create
+    ) -> ApiResponse[SeasonsActivityCheckList200Response]:
+        """seasons_activity_check_list
 
+        List all activity checks for a given season.
 
-        :param data: (required)
-        :type data: Season
+        :param discord_id: Discord ID of player intent to search for.
+        :type discord_id: int
+        :param completed: Check has been completed or not.
+        :type completed: bool
+        :param returning_status: If the player is returning or not.
+        :type returning_status: bool
+        :param missing: If the player has responded or not.
+        :type missing: bool
+        :param season: Season ID (E.g: 8)
+        :type season: int
+        :param season_number: Season Number (E.g: 24)
+        :type season_number: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -152,8 +205,15 @@ class SeasonsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._seasons_create_serialize(
-            data=data,
+        _param = self._seasons_activity_check_list_serialize(
+            discord_id=discord_id,
+            completed=completed,
+            returning_status=returning_status,
+            missing=missing,
+            season=season,
+            season_number=season_number,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -161,7 +221,7 @@ class SeasonsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Season",
+            '200': "SeasonsActivityCheckList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -175,9 +235,16 @@ class SeasonsApi:
 
 
     @validate_call
-    async def seasons_create_without_preload_content(
+    async def seasons_activity_check_list_without_preload_content(
         self,
-        data: Season,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
+        completed: Annotated[Optional[StrictBool], Field(description="Check has been completed or not.")] = None,
+        returning_status: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
+        missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -191,11 +258,26 @@ class SeasonsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """seasons_create
+        """seasons_activity_check_list
 
+        List all activity checks for a given season.
 
-        :param data: (required)
-        :type data: Season
+        :param discord_id: Discord ID of player intent to search for.
+        :type discord_id: int
+        :param completed: Check has been completed or not.
+        :type completed: bool
+        :param returning_status: If the player is returning or not.
+        :type returning_status: bool
+        :param missing: If the player has responded or not.
+        :type missing: bool
+        :param season: Season ID (E.g: 8)
+        :type season: int
+        :param season_number: Season Number (E.g: 24)
+        :type season_number: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -218,8 +300,15 @@ class SeasonsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._seasons_create_serialize(
-            data=data,
+        _param = self._seasons_activity_check_list_serialize(
+            discord_id=discord_id,
+            completed=completed,
+            returning_status=returning_status,
+            missing=missing,
+            season=season,
+            season_number=season_number,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -227,7 +316,7 @@ class SeasonsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Season",
+            '200': "SeasonsActivityCheckList200Response",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -236,9 +325,16 @@ class SeasonsApi:
         return response_data.response
 
 
-    def _seasons_create_serialize(
+    def _seasons_activity_check_list_serialize(
         self,
-        data,
+        discord_id,
+        completed,
+        returning_status,
+        missing,
+        season,
+        season_number,
+        limit,
+        offset,
         _request_auth,
         _content_type,
         _headers,
@@ -261,11 +357,41 @@ class SeasonsApi:
 
         # process the path parameters
         # process the query parameters
+        if discord_id is not None:
+            
+            _query_params.append(('discord_id', discord_id))
+            
+        if completed is not None:
+            
+            _query_params.append(('completed', completed))
+            
+        if returning_status is not None:
+            
+            _query_params.append(('returning_status', returning_status))
+            
+        if missing is not None:
+            
+            _query_params.append(('missing', missing))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if data is not None:
-            _body_params = data
 
 
         # set the HTTP header `Accept`
@@ -276,19 +402,6 @@ class SeasonsApi:
                 ]
             )
 
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -296,8 +409,8 @@ class SeasonsApi:
         ]
 
         return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/seasons/',
+            method='GET',
+            resource_path='/seasons/activity_check/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -314,9 +427,9 @@ class SeasonsApi:
 
 
     @validate_call
-    async def seasons_delete(
+    async def seasons_activity_check_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this activity check.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -329,11 +442,11 @@ class SeasonsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """seasons_delete
+    ) -> ActivityCheck:
+        """seasons_activity_check_read
 
 
-        :param id: A unique integer value identifying this seasons. (required)
+        :param id: A unique integer value identifying this activity check. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -357,7 +470,7 @@ class SeasonsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._seasons_delete_serialize(
+        _param = self._seasons_activity_check_read_serialize(
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -366,7 +479,7 @@ class SeasonsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "ActivityCheck",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -380,9 +493,9 @@ class SeasonsApi:
 
 
     @validate_call
-    async def seasons_delete_with_http_info(
+    async def seasons_activity_check_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this activity check.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -395,11 +508,11 @@ class SeasonsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """seasons_delete
+    ) -> ApiResponse[ActivityCheck]:
+        """seasons_activity_check_read
 
 
-        :param id: A unique integer value identifying this seasons. (required)
+        :param id: A unique integer value identifying this activity check. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -423,7 +536,7 @@ class SeasonsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._seasons_delete_serialize(
+        _param = self._seasons_activity_check_read_serialize(
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -432,7 +545,7 @@ class SeasonsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "ActivityCheck",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -446,9 +559,9 @@ class SeasonsApi:
 
 
     @validate_call
-    async def seasons_delete_without_preload_content(
+    async def seasons_activity_check_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this activity check.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -462,10 +575,10 @@ class SeasonsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """seasons_delete
+        """seasons_activity_check_read
 
 
-        :param id: A unique integer value identifying this seasons. (required)
+        :param id: A unique integer value identifying this activity check. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -489,7 +602,7 @@ class SeasonsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._seasons_delete_serialize(
+        _param = self._seasons_activity_check_read_serialize(
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -498,7 +611,7 @@ class SeasonsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "ActivityCheck",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -507,7 +620,7 @@ class SeasonsApi:
         return response_data.response
 
 
-    def _seasons_delete_serialize(
+    def _seasons_activity_check_read_serialize(
         self,
         id,
         _request_auth,
@@ -539,6 +652,13 @@ class SeasonsApi:
         # process the body parameter
 
 
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
@@ -547,8 +667,8 @@ class SeasonsApi:
         ]
 
         return self.api_client.param_serialize(
-            method='DELETE',
-            resource_path='/seasons/{id}/',
+            method='GET',
+            resource_path='/seasons/activity_check/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1389,298 +1509,12 @@ class SeasonsApi:
 
 
     @validate_call
-    async def seasons_partial_update(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
-        data: Season,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Season:
-        """seasons_partial_update
-
-
-        :param id: A unique integer value identifying this seasons. (required)
-        :type id: int
-        :param data: (required)
-        :type data: Season
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._seasons_partial_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Season",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    async def seasons_partial_update_with_http_info(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
-        data: Season,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Season]:
-        """seasons_partial_update
-
-
-        :param id: A unique integer value identifying this seasons. (required)
-        :type id: int
-        :param data: (required)
-        :type data: Season
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._seasons_partial_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Season",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    async def seasons_partial_update_without_preload_content(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
-        data: Season,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """seasons_partial_update
-
-
-        :param id: A unique integer value identifying this seasons. (required)
-        :type id: int
-        :param data: (required)
-        :type data: Season
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._seasons_partial_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Season",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _seasons_partial_update_serialize(
-        self,
-        id,
-        data,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if data is not None:
-            _body_params = data
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'Api-Key'
-        ]
-
-        return self.api_client.param_serialize(
-            method='PATCH',
-            resource_path='/seasons/{id}/',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     async def seasons_player_intents(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
         returning: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
-        missing: Annotated[Optional[StrictBool], Field(description="If the player has filled out their intent form or not.")] = None,
+        missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1704,7 +1538,7 @@ class SeasonsApi:
         :type discord_id: int
         :param returning: If the player is returning or not.
         :type returning: bool
-        :param missing: If the player has filled out their intent form or not.
+        :param missing: If the player has responded or not.
         :type missing: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1760,7 +1594,7 @@ class SeasonsApi:
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
         returning: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
-        missing: Annotated[Optional[StrictBool], Field(description="If the player has filled out their intent form or not.")] = None,
+        missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1784,7 +1618,7 @@ class SeasonsApi:
         :type discord_id: int
         :param returning: If the player is returning or not.
         :type returning: bool
-        :param missing: If the player has filled out their intent form or not.
+        :param missing: If the player has responded or not.
         :type missing: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1840,7 +1674,7 @@ class SeasonsApi:
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
         returning: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
-        missing: Annotated[Optional[StrictBool], Field(description="If the player has filled out their intent form or not.")] = None,
+        missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1864,7 +1698,7 @@ class SeasonsApi:
         :type discord_id: int
         :param returning: If the player is returning or not.
         :type returning: bool
-        :param missing: If the player has filled out their intent form or not.
+        :param missing: If the player has responded or not.
         :type missing: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2231,292 +2065,6 @@ class SeasonsApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/seasons/{id}/',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    async def seasons_update(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
-        data: Season,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Season:
-        """seasons_update
-
-
-        :param id: A unique integer value identifying this seasons. (required)
-        :type id: int
-        :param data: (required)
-        :type data: Season
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._seasons_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Season",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    async def seasons_update_with_http_info(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
-        data: Season,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Season]:
-        """seasons_update
-
-
-        :param id: A unique integer value identifying this seasons. (required)
-        :type id: int
-        :param data: (required)
-        :type data: Season
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._seasons_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Season",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    async def seasons_update_without_preload_content(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this seasons.")],
-        data: Season,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """seasons_update
-
-
-        :param id: A unique integer value identifying this seasons. (required)
-        :type id: int
-        :param data: (required)
-        :type data: Season
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._seasons_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "Season",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _seasons_update_serialize(
-        self,
-        id,
-        data,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if data is not None:
-            _body_params = data
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'Api-Key'
-        ]
-
-        return self.api_client.param_serialize(
-            method='PUT',
             resource_path='/seasons/{id}/',
             path_params=_path_params,
             query_params=_query_params,

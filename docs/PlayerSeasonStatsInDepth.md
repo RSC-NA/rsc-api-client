@@ -118,6 +118,7 @@ Name | Type | Description | Notes
 **saves** | **int** |  | [optional] 
 **assists** | **int** |  | [optional] 
 **points** | **int** |  | [optional] 
+**cycles** | **int** |  | [optional] 
 **hat_tricks** | **int** |  | [optional] 
 **playmakers** | **int** |  | [optional] 
 **saviors** | **int** |  | [optional] 

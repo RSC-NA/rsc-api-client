@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.league import League
@@ -29,13 +29,15 @@ class ElevatedRole(BaseModel):
     """
     ElevatedRole
     """ # noqa: E501
+    id: Optional[StrictInt] = None
     league: League
     position: Optional[Annotated[str, Field(min_length=1, strict=True)]]
     gm: Optional[StrictBool] = None
     agm: Optional[StrictBool] = None
     arbiter: Optional[StrictBool] = None
     project_role: Annotated[str, Field(min_length=0, strict=True)]
-    __properties: ClassVar[List[str]] = ["league", "position", "gm", "agm", "arbiter", "project_role"]
+    franchise_id: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["id", "league", "position", "gm", "agm", "arbiter", "project_role", "franchise_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,11 +72,15 @@ class ElevatedRole(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "id",
             "gm",
             "agm",
             "arbiter",
+            "franchise_id",
         ])
 
         _dict = self.model_dump(
@@ -102,12 +108,14 @@ class ElevatedRole(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "id": obj.get("id"),
             "league": League.from_dict(obj["league"]) if obj.get("league") is not None else None,
             "position": obj.get("position"),
             "gm": obj.get("gm"),
             "agm": obj.get("agm"),
             "arbiter": obj.get("arbiter"),
-            "project_role": obj.get("project_role")
+            "project_role": obj.get("project_role"),
+            "franchise_id": obj.get("franchise_id")
         })
         return _obj
 

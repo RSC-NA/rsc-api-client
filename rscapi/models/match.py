@@ -34,6 +34,7 @@ class Match(BaseModel):
     day: Optional[StrictInt] = None
     var_date: Optional[datetime] = Field(default=None, alias="date")
     game_name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    season_number: Optional[StrictInt] = None
     game_pass: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     num_games: Optional[StrictInt] = None
     match_format: Optional[StrictStr] = None
@@ -42,7 +43,7 @@ class Match(BaseModel):
     away_team: MatchTeam
     id: Optional[StrictInt] = None
     results: Optional[MatchResults]
-    __properties: ClassVar[List[str]] = ["day", "date", "game_name", "game_pass", "num_games", "match_format", "match_type", "home_team", "away_team", "id", "results"]
+    __properties: ClassVar[List[str]] = ["day", "date", "game_name", "season_number", "game_pass", "num_games", "match_format", "match_type", "home_team", "away_team", "id", "results"]
 
     @field_validator('match_format')
     def match_format_validate_enum(cls, value):
@@ -102,11 +103,13 @@ class Match(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "day",
             "var_date",
             "game_name",
+            "season_number",
             "game_pass",
             "num_games",
             "match_format",
@@ -153,6 +156,7 @@ class Match(BaseModel):
             "day": obj.get("day"),
             "date": obj.get("date"),
             "game_name": obj.get("game_name"),
+            "season_number": obj.get("season_number"),
             "game_pass": obj.get("game_pass"),
             "num_games": obj.get("num_games"),
             "match_format": obj.get("match_format"),

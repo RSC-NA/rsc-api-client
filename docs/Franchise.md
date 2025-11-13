@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **teams** | [**List[Team]**](Team.md) |  | [optional] [readonly] 
 **logo** | **str** |  | [optional] [readonly] 
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | 
+**agms** | [**List[FranchiseGM]**](FranchiseGM.md) |  | [optional] [readonly] 
 
 ## Example
 

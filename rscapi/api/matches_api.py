@@ -23,8 +23,6 @@ from typing_extensions import Annotated
 from rscapi.models.match import Match
 from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
-from rscapi.models.match_score_report import MatchScoreReport
-from rscapi.models.match_submission import MatchSubmission
 from rscapi.models.matches_list200_response import MatchesList200Response
 
 from rscapi.api_client import ApiClient, RequestSerialized
@@ -46,528 +44,6 @@ class MatchesApi:
 
 
     @validate_call
-    async def matches_create(
-        self,
-        data: MatchSubmission,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Match:
-        """matches_create
-
-
-        :param data: (required)
-        :type data: MatchSubmission
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_create_serialize(
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Match",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    async def matches_create_with_http_info(
-        self,
-        data: MatchSubmission,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Match]:
-        """matches_create
-
-
-        :param data: (required)
-        :type data: MatchSubmission
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_create_serialize(
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Match",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    async def matches_create_without_preload_content(
-        self,
-        data: MatchSubmission,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """matches_create
-
-
-        :param data: (required)
-        :type data: MatchSubmission
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_create_serialize(
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Match",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _matches_create_serialize(
-        self,
-        data,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if data is not None:
-            _body_params = data
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'Api-Key'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/matches/',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    async def matches_delete(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """matches_delete
-
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_delete_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    async def matches_delete_with_http_info(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """matches_delete
-
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_delete_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    async def matches_delete_without_preload_content(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """matches_delete
-
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_delete_serialize(
-            id=id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _matches_delete_serialize(
-        self,
-        id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'Api-Key'
-        ]
-
-        return self.api_client.param_serialize(
-            method='DELETE',
-            resource_path='/matches/{id}/',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
     async def matches_find_match(
         self,
         league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
@@ -575,7 +51,7 @@ class MatchesApi:
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
         match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
@@ -609,7 +85,7 @@ class MatchesApi:
         :type date__gt: str
         :param season: ID of the season to search for match.
         :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param day: Match day to query for.
         :type day: int
@@ -687,7 +163,7 @@ class MatchesApi:
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
         match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
@@ -721,7 +197,7 @@ class MatchesApi:
         :type date__gt: str
         :param season: ID of the season to search for match.
         :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param day: Match day to query for.
         :type day: int
@@ -799,7 +275,7 @@ class MatchesApi:
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
         match_type: Annotated[Optional[StrictStr], Field(description="Match Type")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="match_format")] = None,
@@ -833,7 +309,7 @@ class MatchesApi:
         :type date__gt: str
         :param season: ID of the season to search for match.
         :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param day: Match day to query for.
         :type day: int
@@ -1027,7 +503,7 @@ class MatchesApi:
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="team_name")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
@@ -1059,7 +535,7 @@ class MatchesApi:
         :type date__gt: str
         :param season: ID of the season to search for match.
         :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
         :type match_team_type: str
@@ -1137,7 +613,7 @@ class MatchesApi:
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="team_name")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
@@ -1169,7 +645,7 @@ class MatchesApi:
         :type date__gt: str
         :param season: ID of the season to search for match.
         :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
         :type match_team_type: str
@@ -1247,7 +723,7 @@ class MatchesApi:
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season Number (E.g: 24)")] = None,
         match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="team_name")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
@@ -1279,7 +755,7 @@ class MatchesApi:
         :type date__gt: str
         :param season: ID of the season to search for match.
         :type season: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season Number (E.g: 24)
         :type season_number: int
         :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
         :type match_team_type: str
@@ -1468,10 +944,9 @@ class MatchesApi:
 
 
     @validate_call
-    async def matches_partial_update(
+    async def matches_process_stats(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchList,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1485,13 +960,12 @@ class MatchesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> MatchList:
-        """matches_partial_update
+        """matches_process_stats
 
+        Process ballchasing stats for a given match
 
         :param id: A unique integer value identifying this matches. (required)
         :type id: int
-        :param data: (required)
-        :type data: MatchList
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1514,9 +988,8 @@ class MatchesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._matches_partial_update_serialize(
+        _param = self._matches_process_stats_serialize(
             id=id,
-            data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1525,6 +998,8 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "MatchList",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1538,10 +1013,9 @@ class MatchesApi:
 
 
     @validate_call
-    async def matches_partial_update_with_http_info(
+    async def matches_process_stats_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchList,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1555,13 +1029,12 @@ class MatchesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[MatchList]:
-        """matches_partial_update
+        """matches_process_stats
 
+        Process ballchasing stats for a given match
 
         :param id: A unique integer value identifying this matches. (required)
         :type id: int
-        :param data: (required)
-        :type data: MatchList
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1584,9 +1057,8 @@ class MatchesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._matches_partial_update_serialize(
+        _param = self._matches_process_stats_serialize(
             id=id,
-            data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1595,6 +1067,8 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "MatchList",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1608,10 +1082,9 @@ class MatchesApi:
 
 
     @validate_call
-    async def matches_partial_update_without_preload_content(
+    async def matches_process_stats_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchList,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1625,13 +1098,12 @@ class MatchesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """matches_partial_update
+        """matches_process_stats
 
+        Process ballchasing stats for a given match
 
         :param id: A unique integer value identifying this matches. (required)
         :type id: int
-        :param data: (required)
-        :type data: MatchList
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1654,9 +1126,8 @@ class MatchesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._matches_partial_update_serialize(
+        _param = self._matches_process_stats_serialize(
             id=id,
-            data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1665,6 +1136,8 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "MatchList",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1673,10 +1146,9 @@ class MatchesApi:
         return response_data.response
 
 
-    def _matches_partial_update_serialize(
+    def _matches_process_stats_serialize(
         self,
         id,
-        data,
         _request_auth,
         _content_type,
         _headers,
@@ -1704,8 +1176,6 @@ class MatchesApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if data is not None:
-            _body_params = data
 
 
         # set the HTTP header `Accept`
@@ -1716,19 +1186,6 @@ class MatchesApi:
                 ]
             )
 
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = [
@@ -1736,8 +1193,8 @@ class MatchesApi:
         ]
 
         return self.api_client.param_serialize(
-            method='PATCH',
-            resource_path='/matches/{id}/',
+            method='GET',
+            resource_path='/matches/{id}/process_stats/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2263,584 +1720,6 @@ class MatchesApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/matches/{id}/results/',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    async def matches_score_report(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchScoreReport,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> MatchResults:
-        """matches_score_report
-
-        Score report for initial match
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param data: (required)
-        :type data: MatchScoreReport
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_score_report_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "MatchResults",
-            '403': "Error",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    async def matches_score_report_with_http_info(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchScoreReport,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[MatchResults]:
-        """matches_score_report
-
-        Score report for initial match
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param data: (required)
-        :type data: MatchScoreReport
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_score_report_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "MatchResults",
-            '403': "Error",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    async def matches_score_report_without_preload_content(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchScoreReport,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """matches_score_report
-
-        Score report for initial match
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param data: (required)
-        :type data: MatchScoreReport
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_score_report_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '202': "MatchResults",
-            '403': "Error",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _matches_score_report_serialize(
-        self,
-        id,
-        data,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if data is not None:
-            _body_params = data
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'Api-Key'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/matches/{id}/score_report/',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    async def matches_update(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchList,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> MatchList:
-        """matches_update
-
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param data: (required)
-        :type data: MatchList
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    async def matches_update_with_http_info(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchList,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[MatchList]:
-        """matches_update
-
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param data: (required)
-        :type data: MatchList
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        await response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    async def matches_update_without_preload_content(
-        self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
-        data: MatchList,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """matches_update
-
-
-        :param id: A unique integer value identifying this matches. (required)
-        :type id: int
-        :param data: (required)
-        :type data: MatchList
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._matches_update_serialize(
-            id=id,
-            data=data,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
-        }
-        response_data = await self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _matches_update_serialize(
-        self,
-        id,
-        data,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
-        ] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if data is not None:
-            _body_params = data
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'Api-Key'
-        ]
-
-        return self.api_client.param_serialize(
-            method='PUT',
-            resource_path='/matches/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

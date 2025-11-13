@@ -34,7 +34,7 @@ class TrackerPeak(BaseModel):
     discord_id: Optional[StrictInt] = None
     status: Optional[StrictStr] = None
     pulls: Optional[StrictInt] = None
-    peaks: Optional[Dict[str, Any]] = None
+    peaks: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["id", "rsc_id", "name", "discord_id", "status", "pulls", "peaks"]
 
     @field_validator('status')

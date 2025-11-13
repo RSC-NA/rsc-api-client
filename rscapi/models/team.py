@@ -31,8 +31,8 @@ class Team(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = None
     name: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
-    franchise: Annotated[str, Field(min_length=1, strict=True)]
-    tier: Annotated[str, Field(min_length=1, strict=True)]
+    franchise: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
+    tier: Optional[Annotated[str, Field(min_length=1, strict=True)]] = None
     players: Optional[List[Player]] = None
     latest_season: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season"]

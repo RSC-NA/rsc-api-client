@@ -1,22 +1,22 @@
 # rscapi.SeasonsApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to *http://127.0.0.1:8000/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**seasons_create**](SeasonsApi.md#seasons_create) | **POST** /seasons/ | 
-[**seasons_delete**](SeasonsApi.md#seasons_delete) | **DELETE** /seasons/{id}/ | 
+[**seasons_activity_check_list**](SeasonsApi.md#seasons_activity_check_list) | **GET** /seasons/activity_check/ | 
+[**seasons_activity_check_read**](SeasonsApi.md#seasons_activity_check_read) | **GET** /seasons/activity_check/{id}/ | 
 [**seasons_franchise_standings**](SeasonsApi.md#seasons_franchise_standings) | **GET** /seasons/{id}/franchise_standings/ | 
 [**seasons_league_season**](SeasonsApi.md#seasons_league_season) | **GET** /seasons/league_season/ | 
 [**seasons_list**](SeasonsApi.md#seasons_list) | **GET** /seasons/ | 
-[**seasons_partial_update**](SeasonsApi.md#seasons_partial_update) | **PATCH** /seasons/{id}/ | 
 [**seasons_player_intents**](SeasonsApi.md#seasons_player_intents) | **GET** /seasons/{id}/player_intents/ | 
 [**seasons_read**](SeasonsApi.md#seasons_read) | **GET** /seasons/{id}/ | 
-[**seasons_update**](SeasonsApi.md#seasons_update) | **PUT** /seasons/{id}/ | 
 
 
-# **seasons_create**
-> Season seasons_create(data)
+# **seasons_activity_check_list**
+> SeasonsActivityCheckList200Response seasons_activity_check_list(discord_id=discord_id, completed=completed, returning_status=returning_status, missing=missing, season=season, season_number=season_number, limit=limit, offset=offset)
+
+List all activity checks for a given season.
 
 ### Example
 
@@ -24,14 +24,14 @@ Method | HTTP request | Description
 
 ```python
 import rscapi
-from rscapi.models.season import Season
+from rscapi.models.seasons_activity_check_list200_response import SeasonsActivityCheckList200Response
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://127.0.0.1:8000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -49,14 +49,21 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    data = rscapi.Season() # Season | 
+    discord_id = 56 # int | Discord ID of player intent to search for. (optional)
+    completed = True # bool | Check has been completed or not. (optional)
+    returning_status = True # bool | If the player is returning or not. (optional)
+    missing = True # bool | If the player has responded or not. (optional)
+    season = 56 # int | Season ID (E.g: 8) (optional)
+    season_number = 56 # int | Season Number (E.g: 24) (optional)
+    limit = 56 # int | Number of results to return per page. (optional)
+    offset = 56 # int | The initial index from which to return the results. (optional)
 
     try:
-        api_response = await api_instance.seasons_create(data)
-        print("The response of SeasonsApi->seasons_create:\n")
+        api_response = await api_instance.seasons_activity_check_list(discord_id=discord_id, completed=completed, returning_status=returning_status, missing=missing, season=season, season_number=season_number, limit=limit, offset=offset)
+        print("The response of SeasonsApi->seasons_activity_check_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_create: %s\n" % e)
+        print("Exception when calling SeasonsApi->seasons_activity_check_list: %s\n" % e)
 ```
 
 
@@ -66,82 +73,18 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**Season**](Season.md)|  | 
+ **discord_id** | **int**| Discord ID of player intent to search for. | [optional] 
+ **completed** | **bool**| Check has been completed or not. | [optional] 
+ **returning_status** | **bool**| If the player is returning or not. | [optional] 
+ **missing** | **bool**| If the player has responded or not. | [optional] 
+ **season** | **int**| Season ID (E.g: 8) | [optional] 
+ **season_number** | **int**| Season Number (E.g: 24) | [optional] 
+ **limit** | **int**| Number of results to return per page. | [optional] 
+ **offset** | **int**| The initial index from which to return the results. | [optional] 
 
 ### Return type
 
-[**Season**](Season.md)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **seasons_delete**
-> seasons_delete(id)
-
-### Example
-
-* Api Key Authentication (Api-Key):
-
-```python
-import rscapi
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
-
-    try:
-        await api_instance.seasons_delete(id)
-    except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
-
-### Return type
-
-void (empty response body)
+[**SeasonsActivityCheckList200Response**](SeasonsActivityCheckList200Response.md)
 
 ### Authorization
 
@@ -150,13 +93,87 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** |  |  -  |
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **seasons_activity_check_read**
+> ActivityCheck seasons_activity_check_read(id)
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.activity_check import ActivityCheck
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "http://127.0.0.1:8000/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.SeasonsApi(api_client)
+    id = 56 # int | A unique integer value identifying this activity check.
+
+    try:
+        api_response = await api_instance.seasons_activity_check_read(id)
+        print("The response of SeasonsApi->seasons_activity_check_read:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SeasonsApi->seasons_activity_check_read: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this activity check. | 
+
+### Return type
+
+[**ActivityCheck**](ActivityCheck.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -175,10 +192,10 @@ from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://127.0.0.1:8000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -251,10 +268,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://127.0.0.1:8000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -328,10 +345,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://127.0.0.1:8000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -393,82 +410,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **seasons_partial_update**
-> Season seasons_partial_update(id, data)
-
-### Example
-
-* Api Key Authentication (Api-Key):
-
-```python
-import rscapi
-from rscapi.models.season import Season
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
-    data = rscapi.Season() # Season | 
-
-    try:
-        api_response = await api_instance.seasons_partial_update(id, data)
-        print("The response of SeasonsApi->seasons_partial_update:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_partial_update: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
- **data** | [**Season**](Season.md)|  | 
-
-### Return type
-
-[**Season**](Season.md)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **seasons_player_intents**
 > List[IntentToPlay] seasons_player_intents(id, discord_id=discord_id, returning=returning, missing=missing)
 
@@ -484,10 +425,10 @@ from rscapi.models.intent_to_play import IntentToPlay
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://127.0.0.1:8000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -508,7 +449,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this seasons.
     discord_id = 56 # int | Discord ID of player intent to search for. (optional)
     returning = True # bool | If the player is returning or not. (optional)
-    missing = True # bool | If the player has filled out their intent form or not. (optional)
+    missing = True # bool | If the player has responded or not. (optional)
 
     try:
         api_response = await api_instance.seasons_player_intents(id, discord_id=discord_id, returning=returning, missing=missing)
@@ -528,7 +469,7 @@ Name | Type | Description  | Notes
  **id** | **int**| A unique integer value identifying this seasons. | 
  **discord_id** | **int**| Discord ID of player intent to search for. | [optional] 
  **returning** | **bool**| If the player is returning or not. | [optional] 
- **missing** | **bool**| If the player has filled out their intent form or not. | [optional] 
+ **missing** | **bool**| If the player has responded or not. | [optional] 
 
 ### Return type
 
@@ -565,10 +506,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://127.0.0.1:8000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -616,82 +557,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **seasons_update**
-> Season seasons_update(id, data)
-
-### Example
-
-* Api Key Authentication (Api-Key):
-
-```python
-import rscapi
-from rscapi.models.season import Season
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
-    data = rscapi.Season() # Season | 
-
-    try:
-        api_response = await api_instance.seasons_update(id, data)
-        print("The response of SeasonsApi->seasons_update:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_update: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
- **data** | [**Season**](Season.md)|  | 
-
-### Return type
-
-[**Season**](Season.md)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details

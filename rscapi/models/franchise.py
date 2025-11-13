@@ -41,7 +41,8 @@ class Franchise(BaseModel):
     teams: Optional[List[Team]] = None
     logo: Optional[StrictStr] = None
     gm: FranchiseGM
-    __properties: ClassVar[List[str]] = ["name", "prefix", "id", "league", "tiers", "active", "teams", "logo", "gm"]
+    agms: Optional[List[FranchiseGM]] = None
+    __properties: ClassVar[List[str]] = ["name", "prefix", "id", "league", "tiers", "active", "teams", "logo", "gm", "agms"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +79,7 @@ class Franchise(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
@@ -85,6 +87,7 @@ class Franchise(BaseModel):
             "active",
             "teams",
             "logo",
+            "agms",
         ])
 
         _dict = self.model_dump(
@@ -112,6 +115,13 @@ class Franchise(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of gm
         if self.gm:
             _dict['gm'] = self.gm.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in agms (list)
+        _items = []
+        if self.agms:
+            for _item_agms in self.agms:
+                if _item_agms:
+                    _items.append(_item_agms.to_dict())
+            _dict['agms'] = _items
         return _dict
 
     @classmethod
@@ -132,7 +142,8 @@ class Franchise(BaseModel):
             "active": obj.get("active"),
             "teams": [Team.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None,
             "logo": obj.get("logo"),
-            "gm": FranchiseGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None
+            "gm": FranchiseGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None,
+            "agms": [FranchiseGM.from_dict(_item) for _item in obj["agms"]] if obj.get("agms") is not None else None
         })
         return _obj
 

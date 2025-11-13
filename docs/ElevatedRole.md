@@ -5,12 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] [readonly] 
 **league** | [**League**](League.md) |  | 
 **position** | **str** |  | 
 **gm** | **bool** |  | [optional] [readonly] 
 **agm** | **bool** |  | [optional] [readonly] 
 **arbiter** | **bool** |  | [optional] [readonly] 
 **project_role** | **str** |  | 
+**franchise_id** | **str** |  | [optional] [readonly] 
 
 ## Example
 

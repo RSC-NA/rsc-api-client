@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **home_wins** | **int** |  | [optional] [readonly] 
 **away_wins** | **int** |  | [optional] [readonly] 
-**games** | [**List[ListGames]**](ListGames.md) |  | 
 
 ## Example
 
