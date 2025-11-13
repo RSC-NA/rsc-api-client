@@ -275,6 +275,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_create_member_input.py
-test/test_elevated_role_input.py
 tox.ini
