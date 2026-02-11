@@ -577,6 +577,7 @@ class LeaguePlayersApi:
         league: Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
         franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
+        captain: Annotated[Optional[StrictStr], Field(description="captain")] = None,
         sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
@@ -615,6 +616,8 @@ class LeaguePlayersApi:
         :type team_name: str
         :param franchise: Name of franchise players are in.
         :type franchise: str
+        :param captain: captain
+        :type captain: str
         :param sub_status: Player current substitution status.
         :type sub_status: int
         :param discord_id: Discord ID of League Player
@@ -655,6 +658,7 @@ class LeaguePlayersApi:
             league=league,
             team_name=team_name,
             franchise=franchise,
+            captain=captain,
             sub_status=sub_status,
             discord_id=discord_id,
             limit=limit,
@@ -691,6 +695,7 @@ class LeaguePlayersApi:
         league: Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
         franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
+        captain: Annotated[Optional[StrictStr], Field(description="captain")] = None,
         sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
@@ -729,6 +734,8 @@ class LeaguePlayersApi:
         :type team_name: str
         :param franchise: Name of franchise players are in.
         :type franchise: str
+        :param captain: captain
+        :type captain: str
         :param sub_status: Player current substitution status.
         :type sub_status: int
         :param discord_id: Discord ID of League Player
@@ -769,6 +776,7 @@ class LeaguePlayersApi:
             league=league,
             team_name=team_name,
             franchise=franchise,
+            captain=captain,
             sub_status=sub_status,
             discord_id=discord_id,
             limit=limit,
@@ -805,6 +813,7 @@ class LeaguePlayersApi:
         league: Annotated[Optional[StrictInt], Field(description="ID of League player is in.")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
         franchise: Annotated[Optional[StrictStr], Field(description="Name of franchise players are in.")] = None,
+        captain: Annotated[Optional[StrictStr], Field(description="captain")] = None,
         sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of League Player")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
@@ -843,6 +852,8 @@ class LeaguePlayersApi:
         :type team_name: str
         :param franchise: Name of franchise players are in.
         :type franchise: str
+        :param captain: captain
+        :type captain: str
         :param sub_status: Player current substitution status.
         :type sub_status: int
         :param discord_id: Discord ID of League Player
@@ -883,6 +894,7 @@ class LeaguePlayersApi:
             league=league,
             team_name=team_name,
             franchise=franchise,
+            captain=captain,
             sub_status=sub_status,
             discord_id=discord_id,
             limit=limit,
@@ -914,6 +926,7 @@ class LeaguePlayersApi:
         league,
         team_name,
         franchise,
+        captain,
         sub_status,
         discord_id,
         limit,
@@ -975,6 +988,10 @@ class LeaguePlayersApi:
         if franchise is not None:
             
             _query_params.append(('franchise', franchise))
+            
+        if captain is not None:
+            
+            _query_params.append(('captain', captain))
             
         if sub_status is not None:
             

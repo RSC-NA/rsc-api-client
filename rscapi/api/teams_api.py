@@ -903,9 +903,10 @@ class TeamsApi:
     @validate_call
     async def teams_match(
         self,
-        day: Annotated[StrictInt, Field(description="Match day to find")],
-        id: Annotated[StrictInt, Field(description="ID of the team to retrieve.")],
-        preseason: Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        day: StrictInt,
+        preseason: Optional[StrictBool] = None,
+        season_number: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -923,12 +924,14 @@ class TeamsApi:
 
         Get a match details for a specific day for the given team
 
-        :param day: Match day to find (required)
-        :type day: int
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
-        :param preseason: 1 if this is a preseason match.
-        :type preseason: int
+        :param day: (required)
+        :type day: int
+        :param preseason:
+        :type preseason: bool
+        :param season_number:
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -952,9 +955,10 @@ class TeamsApi:
         """ # noqa: E501
 
         _param = self._teams_match_serialize(
-            day=day,
             id=id,
+            day=day,
             preseason=preseason,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -980,9 +984,10 @@ class TeamsApi:
     @validate_call
     async def teams_match_with_http_info(
         self,
-        day: Annotated[StrictInt, Field(description="Match day to find")],
-        id: Annotated[StrictInt, Field(description="ID of the team to retrieve.")],
-        preseason: Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        day: StrictInt,
+        preseason: Optional[StrictBool] = None,
+        season_number: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1000,12 +1005,14 @@ class TeamsApi:
 
         Get a match details for a specific day for the given team
 
-        :param day: Match day to find (required)
-        :type day: int
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
-        :param preseason: 1 if this is a preseason match.
-        :type preseason: int
+        :param day: (required)
+        :type day: int
+        :param preseason:
+        :type preseason: bool
+        :param season_number:
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1029,9 +1036,10 @@ class TeamsApi:
         """ # noqa: E501
 
         _param = self._teams_match_serialize(
-            day=day,
             id=id,
+            day=day,
             preseason=preseason,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1057,9 +1065,10 @@ class TeamsApi:
     @validate_call
     async def teams_match_without_preload_content(
         self,
-        day: Annotated[StrictInt, Field(description="Match day to find")],
-        id: Annotated[StrictInt, Field(description="ID of the team to retrieve.")],
-        preseason: Annotated[Optional[StrictInt], Field(description="1 if this is a preseason match.")] = None,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        day: StrictInt,
+        preseason: Optional[StrictBool] = None,
+        season_number: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1077,12 +1086,14 @@ class TeamsApi:
 
         Get a match details for a specific day for the given team
 
-        :param day: Match day to find (required)
-        :type day: int
-        :param id: ID of the team to retrieve. (required)
+        :param id: A unique integer value identifying this teams. (required)
         :type id: int
-        :param preseason: 1 if this is a preseason match.
-        :type preseason: int
+        :param day: (required)
+        :type day: int
+        :param preseason:
+        :type preseason: bool
+        :param season_number:
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1106,9 +1117,10 @@ class TeamsApi:
         """ # noqa: E501
 
         _param = self._teams_match_serialize(
-            day=day,
             id=id,
+            day=day,
             preseason=preseason,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1129,9 +1141,10 @@ class TeamsApi:
 
     def _teams_match_serialize(
         self,
-        day,
         id,
+        day,
         preseason,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -1163,6 +1176,10 @@ class TeamsApi:
         if preseason is not None:
             
             _query_params.append(('preseason', preseason))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
