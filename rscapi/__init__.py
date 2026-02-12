@@ -133,6 +133,7 @@ __all__ = [
     "TeamList",
     "TeamPatch",
     "TeamSeasonStats",
+    "TeamStandings",
     "TeamsContracts",
     "TemporaryFASub",
     "Tier",
@@ -277,6 +278,7 @@ from rscapi.models.team_franchise import TeamFranchise as TeamFranchise
 from rscapi.models.team_list import TeamList as TeamList
 from rscapi.models.team_patch import TeamPatch as TeamPatch
 from rscapi.models.team_season_stats import TeamSeasonStats as TeamSeasonStats
+from rscapi.models.team_standings import TeamStandings as TeamStandings
 from rscapi.models.teams_contracts import TeamsContracts as TeamsContracts
 from rscapi.models.temporary_fa_sub import TemporaryFASub as TemporaryFASub
 from rscapi.models.tier import Tier as Tier

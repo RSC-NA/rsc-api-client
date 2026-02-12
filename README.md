@@ -215,6 +215,7 @@ Class | Method | HTTP request | Description
 *TiersApi* | [**tiers_postseason_player_stats**](docs/TiersApi.md#tiers_postseason_player_stats) | **GET** /tiers/{id}/postseason_player_stats/ | 
 *TiersApi* | [**tiers_postseason_team_stats**](docs/TiersApi.md#tiers_postseason_team_stats) | **GET** /tiers/{id}/postseason_team_stats/ | 
 *TiersApi* | [**tiers_read**](docs/TiersApi.md#tiers_read) | **GET** /tiers/{id}/ | 
+*TiersApi* | [**tiers_standings**](docs/TiersApi.md#tiers_standings) | **GET** /tiers/{id}/standings/ | 
 *TiersApi* | [**tiers_team_stats**](docs/TiersApi.md#tiers_team_stats) | **GET** /tiers/{id}/team_stats/ | 
 *TiersApi* | [**tiers_teams**](docs/TiersApi.md#tiers_teams) | **GET** /tiers/{id}/teams/ | 
 *TiersApi* | [**tiers_update**](docs/TiersApi.md#tiers_update) | **PUT** /tiers/{id}/ | 
@@ -338,6 +339,7 @@ Class | Method | HTTP request | Description
  - [TeamList](docs/TeamList.md)
  - [TeamPatch](docs/TeamPatch.md)
  - [TeamSeasonStats](docs/TeamSeasonStats.md)
+ - [TeamStandings](docs/TeamStandings.md)
  - [TeamsContracts](docs/TeamsContracts.md)
  - [TemporaryFASub](docs/TemporaryFASub.md)
  - [Tier](docs/Tier.md)

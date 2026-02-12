@@ -104,6 +104,7 @@ docs/TeamFranchise.md
 docs/TeamList.md
 docs/TeamPatch.md
 docs/TeamSeasonStats.md
+docs/TeamStandings.md
 docs/TeamsApi.md
 docs/TeamsContracts.md
 docs/TemporaryFASub.md
@@ -246,6 +247,7 @@ rscapi/models/team_franchise.py
 rscapi/models/team_list.py
 rscapi/models/team_patch.py
 rscapi/models/team_season_stats.py
+rscapi/models/team_standings.py
 rscapi/models/teams_contracts.py
 rscapi/models/temporary_fa_sub.py
 rscapi/models/tier.py
@@ -275,4 +277,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_team_standings.py
 tox.ini

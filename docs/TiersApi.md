@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**tiers_postseason_player_stats**](TiersApi.md#tiers_postseason_player_stats) | **GET** /tiers/{id}/postseason_player_stats/ | 
 [**tiers_postseason_team_stats**](TiersApi.md#tiers_postseason_team_stats) | **GET** /tiers/{id}/postseason_team_stats/ | 
 [**tiers_read**](TiersApi.md#tiers_read) | **GET** /tiers/{id}/ | 
+[**tiers_standings**](TiersApi.md#tiers_standings) | **GET** /tiers/{id}/standings/ | 
 [**tiers_team_stats**](TiersApi.md#tiers_team_stats) | **GET** /tiers/{id}/team_stats/ | 
 [**tiers_teams**](TiersApi.md#tiers_teams) | **GET** /tiers/{id}/teams/ | 
 [**tiers_update**](TiersApi.md#tiers_update) | **PUT** /tiers/{id}/ | 
@@ -720,6 +721,86 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tiers_standings**
+> List[TeamStandings] tiers_standings(id, season)
+
+Get standings for a specific tier in a league and season.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.team_standings import TeamStandings
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TiersApi(api_client)
+    id = 56 # int | A unique integer value identifying this tier.
+    season = 56 # int | Season number to query for.
+
+    try:
+        api_response = await api_instance.tiers_standings(id, season)
+        print("The response of TiersApi->tiers_standings:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TiersApi->tiers_standings: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this tier. | 
+ **season** | **int**| Season number to query for. | 
+
+### Return type
+
+[**List[TeamStandings]**](TeamStandings.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**400** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

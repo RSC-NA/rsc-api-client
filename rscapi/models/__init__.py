@@ -106,6 +106,7 @@ from rscapi.models.team_franchise import TeamFranchise
 from rscapi.models.team_list import TeamList
 from rscapi.models.team_patch import TeamPatch
 from rscapi.models.team_season_stats import TeamSeasonStats
+from rscapi.models.team_standings import TeamStandings
 from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.models.temporary_fa_sub import TemporaryFASub
 from rscapi.models.tier import Tier
