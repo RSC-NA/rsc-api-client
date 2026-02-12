@@ -13,6 +13,7 @@
 """  # noqa: E501
 
 
+import base64
 import copy
 import http.client as httplib
 import logging
@@ -21,7 +22,6 @@ import sys
 from typing import Any, ClassVar, Dict, List, Literal, Optional, TypedDict, Union
 from typing_extensions import NotRequired, Self
 
-import urllib3
 
 
 JSON_SCHEMA_VALIDATION_KEYWORDS = {
@@ -164,7 +164,7 @@ class Configuration:
     :param ca_cert_data: verify the peer using concatenated CA certificate data
       in PEM (str) or DER (bytes) format.
     :param cert_file: the path to a client certificate file, for mTLS.
-    :param key_file: the path to a client key file, for mTLS. 
+    :param key_file: the path to a client key file, for mTLS.
 
     :Example:
 
@@ -257,7 +257,6 @@ conf = rscapi.Configuration(
         """Logging Settings
         """
         self.logger["package_logger"] = logging.getLogger("rscapi")
-        self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         self.logger_format = '%(asctime)s %(levelname)s %(message)s'
         """Log format
         """
@@ -502,9 +501,10 @@ conf = rscapi.Configuration(
         password = ""
         if self.password is not None:
             password = self.password
-        return urllib3.util.make_headers(
-            basic_auth=username + ':' + password
-        ).get('authorization')
+
+        return "Basic " + base64.b64encode(
+            (username + ":" + password).encode('utf-8')
+        ).decode('utf-8')
 
     def auth_settings(self)-> AuthSettings:
         """Gets Auth Settings dict for api client.
@@ -580,6 +580,7 @@ conf = rscapi.Configuration(
                 variable_name, variable['default_value'])
 
             if 'enum_values' in variable \
+                    and variable['enum_values'] \
                     and used_value not in variable['enum_values']:
                 raise ValueError(
                     "The variable `{0}` in the host URL has invalid value "

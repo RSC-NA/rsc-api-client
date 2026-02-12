@@ -482,7 +482,7 @@ Name | Type | Description  | Notes
 # **seasons_list**
 > List[Season] seasons_list(league=league, number=number, current=current)
 
-Get all seasons.
+Get list of seasons.
 
 ### Example
 
@@ -515,9 +515,9 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    league = 'league_example' # str | league (optional)
-    number = 'number_example' # str | number (optional)
-    current = 'current_example' # str | current (optional)
+    league = 56 # int | ID of league to filter seasons by. (optional)
+    number = 56 # int | Season number to filter seasons by. (optional)
+    current = True # bool | If true, only return the current season(s). (optional)
 
     try:
         api_response = await api_instance.seasons_list(league=league, number=number, current=current)
@@ -534,9 +534,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **str**| league | [optional] 
- **number** | **str**| number | [optional] 
- **current** | **str**| current | [optional] 
+ **league** | **int**| ID of league to filter seasons by. | [optional] 
+ **number** | **int**| Season number to filter seasons by. | [optional] 
+ **current** | **bool**| If true, only return the current season(s). | [optional] 
 
 ### Return type
 

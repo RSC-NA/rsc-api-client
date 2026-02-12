@@ -2333,7 +2333,6 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "MatchResults",
-            '400': "Error",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(
@@ -2402,7 +2401,6 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "MatchResults",
-            '400': "Error",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(
@@ -2471,7 +2469,6 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "MatchResults",
-            '400': "Error",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(

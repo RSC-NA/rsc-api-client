@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr
+from pydantic import Field, StrictBool, StrictInt
 from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.activity_check import ActivityCheck
@@ -1736,9 +1736,9 @@ class SeasonsApi:
     @validate_call
     async def seasons_list(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="league")] = None,
-        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
-        current: Annotated[Optional[StrictStr], Field(description="current")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of league to filter seasons by.")] = None,
+        number: Annotated[Optional[StrictInt], Field(description="Season number to filter seasons by.")] = None,
+        current: Annotated[Optional[StrictBool], Field(description="If true, only return the current season(s).")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1754,14 +1754,14 @@ class SeasonsApi:
     ) -> List[Season]:
         """seasons_list
 
-        Get all seasons.
+        Get list of seasons.
 
-        :param league: league
-        :type league: str
-        :param number: number
-        :type number: str
-        :param current: current
-        :type current: str
+        :param league: ID of league to filter seasons by.
+        :type league: int
+        :param number: Season number to filter seasons by.
+        :type number: int
+        :param current: If true, only return the current season(s).
+        :type current: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1811,9 +1811,9 @@ class SeasonsApi:
     @validate_call
     async def seasons_list_with_http_info(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="league")] = None,
-        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
-        current: Annotated[Optional[StrictStr], Field(description="current")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of league to filter seasons by.")] = None,
+        number: Annotated[Optional[StrictInt], Field(description="Season number to filter seasons by.")] = None,
+        current: Annotated[Optional[StrictBool], Field(description="If true, only return the current season(s).")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1829,14 +1829,14 @@ class SeasonsApi:
     ) -> ApiResponse[List[Season]]:
         """seasons_list
 
-        Get all seasons.
+        Get list of seasons.
 
-        :param league: league
-        :type league: str
-        :param number: number
-        :type number: str
-        :param current: current
-        :type current: str
+        :param league: ID of league to filter seasons by.
+        :type league: int
+        :param number: Season number to filter seasons by.
+        :type number: int
+        :param current: If true, only return the current season(s).
+        :type current: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1886,9 +1886,9 @@ class SeasonsApi:
     @validate_call
     async def seasons_list_without_preload_content(
         self,
-        league: Annotated[Optional[StrictStr], Field(description="league")] = None,
-        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
-        current: Annotated[Optional[StrictStr], Field(description="current")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of league to filter seasons by.")] = None,
+        number: Annotated[Optional[StrictInt], Field(description="Season number to filter seasons by.")] = None,
+        current: Annotated[Optional[StrictBool], Field(description="If true, only return the current season(s).")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1904,14 +1904,14 @@ class SeasonsApi:
     ) -> RESTResponseType:
         """seasons_list
 
-        Get all seasons.
+        Get list of seasons.
 
-        :param league: league
-        :type league: str
-        :param number: number
-        :type number: str
-        :param current: current
-        :type current: str
+        :param league: ID of league to filter seasons by.
+        :type league: int
+        :param number: Season number to filter seasons by.
+        :type number: int
+        :param current: If true, only return the current season(s).
+        :type current: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
