@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **home_wins** | **int** |  | [optional] 
 **away_wins** | **int** |  | [optional] 
 **manual** | **bool** |  | [optional] 
-**ballchasing_group** | **str** |  | [optional] 
+**ballchasing_group** | **str** |  | 
 
 ## Example
 

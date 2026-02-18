@@ -1542,6 +1542,7 @@ class FranchisesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Franchise",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1609,6 +1610,7 @@ class FranchisesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Franchise",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1676,6 +1678,7 @@ class FranchisesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "Franchise",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,

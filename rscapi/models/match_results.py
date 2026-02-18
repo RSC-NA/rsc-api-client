@@ -31,7 +31,7 @@ class MatchResults(BaseModel):
     home_wins: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     away_wins: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     manual: Optional[StrictBool] = None
-    ballchasing_group: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=64)]] = None
+    ballchasing_group: Annotated[str, Field(min_length=0, strict=True, max_length=64)]
     __properties: ClassVar[List[str]] = ["home_wins", "away_wins", "manual", "ballchasing_group"]
 
     model_config = ConfigDict(
