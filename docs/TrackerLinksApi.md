@@ -539,7 +539,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_migrate_pulls**
-> TrackerIDInput tracker_links_migrate_pulls(id, data)
+> TrackerLink tracker_links_migrate_pulls(id, data)
 
 Migrates MMR pulls from one tracker link to another.
 
@@ -550,6 +550,7 @@ Migrates MMR pulls from one tracker link to another.
 ```python
 import rscapi
 from rscapi.models.tracker_id_input import TrackerIDInput
+from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -597,7 +598,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrackerIDInput**](TrackerIDInput.md)
+[**TrackerLink**](TrackerLink.md)
 
 ### Authorization
 
@@ -612,7 +613,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

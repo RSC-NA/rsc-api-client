@@ -1965,7 +1965,7 @@ class TrackerLinksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TrackerIDInput:
+    ) -> TrackerLink:
         """tracker_links_migrate_pulls
 
         Migrates MMR pulls from one tracker link to another.
@@ -2006,7 +2006,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "TrackerIDInput",
+            '200': "TrackerLink",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2036,7 +2036,7 @@ class TrackerLinksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TrackerIDInput]:
+    ) -> ApiResponse[TrackerLink]:
         """tracker_links_migrate_pulls
 
         Migrates MMR pulls from one tracker link to another.
@@ -2077,7 +2077,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "TrackerIDInput",
+            '200': "TrackerLink",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2148,7 +2148,7 @@ class TrackerLinksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "TrackerIDInput",
+            '200': "TrackerLink",
         }
         response_data = await self.api_client.call_api(
             *_param,
