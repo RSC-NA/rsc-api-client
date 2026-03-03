@@ -163,7 +163,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **matches_find_match**
-> List[Match] matches_find_match(league, teams, date__lt=date__lt, date__gt=date__gt, season=season, season_number=season_number, day=day, match_type=match_type, match_format=match_format, limit=limit, offset=offset, preseason=preseason)
+> List[Match] matches_find_match(league, teams, limit=limit, offset=offset, date__lt=date__lt, date__gt=date__gt, season=season, season_number=season_number, day=day, match_type=match_type, match_format=match_format)
 
 Find a match for a team or teams.
 
@@ -198,21 +198,20 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    league = 56 # int | ID of the league to get team matches for
-    teams = 'teams_example' # str | Comma delimited list of teams to get names for.
-    date__lt = 'date__lt_example' # str | Date less than in datetime isoformat. (optional)
-    date__gt = 'date__gt_example' # str | Date greater than in datetime isoformat. (optional)
-    season = 56 # int | ID of the season to search for match. (optional)
-    season_number = 56 # int | Season Number (E.g: 24) (optional)
-    day = 56 # int | Match day to query for. (optional)
-    match_type = 'match_type_example' # str | Match Type (optional)
-    match_format = 'match_format_example' # str | match_format (optional)
+    league = 56 # int | 
+    teams = 'teams_example' # str | Comma-separated list of team names
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
-    preseason = 56 # int | 1 If these matches are preseason, otherwise 0 (optional)
+    date__lt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+    date__gt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
+    season = 56 # int |  (optional)
+    season_number = 56 # int |  (optional)
+    day = 56 # int |  (optional)
+    match_type = REG # str |  (optional) (default to REG)
+    match_format = 'match_format_example' # str |  (optional)
 
     try:
-        api_response = await api_instance.matches_find_match(league, teams, date__lt=date__lt, date__gt=date__gt, season=season, season_number=season_number, day=day, match_type=match_type, match_format=match_format, limit=limit, offset=offset, preseason=preseason)
+        api_response = await api_instance.matches_find_match(league, teams, limit=limit, offset=offset, date__lt=date__lt, date__gt=date__gt, season=season, season_number=season_number, day=day, match_type=match_type, match_format=match_format)
         print("The response of MatchesApi->matches_find_match:\n")
         pprint(api_response)
     except Exception as e:
@@ -226,18 +225,17 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **int**| ID of the league to get team matches for | 
- **teams** | **str**| Comma delimited list of teams to get names for. | 
- **date__lt** | **str**| Date less than in datetime isoformat. | [optional] 
- **date__gt** | **str**| Date greater than in datetime isoformat. | [optional] 
- **season** | **int**| ID of the season to search for match. | [optional] 
- **season_number** | **int**| Season Number (E.g: 24) | [optional] 
- **day** | **int**| Match day to query for. | [optional] 
- **match_type** | **str**| Match Type | [optional] 
- **match_format** | **str**| match_format | [optional] 
+ **league** | **int**|  | 
+ **teams** | **str**| Comma-separated list of team names | 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
- **preseason** | **int**| 1 If these matches are preseason, otherwise 0 | [optional] 
+ **date__lt** | **datetime**|  | [optional] 
+ **date__gt** | **datetime**|  | [optional] 
+ **season** | **int**|  | [optional] 
+ **season_number** | **int**|  | [optional] 
+ **day** | **int**|  | [optional] 
+ **match_type** | **str**|  | [optional] [default to REG]
+ **match_format** | **str**|  | [optional] 
 
 ### Return type
 
