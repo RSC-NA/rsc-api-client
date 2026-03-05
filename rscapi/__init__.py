@@ -102,6 +102,7 @@ __all__ = [
     "MembersList200Response",
     "NameChangeHistory",
     "NumbersMmrList200Response",
+    "PaginatedMatch",
     "Player",
     "Player1",
     "PlayerActivityCheckSchema",
@@ -247,6 +248,7 @@ from rscapi.models.member_transfer_schema import MemberTransferSchema as MemberT
 from rscapi.models.members_list200_response import MembersList200Response as MembersList200Response
 from rscapi.models.name_change_history import NameChangeHistory as NameChangeHistory
 from rscapi.models.numbers_mmr_list200_response import NumbersMmrList200Response as NumbersMmrList200Response
+from rscapi.models.paginated_match import PaginatedMatch as PaginatedMatch
 from rscapi.models.player import Player as Player
 from rscapi.models.player1 import Player1 as Player1
 from rscapi.models.player_activity_check_schema import PlayerActivityCheckSchema as PlayerActivityCheckSchema

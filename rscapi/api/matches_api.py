@@ -19,7 +19,7 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.match import Match
 from rscapi.models.match_list import MatchList
@@ -27,6 +27,7 @@ from rscapi.models.match_results import MatchResults
 from rscapi.models.match_score_report import MatchScoreReport
 from rscapi.models.match_submission import MatchSubmission
 from rscapi.models.matches_list200_response import MatchesList200Response
+from rscapi.models.paginated_match import PaginatedMatch
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -594,7 +595,7 @@ class MatchesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[Match]:
+    ) -> PaginatedMatch:
         """matches_find_match
 
         Find a match for a team or teams.
@@ -662,7 +663,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[Match]",
+            '200': "PaginatedMatch",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(
@@ -702,7 +703,7 @@ class MatchesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[Match]]:
+    ) -> ApiResponse[PaginatedMatch]:
         """matches_find_match
 
         Find a match for a team or teams.
@@ -770,7 +771,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[Match]",
+            '200': "PaginatedMatch",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(
@@ -878,7 +879,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[Match]",
+            '200': "PaginatedMatch",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(

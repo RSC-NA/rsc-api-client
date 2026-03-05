@@ -72,6 +72,7 @@ docs/MembersList200Response.md
 docs/NameChangeHistory.md
 docs/NumbersApi.md
 docs/NumbersMmrList200Response.md
+docs/PaginatedMatch.md
 docs/Player.md
 docs/Player1.md
 docs/PlayerActivityCheckSchema.md
@@ -216,6 +217,7 @@ rscapi/models/member_transfer_schema.py
 rscapi/models/members_list200_response.py
 rscapi/models/name_change_history.py
 rscapi/models/numbers_mmr_list200_response.py
+rscapi/models/paginated_match.py
 rscapi/models/player.py
 rscapi/models/player1.py
 rscapi/models/player_activity_check_schema.py
@@ -277,4 +279,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_paginated_match.py
 tox.ini

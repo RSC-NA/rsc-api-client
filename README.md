@@ -55,10 +55,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "http://127.0.0.1:8000/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -90,7 +90,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to *http://127.0.0.1:8000/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -308,6 +308,7 @@ Class | Method | HTTP request | Description
  - [MembersList200Response](docs/MembersList200Response.md)
  - [NameChangeHistory](docs/NameChangeHistory.md)
  - [NumbersMmrList200Response](docs/NumbersMmrList200Response.md)
+ - [PaginatedMatch](docs/PaginatedMatch.md)
  - [Player](docs/Player.md)
  - [Player1](docs/Player1.md)
  - [PlayerActivityCheckSchema](docs/PlayerActivityCheckSchema.md)
