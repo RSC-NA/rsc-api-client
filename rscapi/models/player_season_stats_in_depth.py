@@ -128,7 +128,7 @@ class PlayerSeasonStatsInDepth(BaseModel):
     avg_distance_to_ball_possession_rank: StrictInt
     avg_distance_to_ball_no_possession_rank: StrictInt
     avg_distance_to_mates_rank: StrictInt
-    stats_type: Optional[StrictStr] = 'REG'
+    stats_type: Optional[StrictStr] = None
     total_shots: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     games_won: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
@@ -365,7 +365,7 @@ class PlayerSeasonStatsInDepth(BaseModel):
             "avg_distance_to_ball_possession_rank": obj.get("avg_distance_to_ball_possession_rank"),
             "avg_distance_to_ball_no_possession_rank": obj.get("avg_distance_to_ball_no_possession_rank"),
             "avg_distance_to_mates_rank": obj.get("avg_distance_to_mates_rank"),
-            "stats_type": obj.get("stats_type") if obj.get("stats_type") is not None else 'REG',
+            "stats_type": obj.get("stats_type"),
             "total_shots": obj.get("total_shots"),
             "games_played": obj.get("games_played"),
             "games_won": obj.get("games_won"),

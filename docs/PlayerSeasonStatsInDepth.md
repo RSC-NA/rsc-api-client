@@ -105,7 +105,7 @@ Name | Type | Description | Notes
 **avg_distance_to_ball_possession_rank** | **int** |  | 
 **avg_distance_to_ball_no_possession_rank** | **int** |  | 
 **avg_distance_to_mates_rank** | **int** |  | 
-**stats_type** | **str** |  | [optional] [default to 'REG']
+**stats_type** | **str** |  | [optional] 
 **total_shots** | **int** |  | [optional] 
 **games_played** | **int** |  | [optional] 
 **games_won** | **int** |  | [optional] 

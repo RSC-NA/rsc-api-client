@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **discord_id** | **int** |  | [optional] [readonly] 
 **status** | **str** |  | [optional] [readonly] 
 **pulls** | **int** |  | [optional] [readonly] 
-**peaks** | **str** |  | [optional] [readonly] 
+**peaks** | **object** |  | [optional] [readonly] 
 
 ## Example
 

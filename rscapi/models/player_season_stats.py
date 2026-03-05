@@ -66,7 +66,7 @@ class PlayerSeasonStats(BaseModel):
     percent_most_forward: Union[StrictFloat, StrictInt]
     percent_closest_to_ball: Union[StrictFloat, StrictInt]
     percent_farthest_from_ball: Union[StrictFloat, StrictInt]
-    stats_type: Optional[StrictStr] = 'REG'
+    stats_type: Optional[StrictStr] = None
     total_shots: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     games_won: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
@@ -241,7 +241,7 @@ class PlayerSeasonStats(BaseModel):
             "percent_most_forward": obj.get("percent_most_forward"),
             "percent_closest_to_ball": obj.get("percent_closest_to_ball"),
             "percent_farthest_from_ball": obj.get("percent_farthest_from_ball"),
-            "stats_type": obj.get("stats_type") if obj.get("stats_type") is not None else 'REG',
+            "stats_type": obj.get("stats_type"),
             "total_shots": obj.get("total_shots"),
             "games_played": obj.get("games_played"),
             "games_won": obj.get("games_won"),

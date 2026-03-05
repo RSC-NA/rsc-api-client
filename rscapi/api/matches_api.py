@@ -573,7 +573,7 @@ class MatchesApi:
     async def matches_find_match(
         self,
         league: StrictInt,
-        teams: Annotated[str, Field(min_length=1, strict=True, description="Comma-separated list of team names")],
+        teams: Annotated[str, Field(min_length=1, strict=True, description="Team names separated by comma")],
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         date__lt: Optional[datetime] = None,
@@ -602,7 +602,7 @@ class MatchesApi:
 
         :param league: (required)
         :type league: int
-        :param teams: Comma-separated list of team names (required)
+        :param teams: Team names separated by comma (required)
         :type teams: str
         :param limit: Number of results to return per page.
         :type limit: int
@@ -681,7 +681,7 @@ class MatchesApi:
     async def matches_find_match_with_http_info(
         self,
         league: StrictInt,
-        teams: Annotated[str, Field(min_length=1, strict=True, description="Comma-separated list of team names")],
+        teams: Annotated[str, Field(min_length=1, strict=True, description="Team names separated by comma")],
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         date__lt: Optional[datetime] = None,
@@ -710,7 +710,7 @@ class MatchesApi:
 
         :param league: (required)
         :type league: int
-        :param teams: Comma-separated list of team names (required)
+        :param teams: Team names separated by comma (required)
         :type teams: str
         :param limit: Number of results to return per page.
         :type limit: int
@@ -789,7 +789,7 @@ class MatchesApi:
     async def matches_find_match_without_preload_content(
         self,
         league: StrictInt,
-        teams: Annotated[str, Field(min_length=1, strict=True, description="Comma-separated list of team names")],
+        teams: Annotated[str, Field(min_length=1, strict=True, description="Team names separated by comma")],
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         date__lt: Optional[datetime] = None,
@@ -818,7 +818,7 @@ class MatchesApi:
 
         :param league: (required)
         :type league: int
-        :param teams: Comma-separated list of team names (required)
+        :param teams: Team names separated by comma (required)
         :type teams: str
         :param limit: Number of results to return per page.
         :type limit: int

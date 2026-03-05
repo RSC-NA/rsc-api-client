@@ -1,6 +1,6 @@
 # rscapi.MatchesApi
 
-All URIs are relative to *http://127.0.0.1:8000/api/v1*
+All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,10 +30,10 @@ from rscapi.models.match_submission import MatchSubmission
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -103,10 +103,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -177,10 +177,10 @@ from rscapi.models.paginated_match import PaginatedMatch
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -199,7 +199,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
     league = 56 # int | 
-    teams = 'teams_example' # str | Comma-separated list of team names
+    teams = 'teams_example' # str | Team names separated by comma
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
     date__lt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
@@ -226,7 +226,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **league** | **int**|  | 
- **teams** | **str**| Comma-separated list of team names | 
+ **teams** | **str**| Team names separated by comma | 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
  **date__lt** | **datetime**|  | [optional] 
@@ -272,10 +272,10 @@ from rscapi.models.matches_list200_response import MatchesList200Response
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -368,10 +368,10 @@ from rscapi.models.match_list import MatchList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -446,10 +446,10 @@ from rscapi.models.match_list import MatchList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -522,10 +522,10 @@ from rscapi.models.match import Match
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -598,10 +598,10 @@ from rscapi.models.match_results import MatchResults
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -676,10 +676,10 @@ from rscapi.models.match_score_report import MatchScoreReport
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -753,10 +753,10 @@ from rscapi.models.match_list import MatchList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:8000/api/v1
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "http://127.0.0.1:8000/api/v1"
+    host = "https://staging-api.rscna.com/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
