@@ -148,6 +148,7 @@ __all__ = [
     "TrackerLinksSheet",
     "TrackerMMR",
     "TrackerPeak",
+    "TrackerStatus",
     "TradeItem",
     "TradeSchema",
     "TradeValue",
@@ -294,6 +295,7 @@ from rscapi.models.tracker_links_list200_response import TrackerLinksList200Resp
 from rscapi.models.tracker_links_sheet import TrackerLinksSheet as TrackerLinksSheet
 from rscapi.models.tracker_mmr import TrackerMMR as TrackerMMR
 from rscapi.models.tracker_peak import TrackerPeak as TrackerPeak
+from rscapi.models.tracker_status import TrackerStatus as TrackerStatus
 from rscapi.models.trade_item import TradeItem as TradeItem
 from rscapi.models.trade_schema import TradeSchema as TradeSchema
 from rscapi.models.trade_value import TradeValue as TradeValue

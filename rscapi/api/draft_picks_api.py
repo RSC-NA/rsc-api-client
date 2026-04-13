@@ -478,7 +478,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft picks.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -495,7 +495,7 @@ class DraftPicksApi:
         """draft_picks_read
 
 
-        :param id: A unique integer value identifying this draft picks. (required)
+        :param id: A unique integer value identifying this draft pick. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -544,7 +544,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft picks.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -561,7 +561,7 @@ class DraftPicksApi:
         """draft_picks_read
 
 
-        :param id: A unique integer value identifying this draft picks. (required)
+        :param id: A unique integer value identifying this draft pick. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -610,7 +610,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft picks.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -627,7 +627,7 @@ class DraftPicksApi:
         """draft_picks_read
 
 
-        :param id: A unique integer value identifying this draft picks. (required)
+        :param id: A unique integer value identifying this draft pick. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

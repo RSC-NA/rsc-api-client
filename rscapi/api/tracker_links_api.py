@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.tracker_id_input import TrackerIDInput
@@ -27,6 +27,7 @@ from rscapi.models.tracker_link_linking import TrackerLinkLinking
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_links_list200_response import TrackerLinksList200Response
 from rscapi.models.tracker_peak import TrackerPeak
+from rscapi.models.tracker_status import TrackerStatus
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -319,9 +320,1083 @@ class TrackerLinksApi:
 
 
     @validate_call
+    async def tracker_links_dedup_mmr_pulls_create(
+        self,
+        data: TrackerLink,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TrackerLink:
+        """tracker_links_dedup_mmr_pulls_create
+
+        Deduplicate PlayerMMRPull records (ignoring date_pulled and notes).
+
+        :param data: (required)
+        :type data: TrackerLink
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_mmr_pulls_create_serialize(
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def tracker_links_dedup_mmr_pulls_create_with_http_info(
+        self,
+        data: TrackerLink,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TrackerLink]:
+        """tracker_links_dedup_mmr_pulls_create
+
+        Deduplicate PlayerMMRPull records (ignoring date_pulled and notes).
+
+        :param data: (required)
+        :type data: TrackerLink
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_mmr_pulls_create_serialize(
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def tracker_links_dedup_mmr_pulls_create_without_preload_content(
+        self,
+        data: TrackerLink,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """tracker_links_dedup_mmr_pulls_create
+
+        Deduplicate PlayerMMRPull records (ignoring date_pulled and notes).
+
+        :param data: (required)
+        :type data: TrackerLink
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_mmr_pulls_create_serialize(
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _tracker_links_dedup_mmr_pulls_create_serialize(
+        self,
+        data,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if data is not None:
+            _body_params = data
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/tracker-links/dedup_mmr_pulls/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def tracker_links_dedup_mmr_pulls_read(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[TrackerLink]:
+        """tracker_links_dedup_mmr_pulls_read
+
+        Deduplicate PlayerMMRPull records (ignoring date_pulled and notes).
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_mmr_pulls_read_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerLink]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def tracker_links_dedup_mmr_pulls_read_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[TrackerLink]]:
+        """tracker_links_dedup_mmr_pulls_read
+
+        Deduplicate PlayerMMRPull records (ignoring date_pulled and notes).
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_mmr_pulls_read_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerLink]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def tracker_links_dedup_mmr_pulls_read_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """tracker_links_dedup_mmr_pulls_read
+
+        Deduplicate PlayerMMRPull records (ignoring date_pulled and notes).
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_mmr_pulls_read_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[TrackerLink]",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _tracker_links_dedup_mmr_pulls_read_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tracker-links/dedup_mmr_pulls/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def tracker_links_dedup_pulls_create(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        data: TrackerLink,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TrackerLink:
+        """tracker_links_dedup_pulls_create
+
+        Deduplicate PlayerMMRPull records for a single tracker link.
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param data: (required)
+        :type data: TrackerLink
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_pulls_create_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def tracker_links_dedup_pulls_create_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        data: TrackerLink,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TrackerLink]:
+        """tracker_links_dedup_pulls_create
+
+        Deduplicate PlayerMMRPull records for a single tracker link.
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param data: (required)
+        :type data: TrackerLink
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_pulls_create_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def tracker_links_dedup_pulls_create_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        data: TrackerLink,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """tracker_links_dedup_pulls_create
+
+        Deduplicate PlayerMMRPull records for a single tracker link.
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param data: (required)
+        :type data: TrackerLink
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_pulls_create_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _tracker_links_dedup_pulls_create_serialize(
+        self,
+        id,
+        data,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if data is not None:
+            _body_params = data
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/tracker-links/{id}/dedup_pulls/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def tracker_links_dedup_pulls_read(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TrackerLink:
+        """tracker_links_dedup_pulls_read
+
+        Deduplicate PlayerMMRPull records for a single tracker link.
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_pulls_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def tracker_links_dedup_pulls_read_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TrackerLink]:
+        """tracker_links_dedup_pulls_read
+
+        Deduplicate PlayerMMRPull records for a single tracker link.
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_pulls_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def tracker_links_dedup_pulls_read_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """tracker_links_dedup_pulls_read
+
+        Deduplicate PlayerMMRPull records for a single tracker link.
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_dedup_pulls_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerLink",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _tracker_links_dedup_pulls_read_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tracker-links/{id}/dedup_pulls/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def tracker_links_delete(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -338,7 +1413,7 @@ class TrackerLinksApi:
         """tracker_links_delete
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -387,7 +1462,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_delete_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -404,7 +1479,7 @@ class TrackerLinksApi:
         """tracker_links_delete
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -453,7 +1528,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_delete_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -470,7 +1545,7 @@ class TrackerLinksApi:
         """tracker_links_delete
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1091,7 +2166,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_link(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -1109,7 +2184,7 @@ class TrackerLinksApi:
         """tracker_links_link
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerLinkLinking
@@ -1161,7 +2236,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_link_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -1179,7 +2254,7 @@ class TrackerLinksApi:
         """tracker_links_link
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerLinkLinking
@@ -1231,7 +2306,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_link_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -1249,7 +2324,7 @@ class TrackerLinksApi:
         """tracker_links_link
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerLinkLinking
@@ -1622,9 +2697,13 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_list(
         self,
-        status: Annotated[Optional[StrictStr], Field(description="status")] = None,
-        member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker link status.")] = None,
+        is_active: Annotated[Optional[StrictBool], Field(description="Only return active members.")] = None,
+        platform: Annotated[Optional[StrictStr], Field(description="Filter by platform.")] = None,
+        platform_id: Annotated[Optional[StrictStr], Field(description="Filter by platform ID. (case-insensitive)")] = None,
+        link: Annotated[Optional[StrictStr], Field(description="Filter by tracker link URL. (case-insensitive contains)")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Link belonging to specific rsc member by name. (case-insensitive)")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to find links for.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
@@ -1643,11 +2722,19 @@ class TrackerLinksApi:
         """tracker_links_list
 
 
-        :param status: status
+        :param status: Filter by tracker link status.
         :type status: str
-        :param member_name: member_name
+        :param is_active: Only return active members.
+        :type is_active: bool
+        :param platform: Filter by platform.
+        :type platform: str
+        :param platform_id: Filter by platform ID. (case-insensitive)
+        :type platform_id: str
+        :param link: Filter by tracker link URL. (case-insensitive contains)
+        :type link: str
+        :param member_name: Link belonging to specific rsc member by name. (case-insensitive)
         :type member_name: str
-        :param discord_id: Member Discord ID
+        :param discord_id: Discord ID of member to find links for.
         :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
@@ -1677,6 +2764,10 @@ class TrackerLinksApi:
 
         _param = self._tracker_links_list_serialize(
             status=status,
+            is_active=is_active,
+            platform=platform,
+            platform_id=platform_id,
+            link=link,
             member_name=member_name,
             discord_id=discord_id,
             limit=limit,
@@ -1704,9 +2795,13 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_list_with_http_info(
         self,
-        status: Annotated[Optional[StrictStr], Field(description="status")] = None,
-        member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker link status.")] = None,
+        is_active: Annotated[Optional[StrictBool], Field(description="Only return active members.")] = None,
+        platform: Annotated[Optional[StrictStr], Field(description="Filter by platform.")] = None,
+        platform_id: Annotated[Optional[StrictStr], Field(description="Filter by platform ID. (case-insensitive)")] = None,
+        link: Annotated[Optional[StrictStr], Field(description="Filter by tracker link URL. (case-insensitive contains)")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Link belonging to specific rsc member by name. (case-insensitive)")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to find links for.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
@@ -1725,11 +2820,19 @@ class TrackerLinksApi:
         """tracker_links_list
 
 
-        :param status: status
+        :param status: Filter by tracker link status.
         :type status: str
-        :param member_name: member_name
+        :param is_active: Only return active members.
+        :type is_active: bool
+        :param platform: Filter by platform.
+        :type platform: str
+        :param platform_id: Filter by platform ID. (case-insensitive)
+        :type platform_id: str
+        :param link: Filter by tracker link URL. (case-insensitive contains)
+        :type link: str
+        :param member_name: Link belonging to specific rsc member by name. (case-insensitive)
         :type member_name: str
-        :param discord_id: Member Discord ID
+        :param discord_id: Discord ID of member to find links for.
         :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
@@ -1759,6 +2862,10 @@ class TrackerLinksApi:
 
         _param = self._tracker_links_list_serialize(
             status=status,
+            is_active=is_active,
+            platform=platform,
+            platform_id=platform_id,
+            link=link,
             member_name=member_name,
             discord_id=discord_id,
             limit=limit,
@@ -1786,9 +2893,13 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_list_without_preload_content(
         self,
-        status: Annotated[Optional[StrictStr], Field(description="status")] = None,
-        member_name: Annotated[Optional[StrictStr], Field(description="member_name")] = None,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member Discord ID")] = None,
+        status: Annotated[Optional[StrictStr], Field(description="Filter by tracker link status.")] = None,
+        is_active: Annotated[Optional[StrictBool], Field(description="Only return active members.")] = None,
+        platform: Annotated[Optional[StrictStr], Field(description="Filter by platform.")] = None,
+        platform_id: Annotated[Optional[StrictStr], Field(description="Filter by platform ID. (case-insensitive)")] = None,
+        link: Annotated[Optional[StrictStr], Field(description="Filter by tracker link URL. (case-insensitive contains)")] = None,
+        member_name: Annotated[Optional[StrictStr], Field(description="Link belonging to specific rsc member by name. (case-insensitive)")] = None,
+        discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of member to find links for.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
@@ -1807,11 +2918,19 @@ class TrackerLinksApi:
         """tracker_links_list
 
 
-        :param status: status
+        :param status: Filter by tracker link status.
         :type status: str
-        :param member_name: member_name
+        :param is_active: Only return active members.
+        :type is_active: bool
+        :param platform: Filter by platform.
+        :type platform: str
+        :param platform_id: Filter by platform ID. (case-insensitive)
+        :type platform_id: str
+        :param link: Filter by tracker link URL. (case-insensitive contains)
+        :type link: str
+        :param member_name: Link belonging to specific rsc member by name. (case-insensitive)
         :type member_name: str
-        :param discord_id: Member Discord ID
+        :param discord_id: Discord ID of member to find links for.
         :type discord_id: int
         :param limit: Number of results to return per page.
         :type limit: int
@@ -1841,6 +2960,10 @@ class TrackerLinksApi:
 
         _param = self._tracker_links_list_serialize(
             status=status,
+            is_active=is_active,
+            platform=platform,
+            platform_id=platform_id,
+            link=link,
             member_name=member_name,
             discord_id=discord_id,
             limit=limit,
@@ -1864,6 +2987,10 @@ class TrackerLinksApi:
     def _tracker_links_list_serialize(
         self,
         status,
+        is_active,
+        platform,
+        platform_id,
+        link,
         member_name,
         discord_id,
         limit,
@@ -1893,6 +3020,22 @@ class TrackerLinksApi:
         if status is not None:
             
             _query_params.append(('status', status))
+            
+        if is_active is not None:
+            
+            _query_params.append(('is_active', is_active))
+            
+        if platform is not None:
+            
+            _query_params.append(('platform', platform))
+            
+        if platform_id is not None:
+            
+            _query_params.append(('platform_id', platform_id))
+            
+        if link is not None:
+            
+            _query_params.append(('link', link))
             
         if member_name is not None:
             
@@ -1951,7 +3094,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_migrate_pulls(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerIDInput,
         _request_timeout: Union[
             None,
@@ -1970,7 +3113,7 @@ class TrackerLinksApi:
 
         Migrates MMR pulls from one tracker link to another.
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerIDInput
@@ -2022,7 +3165,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_migrate_pulls_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerIDInput,
         _request_timeout: Union[
             None,
@@ -2041,7 +3184,7 @@ class TrackerLinksApi:
 
         Migrates MMR pulls from one tracker link to another.
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerIDInput
@@ -2093,7 +3236,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_migrate_pulls_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerIDInput,
         _request_timeout: Union[
             None,
@@ -2112,7 +3255,7 @@ class TrackerLinksApi:
 
         Migrates MMR pulls from one tracker link to another.
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerIDInput
@@ -2502,7 +3645,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_peak_stats(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -2520,7 +3663,7 @@ class TrackerLinksApi:
         """tracker_links_peak_stats
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int
@@ -2572,7 +3715,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_peak_stats_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -2590,7 +3733,7 @@ class TrackerLinksApi:
         """tracker_links_peak_stats
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int
@@ -2642,7 +3785,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_peak_stats_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -2660,7 +3803,7 @@ class TrackerLinksApi:
         """tracker_links_peak_stats
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int
@@ -2778,7 +3921,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2795,7 +3938,7 @@ class TrackerLinksApi:
         """tracker_links_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2844,7 +3987,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2861,7 +4004,7 @@ class TrackerLinksApi:
         """tracker_links_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2910,7 +4053,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2927,7 +4070,7 @@ class TrackerLinksApi:
         """tracker_links_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3035,9 +4178,555 @@ class TrackerLinksApi:
 
 
     @validate_call
+    async def tracker_links_status_partial_update(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        data: TrackerStatus,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TrackerStatus:
+        """tracker_links_status_partial_update
+
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param data: (required)
+        :type data: TrackerStatus
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_status_partial_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerStatus",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def tracker_links_status_partial_update_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        data: TrackerStatus,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TrackerStatus]:
+        """tracker_links_status_partial_update
+
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param data: (required)
+        :type data: TrackerStatus
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_status_partial_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerStatus",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def tracker_links_status_partial_update_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        data: TrackerStatus,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """tracker_links_status_partial_update
+
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param data: (required)
+        :type data: TrackerStatus
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_status_partial_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerStatus",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _tracker_links_status_partial_update_serialize(
+        self,
+        id,
+        data,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if data is not None:
+            _body_params = data
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PATCH',
+            resource_path='/tracker-links/{id}/status/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def tracker_links_status_read(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TrackerStatus:
+        """tracker_links_status_read
+
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_status_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerStatus",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def tracker_links_status_read_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TrackerStatus]:
+        """tracker_links_status_read
+
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_status_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerStatus",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def tracker_links_status_read_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """tracker_links_status_read
+
+
+        :param id: A unique integer value identifying this tracker link. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._tracker_links_status_read_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "TrackerStatus",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _tracker_links_status_read_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json', 
+                    'text/csv'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/tracker-links/{id}/status/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def tracker_links_unlink(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -3055,7 +4744,7 @@ class TrackerLinksApi:
         """tracker_links_unlink
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerLinkLinking
@@ -3107,7 +4796,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_unlink_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -3125,7 +4814,7 @@ class TrackerLinksApi:
         """tracker_links_unlink
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerLinkLinking
@@ -3177,7 +4866,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_unlink_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         data: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -3195,7 +4884,7 @@ class TrackerLinksApi:
         """tracker_links_unlink
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param data: (required)
         :type data: TrackerLinkLinking

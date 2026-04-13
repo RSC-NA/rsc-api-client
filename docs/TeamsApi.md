@@ -126,7 +126,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
 
     try:
         await api_instance.teams_delete(id)
@@ -141,7 +141,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
 
 ### Return type
 
@@ -282,7 +282,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
     day = 56 # int | 
     preseason = False # bool |  (optional) (default to False)
     season_number = 56 # int |  (optional)
@@ -302,7 +302,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
  **day** | **int**|  | 
  **preseason** | **bool**|  | [optional] [default to False]
  **season_number** | **int**|  | [optional] 
@@ -366,7 +366,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
 
     try:
         api_response = await api_instance.teams_next_match(id)
@@ -383,7 +383,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
 
 ### Return type
 
@@ -441,7 +441,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
     data = rscapi.TeamList() # TeamList | 
 
     try:
@@ -459,7 +459,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
  **data** | [**TeamList**](TeamList.md)|  | 
 
 ### Return type
@@ -519,7 +519,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
 
     try:
         api_response = await api_instance.teams_players(id)
@@ -536,7 +536,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
 
 ### Return type
 
@@ -595,7 +595,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
     season = 56 # int | Specific season number to get stats for. (optional)
 
     try:
@@ -613,7 +613,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
  **season** | **int**| Specific season number to get stats for. | [optional] 
 
 ### Return type
@@ -672,7 +672,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
 
     try:
         api_response = await api_instance.teams_read(id)
@@ -689,7 +689,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
 
 ### Return type
 
@@ -748,7 +748,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
     preseason = True # bool | If true, get preseason matches (Default: Regular) (optional)
     season = 56 # int | Season number to get matches for (Default: Current Season) (optional)
 
@@ -767,7 +767,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
  **preseason** | **bool**| If true, get preseason matches (Default: Regular) | [optional] 
  **season** | **int**| Season number to get matches for (Default: Current Season) | [optional] 
 
@@ -829,7 +829,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
     season = 56 # int | Specific season number to get stats for. (optional)
 
     try:
@@ -847,7 +847,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
  **season** | **int**| Specific season number to get stats for. | [optional] 
 
 ### Return type
@@ -905,7 +905,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
     data = rscapi.TeamPatch() # TeamPatch | 
 
     try:
@@ -923,7 +923,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
  **data** | [**TeamPatch**](TeamPatch.md)|  | 
 
 ### Return type

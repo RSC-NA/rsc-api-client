@@ -1871,7 +1871,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1888,7 +1888,7 @@ class CsvApi:
         """csv_teams_contracts_data_read
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1937,7 +1937,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1954,7 +1954,7 @@ class CsvApi:
         """csv_teams_contracts_data_read
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2003,7 +2003,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2020,7 +2020,7 @@ class CsvApi:
         """csv_teams_contracts_data_read
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2374,7 +2374,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_data_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2391,7 +2391,7 @@ class CsvApi:
         """csv_tracker_links_data_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2440,7 +2440,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_data_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2457,7 +2457,7 @@ class CsvApi:
         """csv_tracker_links_data_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2506,7 +2506,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_data_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2523,7 +2523,7 @@ class CsvApi:
         """csv_tracker_links_data_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2945,7 +2945,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_detailed_data_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2962,7 +2962,7 @@ class CsvApi:
         """csv_tracker_links_detailed_data_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3011,7 +3011,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_detailed_data_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3028,7 +3028,7 @@ class CsvApi:
         """csv_tracker_links_detailed_data_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3077,7 +3077,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_detailed_data_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3094,7 +3094,7 @@ class CsvApi:
         """csv_tracker_links_detailed_data_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3516,7 +3516,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_peaks_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -3534,7 +3534,7 @@ class CsvApi:
         """csv_tracker_links_peaks_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int
@@ -3586,7 +3586,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_peaks_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -3604,7 +3604,7 @@ class CsvApi:
         """csv_tracker_links_peaks_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int
@@ -3656,7 +3656,7 @@ class CsvApi:
     @validate_call
     async def csv_tracker_links_peaks_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker links.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this tracker link.")],
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -3674,7 +3674,7 @@ class CsvApi:
         """csv_tracker_links_peaks_read
 
 
-        :param id: A unique integer value identifying this tracker links. (required)
+        :param id: A unique integer value identifying this tracker link. (required)
         :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int

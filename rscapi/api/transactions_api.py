@@ -1546,7 +1546,7 @@ class TransactionsApi:
     @validate_call
     async def transactions_history_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this transactions.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this transaction.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1564,7 +1564,7 @@ class TransactionsApi:
 
         Retrieve a specific transaction by ID.
 
-        :param id: A unique integer value identifying this transactions. (required)
+        :param id: A unique integer value identifying this transaction. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1613,7 +1613,7 @@ class TransactionsApi:
     @validate_call
     async def transactions_history_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this transactions.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this transaction.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1631,7 +1631,7 @@ class TransactionsApi:
 
         Retrieve a specific transaction by ID.
 
-        :param id: A unique integer value identifying this transactions. (required)
+        :param id: A unique integer value identifying this transaction. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1680,7 +1680,7 @@ class TransactionsApi:
     @validate_call
     async def transactions_history_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this transactions.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this transaction.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1698,7 +1698,7 @@ class TransactionsApi:
 
         Retrieve a specific transaction by ID.
 
-        :param id: A unique integer value identifying this transactions. (required)
+        :param id: A unique integer value identifying this transaction. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

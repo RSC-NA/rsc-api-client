@@ -139,7 +139,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 56 # int | A unique integer value identifying this draft picks.
+    id = 56 # int | A unique integer value identifying this draft pick.
 
     try:
         api_response = await api_instance.draft_picks_read(id)
@@ -156,7 +156,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this draft picks. | 
+ **id** | **int**| A unique integer value identifying this draft pick. | 
 
 ### Return type
 

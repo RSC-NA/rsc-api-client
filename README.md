@@ -193,6 +193,7 @@ Class | Method | HTTP request | Description
 *SeasonsApi* | [**seasons_partial_update**](docs/SeasonsApi.md#seasons_partial_update) | **PATCH** /seasons/{id}/ | 
 *SeasonsApi* | [**seasons_player_intents**](docs/SeasonsApi.md#seasons_player_intents) | **GET** /seasons/{id}/player_intents/ | 
 *SeasonsApi* | [**seasons_read**](docs/SeasonsApi.md#seasons_read) | **GET** /seasons/{id}/ | 
+*SeasonsApi* | [**seasons_signup_season**](docs/SeasonsApi.md#seasons_signup_season) | **GET** /seasons/signup_season/ | 
 *SeasonsApi* | [**seasons_update**](docs/SeasonsApi.md#seasons_update) | **PUT** /seasons/{id}/ | 
 *TeamsApi* | [**teams_create**](docs/TeamsApi.md#teams_create) | **POST** /teams/ | 
 *TeamsApi* | [**teams_delete**](docs/TeamsApi.md#teams_delete) | **DELETE** /teams/{id}/ | 
@@ -220,6 +221,10 @@ Class | Method | HTTP request | Description
 *TiersApi* | [**tiers_teams**](docs/TiersApi.md#tiers_teams) | **GET** /tiers/{id}/teams/ | 
 *TiersApi* | [**tiers_update**](docs/TiersApi.md#tiers_update) | **PUT** /tiers/{id}/ | 
 *TrackerLinksApi* | [**tracker_links_create**](docs/TrackerLinksApi.md#tracker_links_create) | **POST** /tracker-links/ | 
+*TrackerLinksApi* | [**tracker_links_dedup_mmr_pulls_create**](docs/TrackerLinksApi.md#tracker_links_dedup_mmr_pulls_create) | **POST** /tracker-links/dedup_mmr_pulls/ | 
+*TrackerLinksApi* | [**tracker_links_dedup_mmr_pulls_read**](docs/TrackerLinksApi.md#tracker_links_dedup_mmr_pulls_read) | **GET** /tracker-links/dedup_mmr_pulls/ | 
+*TrackerLinksApi* | [**tracker_links_dedup_pulls_create**](docs/TrackerLinksApi.md#tracker_links_dedup_pulls_create) | **POST** /tracker-links/{id}/dedup_pulls/ | 
+*TrackerLinksApi* | [**tracker_links_dedup_pulls_read**](docs/TrackerLinksApi.md#tracker_links_dedup_pulls_read) | **GET** /tracker-links/{id}/dedup_pulls/ | 
 *TrackerLinksApi* | [**tracker_links_delete**](docs/TrackerLinksApi.md#tracker_links_delete) | **DELETE** /tracker-links/{id}/ | 
 *TrackerLinksApi* | [**tracker_links_fix_duplicate_links**](docs/TrackerLinksApi.md#tracker_links_fix_duplicate_links) | **GET** /tracker-links/fix_duplicate_links/ | 
 *TrackerLinksApi* | [**tracker_links_invalidate_links**](docs/TrackerLinksApi.md#tracker_links_invalidate_links) | **POST** /tracker-links/invalidate_links/ | 
@@ -230,6 +235,8 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_next**](docs/TrackerLinksApi.md#tracker_links_next) | **GET** /tracker-links/next/ | 
 *TrackerLinksApi* | [**tracker_links_peak_stats**](docs/TrackerLinksApi.md#tracker_links_peak_stats) | **GET** /tracker-links/{id}/peak_stats/ | 
 *TrackerLinksApi* | [**tracker_links_read**](docs/TrackerLinksApi.md#tracker_links_read) | **GET** /tracker-links/{id}/ | 
+*TrackerLinksApi* | [**tracker_links_status_partial_update**](docs/TrackerLinksApi.md#tracker_links_status_partial_update) | **PATCH** /tracker-links/{id}/status/ | 
+*TrackerLinksApi* | [**tracker_links_status_read**](docs/TrackerLinksApi.md#tracker_links_status_read) | **GET** /tracker-links/{id}/status/ | 
 *TrackerLinksApi* | [**tracker_links_unlink**](docs/TrackerLinksApi.md#tracker_links_unlink) | **POST** /tracker-links/{id}/unlink/ | 
 *TransactionsApi* | [**transactions_cut_and_sign_create**](docs/TransactionsApi.md#transactions_cut_and_sign_create) | **POST** /transactions/cut_and_sign/ | 
 *TransactionsApi* | [**transactions_cut_create**](docs/TransactionsApi.md#transactions_cut_create) | **POST** /transactions/cut/ | 
@@ -354,6 +361,7 @@ Class | Method | HTTP request | Description
  - [TrackerLinksSheet](docs/TrackerLinksSheet.md)
  - [TrackerMMR](docs/TrackerMMR.md)
  - [TrackerPeak](docs/TrackerPeak.md)
+ - [TrackerStatus](docs/TrackerStatus.md)
  - [TradeItem](docs/TradeItem.md)
  - [TradeSchema](docs/TradeSchema.md)
  - [TradeValue](docs/TradeValue.md)

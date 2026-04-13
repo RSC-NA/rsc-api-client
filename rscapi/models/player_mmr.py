@@ -30,7 +30,7 @@ class PlayerMMR(BaseModel):
     """
     PlayerMMR
     """ # noqa: E501
-    date_pulled: datetime
+    date_pulled: Optional[datetime] = None
     tracker_link: TrackerMMR
     threes_rating: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     threes_season_peak: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None

@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**seasons_partial_update**](SeasonsApi.md#seasons_partial_update) | **PATCH** /seasons/{id}/ | 
 [**seasons_player_intents**](SeasonsApi.md#seasons_player_intents) | **GET** /seasons/{id}/player_intents/ | 
 [**seasons_read**](SeasonsApi.md#seasons_read) | **GET** /seasons/{id}/ | 
+[**seasons_signup_season**](SeasonsApi.md#seasons_signup_season) | **GET** /seasons/signup_season/ | 
 [**seasons_update**](SeasonsApi.md#seasons_update) | **PUT** /seasons/{id}/ | 
 
 
@@ -288,7 +289,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
+    id = 56 # int | A unique integer value identifying this season.
 
     try:
         await api_instance.seasons_delete(id)
@@ -303,7 +304,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
+ **id** | **int**| A unique integer value identifying this season. | 
 
 ### Return type
 
@@ -362,7 +363,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
+    id = 56 # int | A unique integer value identifying this season.
 
     try:
         api_response = await api_instance.seasons_franchise_standings(id)
@@ -379,7 +380,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
+ **id** | **int**| A unique integer value identifying this season. | 
 
 ### Return type
 
@@ -593,7 +594,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
+    id = 56 # int | A unique integer value identifying this season.
     data = rscapi.Season() # Season | 
 
     try:
@@ -611,7 +612,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
+ **id** | **int**| A unique integer value identifying this season. | 
  **data** | [**Season**](Season.md)|  | 
 
 ### Return type
@@ -671,7 +672,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
+    id = 56 # int | A unique integer value identifying this season.
     discord_id = 56 # int | Discord ID of player intent to search for. (optional)
     returning = True # bool | If the player is returning or not. (optional)
     missing = True # bool | If the player has responded or not. (optional)
@@ -691,7 +692,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
+ **id** | **int**| A unique integer value identifying this season. | 
  **discord_id** | **int**| Discord ID of player intent to search for. | [optional] 
  **returning** | **bool**| If the player is returning or not. | [optional] 
  **missing** | **bool**| If the player has responded or not. | [optional] 
@@ -752,7 +753,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
+    id = 56 # int | A unique integer value identifying this season.
 
     try:
         api_response = await api_instance.seasons_read(id)
@@ -769,7 +770,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
+ **id** | **int**| A unique integer value identifying this season. | 
 
 ### Return type
 
@@ -789,6 +790,83 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **seasons_signup_season**
+> Season seasons_signup_season(league)
+
+Get the season currently accepting signups.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.season import Season
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "https://staging-api.rscna.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.SeasonsApi(api_client)
+    league = 56 # int | League to get current season for.
+
+    try:
+        api_response = await api_instance.seasons_signup_season(league)
+        print("The response of SeasonsApi->seasons_signup_season:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SeasonsApi->seasons_signup_season: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **league** | **int**| League to get current season for. | 
+
+### Return type
+
+[**Season**](Season.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -826,7 +904,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    id = 56 # int | A unique integer value identifying this seasons.
+    id = 56 # int | A unique integer value identifying this season.
     data = rscapi.Season() # Season | 
 
     try:
@@ -844,7 +922,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this seasons. | 
+ **id** | **int**| A unique integer value identifying this season. | 
  **data** | [**Season**](Season.md)|  | 
 
 ### Return type

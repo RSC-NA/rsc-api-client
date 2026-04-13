@@ -122,6 +122,7 @@ docs/TrackerLinksList200Response.md
 docs/TrackerLinksSheet.md
 docs/TrackerMMR.md
 docs/TrackerPeak.md
+docs/TrackerStatus.md
 docs/TradeItem.md
 docs/TradeSchema.md
 docs/TradeValue.md
@@ -263,6 +264,7 @@ rscapi/models/tracker_links_list200_response.py
 rscapi/models/tracker_links_sheet.py
 rscapi/models/tracker_mmr.py
 rscapi/models/tracker_peak.py
+rscapi/models/tracker_status.py
 rscapi/models/trade_item.py
 rscapi/models/trade_schema.py
 rscapi/models/trade_value.py
@@ -279,4 +281,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_tracker_status.py
 tox.ini

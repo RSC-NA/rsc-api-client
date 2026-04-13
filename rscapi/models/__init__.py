@@ -121,6 +121,7 @@ from rscapi.models.tracker_links_list200_response import TrackerLinksList200Resp
 from rscapi.models.tracker_links_sheet import TrackerLinksSheet
 from rscapi.models.tracker_mmr import TrackerMMR
 from rscapi.models.tracker_peak import TrackerPeak
+from rscapi.models.tracker_status import TrackerStatus
 from rscapi.models.trade_item import TradeItem
 from rscapi.models.trade_schema import TradeSchema
 from rscapi.models.trade_value import TradeValue

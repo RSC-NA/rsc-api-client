@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **guild_id** | **int** |  | 
+**active** | **bool** |  | [optional] 
 **league_data** | [**LeagueData**](LeagueData.md) |  | 
 **tiers** | [**List[Tier]**](Tier.md) |  | 
 

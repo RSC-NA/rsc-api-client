@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date_pulled** | **datetime** |  | 
+**date_pulled** | **datetime** |  | [optional] 
 **tracker_link** | [**TrackerMMR**](TrackerMMR.md) |  | 
 **threes_rating** | **int** |  | [optional] 
 **threes_season_peak** | **int** |  | [optional] 

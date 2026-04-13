@@ -124,7 +124,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
+    id = 56 # int | A unique integer value identifying this match.
 
     try:
         await api_instance.matches_delete(id)
@@ -139,7 +139,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
+ **id** | **int**| A unique integer value identifying this match. | 
 
 ### Return type
 
@@ -389,7 +389,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
+    id = 56 # int | A unique integer value identifying this match.
     data = rscapi.MatchList() # MatchList | 
 
     try:
@@ -407,7 +407,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
+ **id** | **int**| A unique integer value identifying this match. | 
  **data** | [**MatchList**](MatchList.md)|  | 
 
 ### Return type
@@ -467,7 +467,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
+    id = 56 # int | A unique integer value identifying this match.
 
     try:
         api_response = await api_instance.matches_process_stats(id)
@@ -484,7 +484,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
+ **id** | **int**| A unique integer value identifying this match. | 
 
 ### Return type
 
@@ -543,7 +543,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
+    id = 56 # int | A unique integer value identifying this match.
 
     try:
         api_response = await api_instance.matches_read(id)
@@ -560,7 +560,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
+ **id** | **int**| A unique integer value identifying this match. | 
 
 ### Return type
 
@@ -619,7 +619,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
+    id = 56 # int | A unique integer value identifying this match.
 
     try:
         api_response = await api_instance.matches_results(id)
@@ -636,7 +636,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
+ **id** | **int**| A unique integer value identifying this match. | 
 
 ### Return type
 
@@ -697,7 +697,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
+    id = 56 # int | A unique integer value identifying this match.
     data = rscapi.MatchScoreReport() # MatchScoreReport | 
 
     try:
@@ -715,7 +715,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
+ **id** | **int**| A unique integer value identifying this match. | 
  **data** | [**MatchScoreReport**](MatchScoreReport.md)|  | 
 
 ### Return type
@@ -774,7 +774,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MatchesApi(api_client)
-    id = 56 # int | A unique integer value identifying this matches.
+    id = 56 # int | A unique integer value identifying this match.
     data = rscapi.MatchList() # MatchList | 
 
     try:
@@ -792,7 +792,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this matches. | 
+ **id** | **int**| A unique integer value identifying this match. | 
  **data** | [**MatchList**](MatchList.md)|  | 
 
 ### Return type

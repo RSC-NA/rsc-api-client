@@ -321,7 +321,7 @@ class MatchesApi:
     @validate_call
     async def matches_delete(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -338,7 +338,7 @@ class MatchesApi:
         """matches_delete
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -387,7 +387,7 @@ class MatchesApi:
     @validate_call
     async def matches_delete_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -404,7 +404,7 @@ class MatchesApi:
         """matches_delete
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -453,7 +453,7 @@ class MatchesApi:
     @validate_call
     async def matches_delete_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -470,7 +470,7 @@ class MatchesApi:
         """matches_delete
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1473,7 +1473,7 @@ class MatchesApi:
     @validate_call
     async def matches_partial_update(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchList,
         _request_timeout: Union[
             None,
@@ -1491,7 +1491,7 @@ class MatchesApi:
         """matches_partial_update
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchList
@@ -1543,7 +1543,7 @@ class MatchesApi:
     @validate_call
     async def matches_partial_update_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchList,
         _request_timeout: Union[
             None,
@@ -1561,7 +1561,7 @@ class MatchesApi:
         """matches_partial_update
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchList
@@ -1613,7 +1613,7 @@ class MatchesApi:
     @validate_call
     async def matches_partial_update_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchList,
         _request_timeout: Union[
             None,
@@ -1631,7 +1631,7 @@ class MatchesApi:
         """matches_partial_update
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchList
@@ -1759,7 +1759,7 @@ class MatchesApi:
     @validate_call
     async def matches_process_stats(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1777,7 +1777,7 @@ class MatchesApi:
 
         Process ballchasing stats for a given match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1828,7 +1828,7 @@ class MatchesApi:
     @validate_call
     async def matches_process_stats_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1846,7 +1846,7 @@ class MatchesApi:
 
         Process ballchasing stats for a given match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1897,7 +1897,7 @@ class MatchesApi:
     @validate_call
     async def matches_process_stats_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1915,7 +1915,7 @@ class MatchesApi:
 
         Process ballchasing stats for a given match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2026,7 +2026,7 @@ class MatchesApi:
     @validate_call
     async def matches_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2043,7 +2043,7 @@ class MatchesApi:
         """matches_read
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2092,7 +2092,7 @@ class MatchesApi:
     @validate_call
     async def matches_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2109,7 +2109,7 @@ class MatchesApi:
         """matches_read
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2158,7 +2158,7 @@ class MatchesApi:
     @validate_call
     async def matches_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2175,7 +2175,7 @@ class MatchesApi:
         """matches_read
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2284,7 +2284,7 @@ class MatchesApi:
     @validate_call
     async def matches_results(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2302,7 +2302,7 @@ class MatchesApi:
 
         Get results for a given match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2352,7 +2352,7 @@ class MatchesApi:
     @validate_call
     async def matches_results_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2370,7 +2370,7 @@ class MatchesApi:
 
         Get results for a given match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2420,7 +2420,7 @@ class MatchesApi:
     @validate_call
     async def matches_results_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2438,7 +2438,7 @@ class MatchesApi:
 
         Get results for a given match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2548,7 +2548,7 @@ class MatchesApi:
     @validate_call
     async def matches_score_report(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchScoreReport,
         _request_timeout: Union[
             None,
@@ -2567,7 +2567,7 @@ class MatchesApi:
 
         Score report for initial match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchScoreReport
@@ -2620,7 +2620,7 @@ class MatchesApi:
     @validate_call
     async def matches_score_report_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchScoreReport,
         _request_timeout: Union[
             None,
@@ -2639,7 +2639,7 @@ class MatchesApi:
 
         Score report for initial match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchScoreReport
@@ -2692,7 +2692,7 @@ class MatchesApi:
     @validate_call
     async def matches_score_report_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchScoreReport,
         _request_timeout: Union[
             None,
@@ -2711,7 +2711,7 @@ class MatchesApi:
 
         Score report for initial match
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchScoreReport
@@ -2840,7 +2840,7 @@ class MatchesApi:
     @validate_call
     async def matches_update(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchList,
         _request_timeout: Union[
             None,
@@ -2858,7 +2858,7 @@ class MatchesApi:
         """matches_update
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchList
@@ -2910,7 +2910,7 @@ class MatchesApi:
     @validate_call
     async def matches_update_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchList,
         _request_timeout: Union[
             None,
@@ -2928,7 +2928,7 @@ class MatchesApi:
         """matches_update
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchList
@@ -2980,7 +2980,7 @@ class MatchesApi:
     @validate_call
     async def matches_update_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this matches.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         data: MatchList,
         _request_timeout: Union[
             None,
@@ -2998,7 +2998,7 @@ class MatchesApi:
         """matches_update
 
 
-        :param id: A unique integer value identifying this matches. (required)
+        :param id: A unique integer value identifying this match. (required)
         :type id: int
         :param data: (required)
         :type data: MatchList

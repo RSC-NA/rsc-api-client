@@ -572,7 +572,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.CsvApi(api_client)
-    id = 56 # int | A unique integer value identifying this teams.
+    id = 56 # int | A unique integer value identifying this team.
 
     try:
         api_response = await api_instance.csv_teams_contracts_data_read(id)
@@ -589,7 +589,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this teams. | 
+ **id** | **int**| A unique integer value identifying this team. | 
 
 ### Return type
 
@@ -716,7 +716,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.CsvApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker links.
+    id = 56 # int | A unique integer value identifying this tracker link.
 
     try:
         api_response = await api_instance.csv_tracker_links_data_read(id)
@@ -733,7 +733,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker links. | 
+ **id** | **int**| A unique integer value identifying this tracker link. | 
 
 ### Return type
 
@@ -870,7 +870,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.CsvApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker links.
+    id = 56 # int | A unique integer value identifying this tracker link.
 
     try:
         api_response = await api_instance.csv_tracker_links_detailed_data_read(id)
@@ -887,7 +887,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker links. | 
+ **id** | **int**| A unique integer value identifying this tracker link. | 
 
 ### Return type
 
@@ -1024,7 +1024,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.CsvApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker links.
+    id = 56 # int | A unique integer value identifying this tracker link.
     pysonix_season = 56 # int | Psysonix season number to filter by.
 
     try:
@@ -1042,7 +1042,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker links. | 
+ **id** | **int**| A unique integer value identifying this tracker link. | 
  **pysonix_season** | **int**| Psysonix season number to filter by. | 
 
 ### Return type

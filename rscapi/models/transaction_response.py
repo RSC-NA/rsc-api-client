@@ -48,8 +48,8 @@ class TransactionResponse(BaseModel):
     @field_validator('week')
     def week_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['OFF', 'PRE', 'PST', 'REG']):
-            raise ValueError("must be one of enum values ('OFF', 'PRE', 'PST', 'REG')")
+        if value not in set(['OFF', 'PST', 'PRE', 'REG']):
+            raise ValueError("must be one of enum values ('OFF', 'PST', 'PRE', 'REG')")
         return value
 
     @field_validator('type')
@@ -58,8 +58,8 @@ class TransactionResponse(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT', 'PCH']):
-            raise ValueError("must be one of enum values ('NON', 'CUT', 'PKU', 'TRD', 'PTD', 'SUB', 'TMP', 'PRO', 'RLG', 'RES', 'IR', 'RET', 'WVR', 'AIR', 'IRT', 'DFT', 'PCH')")
+        if value not in set(['AIR', 'CUT', 'DFT', 'IR', 'IRT', 'NON', 'PCH', 'PKU', 'PTD', 'PRO', 'RLG', 'RES', 'RET', 'SUB', 'TMP', 'TRD', 'WVR']):
+            raise ValueError("must be one of enum values ('AIR', 'CUT', 'DFT', 'IR', 'IRT', 'NON', 'PCH', 'PKU', 'PTD', 'PRO', 'RLG', 'RES', 'RET', 'SUB', 'TMP', 'TRD', 'WVR')")
         return value
 
     model_config = ConfigDict(

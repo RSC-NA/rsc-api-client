@@ -41,8 +41,9 @@ class Season(BaseModel):
     regular_season_start: Optional[datetime] = None
     regular_season_end: Optional[datetime] = None
     signup_close: Optional[datetime] = None
+    signups_open: Optional[datetime] = None
     draft_date: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "regular_season_start", "regular_season_end", "signup_close", "draft_date"]
+    __properties: ClassVar[List[str]] = ["id", "league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "regular_season_start", "regular_season_end", "signup_close", "signups_open", "draft_date"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,6 +85,7 @@ class Season(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
@@ -95,6 +97,7 @@ class Season(BaseModel):
             "regular_season_start",
             "regular_season_end",
             "signup_close",
+            "signups_open",
             "draft_date",
         ])
 
@@ -143,6 +146,11 @@ class Season(BaseModel):
         if self.signup_close is None and "signup_close" in self.model_fields_set:
             _dict['signup_close'] = None
 
+        # set to None if signups_open (nullable) is None
+        # and model_fields_set contains the field
+        if self.signups_open is None and "signups_open" in self.model_fields_set:
+            _dict['signups_open'] = None
+
         # set to None if draft_date (nullable) is None
         # and model_fields_set contains the field
         if self.draft_date is None and "draft_date" in self.model_fields_set:
@@ -171,6 +179,7 @@ class Season(BaseModel):
             "regular_season_start": obj.get("regular_season_start"),
             "regular_season_end": obj.get("regular_season_end"),
             "signup_close": obj.get("signup_close"),
+            "signups_open": obj.get("signups_open"),
             "draft_date": obj.get("draft_date")
         })
         return _obj

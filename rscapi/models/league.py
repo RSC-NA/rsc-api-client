@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.league_data import LeagueData
@@ -33,9 +33,10 @@ class League(BaseModel):
     id: Optional[StrictInt] = None
     name: Annotated[str, Field(min_length=1, strict=True)]
     guild_id: StrictInt
+    active: Optional[StrictBool] = None
     league_data: LeagueData
     tiers: List[Optional[Tier]]
-    __properties: ClassVar[List[str]] = ["id", "name", "guild_id", "league_data", "tiers"]
+    __properties: ClassVar[List[str]] = ["id", "name", "guild_id", "active", "league_data", "tiers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -103,6 +104,7 @@ class League(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "guild_id": obj.get("guild_id"),
+            "active": obj.get("active"),
             "league_data": LeagueData.from_dict(obj["league_data"]) if obj.get("league_data") is not None else None,
             "tiers": [Tier.from_dict(_item) for _item in obj["tiers"]] if obj.get("tiers") is not None else None
         })

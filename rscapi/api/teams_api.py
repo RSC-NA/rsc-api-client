@@ -324,7 +324,7 @@ class TeamsApi:
     @validate_call
     async def teams_delete(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -341,7 +341,7 @@ class TeamsApi:
         """teams_delete
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -390,7 +390,7 @@ class TeamsApi:
     @validate_call
     async def teams_delete_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -407,7 +407,7 @@ class TeamsApi:
         """teams_delete
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -456,7 +456,7 @@ class TeamsApi:
     @validate_call
     async def teams_delete_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -473,7 +473,7 @@ class TeamsApi:
         """teams_delete
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -903,7 +903,7 @@ class TeamsApi:
     @validate_call
     async def teams_match(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         day: StrictInt,
         preseason: Optional[StrictBool] = None,
         season_number: Optional[StrictInt] = None,
@@ -924,7 +924,7 @@ class TeamsApi:
 
         Get a match details for a specific day for the given team
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param day: (required)
         :type day: int
@@ -984,7 +984,7 @@ class TeamsApi:
     @validate_call
     async def teams_match_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         day: StrictInt,
         preseason: Optional[StrictBool] = None,
         season_number: Optional[StrictInt] = None,
@@ -1005,7 +1005,7 @@ class TeamsApi:
 
         Get a match details for a specific day for the given team
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param day: (required)
         :type day: int
@@ -1065,7 +1065,7 @@ class TeamsApi:
     @validate_call
     async def teams_match_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         day: StrictInt,
         preseason: Optional[StrictBool] = None,
         season_number: Optional[StrictInt] = None,
@@ -1086,7 +1086,7 @@ class TeamsApi:
 
         Get a match details for a specific day for the given team
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param day: (required)
         :type day: int
@@ -1221,7 +1221,7 @@ class TeamsApi:
     @validate_call
     async def teams_next_match(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1239,7 +1239,7 @@ class TeamsApi:
 
         Get the next match for a given team
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1289,7 +1289,7 @@ class TeamsApi:
     @validate_call
     async def teams_next_match_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1307,7 +1307,7 @@ class TeamsApi:
 
         Get the next match for a given team
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1357,7 +1357,7 @@ class TeamsApi:
     @validate_call
     async def teams_next_match_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1375,7 +1375,7 @@ class TeamsApi:
 
         Get the next match for a given team
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1485,7 +1485,7 @@ class TeamsApi:
     @validate_call
     async def teams_partial_update(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         data: TeamList,
         _request_timeout: Union[
             None,
@@ -1503,7 +1503,7 @@ class TeamsApi:
         """teams_partial_update
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param data: (required)
         :type data: TeamList
@@ -1555,7 +1555,7 @@ class TeamsApi:
     @validate_call
     async def teams_partial_update_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         data: TeamList,
         _request_timeout: Union[
             None,
@@ -1573,7 +1573,7 @@ class TeamsApi:
         """teams_partial_update
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param data: (required)
         :type data: TeamList
@@ -1625,7 +1625,7 @@ class TeamsApi:
     @validate_call
     async def teams_partial_update_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         data: TeamList,
         _request_timeout: Union[
             None,
@@ -1643,7 +1643,7 @@ class TeamsApi:
         """teams_partial_update
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param data: (required)
         :type data: TeamList
@@ -1771,7 +1771,7 @@ class TeamsApi:
     @validate_call
     async def teams_players(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1789,7 +1789,7 @@ class TeamsApi:
 
         Get the players for a given team.
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1838,7 +1838,7 @@ class TeamsApi:
     @validate_call
     async def teams_players_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1856,7 +1856,7 @@ class TeamsApi:
 
         Get the players for a given team.
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1905,7 +1905,7 @@ class TeamsApi:
     @validate_call
     async def teams_players_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1923,7 +1923,7 @@ class TeamsApi:
 
         Get the players for a given team.
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2032,7 +2032,7 @@ class TeamsApi:
     @validate_call
     async def teams_postseason_stats(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None,
         _request_timeout: Union[
             None,
@@ -2051,7 +2051,7 @@ class TeamsApi:
 
         Get postseason stats for a given team. (Default: Current Season)
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param season: Specific season number to get stats for.
         :type season: int
@@ -2104,7 +2104,7 @@ class TeamsApi:
     @validate_call
     async def teams_postseason_stats_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None,
         _request_timeout: Union[
             None,
@@ -2123,7 +2123,7 @@ class TeamsApi:
 
         Get postseason stats for a given team. (Default: Current Season)
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param season: Specific season number to get stats for.
         :type season: int
@@ -2176,7 +2176,7 @@ class TeamsApi:
     @validate_call
     async def teams_postseason_stats_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None,
         _request_timeout: Union[
             None,
@@ -2195,7 +2195,7 @@ class TeamsApi:
 
         Get postseason stats for a given team. (Default: Current Season)
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param season: Specific season number to get stats for.
         :type season: int
@@ -2313,7 +2313,7 @@ class TeamsApi:
     @validate_call
     async def teams_read(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2330,7 +2330,7 @@ class TeamsApi:
         """teams_read
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2379,7 +2379,7 @@ class TeamsApi:
     @validate_call
     async def teams_read_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2396,7 +2396,7 @@ class TeamsApi:
         """teams_read
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2445,7 +2445,7 @@ class TeamsApi:
     @validate_call
     async def teams_read_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2462,7 +2462,7 @@ class TeamsApi:
         """teams_read
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2571,7 +2571,7 @@ class TeamsApi:
     @validate_call
     async def teams_season_matches(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         preseason: Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None,
         season: Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None,
         _request_timeout: Union[
@@ -2591,7 +2591,7 @@ class TeamsApi:
 
         Get all matches for a given team.
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param preseason: If true, get preseason matches (Default: Regular)
         :type preseason: bool
@@ -2647,7 +2647,7 @@ class TeamsApi:
     @validate_call
     async def teams_season_matches_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         preseason: Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None,
         season: Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None,
         _request_timeout: Union[
@@ -2667,7 +2667,7 @@ class TeamsApi:
 
         Get all matches for a given team.
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param preseason: If true, get preseason matches (Default: Regular)
         :type preseason: bool
@@ -2723,7 +2723,7 @@ class TeamsApi:
     @validate_call
     async def teams_season_matches_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         preseason: Annotated[Optional[StrictBool], Field(description="If true, get preseason matches (Default: Regular)")] = None,
         season: Annotated[Optional[StrictInt], Field(description="Season number to get matches for (Default: Current Season)")] = None,
         _request_timeout: Union[
@@ -2743,7 +2743,7 @@ class TeamsApi:
 
         Get all matches for a given team.
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param preseason: If true, get preseason matches (Default: Regular)
         :type preseason: bool
@@ -2869,7 +2869,7 @@ class TeamsApi:
     @validate_call
     async def teams_stats(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None,
         _request_timeout: Union[
             None,
@@ -2888,7 +2888,7 @@ class TeamsApi:
 
         Get regular season stats for a given team. (Default: Current Season)
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param season: Specific season number to get stats for.
         :type season: int
@@ -2940,7 +2940,7 @@ class TeamsApi:
     @validate_call
     async def teams_stats_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None,
         _request_timeout: Union[
             None,
@@ -2959,7 +2959,7 @@ class TeamsApi:
 
         Get regular season stats for a given team. (Default: Current Season)
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param season: Specific season number to get stats for.
         :type season: int
@@ -3011,7 +3011,7 @@ class TeamsApi:
     @validate_call
     async def teams_stats_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for.")] = None,
         _request_timeout: Union[
             None,
@@ -3030,7 +3030,7 @@ class TeamsApi:
 
         Get regular season stats for a given team. (Default: Current Season)
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param season: Specific season number to get stats for.
         :type season: int
@@ -3147,7 +3147,7 @@ class TeamsApi:
     @validate_call
     async def teams_update(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         data: TeamPatch,
         _request_timeout: Union[
             None,
@@ -3165,7 +3165,7 @@ class TeamsApi:
         """teams_update
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param data: (required)
         :type data: TeamPatch
@@ -3218,7 +3218,7 @@ class TeamsApi:
     @validate_call
     async def teams_update_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         data: TeamPatch,
         _request_timeout: Union[
             None,
@@ -3236,7 +3236,7 @@ class TeamsApi:
         """teams_update
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param data: (required)
         :type data: TeamPatch
@@ -3289,7 +3289,7 @@ class TeamsApi:
     @validate_call
     async def teams_update_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this teams.")],
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         data: TeamPatch,
         _request_timeout: Union[
             None,
@@ -3307,7 +3307,7 @@ class TeamsApi:
         """teams_update
 
 
-        :param id: A unique integer value identifying this teams. (required)
+        :param id: A unique integer value identifying this team. (required)
         :type id: int
         :param data: (required)
         :type data: TeamPatch
