@@ -21,6 +21,7 @@ __version__ = "1.0.0"
 __all__ = [
     "CsvApi",
     "DraftPicksApi",
+    "ElevatedRolesApi",
     "FranchisesApi",
     "LeaguePlayersApi",
     "LeaguesApi",
@@ -59,6 +60,8 @@ __all__ = [
     "DropAPlayerFromALeague",
     "ElevatedRole",
     "ElevatedRoleInput",
+    "ElevatedRoleLeague",
+    "ElevatedRolesList200Response",
     "Error",
     "ExpireAPlayerSub",
     "Franchise",
@@ -164,6 +167,7 @@ __all__ = [
 # import apis into sdk package
 from rscapi.api.csv_api import CsvApi as CsvApi
 from rscapi.api.draft_picks_api import DraftPicksApi as DraftPicksApi
+from rscapi.api.elevated_roles_api import ElevatedRolesApi as ElevatedRolesApi
 from rscapi.api.franchises_api import FranchisesApi as FranchisesApi
 from rscapi.api.league_players_api import LeaguePlayersApi as LeaguePlayersApi
 from rscapi.api.leagues_api import LeaguesApi as LeaguesApi
@@ -206,6 +210,8 @@ from rscapi.models.draft_tier import DraftTier as DraftTier
 from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague as DropAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole as ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput as ElevatedRoleInput
+from rscapi.models.elevated_role_league import ElevatedRoleLeague as ElevatedRoleLeague
+from rscapi.models.elevated_roles_list200_response import ElevatedRolesList200Response as ElevatedRolesList200Response
 from rscapi.models.error import Error as Error
 from rscapi.models.expire_a_player_sub import ExpireAPlayerSub as ExpireAPlayerSub
 from rscapi.models.franchise import Franchise as Franchise

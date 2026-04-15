@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.activity_check import ActivityCheck
@@ -1432,7 +1432,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_create(
         self,
-        member_id: StrictStr,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRoleInput,
         _request_timeout: Union[
             None,
@@ -1451,8 +1451,8 @@ class MembersApi:
 
         Create a new elevated role for member.
 
-        :param member_id: (required)
-        :type member_id: str
+        :param id: A unique integer value identifying this elevated role. (required)
+        :type id: int
         :param data: (required)
         :type data: ElevatedRoleInput
         :param _request_timeout: timeout setting for this request. If one
@@ -1478,7 +1478,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_create_serialize(
-            member_id=member_id,
+            id=id,
             data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1506,7 +1506,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_create_with_http_info(
         self,
-        member_id: StrictStr,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRoleInput,
         _request_timeout: Union[
             None,
@@ -1525,8 +1525,8 @@ class MembersApi:
 
         Create a new elevated role for member.
 
-        :param member_id: (required)
-        :type member_id: str
+        :param id: A unique integer value identifying this elevated role. (required)
+        :type id: int
         :param data: (required)
         :type data: ElevatedRoleInput
         :param _request_timeout: timeout setting for this request. If one
@@ -1552,7 +1552,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_create_serialize(
-            member_id=member_id,
+            id=id,
             data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1580,7 +1580,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_create_without_preload_content(
         self,
-        member_id: StrictStr,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRoleInput,
         _request_timeout: Union[
             None,
@@ -1599,8 +1599,8 @@ class MembersApi:
 
         Create a new elevated role for member.
 
-        :param member_id: (required)
-        :type member_id: str
+        :param id: A unique integer value identifying this elevated role. (required)
+        :type id: int
         :param data: (required)
         :type data: ElevatedRoleInput
         :param _request_timeout: timeout setting for this request. If one
@@ -1626,7 +1626,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_create_serialize(
-            member_id=member_id,
+            id=id,
             data=data,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1649,7 +1649,7 @@ class MembersApi:
 
     def _members_elevated_roles_create_serialize(
         self,
-        member_id,
+        id,
         data,
         _request_auth,
         _content_type,
@@ -1672,8 +1672,8 @@ class MembersApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if member_id is not None:
-            _path_params['member_id'] = member_id
+        if id is not None:
+            _path_params['id'] = id
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -1711,7 +1711,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/members/{member_id}/elevated_roles/',
+            resource_path='/members/{id}/elevated_roles/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1730,7 +1730,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_delete(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         _request_timeout: Union[
             None,
@@ -1749,8 +1748,6 @@ class MembersApi:
 
         Delete an elevated role by its ID
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
@@ -1776,7 +1773,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_delete_serialize(
-            member_id=member_id,
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1803,7 +1799,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_delete_with_http_info(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         _request_timeout: Union[
             None,
@@ -1822,8 +1817,6 @@ class MembersApi:
 
         Delete an elevated role by its ID
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
@@ -1849,7 +1842,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_delete_serialize(
-            member_id=member_id,
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1876,7 +1868,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_delete_without_preload_content(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         _request_timeout: Union[
             None,
@@ -1895,8 +1886,6 @@ class MembersApi:
 
         Delete an elevated role by its ID
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
@@ -1922,7 +1911,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_delete_serialize(
-            member_id=member_id,
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1944,7 +1932,6 @@ class MembersApi:
 
     def _members_elevated_roles_delete_serialize(
         self,
-        member_id,
         id,
         _request_auth,
         _content_type,
@@ -1967,8 +1954,6 @@ class MembersApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if member_id is not None:
-            _path_params['member_id'] = member_id
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
@@ -1986,7 +1971,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='DELETE',
-            resource_path='/members/{member_id}/elevated_roles/{id}/',
+            resource_path='/members/{id}/elevated_roles/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2005,12 +1990,11 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_list(
         self,
-        member_id: StrictStr,
-        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
-        position: Annotated[Optional[StrictStr], Field(description="position")] = None,
-        league: Annotated[Optional[StrictStr], Field(description="league")] = None,
-        gm: Annotated[Optional[StrictStr], Field(description="gm")] = None,
-        agm: Annotated[Optional[StrictStr], Field(description="agm")] = None,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        position: Annotated[Optional[StrictStr], Field(description="Staff position")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
+        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
+        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2026,19 +2010,18 @@ class MembersApi:
     ) -> List[ElevatedRole]:
         """members_elevated_roles_list
 
+        List elevated roles for a member.
 
-        :param member_id: (required)
-        :type member_id: str
-        :param discord_id: discord_id
-        :type discord_id: str
-        :param position: position
+        :param id: A unique integer value identifying this elevated role. (required)
+        :type id: int
+        :param position: Staff position
         :type position: str
-        :param league: league
-        :type league: str
-        :param gm: gm
-        :type gm: str
-        :param agm: agm
-        :type agm: str
+        :param league: League ID
+        :type league: int
+        :param gm: General Manager
+        :type gm: bool
+        :param agm: Assistant GM
+        :type agm: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2062,8 +2045,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_list_serialize(
-            member_id=member_id,
-            discord_id=discord_id,
+            id=id,
             position=position,
             league=league,
             gm=gm,
@@ -2091,12 +2073,11 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_list_with_http_info(
         self,
-        member_id: StrictStr,
-        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
-        position: Annotated[Optional[StrictStr], Field(description="position")] = None,
-        league: Annotated[Optional[StrictStr], Field(description="league")] = None,
-        gm: Annotated[Optional[StrictStr], Field(description="gm")] = None,
-        agm: Annotated[Optional[StrictStr], Field(description="agm")] = None,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        position: Annotated[Optional[StrictStr], Field(description="Staff position")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
+        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
+        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2112,19 +2093,18 @@ class MembersApi:
     ) -> ApiResponse[List[ElevatedRole]]:
         """members_elevated_roles_list
 
+        List elevated roles for a member.
 
-        :param member_id: (required)
-        :type member_id: str
-        :param discord_id: discord_id
-        :type discord_id: str
-        :param position: position
+        :param id: A unique integer value identifying this elevated role. (required)
+        :type id: int
+        :param position: Staff position
         :type position: str
-        :param league: league
-        :type league: str
-        :param gm: gm
-        :type gm: str
-        :param agm: agm
-        :type agm: str
+        :param league: League ID
+        :type league: int
+        :param gm: General Manager
+        :type gm: bool
+        :param agm: Assistant GM
+        :type agm: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2148,8 +2128,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_list_serialize(
-            member_id=member_id,
-            discord_id=discord_id,
+            id=id,
             position=position,
             league=league,
             gm=gm,
@@ -2177,12 +2156,11 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_list_without_preload_content(
         self,
-        member_id: StrictStr,
-        discord_id: Annotated[Optional[StrictStr], Field(description="discord_id")] = None,
-        position: Annotated[Optional[StrictStr], Field(description="position")] = None,
-        league: Annotated[Optional[StrictStr], Field(description="league")] = None,
-        gm: Annotated[Optional[StrictStr], Field(description="gm")] = None,
-        agm: Annotated[Optional[StrictStr], Field(description="agm")] = None,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        position: Annotated[Optional[StrictStr], Field(description="Staff position")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
+        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
+        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2198,19 +2176,18 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_elevated_roles_list
 
+        List elevated roles for a member.
 
-        :param member_id: (required)
-        :type member_id: str
-        :param discord_id: discord_id
-        :type discord_id: str
-        :param position: position
+        :param id: A unique integer value identifying this elevated role. (required)
+        :type id: int
+        :param position: Staff position
         :type position: str
-        :param league: league
-        :type league: str
-        :param gm: gm
-        :type gm: str
-        :param agm: agm
-        :type agm: str
+        :param league: League ID
+        :type league: int
+        :param gm: General Manager
+        :type gm: bool
+        :param agm: Assistant GM
+        :type agm: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2234,8 +2211,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_list_serialize(
-            member_id=member_id,
-            discord_id=discord_id,
+            id=id,
             position=position,
             league=league,
             gm=gm,
@@ -2258,8 +2234,7 @@ class MembersApi:
 
     def _members_elevated_roles_list_serialize(
         self,
-        member_id,
-        discord_id,
+        id,
         position,
         league,
         gm,
@@ -2285,13 +2260,9 @@ class MembersApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if member_id is not None:
-            _path_params['member_id'] = member_id
+        if id is not None:
+            _path_params['id'] = id
         # process the query parameters
-        if discord_id is not None:
-            
-            _query_params.append(('discord_id', discord_id))
-            
         if position is not None:
             
             _query_params.append(('position', position))
@@ -2329,7 +2300,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/members/{member_id}/elevated_roles/',
+            resource_path='/members/{id}/elevated_roles/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2348,7 +2319,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_partial_update(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRole,
         _request_timeout: Union[
@@ -2367,8 +2337,6 @@ class MembersApi:
         """members_elevated_roles_partial_update
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param data: (required)
@@ -2396,7 +2364,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_partial_update_serialize(
-            member_id=member_id,
             id=id,
             data=data,
             _request_auth=_request_auth,
@@ -2422,7 +2389,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_partial_update_with_http_info(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRole,
         _request_timeout: Union[
@@ -2441,8 +2407,6 @@ class MembersApi:
         """members_elevated_roles_partial_update
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param data: (required)
@@ -2470,7 +2434,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_partial_update_serialize(
-            member_id=member_id,
             id=id,
             data=data,
             _request_auth=_request_auth,
@@ -2496,7 +2459,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_partial_update_without_preload_content(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRole,
         _request_timeout: Union[
@@ -2515,8 +2477,6 @@ class MembersApi:
         """members_elevated_roles_partial_update
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param data: (required)
@@ -2544,7 +2504,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_partial_update_serialize(
-            member_id=member_id,
             id=id,
             data=data,
             _request_auth=_request_auth,
@@ -2565,7 +2524,6 @@ class MembersApi:
 
     def _members_elevated_roles_partial_update_serialize(
         self,
-        member_id,
         id,
         data,
         _request_auth,
@@ -2589,8 +2547,6 @@ class MembersApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if member_id is not None:
-            _path_params['member_id'] = member_id
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
@@ -2630,7 +2586,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='PATCH',
-            resource_path='/members/{member_id}/elevated_roles/{id}/',
+            resource_path='/members/{id}/elevated_roles/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2649,7 +2605,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_read(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         _request_timeout: Union[
             None,
@@ -2667,8 +2622,6 @@ class MembersApi:
         """members_elevated_roles_read
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2694,7 +2647,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_read_serialize(
-            member_id=member_id,
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2719,7 +2671,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_read_with_http_info(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         _request_timeout: Union[
             None,
@@ -2737,8 +2688,6 @@ class MembersApi:
         """members_elevated_roles_read
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2764,7 +2713,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_read_serialize(
-            member_id=member_id,
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2789,7 +2737,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_read_without_preload_content(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         _request_timeout: Union[
             None,
@@ -2807,8 +2754,6 @@ class MembersApi:
         """members_elevated_roles_read
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param _request_timeout: timeout setting for this request. If one
@@ -2834,7 +2779,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_read_serialize(
-            member_id=member_id,
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2854,7 +2798,6 @@ class MembersApi:
 
     def _members_elevated_roles_read_serialize(
         self,
-        member_id,
         id,
         _request_auth,
         _content_type,
@@ -2877,8 +2820,6 @@ class MembersApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if member_id is not None:
-            _path_params['member_id'] = member_id
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
@@ -2903,7 +2844,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/members/{member_id}/elevated_roles/{id}/',
+            resource_path='/members/{id}/elevated_roles/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2922,7 +2863,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_update(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRole,
         _request_timeout: Union[
@@ -2941,8 +2881,6 @@ class MembersApi:
         """members_elevated_roles_update
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param data: (required)
@@ -2970,7 +2908,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_update_serialize(
-            member_id=member_id,
             id=id,
             data=data,
             _request_auth=_request_auth,
@@ -2996,7 +2933,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_update_with_http_info(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRole,
         _request_timeout: Union[
@@ -3015,8 +2951,6 @@ class MembersApi:
         """members_elevated_roles_update
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param data: (required)
@@ -3044,7 +2978,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_update_serialize(
-            member_id=member_id,
             id=id,
             data=data,
             _request_auth=_request_auth,
@@ -3070,7 +3003,6 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_update_without_preload_content(
         self,
-        member_id: StrictStr,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
         data: ElevatedRole,
         _request_timeout: Union[
@@ -3089,8 +3021,6 @@ class MembersApi:
         """members_elevated_roles_update
 
 
-        :param member_id: (required)
-        :type member_id: str
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
         :param data: (required)
@@ -3118,7 +3048,6 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_update_serialize(
-            member_id=member_id,
             id=id,
             data=data,
             _request_auth=_request_auth,
@@ -3139,7 +3068,6 @@ class MembersApi:
 
     def _members_elevated_roles_update_serialize(
         self,
-        member_id,
         id,
         data,
         _request_auth,
@@ -3163,8 +3091,6 @@ class MembersApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if member_id is not None:
-            _path_params['member_id'] = member_id
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
@@ -3204,7 +3130,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/members/{member_id}/elevated_roles/{id}/',
+            resource_path='/members/{id}/elevated_roles/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

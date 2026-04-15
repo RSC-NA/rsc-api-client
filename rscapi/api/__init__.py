@@ -3,6 +3,7 @@
 # import apis into api package
 from rscapi.api.csv_api import CsvApi
 from rscapi.api.draft_picks_api import DraftPicksApi
+from rscapi.api.elevated_roles_api import ElevatedRolesApi
 from rscapi.api.franchises_api import FranchisesApi
 from rscapi.api.league_players_api import LeaguePlayersApi
 from rscapi.api.leagues_api import LeaguesApi

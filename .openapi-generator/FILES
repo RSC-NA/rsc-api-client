@@ -23,6 +23,9 @@ docs/DraftTier.md
 docs/DropAPlayerFromALeague.md
 docs/ElevatedRole.md
 docs/ElevatedRoleInput.md
+docs/ElevatedRoleLeague.md
+docs/ElevatedRolesApi.md
+docs/ElevatedRolesList200Response.md
 docs/Error.md
 docs/ExpireAPlayerSub.md
 docs/Franchise.md
@@ -141,6 +144,7 @@ rscapi/__init__.py
 rscapi/api/__init__.py
 rscapi/api/csv_api.py
 rscapi/api/draft_picks_api.py
+rscapi/api/elevated_roles_api.py
 rscapi/api/franchises_api.py
 rscapi/api/league_players_api.py
 rscapi/api/leagues_api.py
@@ -175,6 +179,8 @@ rscapi/models/draft_tier.py
 rscapi/models/drop_a_player_from_a_league.py
 rscapi/models/elevated_role.py
 rscapi/models/elevated_role_input.py
+rscapi/models/elevated_role_league.py
+rscapi/models/elevated_roles_list200_response.py
 rscapi/models/error.py
 rscapi/models/expire_a_player_sub.py
 rscapi/models/franchise.py
@@ -281,5 +287,7 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_tracker_status.py
+test/test_elevated_role_league.py
+test/test_elevated_roles_api.py
+test/test_elevated_roles_list200_response.py
 tox.ini

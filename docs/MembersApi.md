@@ -9,12 +9,12 @@ Method | HTTP request | Description
 [**members_contract_status**](MembersApi.md#members_contract_status) | **GET** /members/{id}/contract_status/ | 
 [**members_create**](MembersApi.md#members_create) | **POST** /members/ | 
 [**members_delete**](MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
-[**members_elevated_roles_create**](MembersApi.md#members_elevated_roles_create) | **POST** /members/{member_id}/elevated_roles/ | 
-[**members_elevated_roles_delete**](MembersApi.md#members_elevated_roles_delete) | **DELETE** /members/{member_id}/elevated_roles/{id}/ | 
-[**members_elevated_roles_list**](MembersApi.md#members_elevated_roles_list) | **GET** /members/{member_id}/elevated_roles/ | 
-[**members_elevated_roles_partial_update**](MembersApi.md#members_elevated_roles_partial_update) | **PATCH** /members/{member_id}/elevated_roles/{id}/ | 
-[**members_elevated_roles_read**](MembersApi.md#members_elevated_roles_read) | **GET** /members/{member_id}/elevated_roles/{id}/ | 
-[**members_elevated_roles_update**](MembersApi.md#members_elevated_roles_update) | **PUT** /members/{member_id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_create**](MembersApi.md#members_elevated_roles_create) | **POST** /members/{id}/elevated_roles/ | 
+[**members_elevated_roles_delete**](MembersApi.md#members_elevated_roles_delete) | **DELETE** /members/{id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_list**](MembersApi.md#members_elevated_roles_list) | **GET** /members/{id}/elevated_roles/ | 
+[**members_elevated_roles_partial_update**](MembersApi.md#members_elevated_roles_partial_update) | **PATCH** /members/{id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_read**](MembersApi.md#members_elevated_roles_read) | **GET** /members/{id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_update**](MembersApi.md#members_elevated_roles_update) | **PUT** /members/{id}/elevated_roles/{id}/ | 
 [**members_intent_to_play**](MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
 [**members_make_player**](MembersApi.md#members_make_player) | **POST** /members/{id}/make_player/ | 
@@ -419,7 +419,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_create**
-> Member members_elevated_roles_create(member_id, data)
+> Member members_elevated_roles_create(id, data)
 
 Create a new elevated role for member.
 
@@ -455,11 +455,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    member_id = 'member_id_example' # str | 
+    id = 56 # int | A unique integer value identifying this elevated role.
     data = rscapi.ElevatedRoleInput() # ElevatedRoleInput | 
 
     try:
-        api_response = await api_instance.members_elevated_roles_create(member_id, data)
+        api_response = await api_instance.members_elevated_roles_create(id, data)
         print("The response of MembersApi->members_elevated_roles_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -473,7 +473,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **member_id** | **str**|  | 
+ **id** | **int**| A unique integer value identifying this elevated role. | 
  **data** | [**ElevatedRoleInput**](ElevatedRoleInput.md)|  | 
 
 ### Return type
@@ -501,7 +501,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_delete**
-> members_elevated_roles_delete(member_id, id)
+> members_elevated_roles_delete(id)
 
 Delete an elevated role by its ID
 
@@ -535,11 +535,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    member_id = 'member_id_example' # str | 
     id = 56 # int | A unique integer value identifying this elevated role.
 
     try:
-        await api_instance.members_elevated_roles_delete(member_id, id)
+        await api_instance.members_elevated_roles_delete(id)
     except Exception as e:
         print("Exception when calling MembersApi->members_elevated_roles_delete: %s\n" % e)
 ```
@@ -551,7 +550,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **member_id** | **str**|  | 
  **id** | **int**| A unique integer value identifying this elevated role. | 
 
 ### Return type
@@ -578,7 +576,9 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_list**
-> List[ElevatedRole] members_elevated_roles_list(member_id, discord_id=discord_id, position=position, league=league, gm=gm, agm=agm)
+> List[ElevatedRole] members_elevated_roles_list(id, position=position, league=league, gm=gm, agm=agm)
+
+List elevated roles for a member.
 
 ### Example
 
@@ -611,15 +611,14 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    member_id = 'member_id_example' # str | 
-    discord_id = 'discord_id_example' # str | discord_id (optional)
-    position = 'position_example' # str | position (optional)
-    league = 'league_example' # str | league (optional)
-    gm = 'gm_example' # str | gm (optional)
-    agm = 'agm_example' # str | agm (optional)
+    id = 56 # int | A unique integer value identifying this elevated role.
+    position = 'position_example' # str | Staff position (optional)
+    league = 56 # int | League ID (optional)
+    gm = True # bool | General Manager (optional)
+    agm = True # bool | Assistant GM (optional)
 
     try:
-        api_response = await api_instance.members_elevated_roles_list(member_id, discord_id=discord_id, position=position, league=league, gm=gm, agm=agm)
+        api_response = await api_instance.members_elevated_roles_list(id, position=position, league=league, gm=gm, agm=agm)
         print("The response of MembersApi->members_elevated_roles_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -633,12 +632,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **member_id** | **str**|  | 
- **discord_id** | **str**| discord_id | [optional] 
- **position** | **str**| position | [optional] 
- **league** | **str**| league | [optional] 
- **gm** | **str**| gm | [optional] 
- **agm** | **str**| agm | [optional] 
+ **id** | **int**| A unique integer value identifying this elevated role. | 
+ **position** | **str**| Staff position | [optional] 
+ **league** | **int**| League ID | [optional] 
+ **gm** | **bool**| General Manager | [optional] 
+ **agm** | **bool**| Assistant GM | [optional] 
 
 ### Return type
 
@@ -662,7 +660,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_partial_update**
-> ElevatedRole members_elevated_roles_partial_update(member_id, id, data)
+> ElevatedRole members_elevated_roles_partial_update(id, data)
 
 ### Example
 
@@ -695,12 +693,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    member_id = 'member_id_example' # str | 
     id = 56 # int | A unique integer value identifying this elevated role.
     data = rscapi.ElevatedRole() # ElevatedRole | 
 
     try:
-        api_response = await api_instance.members_elevated_roles_partial_update(member_id, id, data)
+        api_response = await api_instance.members_elevated_roles_partial_update(id, data)
         print("The response of MembersApi->members_elevated_roles_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -714,7 +711,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **member_id** | **str**|  | 
  **id** | **int**| A unique integer value identifying this elevated role. | 
  **data** | [**ElevatedRole**](ElevatedRole.md)|  | 
 
@@ -740,7 +736,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_read**
-> ElevatedRole members_elevated_roles_read(member_id, id)
+> ElevatedRole members_elevated_roles_read(id)
 
 ### Example
 
@@ -773,11 +769,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    member_id = 'member_id_example' # str | 
     id = 56 # int | A unique integer value identifying this elevated role.
 
     try:
-        api_response = await api_instance.members_elevated_roles_read(member_id, id)
+        api_response = await api_instance.members_elevated_roles_read(id)
         print("The response of MembersApi->members_elevated_roles_read:\n")
         pprint(api_response)
     except Exception as e:
@@ -791,7 +786,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **member_id** | **str**|  | 
  **id** | **int**| A unique integer value identifying this elevated role. | 
 
 ### Return type
@@ -816,7 +810,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_update**
-> ElevatedRole members_elevated_roles_update(member_id, id, data)
+> ElevatedRole members_elevated_roles_update(id, data)
 
 ### Example
 
@@ -849,12 +843,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    member_id = 'member_id_example' # str | 
     id = 56 # int | A unique integer value identifying this elevated role.
     data = rscapi.ElevatedRole() # ElevatedRole | 
 
     try:
-        api_response = await api_instance.members_elevated_roles_update(member_id, id, data)
+        api_response = await api_instance.members_elevated_roles_update(id, data)
         print("The response of MembersApi->members_elevated_roles_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -868,7 +861,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **member_id** | **str**|  | 
  **id** | **int**| A unique integer value identifying this elevated role. | 
  **data** | [**ElevatedRole**](ElevatedRole.md)|  | 
 

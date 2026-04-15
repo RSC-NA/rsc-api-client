@@ -58,8 +58,8 @@ class TransactionResponse(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['AIR', 'CUT', 'DFT', 'IR', 'IRT', 'NON', 'PCH', 'PKU', 'PTD', 'PRO', 'RLG', 'RES', 'RET', 'SUB', 'TMP', 'TRD', 'WVR']):
-            raise ValueError("must be one of enum values ('AIR', 'CUT', 'DFT', 'IR', 'IRT', 'NON', 'PCH', 'PKU', 'PTD', 'PRO', 'RLG', 'RES', 'RET', 'SUB', 'TMP', 'TRD', 'WVR')")
+        if value not in set(['AIR', 'CUT', 'DFT', 'IR', 'INT', 'IRT', 'NON', 'PCH', 'PKU', 'PTD', 'PRO', 'RLG', 'RES', 'RET', 'SGN', 'PSG', 'SUB', 'TMP', 'TRD', 'WVR']):
+            raise ValueError("must be one of enum values ('AIR', 'CUT', 'DFT', 'IR', 'INT', 'IRT', 'NON', 'PCH', 'PKU', 'PTD', 'PRO', 'RLG', 'RES', 'RET', 'SGN', 'PSG', 'SUB', 'TMP', 'TRD', 'WVR')")
         return value
 
     model_config = ConfigDict(

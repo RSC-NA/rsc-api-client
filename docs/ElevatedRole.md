@@ -6,7 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**league** | [**League**](League.md) |  | 
+**member** | [**SimpleMember**](SimpleMember.md) |  | [optional] 
+**league** | [**ElevatedRoleLeague**](ElevatedRoleLeague.md) |  | 
 **position** | **str** |  | 
 **gm** | **bool** |  | [optional] [readonly] 
 **agm** | **bool** |  | [optional] [readonly] 

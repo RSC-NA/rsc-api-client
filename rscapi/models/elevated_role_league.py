@@ -18,28 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from rscapi.models.elevated_role_league import ElevatedRoleLeague
-from rscapi.models.simple_member import SimpleMember
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ElevatedRole(BaseModel):
+class ElevatedRoleLeague(BaseModel):
     """
-    ElevatedRole
+    ElevatedRoleLeague
     """ # noqa: E501
     id: Optional[StrictInt] = None
-    member: Optional[SimpleMember] = None
-    league: ElevatedRoleLeague
-    position: Optional[Annotated[str, Field(min_length=1, strict=True)]]
-    gm: Optional[StrictBool] = None
-    agm: Optional[StrictBool] = None
-    arbiter: Optional[StrictBool] = None
-    project_role: Annotated[str, Field(min_length=0, strict=True)]
-    franchise_id: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "member", "league", "position", "gm", "agm", "arbiter", "project_role", "franchise_id"]
+    name: Annotated[str, Field(min_length=1, strict=True)]
+    guild_id: StrictInt
+    active: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["id", "name", "guild_id", "active"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +52,7 @@ class ElevatedRole(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ElevatedRole from a JSON string"""
+        """Create an instance of ElevatedRoleLeague from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,17 +65,9 @@ class ElevatedRole(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
-            "gm",
-            "agm",
-            "arbiter",
-            "franchise_id",
         ])
 
         _dict = self.model_dump(
@@ -90,22 +75,11 @@ class ElevatedRole(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of member
-        if self.member:
-            _dict['member'] = self.member.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of league
-        if self.league:
-            _dict['league'] = self.league.to_dict()
-        # set to None if position (nullable) is None
-        # and model_fields_set contains the field
-        if self.position is None and "position" in self.model_fields_set:
-            _dict['position'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ElevatedRole from a dict"""
+        """Create an instance of ElevatedRoleLeague from a dict"""
         if obj is None:
             return None
 
@@ -114,14 +88,9 @@ class ElevatedRole(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "member": SimpleMember.from_dict(obj["member"]) if obj.get("member") is not None else None,
-            "league": ElevatedRoleLeague.from_dict(obj["league"]) if obj.get("league") is not None else None,
-            "position": obj.get("position"),
-            "gm": obj.get("gm"),
-            "agm": obj.get("agm"),
-            "arbiter": obj.get("arbiter"),
-            "project_role": obj.get("project_role"),
-            "franchise_id": obj.get("franchise_id")
+            "name": obj.get("name"),
+            "guild_id": obj.get("guild_id"),
+            "active": obj.get("active")
         })
         return _obj
 

@@ -32,6 +32,8 @@ from rscapi.models.draft_tier import DraftTier
 from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput
+from rscapi.models.elevated_role_league import ElevatedRoleLeague
+from rscapi.models.elevated_roles_list200_response import ElevatedRolesList200Response
 from rscapi.models.error import Error
 from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.franchise import Franchise
