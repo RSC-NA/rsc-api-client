@@ -184,7 +184,7 @@ Class | Method | HTTP request | Description
 *NumbersApi* | [**numbers_mmr_partial_update**](docs/NumbersApi.md#numbers_mmr_partial_update) | **PATCH** /numbers/mmr/{id}/ | 
 *NumbersApi* | [**numbers_mmr_read**](docs/NumbersApi.md#numbers_mmr_read) | **GET** /numbers/mmr/{id}/ | 
 *NumbersApi* | [**numbers_mmr_update**](docs/NumbersApi.md#numbers_mmr_update) | **PUT** /numbers/mmr/{id}/ | 
-*SeasonsApi* | [**seasons_activity_check_list**](docs/SeasonsApi.md#seasons_activity_check_list) | **GET** /seasons/activity_check/ | 
+*SeasonsApi* | [**seasons_activity_check_list**](docs/SeasonsApi.md#seasons_activity_check_list) | **GET** /seasons/activity_check/ | List all activity checks for a given season.
 *SeasonsApi* | [**seasons_activity_check_read**](docs/SeasonsApi.md#seasons_activity_check_read) | **GET** /seasons/activity_check/{id}/ | 
 *SeasonsApi* | [**seasons_create**](docs/SeasonsApi.md#seasons_create) | **POST** /seasons/ | 
 *SeasonsApi* | [**seasons_delete**](docs/SeasonsApi.md#seasons_delete) | **DELETE** /seasons/{id}/ | 

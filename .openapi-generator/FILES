@@ -287,7 +287,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_elevated_role_league.py
-test/test_elevated_roles_api.py
-test/test_elevated_roles_list200_response.py
 tox.ini

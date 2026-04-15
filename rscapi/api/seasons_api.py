@@ -68,9 +68,9 @@ class SeasonsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> SeasonsActivityCheckList200Response:
-        """seasons_activity_check_list
+        """List all activity checks for a given season.
 
-        List all activity checks for a given season.
+        Missing ActivityCheck records are automatically created for active league players who have not yet submitted one.
 
         :param discord_id: Discord ID of player intent to search for.
         :type discord_id: int
@@ -163,9 +163,9 @@ class SeasonsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[SeasonsActivityCheckList200Response]:
-        """seasons_activity_check_list
+        """List all activity checks for a given season.
 
-        List all activity checks for a given season.
+        Missing ActivityCheck records are automatically created for active league players who have not yet submitted one.
 
         :param discord_id: Discord ID of player intent to search for.
         :type discord_id: int
@@ -258,9 +258,9 @@ class SeasonsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """seasons_activity_check_list
+        """List all activity checks for a given season.
 
-        List all activity checks for a given season.
+        Missing ActivityCheck records are automatically created for active league players who have not yet submitted one.
 
         :param discord_id: Discord ID of player intent to search for.
         :type discord_id: int

@@ -4,7 +4,7 @@ All URIs are relative to *https://staging-api.rscna.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**seasons_activity_check_list**](SeasonsApi.md#seasons_activity_check_list) | **GET** /seasons/activity_check/ | 
+[**seasons_activity_check_list**](SeasonsApi.md#seasons_activity_check_list) | **GET** /seasons/activity_check/ | List all activity checks for a given season.
 [**seasons_activity_check_read**](SeasonsApi.md#seasons_activity_check_read) | **GET** /seasons/activity_check/{id}/ | 
 [**seasons_create**](SeasonsApi.md#seasons_create) | **POST** /seasons/ | 
 [**seasons_delete**](SeasonsApi.md#seasons_delete) | **DELETE** /seasons/{id}/ | 
@@ -22,6 +22,9 @@ Method | HTTP request | Description
 > SeasonsActivityCheckList200Response seasons_activity_check_list(discord_id=discord_id, completed=completed, returning_status=returning_status, missing=missing, season=season, season_number=season_number, limit=limit, offset=offset)
 
 List all activity checks for a given season.
+
+Missing ActivityCheck records are automatically created for active
+league players who have not yet submitted one.
 
 ### Example
 
@@ -64,6 +67,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     offset = 56 # int | The initial index from which to return the results. (optional)
 
     try:
+        # List all activity checks for a given season.
         api_response = await api_instance.seasons_activity_check_list(discord_id=discord_id, completed=completed, returning_status=returning_status, missing=missing, season=season, season_number=season_number, limit=limit, offset=offset)
         print("The response of SeasonsApi->seasons_activity_check_list:\n")
         pprint(api_response)
