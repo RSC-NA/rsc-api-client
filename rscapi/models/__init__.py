@@ -24,11 +24,14 @@ from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
 from rscapi.models.deleted import Deleted
 from rscapi.models.draft_a_player_to_a_team import DraftAPlayerToATeam
 from rscapi.models.draft_pick import DraftPick
-from rscapi.models.draft_pick_season_tier import DraftPickSeasonTier
+from rscapi.models.draft_pick_details import DraftPickDetails
+from rscapi.models.draft_pick_franchise import DraftPickFranchise
+from rscapi.models.draft_pick_gm import DraftPickGM
+from rscapi.models.draft_pick_league_player import DraftPickLeaguePlayer
+from rscapi.models.draft_pick_list import DraftPickList
 from rscapi.models.draft_pick_swap import DraftPickSwap
-from rscapi.models.draft_picks import DraftPicks
 from rscapi.models.draft_picks_list200_response import DraftPicksList200Response
-from rscapi.models.draft_tier import DraftTier
+from rscapi.models.draft_tier_list import DraftTierList
 from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput
@@ -95,6 +98,8 @@ from rscapi.models.rebrand_a_franchise import RebrandAFranchise
 from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague
 from rscapi.models.retire_a_player import RetireAPlayer
 from rscapi.models.season import Season
+from rscapi.models.season_draft_list import SeasonDraftList
+from rscapi.models.season_draft_pick_list import SeasonDraftPickList
 from rscapi.models.season_league import SeasonLeague
 from rscapi.models.season_schedule import SeasonSchedule
 from rscapi.models.season_tier_data import SeasonTierData

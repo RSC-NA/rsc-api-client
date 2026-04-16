@@ -52,11 +52,14 @@ __all__ = [
     "Deleted",
     "DraftAPlayerToATeam",
     "DraftPick",
-    "DraftPickSeasonTier",
+    "DraftPickDetails",
+    "DraftPickFranchise",
+    "DraftPickGM",
+    "DraftPickLeaguePlayer",
+    "DraftPickList",
     "DraftPickSwap",
-    "DraftPicks",
     "DraftPicksList200Response",
-    "DraftTier",
+    "DraftTierList",
     "DropAPlayerFromALeague",
     "ElevatedRole",
     "ElevatedRoleInput",
@@ -123,6 +126,8 @@ __all__ = [
     "RemoveTierFromALeague",
     "RetireAPlayer",
     "Season",
+    "SeasonDraftList",
+    "SeasonDraftPickList",
     "SeasonLeague",
     "SeasonSchedule",
     "SeasonTierData",
@@ -202,11 +207,14 @@ from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague as Cu
 from rscapi.models.deleted import Deleted as Deleted
 from rscapi.models.draft_a_player_to_a_team import DraftAPlayerToATeam as DraftAPlayerToATeam
 from rscapi.models.draft_pick import DraftPick as DraftPick
-from rscapi.models.draft_pick_season_tier import DraftPickSeasonTier as DraftPickSeasonTier
+from rscapi.models.draft_pick_details import DraftPickDetails as DraftPickDetails
+from rscapi.models.draft_pick_franchise import DraftPickFranchise as DraftPickFranchise
+from rscapi.models.draft_pick_gm import DraftPickGM as DraftPickGM
+from rscapi.models.draft_pick_league_player import DraftPickLeaguePlayer as DraftPickLeaguePlayer
+from rscapi.models.draft_pick_list import DraftPickList as DraftPickList
 from rscapi.models.draft_pick_swap import DraftPickSwap as DraftPickSwap
-from rscapi.models.draft_picks import DraftPicks as DraftPicks
 from rscapi.models.draft_picks_list200_response import DraftPicksList200Response as DraftPicksList200Response
-from rscapi.models.draft_tier import DraftTier as DraftTier
+from rscapi.models.draft_tier_list import DraftTierList as DraftTierList
 from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague as DropAPlayerFromALeague
 from rscapi.models.elevated_role import ElevatedRole as ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput as ElevatedRoleInput
@@ -273,6 +281,8 @@ from rscapi.models.rebrand_a_franchise import RebrandAFranchise as RebrandAFranc
 from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague as RemoveTierFromALeague
 from rscapi.models.retire_a_player import RetireAPlayer as RetireAPlayer
 from rscapi.models.season import Season as Season
+from rscapi.models.season_draft_list import SeasonDraftList as SeasonDraftList
+from rscapi.models.season_draft_pick_list import SeasonDraftPickList as SeasonDraftPickList
 from rscapi.models.season_league import SeasonLeague as SeasonLeague
 from rscapi.models.season_schedule import SeasonSchedule as SeasonSchedule
 from rscapi.models.season_tier_data import SeasonTierData as SeasonTierData

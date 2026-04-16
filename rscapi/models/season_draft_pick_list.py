@@ -18,21 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from rscapi.models.draft_pick_list import DraftPickList
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
+from rscapi.models.draft_tier_list import DraftTierList
+from rscapi.models.season_draft_list import SeasonDraftList
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DraftPicksList200Response(BaseModel):
+class SeasonDraftPickList(BaseModel):
     """
-    DraftPicksList200Response
+    SeasonDraftPickList
     """ # noqa: E501
-    count: StrictInt
-    next: Optional[StrictStr] = None
-    previous: Optional[StrictStr] = None
-    results: List[DraftPickList]
-    __properties: ClassVar[List[str]] = ["count", "next", "previous", "results"]
+    tier: DraftTierList
+    season: SeasonDraftList
+    __properties: ClassVar[List[str]] = ["tier", "season"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +51,7 @@ class DraftPicksList200Response(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DraftPicksList200Response from a JSON string"""
+        """Create an instance of SeasonDraftPickList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,28 +72,17 @@ class DraftPicksList200Response(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
-        _items = []
-        if self.results:
-            for _item_results in self.results:
-                if _item_results:
-                    _items.append(_item_results.to_dict())
-            _dict['results'] = _items
-        # set to None if next (nullable) is None
-        # and model_fields_set contains the field
-        if self.next is None and "next" in self.model_fields_set:
-            _dict['next'] = None
-
-        # set to None if previous (nullable) is None
-        # and model_fields_set contains the field
-        if self.previous is None and "previous" in self.model_fields_set:
-            _dict['previous'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of tier
+        if self.tier:
+            _dict['tier'] = self.tier.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of season
+        if self.season:
+            _dict['season'] = self.season.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DraftPicksList200Response from a dict"""
+        """Create an instance of SeasonDraftPickList from a dict"""
         if obj is None:
             return None
 
@@ -102,10 +90,8 @@ class DraftPicksList200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "count": obj.get("count"),
-            "next": obj.get("next"),
-            "previous": obj.get("previous"),
-            "results": [DraftPickList.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
+            "tier": DraftTierList.from_dict(obj["tier"]) if obj.get("tier") is not None else None,
+            "season": SeasonDraftList.from_dict(obj["season"]) if obj.get("season") is not None else None
         })
         return _obj
 

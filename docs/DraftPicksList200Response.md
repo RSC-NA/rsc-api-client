@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **count** | **int** |  | 
 **next** | **str** |  | [optional] 
 **previous** | **str** |  | [optional] 
-**results** | [**List[DraftPicks]**](DraftPicks.md) |  | 
+**results** | [**List[DraftPickList]**](DraftPickList.md) |  | 
 
 ## Example
 

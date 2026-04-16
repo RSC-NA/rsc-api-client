@@ -18,21 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from rscapi.models.draft_pick_list import DraftPickList
+from typing_extensions import Annotated
+from rscapi.models.draft_pick_gm import DraftPickGM
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DraftPicksList200Response(BaseModel):
+class DraftPickFranchise(BaseModel):
     """
-    DraftPicksList200Response
+    DraftPickFranchise
     """ # noqa: E501
-    count: StrictInt
-    next: Optional[StrictStr] = None
-    previous: Optional[StrictStr] = None
-    results: List[DraftPickList]
-    __properties: ClassVar[List[str]] = ["count", "next", "previous", "results"]
+    id: Optional[StrictInt] = None
+    name: Annotated[str, Field(min_length=1, strict=True)]
+    gm: DraftPickGM
+    __properties: ClassVar[List[str]] = ["id", "name", "gm"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +52,7 @@ class DraftPicksList200Response(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DraftPicksList200Response from a JSON string"""
+        """Create an instance of DraftPickFranchise from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -64,8 +64,10 @@ class DraftPicksList200Response(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "id",
         ])
 
         _dict = self.model_dump(
@@ -73,28 +75,14 @@ class DraftPicksList200Response(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in results (list)
-        _items = []
-        if self.results:
-            for _item_results in self.results:
-                if _item_results:
-                    _items.append(_item_results.to_dict())
-            _dict['results'] = _items
-        # set to None if next (nullable) is None
-        # and model_fields_set contains the field
-        if self.next is None and "next" in self.model_fields_set:
-            _dict['next'] = None
-
-        # set to None if previous (nullable) is None
-        # and model_fields_set contains the field
-        if self.previous is None and "previous" in self.model_fields_set:
-            _dict['previous'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of gm
+        if self.gm:
+            _dict['gm'] = self.gm.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DraftPicksList200Response from a dict"""
+        """Create an instance of DraftPickFranchise from a dict"""
         if obj is None:
             return None
 
@@ -102,10 +90,9 @@ class DraftPicksList200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "count": obj.get("count"),
-            "next": obj.get("next"),
-            "previous": obj.get("previous"),
-            "results": [DraftPickList.from_dict(_item) for _item in obj["results"]] if obj.get("results") is not None else None
+            "id": obj.get("id"),
+            "name": obj.get("name"),
+            "gm": DraftPickGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None
         })
         return _obj
 

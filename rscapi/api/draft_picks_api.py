@@ -17,11 +17,12 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field, StrictBool, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
+from rscapi.models.draft_pick_details import DraftPickDetails
+from rscapi.models.draft_pick_list import DraftPickList
 from rscapi.models.draft_pick_swap import DraftPickSwap
-from rscapi.models.draft_picks import DraftPicks
 from rscapi.models.draft_picks_list200_response import DraftPicksList200Response
 
 from rscapi.api_client import ApiClient, RequestSerialized
@@ -43,19 +44,271 @@ class DraftPicksApi:
 
 
     @validate_call
+    async def draft_picks_delete(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """draft_picks_delete
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_delete_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def draft_picks_delete_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """draft_picks_delete
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_delete_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def draft_picks_delete_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """draft_picks_delete
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_delete_serialize(
+            id=id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _draft_picks_delete_serialize(
+        self,
+        id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/draft-picks/{id}/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def draft_picks_list(
         self,
-        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
-        round: Annotated[Optional[StrictStr], Field(description="round")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
-        future: Annotated[Optional[StrictStr], Field(description="future")] = None,
-        future_season: Annotated[Optional[StrictStr], Field(description="future_season")] = None,
-        deleted: Annotated[Optional[StrictStr], Field(description="deleted")] = None,
-        pick_from: Annotated[Optional[StrictStr], Field(description="pick_from")] = None,
-        original_pick: Annotated[Optional[StrictStr], Field(description="original_pick")] = None,
-        season_number: Annotated[Optional[StrictStr], Field(description="season_number")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
-        page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
+        number: Annotated[Optional[StrictInt], Field(description="Pick number in the specific tier.")] = None,
+        round: Annotated[Optional[StrictInt], Field(description="Specific round in the tier.")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="Franchise name contains.")] = None,
+        future: Annotated[Optional[StrictBool], Field(description="Future pick.")] = None,
+        future_season: Annotated[Optional[StrictInt], Field(description="Future season number.")] = None,
+        deleted: Annotated[Optional[StrictBool], Field(description="Is this pick removed because someone lost a tier.")] = None,
+        pick_from: Annotated[Optional[StrictStr], Field(description="Prefix of who the pick came from.")] = None,
+        original_pick: Annotated[Optional[StrictStr], Field(description="Pick this originally came from.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number.")] = None,
+        tier: Annotated[Optional[StrictStr], Field(description="Tier name.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -73,28 +326,30 @@ class DraftPicksApi:
 
         List all draft picks for a given league and season.
 
-        :param number: number
-        :type number: str
-        :param round: round
-        :type round: str
-        :param franchise: franchise
+        :param number: Pick number in the specific tier.
+        :type number: int
+        :param round: Specific round in the tier.
+        :type round: int
+        :param franchise: Franchise name contains.
         :type franchise: str
-        :param future: future
-        :type future: str
-        :param future_season: future_season
-        :type future_season: str
-        :param deleted: deleted
-        :type deleted: str
-        :param pick_from: pick_from
+        :param future: Future pick.
+        :type future: bool
+        :param future_season: Future season number.
+        :type future_season: int
+        :param deleted: Is this pick removed because someone lost a tier.
+        :type deleted: bool
+        :param pick_from: Prefix of who the pick came from.
         :type pick_from: str
-        :param original_pick: original_pick
+        :param original_pick: Pick this originally came from.
         :type original_pick: str
-        :param season_number: season_number
-        :type season_number: str
-        :param tier: tier
+        :param season_number: Season number.
+        :type season_number: int
+        :param tier: Tier name.
         :type tier: str
-        :param page: A page number within the paginated result set.
-        :type page: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -128,7 +383,8 @@ class DraftPicksApi:
             original_pick=original_pick,
             season_number=season_number,
             tier=tier,
-            page=page,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -152,17 +408,18 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_list_with_http_info(
         self,
-        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
-        round: Annotated[Optional[StrictStr], Field(description="round")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
-        future: Annotated[Optional[StrictStr], Field(description="future")] = None,
-        future_season: Annotated[Optional[StrictStr], Field(description="future_season")] = None,
-        deleted: Annotated[Optional[StrictStr], Field(description="deleted")] = None,
-        pick_from: Annotated[Optional[StrictStr], Field(description="pick_from")] = None,
-        original_pick: Annotated[Optional[StrictStr], Field(description="original_pick")] = None,
-        season_number: Annotated[Optional[StrictStr], Field(description="season_number")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
-        page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
+        number: Annotated[Optional[StrictInt], Field(description="Pick number in the specific tier.")] = None,
+        round: Annotated[Optional[StrictInt], Field(description="Specific round in the tier.")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="Franchise name contains.")] = None,
+        future: Annotated[Optional[StrictBool], Field(description="Future pick.")] = None,
+        future_season: Annotated[Optional[StrictInt], Field(description="Future season number.")] = None,
+        deleted: Annotated[Optional[StrictBool], Field(description="Is this pick removed because someone lost a tier.")] = None,
+        pick_from: Annotated[Optional[StrictStr], Field(description="Prefix of who the pick came from.")] = None,
+        original_pick: Annotated[Optional[StrictStr], Field(description="Pick this originally came from.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number.")] = None,
+        tier: Annotated[Optional[StrictStr], Field(description="Tier name.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -180,28 +437,30 @@ class DraftPicksApi:
 
         List all draft picks for a given league and season.
 
-        :param number: number
-        :type number: str
-        :param round: round
-        :type round: str
-        :param franchise: franchise
+        :param number: Pick number in the specific tier.
+        :type number: int
+        :param round: Specific round in the tier.
+        :type round: int
+        :param franchise: Franchise name contains.
         :type franchise: str
-        :param future: future
-        :type future: str
-        :param future_season: future_season
-        :type future_season: str
-        :param deleted: deleted
-        :type deleted: str
-        :param pick_from: pick_from
+        :param future: Future pick.
+        :type future: bool
+        :param future_season: Future season number.
+        :type future_season: int
+        :param deleted: Is this pick removed because someone lost a tier.
+        :type deleted: bool
+        :param pick_from: Prefix of who the pick came from.
         :type pick_from: str
-        :param original_pick: original_pick
+        :param original_pick: Pick this originally came from.
         :type original_pick: str
-        :param season_number: season_number
-        :type season_number: str
-        :param tier: tier
+        :param season_number: Season number.
+        :type season_number: int
+        :param tier: Tier name.
         :type tier: str
-        :param page: A page number within the paginated result set.
-        :type page: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -235,7 +494,8 @@ class DraftPicksApi:
             original_pick=original_pick,
             season_number=season_number,
             tier=tier,
-            page=page,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -259,17 +519,18 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_list_without_preload_content(
         self,
-        number: Annotated[Optional[StrictStr], Field(description="number")] = None,
-        round: Annotated[Optional[StrictStr], Field(description="round")] = None,
-        franchise: Annotated[Optional[StrictStr], Field(description="franchise")] = None,
-        future: Annotated[Optional[StrictStr], Field(description="future")] = None,
-        future_season: Annotated[Optional[StrictStr], Field(description="future_season")] = None,
-        deleted: Annotated[Optional[StrictStr], Field(description="deleted")] = None,
-        pick_from: Annotated[Optional[StrictStr], Field(description="pick_from")] = None,
-        original_pick: Annotated[Optional[StrictStr], Field(description="original_pick")] = None,
-        season_number: Annotated[Optional[StrictStr], Field(description="season_number")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="tier")] = None,
-        page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
+        number: Annotated[Optional[StrictInt], Field(description="Pick number in the specific tier.")] = None,
+        round: Annotated[Optional[StrictInt], Field(description="Specific round in the tier.")] = None,
+        franchise: Annotated[Optional[StrictStr], Field(description="Franchise name contains.")] = None,
+        future: Annotated[Optional[StrictBool], Field(description="Future pick.")] = None,
+        future_season: Annotated[Optional[StrictInt], Field(description="Future season number.")] = None,
+        deleted: Annotated[Optional[StrictBool], Field(description="Is this pick removed because someone lost a tier.")] = None,
+        pick_from: Annotated[Optional[StrictStr], Field(description="Prefix of who the pick came from.")] = None,
+        original_pick: Annotated[Optional[StrictStr], Field(description="Pick this originally came from.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number.")] = None,
+        tier: Annotated[Optional[StrictStr], Field(description="Tier name.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -287,28 +548,30 @@ class DraftPicksApi:
 
         List all draft picks for a given league and season.
 
-        :param number: number
-        :type number: str
-        :param round: round
-        :type round: str
-        :param franchise: franchise
+        :param number: Pick number in the specific tier.
+        :type number: int
+        :param round: Specific round in the tier.
+        :type round: int
+        :param franchise: Franchise name contains.
         :type franchise: str
-        :param future: future
-        :type future: str
-        :param future_season: future_season
-        :type future_season: str
-        :param deleted: deleted
-        :type deleted: str
-        :param pick_from: pick_from
+        :param future: Future pick.
+        :type future: bool
+        :param future_season: Future season number.
+        :type future_season: int
+        :param deleted: Is this pick removed because someone lost a tier.
+        :type deleted: bool
+        :param pick_from: Prefix of who the pick came from.
         :type pick_from: str
-        :param original_pick: original_pick
+        :param original_pick: Pick this originally came from.
         :type original_pick: str
-        :param season_number: season_number
-        :type season_number: str
-        :param tier: tier
+        :param season_number: Season number.
+        :type season_number: int
+        :param tier: Tier name.
         :type tier: str
-        :param page: A page number within the paginated result set.
-        :type page: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -342,7 +605,8 @@ class DraftPicksApi:
             original_pick=original_pick,
             season_number=season_number,
             tier=tier,
-            page=page,
+            limit=limit,
+            offset=offset,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -371,7 +635,8 @@ class DraftPicksApi:
         original_pick,
         season_number,
         tier,
-        page,
+        limit,
+        offset,
         _request_auth,
         _content_type,
         _headers,
@@ -434,9 +699,13 @@ class DraftPicksApi:
             
             _query_params.append(('tier', tier))
             
-        if page is not None:
+        if limit is not None:
             
-            _query_params.append(('page', page))
+            _query_params.append(('limit', limit))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
             
         # process the header parameters
         # process the form parameters
@@ -476,6 +745,292 @@ class DraftPicksApi:
 
 
     @validate_call
+    async def draft_picks_partial_update(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        data: DraftPickDetails,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> DraftPickDetails:
+        """draft_picks_partial_update
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param data: (required)
+        :type data: DraftPickDetails
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_partial_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DraftPickDetails",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def draft_picks_partial_update_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        data: DraftPickDetails,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[DraftPickDetails]:
+        """draft_picks_partial_update
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param data: (required)
+        :type data: DraftPickDetails
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_partial_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DraftPickDetails",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def draft_picks_partial_update_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        data: DraftPickDetails,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """draft_picks_partial_update
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param data: (required)
+        :type data: DraftPickDetails
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_partial_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DraftPickDetails",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _draft_picks_partial_update_serialize(
+        self,
+        id,
+        data,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if data is not None:
+            _body_params = data
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PATCH',
+            resource_path='/draft-picks/{id}/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     async def draft_picks_read(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
@@ -491,7 +1046,7 @@ class DraftPicksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> DraftPicks:
+    ) -> DraftPickDetails:
         """draft_picks_read
 
 
@@ -528,7 +1083,7 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DraftPicks",
+            '200': "DraftPickDetails",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -557,7 +1112,7 @@ class DraftPicksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[DraftPicks]:
+    ) -> ApiResponse[DraftPickDetails]:
         """draft_picks_read
 
 
@@ -594,7 +1149,7 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DraftPicks",
+            '200': "DraftPickDetails",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -660,7 +1215,7 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "DraftPicks",
+            '200': "DraftPickDetails",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -749,7 +1304,7 @@ class DraftPicksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[DraftPicks]:
+    ) -> List[DraftPickList]:
         """draft_picks_swap
 
 
@@ -786,7 +1341,7 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DraftPicks]",
+            '200': "List[DraftPickList]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -815,7 +1370,7 @@ class DraftPicksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[DraftPicks]]:
+    ) -> ApiResponse[List[DraftPickList]]:
         """draft_picks_swap
 
 
@@ -852,7 +1407,7 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DraftPicks]",
+            '200': "List[DraftPickList]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -918,7 +1473,7 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[DraftPicks]",
+            '200': "List[DraftPickList]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -990,6 +1545,292 @@ class DraftPicksApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/draft-picks/swap/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def draft_picks_update(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        data: DraftPickDetails,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> DraftPickDetails:
+        """draft_picks_update
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param data: (required)
+        :type data: DraftPickDetails
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DraftPickDetails",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def draft_picks_update_with_http_info(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        data: DraftPickDetails,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[DraftPickDetails]:
+        """draft_picks_update
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param data: (required)
+        :type data: DraftPickDetails
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DraftPickDetails",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def draft_picks_update_without_preload_content(
+        self,
+        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        data: DraftPickDetails,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """draft_picks_update
+
+
+        :param id: A unique integer value identifying this draft pick. (required)
+        :type id: int
+        :param data: (required)
+        :type data: DraftPickDetails
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._draft_picks_update_serialize(
+            id=id,
+            data=data,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "DraftPickDetails",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _draft_picks_update_serialize(
+        self,
+        id,
+        data,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if id is not None:
+            _path_params['id'] = id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if data is not None:
+            _body_params = data
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/draft-picks/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

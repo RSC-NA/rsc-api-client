@@ -110,9 +110,12 @@ Class | Method | HTTP request | Description
 *CsvApi* | [**csv_tracker_links_peaks_read**](docs/CsvApi.md#csv_tracker_links_peaks_read) | **GET** /csv/tracker-links-peaks/{id}/ | 
 *CsvApi* | [**csv_twos_master_member_sheet_list**](docs/CsvApi.md#csv_twos_master_member_sheet_list) | **GET** /csv/twos-master-member-sheet/ | 
 *CsvApi* | [**csv_twos_master_member_sheet_read**](docs/CsvApi.md#csv_twos_master_member_sheet_read) | **GET** /csv/twos-master-member-sheet/{id}/ | 
+*DraftPicksApi* | [**draft_picks_delete**](docs/DraftPicksApi.md#draft_picks_delete) | **DELETE** /draft-picks/{id}/ | 
 *DraftPicksApi* | [**draft_picks_list**](docs/DraftPicksApi.md#draft_picks_list) | **GET** /draft-picks/ | 
+*DraftPicksApi* | [**draft_picks_partial_update**](docs/DraftPicksApi.md#draft_picks_partial_update) | **PATCH** /draft-picks/{id}/ | 
 *DraftPicksApi* | [**draft_picks_read**](docs/DraftPicksApi.md#draft_picks_read) | **GET** /draft-picks/{id}/ | 
 *DraftPicksApi* | [**draft_picks_swap**](docs/DraftPicksApi.md#draft_picks_swap) | **POST** /draft-picks/swap/ | 
+*DraftPicksApi* | [**draft_picks_update**](docs/DraftPicksApi.md#draft_picks_update) | **PUT** /draft-picks/{id}/ | 
 *ElevatedRolesApi* | [**elevated_roles_list**](docs/ElevatedRolesApi.md#elevated_roles_list) | **GET** /elevated-roles/ | 
 *FranchisesApi* | [**franchises_create**](docs/FranchisesApi.md#franchises_create) | **POST** /franchises/ | 
 *FranchisesApi* | [**franchises_delete**](docs/FranchisesApi.md#franchises_delete) | **DELETE** /franchises/{id}/ | 
@@ -263,11 +266,14 @@ Class | Method | HTTP request | Description
  - [Deleted](docs/Deleted.md)
  - [DraftAPlayerToATeam](docs/DraftAPlayerToATeam.md)
  - [DraftPick](docs/DraftPick.md)
- - [DraftPickSeasonTier](docs/DraftPickSeasonTier.md)
+ - [DraftPickDetails](docs/DraftPickDetails.md)
+ - [DraftPickFranchise](docs/DraftPickFranchise.md)
+ - [DraftPickGM](docs/DraftPickGM.md)
+ - [DraftPickLeaguePlayer](docs/DraftPickLeaguePlayer.md)
+ - [DraftPickList](docs/DraftPickList.md)
  - [DraftPickSwap](docs/DraftPickSwap.md)
- - [DraftPicks](docs/DraftPicks.md)
  - [DraftPicksList200Response](docs/DraftPicksList200Response.md)
- - [DraftTier](docs/DraftTier.md)
+ - [DraftTierList](docs/DraftTierList.md)
  - [DropAPlayerFromALeague](docs/DropAPlayerFromALeague.md)
  - [ElevatedRole](docs/ElevatedRole.md)
  - [ElevatedRoleInput](docs/ElevatedRoleInput.md)
@@ -334,6 +340,8 @@ Class | Method | HTTP request | Description
  - [RemoveTierFromALeague](docs/RemoveTierFromALeague.md)
  - [RetireAPlayer](docs/RetireAPlayer.md)
  - [Season](docs/Season.md)
+ - [SeasonDraftList](docs/SeasonDraftList.md)
+ - [SeasonDraftPickList](docs/SeasonDraftPickList.md)
  - [SeasonLeague](docs/SeasonLeague.md)
  - [SeasonSchedule](docs/SeasonSchedule.md)
  - [SeasonTierData](docs/SeasonTierData.md)
