@@ -224,10 +224,12 @@ Class | Method | HTTP request | Description
 *TiersApi* | [**tiers_team_stats**](docs/TiersApi.md#tiers_team_stats) | **GET** /tiers/{id}/team_stats/ | 
 *TiersApi* | [**tiers_teams**](docs/TiersApi.md#tiers_teams) | **GET** /tiers/{id}/teams/ | 
 *TiersApi* | [**tiers_update**](docs/TiersApi.md#tiers_update) | **PUT** /tiers/{id}/ | 
+*TrackerLinksApi* | [**tracker_links_create**](docs/TrackerLinksApi.md#tracker_links_create) | **POST** /tracker-links/ | 
 *TrackerLinksApi* | [**tracker_links_dedup_mmr_pulls_create**](docs/TrackerLinksApi.md#tracker_links_dedup_mmr_pulls_create) | **POST** /tracker-links/dedup_mmr_pulls/ | 
 *TrackerLinksApi* | [**tracker_links_dedup_mmr_pulls_read**](docs/TrackerLinksApi.md#tracker_links_dedup_mmr_pulls_read) | **GET** /tracker-links/dedup_mmr_pulls/ | 
 *TrackerLinksApi* | [**tracker_links_dedup_pulls_create**](docs/TrackerLinksApi.md#tracker_links_dedup_pulls_create) | **POST** /tracker-links/{id}/dedup_pulls/ | 
 *TrackerLinksApi* | [**tracker_links_dedup_pulls_read**](docs/TrackerLinksApi.md#tracker_links_dedup_pulls_read) | **GET** /tracker-links/{id}/dedup_pulls/ | 
+*TrackerLinksApi* | [**tracker_links_delete**](docs/TrackerLinksApi.md#tracker_links_delete) | **DELETE** /tracker-links/{id}/ | 
 *TrackerLinksApi* | [**tracker_links_fix_duplicate_links**](docs/TrackerLinksApi.md#tracker_links_fix_duplicate_links) | **GET** /tracker-links/fix_duplicate_links/ | 
 *TrackerLinksApi* | [**tracker_links_invalidate_links**](docs/TrackerLinksApi.md#tracker_links_invalidate_links) | **POST** /tracker-links/invalidate_links/ | 
 *TrackerLinksApi* | [**tracker_links_link**](docs/TrackerLinksApi.md#tracker_links_link) | **POST** /tracker-links/{id}/link/ | 

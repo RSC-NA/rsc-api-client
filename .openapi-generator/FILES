@@ -297,12 +297,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_draft_pick_details.py
-test/test_draft_pick_franchise.py
-test/test_draft_pick_gm.py
-test/test_draft_pick_league_player.py
-test/test_draft_pick_list.py
-test/test_draft_tier_list.py
-test/test_season_draft_list.py
-test/test_season_draft_pick_list.py
 tox.ini
