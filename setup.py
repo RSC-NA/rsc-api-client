@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     RSC API Docs
 
@@ -28,7 +26,7 @@ REQUIRES = [
     "python-dateutil >= 2.8.2",
     "aiohttp >= 3.8.4",
     "aiohttp-retry >= 2.8.3",
-    "pydantic >= 2",
+    "pydantic >= 2.11",
     "typing-extensions >= 4.7.1",
 ]
 

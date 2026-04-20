@@ -26,6 +26,7 @@ from rscapi.models.franchise_team import FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class FranchiseList(BaseModel):
     """
@@ -43,7 +44,8 @@ class FranchiseList(BaseModel):
     __properties: ClassVar[List[str]] = ["id", "name", "prefix", "gm", "league", "tiers", "active", "teams", "logo"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -55,8 +57,7 @@ class FranchiseList(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

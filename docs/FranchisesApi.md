@@ -760,7 +760,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    logo = None # bytearray | Logo content.
+    logo = None # bytes | Logo content.
 
     try:
         api_response = await api_instance.franchises_upload_logo(id, logo)
@@ -778,7 +778,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **logo** | **bytearray**| Logo content. | 
+ **logo** | **bytes**| Logo content. | 
 
 ### Return type
 

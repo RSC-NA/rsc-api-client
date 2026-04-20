@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **round** | **int** | Round the pick is in. | 
 **number** | **int** | Number of pick in round | 
 **future** | **bool** | Is the pick a future pick. | 
+**original_pick** | **str** | Prefix of franchise who originally owned pick | [optional] 
 
 ## Example
 
