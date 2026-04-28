@@ -309,10 +309,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_integrations_api.py
-test/test_league_event_actor.py
-test/test_league_event_detail.py
-test/test_league_event_list.py
-test/test_pick_transaction_updates.py
-test/test_transaction_pick.py
 tox.ini

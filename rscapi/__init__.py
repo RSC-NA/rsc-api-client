@@ -334,4 +334,3 @@ from rscapi.models.transactions_history_list200_response import TransactionsHist
 from rscapi.models.transfer_franchise import TransferFranchise as TransferFranchise
 from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet as TwosMasterMemberSheet
 from rscapi.models.update_member_rsc_name import UpdateMemberRSCName as UpdateMemberRSCName
-

@@ -5,17 +5,18 @@ description = "RSC API Docs"
 authors = [
   {name = "OpenAPI Generator Community",email = "contact@snippets.local"},
 ]
-license = { text = "BSD License" }
+license = "BSD License"
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "RSC API Docs"]
 requires-python = ">=3.9"
 
 dependencies = [
+  "urllib3 (>=2.1.0,<3.0.0)",
   "python-dateutil (>=2.8.2)",
   "aiohttp (>=3.8.4)",
   "aiohttp-retry (>=2.8.3)",
   "pydantic (>=2)",
-  "typing-extensions (>=4.7.1)",
+  "typing-extensions (>=4.7.1)"
 ]
 
 [project.urls]

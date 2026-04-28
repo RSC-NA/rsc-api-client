@@ -13,6 +13,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+
 # import models into model package
 from rscapi.models.activity_check import ActivityCheck
 from rscapi.models.add_tier_to_league import AddTierToLeague
@@ -144,4 +145,3 @@ from rscapi.models.transactions_history_list200_response import TransactionsHist
 from rscapi.models.transfer_franchise import TransferFranchise
 from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
 from rscapi.models.update_member_rsc_name import UpdateMemberRSCName
-
