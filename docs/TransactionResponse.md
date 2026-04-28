@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player_updates** | [**List[PlayerTransactionUpdates]**](PlayerTransactionUpdates.md) |  | [optional] 
+**pick_trades** | [**List[PickTransactionUpdates]**](PickTransactionUpdates.md) |  | [optional] 
 **var_date** | **datetime** | Date transaction occurred | [optional] [readonly] 
 **week** | **str** |  | 
 **week_no** | **int** | Week no of transaction (if applicable) | [optional] 

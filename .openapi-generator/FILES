@@ -44,10 +44,14 @@ docs/FranchiseTier.md
 docs/FranchisesApi.md
 docs/HighLevelMatch.md
 docs/InactiveReserve.md
+docs/IntegrationsApi.md
 docs/IntentToPlay.md
 docs/IntentToPlaySchema.md
 docs/League.md
 docs/LeagueData.md
+docs/LeagueEventActor.md
+docs/LeagueEventDetail.md
+docs/LeagueEventList.md
 docs/LeaguePlayer.md
 docs/LeaguePlayerLeague.md
 docs/LeaguePlayerMember.md
@@ -79,6 +83,7 @@ docs/NameChangeHistory.md
 docs/NumbersApi.md
 docs/NumbersMmrList200Response.md
 docs/PaginatedMatch.md
+docs/PickTransactionUpdates.md
 docs/Player.md
 docs/Player1.md
 docs/PlayerActivityCheckSchema.md
@@ -135,6 +140,7 @@ docs/TradeItem.md
 docs/TradeSchema.md
 docs/TradeValue.md
 docs/TransactionFranchise.md
+docs/TransactionPick.md
 docs/TransactionResponse.md
 docs/TransactionTeam.md
 docs/TransactionsApi.md
@@ -151,6 +157,7 @@ rscapi/api/csv_api.py
 rscapi/api/draft_picks_api.py
 rscapi/api/elevated_roles_api.py
 rscapi/api/franchises_api.py
+rscapi/api/integrations_api.py
 rscapi/api/league_players_api.py
 rscapi/api/leagues_api.py
 rscapi/api/matches_api.py
@@ -207,6 +214,9 @@ rscapi/models/intent_to_play.py
 rscapi/models/intent_to_play_schema.py
 rscapi/models/league.py
 rscapi/models/league_data.py
+rscapi/models/league_event_actor.py
+rscapi/models/league_event_detail.py
+rscapi/models/league_event_list.py
 rscapi/models/league_player.py
 rscapi/models/league_player_league.py
 rscapi/models/league_player_member.py
@@ -233,6 +243,7 @@ rscapi/models/members_list200_response.py
 rscapi/models/name_change_history.py
 rscapi/models/numbers_mmr_list200_response.py
 rscapi/models/paginated_match.py
+rscapi/models/pick_transaction_updates.py
 rscapi/models/player.py
 rscapi/models/player1.py
 rscapi/models/player_activity_check_schema.py
@@ -285,6 +296,7 @@ rscapi/models/trade_item.py
 rscapi/models/trade_schema.py
 rscapi/models/trade_value.py
 rscapi/models/transaction_franchise.py
+rscapi/models/transaction_pick.py
 rscapi/models/transaction_response.py
 rscapi/models/transaction_team.py
 rscapi/models/transactions_history_list200_response.py
@@ -297,4 +309,10 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_integrations_api.py
+test/test_league_event_actor.py
+test/test_league_event_detail.py
+test/test_league_event_list.py
+test/test_pick_transaction_updates.py
+test/test_transaction_pick.py
 tox.ini

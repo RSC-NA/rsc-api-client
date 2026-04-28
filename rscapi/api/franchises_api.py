@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     RSC API Docs
 
@@ -9,7 +11,6 @@
 
     Do not edit the class manually.
 """  # noqa: E501
-
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -2651,7 +2652,7 @@ class FranchisesApi:
         :param id: A unique integer value identifying this franchise. (required)
         :type id: int
         :param logo: Logo content. (required)
-        :type logo: bytes
+        :type logo: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2723,7 +2724,7 @@ class FranchisesApi:
         :param id: A unique integer value identifying this franchise. (required)
         :type id: int
         :param logo: Logo content. (required)
-        :type logo: bytes
+        :type logo: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2795,7 +2796,7 @@ class FranchisesApi:
         :param id: A unique integer value identifying this franchise. (required)
         :type id: int
         :param logo: Logo content. (required)
-        :type logo: bytes
+        :type logo: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

@@ -23,7 +23,6 @@ from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.trade_item import TradeItem
 from typing import Optional, Set
 from typing_extensions import Self
-from pydantic_core import to_jsonable_python
 
 class TradeSchema(BaseModel):
     """
@@ -33,12 +32,12 @@ class TradeSchema(BaseModel):
     league: StrictInt = Field(description="ID of the league transaction is for.")
     executor: StrictInt = Field(description="Discord ID of specific member who ran the transaction.")
     admin_override: Optional[StrictBool] = Field(default=None, description="Boolean indicating whether or not an admin is overriding this command.")
+    confirm_imbalanced: Optional[StrictBool] = Field(default=None, description="Set true to confirm and submit an imbalanced trade.")
     notes: Optional[StrictStr] = Field(default=None, description="Notes for the transaction from the TM running it.")
-    __properties: ClassVar[List[str]] = ["trades", "league", "executor", "admin_override", "notes"]
+    __properties: ClassVar[List[str]] = ["trades", "league", "executor", "admin_override", "confirm_imbalanced", "notes"]
 
     model_config = ConfigDict(
-        validate_by_name=True,
-        validate_by_alias=True,
+        populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -50,7 +49,8 @@ class TradeSchema(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        return json.dumps(to_jsonable_python(self.to_dict()))
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
+        return json.dumps(self.to_dict())
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -98,6 +98,7 @@ class TradeSchema(BaseModel):
             "league": obj.get("league"),
             "executor": obj.get("executor"),
             "admin_override": obj.get("admin_override"),
+            "confirm_imbalanced": obj.get("confirm_imbalanced"),
             "notes": obj.get("notes")
         })
         return _obj

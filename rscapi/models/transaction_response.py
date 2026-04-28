@@ -22,18 +22,19 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from rscapi.models.pick_transaction_updates import PickTransactionUpdates
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.simple_member import SimpleMember
 from rscapi.models.transaction_franchise import TransactionFranchise
 from typing import Optional, Set
 from typing_extensions import Self
-from pydantic_core import to_jsonable_python
 
 class TransactionResponse(BaseModel):
     """
     TransactionResponse
     """ # noqa: E501
     player_updates: Optional[List[Optional[PlayerTransactionUpdates]]] = None
+    pick_trades: Optional[List[Optional[PickTransactionUpdates]]] = None
     var_date: Optional[datetime] = Field(default=None, description="Date transaction occurred", alias="date")
     week: StrictStr
     week_no: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Week no of transaction (if applicable)")
@@ -44,7 +45,7 @@ class TransactionResponse(BaseModel):
     second_franchise: Optional[TransactionFranchise] = None
     executor: SimpleMember
     id: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["player_updates", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor", "id"]
+    __properties: ClassVar[List[str]] = ["player_updates", "pick_trades", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor", "id"]
 
     @field_validator('week')
     def week_validate_enum(cls, value):
@@ -64,8 +65,7 @@ class TransactionResponse(BaseModel):
         return value
 
     model_config = ConfigDict(
-        validate_by_name=True,
-        validate_by_alias=True,
+        populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -77,7 +77,8 @@ class TransactionResponse(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        return json.dumps(to_jsonable_python(self.to_dict()))
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
+        return json.dumps(self.to_dict())
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -113,6 +114,13 @@ class TransactionResponse(BaseModel):
                 if _item_player_updates:
                     _items.append(_item_player_updates.to_dict())
             _dict['player_updates'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in pick_trades (list)
+        _items = []
+        if self.pick_trades:
+            for _item_pick_trades in self.pick_trades:
+                if _item_pick_trades:
+                    _items.append(_item_pick_trades.to_dict())
+            _dict['pick_trades'] = _items
         # override the default output from pydantic by calling `to_dict()` of first_franchise
         if self.first_franchise:
             _dict['first_franchise'] = self.first_franchise.to_dict()
@@ -126,6 +134,11 @@ class TransactionResponse(BaseModel):
         # and model_fields_set contains the field
         if self.player_updates is None and "player_updates" in self.model_fields_set:
             _dict['player_updates'] = None
+
+        # set to None if pick_trades (nullable) is None
+        # and model_fields_set contains the field
+        if self.pick_trades is None and "pick_trades" in self.model_fields_set:
+            _dict['pick_trades'] = None
 
         # set to None if type (nullable) is None
         # and model_fields_set contains the field
@@ -160,6 +173,7 @@ class TransactionResponse(BaseModel):
 
         _obj = cls.model_validate({
             "player_updates": [PlayerTransactionUpdates.from_dict(_item) for _item in obj["player_updates"]] if obj.get("player_updates") is not None else None,
+            "pick_trades": [PickTransactionUpdates.from_dict(_item) for _item in obj["pick_trades"]] if obj.get("pick_trades") is not None else None,
             "date": obj.get("date"),
             "week": obj.get("week"),
             "week_no": obj.get("week_no"),

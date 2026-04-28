@@ -22,7 +22,6 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
-from pydantic_core import to_jsonable_python
 
 class DraftPick(BaseModel):
     """
@@ -33,11 +32,11 @@ class DraftPick(BaseModel):
     number: StrictInt = Field(description="Number of pick in round")
     future: StrictBool = Field(description="Is the pick a future pick.")
     original_pick: Optional[StrictStr] = Field(default=None, description="Prefix of franchise who originally owned pick")
-    __properties: ClassVar[List[str]] = ["tier", "round", "number", "future", "original_pick"]
+    future_season: Optional[StrictInt] = Field(default=None, description="Season number for a future pick. Defaults to next season when omitted.")
+    __properties: ClassVar[List[str]] = ["tier", "round", "number", "future", "original_pick", "future_season"]
 
     model_config = ConfigDict(
-        validate_by_name=True,
-        validate_by_alias=True,
+        populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -49,7 +48,8 @@ class DraftPick(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        return json.dumps(to_jsonable_python(self.to_dict()))
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
+        return json.dumps(self.to_dict())
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -90,7 +90,8 @@ class DraftPick(BaseModel):
             "round": obj.get("round"),
             "number": obj.get("number"),
             "future": obj.get("future"),
-            "original_pick": obj.get("original_pick")
+            "original_pick": obj.get("original_pick"),
+            "future_season": obj.get("future_season")
         })
         return _obj
 

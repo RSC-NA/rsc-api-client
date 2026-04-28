@@ -55,6 +55,9 @@ from rscapi.models.intent_to_play import IntentToPlay
 from rscapi.models.intent_to_play_schema import IntentToPlaySchema
 from rscapi.models.league import League
 from rscapi.models.league_data import LeagueData
+from rscapi.models.league_event_actor import LeagueEventActor
+from rscapi.models.league_event_detail import LeagueEventDetail
+from rscapi.models.league_event_list import LeagueEventList
 from rscapi.models.league_player import LeaguePlayer
 from rscapi.models.league_player_league import LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember
@@ -81,6 +84,7 @@ from rscapi.models.members_list200_response import MembersList200Response
 from rscapi.models.name_change_history import NameChangeHistory
 from rscapi.models.numbers_mmr_list200_response import NumbersMmrList200Response
 from rscapi.models.paginated_match import PaginatedMatch
+from rscapi.models.pick_transaction_updates import PickTransactionUpdates
 from rscapi.models.player import Player
 from rscapi.models.player1 import Player1
 from rscapi.models.player_activity_check_schema import PlayerActivityCheckSchema
@@ -133,6 +137,7 @@ from rscapi.models.trade_item import TradeItem
 from rscapi.models.trade_schema import TradeSchema
 from rscapi.models.trade_value import TradeValue
 from rscapi.models.transaction_franchise import TransactionFranchise
+from rscapi.models.transaction_pick import TransactionPick
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.models.transaction_team import TransactionTeam
 from rscapi.models.transactions_history_list200_response import TransactionsHistoryList200Response

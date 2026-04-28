@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **number** | **int** | Number of pick in round | 
 **future** | **bool** | Is the pick a future pick. | 
 **original_pick** | **str** | Prefix of franchise who originally owned pick | [optional] 
+**future_season** | **int** | Season number for a future pick. Defaults to next season when omitted. | [optional] 
 
 ## Example
 

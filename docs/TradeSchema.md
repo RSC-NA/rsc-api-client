@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **league** | **int** | ID of the league transaction is for. | 
 **executor** | **int** | Discord ID of specific member who ran the transaction. | 
 **admin_override** | **bool** | Boolean indicating whether or not an admin is overriding this command. | [optional] 
+**confirm_imbalanced** | **bool** | Set true to confirm and submit an imbalanced trade. | [optional] 
 **notes** | **str** | Notes for the transaction from the TM running it. | [optional] 
 
 ## Example

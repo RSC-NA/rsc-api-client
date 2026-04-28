@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
     RSC API Docs
 
@@ -9,7 +11,6 @@
 
     Do not edit the class manually.
 """  # noqa: E501
-
 
 
 import datetime
@@ -69,7 +70,6 @@ class ApiClient:
         'date': datetime.date,
         'datetime': datetime.datetime,
         'decimal': decimal.Decimal,
-        'UUID': uuid.UUID,
         'object': object,
     }
     _pool = None
@@ -310,7 +310,7 @@ class ApiClient:
         response_text = None
         return_data = None
         try:
-            if response_type in ("bytearray", "bytes"):
+            if response_type == "bytearray":
                 return_data = response_data.data
             elif response_type == "file":
                 return_data = self.__deserialize_file(response_data)
@@ -472,8 +472,6 @@ class ApiClient:
             return self.__deserialize_datetime(data)
         elif klass is decimal.Decimal:
             return decimal.Decimal(data)
-        elif klass is uuid.UUID:
-            return uuid.UUID(data)
         elif issubclass(klass, Enum):
             return self.__deserialize_enum(data, klass)
         else:
@@ -714,9 +712,7 @@ class ApiClient:
                 content_disposition
             )
             assert m is not None, "Unexpected 'content-disposition' header value"
-            filename = os.path.basename(m.group(1))  # Strip any directory traversal
-            if filename in ("", ".", ".."):  # fall back to tmp filename
-                filename = os.path.basename(path)
+            filename = m.group(1)
             path = os.path.join(os.path.dirname(path), filename)
 
         with open(path, "wb") as f:
