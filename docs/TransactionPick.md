@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**number** | **int** | Pick in the specific tier. | [optional] [readonly] 
-**round** | **int** | Specific round in the tier. | [optional] [readonly] 
-**tier** | **str** |  | [optional] [readonly] 
-**future_pick** | **bool** |  | [optional] [readonly] 
-**future_season** | **int** |  | [optional] [readonly] 
-**pick_from** | **str** | Prefix of franchise this pick came from (if any) | [optional] [readonly] 
-**original_pick** | **str** | Prefix of franchise this pick originally came from (if any) | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**number** | **int** | Pick in the specific tier. | [readonly] 
+**round** | **int** | Specific round in the tier. | [readonly] 
+**tier** | **str** |  | [readonly] 
+**future_pick** | **bool** |  | [readonly] 
+**future_season** | **int** |  | [readonly] 
+**pick_from** | **str** | Prefix of franchise this pick came from (if any) | [readonly] 
+**original_pick** | **str** | Prefix of franchise this pick originally came from (if any) | [readonly] 
 
 ## Example
 

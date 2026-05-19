@@ -1,25 +1,25 @@
 # rscapi.SeasonsApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**seasons_activity_check_list**](SeasonsApi.md#seasons_activity_check_list) | **GET** /seasons/activity_check/ | List all activity checks for a given season.
-[**seasons_activity_check_read**](SeasonsApi.md#seasons_activity_check_read) | **GET** /seasons/activity_check/{id}/ | 
+[**seasons_activity_check_list**](SeasonsApi.md#seasons_activity_check_list) | **GET** /seasons/activity_check/ | 
+[**seasons_activity_check_retrieve**](SeasonsApi.md#seasons_activity_check_retrieve) | **GET** /seasons/activity_check/{id}/ | 
 [**seasons_create**](SeasonsApi.md#seasons_create) | **POST** /seasons/ | 
-[**seasons_delete**](SeasonsApi.md#seasons_delete) | **DELETE** /seasons/{id}/ | 
-[**seasons_franchise_standings**](SeasonsApi.md#seasons_franchise_standings) | **GET** /seasons/{id}/franchise_standings/ | 
-[**seasons_league_season**](SeasonsApi.md#seasons_league_season) | **GET** /seasons/league_season/ | 
+[**seasons_destroy**](SeasonsApi.md#seasons_destroy) | **DELETE** /seasons/{id}/ | 
+[**seasons_franchise_standings_list**](SeasonsApi.md#seasons_franchise_standings_list) | **GET** /seasons/{id}/franchise_standings/ | 
+[**seasons_league_season_retrieve**](SeasonsApi.md#seasons_league_season_retrieve) | **GET** /seasons/league_season/ | 
 [**seasons_list**](SeasonsApi.md#seasons_list) | **GET** /seasons/ | 
 [**seasons_partial_update**](SeasonsApi.md#seasons_partial_update) | **PATCH** /seasons/{id}/ | 
-[**seasons_player_intents**](SeasonsApi.md#seasons_player_intents) | **GET** /seasons/{id}/player_intents/ | 
-[**seasons_read**](SeasonsApi.md#seasons_read) | **GET** /seasons/{id}/ | 
-[**seasons_signup_season**](SeasonsApi.md#seasons_signup_season) | **GET** /seasons/signup_season/ | 
+[**seasons_player_intents_list**](SeasonsApi.md#seasons_player_intents_list) | **GET** /seasons/{id}/player_intents/ | 
+[**seasons_retrieve**](SeasonsApi.md#seasons_retrieve) | **GET** /seasons/{id}/ | 
+[**seasons_signup_season_retrieve**](SeasonsApi.md#seasons_signup_season_retrieve) | **GET** /seasons/signup_season/ | 
 [**seasons_update**](SeasonsApi.md#seasons_update) | **PUT** /seasons/{id}/ | 
 
 
 # **seasons_activity_check_list**
-> SeasonsActivityCheckList200Response seasons_activity_check_list(discord_id=discord_id, completed=completed, returning_status=returning_status, missing=missing, season=season, season_number=season_number, limit=limit, offset=offset)
+> PaginatedActivityCheckList seasons_activity_check_list(completed=completed, discord_id=discord_id, limit=limit, missing=missing, offset=offset, returning_status=returning_status, season=season, season_number=season_number)
 
 List all activity checks for a given season.
 
@@ -32,14 +32,14 @@ league players who have not yet submitted one.
 
 ```python
 import rscapi
-from rscapi.models.seasons_activity_check_list200_response import SeasonsActivityCheckList200Response
+from rscapi.models.paginated_activity_check_list import PaginatedActivityCheckList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -57,18 +57,17 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    discord_id = 56 # int | Discord ID of player intent to search for. (optional)
     completed = True # bool | Check has been completed or not. (optional)
-    returning_status = True # bool | If the player is returning or not. (optional)
-    missing = True # bool | If the player has responded or not. (optional)
-    season = 56 # int | Season ID (E.g: 8) (optional)
-    season_number = 56 # int | Season Number (E.g: 24) (optional)
+    discord_id = 56 # int | Discord ID of player intent to search for. (optional)
     limit = 56 # int | Number of results to return per page. (optional)
+    missing = True # bool | If the player has responded or not. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
+    returning_status = True # bool | If the player is returning or not. (optional)
+    season = 56 # int | Season ID (E.g: 8) (optional)
+    season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
 
     try:
-        # List all activity checks for a given season.
-        api_response = await api_instance.seasons_activity_check_list(discord_id=discord_id, completed=completed, returning_status=returning_status, missing=missing, season=season, season_number=season_number, limit=limit, offset=offset)
+        api_response = await api_instance.seasons_activity_check_list(completed=completed, discord_id=discord_id, limit=limit, missing=missing, offset=offset, returning_status=returning_status, season=season, season_number=season_number)
         print("The response of SeasonsApi->seasons_activity_check_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -82,18 +81,18 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **discord_id** | **int**| Discord ID of player intent to search for. | [optional] 
  **completed** | **bool**| Check has been completed or not. | [optional] 
- **returning_status** | **bool**| If the player is returning or not. | [optional] 
- **missing** | **bool**| If the player has responded or not. | [optional] 
- **season** | **int**| Season ID (E.g: 8) | [optional] 
- **season_number** | **int**| Season Number (E.g: 24) | [optional] 
+ **discord_id** | **int**| Discord ID of player intent to search for. | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
+ **missing** | **bool**| If the player has responded or not. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **returning_status** | **bool**| If the player is returning or not. | [optional] 
+ **season** | **int**| Season ID (E.g: 8) | [optional] 
+ **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
 
 ### Return type
 
-[**SeasonsActivityCheckList200Response**](SeasonsActivityCheckList200Response.md)
+[**PaginatedActivityCheckList**](PaginatedActivityCheckList.md)
 
 ### Authorization
 
@@ -112,8 +111,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **seasons_activity_check_read**
-> ActivityCheck seasons_activity_check_read(id)
+# **seasons_activity_check_retrieve**
+> ActivityCheck seasons_activity_check_retrieve(id)
 
 ### Example
 
@@ -125,10 +124,10 @@ from rscapi.models.activity_check import ActivityCheck
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -149,11 +148,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this activity check.
 
     try:
-        api_response = await api_instance.seasons_activity_check_read(id)
-        print("The response of SeasonsApi->seasons_activity_check_read:\n")
+        api_response = await api_instance.seasons_activity_check_retrieve(id)
+        print("The response of SeasonsApi->seasons_activity_check_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_activity_check_read: %s\n" % e)
+        print("Exception when calling SeasonsApi->seasons_activity_check_retrieve: %s\n" % e)
 ```
 
 
@@ -187,7 +186,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_create**
-> Season seasons_create(data)
+> Season seasons_create(season)
 
 ### Example
 
@@ -199,10 +198,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -220,10 +219,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    data = rscapi.Season() # Season | 
+    season = rscapi.Season() # Season | 
 
     try:
-        api_response = await api_instance.seasons_create(data)
+        api_response = await api_instance.seasons_create(season)
         print("The response of SeasonsApi->seasons_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -237,7 +236,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**Season**](Season.md)|  | 
+ **season** | [**Season**](Season.md)|  | 
 
 ### Return type
 
@@ -249,7 +248,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -260,8 +259,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **seasons_delete**
-> seasons_delete(id)
+# **seasons_destroy**
+> seasons_destroy(id)
 
 ### Example
 
@@ -272,10 +271,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -296,9 +295,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this season.
 
     try:
-        await api_instance.seasons_delete(id)
+        await api_instance.seasons_destroy(id)
     except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_delete: %s\n" % e)
+        print("Exception when calling SeasonsApi->seasons_destroy: %s\n" % e)
 ```
 
 
@@ -327,12 +326,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** |  |  -  |
+**204** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **seasons_franchise_standings**
-> List[FranchiseStandings] seasons_franchise_standings(id)
+# **seasons_franchise_standings_list**
+> List[FranchiseStandings] seasons_franchise_standings_list(id)
 
 Get franchise standings for a given season
 
@@ -346,10 +345,10 @@ from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -370,11 +369,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this season.
 
     try:
-        api_response = await api_instance.seasons_franchise_standings(id)
-        print("The response of SeasonsApi->seasons_franchise_standings:\n")
+        api_response = await api_instance.seasons_franchise_standings_list(id)
+        print("The response of SeasonsApi->seasons_franchise_standings_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_franchise_standings: %s\n" % e)
+        print("Exception when calling SeasonsApi->seasons_franchise_standings_list: %s\n" % e)
 ```
 
 
@@ -407,8 +406,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **seasons_league_season**
-> Season seasons_league_season(league)
+# **seasons_league_season_retrieve**
+> Season seasons_league_season_retrieve(league)
 
 Get current season for a given league.
 
@@ -422,10 +421,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -446,11 +445,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     league = 56 # int | League to get current season for.
 
     try:
-        api_response = await api_instance.seasons_league_season(league)
-        print("The response of SeasonsApi->seasons_league_season:\n")
+        api_response = await api_instance.seasons_league_season_retrieve(league)
+        print("The response of SeasonsApi->seasons_league_season_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_league_season: %s\n" % e)
+        print("Exception when calling SeasonsApi->seasons_league_season_retrieve: %s\n" % e)
 ```
 
 
@@ -485,7 +484,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_list**
-> List[Season] seasons_list(league=league, number=number, current=current)
+> List[Season] seasons_list(current=current, league=league, number=number)
 
 Get list of seasons.
 
@@ -499,10 +498,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -520,12 +519,12 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
+    current = True # bool | If true, only return the current season(s). (optional)
     league = 56 # int | ID of league to filter seasons by. (optional)
     number = 56 # int | Season number to filter seasons by. (optional)
-    current = True # bool | If true, only return the current season(s). (optional)
 
     try:
-        api_response = await api_instance.seasons_list(league=league, number=number, current=current)
+        api_response = await api_instance.seasons_list(current=current, league=league, number=number)
         print("The response of SeasonsApi->seasons_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -539,9 +538,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **current** | **bool**| If true, only return the current season(s). | [optional] 
  **league** | **int**| ID of league to filter seasons by. | [optional] 
  **number** | **int**| Season number to filter seasons by. | [optional] 
- **current** | **bool**| If true, only return the current season(s). | [optional] 
 
 ### Return type
 
@@ -565,7 +564,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_partial_update**
-> Season seasons_partial_update(id, data)
+> Season seasons_partial_update(id, patched_season=patched_season)
 
 ### Example
 
@@ -573,14 +572,15 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
+from rscapi.models.patched_season import PatchedSeason
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -599,10 +599,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
     id = 56 # int | A unique integer value identifying this season.
-    data = rscapi.Season() # Season | 
+    patched_season = rscapi.PatchedSeason() # PatchedSeason |  (optional)
 
     try:
-        api_response = await api_instance.seasons_partial_update(id, data)
+        api_response = await api_instance.seasons_partial_update(id, patched_season=patched_season)
         print("The response of SeasonsApi->seasons_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -617,7 +617,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this season. | 
- **data** | [**Season**](Season.md)|  | 
+ **patched_season** | [**PatchedSeason**](PatchedSeason.md)|  | [optional] 
 
 ### Return type
 
@@ -629,7 +629,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -640,8 +640,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **seasons_player_intents**
-> List[IntentToPlay] seasons_player_intents(id, discord_id=discord_id, returning=returning, missing=missing)
+# **seasons_player_intents_list**
+> List[IntentToPlay] seasons_player_intents_list(id, discord_id=discord_id, missing=missing, returning=returning)
 
 Get player intents for a specific season
 
@@ -655,10 +655,10 @@ from rscapi.models.intent_to_play import IntentToPlay
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -677,16 +677,16 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
     id = 56 # int | A unique integer value identifying this season.
-    discord_id = 56 # int | Discord ID of player intent to search for. (optional)
-    returning = True # bool | If the player is returning or not. (optional)
-    missing = True # bool | If the player has responded or not. (optional)
+    discord_id = 56 # int |  (optional)
+    missing = True # bool |  (optional)
+    returning = True # bool |  (optional)
 
     try:
-        api_response = await api_instance.seasons_player_intents(id, discord_id=discord_id, returning=returning, missing=missing)
-        print("The response of SeasonsApi->seasons_player_intents:\n")
+        api_response = await api_instance.seasons_player_intents_list(id, discord_id=discord_id, missing=missing, returning=returning)
+        print("The response of SeasonsApi->seasons_player_intents_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_player_intents: %s\n" % e)
+        print("Exception when calling SeasonsApi->seasons_player_intents_list: %s\n" % e)
 ```
 
 
@@ -697,9 +697,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this season. | 
- **discord_id** | **int**| Discord ID of player intent to search for. | [optional] 
- **returning** | **bool**| If the player is returning or not. | [optional] 
- **missing** | **bool**| If the player has responded or not. | [optional] 
+ **discord_id** | **int**|  | [optional] 
+ **missing** | **bool**|  | [optional] 
+ **returning** | **bool**|  | [optional] 
 
 ### Return type
 
@@ -723,8 +723,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **seasons_read**
-> Season seasons_read(id)
+# **seasons_retrieve**
+> Season seasons_retrieve(id)
 
 ### Example
 
@@ -736,10 +736,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -760,11 +760,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this season.
 
     try:
-        api_response = await api_instance.seasons_read(id)
-        print("The response of SeasonsApi->seasons_read:\n")
+        api_response = await api_instance.seasons_retrieve(id)
+        print("The response of SeasonsApi->seasons_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_read: %s\n" % e)
+        print("Exception when calling SeasonsApi->seasons_retrieve: %s\n" % e)
 ```
 
 
@@ -797,8 +797,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **seasons_signup_season**
-> Season seasons_signup_season(league)
+# **seasons_signup_season_retrieve**
+> Season seasons_signup_season_retrieve(league)
 
 Get the season currently accepting signups.
 
@@ -812,10 +812,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -836,11 +836,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     league = 56 # int | League to get current season for.
 
     try:
-        api_response = await api_instance.seasons_signup_season(league)
-        print("The response of SeasonsApi->seasons_signup_season:\n")
+        api_response = await api_instance.seasons_signup_season_retrieve(league)
+        print("The response of SeasonsApi->seasons_signup_season_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SeasonsApi->seasons_signup_season: %s\n" % e)
+        print("Exception when calling SeasonsApi->seasons_signup_season_retrieve: %s\n" % e)
 ```
 
 
@@ -875,7 +875,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_update**
-> Season seasons_update(id, data)
+> Season seasons_update(id, season)
 
 ### Example
 
@@ -887,10 +887,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -909,10 +909,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
     id = 56 # int | A unique integer value identifying this season.
-    data = rscapi.Season() # Season | 
+    season = rscapi.Season() # Season | 
 
     try:
-        api_response = await api_instance.seasons_update(id, data)
+        api_response = await api_instance.seasons_update(id, season)
         print("The response of SeasonsApi->seasons_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -927,7 +927,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this season. | 
- **data** | [**Season**](Season.md)|  | 
+ **season** | [**Season**](Season.md)|  | 
 
 ### Return type
 
@@ -939,7 +939,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

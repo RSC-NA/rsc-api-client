@@ -1,25 +1,25 @@
 # rscapi.TeamsApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**teams_create**](TeamsApi.md#teams_create) | **POST** /teams/ | 
-[**teams_delete**](TeamsApi.md#teams_delete) | **DELETE** /teams/{id}/ | 
+[**teams_destroy**](TeamsApi.md#teams_destroy) | **DELETE** /teams/{id}/ | 
 [**teams_list**](TeamsApi.md#teams_list) | **GET** /teams/ | 
-[**teams_match**](TeamsApi.md#teams_match) | **GET** /teams/{id}/match/ | 
-[**teams_next_match**](TeamsApi.md#teams_next_match) | **GET** /teams/{id}/next_match/ | 
+[**teams_match_retrieve**](TeamsApi.md#teams_match_retrieve) | **GET** /teams/{id}/match/ | 
+[**teams_next_match_retrieve**](TeamsApi.md#teams_next_match_retrieve) | **GET** /teams/{id}/next_match/ | 
 [**teams_partial_update**](TeamsApi.md#teams_partial_update) | **PATCH** /teams/{id}/ | 
-[**teams_players**](TeamsApi.md#teams_players) | **GET** /teams/{id}/players/ | 
-[**teams_postseason_stats**](TeamsApi.md#teams_postseason_stats) | **GET** /teams/{id}/postseason_stats/ | 
-[**teams_read**](TeamsApi.md#teams_read) | **GET** /teams/{id}/ | 
-[**teams_season_matches**](TeamsApi.md#teams_season_matches) | **GET** /teams/{id}/season_matches/ | 
-[**teams_stats**](TeamsApi.md#teams_stats) | **GET** /teams/{id}/stats/ | 
+[**teams_players_list**](TeamsApi.md#teams_players_list) | **GET** /teams/{id}/players/ | 
+[**teams_postseason_stats_retrieve**](TeamsApi.md#teams_postseason_stats_retrieve) | **GET** /teams/{id}/postseason_stats/ | 
+[**teams_retrieve**](TeamsApi.md#teams_retrieve) | **GET** /teams/{id}/ | 
+[**teams_season_matches_list**](TeamsApi.md#teams_season_matches_list) | **GET** /teams/{id}/season_matches/ | 
+[**teams_stats_retrieve**](TeamsApi.md#teams_stats_retrieve) | **GET** /teams/{id}/stats/ | 
 [**teams_update**](TeamsApi.md#teams_update) | **PUT** /teams/{id}/ | 
 
 
 # **teams_create**
-> TeamCreate teams_create(data)
+> TeamCreate teams_create(team_create)
 
 ### Example
 
@@ -31,10 +31,10 @@ from rscapi.models.team_create import TeamCreate
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -52,10 +52,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    data = rscapi.TeamCreate() # TeamCreate | 
+    team_create = rscapi.TeamCreate() # TeamCreate | 
 
     try:
-        api_response = await api_instance.teams_create(data)
+        api_response = await api_instance.teams_create(team_create)
         print("The response of TeamsApi->teams_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -69,7 +69,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**TeamCreate**](TeamCreate.md)|  | 
+ **team_create** | [**TeamCreate**](TeamCreate.md)|  | 
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -93,8 +93,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **teams_delete**
-> teams_delete(id)
+# **teams_destroy**
+> teams_destroy(id)
 
 ### Example
 
@@ -105,10 +105,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -129,9 +129,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this team.
 
     try:
-        await api_instance.teams_delete(id)
+        await api_instance.teams_destroy(id)
     except Exception as e:
-        print("Exception when calling TeamsApi->teams_delete: %s\n" % e)
+        print("Exception when calling TeamsApi->teams_destroy: %s\n" % e)
 ```
 
 
@@ -160,12 +160,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** |  |  -  |
+**204** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_list**
-> List[TeamList] teams_list(seasons=seasons, franchise=franchise, name=name, tier=tier, league=league)
+> List[TeamList] teams_list(franchise=franchise, league=league, name=name, seasons=seasons, tier=tier)
 
 ### Example
 
@@ -177,10 +177,10 @@ from rscapi.models.team_list import TeamList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -198,14 +198,14 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    seasons = 'seasons_example' # str | seasons (optional)
-    franchise = 'franchise_example' # str | franchise (optional)
-    name = 'name_example' # str | name (optional)
-    tier = 'tier_example' # str | tier (optional)
+    franchise = 'franchise_example' # str | Franchise Name Contains (optional)
     league = 56 # int | League Database ID (optional)
+    name = 'name_example' # str | Team Name Contains (optional)
+    seasons = [56] # List[int] | Season Number contains (optional)
+    tier = 'tier_example' # str | Tier Name Contains (optional)
 
     try:
-        api_response = await api_instance.teams_list(seasons=seasons, franchise=franchise, name=name, tier=tier, league=league)
+        api_response = await api_instance.teams_list(franchise=franchise, league=league, name=name, seasons=seasons, tier=tier)
         print("The response of TeamsApi->teams_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -219,11 +219,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **seasons** | **str**| seasons | [optional] 
- **franchise** | **str**| franchise | [optional] 
- **name** | **str**| name | [optional] 
- **tier** | **str**| tier | [optional] 
+ **franchise** | **str**| Franchise Name Contains | [optional] 
  **league** | **int**| League Database ID | [optional] 
+ **name** | **str**| Team Name Contains | [optional] 
+ **seasons** | [**List[int]**](int.md)| Season Number contains | [optional] 
+ **tier** | **str**| Tier Name Contains | [optional] 
 
 ### Return type
 
@@ -246,8 +246,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **teams_match**
-> Match teams_match(id, day, preseason=preseason, season_number=season_number)
+# **teams_match_retrieve**
+> Match teams_match_retrieve(day, id, preseason=preseason, season_number=season_number)
 
 Get a match details for a specific day for the given team
 
@@ -261,10 +261,10 @@ from rscapi.models.match import Match
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -282,17 +282,17 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
-    id = 56 # int | A unique integer value identifying this team.
     day = 56 # int | 
+    id = 56 # int | A unique integer value identifying this team.
     preseason = False # bool |  (optional) (default to False)
     season_number = 56 # int |  (optional)
 
     try:
-        api_response = await api_instance.teams_match(id, day, preseason=preseason, season_number=season_number)
-        print("The response of TeamsApi->teams_match:\n")
+        api_response = await api_instance.teams_match_retrieve(day, id, preseason=preseason, season_number=season_number)
+        print("The response of TeamsApi->teams_match_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TeamsApi->teams_match: %s\n" % e)
+        print("Exception when calling TeamsApi->teams_match_retrieve: %s\n" % e)
 ```
 
 
@@ -302,8 +302,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this team. | 
  **day** | **int**|  | 
+ **id** | **int**| A unique integer value identifying this team. | 
  **preseason** | **bool**|  | [optional] [default to False]
  **season_number** | **int**|  | [optional] 
 
@@ -330,8 +330,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **teams_next_match**
-> Match teams_next_match(id)
+# **teams_next_match_retrieve**
+> Match teams_next_match_retrieve(id)
 
 Get the next match for a given team
 
@@ -345,10 +345,10 @@ from rscapi.models.match import Match
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -369,11 +369,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this team.
 
     try:
-        api_response = await api_instance.teams_next_match(id)
-        print("The response of TeamsApi->teams_next_match:\n")
+        api_response = await api_instance.teams_next_match_retrieve(id)
+        print("The response of TeamsApi->teams_next_match_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TeamsApi->teams_next_match: %s\n" % e)
+        print("Exception when calling TeamsApi->teams_next_match_retrieve: %s\n" % e)
 ```
 
 
@@ -408,7 +408,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_partial_update**
-> TeamList teams_partial_update(id, data)
+> TeamList teams_partial_update(id, patched_team_list=patched_team_list)
 
 ### Example
 
@@ -416,14 +416,15 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
+from rscapi.models.patched_team_list import PatchedTeamList
 from rscapi.models.team_list import TeamList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -442,10 +443,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    data = rscapi.TeamList() # TeamList | 
+    patched_team_list = rscapi.PatchedTeamList() # PatchedTeamList |  (optional)
 
     try:
-        api_response = await api_instance.teams_partial_update(id, data)
+        api_response = await api_instance.teams_partial_update(id, patched_team_list=patched_team_list)
         print("The response of TeamsApi->teams_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -460,7 +461,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **data** | [**TeamList**](TeamList.md)|  | 
+ **patched_team_list** | [**PatchedTeamList**](PatchedTeamList.md)|  | [optional] 
 
 ### Return type
 
@@ -472,7 +473,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -483,8 +484,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **teams_players**
-> List[Player] teams_players(id)
+# **teams_players_list**
+> List[TeamPlayer] teams_players_list(id, franchise=franchise, league=league, name=name, seasons=seasons, tier=tier)
 
 Get the players for a given team.
 
@@ -494,14 +495,14 @@ Get the players for a given team.
 
 ```python
 import rscapi
-from rscapi.models.player import Player
+from rscapi.models.team_player import TeamPlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -520,13 +521,18 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
+    franchise = 'franchise_example' # str | Franchise Name Contains (optional)
+    league = 3.4 # float | League ID (optional)
+    name = 'name_example' # str | Team Name Contains (optional)
+    seasons = [56] # List[int] | Season Number contains (optional)
+    tier = 'tier_example' # str | Tier Name Contains (optional)
 
     try:
-        api_response = await api_instance.teams_players(id)
-        print("The response of TeamsApi->teams_players:\n")
+        api_response = await api_instance.teams_players_list(id, franchise=franchise, league=league, name=name, seasons=seasons, tier=tier)
+        print("The response of TeamsApi->teams_players_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TeamsApi->teams_players: %s\n" % e)
+        print("Exception when calling TeamsApi->teams_players_list: %s\n" % e)
 ```
 
 
@@ -537,10 +543,15 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
+ **franchise** | **str**| Franchise Name Contains | [optional] 
+ **league** | **float**| League ID | [optional] 
+ **name** | **str**| Team Name Contains | [optional] 
+ **seasons** | [**List[int]**](int.md)| Season Number contains | [optional] 
+ **tier** | **str**| Tier Name Contains | [optional] 
 
 ### Return type
 
-[**List[Player]**](Player.md)
+[**List[TeamPlayer]**](TeamPlayer.md)
 
 ### Authorization
 
@@ -559,8 +570,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **teams_postseason_stats**
-> TeamSeasonStats teams_postseason_stats(id, season=season)
+# **teams_postseason_stats_retrieve**
+> TeamSeasonStats teams_postseason_stats_retrieve(id, season=season)
 
 Get postseason stats for a given team. (Default: Current Season)
 
@@ -574,10 +585,10 @@ from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -599,11 +610,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     season = 56 # int | Specific season number to get stats for. (optional)
 
     try:
-        api_response = await api_instance.teams_postseason_stats(id, season=season)
-        print("The response of TeamsApi->teams_postseason_stats:\n")
+        api_response = await api_instance.teams_postseason_stats_retrieve(id, season=season)
+        print("The response of TeamsApi->teams_postseason_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TeamsApi->teams_postseason_stats: %s\n" % e)
+        print("Exception when calling TeamsApi->teams_postseason_stats_retrieve: %s\n" % e)
 ```
 
 
@@ -638,8 +649,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **teams_read**
-> Team teams_read(id)
+# **teams_retrieve**
+> Team teams_retrieve(id)
 
 ### Example
 
@@ -651,10 +662,10 @@ from rscapi.models.team import Team
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -675,11 +686,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this team.
 
     try:
-        api_response = await api_instance.teams_read(id)
-        print("The response of TeamsApi->teams_read:\n")
+        api_response = await api_instance.teams_retrieve(id)
+        print("The response of TeamsApi->teams_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TeamsApi->teams_read: %s\n" % e)
+        print("Exception when calling TeamsApi->teams_retrieve: %s\n" % e)
 ```
 
 
@@ -712,8 +723,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **teams_season_matches**
-> List[HighLevelMatch] teams_season_matches(id, preseason=preseason, season=season)
+# **teams_season_matches_list**
+> List[HighLevelMatch] teams_season_matches_list(id, franchise=franchise, league=league, name=name, preseason=preseason, season=season, seasons=seasons, tier=tier)
 
 Get all matches for a given team.
 
@@ -727,10 +738,10 @@ from rscapi.models.high_level_match import HighLevelMatch
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -749,15 +760,20 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    preseason = True # bool | If true, get preseason matches (Default: Regular) (optional)
-    season = 56 # int | Season number to get matches for (Default: Current Season) (optional)
+    franchise = 'franchise_example' # str | Franchise Name Contains (optional)
+    league = 3.4 # float | League ID (optional)
+    name = 'name_example' # str | Team Name Contains (optional)
+    preseason = True # bool |  (optional)
+    season = 56 # int |  (optional)
+    seasons = [56] # List[int] | Season Number contains (optional)
+    tier = 'tier_example' # str | Tier Name Contains (optional)
 
     try:
-        api_response = await api_instance.teams_season_matches(id, preseason=preseason, season=season)
-        print("The response of TeamsApi->teams_season_matches:\n")
+        api_response = await api_instance.teams_season_matches_list(id, franchise=franchise, league=league, name=name, preseason=preseason, season=season, seasons=seasons, tier=tier)
+        print("The response of TeamsApi->teams_season_matches_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TeamsApi->teams_season_matches: %s\n" % e)
+        print("Exception when calling TeamsApi->teams_season_matches_list: %s\n" % e)
 ```
 
 
@@ -768,8 +784,13 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **preseason** | **bool**| If true, get preseason matches (Default: Regular) | [optional] 
- **season** | **int**| Season number to get matches for (Default: Current Season) | [optional] 
+ **franchise** | **str**| Franchise Name Contains | [optional] 
+ **league** | **float**| League ID | [optional] 
+ **name** | **str**| Team Name Contains | [optional] 
+ **preseason** | **bool**|  | [optional] 
+ **season** | **int**|  | [optional] 
+ **seasons** | [**List[int]**](int.md)| Season Number contains | [optional] 
+ **tier** | **str**| Tier Name Contains | [optional] 
 
 ### Return type
 
@@ -793,8 +814,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **teams_stats**
-> TeamSeasonStats teams_stats(id, season=season)
+# **teams_stats_retrieve**
+> TeamSeasonStats teams_stats_retrieve(id, season=season)
 
 Get regular season stats for a given team. (Default: Current Season)
 
@@ -808,10 +829,10 @@ from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -833,11 +854,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     season = 56 # int | Specific season number to get stats for. (optional)
 
     try:
-        api_response = await api_instance.teams_stats(id, season=season)
-        print("The response of TeamsApi->teams_stats:\n")
+        api_response = await api_instance.teams_stats_retrieve(id, season=season)
+        print("The response of TeamsApi->teams_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TeamsApi->teams_stats: %s\n" % e)
+        print("Exception when calling TeamsApi->teams_stats_retrieve: %s\n" % e)
 ```
 
 
@@ -872,7 +893,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_update**
-> TeamPatch teams_update(id, data)
+> teams_update(id, team_patch)
 
 ### Example
 
@@ -884,10 +905,10 @@ from rscapi.models.team_patch import TeamPatch
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -906,12 +927,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    data = rscapi.TeamPatch() # TeamPatch | 
+    team_patch = rscapi.TeamPatch() # TeamPatch | 
 
     try:
-        api_response = await api_instance.teams_update(id, data)
-        print("The response of TeamsApi->teams_update:\n")
-        pprint(api_response)
+        await api_instance.teams_update(id, team_patch)
     except Exception as e:
         print("Exception when calling TeamsApi->teams_update: %s\n" % e)
 ```
@@ -924,11 +943,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **data** | [**TeamPatch**](TeamPatch.md)|  | 
+ **team_patch** | [**TeamPatch**](TeamPatch.md)|  | 
 
 ### Return type
 
-[**TeamPatch**](TeamPatch.md)
+void (empty response body)
 
 ### Authorization
 
@@ -936,14 +955,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
 **400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

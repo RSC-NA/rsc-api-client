@@ -5,20 +5,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
 **league** | [**LeaguePlayerLeague**](LeaguePlayerLeague.md) |  | 
-**status** | **str** |  | [optional] [readonly] 
+**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [readonly] 
 **season** | **int** |  | 
 **captain** | **bool** |  | [optional] 
 **contract_length** | **int** |  | 
 **current_mmr** | **int** |  | [optional] 
 **base_mmr** | **int** |  | [optional] 
 **team** | [**PlayerTeam**](PlayerTeam.md) |  | 
-**last_updated** | **datetime** |  | [optional] [readonly] 
-**previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | [optional] [readonly] 
+**last_updated** | **datetime** |  | [readonly] 
+**previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | [readonly] 
 **player** | [**LeaguePlayerMember**](LeaguePlayerMember.md) |  | 
 **tier** | [**Tier**](Tier.md) |  | 
-**sub_status** | **int** |  | 
+**sub_status** | [**SubStatusEnum**](SubStatusEnum.md) |  | 
 **waiver_period_end_date** | **datetime** |  | 
 **signed_date** | **datetime** |  | 
 

@@ -1,26 +1,26 @@
 # rscapi.TiersApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**tiers_create**](TiersApi.md#tiers_create) | **POST** /tiers/ | 
-[**tiers_delete**](TiersApi.md#tiers_delete) | **DELETE** /tiers/{id}/ | 
+[**tiers_destroy**](TiersApi.md#tiers_destroy) | **DELETE** /tiers/{id}/ | 
 [**tiers_list**](TiersApi.md#tiers_list) | **GET** /tiers/ | 
 [**tiers_partial_update**](TiersApi.md#tiers_partial_update) | **PATCH** /tiers/{id}/ | 
-[**tiers_player_stats**](TiersApi.md#tiers_player_stats) | **GET** /tiers/{id}/player_stats/ | 
-[**tiers_players**](TiersApi.md#tiers_players) | **GET** /tiers/{id}/players/ | 
-[**tiers_postseason_player_stats**](TiersApi.md#tiers_postseason_player_stats) | **GET** /tiers/{id}/postseason_player_stats/ | 
-[**tiers_postseason_team_stats**](TiersApi.md#tiers_postseason_team_stats) | **GET** /tiers/{id}/postseason_team_stats/ | 
-[**tiers_read**](TiersApi.md#tiers_read) | **GET** /tiers/{id}/ | 
-[**tiers_standings**](TiersApi.md#tiers_standings) | **GET** /tiers/{id}/standings/ | 
-[**tiers_team_stats**](TiersApi.md#tiers_team_stats) | **GET** /tiers/{id}/team_stats/ | 
-[**tiers_teams**](TiersApi.md#tiers_teams) | **GET** /tiers/{id}/teams/ | 
+[**tiers_player_stats_list**](TiersApi.md#tiers_player_stats_list) | **GET** /tiers/{id}/player_stats/ | 
+[**tiers_players_list**](TiersApi.md#tiers_players_list) | **GET** /tiers/{id}/players/ | 
+[**tiers_postseason_player_stats_list**](TiersApi.md#tiers_postseason_player_stats_list) | **GET** /tiers/{id}/postseason_player_stats/ | 
+[**tiers_postseason_team_stats_list**](TiersApi.md#tiers_postseason_team_stats_list) | **GET** /tiers/{id}/postseason_team_stats/ | 
+[**tiers_retrieve**](TiersApi.md#tiers_retrieve) | **GET** /tiers/{id}/ | 
+[**tiers_standings_list**](TiersApi.md#tiers_standings_list) | **GET** /tiers/{id}/standings/ | 
+[**tiers_team_stats_list**](TiersApi.md#tiers_team_stats_list) | **GET** /tiers/{id}/team_stats/ | 
+[**tiers_teams_list**](TiersApi.md#tiers_teams_list) | **GET** /tiers/{id}/teams/ | 
 [**tiers_update**](TiersApi.md#tiers_update) | **PUT** /tiers/{id}/ | 
 
 
 # **tiers_create**
-> Tier tiers_create(data)
+> Tier tiers_create(tier)
 
 Viewset for the Tier model.
 
@@ -34,10 +34,10 @@ from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -55,10 +55,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
-    data = rscapi.Tier() # Tier | 
+    tier = rscapi.Tier() # Tier | 
 
     try:
-        api_response = await api_instance.tiers_create(data)
+        api_response = await api_instance.tiers_create(tier)
         print("The response of TiersApi->tiers_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -72,7 +72,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**Tier**](Tier.md)|  | 
+ **tier** | [**Tier**](Tier.md)|  | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -95,8 +95,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_delete**
-> tiers_delete(id)
+# **tiers_destroy**
+> tiers_destroy(id)
 
 Viewset for the Tier model.
 
@@ -109,10 +109,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -133,9 +133,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this tier.
 
     try:
-        await api_instance.tiers_delete(id)
+        await api_instance.tiers_destroy(id)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_delete: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_destroy: %s\n" % e)
 ```
 
 
@@ -164,12 +164,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** |  |  -  |
+**204** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_list**
-> List[Tier] tiers_list(name=name, league=league)
+> List[Tier] tiers_list(league=league, name=name)
 
 Viewset for the Tier model.
 
@@ -183,10 +183,10 @@ from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -204,11 +204,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
-    name = 'name_example' # str | name (optional)
     league = 56 # int | League Database ID (optional)
+    name = 'name_example' # str | Tier Name Contains (optional)
 
     try:
-        api_response = await api_instance.tiers_list(name=name, league=league)
+        api_response = await api_instance.tiers_list(league=league, name=name)
         print("The response of TiersApi->tiers_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -222,8 +222,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| name | [optional] 
  **league** | **int**| League Database ID | [optional] 
+ **name** | **str**| Tier Name Contains | [optional] 
 
 ### Return type
 
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_partial_update**
-> Tier tiers_partial_update(id, data)
+> Tier tiers_partial_update(id, patched_tier=patched_tier)
 
 Viewset for the Tier model.
 
@@ -257,14 +257,15 @@ Viewset for the Tier model.
 
 ```python
 import rscapi
+from rscapi.models.patched_tier import PatchedTier
 from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -283,10 +284,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    data = rscapi.Tier() # Tier | 
+    patched_tier = rscapi.PatchedTier() # PatchedTier |  (optional)
 
     try:
-        api_response = await api_instance.tiers_partial_update(id, data)
+        api_response = await api_instance.tiers_partial_update(id, patched_tier=patched_tier)
         print("The response of TiersApi->tiers_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -301,7 +302,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **data** | [**Tier**](Tier.md)|  | 
+ **patched_tier** | [**PatchedTier**](PatchedTier.md)|  | [optional] 
 
 ### Return type
 
@@ -313,7 +314,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -324,8 +325,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_player_stats**
-> List[PlayerSeasonStatsInDepth] tiers_player_stats(id, league, season=season)
+# **tiers_player_stats_list**
+> List[PlayerSeasonStatsInDepth] tiers_player_stats_list(id, league, name=name, season=season)
 
 Get player stats for a given tier and season in a league. (Default: Current Season)
 
@@ -339,10 +340,10 @@ from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -362,14 +363,15 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
     league = 56 # int | League ID
+    name = 'name_example' # str | Tier Name Contains (optional)
     season = 56 # int | Season number (Default: Current season.) (optional)
 
     try:
-        api_response = await api_instance.tiers_player_stats(id, league, season=season)
-        print("The response of TiersApi->tiers_player_stats:\n")
+        api_response = await api_instance.tiers_player_stats_list(id, league, name=name, season=season)
+        print("The response of TiersApi->tiers_player_stats_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_player_stats: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_player_stats_list: %s\n" % e)
 ```
 
 
@@ -381,6 +383,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
  **league** | **int**| League ID | 
+ **name** | **str**| Tier Name Contains | [optional] 
  **season** | **int**| Season number (Default: Current season.) | [optional] 
 
 ### Return type
@@ -405,8 +408,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_players**
-> List[LeaguePlayer] tiers_players(id, league, season=season)
+# **tiers_players_list**
+> List[LeaguePlayer] tiers_players_list(id, league, name=name, season=season)
 
 Get all players for a specific tier in a league
 
@@ -420,10 +423,10 @@ from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -443,14 +446,15 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
     league = 56 # int | League ID
+    name = 'name_example' # str | Tier Name Contains (optional)
     season = 56 # int | Season number (Default: Current season.) (optional)
 
     try:
-        api_response = await api_instance.tiers_players(id, league, season=season)
-        print("The response of TiersApi->tiers_players:\n")
+        api_response = await api_instance.tiers_players_list(id, league, name=name, season=season)
+        print("The response of TiersApi->tiers_players_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_players: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_players_list: %s\n" % e)
 ```
 
 
@@ -462,6 +466,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
  **league** | **int**| League ID | 
+ **name** | **str**| Tier Name Contains | [optional] 
  **season** | **int**| Season number (Default: Current season.) | [optional] 
 
 ### Return type
@@ -486,8 +491,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_postseason_player_stats**
-> List[PlayerSeasonStatsInDepth] tiers_postseason_player_stats(id, league, season=season)
+# **tiers_postseason_player_stats_list**
+> List[PlayerSeasonStatsInDepth] tiers_postseason_player_stats_list(id, league, name=name, season=season)
 
 Get player postseason stats for a given tier and season in a league
 
@@ -501,10 +506,10 @@ from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -524,14 +529,15 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
     league = 56 # int | League ID
+    name = 'name_example' # str | Tier Name Contains (optional)
     season = 56 # int | Season number (Default: Current season.) (optional)
 
     try:
-        api_response = await api_instance.tiers_postseason_player_stats(id, league, season=season)
-        print("The response of TiersApi->tiers_postseason_player_stats:\n")
+        api_response = await api_instance.tiers_postseason_player_stats_list(id, league, name=name, season=season)
+        print("The response of TiersApi->tiers_postseason_player_stats_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_postseason_player_stats: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_postseason_player_stats_list: %s\n" % e)
 ```
 
 
@@ -543,6 +549,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
  **league** | **int**| League ID | 
+ **name** | **str**| Tier Name Contains | [optional] 
  **season** | **int**| Season number (Default: Current season.) | [optional] 
 
 ### Return type
@@ -567,8 +574,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_postseason_team_stats**
-> List[TeamSeasonStats] tiers_postseason_team_stats(id, league, season=season)
+# **tiers_postseason_team_stats_list**
+> List[TeamSeasonStats] tiers_postseason_team_stats_list(id, league, name=name, season=season)
 
 Get postseason team stats for a given tier and season in a league. (Default: Current)
 
@@ -582,10 +589,10 @@ from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -605,14 +612,15 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
     league = 56 # int | League ID
+    name = 'name_example' # str | Tier Name Contains (optional)
     season = 56 # int | Season number (Default: Current season.) (optional)
 
     try:
-        api_response = await api_instance.tiers_postseason_team_stats(id, league, season=season)
-        print("The response of TiersApi->tiers_postseason_team_stats:\n")
+        api_response = await api_instance.tiers_postseason_team_stats_list(id, league, name=name, season=season)
+        print("The response of TiersApi->tiers_postseason_team_stats_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_postseason_team_stats: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_postseason_team_stats_list: %s\n" % e)
 ```
 
 
@@ -624,6 +632,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
  **league** | **int**| League ID | 
+ **name** | **str**| Tier Name Contains | [optional] 
  **season** | **int**| Season number (Default: Current season.) | [optional] 
 
 ### Return type
@@ -648,8 +657,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_read**
-> Tier tiers_read(id)
+# **tiers_retrieve**
+> Tier tiers_retrieve(id)
 
 Viewset for the Tier model.
 
@@ -663,10 +672,10 @@ from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -687,11 +696,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this tier.
 
     try:
-        api_response = await api_instance.tiers_read(id)
-        print("The response of TiersApi->tiers_read:\n")
+        api_response = await api_instance.tiers_retrieve(id)
+        print("The response of TiersApi->tiers_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_read: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_retrieve: %s\n" % e)
 ```
 
 
@@ -724,8 +733,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_standings**
-> List[TeamStandings] tiers_standings(id, season)
+# **tiers_standings_list**
+> List[TeamStandings] tiers_standings_list(id, season, league=league, name=name)
 
 Get standings for a specific tier in a league and season.
 
@@ -739,10 +748,10 @@ from rscapi.models.team_standings import TeamStandings
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -762,13 +771,15 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
     season = 56 # int | Season number to query for.
+    league = 56 # int | Tiers in League with ID (optional)
+    name = 'name_example' # str | Tier Name Contains (optional)
 
     try:
-        api_response = await api_instance.tiers_standings(id, season)
-        print("The response of TiersApi->tiers_standings:\n")
+        api_response = await api_instance.tiers_standings_list(id, season, league=league, name=name)
+        print("The response of TiersApi->tiers_standings_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_standings: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_standings_list: %s\n" % e)
 ```
 
 
@@ -780,6 +791,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
  **season** | **int**| Season number to query for. | 
+ **league** | **int**| Tiers in League with ID | [optional] 
+ **name** | **str**| Tier Name Contains | [optional] 
 
 ### Return type
 
@@ -804,8 +817,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_team_stats**
-> List[TeamSeasonStats] tiers_team_stats(id, league, season=season)
+# **tiers_team_stats_list**
+> List[TeamSeasonStats] tiers_team_stats_list(id, league, name=name, season=season)
 
 Get team based stats for a given tier and season in a league. (Default: Current)
 
@@ -819,10 +832,10 @@ from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -842,14 +855,15 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
     league = 56 # int | League ID
+    name = 'name_example' # str | Tier Name Contains (optional)
     season = 56 # int | Season number (Default: Current season.) (optional)
 
     try:
-        api_response = await api_instance.tiers_team_stats(id, league, season=season)
-        print("The response of TiersApi->tiers_team_stats:\n")
+        api_response = await api_instance.tiers_team_stats_list(id, league, name=name, season=season)
+        print("The response of TiersApi->tiers_team_stats_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_team_stats: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_team_stats_list: %s\n" % e)
 ```
 
 
@@ -861,6 +875,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
  **league** | **int**| League ID | 
+ **name** | **str**| Tier Name Contains | [optional] 
  **season** | **int**| Season number (Default: Current season.) | [optional] 
 
 ### Return type
@@ -885,8 +900,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tiers_teams**
-> List[Team] tiers_teams(id, league, season=season)
+# **tiers_teams_list**
+> List[Team] tiers_teams_list(id, league, name=name, season=season)
 
 Get all teams for a specific tier in a league.
 
@@ -900,10 +915,10 @@ from rscapi.models.team import Team
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -923,14 +938,15 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
     league = 56 # int | League ID
+    name = 'name_example' # str | Tier Name Contains (optional)
     season = 56 # int | Season number (Default: Current season.) (optional)
 
     try:
-        api_response = await api_instance.tiers_teams(id, league, season=season)
-        print("The response of TiersApi->tiers_teams:\n")
+        api_response = await api_instance.tiers_teams_list(id, league, name=name, season=season)
+        print("The response of TiersApi->tiers_teams_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TiersApi->tiers_teams: %s\n" % e)
+        print("Exception when calling TiersApi->tiers_teams_list: %s\n" % e)
 ```
 
 
@@ -942,6 +958,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
  **league** | **int**| League ID | 
+ **name** | **str**| Tier Name Contains | [optional] 
  **season** | **int**| Season number (Default: Current season.) | [optional] 
 
 ### Return type
@@ -967,7 +984,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_update**
-> Tier tiers_update(id, data)
+> Tier tiers_update(id, tier)
 
 Viewset for the Tier model.
 
@@ -981,10 +998,10 @@ from rscapi.models.tier import Tier
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1003,10 +1020,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    data = rscapi.Tier() # Tier | 
+    tier = rscapi.Tier() # Tier | 
 
     try:
-        api_response = await api_instance.tiers_update(id, data)
+        api_response = await api_instance.tiers_update(id, tier)
         print("The response of TiersApi->tiers_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -1021,7 +1038,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **data** | [**Tier**](Tier.md)|  | 
+ **tier** | [**Tier**](Tier.md)|  | 
 
 ### Return type
 
@@ -1033,7 +1050,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**member** | [**SimpleMember**](SimpleMember.md) |  | [optional] 
+**id** | **int** |  | [readonly] 
+**member** | [**SimpleMember**](SimpleMember.md) |  | [readonly] 
 **league** | [**ElevatedRoleLeague**](ElevatedRoleLeague.md) |  | 
 **position** | **str** |  | 
-**gm** | **bool** |  | [optional] [readonly] 
-**agm** | **bool** |  | [optional] [readonly] 
-**arbiter** | **bool** |  | [optional] [readonly] 
+**gm** | **bool** |  | [readonly] 
+**agm** | **bool** |  | [readonly] 
+**arbiter** | **bool** |  | [readonly] 
 **project_role** | **str** |  | 
-**franchise_id** | **str** |  | [optional] [readonly] 
+**franchise_id** | **int** |  | [readonly] 
 
 ## Example
 

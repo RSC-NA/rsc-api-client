@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
 **name** | **str** |  | 
 **franchise** | [**TeamFranchise**](TeamFranchise.md) |  | 
 **tier** | [**Tier**](Tier.md) |  | 

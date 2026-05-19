@@ -1,14 +1,12 @@
 # TradeItem
 
-An item in a trade detailing what's being traded.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**source** | [**FranchiseIdentifier**](FranchiseIdentifier.md) |  | 
-**destination** | [**FranchiseIdentifier**](FranchiseIdentifier.md) |  | 
-**value** | [**TradeValue**](TradeValue.md) |  | 
+**player** | [**TradePlayer**](TradePlayer.md) |  | [optional] 
+**pick** | [**DraftPickTrade**](DraftPickTrade.md) |  | [optional] 
 
 ## Example
 

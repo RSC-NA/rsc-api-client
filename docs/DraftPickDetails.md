@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
 **round** | **int** | Specific round in the tier. | [optional] 
 **number** | **int** | Pick in the specific tier. | [optional] 
 **tier** | [**SeasonDraftPickList**](SeasonDraftPickList.md) |  | 
 **franchise** | [**DraftPickFranchise**](DraftPickFranchise.md) |  | 
 **future_pick** | **bool** |  | [optional] 
 **deleted** | **bool** | Is this pick removed because someone lost a tier. | [optional] 
-**pick_from** | **object** |  | [optional] [readonly] 
-**original_pick** | **object** |  | [optional] [readonly] 
+**pick_from** | **Dict[str, object]** |  | [readonly] 
+**original_pick** | **Dict[str, object]** |  | [readonly] 
 **future_season** | **int** |  | [optional] 
 **players** | [**List[DraftPickLeaguePlayer]**](DraftPickLeaguePlayer.md) |  | 
 

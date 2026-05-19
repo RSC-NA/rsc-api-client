@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**league** | **int** |  | [optional] [readonly] 
-**category** | **str** |  | [optional] [readonly] 
-**action** | **str** |  | [optional] [readonly] 
-**actor** | [**LeagueEventActor**](LeagueEventActor.md) |  | [optional] 
-**object_id** | **int** |  | [optional] [readonly] 
-**payload** | **object** |  | [optional] [readonly] 
-**is_public** | **bool** |  | [optional] [readonly] 
-**created_at** | **datetime** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**league** | **int** |  | [readonly] 
+**category** | [**CategoryEnum**](CategoryEnum.md) |  | [readonly] 
+**action** | **str** |  | [readonly] 
+**actor** | [**LeagueEventActor**](LeagueEventActor.md) |  | [readonly] 
+**object_id** | **int** |  | [readonly] 
+**payload** | **object** |  | [readonly] 
+**is_public** | **bool** |  | [readonly] 
+**created_at** | **datetime** |  | [readonly] 
 
 ## Example
 

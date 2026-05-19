@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
 **team** | **str** |  | 
 **type** | **str** |  | 
 **shooting_percentage** | **float** |  | 
 **win_percentage** | **float** |  | 
 **goal_differential** | **int** |  | 
 **opponent_shooting_percentage** | **float** |  | 
-**stats_type** | **str** |  | [optional] 
+**stats_type** | [**StatsTypeEnum**](StatsTypeEnum.md) |  | [optional] 
 **games_played** | **int** |  | [optional] 
 **games_won** | **int** |  | [optional] 
 **games_lost** | **int** |  | [optional] 

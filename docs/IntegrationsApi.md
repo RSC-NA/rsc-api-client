@@ -1,15 +1,15 @@
 # rscapi.IntegrationsApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**integrations_events_list**](IntegrationsApi.md#integrations_events_list) | **GET** /integrations/events/ | 
-[**integrations_events_read**](IntegrationsApi.md#integrations_events_read) | **GET** /integrations/events/{id}/ | 
+[**integrations_events_retrieve**](IntegrationsApi.md#integrations_events_retrieve) | **GET** /integrations/events/{id}/ | 
 
 
 # **integrations_events_list**
-> List[LeagueEventList] integrations_events_list(id__gte=id__gte, league=league, category=category, action=action, is_public=is_public, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id)
+> List[LeagueEventList] integrations_events_list(action=action, category=category, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id, id__gte=id__gte, is_public=is_public, league=league)
 
 ### Example
 
@@ -21,10 +21,10 @@ from rscapi.models.league_event_list import LeagueEventList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -42,17 +42,17 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.IntegrationsApi(api_client)
-    id__gte = 56 # int | Event ID greater than or equal to this value. (optional)
-    league = 56 # int | League ID. (optional)
-    category = 'category_example' # str | Event category code. (optional)
     action = 'action_example' # str | Event action code. (optional)
-    is_public = True # bool | Filter events by public visibility. (optional)
+    category = 'category_example' # str | Event category code. (optional)
     created_at__gte = '2013-10-20T19:20:30+01:00' # datetime | Events created at or after this datetime (ISO 8601). (optional)
     created_at__lte = '2013-10-20T19:20:30+01:00' # datetime | Events created at or before this datetime (ISO 8601). (optional)
     guild_id = 56 # int | Discord guild ID for league-scoped events. (optional)
+    id__gte = 56 # int | Event ID greater than or equal to this value. (optional)
+    is_public = True # bool | Filter events by public visibility. (optional)
+    league = 56 # int | League ID. (optional)
 
     try:
-        api_response = await api_instance.integrations_events_list(id__gte=id__gte, league=league, category=category, action=action, is_public=is_public, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id)
+        api_response = await api_instance.integrations_events_list(action=action, category=category, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id, id__gte=id__gte, is_public=is_public, league=league)
         print("The response of IntegrationsApi->integrations_events_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -66,14 +66,14 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id__gte** | **int**| Event ID greater than or equal to this value. | [optional] 
- **league** | **int**| League ID. | [optional] 
- **category** | **str**| Event category code. | [optional] 
  **action** | **str**| Event action code. | [optional] 
- **is_public** | **bool**| Filter events by public visibility. | [optional] 
+ **category** | **str**| Event category code. | [optional] 
  **created_at__gte** | **datetime**| Events created at or after this datetime (ISO 8601). | [optional] 
  **created_at__lte** | **datetime**| Events created at or before this datetime (ISO 8601). | [optional] 
  **guild_id** | **int**| Discord guild ID for league-scoped events. | [optional] 
+ **id__gte** | **int**| Event ID greater than or equal to this value. | [optional] 
+ **is_public** | **bool**| Filter events by public visibility. | [optional] 
+ **league** | **int**| League ID. | [optional] 
 
 ### Return type
 
@@ -96,8 +96,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **integrations_events_read**
-> LeagueEventDetail integrations_events_read(id)
+# **integrations_events_retrieve**
+> LeagueEventDetail integrations_events_retrieve(id)
 
 ### Example
 
@@ -109,10 +109,10 @@ from rscapi.models.league_event_detail import LeagueEventDetail
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -133,11 +133,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league event.
 
     try:
-        api_response = await api_instance.integrations_events_read(id)
-        print("The response of IntegrationsApi->integrations_events_read:\n")
+        api_response = await api_instance.integrations_events_retrieve(id)
+        print("The response of IntegrationsApi->integrations_events_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling IntegrationsApi->integrations_events_read: %s\n" % e)
+        print("Exception when calling IntegrationsApi->integrations_events_retrieve: %s\n" % e)
 ```
 
 

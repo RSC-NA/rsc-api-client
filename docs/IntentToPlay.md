@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **season** | **int** |  | 
 **missing** | **bool** |  | [optional] [default to False]
 **returning** | **bool** |  | [optional] 
-**player** | [**MemberIntent**](MemberIntent.md) |  | [optional] 
+**player** | [**MemberIntent**](MemberIntent.md) |  | [readonly] 
 
 ## Example
 

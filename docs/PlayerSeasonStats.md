@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
 **player** | **str** |  | 
 **season** | **int** |  | 
 **type** | **str** |  | 
@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 **percent_most_forward** | **float** |  | 
 **percent_closest_to_ball** | **float** |  | 
 **percent_farthest_from_ball** | **float** |  | 
-**stats_type** | **str** |  | [optional] 
+**stats_type** | [**StatsTypeEnum**](StatsTypeEnum.md) |  | [optional] 
 **total_shots** | **int** |  | [optional] 
 **games_played** | **int** |  | [optional] 
 **games_won** | **int** |  | [optional] 

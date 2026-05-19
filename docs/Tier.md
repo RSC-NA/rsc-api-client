@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**id** | **int** |  | [optional] [readonly] 
-**color** | **int** |  | [optional] [readonly] 
-**position** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**color** | **int** |  | [readonly] 
+**position** | **int** |  | [readonly] 
 
 ## Example
 

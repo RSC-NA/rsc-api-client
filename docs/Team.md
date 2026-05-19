@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**name** | **str** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**name** | **str** |  | [readonly] 
 **franchise** | **str** |  | [optional] 
 **tier** | **str** |  | [optional] 
-**players** | [**List[Player]**](Player.md) |  | [optional] [readonly] 
-**latest_season** | **int** |  | [optional] [readonly] 
+**players** | [**List[TeamPlayer]**](TeamPlayer.md) |  | [readonly] 
+**latest_season** | **int** |  | [readonly] 
 
 ## Example
 

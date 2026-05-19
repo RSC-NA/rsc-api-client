@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **to_gm** | **int** |  | 
 **round** | **int** |  | 
 **tier** | **str** |  | 
-**league** | **int** |  | [optional] 
+**league** | **int** |  | [optional] [default to 1]
 **season** | **int** | Season **number**. | 
 
 ## Example

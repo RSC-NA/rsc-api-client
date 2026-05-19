@@ -1,21 +1,25 @@
 # rscapi.LeaguesApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**leagues_add_tier**](LeaguesApi.md#leagues_add_tier) | **PUT** /leagues/{id}/add_tier/ | 
-[**leagues_current_season**](LeaguesApi.md#leagues_current_season) | **GET** /leagues/{id}/current_season/ | 
-[**leagues_expire_subs**](LeaguesApi.md#leagues_expire_subs) | **POST** /leagues/{id}/expire_subs/ | 
+[**leagues_add_tier_update**](LeaguesApi.md#leagues_add_tier_update) | **PUT** /leagues/{id}/add_tier/ | 
+[**leagues_create**](LeaguesApi.md#leagues_create) | **POST** /leagues/ | 
+[**leagues_current_season_retrieve**](LeaguesApi.md#leagues_current_season_retrieve) | **GET** /leagues/{id}/current_season/ | 
+[**leagues_destroy**](LeaguesApi.md#leagues_destroy) | **DELETE** /leagues/{id}/ | 
+[**leagues_expire_subs_create**](LeaguesApi.md#leagues_expire_subs_create) | **POST** /leagues/{id}/expire_subs/ | 
 [**leagues_list**](LeaguesApi.md#leagues_list) | **GET** /leagues/ | 
-[**leagues_read**](LeaguesApi.md#leagues_read) | **GET** /leagues/{id}/ | 
-[**leagues_remove_tier**](LeaguesApi.md#leagues_remove_tier) | **PUT** /leagues/{id}/remove_tier/ | 
-[**leagues_seasons**](LeaguesApi.md#leagues_seasons) | **GET** /leagues/{id}/seasons/ | 
-[**leagues_start_new_season**](LeaguesApi.md#leagues_start_new_season) | **POST** /leagues/{id}/start_new_season/ | 
+[**leagues_partial_update**](LeaguesApi.md#leagues_partial_update) | **PATCH** /leagues/{id}/ | 
+[**leagues_remove_tier_update**](LeaguesApi.md#leagues_remove_tier_update) | **PUT** /leagues/{id}/remove_tier/ | 
+[**leagues_retrieve**](LeaguesApi.md#leagues_retrieve) | **GET** /leagues/{id}/ | 
+[**leagues_seasons_list**](LeaguesApi.md#leagues_seasons_list) | **GET** /leagues/{id}/seasons/ | 
+[**leagues_start_new_season_create**](LeaguesApi.md#leagues_start_new_season_create) | **POST** /leagues/{id}/start_new_season/ | 
+[**leagues_update**](LeaguesApi.md#leagues_update) | **PUT** /leagues/{id}/ | 
 
 
-# **leagues_add_tier**
-> League leagues_add_tier(id, data)
+# **leagues_add_tier_update**
+> League leagues_add_tier_update(id, tier_league_add)
 
 Add a tier to a league
 
@@ -25,15 +29,15 @@ Add a tier to a league
 
 ```python
 import rscapi
-from rscapi.models.add_tier_to_league import AddTierToLeague
 from rscapi.models.league import League
+from rscapi.models.tier_league_add import TierLeagueAdd
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -52,14 +56,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguesApi(api_client)
     id = 56 # int | A unique integer value identifying this league.
-    data = rscapi.AddTierToLeague() # AddTierToLeague | 
+    tier_league_add = rscapi.TierLeagueAdd() # TierLeagueAdd | 
 
     try:
-        api_response = await api_instance.leagues_add_tier(id, data)
-        print("The response of LeaguesApi->leagues_add_tier:\n")
+        api_response = await api_instance.leagues_add_tier_update(id, tier_league_add)
+        print("The response of LeaguesApi->leagues_add_tier_update:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguesApi->leagues_add_tier: %s\n" % e)
+        print("Exception when calling LeaguesApi->leagues_add_tier_update: %s\n" % e)
 ```
 
 
@@ -70,7 +74,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
- **data** | [**AddTierToLeague**](AddTierToLeague.md)|  | 
+ **tier_league_add** | [**TierLeagueAdd**](TierLeagueAdd.md)|  | 
 
 ### Return type
 
@@ -82,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -94,8 +98,82 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **leagues_current_season**
-> Season leagues_current_season(id)
+# **leagues_create**
+> League leagues_create(league)
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.league import League
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.LeaguesApi(api_client)
+    league = rscapi.League() # League | 
+
+    try:
+        api_response = await api_instance.leagues_create(league)
+        print("The response of LeaguesApi->leagues_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling LeaguesApi->leagues_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **league** | [**League**](League.md)|  | 
+
+### Return type
+
+[**League**](League.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leagues_current_season_retrieve**
+> Season leagues_current_season_retrieve(id)
 
 Get current season for a given league
 
@@ -109,10 +187,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -133,11 +211,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league.
 
     try:
-        api_response = await api_instance.leagues_current_season(id)
-        print("The response of LeaguesApi->leagues_current_season:\n")
+        api_response = await api_instance.leagues_current_season_retrieve(id)
+        print("The response of LeaguesApi->leagues_current_season_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguesApi->leagues_current_season: %s\n" % e)
+        print("Exception when calling LeaguesApi->leagues_current_season_retrieve: %s\n" % e)
 ```
 
 
@@ -170,8 +248,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **leagues_expire_subs**
-> League leagues_expire_subs(id, data)
+# **leagues_destroy**
+> leagues_destroy(id)
 
 ### Example
 
@@ -179,14 +257,13 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -205,14 +282,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguesApi(api_client)
     id = 56 # int | A unique integer value identifying this league.
-    data = rscapi.League() # League | 
 
     try:
-        api_response = await api_instance.leagues_expire_subs(id, data)
-        print("The response of LeaguesApi->leagues_expire_subs:\n")
-        pprint(api_response)
+        await api_instance.leagues_destroy(id)
     except Exception as e:
-        print("Exception when calling LeaguesApi->leagues_expire_subs: %s\n" % e)
+        print("Exception when calling LeaguesApi->leagues_destroy: %s\n" % e)
 ```
 
 
@@ -223,11 +297,10 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
- **data** | [**League**](League.md)|  | 
 
 ### Return type
 
-[**League**](League.md)
+void (empty response body)
 
 ### Authorization
 
@@ -235,19 +308,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**204** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **leagues_list**
-> List[League] leagues_list(name=name, guild_id=guild_id)
+# **leagues_expire_subs_create**
+> League leagues_expire_subs_create(id, league)
 
 ### Example
 
@@ -259,10 +332,10 @@ from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -280,11 +353,87 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguesApi(api_client)
-    name = 'name_example' # str | name (optional)
-    guild_id = 'guild_id_example' # str | guild_id (optional)
+    id = 56 # int | A unique integer value identifying this league.
+    league = rscapi.League() # League | 
 
     try:
-        api_response = await api_instance.leagues_list(name=name, guild_id=guild_id)
+        api_response = await api_instance.leagues_expire_subs_create(id, league)
+        print("The response of LeaguesApi->leagues_expire_subs_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling LeaguesApi->leagues_expire_subs_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this league. | 
+ **league** | [**League**](League.md)|  | 
+
+### Return type
+
+[**League**](League.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leagues_list**
+> List[League] leagues_list(guild_id=guild_id, name=name)
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.league import League
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.LeaguesApi(api_client)
+    guild_id = 56 # int | Discord guild ID (optional)
+    name = 'name_example' # str | League name (optional)
+
+    try:
+        api_response = await api_instance.leagues_list(guild_id=guild_id, name=name)
         print("The response of LeaguesApi->leagues_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -298,8 +447,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| name | [optional] 
- **guild_id** | **str**| guild_id | [optional] 
+ **guild_id** | **int**| Discord guild ID | [optional] 
+ **name** | **str**| League name | [optional] 
 
 ### Return type
 
@@ -322,8 +471,165 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **leagues_read**
-> League leagues_read(id)
+# **leagues_partial_update**
+> League leagues_partial_update(id, patched_league=patched_league)
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.league import League
+from rscapi.models.patched_league import PatchedLeague
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.LeaguesApi(api_client)
+    id = 56 # int | A unique integer value identifying this league.
+    patched_league = rscapi.PatchedLeague() # PatchedLeague |  (optional)
+
+    try:
+        api_response = await api_instance.leagues_partial_update(id, patched_league=patched_league)
+        print("The response of LeaguesApi->leagues_partial_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling LeaguesApi->leagues_partial_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this league. | 
+ **patched_league** | [**PatchedLeague**](PatchedLeague.md)|  | [optional] 
+
+### Return type
+
+[**League**](League.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leagues_remove_tier_update**
+> Deleted leagues_remove_tier_update(id, tier_league_add)
+
+Remove a tier from a league
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.deleted import Deleted
+from rscapi.models.tier_league_add import TierLeagueAdd
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.LeaguesApi(api_client)
+    id = 56 # int | A unique integer value identifying this league.
+    tier_league_add = rscapi.TierLeagueAdd() # TierLeagueAdd | 
+
+    try:
+        api_response = await api_instance.leagues_remove_tier_update(id, tier_league_add)
+        print("The response of LeaguesApi->leagues_remove_tier_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling LeaguesApi->leagues_remove_tier_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this league. | 
+ **tier_league_add** | [**TierLeagueAdd**](TierLeagueAdd.md)|  | 
+
+### Return type
+
+[**Deleted**](Deleted.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leagues_retrieve**
+> League leagues_retrieve(id)
 
 ### Example
 
@@ -335,10 +641,10 @@ from rscapi.models.league import League
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -359,11 +665,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league.
 
     try:
-        api_response = await api_instance.leagues_read(id)
-        print("The response of LeaguesApi->leagues_read:\n")
+        api_response = await api_instance.leagues_retrieve(id)
+        print("The response of LeaguesApi->leagues_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguesApi->leagues_read: %s\n" % e)
+        print("Exception when calling LeaguesApi->leagues_retrieve: %s\n" % e)
 ```
 
 
@@ -396,88 +702,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **leagues_remove_tier**
-> Deleted leagues_remove_tier(id, data)
-
-Remove a tier from a league
-
-### Example
-
-* Api Key Authentication (Api-Key):
-
-```python
-import rscapi
-from rscapi.models.deleted import Deleted
-from rscapi.models.remove_tier_from_a_league import RemoveTierFromALeague
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.LeaguesApi(api_client)
-    id = 56 # int | A unique integer value identifying this league.
-    data = rscapi.RemoveTierFromALeague() # RemoveTierFromALeague | 
-
-    try:
-        api_response = await api_instance.leagues_remove_tier(id, data)
-        print("The response of LeaguesApi->leagues_remove_tier:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling LeaguesApi->leagues_remove_tier: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this league. | 
- **data** | [**RemoveTierFromALeague**](RemoveTierFromALeague.md)|  | 
-
-### Return type
-
-[**Deleted**](Deleted.md)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** |  |  -  |
-**400** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **leagues_seasons**
-> List[Season] leagues_seasons(id)
+# **leagues_seasons_list**
+> List[Season] leagues_seasons_list(id)
 
 Get all seasons for a given league.
 
@@ -491,10 +717,10 @@ from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -515,11 +741,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league.
 
     try:
-        api_response = await api_instance.leagues_seasons(id)
-        print("The response of LeaguesApi->leagues_seasons:\n")
+        api_response = await api_instance.leagues_seasons_list(id)
+        print("The response of LeaguesApi->leagues_seasons_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguesApi->leagues_seasons: %s\n" % e)
+        print("Exception when calling LeaguesApi->leagues_seasons_list: %s\n" % e)
 ```
 
 
@@ -552,8 +778,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **leagues_start_new_season**
-> Season leagues_start_new_season(id, data)
+# **leagues_start_new_season_create**
+> Season leagues_start_new_season_create(id, league_season_start)
 
 Start a new season for a given league
 
@@ -563,15 +789,15 @@ Start a new season for a given league
 
 ```python
 import rscapi
+from rscapi.models.league_season_start import LeagueSeasonStart
 from rscapi.models.season import Season
-from rscapi.models.start_new_season import StartNewSeason
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -590,14 +816,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguesApi(api_client)
     id = 56 # int | A unique integer value identifying this league.
-    data = rscapi.StartNewSeason() # StartNewSeason | 
+    league_season_start = rscapi.LeagueSeasonStart() # LeagueSeasonStart | 
 
     try:
-        api_response = await api_instance.leagues_start_new_season(id, data)
-        print("The response of LeaguesApi->leagues_start_new_season:\n")
+        api_response = await api_instance.leagues_start_new_season_create(id, league_season_start)
+        print("The response of LeaguesApi->leagues_start_new_season_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguesApi->leagues_start_new_season: %s\n" % e)
+        print("Exception when calling LeaguesApi->leagues_start_new_season_create: %s\n" % e)
 ```
 
 
@@ -608,7 +834,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league. | 
- **data** | [**StartNewSeason**](StartNewSeason.md)|  | 
+ **league_season_start** | [**LeagueSeasonStart**](LeagueSeasonStart.md)|  | 
 
 ### Return type
 
@@ -620,7 +846,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -629,6 +855,82 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** |  |  -  |
 **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leagues_update**
+> League leagues_update(id, league)
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.league import League
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.LeaguesApi(api_client)
+    id = 56 # int | A unique integer value identifying this league.
+    league = rscapi.League() # League | 
+
+    try:
+        api_response = await api_instance.leagues_update(id, league)
+        print("The response of LeaguesApi->leagues_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling LeaguesApi->leagues_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this league. | 
+ **league** | [**League**](League.md)|  | 
+
+### Return type
+
+[**League**](League.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

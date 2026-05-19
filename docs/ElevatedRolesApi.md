@@ -1,6 +1,6 @@
 # rscapi.ElevatedRolesApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **elevated_roles_list**
-> ElevatedRolesList200Response elevated_roles_list(position=position, league=league, gm=gm, agm=agm, limit=limit, offset=offset)
+> PaginatedElevatedRoleList elevated_roles_list(agm=agm, gm=gm, league=league, limit=limit, offset=offset, position=position)
 
 List all elevated roles with optional filters.
 
@@ -18,14 +18,14 @@ List all elevated roles with optional filters.
 
 ```python
 import rscapi
-from rscapi.models.elevated_roles_list200_response import ElevatedRolesList200Response
+from rscapi.models.paginated_elevated_role_list import PaginatedElevatedRoleList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -43,15 +43,15 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.ElevatedRolesApi(api_client)
-    position = 'position_example' # str | Staff position (optional)
-    league = 56 # int | League ID (optional)
-    gm = True # bool | General Manager (optional)
     agm = True # bool | Assistant GM (optional)
+    gm = True # bool | General Manager (optional)
+    league = 56 # int | League ID (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
+    position = 'position_example' # str | Staff position (optional)
 
     try:
-        api_response = await api_instance.elevated_roles_list(position=position, league=league, gm=gm, agm=agm, limit=limit, offset=offset)
+        api_response = await api_instance.elevated_roles_list(agm=agm, gm=gm, league=league, limit=limit, offset=offset, position=position)
         print("The response of ElevatedRolesApi->elevated_roles_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -65,16 +65,16 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **position** | **str**| Staff position | [optional] 
- **league** | **int**| League ID | [optional] 
- **gm** | **bool**| General Manager | [optional] 
  **agm** | **bool**| Assistant GM | [optional] 
+ **gm** | **bool**| General Manager | [optional] 
+ **league** | **int**| League ID | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **position** | **str**| Staff position | [optional] 
 
 ### Return type
 
-[**ElevatedRolesList200Response**](ElevatedRolesList200Response.md)
+[**PaginatedElevatedRoleList**](PaginatedElevatedRoleList.md)
 
 ### Authorization
 

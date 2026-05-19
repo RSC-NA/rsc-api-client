@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **str** |  | 
+**status** | [**TrackerLinkStatusEnum**](TrackerLinkStatusEnum.md) |  | 
 **count** | **int** |  | 
 
 ## Example

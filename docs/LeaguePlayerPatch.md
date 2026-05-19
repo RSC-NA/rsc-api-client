@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 **current_mmr** | **int** |  | [optional] 
 **team_name** | **str** |  | [optional] 
 **tier** | **int** |  | [optional] 
-**status** | **str** |  | [optional] 
+**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [optional] 
 **executor** | **int** |  | 
 **waiver_period** | **str** |  | [optional] 
 **contract_length** | **int** |  | [optional] 
+**captain** | **bool** |  | [optional] 
+**sub_status** | [**SubStatusEnum**](SubStatusEnum.md) |  | [optional] 
 
 ## Example
 

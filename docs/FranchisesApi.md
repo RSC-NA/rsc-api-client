@@ -1,23 +1,23 @@
 # rscapi.FranchisesApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**franchises_create**](FranchisesApi.md#franchises_create) | **POST** /franchises/ | 
-[**franchises_delete**](FranchisesApi.md#franchises_delete) | **DELETE** /franchises/{id}/ | 
+[**franchises_destroy**](FranchisesApi.md#franchises_destroy) | **DELETE** /franchises/{id}/ | 
 [**franchises_list**](FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
-[**franchises_logo**](FranchisesApi.md#franchises_logo) | **GET** /franchises/{id}/logo/ | 
+[**franchises_logo_retrieve**](FranchisesApi.md#franchises_logo_retrieve) | **GET** /franchises/{id}/logo/ | 
 [**franchises_partial_update**](FranchisesApi.md#franchises_partial_update) | **PATCH** /franchises/{id}/ | 
-[**franchises_read**](FranchisesApi.md#franchises_read) | **GET** /franchises/{id}/ | 
-[**franchises_rebrand**](FranchisesApi.md#franchises_rebrand) | **PUT** /franchises/{id}/rebrand/ | 
-[**franchises_transfer_franchise**](FranchisesApi.md#franchises_transfer_franchise) | **PUT** /franchises/{id}/transfer_franchise/ | 
+[**franchises_rebrand_update**](FranchisesApi.md#franchises_rebrand_update) | **PUT** /franchises/{id}/rebrand/ | 
+[**franchises_retrieve**](FranchisesApi.md#franchises_retrieve) | **GET** /franchises/{id}/ | 
+[**franchises_transfer_franchise_update**](FranchisesApi.md#franchises_transfer_franchise_update) | **PUT** /franchises/{id}/transfer_franchise/ | 
 [**franchises_update**](FranchisesApi.md#franchises_update) | **PUT** /franchises/{id}/ | 
-[**franchises_upload_logo**](FranchisesApi.md#franchises_upload_logo) | **PUT** /franchises/{id}/upload_logo/ | 
+[**franchises_upload_logo_update**](FranchisesApi.md#franchises_upload_logo_update) | **PUT** /franchises/{id}/upload_logo/ | 
 
 
 # **franchises_create**
-> Franchise franchises_create(data)
+> Franchise franchises_create(franchise)
 
 Viewset for the franchise model. Contains endpoints related to working with franchises.
 
@@ -31,10 +31,10 @@ from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -52,10 +52,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
-    data = rscapi.Franchise() # Franchise | 
+    franchise = rscapi.Franchise() # Franchise | 
 
     try:
-        api_response = await api_instance.franchises_create(data)
+        api_response = await api_instance.franchises_create(franchise)
         print("The response of FranchisesApi->franchises_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -69,7 +69,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**Franchise**](Franchise.md)|  | 
+ **franchise** | [**Franchise**](Franchise.md)|  | 
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -92,8 +92,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **franchises_delete**
-> franchises_delete(id)
+# **franchises_destroy**
+> franchises_destroy(id)
 
 Viewset for the franchise model. Contains endpoints related to working with franchises.
 
@@ -106,10 +106,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -130,9 +130,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this franchise.
 
     try:
-        await api_instance.franchises_delete(id)
+        await api_instance.franchises_destroy(id)
     except Exception as e:
-        print("Exception when calling FranchisesApi->franchises_delete: %s\n" % e)
+        print("Exception when calling FranchisesApi->franchises_destroy: %s\n" % e)
 ```
 
 
@@ -161,12 +161,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** |  |  -  |
+**204** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_list**
-> List[FranchiseList] franchises_list(prefix=prefix, league=league, gm_name=gm_name, gm_discord_id=gm_discord_id, name=name, tier=tier, tier_name=tier_name)
+> List[FranchiseList] franchises_list(gm_discord_id=gm_discord_id, gm_name=gm_name, league=league, name=name, prefix=prefix, tier=tier, tier_name=tier_name)
 
 Viewset for the franchise model. Contains endpoints related to working with franchises.
 
@@ -180,10 +180,10 @@ from rscapi.models.franchise_list import FranchiseList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -201,16 +201,16 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
-    prefix = 'prefix_example' # str | prefix (optional)
-    league = 56 # int | League id (optional)
-    gm_name = 'gm_name_example' # str | gm_name (optional)
     gm_discord_id = 56 # int | Discord id of GM (optional)
-    name = 'name_example' # str | name (optional)
+    gm_name = 'gm_name_example' # str | GM Name Contains (optional)
+    league = 56 # int | League id (optional)
+    name = 'name_example' # str | Franchise Name Contains (optional)
+    prefix = 'prefix_example' # str |  (optional)
     tier = 56 # int | ID of Tier players are in. (optional)
-    tier_name = 'tier_name_example' # str | tier_name (optional)
+    tier_name = ['tier_name_example'] # List[str] | Franchise With Tiers (Using Tier Name) (optional)
 
     try:
-        api_response = await api_instance.franchises_list(prefix=prefix, league=league, gm_name=gm_name, gm_discord_id=gm_discord_id, name=name, tier=tier, tier_name=tier_name)
+        api_response = await api_instance.franchises_list(gm_discord_id=gm_discord_id, gm_name=gm_name, league=league, name=name, prefix=prefix, tier=tier, tier_name=tier_name)
         print("The response of FranchisesApi->franchises_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -224,13 +224,13 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **prefix** | **str**| prefix | [optional] 
- **league** | **int**| League id | [optional] 
- **gm_name** | **str**| gm_name | [optional] 
  **gm_discord_id** | **int**| Discord id of GM | [optional] 
- **name** | **str**| name | [optional] 
+ **gm_name** | **str**| GM Name Contains | [optional] 
+ **league** | **int**| League id | [optional] 
+ **name** | **str**| Franchise Name Contains | [optional] 
+ **prefix** | **str**|  | [optional] 
  **tier** | **int**| ID of Tier players are in. | [optional] 
- **tier_name** | **str**| tier_name | [optional] 
+ **tier_name** | [**List[str]**](str.md)| Franchise With Tiers (Using Tier Name) | [optional] 
 
 ### Return type
 
@@ -253,8 +253,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **franchises_logo**
-> FranchiseLogo franchises_logo(id)
+# **franchises_logo_retrieve**
+> FranchiseLogo franchises_logo_retrieve(id)
 
 Get direct link for logo of a franchise
 
@@ -268,10 +268,10 @@ from rscapi.models.franchise_logo import FranchiseLogo
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -292,11 +292,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this franchise.
 
     try:
-        api_response = await api_instance.franchises_logo(id)
-        print("The response of FranchisesApi->franchises_logo:\n")
+        api_response = await api_instance.franchises_logo_retrieve(id)
+        print("The response of FranchisesApi->franchises_logo_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling FranchisesApi->franchises_logo: %s\n" % e)
+        print("Exception when calling FranchisesApi->franchises_logo_retrieve: %s\n" % e)
 ```
 
 
@@ -330,7 +330,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_partial_update**
-> Franchise franchises_partial_update(id, data)
+> Franchise franchises_partial_update(id, patched_franchise=patched_franchise)
 
 Viewset for the franchise model. Contains endpoints related to working with franchises.
 
@@ -341,13 +341,14 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ```python
 import rscapi
 from rscapi.models.franchise import Franchise
+from rscapi.models.patched_franchise import PatchedFranchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -366,10 +367,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    data = rscapi.Franchise() # Franchise | 
+    patched_franchise = rscapi.PatchedFranchise() # PatchedFranchise |  (optional)
 
     try:
-        api_response = await api_instance.franchises_partial_update(id, data)
+        api_response = await api_instance.franchises_partial_update(id, patched_franchise=patched_franchise)
         print("The response of FranchisesApi->franchises_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -384,7 +385,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **data** | [**Franchise**](Franchise.md)|  | 
+ **patched_franchise** | [**PatchedFranchise**](PatchedFranchise.md)|  | [optional] 
 
 ### Return type
 
@@ -396,7 +397,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -407,8 +408,88 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **franchises_read**
-> Franchise franchises_read(id)
+# **franchises_rebrand_update**
+> Franchise franchises_rebrand_update(id, franchise_rebrand)
+
+Rebrand a franchise.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.franchise import Franchise
+from rscapi.models.franchise_rebrand import FranchiseRebrand
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.FranchisesApi(api_client)
+    id = 56 # int | A unique integer value identifying this franchise.
+    franchise_rebrand = rscapi.FranchiseRebrand() # FranchiseRebrand | 
+
+    try:
+        api_response = await api_instance.franchises_rebrand_update(id, franchise_rebrand)
+        print("The response of FranchisesApi->franchises_rebrand_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FranchisesApi->franchises_rebrand_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this franchise. | 
+ **franchise_rebrand** | [**FranchiseRebrand**](FranchiseRebrand.md)|  | 
+
+### Return type
+
+[**Franchise**](Franchise.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **franchises_retrieve**
+> Franchise franchises_retrieve(id)
 
 Viewset for the franchise model. Contains endpoints related to working with franchises.
 
@@ -422,10 +503,10 @@ from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -446,11 +527,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this franchise.
 
     try:
-        api_response = await api_instance.franchises_read(id)
-        print("The response of FranchisesApi->franchises_read:\n")
+        api_response = await api_instance.franchises_retrieve(id)
+        print("The response of FranchisesApi->franchises_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling FranchisesApi->franchises_read: %s\n" % e)
+        print("Exception when calling FranchisesApi->franchises_retrieve: %s\n" % e)
 ```
 
 
@@ -484,10 +565,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **franchises_rebrand**
-> Franchise franchises_rebrand(id, data)
+# **franchises_transfer_franchise_update**
+> Franchise franchises_transfer_franchise_update(id, franchise_transfer_request)
 
-Rebrand a franchise.
+Transfer a franchise to a new general manager in the specified league.
 
 ### Example
 
@@ -496,14 +577,14 @@ Rebrand a franchise.
 ```python
 import rscapi
 from rscapi.models.franchise import Franchise
-from rscapi.models.rebrand_a_franchise import RebrandAFranchise
+from rscapi.models.franchise_transfer_request import FranchiseTransferRequest
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -522,14 +603,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    data = rscapi.RebrandAFranchise() # RebrandAFranchise | 
+    franchise_transfer_request = rscapi.FranchiseTransferRequest() # FranchiseTransferRequest | 
 
     try:
-        api_response = await api_instance.franchises_rebrand(id, data)
-        print("The response of FranchisesApi->franchises_rebrand:\n")
+        api_response = await api_instance.franchises_transfer_franchise_update(id, franchise_transfer_request)
+        print("The response of FranchisesApi->franchises_transfer_franchise_update:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling FranchisesApi->franchises_rebrand: %s\n" % e)
+        print("Exception when calling FranchisesApi->franchises_transfer_franchise_update: %s\n" % e)
 ```
 
 
@@ -540,7 +621,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **data** | [**RebrandAFranchise**](RebrandAFranchise.md)|  | 
+ **franchise_transfer_request** | [**FranchiseTransferRequest**](FranchiseTransferRequest.md)|  | 
 
 ### Return type
 
@@ -552,87 +633,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**202** |  |  -  |
-**400** |  |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **franchises_transfer_franchise**
-> Franchise franchises_transfer_franchise(id, data)
-
-PUT /franchises/{id}/transfer_franchise/
-
-### Example
-
-* Api Key Authentication (Api-Key):
-
-```python
-import rscapi
-from rscapi.models.franchise import Franchise
-from rscapi.models.transfer_franchise import TransferFranchise
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.FranchisesApi(api_client)
-    id = 56 # int | A unique integer value identifying this franchise.
-    data = rscapi.TransferFranchise() # TransferFranchise | 
-
-    try:
-        api_response = await api_instance.franchises_transfer_franchise(id, data)
-        print("The response of FranchisesApi->franchises_transfer_franchise:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling FranchisesApi->franchises_transfer_franchise: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this franchise. | 
- **data** | [**TransferFranchise**](TransferFranchise.md)|  | 
-
-### Return type
-
-[**Franchise**](Franchise.md)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -646,7 +647,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_update**
-> Franchise franchises_update(id, data)
+> Franchise franchises_update(id, franchise)
 
 Viewset for the franchise model. Contains endpoints related to working with franchises.
 
@@ -660,10 +661,10 @@ from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -682,10 +683,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    data = rscapi.Franchise() # Franchise | 
+    franchise = rscapi.Franchise() # Franchise | 
 
     try:
-        api_response = await api_instance.franchises_update(id, data)
+        api_response = await api_instance.franchises_update(id, franchise)
         print("The response of FranchisesApi->franchises_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -700,7 +701,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **data** | [**Franchise**](Franchise.md)|  | 
+ **franchise** | [**Franchise**](Franchise.md)|  | 
 
 ### Return type
 
@@ -712,7 +713,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -723,8 +724,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **franchises_upload_logo**
-> Franchise franchises_upload_logo(id, logo)
+# **franchises_upload_logo_update**
+> Franchise franchises_upload_logo_update(id, logo)
 
 Update a franchise logo.
 
@@ -738,10 +739,10 @@ from rscapi.models.franchise import Franchise
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -760,14 +761,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    logo = None # bytearray | Logo content.
+    logo = None # bytes | Logo content.
 
     try:
-        api_response = await api_instance.franchises_upload_logo(id, logo)
-        print("The response of FranchisesApi->franchises_upload_logo:\n")
+        api_response = await api_instance.franchises_upload_logo_update(id, logo)
+        print("The response of FranchisesApi->franchises_upload_logo_update:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling FranchisesApi->franchises_upload_logo: %s\n" % e)
+        print("Exception when calling FranchisesApi->franchises_upload_logo_update: %s\n" % e)
 ```
 
 
@@ -778,7 +779,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **logo** | **bytearray**| Logo content. | 
+ **logo** | **bytes**| Logo content. | 
 
 ### Return type
 

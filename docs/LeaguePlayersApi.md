@@ -1,22 +1,22 @@
 # rscapi.LeaguePlayersApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**league_players_create**](LeaguePlayersApi.md#league_players_create) | **POST** /league-players/ | 
-[**league_players_delete**](LeaguePlayersApi.md#league_players_delete) | **DELETE** /league-players/{id}/ | 
+[**league_players_destroy**](LeaguePlayersApi.md#league_players_destroy) | **DELETE** /league-players/{id}/ | 
 [**league_players_list**](LeaguePlayersApi.md#league_players_list) | **GET** /league-players/ | 
 [**league_players_partial_update**](LeaguePlayersApi.md#league_players_partial_update) | **PATCH** /league-players/{id}/ | 
-[**league_players_postseason_stats**](LeaguePlayersApi.md#league_players_postseason_stats) | **GET** /league-players/{id}/postseason_stats/ | 
-[**league_players_read**](LeaguePlayersApi.md#league_players_read) | **GET** /league-players/{id}/ | 
-[**league_players_set_captain**](LeaguePlayersApi.md#league_players_set_captain) | **POST** /league-players/{id}/set_captain/ | 
-[**league_players_stats**](LeaguePlayersApi.md#league_players_stats) | **GET** /league-players/{id}/stats/ | 
+[**league_players_postseason_stats_retrieve**](LeaguePlayersApi.md#league_players_postseason_stats_retrieve) | **GET** /league-players/{id}/postseason_stats/ | 
+[**league_players_retrieve**](LeaguePlayersApi.md#league_players_retrieve) | **GET** /league-players/{id}/ | 
+[**league_players_set_captain_create**](LeaguePlayersApi.md#league_players_set_captain_create) | **POST** /league-players/{id}/set_captain/ | 
+[**league_players_stats_retrieve**](LeaguePlayersApi.md#league_players_stats_retrieve) | **GET** /league-players/{id}/stats/ | 
 [**league_players_update**](LeaguePlayersApi.md#league_players_update) | **PUT** /league-players/{id}/ | 
 
 
 # **league_players_create**
-> LeaguePlayer league_players_create(data)
+> LeaguePlayer league_players_create(league_player)
 
 ### Example
 
@@ -28,10 +28,10 @@ from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -49,10 +49,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
-    data = rscapi.LeaguePlayer() # LeaguePlayer | 
+    league_player = rscapi.LeaguePlayer() # LeaguePlayer | 
 
     try:
-        api_response = await api_instance.league_players_create(data)
+        api_response = await api_instance.league_players_create(league_player)
         print("The response of LeaguePlayersApi->league_players_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -66,7 +66,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**LeaguePlayer**](LeaguePlayer.md)|  | 
+ **league_player** | [**LeaguePlayer**](LeaguePlayer.md)|  | 
 
 ### Return type
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -89,8 +89,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **league_players_delete**
-> league_players_delete(id)
+# **league_players_destroy**
+> league_players_destroy(id)
 
 ### Example
 
@@ -101,10 +101,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -125,9 +125,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league player.
 
     try:
-        await api_instance.league_players_delete(id)
+        await api_instance.league_players_destroy(id)
     except Exception as e:
-        print("Exception when calling LeaguePlayersApi->league_players_delete: %s\n" % e)
+        print("Exception when calling LeaguePlayersApi->league_players_destroy: %s\n" % e)
 ```
 
 
@@ -156,12 +156,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** |  |  -  |
+**204** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_list**
-> LeaguePlayersList200Response league_players_list(status=status, name=name, tier=tier, tier_name=tier_name, season=season, season_number=season_number, league=league, team_name=team_name, franchise=franchise, captain=captain, sub_status=sub_status, discord_id=discord_id, limit=limit, offset=offset)
+> PaginatedLeaguePlayerList league_players_list(captain=captain, discord_id=discord_id, franchise=franchise, league=league, limit=limit, name=name, offset=offset, season=season, season_number=season_number, status=status, sub_status=sub_status, team_name=team_name, tier=tier, tier_name=tier_name)
 
 ### Example
 
@@ -169,14 +169,14 @@ void (empty response body)
 
 ```python
 import rscapi
-from rscapi.models.league_players_list200_response import LeaguePlayersList200Response
+from rscapi.models.paginated_league_player_list import PaginatedLeaguePlayerList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -194,23 +194,23 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
-    status = 'status_example' # str | Player Status (Rostered, IR, etc.) (optional)
-    name = 'name_example' # str | name (optional)
-    tier = 56 # int | ID of Tier players are in. (optional)
-    tier_name = 'tier_name_example' # str | Name of tier players are in. (optional)
+    captain = True # bool | Is team captain (optional)
+    discord_id = 56 # int | Discord ID of League Player (optional)
+    franchise = 'franchise_example' # str | Name of franchise players are in. (optional)
+    league = 56 # int | ID of League player is in. (optional)
+    limit = 56 # int | Number of results to return per page. (optional)
+    name = 'name_example' # str | Player RSC Name Contains (optional)
+    offset = 56 # int | The initial index from which to return the results. (optional)
     season = 56 # int | ID of season players played in. (optional)
     season_number = 56 # int | Number of season players played in. (optional)
-    league = 56 # int | ID of League player is in. (optional)
-    team_name = 'team_name_example' # str | Name of team players are on. (optional)
-    franchise = 'franchise_example' # str | Name of franchise players are in. (optional)
-    captain = 'captain_example' # str | captain (optional)
+    status = 'status_example' # str | Player Status (Rostered, IR, etc.) (optional)
     sub_status = 56 # int | Player current substitution status. (optional)
-    discord_id = 56 # int | Discord ID of League Player (optional)
-    limit = 56 # int | Number of results to return per page. (optional)
-    offset = 56 # int | The initial index from which to return the results. (optional)
+    team_name = 'team_name_example' # str | Name of team players are on. (optional)
+    tier = 56 # int | ID of Tier players are in. (optional)
+    tier_name = 'tier_name_example' # str | Name of tier players are in. (optional)
 
     try:
-        api_response = await api_instance.league_players_list(status=status, name=name, tier=tier, tier_name=tier_name, season=season, season_number=season_number, league=league, team_name=team_name, franchise=franchise, captain=captain, sub_status=sub_status, discord_id=discord_id, limit=limit, offset=offset)
+        api_response = await api_instance.league_players_list(captain=captain, discord_id=discord_id, franchise=franchise, league=league, limit=limit, name=name, offset=offset, season=season, season_number=season_number, status=status, sub_status=sub_status, team_name=team_name, tier=tier, tier_name=tier_name)
         print("The response of LeaguePlayersApi->league_players_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -224,24 +224,24 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | **str**| Player Status (Rostered, IR, etc.) | [optional] 
- **name** | **str**| name | [optional] 
- **tier** | **int**| ID of Tier players are in. | [optional] 
- **tier_name** | **str**| Name of tier players are in. | [optional] 
+ **captain** | **bool**| Is team captain | [optional] 
+ **discord_id** | **int**| Discord ID of League Player | [optional] 
+ **franchise** | **str**| Name of franchise players are in. | [optional] 
+ **league** | **int**| ID of League player is in. | [optional] 
+ **limit** | **int**| Number of results to return per page. | [optional] 
+ **name** | **str**| Player RSC Name Contains | [optional] 
+ **offset** | **int**| The initial index from which to return the results. | [optional] 
  **season** | **int**| ID of season players played in. | [optional] 
  **season_number** | **int**| Number of season players played in. | [optional] 
- **league** | **int**| ID of League player is in. | [optional] 
- **team_name** | **str**| Name of team players are on. | [optional] 
- **franchise** | **str**| Name of franchise players are in. | [optional] 
- **captain** | **str**| captain | [optional] 
+ **status** | **str**| Player Status (Rostered, IR, etc.) | [optional] 
  **sub_status** | **int**| Player current substitution status. | [optional] 
- **discord_id** | **int**| Discord ID of League Player | [optional] 
- **limit** | **int**| Number of results to return per page. | [optional] 
- **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **team_name** | **str**| Name of team players are on. | [optional] 
+ **tier** | **int**| ID of Tier players are in. | [optional] 
+ **tier_name** | **str**| Name of tier players are in. | [optional] 
 
 ### Return type
 
-[**LeaguePlayersList200Response**](LeaguePlayersList200Response.md)
+[**PaginatedLeaguePlayerList**](PaginatedLeaguePlayerList.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_partial_update**
-> LeaguePlayer league_players_partial_update(id, data, league=league)
+> LeaguePlayer league_players_partial_update(id, league=league, patched_league_player_patch=patched_league_player_patch)
 
 ### Example
 
@@ -270,14 +270,14 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.league_player import LeaguePlayer
-from rscapi.models.league_player_patch import LeaguePlayerPatch
+from rscapi.models.patched_league_player_patch import PatchedLeaguePlayerPatch
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -296,11 +296,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
     id = 56 # int | A unique integer value identifying this league player.
-    data = rscapi.LeaguePlayerPatch() # LeaguePlayerPatch | 
     league = 56 # int | ID of league to update player in (optional)
+    patched_league_player_patch = rscapi.PatchedLeaguePlayerPatch() # PatchedLeaguePlayerPatch |  (optional)
 
     try:
-        api_response = await api_instance.league_players_partial_update(id, data, league=league)
+        api_response = await api_instance.league_players_partial_update(id, league=league, patched_league_player_patch=patched_league_player_patch)
         print("The response of LeaguePlayersApi->league_players_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -315,8 +315,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league player. | 
- **data** | [**LeaguePlayerPatch**](LeaguePlayerPatch.md)|  | 
  **league** | **int**| ID of league to update player in | [optional] 
+ **patched_league_player_patch** | [**PatchedLeaguePlayerPatch**](PatchedLeaguePlayerPatch.md)|  | [optional] 
 
 ### Return type
 
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -339,8 +339,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **league_players_postseason_stats**
-> PlayerSeasonStats league_players_postseason_stats(id)
+# **league_players_postseason_stats_retrieve**
+> PlayerSeasonStats league_players_postseason_stats_retrieve(id)
 
 Get postseason stats for a specific league player.
 
@@ -354,10 +354,10 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -378,11 +378,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league player.
 
     try:
-        api_response = await api_instance.league_players_postseason_stats(id)
-        print("The response of LeaguePlayersApi->league_players_postseason_stats:\n")
+        api_response = await api_instance.league_players_postseason_stats_retrieve(id)
+        print("The response of LeaguePlayersApi->league_players_postseason_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguePlayersApi->league_players_postseason_stats: %s\n" % e)
+        print("Exception when calling LeaguePlayersApi->league_players_postseason_stats_retrieve: %s\n" % e)
 ```
 
 
@@ -416,8 +416,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **league_players_read**
-> LeaguePlayer league_players_read(id)
+# **league_players_retrieve**
+> LeaguePlayer league_players_retrieve(id)
 
 ### Example
 
@@ -429,10 +429,10 @@ from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -453,11 +453,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league player.
 
     try:
-        api_response = await api_instance.league_players_read(id)
-        print("The response of LeaguePlayersApi->league_players_read:\n")
+        api_response = await api_instance.league_players_retrieve(id)
+        print("The response of LeaguePlayersApi->league_players_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguePlayersApi->league_players_read: %s\n" % e)
+        print("Exception when calling LeaguePlayersApi->league_players_retrieve: %s\n" % e)
 ```
 
 
@@ -490,8 +490,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **league_players_set_captain**
-> LeaguePlayer league_players_set_captain(id)
+# **league_players_set_captain_create**
+> LeaguePlayer league_players_set_captain_create(id)
 
 Set (Or unset) a player to be captain of their team.
 
@@ -505,10 +505,10 @@ from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -529,11 +529,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league player.
 
     try:
-        api_response = await api_instance.league_players_set_captain(id)
-        print("The response of LeaguePlayersApi->league_players_set_captain:\n")
+        api_response = await api_instance.league_players_set_captain_create(id)
+        print("The response of LeaguePlayersApi->league_players_set_captain_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguePlayersApi->league_players_set_captain: %s\n" % e)
+        print("Exception when calling LeaguePlayersApi->league_players_set_captain_create: %s\n" % e)
 ```
 
 
@@ -562,12 +562,13 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**200** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **league_players_stats**
-> PlayerSeasonStats league_players_stats(id)
+# **league_players_stats_retrieve**
+> PlayerSeasonStats league_players_stats_retrieve(id)
 
 Get stats for a specific league player.
 
@@ -581,10 +582,10 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -605,11 +606,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this league player.
 
     try:
-        api_response = await api_instance.league_players_stats(id)
-        print("The response of LeaguePlayersApi->league_players_stats:\n")
+        api_response = await api_instance.league_players_stats_retrieve(id)
+        print("The response of LeaguePlayersApi->league_players_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LeaguePlayersApi->league_players_stats: %s\n" % e)
+        print("Exception when calling LeaguePlayersApi->league_players_stats_retrieve: %s\n" % e)
 ```
 
 
@@ -644,7 +645,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_update**
-> LeaguePlayer league_players_update(id, data)
+> LeaguePlayer league_players_update(id, league_player)
 
 ### Example
 
@@ -656,10 +657,10 @@ from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -678,10 +679,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
     id = 56 # int | A unique integer value identifying this league player.
-    data = rscapi.LeaguePlayer() # LeaguePlayer | 
+    league_player = rscapi.LeaguePlayer() # LeaguePlayer | 
 
     try:
-        api_response = await api_instance.league_players_update(id, data)
+        api_response = await api_instance.league_players_update(id, league_player)
         print("The response of LeaguePlayersApi->league_players_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -696,7 +697,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league player. | 
- **data** | [**LeaguePlayer**](LeaguePlayer.md)|  | 
+ **league_player** | [**LeaguePlayer**](LeaguePlayer.md)|  | 
 
 ### Return type
 
@@ -708,7 +709,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

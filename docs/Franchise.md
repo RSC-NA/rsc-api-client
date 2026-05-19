@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
 **prefix** | **str** |  | 
-**id** | **int** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
 **league** | [**FranchiseLeague**](FranchiseLeague.md) |  | 
-**tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [optional] [readonly] 
-**active** | **bool** |  | [optional] [readonly] 
-**teams** | [**List[Team]**](Team.md) |  | [optional] [readonly] 
-**logo** | **str** |  | [optional] [readonly] 
+**tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [readonly] 
+**active** | **bool** |  | [readonly] 
+**teams** | [**List[Team]**](Team.md) |  | [readonly] 
+**logo** | **str** |  | [readonly] 
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | 
-**agms** | [**List[FranchiseGM]**](FranchiseGM.md) |  | [optional] [readonly] 
+**agms** | [**List[FranchiseGM]**](FranchiseGM.md) |  | [readonly] 
 
 ## Example
 

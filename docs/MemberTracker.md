@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**player** | **str** |  | [optional] [readonly] 
+**player** | **str** |  | [readonly] 
 **rsc_name** | **str** |  | 
-**rscid** | **str** |  | [optional] [readonly] 
-**discord_id** | **int** |  | [optional] [readonly] 
-**accounts** | [**List[TrackerLink]**](TrackerLink.md) |  | [optional] [readonly] 
+**rscid** | **str** |  | [readonly] 
+**discord_id** | **int** |  | [readonly] 
+**accounts** | [**List[TrackerLink]**](TrackerLink.md) |  | [readonly] 
 
 ## Example
 

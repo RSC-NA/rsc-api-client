@@ -1,6 +1,6 @@
 # rscapi.TransactionsApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**transactions_draft_create**](TransactionsApi.md#transactions_draft_create) | **POST** /transactions/draft/ | 
 [**transactions_expire_create**](TransactionsApi.md#transactions_expire_create) | **POST** /transactions/expire/ | 
 [**transactions_history_list**](TransactionsApi.md#transactions_history_list) | **GET** /transactions/history/ | 
-[**transactions_history_read**](TransactionsApi.md#transactions_history_read) | **GET** /transactions/history/{id}/ | 
+[**transactions_history_retrieve**](TransactionsApi.md#transactions_history_retrieve) | **GET** /transactions/history/{id}/ | 
 [**transactions_inactive_reserve_create**](TransactionsApi.md#transactions_inactive_reserve_create) | **POST** /transactions/inactive-reserve/ | 
 [**transactions_resign_create**](TransactionsApi.md#transactions_resign_create) | **POST** /transactions/resign/ | 
 [**transactions_retire_create**](TransactionsApi.md#transactions_retire_create) | **POST** /transactions/retire/ | 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **transactions_cut_and_sign_create**
-> List[TransactionResponse] transactions_cut_and_sign_create(data)
+> List[TransactionResponse] transactions_cut_and_sign_create(cut_sign_input)
 
 Cut a player and sign another.
 
@@ -29,15 +29,15 @@ Cut a player and sign another.
 
 ```python
 import rscapi
-from rscapi.models.cut_a_player_and_sign_another import CutAPlayerAndSignAnother
+from rscapi.models.cut_sign_input import CutSignInput
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -55,10 +55,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.CutAPlayerAndSignAnother() # CutAPlayerAndSignAnother | 
+    cut_sign_input = rscapi.CutSignInput() # CutSignInput | 
 
     try:
-        api_response = await api_instance.transactions_cut_and_sign_create(data)
+        api_response = await api_instance.transactions_cut_and_sign_create(cut_sign_input)
         print("The response of TransactionsApi->transactions_cut_and_sign_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -72,7 +72,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**CutAPlayerAndSignAnother**](CutAPlayerAndSignAnother.md)|  | 
+ **cut_sign_input** | [**CutSignInput**](CutSignInput.md)|  | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_cut_create**
-> TransactionResponse transactions_cut_create(data)
+> TransactionResponse transactions_cut_create(player_input)
 
 Cut a player
 
@@ -109,15 +109,15 @@ Cut a player
 
 ```python
 import rscapi
-from rscapi.models.cut_a_player_from_a_league import CutAPlayerFromALeague
+from rscapi.models.player_input import PlayerInput
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -135,10 +135,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.CutAPlayerFromALeague() # CutAPlayerFromALeague | 
+    player_input = rscapi.PlayerInput() # PlayerInput | 
 
     try:
-        api_response = await api_instance.transactions_cut_create(data)
+        api_response = await api_instance.transactions_cut_create(player_input)
         print("The response of TransactionsApi->transactions_cut_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -152,7 +152,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**CutAPlayerFromALeague**](CutAPlayerFromALeague.md)|  | 
+ **player_input** | [**PlayerInput**](PlayerInput.md)|  | 
 
 ### Return type
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_draft_create**
-> TransactionResponse transactions_draft_create(data)
+> TransactionResponse transactions_draft_create(draft_input)
 
 ### Example
 
@@ -187,15 +187,15 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.draft_a_player_to_a_team import DraftAPlayerToATeam
+from rscapi.models.draft_input import DraftInput
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -213,10 +213,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.DraftAPlayerToATeam() # DraftAPlayerToATeam | 
+    draft_input = rscapi.DraftInput() # DraftInput | 
 
     try:
-        api_response = await api_instance.transactions_draft_create(data)
+        api_response = await api_instance.transactions_draft_create(draft_input)
         print("The response of TransactionsApi->transactions_draft_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -230,7 +230,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**DraftAPlayerToATeam**](DraftAPlayerToATeam.md)|  | 
+ **draft_input** | [**DraftInput**](DraftInput.md)|  | 
 
 ### Return type
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_expire_create**
-> LeaguePlayer transactions_expire_create(data)
+> LeaguePlayer transactions_expire_create(player_input)
 
 Manually expire a sub for a team.
 
@@ -267,15 +267,15 @@ Manually expire a sub for a team.
 
 ```python
 import rscapi
-from rscapi.models.expire_a_player_sub import ExpireAPlayerSub
 from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.player_input import PlayerInput
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -293,10 +293,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.ExpireAPlayerSub() # ExpireAPlayerSub | 
+    player_input = rscapi.PlayerInput() # PlayerInput | 
 
     try:
-        api_response = await api_instance.transactions_expire_create(data)
+        api_response = await api_instance.transactions_expire_create(player_input)
         print("The response of TransactionsApi->transactions_expire_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -310,7 +310,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**ExpireAPlayerSub**](ExpireAPlayerSub.md)|  | 
+ **player_input** | [**PlayerInput**](PlayerInput.md)|  | 
 
 ### Return type
 
@@ -322,7 +322,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_history_list**
-> TransactionsHistoryList200Response transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type, executor=executor, limit=limit, offset=offset)
+> PaginatedTransactionResponseList transactions_history_list(league, executor=executor, limit=limit, offset=offset, player=player, season_number=season_number, transaction_type=transaction_type)
 
 List all transactions for a given league and season.
 
@@ -346,14 +346,14 @@ List all transactions for a given league and season.
 
 ```python
 import rscapi
-from rscapi.models.transactions_history_list200_response import TransactionsHistoryList200Response
+from rscapi.models.paginated_transaction_response_list import PaginatedTransactionResponseList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -372,15 +372,15 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
     league = 56 # int | ID of the league to get team matches for
-    season_number = 56 # int | Season Number (E.g: 24) (optional)
-    player = 56 # int | Discord ID of player for transaction history search. (optional)
-    transaction_type = 'transaction_type_example' # str | transaction_type (optional)
     executor = 56 # int | Discord ID of the member who ran the transaction. (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
+    player = 56 # int | Discord ID of player for transaction history search. (optional)
+    season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
+    transaction_type = 'transaction_type_example' # str | Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release (optional)
 
     try:
-        api_response = await api_instance.transactions_history_list(league, season_number=season_number, player=player, transaction_type=transaction_type, executor=executor, limit=limit, offset=offset)
+        api_response = await api_instance.transactions_history_list(league, executor=executor, limit=limit, offset=offset, player=player, season_number=season_number, transaction_type=transaction_type)
         print("The response of TransactionsApi->transactions_history_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -395,16 +395,16 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **league** | **int**| ID of the league to get team matches for | 
- **season_number** | **int**| Season Number (E.g: 24) | [optional] 
- **player** | **int**| Discord ID of player for transaction history search. | [optional] 
- **transaction_type** | **str**| transaction_type | [optional] 
  **executor** | **int**| Discord ID of the member who ran the transaction. | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **player** | **int**| Discord ID of player for transaction history search. | [optional] 
+ **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
+ **transaction_type** | **str**| Filter based on a specific transaction Type.  * &#x60;AIR&#x60; - AGM Inactive Reserve * &#x60;CUT&#x60; - Cut * &#x60;DFT&#x60; - Draft Player * &#x60;IR&#x60; - Inactive Reserve * &#x60;INT&#x60; - Intent to Play * &#x60;IRT&#x60; - IR Return * &#x60;NON&#x60; - Invalid Transaction * &#x60;PCH&#x60; - Patched Player * &#x60;PKU&#x60; - Pickup * &#x60;PTD&#x60; - Player Trade * &#x60;PRO&#x60; - Promotion * &#x60;RLG&#x60; - Relegation * &#x60;RES&#x60; - Re-sign * &#x60;RET&#x60; - Retire * &#x60;SGN&#x60; - Sign Up * &#x60;PSG&#x60; - Permanent FA Sign Up * &#x60;SUB&#x60; - Substitution * &#x60;TMP&#x60; - Temporary Free Agent * &#x60;TRD&#x60; - Trade * &#x60;WVR&#x60; - Waiver Release | [optional] 
 
 ### Return type
 
-[**TransactionsHistoryList200Response**](TransactionsHistoryList200Response.md)
+[**PaginatedTransactionResponseList**](PaginatedTransactionResponseList.md)
 
 ### Authorization
 
@@ -423,8 +423,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **transactions_history_read**
-> TransactionResponse transactions_history_read(id)
+# **transactions_history_retrieve**
+> TransactionResponse transactions_history_retrieve(id)
 
 Retrieve a specific transaction by ID.
 
@@ -438,10 +438,10 @@ from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -462,11 +462,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this transaction.
 
     try:
-        api_response = await api_instance.transactions_history_read(id)
-        print("The response of TransactionsApi->transactions_history_read:\n")
+        api_response = await api_instance.transactions_history_retrieve(id)
+        print("The response of TransactionsApi->transactions_history_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TransactionsApi->transactions_history_read: %s\n" % e)
+        print("Exception when calling TransactionsApi->transactions_history_retrieve: %s\n" % e)
 ```
 
 
@@ -500,7 +500,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_inactive_reserve_create**
-> TransactionResponse transactions_inactive_reserve_create(data)
+> TransactionResponse transactions_inactive_reserve_create(ir_input)
 
 Set or remove a player to IR
 
@@ -510,15 +510,15 @@ Set or remove a player to IR
 
 ```python
 import rscapi
-from rscapi.models.inactive_reserve import InactiveReserve
+from rscapi.models.ir_input import IRInput
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -536,10 +536,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.InactiveReserve() # InactiveReserve | 
+    ir_input = rscapi.IRInput() # IRInput | 
 
     try:
-        api_response = await api_instance.transactions_inactive_reserve_create(data)
+        api_response = await api_instance.transactions_inactive_reserve_create(ir_input)
         print("The response of TransactionsApi->transactions_inactive_reserve_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -553,7 +553,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**InactiveReserve**](InactiveReserve.md)|  | 
+ **ir_input** | [**IRInput**](IRInput.md)|  | 
 
 ### Return type
 
@@ -565,7 +565,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -579,7 +579,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_resign_create**
-> TransactionResponse transactions_resign_create(data)
+> TransactionResponse transactions_resign_create(player_team_input)
 
 Re-sign a player
 
@@ -589,15 +589,15 @@ Re-sign a player
 
 ```python
 import rscapi
-from rscapi.models.re_sign_player import ReSignPlayer
+from rscapi.models.player_team_input import PlayerTeamInput
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -615,10 +615,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.ReSignPlayer() # ReSignPlayer | 
+    player_team_input = rscapi.PlayerTeamInput() # PlayerTeamInput | 
 
     try:
-        api_response = await api_instance.transactions_resign_create(data)
+        api_response = await api_instance.transactions_resign_create(player_team_input)
         print("The response of TransactionsApi->transactions_resign_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -632,7 +632,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**ReSignPlayer**](ReSignPlayer.md)|  | 
+ **player_team_input** | [**PlayerTeamInput**](PlayerTeamInput.md)|  | 
 
 ### Return type
 
@@ -644,7 +644,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -659,7 +659,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_retire_create**
-> TransactionResponse transactions_retire_create(data)
+> TransactionResponse transactions_retire_create(player_input)
 
 Retire a player from a league.
 
@@ -669,15 +669,15 @@ Retire a player from a league.
 
 ```python
 import rscapi
-from rscapi.models.retire_a_player import RetireAPlayer
+from rscapi.models.player_input import PlayerInput
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -695,10 +695,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.RetireAPlayer() # RetireAPlayer | 
+    player_input = rscapi.PlayerInput() # PlayerInput | 
 
     try:
-        api_response = await api_instance.transactions_retire_create(data)
+        api_response = await api_instance.transactions_retire_create(player_input)
         print("The response of TransactionsApi->transactions_retire_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -712,7 +712,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**RetireAPlayer**](RetireAPlayer.md)|  | 
+ **player_input** | [**PlayerInput**](PlayerInput.md)|  | 
 
 ### Return type
 
@@ -724,7 +724,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -738,7 +738,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_sign_create**
-> TransactionResponse transactions_sign_create(data)
+> TransactionResponse transactions_sign_create(player_team_input)
 
 Sign a player
 
@@ -748,15 +748,15 @@ Sign a player
 
 ```python
 import rscapi
-from rscapi.models.sign_a_player_to_a_team_in_a_league import SignAPlayerToATeamInALeague
+from rscapi.models.player_team_input import PlayerTeamInput
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -774,10 +774,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.SignAPlayerToATeamInALeague() # SignAPlayerToATeamInALeague | 
+    player_team_input = rscapi.PlayerTeamInput() # PlayerTeamInput | 
 
     try:
-        api_response = await api_instance.transactions_sign_create(data)
+        api_response = await api_instance.transactions_sign_create(player_team_input)
         print("The response of TransactionsApi->transactions_sign_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -791,7 +791,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**SignAPlayerToATeamInALeague**](SignAPlayerToATeamInALeague.md)|  | 
+ **player_team_input** | [**PlayerTeamInput**](PlayerTeamInput.md)|  | 
 
 ### Return type
 
@@ -803,7 +803,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -818,7 +818,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_substitution_create**
-> TransactionResponse transactions_substitution_create(data)
+> TransactionResponse transactions_substitution_create(sub_input)
 
 Substitute a player on a team
 
@@ -828,15 +828,15 @@ Substitute a player on a team
 
 ```python
 import rscapi
-from rscapi.models.temporary_fa_sub import TemporaryFASub
+from rscapi.models.sub_input import SubInput
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -854,10 +854,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.TemporaryFASub() # TemporaryFASub | 
+    sub_input = rscapi.SubInput() # SubInput | 
 
     try:
-        api_response = await api_instance.transactions_substitution_create(data)
+        api_response = await api_instance.transactions_substitution_create(sub_input)
         print("The response of TransactionsApi->transactions_substitution_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -871,7 +871,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**TemporaryFASub**](TemporaryFASub.md)|  | 
+ **sub_input** | [**SubInput**](SubInput.md)|  | 
 
 ### Return type
 
@@ -883,7 +883,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -898,7 +898,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_trade_create**
-> TransactionResponse transactions_trade_create(data)
+> TransactionResponse transactions_trade_create(trade_transaction)
 
 Trade a player to a franchise, or two players to two franchises.
 
@@ -908,15 +908,15 @@ Trade a player to a franchise, or two players to two franchises.
 
 ```python
 import rscapi
-from rscapi.models.trade_schema import TradeSchema
+from rscapi.models.trade_transaction import TradeTransaction
 from rscapi.models.transaction_response import TransactionResponse
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -934,10 +934,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    data = rscapi.TradeSchema() # TradeSchema | 
+    trade_transaction = rscapi.TradeTransaction() # TradeTransaction | 
 
     try:
-        api_response = await api_instance.transactions_trade_create(data)
+        api_response = await api_instance.transactions_trade_create(trade_transaction)
         print("The response of TransactionsApi->transactions_trade_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -951,7 +951,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**TradeSchema**](TradeSchema.md)|  | 
+ **trade_transaction** | [**TradeTransaction**](TradeTransaction.md)|  | 
 
 ### Return type
 
@@ -963,7 +963,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

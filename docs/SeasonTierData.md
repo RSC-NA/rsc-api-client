@@ -6,11 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tier** | **str** |  | 
-**mmr_min** | **int** |  | [optional] [readonly] 
-**mmr_max** | **int** |  | [optional] [readonly] 
-**team_cap** | **int** |  | [optional] [readonly] 
-**team_number** | **int** |  | [optional] [readonly] 
-**schedule** | [**SeasonSchedule**](SeasonSchedule.md) |  | [optional] 
+**mmr_min** | **int** |  | [readonly] 
+**mmr_max** | **int** |  | [readonly] 
+**team_cap** | **int** |  | [readonly] 
+**team_number** | **int** |  | [readonly] 
+**schedule** | [**SeasonSchedule**](SeasonSchedule.md) |  | [readonly] 
 
 ## Example
 

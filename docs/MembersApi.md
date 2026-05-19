@@ -1,39 +1,39 @@
 # rscapi.MembersApi
 
-All URIs are relative to *https://staging-api.rscna.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**members_accounts**](MembersApi.md#members_accounts) | **GET** /members/{id}/accounts/ | 
-[**members_activity_check**](MembersApi.md#members_activity_check) | **POST** /members/{id}/activity_check/ | 
-[**members_contract_status**](MembersApi.md#members_contract_status) | **GET** /members/{id}/contract_status/ | 
+[**members_accounts_retrieve**](MembersApi.md#members_accounts_retrieve) | **GET** /members/{id}/accounts/ | 
+[**members_activity_check_create**](MembersApi.md#members_activity_check_create) | **POST** /members/{id}/activity_check/ | 
+[**members_contract_status_retrieve**](MembersApi.md#members_contract_status_retrieve) | **GET** /members/{id}/contract_status/ | 
 [**members_create**](MembersApi.md#members_create) | **POST** /members/ | 
-[**members_delete**](MembersApi.md#members_delete) | **DELETE** /members/{id}/ | 
+[**members_destroy**](MembersApi.md#members_destroy) | **DELETE** /members/{id}/ | 
 [**members_elevated_roles_create**](MembersApi.md#members_elevated_roles_create) | **POST** /members/{id}/elevated_roles/ | 
-[**members_elevated_roles_delete**](MembersApi.md#members_elevated_roles_delete) | **DELETE** /members/{id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_destroy**](MembersApi.md#members_elevated_roles_destroy) | **DELETE** /members/{id}/elevated_roles/{id}/ | 
 [**members_elevated_roles_list**](MembersApi.md#members_elevated_roles_list) | **GET** /members/{id}/elevated_roles/ | 
 [**members_elevated_roles_partial_update**](MembersApi.md#members_elevated_roles_partial_update) | **PATCH** /members/{id}/elevated_roles/{id}/ | 
-[**members_elevated_roles_read**](MembersApi.md#members_elevated_roles_read) | **GET** /members/{id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_retrieve**](MembersApi.md#members_elevated_roles_retrieve) | **GET** /members/{id}/elevated_roles/{id}/ | 
 [**members_elevated_roles_update**](MembersApi.md#members_elevated_roles_update) | **PUT** /members/{id}/elevated_roles/{id}/ | 
-[**members_intent_to_play**](MembersApi.md#members_intent_to_play) | **POST** /members/{id}/intent_to_play/ | 
+[**members_intent_to_play_create**](MembersApi.md#members_intent_to_play_create) | **POST** /members/{id}/intent_to_play/ | 
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
-[**members_make_player**](MembersApi.md#members_make_player) | **POST** /members/{id}/make_player/ | 
-[**members_member_league_drop**](MembersApi.md#members_member_league_drop) | **POST** /members/{id}/member_league_drop/ | 
-[**members_name_change**](MembersApi.md#members_name_change) | **PATCH** /members/{id}/name_change/ | 
-[**members_name_changes**](MembersApi.md#members_name_changes) | **GET** /members/{id}/name_changes/ | 
+[**members_make_player_create**](MembersApi.md#members_make_player_create) | **POST** /members/{id}/make_player/ | 
+[**members_member_league_drop_create**](MembersApi.md#members_member_league_drop_create) | **POST** /members/{id}/member_league_drop/ | 
+[**members_name_change_partial_update**](MembersApi.md#members_name_change_partial_update) | **PATCH** /members/{id}/name_change/ | 
+[**members_name_changes_list**](MembersApi.md#members_name_changes_list) | **GET** /members/{id}/name_changes/ | 
 [**members_partial_update**](MembersApi.md#members_partial_update) | **PATCH** /members/{id}/ | 
-[**members_permfa_signup**](MembersApi.md#members_permfa_signup) | **POST** /members/{id}/permfa_signup/ | 
-[**members_postseason_stats**](MembersApi.md#members_postseason_stats) | **GET** /members/{id}/postseason_stats/ | 
-[**members_read**](MembersApi.md#members_read) | **GET** /members/{id}/ | 
-[**members_signup**](MembersApi.md#members_signup) | **POST** /members/{id}/signup/ | 
-[**members_stats**](MembersApi.md#members_stats) | **GET** /members/{id}/stats/ | 
-[**members_transfer_account**](MembersApi.md#members_transfer_account) | **POST** /members/{id}/transfer_account/ | 
+[**members_permfa_signup_create**](MembersApi.md#members_permfa_signup_create) | **POST** /members/{id}/permfa_signup/ | 
+[**members_postseason_stats_retrieve**](MembersApi.md#members_postseason_stats_retrieve) | **GET** /members/{id}/postseason_stats/ | 
+[**members_retrieve**](MembersApi.md#members_retrieve) | **GET** /members/{id}/ | 
+[**members_signup_create**](MembersApi.md#members_signup_create) | **POST** /members/{id}/signup/ | 
+[**members_stats_retrieve**](MembersApi.md#members_stats_retrieve) | **GET** /members/{id}/stats/ | 
+[**members_transfer_account_create**](MembersApi.md#members_transfer_account_create) | **POST** /members/{id}/transfer_account/ | 
 [**members_update**](MembersApi.md#members_update) | **PUT** /members/{id}/ | 
-[**members_update_discord_id**](MembersApi.md#members_update_discord_id) | **POST** /members/{id}/update_discord_id/ | 
+[**members_update_discord_id_create**](MembersApi.md#members_update_discord_id_create) | **POST** /members/{id}/update_discord_id/ | 
 
 
-# **members_accounts**
-> MemberTracker members_accounts(id)
+# **members_accounts_retrieve**
+> MemberTracker members_accounts_retrieve(id)
 
 Get accounts for a user
 
@@ -47,10 +47,10 @@ from rscapi.models.member_tracker import MemberTracker
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -71,11 +71,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this user.
 
     try:
-        api_response = await api_instance.members_accounts(id)
-        print("The response of MembersApi->members_accounts:\n")
+        api_response = await api_instance.members_accounts_retrieve(id)
+        print("The response of MembersApi->members_accounts_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_accounts: %s\n" % e)
+        print("Exception when calling MembersApi->members_accounts_retrieve: %s\n" % e)
 ```
 
 
@@ -108,8 +108,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_activity_check**
-> ActivityCheck members_activity_check(id, data)
+# **members_activity_check_create**
+> ActivityCheck members_activity_check_create(id, activity_request)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -118,14 +121,14 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.activity_check import ActivityCheck
-from rscapi.models.player_activity_check_schema import PlayerActivityCheckSchema
+from rscapi.models.activity_request import ActivityRequest
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -144,14 +147,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.PlayerActivityCheckSchema() # PlayerActivityCheckSchema | 
+    activity_request = rscapi.ActivityRequest() # ActivityRequest | 
 
     try:
-        api_response = await api_instance.members_activity_check(id, data)
-        print("The response of MembersApi->members_activity_check:\n")
+        api_response = await api_instance.members_activity_check_create(id, activity_request)
+        print("The response of MembersApi->members_activity_check_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_activity_check: %s\n" % e)
+        print("Exception when calling MembersApi->members_activity_check_create: %s\n" % e)
 ```
 
 
@@ -162,7 +165,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**PlayerActivityCheckSchema**](PlayerActivityCheckSchema.md)|  | 
+ **activity_request** | [**ActivityRequest**](ActivityRequest.md)|  | 
 
 ### Return type
 
@@ -174,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -188,8 +191,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_contract_status**
-> LeaguePlayer members_contract_status(id, league)
+# **members_contract_status_retrieve**
+> LeaguePlayer members_contract_status_retrieve(id, league)
 
 GET /member/{id}/contract_status/
 
@@ -203,10 +206,10 @@ from rscapi.models.league_player import LeaguePlayer
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -228,11 +231,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     league = 56 # int | League ID to get player contract status of
 
     try:
-        api_response = await api_instance.members_contract_status(id, league)
-        print("The response of MembersApi->members_contract_status:\n")
+        api_response = await api_instance.members_contract_status_retrieve(id, league)
+        print("The response of MembersApi->members_contract_status_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_contract_status: %s\n" % e)
+        print("Exception when calling MembersApi->members_contract_status_retrieve: %s\n" % e)
 ```
 
 
@@ -269,7 +272,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_create**
-> Member members_create(data)
+> Member members_create(create_member_input)
 
 Create a new member.
 
@@ -284,10 +287,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -305,10 +308,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    data = rscapi.CreateMemberInput() # CreateMemberInput | 
+    create_member_input = rscapi.CreateMemberInput() # CreateMemberInput | 
 
     try:
-        api_response = await api_instance.members_create(data)
+        api_response = await api_instance.members_create(create_member_input)
         print("The response of MembersApi->members_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -322,7 +325,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**CreateMemberInput**](CreateMemberInput.md)|  | 
+ **create_member_input** | [**CreateMemberInput**](CreateMemberInput.md)|  | 
 
 ### Return type
 
@@ -334,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -347,8 +350,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_delete**
-> members_delete(id)
+# **members_destroy**
+> members_destroy(id)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -359,10 +365,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -383,9 +389,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this user.
 
     try:
-        await api_instance.members_delete(id)
+        await api_instance.members_destroy(id)
     except Exception as e:
-        print("Exception when calling MembersApi->members_delete: %s\n" % e)
+        print("Exception when calling MembersApi->members_destroy: %s\n" % e)
 ```
 
 
@@ -414,12 +420,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** |  |  -  |
+**204** | No response body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_create**
-> Member members_elevated_roles_create(id, data)
+> Member members_elevated_roles_create(id, elevated_role_input)
 
 Create a new elevated role for member.
 
@@ -434,10 +440,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -456,10 +462,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this elevated role.
-    data = rscapi.ElevatedRoleInput() # ElevatedRoleInput | 
+    elevated_role_input = rscapi.ElevatedRoleInput() # ElevatedRoleInput | 
 
     try:
-        api_response = await api_instance.members_elevated_roles_create(id, data)
+        api_response = await api_instance.members_elevated_roles_create(id, elevated_role_input)
         print("The response of MembersApi->members_elevated_roles_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -474,7 +480,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this elevated role. | 
- **data** | [**ElevatedRoleInput**](ElevatedRoleInput.md)|  | 
+ **elevated_role_input** | [**ElevatedRoleInput**](ElevatedRoleInput.md)|  | 
 
 ### Return type
 
@@ -486,7 +492,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -500,8 +506,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_elevated_roles_delete**
-> members_elevated_roles_delete(id)
+# **members_elevated_roles_destroy**
+> members_elevated_roles_destroy(id)
 
 Delete an elevated role by its ID
 
@@ -514,10 +520,10 @@ import rscapi
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -538,9 +544,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this elevated role.
 
     try:
-        await api_instance.members_elevated_roles_delete(id)
+        await api_instance.members_elevated_roles_destroy(id)
     except Exception as e:
-        print("Exception when calling MembersApi->members_elevated_roles_delete: %s\n" % e)
+        print("Exception when calling MembersApi->members_elevated_roles_destroy: %s\n" % e)
 ```
 
 
@@ -563,20 +569,20 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Role successfully deleted |  -  |
-**404** | Role not found |  -  |
-**403** | Permission denied |  -  |
+**204** | No response body |  -  |
+**404** |  |  -  |
+**403** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_list**
-> List[ElevatedRole] members_elevated_roles_list(id, position=position, league=league, gm=gm, agm=agm)
+> List[ElevatedRole] members_elevated_roles_list(id, agm=agm, gm=gm, league=league, position=position)
 
 List elevated roles for a member.
 
@@ -590,10 +596,10 @@ from rscapi.models.elevated_role import ElevatedRole
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -612,13 +618,13 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this elevated role.
-    position = 'position_example' # str | Staff position (optional)
-    league = 56 # int | League ID (optional)
-    gm = True # bool | General Manager (optional)
     agm = True # bool | Assistant GM (optional)
+    gm = True # bool | General Manager (optional)
+    league = 56 # int | League ID (optional)
+    position = 'position_example' # str | Staff position (optional)
 
     try:
-        api_response = await api_instance.members_elevated_roles_list(id, position=position, league=league, gm=gm, agm=agm)
+        api_response = await api_instance.members_elevated_roles_list(id, agm=agm, gm=gm, league=league, position=position)
         print("The response of MembersApi->members_elevated_roles_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -633,10 +639,10 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this elevated role. | 
- **position** | **str**| Staff position | [optional] 
- **league** | **int**| League ID | [optional] 
- **gm** | **bool**| General Manager | [optional] 
  **agm** | **bool**| Assistant GM | [optional] 
+ **gm** | **bool**| General Manager | [optional] 
+ **league** | **int**| League ID | [optional] 
+ **position** | **str**| Staff position | [optional] 
 
 ### Return type
 
@@ -660,7 +666,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_partial_update**
-> ElevatedRole members_elevated_roles_partial_update(id, data)
+> ElevatedRole members_elevated_roles_partial_update(id, patched_elevated_role=patched_elevated_role)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -669,13 +678,14 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.elevated_role import ElevatedRole
+from rscapi.models.patched_elevated_role import PatchedElevatedRole
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -694,10 +704,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this elevated role.
-    data = rscapi.ElevatedRole() # ElevatedRole | 
+    patched_elevated_role = rscapi.PatchedElevatedRole() # PatchedElevatedRole |  (optional)
 
     try:
-        api_response = await api_instance.members_elevated_roles_partial_update(id, data)
+        api_response = await api_instance.members_elevated_roles_partial_update(id, patched_elevated_role=patched_elevated_role)
         print("The response of MembersApi->members_elevated_roles_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -712,7 +722,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this elevated role. | 
- **data** | [**ElevatedRole**](ElevatedRole.md)|  | 
+ **patched_elevated_role** | [**PatchedElevatedRole**](PatchedElevatedRole.md)|  | [optional] 
 
 ### Return type
 
@@ -724,7 +734,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -735,8 +745,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_elevated_roles_read**
-> ElevatedRole members_elevated_roles_read(id)
+# **members_elevated_roles_retrieve**
+> ElevatedRole members_elevated_roles_retrieve(id)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -748,10 +761,10 @@ from rscapi.models.elevated_role import ElevatedRole
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -772,11 +785,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this elevated role.
 
     try:
-        api_response = await api_instance.members_elevated_roles_read(id)
-        print("The response of MembersApi->members_elevated_roles_read:\n")
+        api_response = await api_instance.members_elevated_roles_retrieve(id)
+        print("The response of MembersApi->members_elevated_roles_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_elevated_roles_read: %s\n" % e)
+        print("Exception when calling MembersApi->members_elevated_roles_retrieve: %s\n" % e)
 ```
 
 
@@ -810,7 +823,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_update**
-> ElevatedRole members_elevated_roles_update(id, data)
+> ElevatedRole members_elevated_roles_update(id, elevated_role)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -822,10 +838,10 @@ from rscapi.models.elevated_role import ElevatedRole
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -844,10 +860,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this elevated role.
-    data = rscapi.ElevatedRole() # ElevatedRole | 
+    elevated_role = rscapi.ElevatedRole() # ElevatedRole | 
 
     try:
-        api_response = await api_instance.members_elevated_roles_update(id, data)
+        api_response = await api_instance.members_elevated_roles_update(id, elevated_role)
         print("The response of MembersApi->members_elevated_roles_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -862,7 +878,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this elevated role. | 
- **data** | [**ElevatedRole**](ElevatedRole.md)|  | 
+ **elevated_role** | [**ElevatedRole**](ElevatedRole.md)|  | 
 
 ### Return type
 
@@ -874,7 +890,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -885,8 +901,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_intent_to_play**
-> Deleted members_intent_to_play(id, data)
+# **members_intent_to_play_create**
+> Deleted members_intent_to_play_create(id, intent_to_play_request)
 
 Intent to play endpoint for returning players.
 
@@ -897,14 +913,14 @@ Intent to play endpoint for returning players.
 ```python
 import rscapi
 from rscapi.models.deleted import Deleted
-from rscapi.models.intent_to_play_schema import IntentToPlaySchema
+from rscapi.models.intent_to_play_request import IntentToPlayRequest
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -923,14 +939,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.IntentToPlaySchema() # IntentToPlaySchema | 
+    intent_to_play_request = rscapi.IntentToPlayRequest() # IntentToPlayRequest | 
 
     try:
-        api_response = await api_instance.members_intent_to_play(id, data)
-        print("The response of MembersApi->members_intent_to_play:\n")
+        api_response = await api_instance.members_intent_to_play_create(id, intent_to_play_request)
+        print("The response of MembersApi->members_intent_to_play_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_intent_to_play: %s\n" % e)
+        print("Exception when calling MembersApi->members_intent_to_play_create: %s\n" % e)
 ```
 
 
@@ -941,7 +957,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**IntentToPlaySchema**](IntentToPlaySchema.md)|  | 
+ **intent_to_play_request** | [**IntentToPlayRequest**](IntentToPlayRequest.md)|  | 
 
 ### Return type
 
@@ -953,7 +969,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -969,7 +985,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_list**
-> MembersList200Response members_list(rsc_name=rsc_name, discord_username=discord_username, discord_id=discord_id, limit=limit, offset=offset)
+> PaginatedMemberList members_list(discord_id=discord_id, discord_username=discord_username, limit=limit, offset=offset, rsc_name=rsc_name)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -977,14 +996,14 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.members_list200_response import MembersList200Response
+from rscapi.models.paginated_member_list import PaginatedMemberList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1002,14 +1021,14 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    rsc_name = 'rsc_name_example' # str | rsc_name (optional)
-    discord_username = 'discord_username_example' # str | discord_username (optional)
     discord_id = 56 # int | Discord ID of member to search for (optional)
+    discord_username = 'discord_username_example' # str | Discord Username Contains (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
+    rsc_name = 'rsc_name_example' # str | RSC Username Contains (optional)
 
     try:
-        api_response = await api_instance.members_list(rsc_name=rsc_name, discord_username=discord_username, discord_id=discord_id, limit=limit, offset=offset)
+        api_response = await api_instance.members_list(discord_id=discord_id, discord_username=discord_username, limit=limit, offset=offset, rsc_name=rsc_name)
         print("The response of MembersApi->members_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -1023,15 +1042,15 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rsc_name** | **str**| rsc_name | [optional] 
- **discord_username** | **str**| discord_username | [optional] 
  **discord_id** | **int**| Discord ID of member to search for | [optional] 
+ **discord_username** | **str**| Discord Username Contains | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **rsc_name** | **str**| RSC Username Contains | [optional] 
 
 ### Return type
 
-[**MembersList200Response**](MembersList200Response.md)
+[**PaginatedMemberList**](PaginatedMemberList.md)
 
 ### Authorization
 
@@ -1050,8 +1069,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_make_player**
-> LeaguePlayerPatch members_make_player(id, data)
+# **members_make_player_create**
+> LeaguePlayerPatch members_make_player_create(id, league_player_signup)
 
 Make a player a league player
 
@@ -1066,10 +1085,10 @@ from rscapi.models.league_player_signup import LeaguePlayerSignup
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1088,14 +1107,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.LeaguePlayerSignup() # LeaguePlayerSignup | 
+    league_player_signup = rscapi.LeaguePlayerSignup() # LeaguePlayerSignup | 
 
     try:
-        api_response = await api_instance.members_make_player(id, data)
-        print("The response of MembersApi->members_make_player:\n")
+        api_response = await api_instance.members_make_player_create(id, league_player_signup)
+        print("The response of MembersApi->members_make_player_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_make_player: %s\n" % e)
+        print("Exception when calling MembersApi->members_make_player_create: %s\n" % e)
 ```
 
 
@@ -1106,7 +1125,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**LeaguePlayerSignup**](LeaguePlayerSignup.md)|  | 
+ **league_player_signup** | [**LeaguePlayerSignup**](LeaguePlayerSignup.md)|  | 
 
 ### Return type
 
@@ -1118,7 +1137,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1129,8 +1148,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_member_league_drop**
-> Member members_member_league_drop(id, data)
+# **members_member_league_drop_create**
+> Member members_member_league_drop_create(id, league_player_signup)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -1138,15 +1160,15 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.drop_a_player_from_a_league import DropAPlayerFromALeague
+from rscapi.models.league_player_signup import LeaguePlayerSignup
 from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1165,14 +1187,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.DropAPlayerFromALeague() # DropAPlayerFromALeague | 
+    league_player_signup = rscapi.LeaguePlayerSignup() # LeaguePlayerSignup | 
 
     try:
-        api_response = await api_instance.members_member_league_drop(id, data)
-        print("The response of MembersApi->members_member_league_drop:\n")
+        api_response = await api_instance.members_member_league_drop_create(id, league_player_signup)
+        print("The response of MembersApi->members_member_league_drop_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_member_league_drop: %s\n" % e)
+        print("Exception when calling MembersApi->members_member_league_drop_create: %s\n" % e)
 ```
 
 
@@ -1183,7 +1205,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**DropAPlayerFromALeague**](DropAPlayerFromALeague.md)|  | 
+ **league_player_signup** | [**LeaguePlayerSignup**](LeaguePlayerSignup.md)|  | 
 
 ### Return type
 
@@ -1195,7 +1217,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1208,8 +1230,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_name_change**
-> Member members_name_change(id, data)
+# **members_name_change_partial_update**
+> Member members_name_change_partial_update(id, patched_member_name_change_request=patched_member_name_change_request)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -1218,14 +1243,14 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.member import Member
-from rscapi.models.update_member_rsc_name import UpdateMemberRSCName
+from rscapi.models.patched_member_name_change_request import PatchedMemberNameChangeRequest
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1244,14 +1269,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.UpdateMemberRSCName() # UpdateMemberRSCName | 
+    patched_member_name_change_request = rscapi.PatchedMemberNameChangeRequest() # PatchedMemberNameChangeRequest |  (optional)
 
     try:
-        api_response = await api_instance.members_name_change(id, data)
-        print("The response of MembersApi->members_name_change:\n")
+        api_response = await api_instance.members_name_change_partial_update(id, patched_member_name_change_request=patched_member_name_change_request)
+        print("The response of MembersApi->members_name_change_partial_update:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_name_change: %s\n" % e)
+        print("Exception when calling MembersApi->members_name_change_partial_update: %s\n" % e)
 ```
 
 
@@ -1262,7 +1287,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**UpdateMemberRSCName**](UpdateMemberRSCName.md)|  | 
+ **patched_member_name_change_request** | [**PatchedMemberNameChangeRequest**](PatchedMemberNameChangeRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -1274,7 +1299,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1287,8 +1312,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_name_changes**
-> List[NameChangeHistory] members_name_changes(id)
+# **members_name_changes_list**
+> PaginatedNameChangeHistoryList members_name_changes_list(id, discord_id=discord_id, discord_username=discord_username, limit=limit, offset=offset, rsc_name=rsc_name)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -1296,14 +1324,14 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.name_change_history import NameChangeHistory
+from rscapi.models.paginated_name_change_history_list import PaginatedNameChangeHistoryList
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1322,13 +1350,18 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
+    discord_id = 56 # int | Discord ID. (optional)
+    discord_username = 'discord_username_example' # str | Discord Username Contains (optional)
+    limit = 56 # int | Number of results to return per page. (optional)
+    offset = 56 # int | The initial index from which to return the results. (optional)
+    rsc_name = 'rsc_name_example' # str | RSC Username Contains (optional)
 
     try:
-        api_response = await api_instance.members_name_changes(id)
-        print("The response of MembersApi->members_name_changes:\n")
+        api_response = await api_instance.members_name_changes_list(id, discord_id=discord_id, discord_username=discord_username, limit=limit, offset=offset, rsc_name=rsc_name)
+        print("The response of MembersApi->members_name_changes_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_name_changes: %s\n" % e)
+        print("Exception when calling MembersApi->members_name_changes_list: %s\n" % e)
 ```
 
 
@@ -1339,10 +1372,15 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
+ **discord_id** | **int**| Discord ID. | [optional] 
+ **discord_username** | **str**| Discord Username Contains | [optional] 
+ **limit** | **int**| Number of results to return per page. | [optional] 
+ **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **rsc_name** | **str**| RSC Username Contains | [optional] 
 
 ### Return type
 
-[**List[NameChangeHistory]**](NameChangeHistory.md)
+[**PaginatedNameChangeHistoryList**](PaginatedNameChangeHistoryList.md)
 
 ### Authorization
 
@@ -1362,7 +1400,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_partial_update**
-> Member members_partial_update(id, data)
+> Member members_partial_update(id, patched_member=patched_member)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -1371,13 +1412,14 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.member import Member
+from rscapi.models.patched_member import PatchedMember
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1396,10 +1438,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.Member() # Member | 
+    patched_member = rscapi.PatchedMember() # PatchedMember |  (optional)
 
     try:
-        api_response = await api_instance.members_partial_update(id, data)
+        api_response = await api_instance.members_partial_update(id, patched_member=patched_member)
         print("The response of MembersApi->members_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -1414,7 +1456,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**Member**](Member.md)|  | 
+ **patched_member** | [**PatchedMember**](PatchedMember.md)|  | [optional] 
 
 ### Return type
 
@@ -1426,7 +1468,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1437,8 +1479,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_permfa_signup**
-> LeaguePlayer members_permfa_signup(id, data)
+# **members_permfa_signup_create**
+> LeaguePlayer members_permfa_signup_create(id, perm_fa_signup_details)
 
 PermFA signup endpoint
 
@@ -1449,14 +1491,14 @@ PermFA signup endpoint
 ```python
 import rscapi
 from rscapi.models.league_player import LeaguePlayer
-from rscapi.models.player_signup_schema import PlayerSignupSchema
+from rscapi.models.perm_fa_signup_details import PermFASignupDetails
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1475,14 +1517,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.PlayerSignupSchema() # PlayerSignupSchema | 
+    perm_fa_signup_details = rscapi.PermFASignupDetails() # PermFASignupDetails | 
 
     try:
-        api_response = await api_instance.members_permfa_signup(id, data)
-        print("The response of MembersApi->members_permfa_signup:\n")
+        api_response = await api_instance.members_permfa_signup_create(id, perm_fa_signup_details)
+        print("The response of MembersApi->members_permfa_signup_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_permfa_signup: %s\n" % e)
+        print("Exception when calling MembersApi->members_permfa_signup_create: %s\n" % e)
 ```
 
 
@@ -1493,7 +1535,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**PlayerSignupSchema**](PlayerSignupSchema.md)|  | 
+ **perm_fa_signup_details** | [**PermFASignupDetails**](PermFASignupDetails.md)|  | 
 
 ### Return type
 
@@ -1505,7 +1547,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1520,8 +1562,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_postseason_stats**
-> PlayerSeasonStats members_postseason_stats(id, league, season=season)
+# **members_postseason_stats_retrieve**
+> PlayerSeasonStats members_postseason_stats_retrieve(id, league, season=season)
 
 Get postseason stats for a player.
 
@@ -1535,10 +1577,10 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1561,11 +1603,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     season = 56 # int | Specific season number to get stats for (optional)
 
     try:
-        api_response = await api_instance.members_postseason_stats(id, league, season=season)
-        print("The response of MembersApi->members_postseason_stats:\n")
+        api_response = await api_instance.members_postseason_stats_retrieve(id, league, season=season)
+        print("The response of MembersApi->members_postseason_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_postseason_stats: %s\n" % e)
+        print("Exception when calling MembersApi->members_postseason_stats_retrieve: %s\n" % e)
 ```
 
 
@@ -1601,8 +1643,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_read**
-> Member members_read(id)
+# **members_retrieve**
+> Member members_retrieve(id)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -1614,10 +1659,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1638,11 +1683,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this user.
 
     try:
-        api_response = await api_instance.members_read(id)
-        print("The response of MembersApi->members_read:\n")
+        api_response = await api_instance.members_retrieve(id)
+        print("The response of MembersApi->members_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_read: %s\n" % e)
+        print("Exception when calling MembersApi->members_retrieve: %s\n" % e)
 ```
 
 
@@ -1675,8 +1720,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_signup**
-> LeaguePlayer members_signup(id, data)
+# **members_signup_create**
+> LeaguePlayer members_signup_create(id, signup_details_request)
 
 Member signup endpoint so a player can play.
 
@@ -1687,14 +1732,14 @@ Member signup endpoint so a player can play.
 ```python
 import rscapi
 from rscapi.models.league_player import LeaguePlayer
-from rscapi.models.player_signup_schema import PlayerSignupSchema
+from rscapi.models.signup_details_request import SignupDetailsRequest
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1713,14 +1758,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.PlayerSignupSchema() # PlayerSignupSchema | 
+    signup_details_request = rscapi.SignupDetailsRequest() # SignupDetailsRequest | 
 
     try:
-        api_response = await api_instance.members_signup(id, data)
-        print("The response of MembersApi->members_signup:\n")
+        api_response = await api_instance.members_signup_create(id, signup_details_request)
+        print("The response of MembersApi->members_signup_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_signup: %s\n" % e)
+        print("Exception when calling MembersApi->members_signup_create: %s\n" % e)
 ```
 
 
@@ -1731,7 +1776,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**PlayerSignupSchema**](PlayerSignupSchema.md)|  | 
+ **signup_details_request** | [**SignupDetailsRequest**](SignupDetailsRequest.md)|  | 
 
 ### Return type
 
@@ -1743,7 +1788,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1758,8 +1803,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_stats**
-> PlayerSeasonStats members_stats(id, league, season=season)
+# **members_stats_retrieve**
+> PlayerSeasonStats members_stats_retrieve(id, league, season=season)
 
 Get regular season stats for a player.
 
@@ -1773,10 +1818,10 @@ from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1799,11 +1844,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     season = 56 # int | Specific season number to get stats for (optional)
 
     try:
-        api_response = await api_instance.members_stats(id, league, season=season)
-        print("The response of MembersApi->members_stats:\n")
+        api_response = await api_instance.members_stats_retrieve(id, league, season=season)
+        print("The response of MembersApi->members_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_stats: %s\n" % e)
+        print("Exception when calling MembersApi->members_stats_retrieve: %s\n" % e)
 ```
 
 
@@ -1839,8 +1884,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_transfer_account**
-> Member members_transfer_account(id, data)
+# **members_transfer_account_create**
+> Member members_transfer_account_create(id, member_transfer_request)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -1849,14 +1897,14 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.member import Member
-from rscapi.models.member_transfer_schema import MemberTransferSchema
+from rscapi.models.member_transfer_request import MemberTransferRequest
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1875,14 +1923,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.MemberTransferSchema() # MemberTransferSchema | 
+    member_transfer_request = rscapi.MemberTransferRequest() # MemberTransferRequest | 
 
     try:
-        api_response = await api_instance.members_transfer_account(id, data)
-        print("The response of MembersApi->members_transfer_account:\n")
+        api_response = await api_instance.members_transfer_account_create(id, member_transfer_request)
+        print("The response of MembersApi->members_transfer_account_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_transfer_account: %s\n" % e)
+        print("Exception when calling MembersApi->members_transfer_account_create: %s\n" % e)
 ```
 
 
@@ -1893,7 +1941,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**MemberTransferSchema**](MemberTransferSchema.md)|  | 
+ **member_transfer_request** | [**MemberTransferRequest**](MemberTransferRequest.md)|  | 
 
 ### Return type
 
@@ -1905,7 +1953,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1918,7 +1966,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_update**
-> Member members_update(id, data)
+> Member members_update(id, member)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -1930,10 +1981,10 @@ from rscapi.models.member import Member
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -1952,10 +2003,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.Member() # Member | 
+    member = rscapi.Member() # Member | 
 
     try:
-        api_response = await api_instance.members_update(id, data)
+        api_response = await api_instance.members_update(id, member)
         print("The response of MembersApi->members_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -1970,7 +2021,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**Member**](Member.md)|  | 
+ **member** | [**Member**](Member.md)|  | 
 
 ### Return type
 
@@ -1982,7 +2033,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -1993,8 +2044,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **members_update_discord_id**
-> Member members_update_discord_id(id, data)
+# **members_update_discord_id_create**
+> Member members_update_discord_id_create(id, member_transfer_request)
+
+Apply this mixin to any view or viewset to get multiple field filtering
+based on a `lookup_fields` attribute, instead of the default single field filtering.
 
 ### Example
 
@@ -2003,14 +2057,14 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.member import Member
-from rscapi.models.member_transfer_schema import MemberTransferSchema
+from rscapi.models.member_transfer_request import MemberTransferRequest
 from rscapi.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://staging-api.rscna.com/api/v1
+# Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = rscapi.Configuration(
-    host = "https://staging-api.rscna.com/api/v1"
+    host = "/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -2029,14 +2083,14 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    data = rscapi.MemberTransferSchema() # MemberTransferSchema | 
+    member_transfer_request = rscapi.MemberTransferRequest() # MemberTransferRequest | 
 
     try:
-        api_response = await api_instance.members_update_discord_id(id, data)
-        print("The response of MembersApi->members_update_discord_id:\n")
+        api_response = await api_instance.members_update_discord_id_create(id, member_transfer_request)
+        print("The response of MembersApi->members_update_discord_id_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MembersApi->members_update_discord_id: %s\n" % e)
+        print("Exception when calling MembersApi->members_update_discord_id_create: %s\n" % e)
 ```
 
 
@@ -2047,7 +2101,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **data** | [**MemberTransferSchema**](MemberTransferSchema.md)|  | 
+ **member_transfer_request** | [**MemberTransferRequest**](MemberTransferRequest.md)|  | 
 
 ### Return type
 
@@ -2059,7 +2113,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details

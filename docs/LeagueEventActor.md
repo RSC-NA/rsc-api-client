@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] [readonly] 
-**discord_id** | **int** |  | [optional] [readonly] 
+**name** | **str** |  | [readonly] 
+**discord_id** | **int** |  | [readonly] 
 
 ## Example
 

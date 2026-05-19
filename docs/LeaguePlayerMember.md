@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**rsc_id** | **str** |  | [optional] [readonly] 
-**discord_id** | **int** |  | [optional] [readonly] 
+**rsc_id** | **str** |  | [readonly] 
+**discord_id** | **int** |  | [readonly] 
 
 ## Example
 

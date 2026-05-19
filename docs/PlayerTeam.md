@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] [readonly] 
-**franchise** | [**PlayerFranchise**](PlayerFranchise.md) |  | [optional] 
-**id** | **int** |  | [optional] [readonly] 
+**name** | **str** |  | [readonly] 
+**franchise** | [**PlayerFranchise**](PlayerFranchise.md) |  | [readonly] 
+**id** | **int** |  | [readonly] 
 
 ## Example
 

@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **home_team** | **int** |  | 
 **away_team** | **int** |  | 
-**day** | **int** |  | [optional] 
-**match_format** | **str** |  | 
-**match_type** | **str** |  | 
+**day** | **int** |  | [optional] [default to 0]
+**match_format** | [**MatchFormatEnum**](MatchFormatEnum.md) |  | 
+**match_type** | [**MatchTypeEnum**](MatchTypeEnum.md) |  | 
 **var_date** | **datetime** |  | [optional] 
 
 ## Example

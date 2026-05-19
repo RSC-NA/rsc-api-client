@@ -6,9 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **username** | **str** |  | 
-**rsc_id** | **str** |  | [optional] [readonly] 
-**elevated_roles** | [**List[ElevatedRole]**](ElevatedRole.md) |  | [optional] [readonly] 
-**player_leagues** | [**List[LeaguePlayer]**](LeaguePlayer.md) |  | [optional] [readonly] 
+**rsc_id** | **str** |  | [readonly] 
+**elevated_roles** | [**List[ElevatedRole]**](ElevatedRole.md) |  | [readonly] 
+**player_leagues** | [**List[LeaguePlayer]**](LeaguePlayer.md) |  | [readonly] 
 **rsc_name** | **str** |  | [optional] 
 **discord_id** | **int** |  | [optional] 
 

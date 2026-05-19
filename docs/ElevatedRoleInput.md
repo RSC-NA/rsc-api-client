@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **league** | **int** |  | 
-**position** | **str** |  | 
+**position** | [**PositionEnum**](PositionEnum.md) |  | 
 **executor** | **int** |  | 
 **gm** | **bool** |  | [optional] [default to False]
 **agm** | **bool** |  | [optional] [default to False]

@@ -1,11 +1,12 @@
 # FranchiseLogo
 
+Returns to the client an object containing `{'logo': <logo location url>}`  Is this getting a little excessive? Maybe. Blame OpenAPI.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**logo** | **str** |  | [optional] [readonly] 
+**logo** | **str** |  | [readonly] 
 
 ## Example
 

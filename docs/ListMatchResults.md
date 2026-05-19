@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**home_wins** | **int** |  | [optional] [readonly] 
-**away_wins** | **int** |  | [optional] [readonly] 
+**home_wins** | **int** |  | [readonly] 
+**away_wins** | **int** |  | [readonly] 
 
 ## Example
 

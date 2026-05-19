@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | 
-**name** | **str** |  | [optional] [readonly] 
-**guild_id** | **int** |  | [optional] [readonly] 
+**name** | **str** |  | [readonly] 
+**guild_id** | **int** |  | [readonly] 
 
 ## Example
 

@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **league** | **int** |  | 
 **team_name** | **str** |  | [optional] 
-**status** | **str** |  | [optional] 
+**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [optional] 
 **base_mmr** | **int** |  | 
 **current_mmr** | **int** |  | 
 **tier** | **int** |  | 
-**contract_length** | **int** |  | [optional] 
+**contract_length** | **int** |  | [optional] [default to 0]
 
 ## Example
 

@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] [readonly] 
-**name** | **str** |  | [optional] [readonly] 
-**prefix** | **str** |  | [optional] [readonly] 
-**gm** | [**FranchiseGM**](FranchiseGM.md) |  | [optional] 
-**league** | **int** |  | [optional] [readonly] 
-**tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [optional] [readonly] 
-**active** | **bool** |  | [optional] [readonly] 
-**teams** | [**List[FranchiseTeam]**](FranchiseTeam.md) |  | [optional] [readonly] 
-**logo** | **str** |  | [optional] [readonly] 
+**id** | **int** |  | [readonly] 
+**name** | **str** |  | [readonly] 
+**prefix** | **str** |  | [readonly] 
+**gm** | [**FranchiseGM**](FranchiseGM.md) |  | [readonly] 
+**league** | **int** |  | [readonly] 
+**tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [readonly] 
+**active** | **bool** |  | [readonly] 
+**teams** | [**List[FranchiseTeam]**](FranchiseTeam.md) |  | [readonly] 
+**logo** | **str** |  | [readonly] 
 
 ## Example
 

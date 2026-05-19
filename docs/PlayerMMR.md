@@ -18,9 +18,9 @@ Name | Type | Description | Notes
 **ones_games_played** | **int** |  | [optional] 
 **notes** | **str** |  | [optional] 
 **psyonix_season** | **int** |  | [optional] 
-**member** | **str** |  | [optional] [readonly] 
-**type** | **str** |  | [optional] [readonly] 
-**rscid** | **str** |  | [optional] [readonly] 
+**member** | **str** |  | [readonly] 
+**type** | [**PlayerMMRTypeEnum**](PlayerMMRTypeEnum.md) |  | [readonly] 
+**rscid** | **str** |  | [readonly] 
 
 ## Example
 
