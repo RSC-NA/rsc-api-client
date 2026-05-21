@@ -341,7 +341,6 @@ Class | Method | HTTP request | Description
  - [MemberTransferRequest](docs/MemberTransferRequest.md)
  - [NameChangeHistory](docs/NameChangeHistory.md)
  - [NewOrReturningEnum](docs/NewOrReturningEnum.md)
- - [NullEnum](docs/NullEnum.md)
  - [PaginatedActivityCheckList](docs/PaginatedActivityCheckList.md)
  - [PaginatedDraftPickListList](docs/PaginatedDraftPickListList.md)
  - [PaginatedElevatedRoleList](docs/PaginatedElevatedRoleList.md)

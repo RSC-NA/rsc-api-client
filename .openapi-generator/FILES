@@ -82,7 +82,6 @@ docs/MemberTransferRequest.md
 docs/MembersApi.md
 docs/NameChangeHistory.md
 docs/NewOrReturningEnum.md
-docs/NullEnum.md
 docs/NumbersApi.md
 docs/PaginatedActivityCheckList.md
 docs/PaginatedDraftPickListList.md
@@ -275,7 +274,6 @@ rscapi/models/member_tracker.py
 rscapi/models/member_transfer_request.py
 rscapi/models/name_change_history.py
 rscapi/models/new_or_returning_enum.py
-rscapi/models/null_enum.py
 rscapi/models/paginated_activity_check_list.py
 rscapi/models/paginated_draft_pick_list_list.py
 rscapi/models/paginated_elevated_role_list.py

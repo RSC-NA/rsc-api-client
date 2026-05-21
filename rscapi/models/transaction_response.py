@@ -18,13 +18,14 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.pick_transaction_updates import PickTransactionUpdates
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
 from rscapi.models.simple_member import SimpleMember
 from rscapi.models.transaction_franchise import TransactionFranchise
+from rscapi.models.transaction_response_type_enum import TransactionResponseTypeEnum
 from rscapi.models.week_enum import WeekEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -40,23 +41,13 @@ class TransactionResponse(BaseModel):
     week: WeekEnum
     week_no: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Week no of transaction (if applicable)")
     match_day: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Specific match day of the transactions.")
-    type: Optional[StrictStr]
+    type: Optional[TransactionResponseTypeEnum]
     notes: Optional[StrictStr]
     first_franchise: Optional[TransactionFranchise] = None
     second_franchise: Optional[TransactionFranchise] = None
     executor: SimpleMember
     id: StrictInt
     __properties: ClassVar[List[str]] = ["player_updates", "pick_trades", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor", "id"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['AIR', 'CUT', 'DFT', 'IR', 'INT', 'IRT', 'NON', 'PCH', 'PKU', 'PTD', 'PRO', 'RLG', 'RES', 'RET', 'SGN', 'PSG', 'SUB', 'TMP', 'TRD', 'WVR']):
-            raise ValueError("must be one of enum values ('AIR', 'CUT', 'DFT', 'IR', 'INT', 'IRT', 'NON', 'PCH', 'PKU', 'PTD', 'PRO', 'RLG', 'RES', 'RET', 'SGN', 'PSG', 'SUB', 'TMP', 'TRD', 'WVR')")
-        return value
 
     model_config = ConfigDict(
         validate_by_name=True,

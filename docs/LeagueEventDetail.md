@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [readonly] 
 **league** | **int** |  | [readonly] 
 **category** | [**CategoryEnum**](CategoryEnum.md) |  | [readonly] 
-**action** | **str** |  | [readonly] 
+**action** | [**ActionEnum**](ActionEnum.md) |  | [readonly] 
 **actor** | [**LeagueEventActor**](LeagueEventActor.md) |  | [readonly] 
 **object_id** | **int** |  | [readonly] 
 **payload** | **object** |  | [readonly] 

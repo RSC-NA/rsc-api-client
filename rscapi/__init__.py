@@ -113,7 +113,6 @@ __all__ = [
     "MemberTransferRequest",
     "NameChangeHistory",
     "NewOrReturningEnum",
-    "NullEnum",
     "PaginatedActivityCheckList",
     "PaginatedDraftPickListList",
     "PaginatedElevatedRoleList",
@@ -305,7 +304,6 @@ from rscapi.models.member_tracker import MemberTracker as MemberTracker
 from rscapi.models.member_transfer_request import MemberTransferRequest as MemberTransferRequest
 from rscapi.models.name_change_history import NameChangeHistory as NameChangeHistory
 from rscapi.models.new_or_returning_enum import NewOrReturningEnum as NewOrReturningEnum
-from rscapi.models.null_enum import NullEnum as NullEnum
 from rscapi.models.paginated_activity_check_list import PaginatedActivityCheckList as PaginatedActivityCheckList
 from rscapi.models.paginated_draft_pick_list_list import PaginatedDraftPickListList as PaginatedDraftPickListList
 from rscapi.models.paginated_elevated_role_list import PaginatedElevatedRoleList as PaginatedElevatedRoleList

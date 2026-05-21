@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from rscapi.models.action_enum import ActionEnum
 from rscapi.models.category_enum import CategoryEnum
 from rscapi.models.league_event_actor import LeagueEventActor
 from typing import Optional, Set
@@ -33,23 +34,13 @@ class LeagueEventDetail(BaseModel):
     id: StrictInt
     league: StrictInt
     category: CategoryEnum
-    action: Optional[StrictStr]
+    action: Optional[ActionEnum]
     actor: Optional[LeagueEventActor]
     object_id: Optional[StrictInt]
     payload: Optional[Any]
     is_public: StrictBool
     created_at: datetime
     __properties: ClassVar[List[str]] = ["id", "league", "category", "action", "actor", "object_id", "payload", "is_public", "created_at"]
-
-    @field_validator('action')
-    def action_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NCH', 'TRF', 'UPD', 'LNC', 'ENC', 'GNC', 'TNC', 'PSG', 'PCT', 'PRS', 'PDR', 'PTR']):
-            raise ValueError("must be one of enum values ('NCH', 'TRF', 'UPD', 'LNC', 'ENC', 'GNC', 'TNC', 'PSG', 'PCT', 'PRS', 'PDR', 'PTR')")
-        return value
 
     model_config = ConfigDict(
         validate_by_name=True,
