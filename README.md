@@ -217,6 +217,7 @@ Class | Method | HTTP request | Description
 *TeamsApi* | [**teams_match_retrieve**](docs/TeamsApi.md#teams_match_retrieve) | **GET** /teams/{id}/match/ | 
 *TeamsApi* | [**teams_next_match_retrieve**](docs/TeamsApi.md#teams_next_match_retrieve) | **GET** /teams/{id}/next_match/ | 
 *TeamsApi* | [**teams_partial_update**](docs/TeamsApi.md#teams_partial_update) | **PATCH** /teams/{id}/ | 
+*TeamsApi* | [**teams_player_stats_list**](docs/TeamsApi.md#teams_player_stats_list) | **GET** /teams/{id}/player_stats/ | 
 *TeamsApi* | [**teams_players_list**](docs/TeamsApi.md#teams_players_list) | **GET** /teams/{id}/players/ | 
 *TeamsApi* | [**teams_postseason_stats_retrieve**](docs/TeamsApi.md#teams_postseason_stats_retrieve) | **GET** /teams/{id}/postseason_stats/ | 
 *TeamsApi* | [**teams_retrieve**](docs/TeamsApi.md#teams_retrieve) | **GET** /teams/{id}/ | 
