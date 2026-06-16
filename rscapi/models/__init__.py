@@ -39,6 +39,8 @@ from rscapi.models.error import Error
 from rscapi.models.flagged_match import FlaggedMatch
 from rscapi.models.franchise import Franchise
 from rscapi.models.franchise_contracts import FranchiseContracts
+from rscapi.models.franchise_futures_validation import FranchiseFuturesValidation
+from rscapi.models.franchise_futures_validation_response import FranchiseFuturesValidationResponse
 from rscapi.models.franchise_gm import FranchiseGM
 from rscapi.models.franchise_league import FranchiseLeague
 from rscapi.models.franchise_list import FranchiseList
@@ -120,6 +122,8 @@ from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.models.player_team import PlayerTeam
 from rscapi.models.player_team_input import PlayerTeamInput
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
+from rscapi.models.playoff_group import PlayoffGroup
+from rscapi.models.playoff_team import PlayoffTeam
 from rscapi.models.position_enum import PositionEnum
 from rscapi.models.previous_team import PreviousTeam
 from rscapi.models.really import Really
@@ -149,6 +153,7 @@ from rscapi.models.team_standings import TeamStandings
 from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.models.tier import Tier
 from rscapi.models.tier_league_add import TierLeagueAdd
+from rscapi.models.tier_playoff_hunt import TierPlayoffHunt
 from rscapi.models.tracker_id_input import TrackerIDInput
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject

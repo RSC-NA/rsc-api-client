@@ -32,6 +32,8 @@ docs/Error.md
 docs/FlaggedMatch.md
 docs/Franchise.md
 docs/FranchiseContracts.md
+docs/FranchiseFuturesValidation.md
+docs/FranchiseFuturesValidationResponse.md
 docs/FranchiseGM.md
 docs/FranchiseLeague.md
 docs/FranchiseList.md
@@ -120,6 +122,8 @@ docs/PlayerSeasonStatsInDepth.md
 docs/PlayerTeam.md
 docs/PlayerTeamInput.md
 docs/PlayerTransactionUpdates.md
+docs/PlayoffGroup.md
+docs/PlayoffTeam.md
 docs/PositionEnum.md
 docs/PreviousTeam.md
 docs/Really.md
@@ -152,6 +156,7 @@ docs/TeamsApi.md
 docs/TeamsContracts.md
 docs/Tier.md
 docs/TierLeagueAdd.md
+docs/TierPlayoffHunt.md
 docs/TiersApi.md
 docs/TrackerIDInput.md
 docs/TrackerLink.md
@@ -230,6 +235,8 @@ rscapi/models/error.py
 rscapi/models/flagged_match.py
 rscapi/models/franchise.py
 rscapi/models/franchise_contracts.py
+rscapi/models/franchise_futures_validation.py
+rscapi/models/franchise_futures_validation_response.py
 rscapi/models/franchise_gm.py
 rscapi/models/franchise_league.py
 rscapi/models/franchise_list.py
@@ -311,6 +318,8 @@ rscapi/models/player_season_stats_in_depth.py
 rscapi/models/player_team.py
 rscapi/models/player_team_input.py
 rscapi/models/player_transaction_updates.py
+rscapi/models/playoff_group.py
+rscapi/models/playoff_team.py
 rscapi/models/position_enum.py
 rscapi/models/previous_team.py
 rscapi/models/really.py
@@ -340,6 +349,7 @@ rscapi/models/team_standings.py
 rscapi/models/teams_contracts.py
 rscapi/models/tier.py
 rscapi/models/tier_league_add.py
+rscapi/models/tier_playoff_hunt.py
 rscapi/models/tracker_id_input.py
 rscapi/models/tracker_link.py
 rscapi/models/tracker_link_invalidate_object.py
@@ -369,4 +379,9 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_franchise_futures_validation.py
+test/test_franchise_futures_validation_response.py
+test/test_playoff_group.py
+test/test_playoff_team.py
+test/test_tier_playoff_hunt.py
 tox.ini

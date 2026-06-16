@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**transactions_sign_create**](TransactionsApi.md#transactions_sign_create) | **POST** /transactions/sign/ | 
 [**transactions_substitution_create**](TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
 [**transactions_trade_create**](TransactionsApi.md#transactions_trade_create) | **POST** /transactions/trade/ | 
+[**transactions_trade_validate_futures_create**](TransactionsApi.md#transactions_trade_validate_futures_create) | **POST** /transactions/trade/validate_futures/ | 
 
 
 # **transactions_cut_and_sign_create**
@@ -971,6 +972,86 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
+**404** |  |  -  |
+**403** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transactions_trade_validate_futures_create**
+> FranchiseFuturesValidationResponse transactions_trade_validate_futures_create(franchise_futures_validation)
+
+Validate whether a franchise's futures board satisfies draft pick layout rules.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.franchise_futures_validation import FranchiseFuturesValidation
+from rscapi.models.franchise_futures_validation_response import FranchiseFuturesValidationResponse
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TransactionsApi(api_client)
+    franchise_futures_validation = rscapi.FranchiseFuturesValidation() # FranchiseFuturesValidation | 
+
+    try:
+        api_response = await api_instance.transactions_trade_validate_futures_create(franchise_futures_validation)
+        print("The response of TransactionsApi->transactions_trade_validate_futures_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->transactions_trade_validate_futures_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **franchise_futures_validation** | [**FranchiseFuturesValidation**](FranchiseFuturesValidation.md)|  | 
+
+### Return type
+
+[**FranchiseFuturesValidationResponse**](FranchiseFuturesValidationResponse.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 **404** |  |  -  |
 **403** |  |  -  |
 **400** |  |  -  |

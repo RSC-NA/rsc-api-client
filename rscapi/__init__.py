@@ -69,6 +69,8 @@ __all__ = [
     "FlaggedMatch",
     "Franchise",
     "FranchiseContracts",
+    "FranchiseFuturesValidation",
+    "FranchiseFuturesValidationResponse",
     "FranchiseGM",
     "FranchiseLeague",
     "FranchiseList",
@@ -150,6 +152,8 @@ __all__ = [
     "PlayerTeam",
     "PlayerTeamInput",
     "PlayerTransactionUpdates",
+    "PlayoffGroup",
+    "PlayoffTeam",
     "PositionEnum",
     "PreviousTeam",
     "Really",
@@ -179,6 +183,7 @@ __all__ = [
     "TeamsContracts",
     "Tier",
     "TierLeagueAdd",
+    "TierPlayoffHunt",
     "TrackerIDInput",
     "TrackerLink",
     "TrackerLinkInvalidateObject",
@@ -260,6 +265,8 @@ from rscapi.models.error import Error as Error
 from rscapi.models.flagged_match import FlaggedMatch as FlaggedMatch
 from rscapi.models.franchise import Franchise as Franchise
 from rscapi.models.franchise_contracts import FranchiseContracts as FranchiseContracts
+from rscapi.models.franchise_futures_validation import FranchiseFuturesValidation as FranchiseFuturesValidation
+from rscapi.models.franchise_futures_validation_response import FranchiseFuturesValidationResponse as FranchiseFuturesValidationResponse
 from rscapi.models.franchise_gm import FranchiseGM as FranchiseGM
 from rscapi.models.franchise_league import FranchiseLeague as FranchiseLeague
 from rscapi.models.franchise_list import FranchiseList as FranchiseList
@@ -341,6 +348,8 @@ from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth 
 from rscapi.models.player_team import PlayerTeam as PlayerTeam
 from rscapi.models.player_team_input import PlayerTeamInput as PlayerTeamInput
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates as PlayerTransactionUpdates
+from rscapi.models.playoff_group import PlayoffGroup as PlayoffGroup
+from rscapi.models.playoff_team import PlayoffTeam as PlayoffTeam
 from rscapi.models.position_enum import PositionEnum as PositionEnum
 from rscapi.models.previous_team import PreviousTeam as PreviousTeam
 from rscapi.models.really import Really as Really
@@ -370,6 +379,7 @@ from rscapi.models.team_standings import TeamStandings as TeamStandings
 from rscapi.models.teams_contracts import TeamsContracts as TeamsContracts
 from rscapi.models.tier import Tier as Tier
 from rscapi.models.tier_league_add import TierLeagueAdd as TierLeagueAdd
+from rscapi.models.tier_playoff_hunt import TierPlayoffHunt as TierPlayoffHunt
 from rscapi.models.tracker_id_input import TrackerIDInput as TrackerIDInput
 from rscapi.models.tracker_link import TrackerLink as TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject as TrackerLinkInvalidateObject

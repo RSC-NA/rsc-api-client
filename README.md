@@ -230,6 +230,7 @@ Class | Method | HTTP request | Description
 *TiersApi* | [**tiers_partial_update**](docs/TiersApi.md#tiers_partial_update) | **PATCH** /tiers/{id}/ | 
 *TiersApi* | [**tiers_player_stats_list**](docs/TiersApi.md#tiers_player_stats_list) | **GET** /tiers/{id}/player_stats/ | 
 *TiersApi* | [**tiers_players_list**](docs/TiersApi.md#tiers_players_list) | **GET** /tiers/{id}/players/ | 
+*TiersApi* | [**tiers_playoffs_retrieve**](docs/TiersApi.md#tiers_playoffs_retrieve) | **GET** /tiers/{id}/playoffs/ | 
 *TiersApi* | [**tiers_postseason_player_stats_list**](docs/TiersApi.md#tiers_postseason_player_stats_list) | **GET** /tiers/{id}/postseason_player_stats/ | 
 *TiersApi* | [**tiers_postseason_team_stats_list**](docs/TiersApi.md#tiers_postseason_team_stats_list) | **GET** /tiers/{id}/postseason_team_stats/ | 
 *TiersApi* | [**tiers_retrieve**](docs/TiersApi.md#tiers_retrieve) | **GET** /tiers/{id}/ | 
@@ -267,6 +268,7 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**transactions_sign_create**](docs/TransactionsApi.md#transactions_sign_create) | **POST** /transactions/sign/ | 
 *TransactionsApi* | [**transactions_substitution_create**](docs/TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
 *TransactionsApi* | [**transactions_trade_create**](docs/TransactionsApi.md#transactions_trade_create) | **POST** /transactions/trade/ | 
+*TransactionsApi* | [**transactions_trade_validate_futures_create**](docs/TransactionsApi.md#transactions_trade_validate_futures_create) | **POST** /transactions/trade/validate_futures/ | 
 
 
 ## Documentation For Models
@@ -297,6 +299,8 @@ Class | Method | HTTP request | Description
  - [FlaggedMatch](docs/FlaggedMatch.md)
  - [Franchise](docs/Franchise.md)
  - [FranchiseContracts](docs/FranchiseContracts.md)
+ - [FranchiseFuturesValidation](docs/FranchiseFuturesValidation.md)
+ - [FranchiseFuturesValidationResponse](docs/FranchiseFuturesValidationResponse.md)
  - [FranchiseGM](docs/FranchiseGM.md)
  - [FranchiseLeague](docs/FranchiseLeague.md)
  - [FranchiseList](docs/FranchiseList.md)
@@ -378,6 +382,8 @@ Class | Method | HTTP request | Description
  - [PlayerTeam](docs/PlayerTeam.md)
  - [PlayerTeamInput](docs/PlayerTeamInput.md)
  - [PlayerTransactionUpdates](docs/PlayerTransactionUpdates.md)
+ - [PlayoffGroup](docs/PlayoffGroup.md)
+ - [PlayoffTeam](docs/PlayoffTeam.md)
  - [PositionEnum](docs/PositionEnum.md)
  - [PreviousTeam](docs/PreviousTeam.md)
  - [Really](docs/Really.md)
@@ -407,6 +413,7 @@ Class | Method | HTTP request | Description
  - [TeamsContracts](docs/TeamsContracts.md)
  - [Tier](docs/Tier.md)
  - [TierLeagueAdd](docs/TierLeagueAdd.md)
+ - [TierPlayoffHunt](docs/TierPlayoffHunt.md)
  - [TrackerIDInput](docs/TrackerIDInput.md)
  - [TrackerLink](docs/TrackerLink.md)
  - [TrackerLinkInvalidateObject](docs/TrackerLinkInvalidateObject.md)
