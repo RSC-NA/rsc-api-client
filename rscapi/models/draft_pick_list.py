@@ -29,7 +29,7 @@ class DraftPickList(BaseModel):
     """
     DraftPickList
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     round: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Specific round in the tier.")
     number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Pick in the specific tier.")
     gm: StrictInt

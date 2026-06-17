@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | 
 **name** | **str** |  | 
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **prefix** | **str** |  | 
 
 ## Example

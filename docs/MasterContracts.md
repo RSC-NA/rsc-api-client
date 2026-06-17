@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **active** | **bool** |  | 
 **rsc_id** | **str** |  | 
 **name** | **str** |  | 
-**franchise** | **str** |  | [readonly] 
+**franchise** | **str** |  | [optional] [readonly] 
 **contract_length** | **int** |  | 
 **current_mmr** | **int** |  | [optional] 
-**status** | **str** |  | [readonly] 
+**status** | **str** |  | [optional] [readonly] 
 **base_mmr** | **int** |  | [optional] 
-**team_name** | **str** |  | [readonly] 
+**team_name** | **str** |  | [optional] [readonly] 
 **waiver_period_end_date** | **datetime** |  | [optional] 
 
 ## Example

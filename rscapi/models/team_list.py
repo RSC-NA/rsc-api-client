@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.team_franchise import TeamFranchise
 from rscapi.models.tier import Tier
@@ -30,7 +30,7 @@ class TeamList(BaseModel):
     """
     TeamList
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     name: Annotated[str, Field(strict=True, max_length=16)]
     franchise: TeamFranchise
     tier: Tier

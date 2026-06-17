@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **round** | **int** | Specific round in the tier. | [optional] 
 **number** | **int** | Pick in the specific tier. | [optional] 
 **gm** | **int** |  | 

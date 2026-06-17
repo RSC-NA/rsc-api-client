@@ -31,15 +31,15 @@ class DraftPickDetails(BaseModel):
     """
     DraftPickDetails
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     round: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Specific round in the tier.")
     number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Pick in the specific tier.")
     tier: SeasonDraftPickList
     franchise: DraftPickFranchise
     future_pick: Optional[StrictBool] = None
     deleted: Optional[StrictBool] = Field(default=None, description="Is this pick removed because someone lost a tier.")
-    pick_from: Optional[Dict[str, Any]]
-    original_pick: Optional[Dict[str, Any]]
+    pick_from: Optional[Dict[str, Any]] = None
+    original_pick: Optional[Dict[str, Any]] = None
     future_season: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     players: List[DraftPickLeaguePlayer]
     __properties: ClassVar[List[str]] = ["id", "round", "number", "tier", "franchise", "future_pick", "deleted", "pick_from", "original_pick", "future_season", "players"]

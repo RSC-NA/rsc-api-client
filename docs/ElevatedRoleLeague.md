@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **guild_id** | **int** |  | 
 **active** | **bool** |  | [optional] 

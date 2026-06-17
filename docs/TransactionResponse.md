@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player_updates** | [**List[PlayerTransactionUpdates]**](PlayerTransactionUpdates.md) |  | [optional] 
 **pick_trades** | [**List[PickTransactionUpdates]**](PickTransactionUpdates.md) |  | [optional] 
-**var_date** | **datetime** | Date transaction occurred | [readonly] 
+**var_date** | **datetime** | Date transaction occurred | [optional] [readonly] 
 **week** | [**WeekEnum**](WeekEnum.md) |  | 
 **week_no** | **int** | Week no of transaction (if applicable) | [optional] 
 **match_day** | **int** | Specific match day of the transactions. | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **first_franchise** | [**TransactionFranchise**](TransactionFranchise.md) |  | [optional] 
 **second_franchise** | [**TransactionFranchise**](TransactionFranchise.md) |  | [optional] 
 **executor** | [**SimpleMember**](SimpleMember.md) |  | 
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 
 ## Example
 

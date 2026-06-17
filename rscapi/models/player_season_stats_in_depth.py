@@ -29,7 +29,7 @@ class PlayerSeasonStatsInDepth(BaseModel):
     """
     PlayerSeasonStatsInDepth
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     player: StrictStr
     season: StrictInt
     type: StrictStr

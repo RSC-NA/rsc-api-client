@@ -30,16 +30,16 @@ class MatchList(BaseModel):
     """
     MatchList
     """ # noqa: E501
-    day: StrictInt
-    var_date: Optional[datetime] = Field(alias="date")
-    game_name: StrictStr
-    game_pass: StrictStr
-    num_games: StrictInt
+    day: Optional[StrictInt] = None
+    var_date: Optional[datetime] = Field(default=None, alias="date")
+    game_name: Optional[StrictStr] = None
+    game_pass: Optional[StrictStr] = None
+    num_games: Optional[StrictInt] = None
     match_format: MatchFormatEnum
     match_type: MatchTypeEnum
     home_team: StrictStr
     away_team: StrictStr
-    id: StrictInt
+    id: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["day", "date", "game_name", "game_pass", "num_games", "match_format", "match_type", "home_team", "away_team", "id"]
 
     model_config = ConfigDict(

@@ -31,15 +31,15 @@ class LeagueEventDetail(BaseModel):
     """
     LeagueEventDetail
     """ # noqa: E501
-    id: StrictInt
-    league: StrictInt
-    category: CategoryEnum
-    action: Optional[ActionEnum]
-    actor: Optional[LeagueEventActor]
-    object_id: Optional[StrictInt]
-    payload: Optional[Any]
-    is_public: StrictBool
-    created_at: datetime
+    id: Optional[StrictInt] = None
+    league: Optional[StrictInt] = None
+    category: Optional[CategoryEnum] = None
+    action: Optional[ActionEnum] = None
+    actor: Optional[LeagueEventActor] = None
+    object_id: Optional[StrictInt] = None
+    payload: Optional[Any] = None
+    is_public: Optional[StrictBool] = None
+    created_at: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["id", "league", "category", "action", "actor", "object_id", "payload", "is_public", "created_at"]
 
     model_config = ConfigDict(

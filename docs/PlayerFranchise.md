@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [readonly] 
-**id** | **int** |  | [readonly] 
+**name** | **str** |  | [optional] [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | 
-**prefix** | **str** |  | [readonly] 
+**prefix** | **str** |  | [optional] [readonly] 
 
 ## Example
 

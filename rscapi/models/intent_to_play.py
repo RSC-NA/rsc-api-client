@@ -31,7 +31,7 @@ class IntentToPlay(BaseModel):
     season: StrictInt
     missing: Optional[StrictBool] = False
     returning: Optional[StrictBool] = None
-    player: Optional[MemberIntent]
+    player: Optional[MemberIntent] = None
     __properties: ClassVar[List[str]] = ["season", "missing", "returning", "player"]
 
     model_config = ConfigDict(

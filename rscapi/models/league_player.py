@@ -36,17 +36,17 @@ class LeaguePlayer(BaseModel):
     """
     LeaguePlayer
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     league: LeaguePlayerLeague
-    status: LeaguePlayerStatusEnum
+    status: Optional[LeaguePlayerStatusEnum] = None
     season: StrictInt
     captain: Optional[StrictBool] = None
     contract_length: Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]
     current_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     base_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     team: Optional[PlayerTeam]
-    last_updated: datetime
-    previous_teams: List[PreviousTeam]
+    last_updated: Optional[datetime] = None
+    previous_teams: Optional[List[PreviousTeam]] = None
     player: LeaguePlayerMember
     tier: Optional[Tier]
     sub_status: SubStatusEnum

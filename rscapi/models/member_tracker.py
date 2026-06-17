@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.tracker_link import TrackerLink
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,11 +28,11 @@ class MemberTracker(BaseModel):
     """
     MemberTracker
     """ # noqa: E501
-    player: StrictStr
+    player: Optional[StrictStr] = None
     rsc_name: StrictStr
-    rscid: StrictStr
-    discord_id: StrictInt
-    accounts: List[TrackerLink]
+    rscid: Optional[StrictStr] = None
+    discord_id: Optional[StrictInt] = None
+    accounts: Optional[List[TrackerLink]] = None
     __properties: ClassVar[List[str]] = ["player", "rsc_name", "rscid", "discord_id", "accounts"]
 
     model_config = ConfigDict(

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **team** | **str** |  | 
 **type** | **str** |  | 
 **shooting_percentage** | **float** |  | 

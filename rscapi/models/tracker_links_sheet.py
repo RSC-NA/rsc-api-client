@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,7 +29,7 @@ class TrackerLinksSheet(BaseModel):
     """ # noqa: E501
     rsc_id: StrictStr
     name: StrictStr
-    link: StrictStr
+    link: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["rsc_id", "name", "link"]
 
     model_config = ConfigDict(

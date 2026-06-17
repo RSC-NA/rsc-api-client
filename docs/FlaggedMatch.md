@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**day** | **int** |  | [readonly] 
-**var_date** | **datetime** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
+**day** | **int** |  | [optional] [readonly] 
+**var_date** | **datetime** |  | [optional] [readonly] 
 **match_type** | [**MatchTypeEnum**](MatchTypeEnum.md) |  | 
 **match_type_label** | **str** |  | 
 **tier** | **str** |  | 
@@ -18,11 +18,11 @@ Name | Type | Description | Notes
 **home_wins** | **int** |  | 
 **away_wins** | **int** |  | 
 **ballchasing_group** | **str** |  | 
-**reported_games** | **int** |  | [readonly] 
-**expected_games** | **int** |  | [readonly] 
-**missing_result** | **bool** |  | [readonly] 
-**missing_ballchasing_group** | **bool** |  | [readonly] 
-**missing_stats** | **bool** |  | [readonly] 
+**reported_games** | **int** |  | [optional] [readonly] 
+**expected_games** | **int** |  | [optional] [readonly] 
+**missing_result** | **bool** |  | [optional] [readonly] 
+**missing_ballchasing_group** | **bool** |  | [optional] [readonly] 
+**missing_stats** | **bool** |  | [optional] [readonly] 
 
 ## Example
 

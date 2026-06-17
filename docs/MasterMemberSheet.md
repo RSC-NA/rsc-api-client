@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rsc_id** | **str** |  | [readonly] 
-**rsc_name** | **str** |  | [readonly] 
-**discord_id** | **int** |  | [readonly] 
-**threes_active** | **bool** |  | [readonly] 
+**rsc_id** | **str** |  | [optional] [readonly] 
+**rsc_name** | **str** |  | [optional] [readonly] 
+**discord_id** | **int** |  | [optional] [readonly] 
+**threes_active** | **bool** |  | [optional] [readonly] 
 
 ## Example
 

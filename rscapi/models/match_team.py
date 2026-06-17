@@ -30,12 +30,12 @@ class MatchTeam(BaseModel):
     """
     MatchTeam
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     name: Annotated[str, Field(strict=True, max_length=16)]
     franchise: Optional[StrictStr] = None
     tier: Optional[StrictStr] = None
-    players: List[TeamPlayer]
-    latest_season: StrictInt
+    players: Optional[List[TeamPlayer]] = None
+    latest_season: Optional[StrictInt] = None
     gm: Optional[MatchGM] = None
     __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season", "gm"]
 

@@ -27,14 +27,14 @@ class TransactionPick(BaseModel):
     """
     TransactionPick
     """ # noqa: E501
-    id: StrictInt
-    number: StrictInt = Field(description="Pick in the specific tier.")
-    round: StrictInt = Field(description="Specific round in the tier.")
-    tier: StrictStr
-    future_pick: StrictBool
-    future_season: StrictInt
-    pick_from: Optional[StrictStr] = Field(description="Prefix of franchise this pick came from (if any)")
-    original_pick: Optional[StrictStr] = Field(description="Prefix of franchise this pick originally came from (if any)")
+    id: Optional[StrictInt] = None
+    number: Optional[StrictInt] = Field(default=None, description="Pick in the specific tier.")
+    round: Optional[StrictInt] = Field(default=None, description="Specific round in the tier.")
+    tier: Optional[StrictStr] = None
+    future_pick: Optional[StrictBool] = None
+    future_season: Optional[StrictInt] = None
+    pick_from: Optional[StrictStr] = Field(default=None, description="Prefix of franchise this pick came from (if any)")
+    original_pick: Optional[StrictStr] = Field(default=None, description="Prefix of franchise this pick originally came from (if any)")
     __properties: ClassVar[List[str]] = ["id", "number", "round", "tier", "future_pick", "future_season", "pick_from", "original_pick"]
 
     model_config = ConfigDict(

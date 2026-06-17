@@ -30,19 +30,19 @@ class Season(BaseModel):
     """
     Season
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     league: SeasonLeague
-    number: StrictInt
+    number: Optional[StrictInt] = None
     season_tier_data: List[SeasonTierData]
-    current: StrictBool
-    start_date: Optional[datetime]
-    end_date: Optional[datetime]
-    preseason_start_date: Optional[datetime]
-    regular_season_start: Optional[datetime]
-    regular_season_end: Optional[datetime]
-    signup_close: Optional[datetime]
-    signups_open: Optional[datetime]
-    draft_date: Optional[datetime]
+    current: Optional[StrictBool] = None
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
+    preseason_start_date: Optional[datetime] = None
+    regular_season_start: Optional[datetime] = None
+    regular_season_end: Optional[datetime] = None
+    signup_close: Optional[datetime] = None
+    signups_open: Optional[datetime] = None
+    draft_date: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["id", "league", "number", "season_tier_data", "current", "start_date", "end_date", "preseason_start_date", "regular_season_start", "regular_season_end", "signup_close", "signups_open", "draft_date"]
 
     model_config = ConfigDict(

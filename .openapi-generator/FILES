@@ -379,9 +379,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_franchise_futures_validation.py
-test/test_franchise_futures_validation_response.py
-test/test_playoff_group.py
-test/test_playoff_team.py
-test/test_tier_playoff_hunt.py
 tox.ini

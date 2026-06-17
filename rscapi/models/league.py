@@ -29,7 +29,7 @@ class League(BaseModel):
     """
     League
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     name: StrictStr
     guild_id: StrictInt
     active: Optional[StrictBool] = None

@@ -5,17 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **league** | [**LeaguePlayerLeague**](LeaguePlayerLeague.md) |  | 
-**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [readonly] 
+**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [optional] [readonly] 
 **season** | **int** |  | 
 **captain** | **bool** |  | [optional] 
 **contract_length** | **int** |  | 
 **current_mmr** | **int** |  | [optional] 
 **base_mmr** | **int** |  | [optional] 
 **team** | [**PlayerTeam**](PlayerTeam.md) |  | 
-**last_updated** | **datetime** |  | [readonly] 
-**previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | [readonly] 
+**last_updated** | **datetime** |  | [optional] [readonly] 
+**previous_teams** | [**List[PreviousTeam]**](PreviousTeam.md) |  | [optional] [readonly] 
 **player** | [**LeaguePlayerMember**](LeaguePlayerMember.md) |  | 
 **tier** | [**Tier**](Tier.md) |  | 
 **sub_status** | [**SubStatusEnum**](SubStatusEnum.md) |  | 

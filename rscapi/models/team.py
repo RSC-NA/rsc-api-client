@@ -28,12 +28,12 @@ class Team(BaseModel):
     """
     Team
     """ # noqa: E501
-    id: StrictInt
-    name: StrictStr
+    id: Optional[StrictInt] = None
+    name: Optional[StrictStr] = None
     franchise: Optional[StrictStr] = None
     tier: Optional[StrictStr] = None
-    players: List[TeamPlayer]
-    latest_season: StrictInt
+    players: Optional[List[TeamPlayer]] = None
+    latest_season: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "players", "latest_season"]
 
     model_config = ConfigDict(

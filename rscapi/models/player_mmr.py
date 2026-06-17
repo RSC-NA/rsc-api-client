@@ -44,9 +44,9 @@ class PlayerMMR(BaseModel):
     ones_games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     notes: Optional[StrictStr] = None
     psyonix_season: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    member: StrictStr
-    type: PlayerMMRTypeEnum
-    rscid: StrictStr
+    member: Optional[StrictStr] = None
+    type: Optional[PlayerMMRTypeEnum] = None
+    rscid: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["date_pulled", "tracker_link", "threes_rating", "threes_season_peak", "threes_games_played", "twos_rating", "twos_season_peak", "twos_games_played", "ones_rating", "ones_season_peak", "ones_games_played", "notes", "psyonix_season", "member", "type", "rscid"]
 
     model_config = ConfigDict(

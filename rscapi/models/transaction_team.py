@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,9 +27,9 @@ class TransactionTeam(BaseModel):
     """
     TransactionTeam
     """ # noqa: E501
-    id: StrictInt
-    name: StrictStr
-    tier: StrictStr
+    id: Optional[StrictInt] = None
+    name: Optional[StrictStr] = None
+    tier: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["id", "name", "tier"]
 
     model_config = ConfigDict(

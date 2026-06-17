@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,13 +28,13 @@ class TrackerPeak(BaseModel):
     """
     TrackerPeak
     """ # noqa: E501
-    id: StrictInt
-    rsc_id: StrictStr
-    name: StrictStr
-    discord_id: StrictInt
-    status: TrackerLinkStatusEnum
-    pulls: StrictInt = Field(description="Get the number of pulls for the tracker link.")
-    peaks: Dict[str, StrictInt] = Field(description="Get the seasons for the tracker link.")
+    id: Optional[StrictInt] = None
+    rsc_id: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
+    discord_id: Optional[StrictInt] = None
+    status: Optional[TrackerLinkStatusEnum] = None
+    pulls: Optional[StrictInt] = Field(default=None, description="Get the number of pulls for the tracker link.")
+    peaks: Optional[Dict[str, StrictInt]] = Field(default=None, description="Get the seasons for the tracker link.")
     __properties: ClassVar[List[str]] = ["id", "rsc_id", "name", "discord_id", "status", "pulls", "peaks"]
 
     model_config = ConfigDict(

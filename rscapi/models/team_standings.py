@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,9 +31,9 @@ class TeamStandings(BaseModel):
     team: StrictStr
     tier: StrictStr
     rank: StrictInt
-    games_played: StrictInt
-    games_won: StrictInt
-    games_lost: StrictInt
+    games_played: Optional[StrictInt] = None
+    games_won: Optional[StrictInt] = None
+    games_lost: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["franchise", "team", "tier", "rank", "games_played", "games_won", "games_lost"]
 
     model_config = ConfigDict(

@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**league** | **int** |  | [readonly] 
-**category** | [**CategoryEnum**](CategoryEnum.md) |  | [readonly] 
-**action** | [**ActionEnum**](ActionEnum.md) |  | [readonly] 
-**actor** | [**LeagueEventActor**](LeagueEventActor.md) |  | [readonly] 
-**object_id** | **int** |  | [readonly] 
-**payload** | **object** |  | [readonly] 
-**is_public** | **bool** |  | [readonly] 
-**created_at** | **datetime** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
+**league** | **int** |  | [optional] [readonly] 
+**category** | [**CategoryEnum**](CategoryEnum.md) |  | [optional] [readonly] 
+**action** | [**ActionEnum**](ActionEnum.md) |  | [optional] [readonly] 
+**actor** | [**LeagueEventActor**](LeagueEventActor.md) |  | [optional] [readonly] 
+**object_id** | **int** |  | [optional] [readonly] 
+**payload** | **object** |  | [optional] [readonly] 
+**is_public** | **bool** |  | [optional] [readonly] 
+**created_at** | **datetime** |  | [optional] [readonly] 
 
 ## Example
 

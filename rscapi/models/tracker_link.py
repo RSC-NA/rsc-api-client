@@ -33,17 +33,17 @@ class TrackerLink(BaseModel):
     TrackerLink
     """ # noqa: E501
     link: StrictStr
-    member: Optional[Really]
+    member: Optional[Really] = None
     discord_id: Optional[StrictInt] = None
-    id: StrictInt
-    name: Annotated[str, Field(min_length=0, strict=True)]
-    pulls: StrictInt
-    platform: PlatformEnum
-    status: TrackerLinkStatusEnum
-    last_updated: datetime
-    member_name: StrictStr
-    platform_id: Annotated[str, Field(min_length=0, strict=True)]
-    rscid: StrictStr
+    id: Optional[StrictInt] = None
+    name: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
+    pulls: Optional[StrictInt] = None
+    platform: Optional[PlatformEnum] = None
+    status: Optional[TrackerLinkStatusEnum] = None
+    last_updated: Optional[datetime] = None
+    member_name: Optional[StrictStr] = None
+    platform_id: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
+    rscid: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["link", "member", "discord_id", "id", "name", "pulls", "platform", "status", "last_updated", "member_name", "platform_id", "rscid"]
 
     model_config = ConfigDict(

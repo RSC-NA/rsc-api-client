@@ -30,7 +30,7 @@ class TeamCreate(BaseModel):
     """
     TeamCreate
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     name: Annotated[str, Field(strict=True, max_length=16)]
     franchise: TeamFranchise
     tier: Tier

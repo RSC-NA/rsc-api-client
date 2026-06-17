@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.draft_pick_gm import DraftPickGM
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class DraftPickFranchise(BaseModel):
     """
     DraftPickFranchise
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     name: StrictStr
     gm: DraftPickGM
     __properties: ClassVar[List[str]] = ["id", "name", "gm"]

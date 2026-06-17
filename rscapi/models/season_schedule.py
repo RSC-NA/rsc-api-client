@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,8 +27,8 @@ class SeasonSchedule(BaseModel):
     """
     SeasonSchedule
     """ # noqa: E501
-    matches_per_season: StrictInt
-    matches_per_night: StrictInt
+    matches_per_season: Optional[StrictInt] = None
+    matches_per_night: Optional[StrictInt] = None
     match_nights: List[StrictStr]
     __properties: ClassVar[List[str]] = ["matches_per_season", "matches_per_night", "match_nights"]
 

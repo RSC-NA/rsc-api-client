@@ -30,15 +30,15 @@ class ElevatedRole(BaseModel):
     """
     ElevatedRole
     """ # noqa: E501
-    id: StrictInt
-    member: SimpleMember
+    id: Optional[StrictInt] = None
+    member: Optional[SimpleMember] = None
     league: ElevatedRoleLeague
     position: Optional[StrictStr]
-    gm: StrictBool
-    agm: StrictBool
-    arbiter: StrictBool
+    gm: Optional[StrictBool] = None
+    agm: Optional[StrictBool] = None
+    arbiter: Optional[StrictBool] = None
     project_role: Annotated[str, Field(min_length=0, strict=True)]
-    franchise_id: Optional[StrictInt]
+    franchise_id: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["id", "member", "league", "position", "gm", "agm", "arbiter", "project_role", "franchise_id"]
 
     model_config = ConfigDict(

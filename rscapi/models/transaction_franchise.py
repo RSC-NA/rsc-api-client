@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.franchise_gm import FranchiseGM
 from typing import Optional, Set
@@ -31,7 +31,7 @@ class TransactionFranchise(BaseModel):
     """ # noqa: E501
     gm: FranchiseGM
     name: StrictStr
-    id: StrictInt
+    id: Optional[StrictInt] = None
     prefix: Annotated[str, Field(strict=True, max_length=3)]
     __properties: ClassVar[List[str]] = ["gm", "name", "id", "prefix"]
 

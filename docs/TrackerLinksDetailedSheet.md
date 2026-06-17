@@ -5,14 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **bool** |  | [readonly] 
-**rsc_id** | **str** |  | [readonly] 
-**name** | **str** |  | [readonly] 
-**discord_id** | **int** |  | [readonly] 
-**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [readonly] 
-**platform_id** | **str** |  | [readonly] 
-**platform_name** | **str** |  | [readonly] 
-**link** | **str** |  | [readonly] 
+**active** | **bool** |  | [optional] [readonly] 
+**rsc_id** | **str** |  | [optional] [readonly] 
+**name** | **str** |  | [optional] [readonly] 
+**discord_id** | **int** |  | [optional] [readonly] 
+**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] [readonly] 
+**platform_id** | **str** |  | [optional] [readonly] 
+**platform_name** | **str** |  | [optional] [readonly] 
+**link** | **str** |  | [optional] [readonly] 
 
 ## Example
 

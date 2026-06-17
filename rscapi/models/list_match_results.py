@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,8 +27,8 @@ class ListMatchResults(BaseModel):
     """
     ListMatchResults
     """ # noqa: E501
-    home_wins: StrictInt
-    away_wins: StrictInt
+    home_wins: Optional[StrictInt] = None
+    away_wins: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["home_wins", "away_wins"]
 
     model_config = ConfigDict(

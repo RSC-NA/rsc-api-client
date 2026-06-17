@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,10 +27,10 @@ class MasterMemberSheet(BaseModel):
     """
     MasterMemberSheet
     """ # noqa: E501
-    rsc_id: StrictStr
-    rsc_name: StrictStr
-    discord_id: StrictInt
-    threes_active: StrictBool
+    rsc_id: Optional[StrictStr] = None
+    rsc_name: Optional[StrictStr] = None
+    discord_id: Optional[StrictInt] = None
+    threes_active: Optional[StrictBool] = None
     __properties: ClassVar[List[str]] = ["rsc_id", "rsc_name", "discord_id", "threes_active"]
 
     model_config = ConfigDict(

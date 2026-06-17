@@ -31,9 +31,9 @@ class Member(BaseModel):
     Member
     """ # noqa: E501
     username: Annotated[str, Field(strict=True, max_length=100)]
-    rsc_id: StrictStr
-    elevated_roles: List[ElevatedRole]
-    player_leagues: List[LeaguePlayer]
+    rsc_id: Optional[StrictStr] = None
+    elevated_roles: Optional[List[ElevatedRole]] = None
+    player_leagues: Optional[List[LeaguePlayer]] = None
     rsc_name: Optional[StrictStr] = None
     discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]] = None
     __properties: ClassVar[List[str]] = ["username", "rsc_id", "elevated_roles", "player_leagues", "rsc_name", "discord_id"]

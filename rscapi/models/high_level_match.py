@@ -32,16 +32,16 @@ class HighLevelMatch(BaseModel):
     """
     HighLevelMatch
     """ # noqa: E501
-    day: StrictInt
-    var_date: Optional[datetime] = Field(alias="date")
-    game_name: StrictStr
-    game_pass: StrictStr
-    num_games: StrictInt
-    match_format: MatchFormatEnum
-    match_type: MatchTypeEnum
+    day: Optional[StrictInt] = None
+    var_date: Optional[datetime] = Field(default=None, alias="date")
+    game_name: Optional[StrictStr] = None
+    game_pass: Optional[StrictStr] = None
+    num_games: Optional[StrictInt] = None
+    match_format: Optional[MatchFormatEnum] = None
+    match_type: Optional[MatchTypeEnum] = None
     home_team: Team
     away_team: Team
-    id: StrictInt
+    id: Optional[StrictInt] = None
     results: Optional[ListMatchResults]
     __properties: ClassVar[List[str]] = ["day", "date", "game_name", "game_pass", "num_games", "match_format", "match_type", "home_team", "away_team", "id", "results"]
 

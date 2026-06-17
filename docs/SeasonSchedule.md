@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**matches_per_season** | **int** |  | [readonly] 
-**matches_per_night** | **int** |  | [readonly] 
+**matches_per_season** | **int** |  | [optional] [readonly] 
+**matches_per_night** | **int** |  | [optional] [readonly] 
 **match_nights** | **List[str]** |  | 
 
 ## Example

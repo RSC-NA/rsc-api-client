@@ -29,7 +29,7 @@ class TeamSeasonStats(BaseModel):
     """
     TeamSeasonStats
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     team: StrictStr
     type: StrictStr
     shooting_percentage: Union[StrictFloat, StrictInt]

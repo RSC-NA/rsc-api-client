@@ -5,16 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**day** | **int** |  | [readonly] 
-**var_date** | **datetime** |  | [readonly] 
-**game_name** | **str** |  | [readonly] 
-**game_pass** | **str** |  | [readonly] 
-**num_games** | **int** |  | [readonly] 
-**match_format** | [**MatchFormatEnum**](MatchFormatEnum.md) |  | [readonly] 
-**match_type** | [**MatchTypeEnum**](MatchTypeEnum.md) |  | [readonly] 
+**day** | **int** |  | [optional] [readonly] 
+**var_date** | **datetime** |  | [optional] [readonly] 
+**game_name** | **str** |  | [optional] [readonly] 
+**game_pass** | **str** |  | [optional] [readonly] 
+**num_games** | **int** |  | [optional] [readonly] 
+**match_format** | [**MatchFormatEnum**](MatchFormatEnum.md) |  | [optional] [readonly] 
+**match_type** | [**MatchTypeEnum**](MatchTypeEnum.md) |  | [optional] [readonly] 
 **home_team** | [**Team**](Team.md) |  | 
 **away_team** | [**Team**](Team.md) |  | 
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **results** | [**ListMatchResults**](ListMatchResults.md) |  | 
 
 ## Example

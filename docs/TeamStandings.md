@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **team** | **str** |  | 
 **tier** | **str** |  | 
 **rank** | **int** |  | 
-**games_played** | **int** |  | [readonly] 
-**games_won** | **int** |  | [readonly] 
-**games_lost** | **int** |  | [readonly] 
+**games_played** | **int** |  | [optional] [readonly] 
+**games_won** | **int** |  | [optional] [readonly] 
+**games_lost** | **int** |  | [optional] [readonly] 
 
 ## Example
 

@@ -32,17 +32,17 @@ class Match(BaseModel):
     """
     Match
     """ # noqa: E501
-    day: StrictInt
-    var_date: Optional[datetime] = Field(alias="date")
-    game_name: StrictStr
-    season_number: StrictInt
-    game_pass: StrictStr
-    num_games: StrictInt
-    match_format: MatchFormatEnum
-    match_type: MatchTypeEnum
+    day: Optional[StrictInt] = None
+    var_date: Optional[datetime] = Field(default=None, alias="date")
+    game_name: Optional[StrictStr] = None
+    season_number: Optional[StrictInt] = None
+    game_pass: Optional[StrictStr] = None
+    num_games: Optional[StrictInt] = None
+    match_format: Optional[MatchFormatEnum] = None
+    match_type: Optional[MatchTypeEnum] = None
     home_team: MatchTeam
     away_team: MatchTeam
-    id: StrictInt
+    id: Optional[StrictInt] = None
     results: Optional[MatchResults]
     __properties: ClassVar[List[str]] = ["day", "date", "game_name", "season_number", "game_pass", "num_games", "match_format", "match_type", "home_team", "away_team", "id", "results"]
 

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.season_schedule import SeasonSchedule
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,11 +29,11 @@ class SeasonTierData(BaseModel):
     SeasonTierData
     """ # noqa: E501
     tier: StrictStr
-    mmr_min: StrictInt
-    mmr_max: StrictInt
-    team_cap: StrictInt
-    team_number: StrictInt
-    schedule: SeasonSchedule
+    mmr_min: Optional[StrictInt] = None
+    mmr_max: Optional[StrictInt] = None
+    team_cap: Optional[StrictInt] = None
+    team_number: Optional[StrictInt] = None
+    schedule: Optional[SeasonSchedule] = None
     __properties: ClassVar[List[str]] = ["tier", "mmr_min", "mmr_max", "team_cap", "team_number", "schedule"]
 
     model_config = ConfigDict(

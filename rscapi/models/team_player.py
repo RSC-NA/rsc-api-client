@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.league_player_status_enum import LeaguePlayerStatusEnum
 from rscapi.models.sub_status_enum import SubStatusEnum
 from typing import Optional, Set
@@ -30,15 +30,15 @@ class TeamPlayer(BaseModel):
     """
     TeamPlayer
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     name: StrictStr
-    status: LeaguePlayerStatusEnum
-    captain: StrictBool
-    base_mmr: StrictInt
-    current_mmr: StrictInt
-    last_updated: datetime
+    status: Optional[LeaguePlayerStatusEnum] = None
+    captain: Optional[StrictBool] = None
+    base_mmr: Optional[StrictInt] = None
+    current_mmr: Optional[StrictInt] = None
+    last_updated: Optional[datetime] = None
     discord_id: StrictInt
-    sub_status: SubStatusEnum
+    sub_status: Optional[SubStatusEnum] = None
     __properties: ClassVar[List[str]] = ["id", "name", "status", "captain", "base_mmr", "current_mmr", "last_updated", "discord_id", "sub_status"]
 
     model_config = ConfigDict(

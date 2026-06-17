@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**gm** | [**FranchiseGM**](FranchiseGM.md) |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
+**gm** | [**FranchiseGM**](FranchiseGM.md) |  | [optional] [readonly] 
 **name** | **str** |  | 
 
 ## Example

@@ -6,17 +6,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **link** | **str** |  | 
-**member** | [**Really**](Really.md) |  | [readonly] 
+**member** | [**Really**](Really.md) |  | [optional] [readonly] 
 **discord_id** | **int** |  | [optional] 
-**id** | **int** |  | [readonly] 
-**name** | **str** |  | [readonly] 
-**pulls** | **int** |  | [readonly] 
-**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [readonly] 
-**status** | [**TrackerLinkStatusEnum**](TrackerLinkStatusEnum.md) |  | [readonly] 
-**last_updated** | **datetime** |  | [readonly] 
-**member_name** | **str** |  | [readonly] 
-**platform_id** | **str** |  | [readonly] 
-**rscid** | **str** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
+**name** | **str** |  | [optional] [readonly] 
+**pulls** | **int** |  | [optional] [readonly] 
+**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] [readonly] 
+**status** | [**TrackerLinkStatusEnum**](TrackerLinkStatusEnum.md) |  | [optional] [readonly] 
+**last_updated** | **datetime** |  | [optional] [readonly] 
+**member_name** | **str** |  | [optional] [readonly] 
+**platform_id** | **str** |  | [optional] [readonly] 
+**rscid** | **str** |  | [optional] [readonly] 
 
 ## Example
 

@@ -37,7 +37,7 @@ class TransactionResponse(BaseModel):
     """ # noqa: E501
     player_updates: Optional[List[PlayerTransactionUpdates]] = None
     pick_trades: Optional[List[PickTransactionUpdates]] = None
-    var_date: datetime = Field(description="Date transaction occurred", alias="date")
+    var_date: Optional[datetime] = Field(default=None, description="Date transaction occurred", alias="date")
     week: WeekEnum
     week_no: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Week no of transaction (if applicable)")
     match_day: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Specific match day of the transactions.")
@@ -46,7 +46,7 @@ class TransactionResponse(BaseModel):
     first_franchise: Optional[TransactionFranchise] = None
     second_franchise: Optional[TransactionFranchise] = None
     executor: SimpleMember
-    id: StrictInt
+    id: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["player_updates", "pick_trades", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor", "id"]
 
     model_config = ConfigDict(

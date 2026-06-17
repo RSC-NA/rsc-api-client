@@ -5,19 +5,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **league** | [**SeasonLeague**](SeasonLeague.md) |  | 
-**number** | **int** |  | [readonly] 
+**number** | **int** |  | [optional] [readonly] 
 **season_tier_data** | [**List[SeasonTierData]**](SeasonTierData.md) |  | 
-**current** | **bool** |  | [readonly] 
-**start_date** | **datetime** |  | [readonly] 
-**end_date** | **datetime** |  | [readonly] 
-**preseason_start_date** | **datetime** |  | [readonly] 
-**regular_season_start** | **datetime** |  | [readonly] 
-**regular_season_end** | **datetime** |  | [readonly] 
-**signup_close** | **datetime** |  | [readonly] 
-**signups_open** | **datetime** |  | [readonly] 
-**draft_date** | **datetime** |  | [readonly] 
+**current** | **bool** |  | [optional] [readonly] 
+**start_date** | **datetime** |  | [optional] [readonly] 
+**end_date** | **datetime** |  | [optional] [readonly] 
+**preseason_start_date** | **datetime** |  | [optional] [readonly] 
+**regular_season_start** | **datetime** |  | [optional] [readonly] 
+**regular_season_end** | **datetime** |  | [optional] [readonly] 
+**signup_close** | **datetime** |  | [optional] [readonly] 
+**signups_open** | **datetime** |  | [optional] [readonly] 
+**draft_date** | **datetime** |  | [optional] [readonly] 
 
 ## Example
 

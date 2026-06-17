@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,7 +27,7 @@ class DraftPickLeaguePlayer(BaseModel):
     """
     DraftPickLeaguePlayer
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     name: StrictStr
     discord_id: StrictInt
     __properties: ClassVar[List[str]] = ["id", "name", "discord_id"]

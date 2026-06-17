@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class LeaguePlayerLeague(BaseModel):
     """
     LeaguePlayerLeague
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     name: StrictStr
     guild_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]
     __properties: ClassVar[List[str]] = ["id", "name", "guild_id"]

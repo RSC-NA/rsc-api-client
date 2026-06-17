@@ -28,7 +28,7 @@ class DraftPickGM(BaseModel):
     """
     DraftPickGM
     """ # noqa: E501
-    id: StrictInt
+    id: Optional[StrictInt] = None
     rsc_name: Optional[StrictStr] = None
     discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]] = None
     __properties: ClassVar[List[str]] = ["id", "rsc_name", "discord_id"]

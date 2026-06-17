@@ -6,7 +6,7 @@ Returns to the client an object containing `{'logo': <logo location url>}`  Is t
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**logo** | **str** |  | [readonly] 
+**logo** | **str** |  | [optional] [readonly] 
 
 ## Example
 

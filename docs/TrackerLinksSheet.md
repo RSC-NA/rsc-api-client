@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rsc_id** | **str** |  | 
 **name** | **str** |  | 
-**link** | **str** |  | [readonly] 
+**link** | **str** |  | [optional] [readonly] 
 
 ## Example
 

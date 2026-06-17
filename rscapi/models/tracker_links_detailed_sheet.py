@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.platform_enum import PlatformEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,14 +28,14 @@ class TrackerLinksDetailedSheet(BaseModel):
     """
     TrackerLinksDetailedSheet
     """ # noqa: E501
-    active: StrictBool
-    rsc_id: StrictStr
-    name: StrictStr
-    discord_id: StrictInt
-    platform: PlatformEnum
-    platform_id: StrictStr
-    platform_name: StrictStr
-    link: StrictStr
+    active: Optional[StrictBool] = None
+    rsc_id: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
+    discord_id: Optional[StrictInt] = None
+    platform: Optional[PlatformEnum] = None
+    platform_id: Optional[StrictStr] = None
+    platform_name: Optional[StrictStr] = None
+    link: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["active", "rsc_id", "name", "discord_id", "platform", "platform_id", "platform_name", "link"]
 
     model_config = ConfigDict(

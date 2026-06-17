@@ -32,12 +32,12 @@ class MasterContracts(BaseModel):
     active: StrictBool
     rsc_id: StrictStr
     name: StrictStr
-    franchise: StrictStr
+    franchise: Optional[StrictStr] = None
     contract_length: Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]
     current_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    status: StrictStr
+    status: Optional[StrictStr] = None
     base_mmr: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    team_name: StrictStr
+    team_name: Optional[StrictStr] = None
     waiver_period_end_date: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["active", "rsc_id", "name", "franchise", "contract_length", "current_mmr", "status", "base_mmr", "team_name", "waiver_period_end_date"]
 

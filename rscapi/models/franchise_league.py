@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,8 +28,8 @@ class FranchiseLeague(BaseModel):
     FranchiseLeague
     """ # noqa: E501
     id: StrictInt
-    name: StrictStr
-    guild_id: StrictInt
+    name: Optional[StrictStr] = None
+    guild_id: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["id", "name", "guild_id"]
 
     model_config = ConfigDict(

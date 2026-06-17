@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,7 +27,7 @@ class FranchiseGM(BaseModel):
     """
     FranchiseGM
     """ # noqa: E501
-    rsc_name: StrictStr
+    rsc_name: Optional[StrictStr] = None
     discord_id: StrictInt
     __properties: ClassVar[List[str]] = ["rsc_name", "discord_id"]
 

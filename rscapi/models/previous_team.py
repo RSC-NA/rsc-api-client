@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.base_team import BaseTeam
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,8 +30,8 @@ class PreviousTeam(BaseModel):
     PreviousTeam
     """ # noqa: E501
     team: BaseTeam
-    sign_date: datetime
-    release_date: datetime
+    sign_date: Optional[datetime] = None
+    release_date: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["team", "sign_date", "release_date"]
 
     model_config = ConfigDict(

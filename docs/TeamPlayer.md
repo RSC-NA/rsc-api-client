@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
-**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [readonly] 
-**captain** | **bool** |  | [readonly] 
-**base_mmr** | **int** |  | [readonly] 
-**current_mmr** | **int** |  | [readonly] 
-**last_updated** | **datetime** |  | [readonly] 
+**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [optional] [readonly] 
+**captain** | **bool** |  | [optional] [readonly] 
+**base_mmr** | **int** |  | [optional] [readonly] 
+**current_mmr** | **int** |  | [optional] [readonly] 
+**last_updated** | **datetime** |  | [optional] [readonly] 
 **discord_id** | **int** |  | 
-**sub_status** | [**SubStatusEnum**](SubStatusEnum.md) |  | [readonly] 
+**sub_status** | [**SubStatusEnum**](SubStatusEnum.md) |  | [optional] [readonly] 
 
 ## Example
 

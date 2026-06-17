@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [readonly] 
+**name** | **str** |  | [optional] [readonly] 
 **franchise** | **str** |  | 
 **tier** | **str** |  | 
 

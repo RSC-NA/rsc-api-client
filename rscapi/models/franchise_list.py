@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.franchise_gm import FranchiseGM
 from rscapi.models.franchise_team import FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier
@@ -30,15 +30,15 @@ class FranchiseList(BaseModel):
     """
     FranchiseList
     """ # noqa: E501
-    id: StrictInt
-    name: StrictStr
-    prefix: StrictStr
-    gm: FranchiseGM
-    league: StrictInt
-    tiers: List[FranchiseTier]
-    active: StrictBool
-    teams: List[FranchiseTeam]
-    logo: StrictStr
+    id: Optional[StrictInt] = None
+    name: Optional[StrictStr] = None
+    prefix: Optional[StrictStr] = None
+    gm: Optional[FranchiseGM] = None
+    league: Optional[StrictInt] = None
+    tiers: Optional[List[FranchiseTier]] = None
+    active: Optional[StrictBool] = None
+    teams: Optional[List[FranchiseTeam]] = None
+    logo: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["id", "name", "prefix", "gm", "league", "tiers", "active", "teams", "logo"]
 
     model_config = ConfigDict(

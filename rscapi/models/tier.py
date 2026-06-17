@@ -28,9 +28,9 @@ class Tier(BaseModel):
     Tier
     """ # noqa: E501
     name: StrictStr
-    id: StrictInt
-    color: Optional[StrictInt]
-    position: StrictInt
+    id: Optional[StrictInt] = None
+    color: Optional[StrictInt] = None
+    position: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["name", "id", "color", "position"]
 
     model_config = ConfigDict(

@@ -29,9 +29,9 @@ class FlaggedMatch(BaseModel):
     """
     FlaggedMatch
     """ # noqa: E501
-    id: StrictInt
-    day: StrictInt
-    var_date: Optional[datetime] = Field(alias="date")
+    id: Optional[StrictInt] = None
+    day: Optional[StrictInt] = None
+    var_date: Optional[datetime] = Field(default=None, alias="date")
     match_type: MatchTypeEnum
     match_type_label: StrictStr
     tier: Optional[StrictStr]
@@ -42,11 +42,11 @@ class FlaggedMatch(BaseModel):
     home_wins: Optional[StrictInt]
     away_wins: Optional[StrictInt]
     ballchasing_group: Optional[StrictStr]
-    reported_games: StrictInt
-    expected_games: StrictInt
-    missing_result: StrictBool
-    missing_ballchasing_group: StrictBool
-    missing_stats: StrictBool
+    reported_games: Optional[StrictInt] = None
+    expected_games: Optional[StrictInt] = None
+    missing_result: Optional[StrictBool] = None
+    missing_ballchasing_group: Optional[StrictBool] = None
+    missing_stats: Optional[StrictBool] = None
     __properties: ClassVar[List[str]] = ["id", "day", "date", "match_type", "match_type_label", "tier", "home_team", "away_team", "home_gm_discord_id", "away_gm_discord_id", "home_wins", "away_wins", "ballchasing_group", "reported_games", "expected_games", "missing_result", "missing_ballchasing_group", "missing_stats"]
 
     model_config = ConfigDict(

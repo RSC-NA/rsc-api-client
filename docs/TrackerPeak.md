@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [readonly] 
-**rsc_id** | **str** |  | [readonly] 
-**name** | **str** |  | [readonly] 
-**discord_id** | **int** |  | [readonly] 
-**status** | [**TrackerLinkStatusEnum**](TrackerLinkStatusEnum.md) |  | [readonly] 
-**pulls** | **int** | Get the number of pulls for the tracker link. | [readonly] 
-**peaks** | **Dict[str, int]** | Get the seasons for the tracker link. | [readonly] 
+**id** | **int** |  | [optional] [readonly] 
+**rsc_id** | **str** |  | [optional] [readonly] 
+**name** | **str** |  | [optional] [readonly] 
+**discord_id** | **int** |  | [optional] [readonly] 
+**status** | [**TrackerLinkStatusEnum**](TrackerLinkStatusEnum.md) |  | [optional] [readonly] 
+**pulls** | **int** | Get the number of pulls for the tracker link. | [optional] [readonly] 
+**peaks** | **Dict[str, int]** | Get the seasons for the tracker link. | [optional] [readonly] 
 
 ## Example
 
