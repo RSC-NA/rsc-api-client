@@ -238,6 +238,7 @@ Class | Method | HTTP request | Description
 *TiersApi* | [**tiers_team_stats_list**](docs/TiersApi.md#tiers_team_stats_list) | **GET** /tiers/{id}/team_stats/ | 
 *TiersApi* | [**tiers_teams_list**](docs/TiersApi.md#tiers_teams_list) | **GET** /tiers/{id}/teams/ | 
 *TiersApi* | [**tiers_update**](docs/TiersApi.md#tiers_update) | **PUT** /tiers/{id}/ | 
+*TiersApi* | [**tiers_waiver_order_retrieve**](docs/TiersApi.md#tiers_waiver_order_retrieve) | **GET** /tiers/waiver_order/ | 
 *TrackerLinksApi* | [**tracker_links_create**](docs/TrackerLinksApi.md#tracker_links_create) | **POST** /tracker-links/ | 
 *TrackerLinksApi* | [**tracker_links_dedup_mmr_pulls_create**](docs/TrackerLinksApi.md#tracker_links_dedup_mmr_pulls_create) | **POST** /tracker-links/dedup_mmr_pulls/ | 
 *TrackerLinksApi* | [**tracker_links_dedup_mmr_pulls_retrieve**](docs/TrackerLinksApi.md#tracker_links_dedup_mmr_pulls_retrieve) | **GET** /tracker-links/dedup_mmr_pulls/ | 
@@ -269,6 +270,10 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**transactions_substitution_create**](docs/TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
 *TransactionsApi* | [**transactions_trade_create**](docs/TransactionsApi.md#transactions_trade_create) | **POST** /transactions/trade/ | 
 *TransactionsApi* | [**transactions_trade_validate_futures_create**](docs/TransactionsApi.md#transactions_trade_validate_futures_create) | **POST** /transactions/trade/validate_futures/ | 
+*TransactionsApi* | [**transactions_waiver_claim_cancel_create**](docs/TransactionsApi.md#transactions_waiver_claim_cancel_create) | **POST** /transactions/waiver_claim/{id}/cancel/ | 
+*TransactionsApi* | [**transactions_waiver_claim_create**](docs/TransactionsApi.md#transactions_waiver_claim_create) | **POST** /transactions/waiver_claim/ | 
+*TransactionsApi* | [**transactions_waiver_claim_list**](docs/TransactionsApi.md#transactions_waiver_claim_list) | **GET** /transactions/waiver_claim/ | 
+*TransactionsApi* | [**transactions_waiver_release_create**](docs/TransactionsApi.md#transactions_waiver_release_create) | **POST** /transactions/waiver_release/ | 
 
 
 ## Documentation For Models
@@ -436,6 +441,11 @@ Class | Method | HTTP request | Description
  - [TransactionResponseTypeEnum](docs/TransactionResponseTypeEnum.md)
  - [TransactionTeam](docs/TransactionTeam.md)
  - [TwosMasterMemberSheet](docs/TwosMasterMemberSheet.md)
+ - [WaiverClaimInput](docs/WaiverClaimInput.md)
+ - [WaiverClaimResponse](docs/WaiverClaimResponse.md)
+ - [WaiverClaimResponseStatusEnum](docs/WaiverClaimResponseStatusEnum.md)
+ - [WaiverOrder](docs/WaiverOrder.md)
+ - [WaiverOrderEntry](docs/WaiverOrderEntry.md)
  - [WeekEnum](docs/WeekEnum.md)
 
 

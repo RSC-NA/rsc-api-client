@@ -182,6 +182,11 @@ docs/TransactionResponseTypeEnum.md
 docs/TransactionTeam.md
 docs/TransactionsApi.md
 docs/TwosMasterMemberSheet.md
+docs/WaiverClaimInput.md
+docs/WaiverClaimResponse.md
+docs/WaiverClaimResponseStatusEnum.md
+docs/WaiverOrder.md
+docs/WaiverOrderEntry.md
 docs/WeekEnum.md
 git_push.sh
 pyproject.toml
@@ -372,6 +377,11 @@ rscapi/models/transaction_response.py
 rscapi/models/transaction_response_type_enum.py
 rscapi/models/transaction_team.py
 rscapi/models/twos_master_member_sheet.py
+rscapi/models/waiver_claim_input.py
+rscapi/models/waiver_claim_response.py
+rscapi/models/waiver_claim_response_status_enum.py
+rscapi/models/waiver_order.py
+rscapi/models/waiver_order_entry.py
 rscapi/models/week_enum.py
 rscapi/py.typed
 rscapi/rest.py
@@ -379,4 +389,9 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_waiver_claim_input.py
+test/test_waiver_claim_response.py
+test/test_waiver_claim_response_status_enum.py
+test/test_waiver_order.py
+test/test_waiver_order_entry.py
 tox.ini

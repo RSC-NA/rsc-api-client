@@ -176,5 +176,10 @@ from rscapi.models.transaction_response import TransactionResponse
 from rscapi.models.transaction_response_type_enum import TransactionResponseTypeEnum
 from rscapi.models.transaction_team import TransactionTeam
 from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
+from rscapi.models.waiver_claim_input import WaiverClaimInput
+from rscapi.models.waiver_claim_response import WaiverClaimResponse
+from rscapi.models.waiver_claim_response_status_enum import WaiverClaimResponseStatusEnum
+from rscapi.models.waiver_order import WaiverOrder
+from rscapi.models.waiver_order_entry import WaiverOrderEntry
 from rscapi.models.week_enum import WeekEnum
 

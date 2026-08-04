@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **league** | [**FranchiseLeague**](FranchiseLeague.md) |  | [optional] 
 **tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [optional] [readonly] 
-**active** | **bool** |  | [optional] [readonly] 
+**active** | **bool** |  | [optional] [readonly] [default to False]
 **teams** | [**List[Team]**](Team.md) |  | [optional] [readonly] 
 **logo** | **str** |  | [optional] [readonly] 
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | [optional] 

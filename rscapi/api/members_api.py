@@ -3198,7 +3198,7 @@ class MembersApi:
     ) -> Deleted:
         """members_intent_to_play_create
 
-        Intent to play endpoint for returning players.
+        Intent to play endpoint for returning players. A 201 carries the LeaguePlayer (created pre-season, or the existing one when intent is recorded mid-season); a 200 carries a Deleted payload for pre-season acknowledgments and withdrawals.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -3241,6 +3241,7 @@ class MembersApi:
             '403': "Error",
             '404': "Error",
             '405': "Error",
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3273,7 +3274,7 @@ class MembersApi:
     ) -> ApiResponse[Deleted]:
         """members_intent_to_play_create
 
-        Intent to play endpoint for returning players.
+        Intent to play endpoint for returning players. A 201 carries the LeaguePlayer (created pre-season, or the existing one when intent is recorded mid-season); a 200 carries a Deleted payload for pre-season acknowledgments and withdrawals.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -3316,6 +3317,7 @@ class MembersApi:
             '403': "Error",
             '404': "Error",
             '405': "Error",
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3348,7 +3350,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_intent_to_play_create
 
-        Intent to play endpoint for returning players.
+        Intent to play endpoint for returning players. A 201 carries the LeaguePlayer (created pre-season, or the existing one when intent is recorded mid-season); a 200 carries a Deleted payload for pre-season acknowledgments and withdrawals.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -3391,6 +3393,7 @@ class MembersApi:
             '403': "Error",
             '404': "Error",
             '405': "Error",
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,

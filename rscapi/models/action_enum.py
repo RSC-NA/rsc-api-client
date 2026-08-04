@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ActionEnum(str, Enum):
     """
-    * `NCH` - Name Change * `TRF` - Transfer * `UPD` - Update * `LNC` - League Notice * `ENC` - Everyone Notice * `GNC` - GM Notice * `TNC` - Trade Notice * `PSG` - Player Signed * `PCT` - Player Cut * `PRS` - Player Re-Signed * `PDR` - Draft Pick Made * `PTR` - Player Traded
+    * `NCH` - Name Change * `TRF` - Transfer * `UPD` - Update * `LNC` - League Notice * `ENC` - Everyone Notice * `GNC` - GM Notice * `TNC` - Trade Notice * `PSG` - Player Signed * `PCT` - Player Cut * `PRS` - Player Re-Signed * `PDR` - Draft Pick Made * `PTR` - Player Traded * `WCW` - Waiver Claim Won * `WCL` - Waiver Claim Lost
     """
 
     """
@@ -38,6 +38,8 @@ class ActionEnum(str, Enum):
     PRS = 'PRS'
     PDR = 'PDR'
     PTR = 'PTR'
+    WCW = 'WCW'
+    WCL = 'WCL'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

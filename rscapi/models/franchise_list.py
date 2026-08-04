@@ -36,7 +36,7 @@ class FranchiseList(BaseModel):
     gm: Optional[FranchiseGM] = None
     league: Optional[StrictInt] = None
     tiers: Optional[List[FranchiseTier]] = None
-    active: Optional[StrictBool] = None
+    active: Optional[StrictBool] = False
     teams: Optional[List[FranchiseTeam]] = None
     logo: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["id", "name", "prefix", "gm", "league", "tiers", "active", "teams", "logo"]
@@ -133,7 +133,7 @@ class FranchiseList(BaseModel):
             "gm": FranchiseGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None,
             "league": obj.get("league"),
             "tiers": [FranchiseTier.from_dict(_item) for _item in obj["tiers"]] if obj.get("tiers") is not None else None,
-            "active": obj.get("active"),
+            "active": obj.get("active") if obj.get("active") is not None else False,
             "teams": [FranchiseTeam.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None,
             "logo": obj.get("logo")
         })

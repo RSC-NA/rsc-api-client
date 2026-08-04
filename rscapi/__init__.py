@@ -206,6 +206,11 @@ __all__ = [
     "TransactionResponseTypeEnum",
     "TransactionTeam",
     "TwosMasterMemberSheet",
+    "WaiverClaimInput",
+    "WaiverClaimResponse",
+    "WaiverClaimResponseStatusEnum",
+    "WaiverOrder",
+    "WaiverOrderEntry",
     "WeekEnum",
 ]
 
@@ -402,5 +407,10 @@ from rscapi.models.transaction_response import TransactionResponse as Transactio
 from rscapi.models.transaction_response_type_enum import TransactionResponseTypeEnum as TransactionResponseTypeEnum
 from rscapi.models.transaction_team import TransactionTeam as TransactionTeam
 from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet as TwosMasterMemberSheet
+from rscapi.models.waiver_claim_input import WaiverClaimInput as WaiverClaimInput
+from rscapi.models.waiver_claim_response import WaiverClaimResponse as WaiverClaimResponse
+from rscapi.models.waiver_claim_response_status_enum import WaiverClaimResponseStatusEnum as WaiverClaimResponseStatusEnum
+from rscapi.models.waiver_order import WaiverOrder as WaiverOrder
+from rscapi.models.waiver_order_entry import WaiverOrderEntry as WaiverOrderEntry
 from rscapi.models.week_enum import WeekEnum as WeekEnum
 

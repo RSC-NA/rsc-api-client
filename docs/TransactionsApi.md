@@ -17,6 +17,10 @@ Method | HTTP request | Description
 [**transactions_substitution_create**](TransactionsApi.md#transactions_substitution_create) | **POST** /transactions/substitution/ | 
 [**transactions_trade_create**](TransactionsApi.md#transactions_trade_create) | **POST** /transactions/trade/ | 
 [**transactions_trade_validate_futures_create**](TransactionsApi.md#transactions_trade_validate_futures_create) | **POST** /transactions/trade/validate_futures/ | 
+[**transactions_waiver_claim_cancel_create**](TransactionsApi.md#transactions_waiver_claim_cancel_create) | **POST** /transactions/waiver_claim/{id}/cancel/ | 
+[**transactions_waiver_claim_create**](TransactionsApi.md#transactions_waiver_claim_create) | **POST** /transactions/waiver_claim/ | 
+[**transactions_waiver_claim_list**](TransactionsApi.md#transactions_waiver_claim_list) | **GET** /transactions/waiver_claim/ | 
+[**transactions_waiver_release_create**](TransactionsApi.md#transactions_waiver_release_create) | **POST** /transactions/waiver_release/ | 
 
 
 # **transactions_cut_and_sign_create**
@@ -1052,6 +1056,327 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**404** |  |  -  |
+**403** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transactions_waiver_claim_cancel_create**
+> WaiverClaimResponse transactions_waiver_claim_cancel_create(id)
+
+Cancel a pending waiver claim.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.waiver_claim_response import WaiverClaimResponse
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TransactionsApi(api_client)
+    id = 56 # int | Waiver claim ID.
+
+    try:
+        api_response = await api_instance.transactions_waiver_claim_cancel_create(id)
+        print("The response of TransactionsApi->transactions_waiver_claim_cancel_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->transactions_waiver_claim_cancel_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Waiver claim ID. | 
+
+### Return type
+
+[**WaiverClaimResponse**](WaiverClaimResponse.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**400** |  |  -  |
+**404** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transactions_waiver_claim_create**
+> WaiverClaimResponse transactions_waiver_claim_create(waiver_claim_input)
+
+Submit a waiver claim for a player on waivers.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.waiver_claim_input import WaiverClaimInput
+from rscapi.models.waiver_claim_response import WaiverClaimResponse
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TransactionsApi(api_client)
+    waiver_claim_input = rscapi.WaiverClaimInput() # WaiverClaimInput | 
+
+    try:
+        api_response = await api_instance.transactions_waiver_claim_create(waiver_claim_input)
+        print("The response of TransactionsApi->transactions_waiver_claim_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->transactions_waiver_claim_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **waiver_claim_input** | [**WaiverClaimInput**](WaiverClaimInput.md)|  | 
+
+### Return type
+
+[**WaiverClaimResponse**](WaiverClaimResponse.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**404** |  |  -  |
+**403** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transactions_waiver_claim_list**
+> List[WaiverClaimResponse] transactions_waiver_claim_list(league, franchise=franchise, status=status, tier=tier)
+
+List waiver claims for a league (default: pending).
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.waiver_claim_response import WaiverClaimResponse
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TransactionsApi(api_client)
+    league = 56 # int | League ID.
+    franchise = 56 # int | Franchise ID. (optional)
+    status = 'status_example' # str | Claim status (default: pending). (optional)
+    tier = 'tier_example' # str | Tier ID or name. (optional)
+
+    try:
+        api_response = await api_instance.transactions_waiver_claim_list(league, franchise=franchise, status=status, tier=tier)
+        print("The response of TransactionsApi->transactions_waiver_claim_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->transactions_waiver_claim_list: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **league** | **int**| League ID. | 
+ **franchise** | **int**| Franchise ID. | [optional] 
+ **status** | **str**| Claim status (default: pending). | [optional] 
+ **tier** | **str**| Tier ID or name. | [optional] 
+
+### Return type
+
+[**List[WaiverClaimResponse]**](WaiverClaimResponse.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **transactions_waiver_release_create**
+> TransactionResponse transactions_waiver_release_create(player_input)
+
+Waiver-release a player
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.player_input import PlayerInput
+from rscapi.models.transaction_response import TransactionResponse
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TransactionsApi(api_client)
+    player_input = rscapi.PlayerInput() # PlayerInput | 
+
+    try:
+        api_response = await api_instance.transactions_waiver_release_create(player_input)
+        print("The response of TransactionsApi->transactions_waiver_release_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionsApi->transactions_waiver_release_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **player_input** | [**PlayerInput**](PlayerInput.md)|  | 
+
+### Return type
+
+[**TransactionResponse**](TransactionResponse.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
 **404** |  |  -  |
 **403** |  |  -  |
 **400** |  |  -  |

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | [optional] [readonly] 
 **league** | **int** |  | [optional] [readonly] 
 **tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [optional] [readonly] 
-**active** | **bool** |  | [optional] [readonly] 
+**active** | **bool** |  | [optional] [readonly] [default to False]
 **teams** | [**List[FranchiseTeam]**](FranchiseTeam.md) |  | [optional] [readonly] 
 **logo** | **str** |  | [optional] [readonly] 
 

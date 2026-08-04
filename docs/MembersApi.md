@@ -904,7 +904,7 @@ Name | Type | Description  | Notes
 # **members_intent_to_play_create**
 > Deleted members_intent_to_play_create(id, intent_to_play_request)
 
-Intent to play endpoint for returning players.
+Intent to play endpoint for returning players. A 201 carries the LeaguePlayer (created pre-season, or the existing one when intent is recorded mid-season); a 200 carries a Deleted payload for pre-season acknowledgments and withdrawals.
 
 ### Example
 
@@ -981,6 +981,7 @@ Name | Type | Description  | Notes
 **403** |  |  -  |
 **404** |  |  -  |
 **405** |  |  -  |
+**409** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
