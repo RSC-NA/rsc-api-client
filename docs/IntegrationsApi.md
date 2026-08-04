@@ -11,6 +11,25 @@ Method | HTTP request | Description
 # **integrations_events_list**
 > PaginatedLeagueEventListList integrations_events_list(action=action, action__in=action__in, category=category, category__in=category__in, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id, id__gt=id__gt, id__gte=id__gte, id__lte=id__lte, include_global=include_global, is_public=is_public, league=league, limit=limit, offset=offset, ordering=ordering, severity=severity, severity__in=severity__in)
 
+List league events, newest first by default. Poll with an id cursor: `?ordering=id&id__gt=<last id seen>`.
+
+**Event ids are allocated before their transaction commits, so a lower id can become visible after a higher
+one.** The id comes from a database sequence when the row is inserted, but the row is only readable once the
+surrounding transaction commits. A writer that inserted first and committed last leaves a gap that fills in
+after you have already read past it.
+
+A consumer that treats the highest id in a page as fully processed will therefore drop the occasional event.
+To poll safely:
+
+- Trail the highest id seen by a few minutes rather than advancing the cursor straight to it - long enough to
+  cover the slowest writing transaction.
+- Keep a short-lived set of ids you have already handled above that watermark, so re-reading the tail does not
+  double-process anything.
+
+`created_at` carries the same caveat: it is stamped when the row is inserted, not when it commits, so ordering
+or filtering by it does not avoid the gap.
+
+
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -49,7 +68,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     created_at__gte = '2013-10-20T19:20:30+01:00' # datetime | Events created at or after this datetime (ISO 8601). (optional)
     created_at__lte = '2013-10-20T19:20:30+01:00' # datetime | Events created at or before this datetime (ISO 8601). (optional)
     guild_id = 56 # int | Discord guild ID for league-scoped events. (optional)
-    id__gt = 56 # int | Event ID strictly greater than this value. Preferred cursor filter. (optional)
+    id__gt = 56 # int | Event ID strictly greater than this value. Preferred cursor filter. Ids are allocated before their transaction commits, so a lower id can appear after a higher one - see the endpoint description before advancing a cursor. (optional)
     id__gte = 56 # int | Event ID greater than or equal to this value. (optional)
     id__lte = 56 # int | Event ID less than or equal to this value. (optional)
     include_global = True # bool | Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers. (optional)
@@ -57,7 +76,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     league = 56 # int | League ID. (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
-    ordering = 'ordering_example' # str | Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary. (optional)
+    ordering = 'ordering_example' # str | Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary. That rules out page-boundary drift, not the pre-commit gap described below - `created_at` is stamped at insert too, so ordering by it does not avoid the gap either. (optional)
     severity = 'severity_example' # str | Event severity code. (optional)
     severity__in = 'severity__in_example' # str | Comma separated list of severity codes, e.g. `ERR,CRT`. (optional)
 
@@ -83,7 +102,7 @@ Name | Type | Description  | Notes
  **created_at__gte** | **datetime**| Events created at or after this datetime (ISO 8601). | [optional] 
  **created_at__lte** | **datetime**| Events created at or before this datetime (ISO 8601). | [optional] 
  **guild_id** | **int**| Discord guild ID for league-scoped events. | [optional] 
- **id__gt** | **int**| Event ID strictly greater than this value. Preferred cursor filter. | [optional] 
+ **id__gt** | **int**| Event ID strictly greater than this value. Preferred cursor filter. Ids are allocated before their transaction commits, so a lower id can appear after a higher one - see the endpoint description before advancing a cursor. | [optional] 
  **id__gte** | **int**| Event ID greater than or equal to this value. | [optional] 
  **id__lte** | **int**| Event ID less than or equal to this value. | [optional] 
  **include_global** | **bool**| Include global events that are not scoped to any league alongside the &#x60;guild_id&#x60; results. Only has an effect for superusers. | [optional] 
@@ -91,7 +110,7 @@ Name | Type | Description  | Notes
  **league** | **int**| League ID. | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
- **ordering** | **str**| Field to order by. Prefix with &#x60;-&#x60; for descending. One of: &#x60;id&#x60;, &#x60;created_at&#x60;. Defaults to newest first. Cursor consumers should use &#x60;id&#x60; so newly inserted rows append to the end and cannot cross a page boundary. | [optional] 
+ **ordering** | **str**| Field to order by. Prefix with &#x60;-&#x60; for descending. One of: &#x60;id&#x60;, &#x60;created_at&#x60;. Defaults to newest first. Cursor consumers should use &#x60;id&#x60; so newly inserted rows append to the end and cannot cross a page boundary. That rules out page-boundary drift, not the pre-commit gap described below - &#x60;created_at&#x60; is stamped at insert too, so ordering by it does not avoid the gap either. | [optional] 
  **severity** | **str**| Event severity code. | [optional] 
  **severity__in** | **str**| Comma separated list of severity codes, e.g. &#x60;ERR,CRT&#x60;. | [optional] 
 

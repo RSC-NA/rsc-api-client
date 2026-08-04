@@ -50,7 +50,7 @@ class IntegrationsApi:
         created_at__gte: Annotated[Optional[datetime], Field(description="Events created at or after this datetime (ISO 8601).")] = None,
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
-        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter.")] = None,
+        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter. Ids are allocated before their transaction commits, so a lower id can appear after a higher one - see the endpoint description before advancing a cursor.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
         id__lte: Annotated[Optional[StrictInt], Field(description="Event ID less than or equal to this value.")] = None,
         include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
@@ -58,7 +58,7 @@ class IntegrationsApi:
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.")] = None,
+        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary. That rules out page-boundary drift, not the pre-commit gap described below - `created_at` is stamped at insert too, so ordering by it does not avoid the gap either.")] = None,
         severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
         severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
@@ -76,6 +76,7 @@ class IntegrationsApi:
     ) -> PaginatedLeagueEventListList:
         """integrations_events_list
 
+        List league events, newest first by default. Poll with an id cursor: `?ordering=id&id__gt=<last id seen>`.  **Event ids are allocated before their transaction commits, so a lower id can become visible after a higher one.** The id comes from a database sequence when the row is inserted, but the row is only readable once the surrounding transaction commits. A writer that inserted first and committed last leaves a gap that fills in after you have already read past it.  A consumer that treats the highest id in a page as fully processed will therefore drop the occasional event. To poll safely:  - Trail the highest id seen by a few minutes rather than advancing the cursor straight to it - long enough to   cover the slowest writing transaction. - Keep a short-lived set of ids you have already handled above that watermark, so re-reading the tail does not   double-process anything.  `created_at` carries the same caveat: it is stamped when the row is inserted, not when it commits, so ordering or filtering by it does not avoid the gap. 
 
         :param action: Event action code.
         :type action: str
@@ -91,7 +92,7 @@ class IntegrationsApi:
         :type created_at__lte: datetime
         :param guild_id: Discord guild ID for league-scoped events.
         :type guild_id: int
-        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter.
+        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter. Ids are allocated before their transaction commits, so a lower id can appear after a higher one - see the endpoint description before advancing a cursor.
         :type id__gt: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
@@ -107,7 +108,7 @@ class IntegrationsApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.
+        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary. That rules out page-boundary drift, not the pre-commit gap described below - `created_at` is stamped at insert too, so ordering by it does not avoid the gap either.
         :type ordering: str
         :param severity: Event severity code.
         :type severity: str
@@ -184,7 +185,7 @@ class IntegrationsApi:
         created_at__gte: Annotated[Optional[datetime], Field(description="Events created at or after this datetime (ISO 8601).")] = None,
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
-        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter.")] = None,
+        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter. Ids are allocated before their transaction commits, so a lower id can appear after a higher one - see the endpoint description before advancing a cursor.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
         id__lte: Annotated[Optional[StrictInt], Field(description="Event ID less than or equal to this value.")] = None,
         include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
@@ -192,7 +193,7 @@ class IntegrationsApi:
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.")] = None,
+        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary. That rules out page-boundary drift, not the pre-commit gap described below - `created_at` is stamped at insert too, so ordering by it does not avoid the gap either.")] = None,
         severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
         severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
@@ -210,6 +211,7 @@ class IntegrationsApi:
     ) -> ApiResponse[PaginatedLeagueEventListList]:
         """integrations_events_list
 
+        List league events, newest first by default. Poll with an id cursor: `?ordering=id&id__gt=<last id seen>`.  **Event ids are allocated before their transaction commits, so a lower id can become visible after a higher one.** The id comes from a database sequence when the row is inserted, but the row is only readable once the surrounding transaction commits. A writer that inserted first and committed last leaves a gap that fills in after you have already read past it.  A consumer that treats the highest id in a page as fully processed will therefore drop the occasional event. To poll safely:  - Trail the highest id seen by a few minutes rather than advancing the cursor straight to it - long enough to   cover the slowest writing transaction. - Keep a short-lived set of ids you have already handled above that watermark, so re-reading the tail does not   double-process anything.  `created_at` carries the same caveat: it is stamped when the row is inserted, not when it commits, so ordering or filtering by it does not avoid the gap. 
 
         :param action: Event action code.
         :type action: str
@@ -225,7 +227,7 @@ class IntegrationsApi:
         :type created_at__lte: datetime
         :param guild_id: Discord guild ID for league-scoped events.
         :type guild_id: int
-        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter.
+        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter. Ids are allocated before their transaction commits, so a lower id can appear after a higher one - see the endpoint description before advancing a cursor.
         :type id__gt: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
@@ -241,7 +243,7 @@ class IntegrationsApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.
+        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary. That rules out page-boundary drift, not the pre-commit gap described below - `created_at` is stamped at insert too, so ordering by it does not avoid the gap either.
         :type ordering: str
         :param severity: Event severity code.
         :type severity: str
@@ -318,7 +320,7 @@ class IntegrationsApi:
         created_at__gte: Annotated[Optional[datetime], Field(description="Events created at or after this datetime (ISO 8601).")] = None,
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
-        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter.")] = None,
+        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter. Ids are allocated before their transaction commits, so a lower id can appear after a higher one - see the endpoint description before advancing a cursor.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
         id__lte: Annotated[Optional[StrictInt], Field(description="Event ID less than or equal to this value.")] = None,
         include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
@@ -326,7 +328,7 @@ class IntegrationsApi:
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.")] = None,
+        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary. That rules out page-boundary drift, not the pre-commit gap described below - `created_at` is stamped at insert too, so ordering by it does not avoid the gap either.")] = None,
         severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
         severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
@@ -344,6 +346,7 @@ class IntegrationsApi:
     ) -> RESTResponseType:
         """integrations_events_list
 
+        List league events, newest first by default. Poll with an id cursor: `?ordering=id&id__gt=<last id seen>`.  **Event ids are allocated before their transaction commits, so a lower id can become visible after a higher one.** The id comes from a database sequence when the row is inserted, but the row is only readable once the surrounding transaction commits. A writer that inserted first and committed last leaves a gap that fills in after you have already read past it.  A consumer that treats the highest id in a page as fully processed will therefore drop the occasional event. To poll safely:  - Trail the highest id seen by a few minutes rather than advancing the cursor straight to it - long enough to   cover the slowest writing transaction. - Keep a short-lived set of ids you have already handled above that watermark, so re-reading the tail does not   double-process anything.  `created_at` carries the same caveat: it is stamped when the row is inserted, not when it commits, so ordering or filtering by it does not avoid the gap. 
 
         :param action: Event action code.
         :type action: str
@@ -359,7 +362,7 @@ class IntegrationsApi:
         :type created_at__lte: datetime
         :param guild_id: Discord guild ID for league-scoped events.
         :type guild_id: int
-        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter.
+        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter. Ids are allocated before their transaction commits, so a lower id can appear after a higher one - see the endpoint description before advancing a cursor.
         :type id__gt: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
@@ -375,7 +378,7 @@ class IntegrationsApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.
+        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary. That rules out page-boundary drift, not the pre-commit gap described below - `created_at` is stamped at insert too, so ordering by it does not avoid the gap either.
         :type ordering: str
         :param severity: Event severity code.
         :type severity: str
