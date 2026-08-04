@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class ActionEnum(str, Enum):
     """
-    * `NCH` - Name Change * `TRF` - Transfer * `UPD` - Update * `LNC` - League Notice * `ENC` - Everyone Notice * `GNC` - GM Notice * `TNC` - Trade Notice * `PSG` - Player Signed * `PCT` - Player Cut * `PRS` - Player Re-Signed * `PDR` - Draft Pick Made * `PTR` - Player Traded * `WCW` - Waiver Claim Won * `WCL` - Waiver Claim Lost
+    * `NCH` - Name Change * `TRF` - Transfer * `UPD` - Update * `LNC` - League Notice * `ENC` - Everyone Notice * `GNC` - GM Notice * `TNC` - Trade Notice * `PSG` - Player Signed * `PCT` - Player Cut * `PRS` - Player Re-Signed * `PDR` - Draft Pick Made * `PTR` - Player Traded * `WCW` - Waiver Claim Won * `WCL` - Waiver Claim Lost * `TMF` - Tracker Merge Failed * `TVF` - Tracker Validation Failed * `PSF` - Platform ID Sync Failed * `MPF` - MMR Pull Failed * `MTS` - MMR Tracker Skipped * `TKF` - Task Failed
     """
 
     """
@@ -40,6 +40,12 @@ class ActionEnum(str, Enum):
     PTR = 'PTR'
     WCW = 'WCW'
     WCL = 'WCL'
+    TMF = 'TMF'
+    TVF = 'TVF'
+    PSF = 'PSF'
+    MPF = 'MPF'
+    MTS = 'MTS'
+    TKF = 'TKF'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

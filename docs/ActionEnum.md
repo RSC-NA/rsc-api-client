@@ -1,6 +1,6 @@
 # ActionEnum
 
-* `NCH` - Name Change * `TRF` - Transfer * `UPD` - Update * `LNC` - League Notice * `ENC` - Everyone Notice * `GNC` - GM Notice * `TNC` - Trade Notice * `PSG` - Player Signed * `PCT` - Player Cut * `PRS` - Player Re-Signed * `PDR` - Draft Pick Made * `PTR` - Player Traded * `WCW` - Waiver Claim Won * `WCL` - Waiver Claim Lost
+* `NCH` - Name Change * `TRF` - Transfer * `UPD` - Update * `LNC` - League Notice * `ENC` - Everyone Notice * `GNC` - GM Notice * `TNC` - Trade Notice * `PSG` - Player Signed * `PCT` - Player Cut * `PRS` - Player Re-Signed * `PDR` - Draft Pick Made * `PTR` - Player Traded * `WCW` - Waiver Claim Won * `WCL` - Waiver Claim Lost * `TMF` - Tracker Merge Failed * `TVF` - Tracker Validation Failed * `PSF` - Platform ID Sync Failed * `MPF` - MMR Pull Failed * `MTS` - MMR Tracker Skipped * `TKF` - Task Failed
 
 ## Enum
 
@@ -31,6 +31,18 @@
 * `WCW` (value: `'WCW'`)
 
 * `WCL` (value: `'WCL'`)
+
+* `TMF` (value: `'TMF'`)
+
+* `TVF` (value: `'TVF'`)
+
+* `PSF` (value: `'PSF'`)
+
+* `MPF` (value: `'MPF'`)
+
+* `MTS` (value: `'MTS'`)
+
+* `TKF` (value: `'TKF'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

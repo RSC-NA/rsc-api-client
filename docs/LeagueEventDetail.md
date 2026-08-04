@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **league** | **int** |  | [optional] [readonly] 
 **category** | [**CategoryEnum**](CategoryEnum.md) |  | [optional] [readonly] 
 **action** | [**ActionEnum**](ActionEnum.md) |  | [optional] [readonly] 
+**severity** | [**SeverityEnum**](SeverityEnum.md) |  | [optional] [readonly] 
 **actor** | [**LeagueEventActor**](LeagueEventActor.md) |  | [optional] [readonly] 
 **object_id** | **int** |  | [optional] [readonly] 
 **payload** | **object** |  | [optional] [readonly] 

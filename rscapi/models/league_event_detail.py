@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.action_enum import ActionEnum
 from rscapi.models.category_enum import CategoryEnum
 from rscapi.models.league_event_actor import LeagueEventActor
+from rscapi.models.severity_enum import SeverityEnum
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -35,12 +36,13 @@ class LeagueEventDetail(BaseModel):
     league: Optional[StrictInt] = None
     category: Optional[CategoryEnum] = None
     action: Optional[ActionEnum] = None
+    severity: Optional[SeverityEnum] = None
     actor: Optional[LeagueEventActor] = None
     object_id: Optional[StrictInt] = None
     payload: Optional[Any] = None
     is_public: Optional[StrictBool] = None
     created_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["id", "league", "category", "action", "actor", "object_id", "payload", "is_public", "created_at"]
+    __properties: ClassVar[List[str]] = ["id", "league", "category", "action", "severity", "actor", "object_id", "payload", "is_public", "created_at"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -81,12 +83,14 @@ class LeagueEventDetail(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "league",
             "category",
             "action",
+            "severity",
             "actor",
             "object_id",
             "payload",
@@ -102,6 +106,11 @@ class LeagueEventDetail(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of actor
         if self.actor:
             _dict['actor'] = self.actor.to_dict()
+        # set to None if league (nullable) is None
+        # and model_fields_set contains the field
+        if self.league is None and "league" in self.model_fields_set:
+            _dict['league'] = None
+
         # set to None if action (nullable) is None
         # and model_fields_set contains the field
         if self.action is None and "action" in self.model_fields_set:
@@ -138,6 +147,7 @@ class LeagueEventDetail(BaseModel):
             "league": obj.get("league"),
             "category": obj.get("category"),
             "action": obj.get("action"),
+            "severity": obj.get("severity"),
             "actor": LeagueEventActor.from_dict(obj["actor"]) if obj.get("actor") is not None else None,
             "object_id": obj.get("object_id"),
             "payload": obj.get("payload"),

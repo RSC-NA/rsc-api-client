@@ -119,6 +119,7 @@ Class | Method | HTTP request | Description
 *DraftPicksApi* | [**draft_picks_swap_create**](docs/DraftPicksApi.md#draft_picks_swap_create) | **POST** /draft-picks/swap/ | 
 *DraftPicksApi* | [**draft_picks_update**](docs/DraftPicksApi.md#draft_picks_update) | **PUT** /draft-picks/{id}/ | 
 *ElevatedRolesApi* | [**elevated_roles_list**](docs/ElevatedRolesApi.md#elevated_roles_list) | **GET** /elevated-roles/ | 
+*ElevatedRolesApi* | [**elevated_roles_sync_create**](docs/ElevatedRolesApi.md#elevated_roles_sync_create) | **POST** /elevated-roles/sync/ | 
 *FranchisesApi* | [**franchises_create**](docs/FranchisesApi.md#franchises_create) | **POST** /franchises/ | 
 *FranchisesApi* | [**franchises_destroy**](docs/FranchisesApi.md#franchises_destroy) | **DELETE** /franchises/{id}/ | 
 *FranchisesApi* | [**franchises_list**](docs/FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
@@ -245,7 +246,7 @@ Class | Method | HTTP request | Description
 *TrackerLinksApi* | [**tracker_links_dedup_pulls_create**](docs/TrackerLinksApi.md#tracker_links_dedup_pulls_create) | **POST** /tracker-links/{id}/dedup_pulls/ | 
 *TrackerLinksApi* | [**tracker_links_dedup_pulls_retrieve**](docs/TrackerLinksApi.md#tracker_links_dedup_pulls_retrieve) | **GET** /tracker-links/{id}/dedup_pulls/ | 
 *TrackerLinksApi* | [**tracker_links_destroy**](docs/TrackerLinksApi.md#tracker_links_destroy) | **DELETE** /tracker-links/{id}/ | 
-*TrackerLinksApi* | [**tracker_links_fix_duplicate_links_retrieve**](docs/TrackerLinksApi.md#tracker_links_fix_duplicate_links_retrieve) | **GET** /tracker-links/fix_duplicate_links/ | 
+*TrackerLinksApi* | [**tracker_links_fix_duplicate_links_create**](docs/TrackerLinksApi.md#tracker_links_fix_duplicate_links_create) | **POST** /tracker-links/fix_duplicate_links/ | 
 *TrackerLinksApi* | [**tracker_links_invalidate_links_create**](docs/TrackerLinksApi.md#tracker_links_invalidate_links_create) | **POST** /tracker-links/invalidate_links/ | 
 *TrackerLinksApi* | [**tracker_links_link_create**](docs/TrackerLinksApi.md#tracker_links_link_create) | **POST** /tracker-links/{id}/link/ | 
 *TrackerLinksApi* | [**tracker_links_links_stats_list**](docs/TrackerLinksApi.md#tracker_links_links_stats_list) | **GET** /tracker-links/links_stats/ | 
@@ -300,6 +301,8 @@ Class | Method | HTTP request | Description
  - [ElevatedRole](docs/ElevatedRole.md)
  - [ElevatedRoleInput](docs/ElevatedRoleInput.md)
  - [ElevatedRoleLeague](docs/ElevatedRoleLeague.md)
+ - [ElevatedRoleSyncInput](docs/ElevatedRoleSyncInput.md)
+ - [ElevatedRoleSyncResult](docs/ElevatedRoleSyncResult.md)
  - [Error](docs/Error.md)
  - [FlaggedMatch](docs/FlaggedMatch.md)
  - [Franchise](docs/Franchise.md)
@@ -354,6 +357,7 @@ Class | Method | HTTP request | Description
  - [PaginatedDraftPickListList](docs/PaginatedDraftPickListList.md)
  - [PaginatedElevatedRoleList](docs/PaginatedElevatedRoleList.md)
  - [PaginatedFlaggedMatchList](docs/PaginatedFlaggedMatchList.md)
+ - [PaginatedLeagueEventListList](docs/PaginatedLeagueEventListList.md)
  - [PaginatedLeaguePlayerList](docs/PaginatedLeaguePlayerList.md)
  - [PaginatedMatch](docs/PaginatedMatch.md)
  - [PaginatedMatchListList](docs/PaginatedMatchListList.md)
@@ -401,6 +405,7 @@ Class | Method | HTTP request | Description
  - [SeasonLeague](docs/SeasonLeague.md)
  - [SeasonSchedule](docs/SeasonSchedule.md)
  - [SeasonTierData](docs/SeasonTierData.md)
+ - [SeverityEnum](docs/SeverityEnum.md)
  - [SignupDetailsRequest](docs/SignupDetailsRequest.md)
  - [SimpleMember](docs/SimpleMember.md)
  - [StatsTypeEnum](docs/StatsTypeEnum.md)

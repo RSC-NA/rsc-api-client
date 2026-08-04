@@ -17,10 +17,10 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.league_event_detail import LeagueEventDetail
-from rscapi.models.league_event_list import LeagueEventList
+from rscapi.models.paginated_league_event_list_list import PaginatedLeagueEventListList
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -49,8 +49,13 @@ class IntegrationsApi:
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
+        include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
         is_public: Annotated[Optional[StrictBool], Field(description="Filter events by public visibility.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
+        severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -63,7 +68,7 @@ class IntegrationsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[LeagueEventList]:
+    ) -> PaginatedLeagueEventListList:
         """integrations_events_list
 
 
@@ -79,10 +84,20 @@ class IntegrationsApi:
         :type guild_id: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
+        :param include_global: Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.
+        :type include_global: bool
         :param is_public: Filter events by public visibility.
         :type is_public: bool
         :param league: League ID.
         :type league: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
+        :param severity: Event severity code.
+        :type severity: str
+        :param severity__in: Comma separated list of severity codes, e.g. `ERR,CRT`.
+        :type severity__in: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -112,8 +127,13 @@ class IntegrationsApi:
             created_at__lte=created_at__lte,
             guild_id=guild_id,
             id__gte=id__gte,
+            include_global=include_global,
             is_public=is_public,
             league=league,
+            limit=limit,
+            offset=offset,
+            severity=severity,
+            severity__in=severity__in,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -121,7 +141,7 @@ class IntegrationsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[LeagueEventList]",
+            '200': "PaginatedLeagueEventListList",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -143,8 +163,13 @@ class IntegrationsApi:
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
+        include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
         is_public: Annotated[Optional[StrictBool], Field(description="Filter events by public visibility.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
+        severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -157,7 +182,7 @@ class IntegrationsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[LeagueEventList]]:
+    ) -> ApiResponse[PaginatedLeagueEventListList]:
         """integrations_events_list
 
 
@@ -173,10 +198,20 @@ class IntegrationsApi:
         :type guild_id: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
+        :param include_global: Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.
+        :type include_global: bool
         :param is_public: Filter events by public visibility.
         :type is_public: bool
         :param league: League ID.
         :type league: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
+        :param severity: Event severity code.
+        :type severity: str
+        :param severity__in: Comma separated list of severity codes, e.g. `ERR,CRT`.
+        :type severity__in: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -206,8 +241,13 @@ class IntegrationsApi:
             created_at__lte=created_at__lte,
             guild_id=guild_id,
             id__gte=id__gte,
+            include_global=include_global,
             is_public=is_public,
             league=league,
+            limit=limit,
+            offset=offset,
+            severity=severity,
+            severity__in=severity__in,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -215,7 +255,7 @@ class IntegrationsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[LeagueEventList]",
+            '200': "PaginatedLeagueEventListList",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -237,8 +277,13 @@ class IntegrationsApi:
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
+        include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
         is_public: Annotated[Optional[StrictBool], Field(description="Filter events by public visibility.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
+        severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -267,10 +312,20 @@ class IntegrationsApi:
         :type guild_id: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
+        :param include_global: Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.
+        :type include_global: bool
         :param is_public: Filter events by public visibility.
         :type is_public: bool
         :param league: League ID.
         :type league: int
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param offset: The initial index from which to return the results.
+        :type offset: int
+        :param severity: Event severity code.
+        :type severity: str
+        :param severity__in: Comma separated list of severity codes, e.g. `ERR,CRT`.
+        :type severity__in: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -300,8 +355,13 @@ class IntegrationsApi:
             created_at__lte=created_at__lte,
             guild_id=guild_id,
             id__gte=id__gte,
+            include_global=include_global,
             is_public=is_public,
             league=league,
+            limit=limit,
+            offset=offset,
+            severity=severity,
+            severity__in=severity__in,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -309,7 +369,7 @@ class IntegrationsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[LeagueEventList]",
+            '200': "PaginatedLeagueEventListList",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -326,8 +386,13 @@ class IntegrationsApi:
         created_at__lte,
         guild_id,
         id__gte,
+        include_global,
         is_public,
         league,
+        limit,
+        offset,
+        severity,
+        severity__in,
         _request_auth,
         _content_type,
         _headers,
@@ -392,6 +457,10 @@ class IntegrationsApi:
             
             _query_params.append(('id__gte', id__gte))
             
+        if include_global is not None:
+            
+            _query_params.append(('include_global', include_global))
+            
         if is_public is not None:
             
             _query_params.append(('is_public', is_public))
@@ -399,6 +468,22 @@ class IntegrationsApi:
         if league is not None:
             
             _query_params.append(('league', league))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
+            
+        if severity is not None:
+            
+            _query_params.append(('severity', severity))
+            
+        if severity__in is not None:
+            
+            _query_params.append(('severity__in', severity__in))
             
         # process the header parameters
         # process the form parameters

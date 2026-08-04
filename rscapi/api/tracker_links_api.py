@@ -1620,7 +1620,7 @@ class TrackerLinksApi:
 
 
     @validate_call
-    async def tracker_links_fix_duplicate_links_retrieve(
+    async def tracker_links_fix_duplicate_links_create(
         self,
         _request_timeout: Union[
             None,
@@ -1635,7 +1635,7 @@ class TrackerLinksApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> TrackerLink:
-        """tracker_links_fix_duplicate_links_retrieve
+        """tracker_links_fix_duplicate_links_create
 
         Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
@@ -1661,7 +1661,7 @@ class TrackerLinksApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._tracker_links_fix_duplicate_links_retrieve_serialize(
+        _param = self._tracker_links_fix_duplicate_links_create_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1683,7 +1683,7 @@ class TrackerLinksApi:
 
 
     @validate_call
-    async def tracker_links_fix_duplicate_links_retrieve_with_http_info(
+    async def tracker_links_fix_duplicate_links_create_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -1698,7 +1698,7 @@ class TrackerLinksApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[TrackerLink]:
-        """tracker_links_fix_duplicate_links_retrieve
+        """tracker_links_fix_duplicate_links_create
 
         Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
@@ -1724,7 +1724,7 @@ class TrackerLinksApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._tracker_links_fix_duplicate_links_retrieve_serialize(
+        _param = self._tracker_links_fix_duplicate_links_create_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1746,7 +1746,7 @@ class TrackerLinksApi:
 
 
     @validate_call
-    async def tracker_links_fix_duplicate_links_retrieve_without_preload_content(
+    async def tracker_links_fix_duplicate_links_create_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -1761,7 +1761,7 @@ class TrackerLinksApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """tracker_links_fix_duplicate_links_retrieve
+        """tracker_links_fix_duplicate_links_create
 
         Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
@@ -1787,7 +1787,7 @@ class TrackerLinksApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._tracker_links_fix_duplicate_links_retrieve_serialize(
+        _param = self._tracker_links_fix_duplicate_links_create_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1804,7 +1804,7 @@ class TrackerLinksApi:
         return response_data.response
 
 
-    def _tracker_links_fix_duplicate_links_retrieve_serialize(
+    def _tracker_links_fix_duplicate_links_create_serialize(
         self,
         _request_auth,
         _content_type,
@@ -1848,7 +1848,7 @@ class TrackerLinksApi:
         ]
 
         return self.api_client.param_serialize(
-            method='GET',
+            method='POST',
             resource_path='/tracker-links/fix_duplicate_links/',
             path_params=_path_params,
             query_params=_query_params,

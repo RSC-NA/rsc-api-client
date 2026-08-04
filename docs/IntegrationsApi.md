@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **integrations_events_list**
-> List[LeagueEventList] integrations_events_list(action=action, category=category, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id, id__gte=id__gte, is_public=is_public, league=league)
+> PaginatedLeagueEventListList integrations_events_list(action=action, category=category, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id, id__gte=id__gte, include_global=include_global, is_public=is_public, league=league, limit=limit, offset=offset, severity=severity, severity__in=severity__in)
 
 ### Example
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ```python
 import rscapi
-from rscapi.models.league_event_list import LeagueEventList
+from rscapi.models.paginated_league_event_list_list import PaginatedLeagueEventListList
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -48,11 +48,16 @@ async with rscapi.ApiClient(configuration) as api_client:
     created_at__lte = '2013-10-20T19:20:30+01:00' # datetime | Events created at or before this datetime (ISO 8601). (optional)
     guild_id = 56 # int | Discord guild ID for league-scoped events. (optional)
     id__gte = 56 # int | Event ID greater than or equal to this value. (optional)
+    include_global = True # bool | Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers. (optional)
     is_public = True # bool | Filter events by public visibility. (optional)
     league = 56 # int | League ID. (optional)
+    limit = 56 # int | Number of results to return per page. (optional)
+    offset = 56 # int | The initial index from which to return the results. (optional)
+    severity = 'severity_example' # str | Event severity code. (optional)
+    severity__in = 'severity__in_example' # str | Comma separated list of severity codes, e.g. `ERR,CRT`. (optional)
 
     try:
-        api_response = await api_instance.integrations_events_list(action=action, category=category, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id, id__gte=id__gte, is_public=is_public, league=league)
+        api_response = await api_instance.integrations_events_list(action=action, category=category, created_at__gte=created_at__gte, created_at__lte=created_at__lte, guild_id=guild_id, id__gte=id__gte, include_global=include_global, is_public=is_public, league=league, limit=limit, offset=offset, severity=severity, severity__in=severity__in)
         print("The response of IntegrationsApi->integrations_events_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -72,12 +77,17 @@ Name | Type | Description  | Notes
  **created_at__lte** | **datetime**| Events created at or before this datetime (ISO 8601). | [optional] 
  **guild_id** | **int**| Discord guild ID for league-scoped events. | [optional] 
  **id__gte** | **int**| Event ID greater than or equal to this value. | [optional] 
+ **include_global** | **bool**| Include global events that are not scoped to any league alongside the &#x60;guild_id&#x60; results. Only has an effect for superusers. | [optional] 
  **is_public** | **bool**| Filter events by public visibility. | [optional] 
  **league** | **int**| League ID. | [optional] 
+ **limit** | **int**| Number of results to return per page. | [optional] 
+ **offset** | **int**| The initial index from which to return the results. | [optional] 
+ **severity** | **str**| Event severity code. | [optional] 
+ **severity__in** | **str**| Comma separated list of severity codes, e.g. &#x60;ERR,CRT&#x60;. | [optional] 
 
 ### Return type
 
-[**List[LeagueEventList]**](LeagueEventList.md)
+[**PaginatedLeagueEventListList**](PaginatedLeagueEventListList.md)
 
 ### Authorization
 

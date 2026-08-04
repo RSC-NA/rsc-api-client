@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**tracker_links_dedup_pulls_create**](TrackerLinksApi.md#tracker_links_dedup_pulls_create) | **POST** /tracker-links/{id}/dedup_pulls/ | 
 [**tracker_links_dedup_pulls_retrieve**](TrackerLinksApi.md#tracker_links_dedup_pulls_retrieve) | **GET** /tracker-links/{id}/dedup_pulls/ | 
 [**tracker_links_destroy**](TrackerLinksApi.md#tracker_links_destroy) | **DELETE** /tracker-links/{id}/ | 
-[**tracker_links_fix_duplicate_links_retrieve**](TrackerLinksApi.md#tracker_links_fix_duplicate_links_retrieve) | **GET** /tracker-links/fix_duplicate_links/ | 
+[**tracker_links_fix_duplicate_links_create**](TrackerLinksApi.md#tracker_links_fix_duplicate_links_create) | **POST** /tracker-links/fix_duplicate_links/ | 
 [**tracker_links_invalidate_links_create**](TrackerLinksApi.md#tracker_links_invalidate_links_create) | **POST** /tracker-links/invalidate_links/ | 
 [**tracker_links_link_create**](TrackerLinksApi.md#tracker_links_link_create) | **POST** /tracker-links/{id}/link/ | 
 [**tracker_links_links_stats_list**](TrackerLinksApi.md#tracker_links_links_stats_list) | **GET** /tracker-links/links_stats/ | 
@@ -485,8 +485,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **tracker_links_fix_duplicate_links_retrieve**
-> TrackerLink tracker_links_fix_duplicate_links_retrieve()
+# **tracker_links_fix_duplicate_links_create**
+> TrackerLink tracker_links_fix_duplicate_links_create()
 
 Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
@@ -523,11 +523,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.TrackerLinksApi(api_client)
 
     try:
-        api_response = await api_instance.tracker_links_fix_duplicate_links_retrieve()
-        print("The response of TrackerLinksApi->tracker_links_fix_duplicate_links_retrieve:\n")
+        api_response = await api_instance.tracker_links_fix_duplicate_links_create()
+        print("The response of TrackerLinksApi->tracker_links_fix_duplicate_links_create:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TrackerLinksApi->tracker_links_fix_duplicate_links_retrieve: %s\n" % e)
+        print("Exception when calling TrackerLinksApi->tracker_links_fix_duplicate_links_create: %s\n" % e)
 ```
 
 

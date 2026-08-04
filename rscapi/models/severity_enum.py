@@ -18,22 +18,22 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class CategoryEnum(str, Enum):
+class SeverityEnum(str, Enum):
     """
-    * `OBJ` - Object * `ANN` - Announcement * `TRN` - Transaction * `SYS` - System
+    * `INF` - Info * `WRN` - Warning * `ERR` - Error * `CRT` - Critical
     """
 
     """
     allowed enum values
     """
-    OBJ = 'OBJ'
-    ANN = 'ANN'
-    TRN = 'TRN'
-    SYS = 'SYS'
+    INF = 'INF'
+    WRN = 'WRN'
+    ERR = 'ERR'
+    CRT = 'CRT'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of CategoryEnum from a JSON string"""
+        """Create an instance of SeverityEnum from a JSON string"""
         return cls(json.loads(json_str))
 
 

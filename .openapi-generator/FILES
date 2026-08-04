@@ -27,6 +27,8 @@ docs/DraftTierList.md
 docs/ElevatedRole.md
 docs/ElevatedRoleInput.md
 docs/ElevatedRoleLeague.md
+docs/ElevatedRoleSyncInput.md
+docs/ElevatedRoleSyncResult.md
 docs/ElevatedRolesApi.md
 docs/Error.md
 docs/FlaggedMatch.md
@@ -89,6 +91,7 @@ docs/PaginatedActivityCheckList.md
 docs/PaginatedDraftPickListList.md
 docs/PaginatedElevatedRoleList.md
 docs/PaginatedFlaggedMatchList.md
+docs/PaginatedLeagueEventListList.md
 docs/PaginatedLeaguePlayerList.md
 docs/PaginatedMatch.md
 docs/PaginatedMatchListList.md
@@ -137,6 +140,7 @@ docs/SeasonLeague.md
 docs/SeasonSchedule.md
 docs/SeasonTierData.md
 docs/SeasonsApi.md
+docs/SeverityEnum.md
 docs/SignupDetailsRequest.md
 docs/SimpleMember.md
 docs/StatsApi.md
@@ -236,6 +240,8 @@ rscapi/models/draft_tier_list.py
 rscapi/models/elevated_role.py
 rscapi/models/elevated_role_input.py
 rscapi/models/elevated_role_league.py
+rscapi/models/elevated_role_sync_input.py
+rscapi/models/elevated_role_sync_result.py
 rscapi/models/error.py
 rscapi/models/flagged_match.py
 rscapi/models/franchise.py
@@ -290,6 +296,7 @@ rscapi/models/paginated_activity_check_list.py
 rscapi/models/paginated_draft_pick_list_list.py
 rscapi/models/paginated_elevated_role_list.py
 rscapi/models/paginated_flagged_match_list.py
+rscapi/models/paginated_league_event_list_list.py
 rscapi/models/paginated_league_player_list.py
 rscapi/models/paginated_match.py
 rscapi/models/paginated_match_list_list.py
@@ -337,6 +344,7 @@ rscapi/models/season_draft_pick_list.py
 rscapi/models/season_league.py
 rscapi/models/season_schedule.py
 rscapi/models/season_tier_data.py
+rscapi/models/severity_enum.py
 rscapi/models/signup_details_request.py
 rscapi/models/simple_member.py
 rscapi/models/stats_type_enum.py
@@ -389,9 +397,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_waiver_claim_input.py
-test/test_waiver_claim_response.py
-test/test_waiver_claim_response_status_enum.py
-test/test_waiver_order.py
-test/test_waiver_order_entry.py
+test/test_elevated_role_sync_input.py
+test/test_elevated_role_sync_result.py
+test/test_paginated_league_event_list_list.py
+test/test_severity_enum.py
 tox.ini

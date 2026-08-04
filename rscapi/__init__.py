@@ -65,6 +65,8 @@ __all__ = [
     "ElevatedRole",
     "ElevatedRoleInput",
     "ElevatedRoleLeague",
+    "ElevatedRoleSyncInput",
+    "ElevatedRoleSyncResult",
     "Error",
     "FlaggedMatch",
     "Franchise",
@@ -119,6 +121,7 @@ __all__ = [
     "PaginatedDraftPickListList",
     "PaginatedElevatedRoleList",
     "PaginatedFlaggedMatchList",
+    "PaginatedLeagueEventListList",
     "PaginatedLeaguePlayerList",
     "PaginatedMatch",
     "PaginatedMatchListList",
@@ -166,6 +169,7 @@ __all__ = [
     "SeasonLeague",
     "SeasonSchedule",
     "SeasonTierData",
+    "SeverityEnum",
     "SignupDetailsRequest",
     "SimpleMember",
     "StatsTypeEnum",
@@ -266,6 +270,8 @@ from rscapi.models.draft_tier_list import DraftTierList as DraftTierList
 from rscapi.models.elevated_role import ElevatedRole as ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput as ElevatedRoleInput
 from rscapi.models.elevated_role_league import ElevatedRoleLeague as ElevatedRoleLeague
+from rscapi.models.elevated_role_sync_input import ElevatedRoleSyncInput as ElevatedRoleSyncInput
+from rscapi.models.elevated_role_sync_result import ElevatedRoleSyncResult as ElevatedRoleSyncResult
 from rscapi.models.error import Error as Error
 from rscapi.models.flagged_match import FlaggedMatch as FlaggedMatch
 from rscapi.models.franchise import Franchise as Franchise
@@ -320,6 +326,7 @@ from rscapi.models.paginated_activity_check_list import PaginatedActivityCheckLi
 from rscapi.models.paginated_draft_pick_list_list import PaginatedDraftPickListList as PaginatedDraftPickListList
 from rscapi.models.paginated_elevated_role_list import PaginatedElevatedRoleList as PaginatedElevatedRoleList
 from rscapi.models.paginated_flagged_match_list import PaginatedFlaggedMatchList as PaginatedFlaggedMatchList
+from rscapi.models.paginated_league_event_list_list import PaginatedLeagueEventListList as PaginatedLeagueEventListList
 from rscapi.models.paginated_league_player_list import PaginatedLeaguePlayerList as PaginatedLeaguePlayerList
 from rscapi.models.paginated_match import PaginatedMatch as PaginatedMatch
 from rscapi.models.paginated_match_list_list import PaginatedMatchListList as PaginatedMatchListList
@@ -367,6 +374,7 @@ from rscapi.models.season_draft_pick_list import SeasonDraftPickList as SeasonDr
 from rscapi.models.season_league import SeasonLeague as SeasonLeague
 from rscapi.models.season_schedule import SeasonSchedule as SeasonSchedule
 from rscapi.models.season_tier_data import SeasonTierData as SeasonTierData
+from rscapi.models.severity_enum import SeverityEnum as SeverityEnum
 from rscapi.models.signup_details_request import SignupDetailsRequest as SignupDetailsRequest
 from rscapi.models.simple_member import SimpleMember as SimpleMember
 from rscapi.models.stats_type_enum import StatsTypeEnum as StatsTypeEnum

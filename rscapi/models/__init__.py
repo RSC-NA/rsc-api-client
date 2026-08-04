@@ -35,6 +35,8 @@ from rscapi.models.draft_tier_list import DraftTierList
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput
 from rscapi.models.elevated_role_league import ElevatedRoleLeague
+from rscapi.models.elevated_role_sync_input import ElevatedRoleSyncInput
+from rscapi.models.elevated_role_sync_result import ElevatedRoleSyncResult
 from rscapi.models.error import Error
 from rscapi.models.flagged_match import FlaggedMatch
 from rscapi.models.franchise import Franchise
@@ -89,6 +91,7 @@ from rscapi.models.paginated_activity_check_list import PaginatedActivityCheckLi
 from rscapi.models.paginated_draft_pick_list_list import PaginatedDraftPickListList
 from rscapi.models.paginated_elevated_role_list import PaginatedElevatedRoleList
 from rscapi.models.paginated_flagged_match_list import PaginatedFlaggedMatchList
+from rscapi.models.paginated_league_event_list_list import PaginatedLeagueEventListList
 from rscapi.models.paginated_league_player_list import PaginatedLeaguePlayerList
 from rscapi.models.paginated_match import PaginatedMatch
 from rscapi.models.paginated_match_list_list import PaginatedMatchListList
@@ -136,6 +139,7 @@ from rscapi.models.season_draft_pick_list import SeasonDraftPickList
 from rscapi.models.season_league import SeasonLeague
 from rscapi.models.season_schedule import SeasonSchedule
 from rscapi.models.season_tier_data import SeasonTierData
+from rscapi.models.severity_enum import SeverityEnum
 from rscapi.models.signup_details_request import SignupDetailsRequest
 from rscapi.models.simple_member import SimpleMember
 from rscapi.models.stats_type_enum import StatsTypeEnum
