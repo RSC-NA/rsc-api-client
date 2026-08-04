@@ -397,8 +397,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_elevated_role_sync_input.py
-test/test_elevated_role_sync_result.py
-test/test_paginated_league_event_list_list.py
-test/test_severity_enum.py
 tox.ini

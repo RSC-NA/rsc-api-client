@@ -44,16 +44,21 @@ class IntegrationsApi:
     async def integrations_events_list(
         self,
         action: Annotated[Optional[StrictStr], Field(description="Event action code.")] = None,
+        action__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of action codes, e.g. `WCW,WCL`.")] = None,
         category: Annotated[Optional[StrictStr], Field(description="Event category code.")] = None,
+        category__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of category codes, e.g. `TRN,ANN`.")] = None,
         created_at__gte: Annotated[Optional[datetime], Field(description="Events created at or after this datetime (ISO 8601).")] = None,
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
+        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
+        id__lte: Annotated[Optional[StrictInt], Field(description="Event ID less than or equal to this value.")] = None,
         include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
         is_public: Annotated[Optional[StrictBool], Field(description="Filter events by public visibility.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.")] = None,
         severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
         severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
@@ -74,16 +79,24 @@ class IntegrationsApi:
 
         :param action: Event action code.
         :type action: str
+        :param action__in: Comma separated list of action codes, e.g. `WCW,WCL`.
+        :type action__in: str
         :param category: Event category code.
         :type category: str
+        :param category__in: Comma separated list of category codes, e.g. `TRN,ANN`.
+        :type category__in: str
         :param created_at__gte: Events created at or after this datetime (ISO 8601).
         :type created_at__gte: datetime
         :param created_at__lte: Events created at or before this datetime (ISO 8601).
         :type created_at__lte: datetime
         :param guild_id: Discord guild ID for league-scoped events.
         :type guild_id: int
+        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter.
+        :type id__gt: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
+        :param id__lte: Event ID less than or equal to this value.
+        :type id__lte: int
         :param include_global: Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.
         :type include_global: bool
         :param is_public: Filter events by public visibility.
@@ -94,6 +107,8 @@ class IntegrationsApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.
+        :type ordering: str
         :param severity: Event severity code.
         :type severity: str
         :param severity__in: Comma separated list of severity codes, e.g. `ERR,CRT`.
@@ -122,16 +137,21 @@ class IntegrationsApi:
 
         _param = self._integrations_events_list_serialize(
             action=action,
+            action__in=action__in,
             category=category,
+            category__in=category__in,
             created_at__gte=created_at__gte,
             created_at__lte=created_at__lte,
             guild_id=guild_id,
+            id__gt=id__gt,
             id__gte=id__gte,
+            id__lte=id__lte,
             include_global=include_global,
             is_public=is_public,
             league=league,
             limit=limit,
             offset=offset,
+            ordering=ordering,
             severity=severity,
             severity__in=severity__in,
             _request_auth=_request_auth,
@@ -158,16 +178,21 @@ class IntegrationsApi:
     async def integrations_events_list_with_http_info(
         self,
         action: Annotated[Optional[StrictStr], Field(description="Event action code.")] = None,
+        action__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of action codes, e.g. `WCW,WCL`.")] = None,
         category: Annotated[Optional[StrictStr], Field(description="Event category code.")] = None,
+        category__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of category codes, e.g. `TRN,ANN`.")] = None,
         created_at__gte: Annotated[Optional[datetime], Field(description="Events created at or after this datetime (ISO 8601).")] = None,
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
+        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
+        id__lte: Annotated[Optional[StrictInt], Field(description="Event ID less than or equal to this value.")] = None,
         include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
         is_public: Annotated[Optional[StrictBool], Field(description="Filter events by public visibility.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.")] = None,
         severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
         severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
@@ -188,16 +213,24 @@ class IntegrationsApi:
 
         :param action: Event action code.
         :type action: str
+        :param action__in: Comma separated list of action codes, e.g. `WCW,WCL`.
+        :type action__in: str
         :param category: Event category code.
         :type category: str
+        :param category__in: Comma separated list of category codes, e.g. `TRN,ANN`.
+        :type category__in: str
         :param created_at__gte: Events created at or after this datetime (ISO 8601).
         :type created_at__gte: datetime
         :param created_at__lte: Events created at or before this datetime (ISO 8601).
         :type created_at__lte: datetime
         :param guild_id: Discord guild ID for league-scoped events.
         :type guild_id: int
+        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter.
+        :type id__gt: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
+        :param id__lte: Event ID less than or equal to this value.
+        :type id__lte: int
         :param include_global: Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.
         :type include_global: bool
         :param is_public: Filter events by public visibility.
@@ -208,6 +241,8 @@ class IntegrationsApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.
+        :type ordering: str
         :param severity: Event severity code.
         :type severity: str
         :param severity__in: Comma separated list of severity codes, e.g. `ERR,CRT`.
@@ -236,16 +271,21 @@ class IntegrationsApi:
 
         _param = self._integrations_events_list_serialize(
             action=action,
+            action__in=action__in,
             category=category,
+            category__in=category__in,
             created_at__gte=created_at__gte,
             created_at__lte=created_at__lte,
             guild_id=guild_id,
+            id__gt=id__gt,
             id__gte=id__gte,
+            id__lte=id__lte,
             include_global=include_global,
             is_public=is_public,
             league=league,
             limit=limit,
             offset=offset,
+            ordering=ordering,
             severity=severity,
             severity__in=severity__in,
             _request_auth=_request_auth,
@@ -272,16 +312,21 @@ class IntegrationsApi:
     async def integrations_events_list_without_preload_content(
         self,
         action: Annotated[Optional[StrictStr], Field(description="Event action code.")] = None,
+        action__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of action codes, e.g. `WCW,WCL`.")] = None,
         category: Annotated[Optional[StrictStr], Field(description="Event category code.")] = None,
+        category__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of category codes, e.g. `TRN,ANN`.")] = None,
         created_at__gte: Annotated[Optional[datetime], Field(description="Events created at or after this datetime (ISO 8601).")] = None,
         created_at__lte: Annotated[Optional[datetime], Field(description="Events created at or before this datetime (ISO 8601).")] = None,
         guild_id: Annotated[Optional[StrictInt], Field(description="Discord guild ID for league-scoped events.")] = None,
+        id__gt: Annotated[Optional[StrictInt], Field(description="Event ID strictly greater than this value. Preferred cursor filter.")] = None,
         id__gte: Annotated[Optional[StrictInt], Field(description="Event ID greater than or equal to this value.")] = None,
+        id__lte: Annotated[Optional[StrictInt], Field(description="Event ID less than or equal to this value.")] = None,
         include_global: Annotated[Optional[StrictBool], Field(description="Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.")] = None,
         is_public: Annotated[Optional[StrictBool], Field(description="Filter events by public visibility.")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        ordering: Annotated[Optional[StrictStr], Field(description="Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.")] = None,
         severity: Annotated[Optional[StrictStr], Field(description="Event severity code.")] = None,
         severity__in: Annotated[Optional[StrictStr], Field(description="Comma separated list of severity codes, e.g. `ERR,CRT`.")] = None,
         _request_timeout: Union[
@@ -302,16 +347,24 @@ class IntegrationsApi:
 
         :param action: Event action code.
         :type action: str
+        :param action__in: Comma separated list of action codes, e.g. `WCW,WCL`.
+        :type action__in: str
         :param category: Event category code.
         :type category: str
+        :param category__in: Comma separated list of category codes, e.g. `TRN,ANN`.
+        :type category__in: str
         :param created_at__gte: Events created at or after this datetime (ISO 8601).
         :type created_at__gte: datetime
         :param created_at__lte: Events created at or before this datetime (ISO 8601).
         :type created_at__lte: datetime
         :param guild_id: Discord guild ID for league-scoped events.
         :type guild_id: int
+        :param id__gt: Event ID strictly greater than this value. Preferred cursor filter.
+        :type id__gt: int
         :param id__gte: Event ID greater than or equal to this value.
         :type id__gte: int
+        :param id__lte: Event ID less than or equal to this value.
+        :type id__lte: int
         :param include_global: Include global events that are not scoped to any league alongside the `guild_id` results. Only has an effect for superusers.
         :type include_global: bool
         :param is_public: Filter events by public visibility.
@@ -322,6 +375,8 @@ class IntegrationsApi:
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
+        :param ordering: Field to order by. Prefix with `-` for descending. One of: `id`, `created_at`. Defaults to newest first. Cursor consumers should use `id` so newly inserted rows append to the end and cannot cross a page boundary.
+        :type ordering: str
         :param severity: Event severity code.
         :type severity: str
         :param severity__in: Comma separated list of severity codes, e.g. `ERR,CRT`.
@@ -350,16 +405,21 @@ class IntegrationsApi:
 
         _param = self._integrations_events_list_serialize(
             action=action,
+            action__in=action__in,
             category=category,
+            category__in=category__in,
             created_at__gte=created_at__gte,
             created_at__lte=created_at__lte,
             guild_id=guild_id,
+            id__gt=id__gt,
             id__gte=id__gte,
+            id__lte=id__lte,
             include_global=include_global,
             is_public=is_public,
             league=league,
             limit=limit,
             offset=offset,
+            ordering=ordering,
             severity=severity,
             severity__in=severity__in,
             _request_auth=_request_auth,
@@ -381,16 +441,21 @@ class IntegrationsApi:
     def _integrations_events_list_serialize(
         self,
         action,
+        action__in,
         category,
+        category__in,
         created_at__gte,
         created_at__lte,
         guild_id,
+        id__gt,
         id__gte,
+        id__lte,
         include_global,
         is_public,
         league,
         limit,
         offset,
+        ordering,
         severity,
         severity__in,
         _request_auth,
@@ -419,9 +484,17 @@ class IntegrationsApi:
             
             _query_params.append(('action', action))
             
+        if action__in is not None:
+            
+            _query_params.append(('action__in', action__in))
+            
         if category is not None:
             
             _query_params.append(('category', category))
+            
+        if category__in is not None:
+            
+            _query_params.append(('category__in', category__in))
             
         if created_at__gte is not None:
             if isinstance(created_at__gte, datetime):
@@ -453,9 +526,17 @@ class IntegrationsApi:
             
             _query_params.append(('guild_id', guild_id))
             
+        if id__gt is not None:
+            
+            _query_params.append(('id__gt', id__gt))
+            
         if id__gte is not None:
             
             _query_params.append(('id__gte', id__gte))
+            
+        if id__lte is not None:
+            
+            _query_params.append(('id__lte', id__lte))
             
         if include_global is not None:
             
@@ -476,6 +557,10 @@ class IntegrationsApi:
         if offset is not None:
             
             _query_params.append(('offset', offset))
+            
+        if ordering is not None:
+            
+            _query_params.append(('ordering', ordering))
             
         if severity is not None:
             
