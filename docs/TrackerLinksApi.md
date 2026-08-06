@@ -710,7 +710,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_links_stats_list**
-> List[TrackerLinkStats] tracker_links_links_stats_list(format=format)
+> List[TrackerLinkStats] tracker_links_links_stats_list(active=active, format=format)
 
 ### Example
 
@@ -743,10 +743,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
+    active = True # bool | Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one. (optional) (default to True)
     format = 'format_example' # str |  (optional)
 
     try:
-        api_response = await api_instance.tracker_links_links_stats_list(format=format)
+        api_response = await api_instance.tracker_links_links_stats_list(active=active, format=format)
         print("The response of TrackerLinksApi->tracker_links_links_stats_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -760,6 +761,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | **bool**| Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by &#x60;next/&#x60; either way, since a pull cannot be recorded without one. | [optional] [default to True]
  **format** | **str**|  | [optional] 
 
 ### Return type
@@ -955,7 +957,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_next_list**
-> List[TrackerLink] tracker_links_next_list(format=format, limit=limit)
+> List[TrackerLink] tracker_links_next_list(active=active, format=format, limit=limit)
 
 ### Example
 
@@ -988,11 +990,12 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
+    active = True # bool | Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one. (optional) (default to True)
     format = 'format_example' # str |  (optional)
-    limit = 56 # int | Number of tracker links to grab (Default: 1, Max:25) (optional)
+    limit = 56 # int | Number of tracker links to claim (Default: 1, clamped to 25). Returned trackers are claimed: each is stamped with `last_attempt_at`, so successive calls advance through the queue rather than returning the same rows. A claimed tracker is withheld for a cooldown period and then rotates back into its priority rung, so a tracker that cannot be pulled will not block the queue. Priority order is: never pulled, missing season history, scraped-but-empty, stale peak, then previously-failed attempts last. Trackers marked invalid by the nightly account validation are never served. Returns an empty array when nothing is due. Non-integer or < 1 values return 400. (optional)
 
     try:
-        api_response = await api_instance.tracker_links_next_list(format=format, limit=limit)
+        api_response = await api_instance.tracker_links_next_list(active=active, format=format, limit=limit)
         print("The response of TrackerLinksApi->tracker_links_next_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -1006,8 +1009,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | **bool**| Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by &#x60;next/&#x60; either way, since a pull cannot be recorded without one. | [optional] [default to True]
  **format** | **str**|  | [optional] 
- **limit** | **int**| Number of tracker links to grab (Default: 1, Max:25) | [optional] 
+ **limit** | **int**| Number of tracker links to claim (Default: 1, clamped to 25). Returned trackers are claimed: each is stamped with &#x60;last_attempt_at&#x60;, so successive calls advance through the queue rather than returning the same rows. A claimed tracker is withheld for a cooldown period and then rotates back into its priority rung, so a tracker that cannot be pulled will not block the queue. Priority order is: never pulled, missing season history, scraped-but-empty, stale peak, then previously-failed attempts last. Trackers marked invalid by the nightly account validation are never served. Returns an empty array when nothing is due. Non-integer or &lt; 1 values return 400. | [optional] 
 
 ### Return type
 

@@ -2427,6 +2427,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_links_stats_list(
         self,
+        active: Annotated[Optional[StrictBool], Field(description="Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.")] = None,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -2444,6 +2445,8 @@ class TrackerLinksApi:
         """tracker_links_links_stats_list
 
 
+        :param active: Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.
+        :type active: bool
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2469,6 +2472,7 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_links_stats_list_serialize(
+            active=active,
             format=format,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2493,6 +2497,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_links_stats_list_with_http_info(
         self,
+        active: Annotated[Optional[StrictBool], Field(description="Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.")] = None,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -2510,6 +2515,8 @@ class TrackerLinksApi:
         """tracker_links_links_stats_list
 
 
+        :param active: Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.
+        :type active: bool
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2535,6 +2542,7 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_links_stats_list_serialize(
+            active=active,
             format=format,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2559,6 +2567,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_links_stats_list_without_preload_content(
         self,
+        active: Annotated[Optional[StrictBool], Field(description="Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.")] = None,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -2576,6 +2585,8 @@ class TrackerLinksApi:
         """tracker_links_links_stats_list
 
 
+        :param active: Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.
+        :type active: bool
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2601,6 +2612,7 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_links_stats_list_serialize(
+            active=active,
             format=format,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -2620,6 +2632,7 @@ class TrackerLinksApi:
 
     def _tracker_links_links_stats_list_serialize(
         self,
+        active,
         format,
         _request_auth,
         _content_type,
@@ -2643,6 +2656,10 @@ class TrackerLinksApi:
 
         # process the path parameters
         # process the query parameters
+        if active is not None:
+            
+            _query_params.append(('active', active))
+            
         if format is not None:
             
             _query_params.append(('format', format))
@@ -3393,8 +3410,9 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_next_list(
         self,
+        active: Annotated[Optional[StrictBool], Field(description="Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.")] = None,
         format: Optional[StrictStr] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of tracker links to claim (Default: 1, clamped to 25). Returned trackers are claimed: each is stamped with `last_attempt_at`, so successive calls advance through the queue rather than returning the same rows. A claimed tracker is withheld for a cooldown period and then rotates back into its priority rung, so a tracker that cannot be pulled will not block the queue. Priority order is: never pulled, missing season history, scraped-but-empty, stale peak, then previously-failed attempts last. Trackers marked invalid by the nightly account validation are never served. Returns an empty array when nothing is due. Non-integer or < 1 values return 400.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3411,9 +3429,11 @@ class TrackerLinksApi:
         """tracker_links_next_list
 
 
+        :param active: Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.
+        :type active: bool
         :param format:
         :type format: str
-        :param limit: Number of tracker links to grab (Default: 1, Max:25)
+        :param limit: Number of tracker links to claim (Default: 1, clamped to 25). Returned trackers are claimed: each is stamped with `last_attempt_at`, so successive calls advance through the queue rather than returning the same rows. A claimed tracker is withheld for a cooldown period and then rotates back into its priority rung, so a tracker that cannot be pulled will not block the queue. Priority order is: never pulled, missing season history, scraped-but-empty, stale peak, then previously-failed attempts last. Trackers marked invalid by the nightly account validation are never served. Returns an empty array when nothing is due. Non-integer or < 1 values return 400.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3438,6 +3458,7 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_next_list_serialize(
+            active=active,
             format=format,
             limit=limit,
             _request_auth=_request_auth,
@@ -3463,8 +3484,9 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_next_list_with_http_info(
         self,
+        active: Annotated[Optional[StrictBool], Field(description="Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.")] = None,
         format: Optional[StrictStr] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of tracker links to claim (Default: 1, clamped to 25). Returned trackers are claimed: each is stamped with `last_attempt_at`, so successive calls advance through the queue rather than returning the same rows. A claimed tracker is withheld for a cooldown period and then rotates back into its priority rung, so a tracker that cannot be pulled will not block the queue. Priority order is: never pulled, missing season history, scraped-but-empty, stale peak, then previously-failed attempts last. Trackers marked invalid by the nightly account validation are never served. Returns an empty array when nothing is due. Non-integer or < 1 values return 400.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3481,9 +3503,11 @@ class TrackerLinksApi:
         """tracker_links_next_list
 
 
+        :param active: Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.
+        :type active: bool
         :param format:
         :type format: str
-        :param limit: Number of tracker links to grab (Default: 1, Max:25)
+        :param limit: Number of tracker links to claim (Default: 1, clamped to 25). Returned trackers are claimed: each is stamped with `last_attempt_at`, so successive calls advance through the queue rather than returning the same rows. A claimed tracker is withheld for a cooldown period and then rotates back into its priority rung, so a tracker that cannot be pulled will not block the queue. Priority order is: never pulled, missing season history, scraped-but-empty, stale peak, then previously-failed attempts last. Trackers marked invalid by the nightly account validation are never served. Returns an empty array when nothing is due. Non-integer or < 1 values return 400.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3508,6 +3532,7 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_next_list_serialize(
+            active=active,
             format=format,
             limit=limit,
             _request_auth=_request_auth,
@@ -3533,8 +3558,9 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_next_list_without_preload_content(
         self,
+        active: Annotated[Optional[StrictBool], Field(description="Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.")] = None,
         format: Optional[StrictStr] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of tracker links to grab (Default: 1, Max:25)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of tracker links to claim (Default: 1, clamped to 25). Returned trackers are claimed: each is stamped with `last_attempt_at`, so successive calls advance through the queue rather than returning the same rows. A claimed tracker is withheld for a cooldown period and then rotates back into its priority rung, so a tracker that cannot be pulled will not block the queue. Priority order is: never pulled, missing season history, scraped-but-empty, stale peak, then previously-failed attempts last. Trackers marked invalid by the nightly account validation are never served. Returns an empty array when nothing is due. Non-integer or < 1 values return 400.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3551,9 +3577,11 @@ class TrackerLinksApi:
         """tracker_links_next_list
 
 
+        :param active: Restrict to trackers belonging to active members. Defaults to **true** -- historical pulls are only needed for members actually in the league. Set false to include inactive members for a backfill or audit. Trackers with no member attached are never served by `next/` either way, since a pull cannot be recorded without one.
+        :type active: bool
         :param format:
         :type format: str
-        :param limit: Number of tracker links to grab (Default: 1, Max:25)
+        :param limit: Number of tracker links to claim (Default: 1, clamped to 25). Returned trackers are claimed: each is stamped with `last_attempt_at`, so successive calls advance through the queue rather than returning the same rows. A claimed tracker is withheld for a cooldown period and then rotates back into its priority rung, so a tracker that cannot be pulled will not block the queue. Priority order is: never pulled, missing season history, scraped-but-empty, stale peak, then previously-failed attempts last. Trackers marked invalid by the nightly account validation are never served. Returns an empty array when nothing is due. Non-integer or < 1 values return 400.
         :type limit: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3578,6 +3606,7 @@ class TrackerLinksApi:
         """ # noqa: E501
 
         _param = self._tracker_links_next_list_serialize(
+            active=active,
             format=format,
             limit=limit,
             _request_auth=_request_auth,
@@ -3598,6 +3627,7 @@ class TrackerLinksApi:
 
     def _tracker_links_next_list_serialize(
         self,
+        active,
         format,
         limit,
         _request_auth,
@@ -3622,6 +3652,10 @@ class TrackerLinksApi:
 
         # process the path parameters
         # process the query parameters
+        if active is not None:
+            
+            _query_params.append(('active', active))
+            
         if format is not None:
             
             _query_params.append(('format', format))

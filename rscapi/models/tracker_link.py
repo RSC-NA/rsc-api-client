@@ -37,14 +37,15 @@ class TrackerLink(BaseModel):
     discord_id: Optional[StrictInt] = None
     id: Optional[StrictInt] = None
     name: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
-    pulls: Optional[StrictInt] = None
+    pulls: Optional[StrictInt] = Field(default=None, description="Number of MMR pulls recorded against this tracker.")
     platform: Optional[PlatformEnum] = None
     status: Optional[TrackerLinkStatusEnum] = None
     last_updated: Optional[datetime] = None
+    last_attempt_at: Optional[datetime] = None
     member_name: Optional[StrictStr] = None
     platform_id: Optional[Annotated[str, Field(min_length=0, strict=True)]] = None
     rscid: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["link", "member", "discord_id", "id", "name", "pulls", "platform", "status", "last_updated", "member_name", "platform_id", "rscid"]
+    __properties: ClassVar[List[str]] = ["link", "member", "discord_id", "id", "name", "pulls", "platform", "status", "last_updated", "last_attempt_at", "member_name", "platform_id", "rscid"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +87,7 @@ class TrackerLink(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "member",
@@ -95,6 +97,7 @@ class TrackerLink(BaseModel):
             "platform",
             "status",
             "last_updated",
+            "last_attempt_at",
             "member_name",
             "platform_id",
             "rscid",
@@ -134,6 +137,7 @@ class TrackerLink(BaseModel):
             "platform": obj.get("platform"),
             "status": obj.get("status"),
             "last_updated": obj.get("last_updated"),
+            "last_attempt_at": obj.get("last_attempt_at"),
             "member_name": obj.get("member_name"),
             "platform_id": obj.get("platform_id"),
             "rscid": obj.get("rscid")

@@ -407,7 +407,7 @@ class ElevatedRolesApi:
     ) -> ElevatedRoleSyncResult:
         """elevated_roles_sync_create
 
-        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Admin only. Pass dry_run to see the plan without writing.
+        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
 
         :param elevated_role_sync_input: (required)
         :type elevated_role_sync_input: ElevatedRoleSyncInput
@@ -477,7 +477,7 @@ class ElevatedRolesApi:
     ) -> ApiResponse[ElevatedRoleSyncResult]:
         """elevated_roles_sync_create
 
-        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Admin only. Pass dry_run to see the plan without writing.
+        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
 
         :param elevated_role_sync_input: (required)
         :type elevated_role_sync_input: ElevatedRoleSyncInput
@@ -547,7 +547,7 @@ class ElevatedRolesApi:
     ) -> RESTResponseType:
         """elevated_roles_sync_create
 
-        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Admin only. Pass dry_run to see the plan without writing.
+        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
 
         :param elevated_role_sync_input: (required)
         :type elevated_role_sync_input: ElevatedRoleSyncInput
