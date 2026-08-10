@@ -23,8 +23,9 @@ Method | HTTP request | Description
 
 List all activity checks for a given season.
 
-Missing ActivityCheck records are automatically created for active
-league players who have not yet submitted one.
+For the current season, missing ActivityCheck records are automatically
+created for active league players who have not yet submitted one. Past
+seasons are read-only.
 
 ### Example
 

@@ -69,7 +69,7 @@ class SeasonsApi:
     ) -> PaginatedActivityCheckList:
         """seasons_activity_check_list
 
-        List all activity checks for a given season.  Missing ActivityCheck records are automatically created for active league players who have not yet submitted one.
+        List all activity checks for a given season.  For the current season, missing ActivityCheck records are automatically created for active league players who have not yet submitted one. Past seasons are read-only.
 
         :param completed: Check has been completed or not.
         :type completed: bool
@@ -164,7 +164,7 @@ class SeasonsApi:
     ) -> ApiResponse[PaginatedActivityCheckList]:
         """seasons_activity_check_list
 
-        List all activity checks for a given season.  Missing ActivityCheck records are automatically created for active league players who have not yet submitted one.
+        List all activity checks for a given season.  For the current season, missing ActivityCheck records are automatically created for active league players who have not yet submitted one. Past seasons are read-only.
 
         :param completed: Check has been completed or not.
         :type completed: bool
@@ -259,7 +259,7 @@ class SeasonsApi:
     ) -> RESTResponseType:
         """seasons_activity_check_list
 
-        List all activity checks for a given season.  Missing ActivityCheck records are automatically created for active league players who have not yet submitted one.
+        List all activity checks for a given season.  For the current season, missing ActivityCheck records are automatically created for active league players who have not yet submitted one. Past seasons are read-only.
 
         :param completed: Check has been completed or not.
         :type completed: bool

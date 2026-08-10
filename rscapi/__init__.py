@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 # Define package exports
 __all__ = [
@@ -67,6 +67,7 @@ __all__ = [
     "ElevatedRoleLeague",
     "ElevatedRoleSyncInput",
     "ElevatedRoleSyncResult",
+    "ElevatedRoleUpdate",
     "Error",
     "FlaggedMatch",
     "Franchise",
@@ -131,7 +132,7 @@ __all__ = [
     "PaginatedTrackerLinkList",
     "PaginatedTransactionResponseList",
     "PatchedDraftPickDetails",
-    "PatchedElevatedRole",
+    "PatchedElevatedRoleUpdate",
     "PatchedFranchise",
     "PatchedLeague",
     "PatchedLeaguePlayerPatch",
@@ -272,6 +273,7 @@ from rscapi.models.elevated_role_input import ElevatedRoleInput as ElevatedRoleI
 from rscapi.models.elevated_role_league import ElevatedRoleLeague as ElevatedRoleLeague
 from rscapi.models.elevated_role_sync_input import ElevatedRoleSyncInput as ElevatedRoleSyncInput
 from rscapi.models.elevated_role_sync_result import ElevatedRoleSyncResult as ElevatedRoleSyncResult
+from rscapi.models.elevated_role_update import ElevatedRoleUpdate as ElevatedRoleUpdate
 from rscapi.models.error import Error as Error
 from rscapi.models.flagged_match import FlaggedMatch as FlaggedMatch
 from rscapi.models.franchise import Franchise as Franchise
@@ -336,7 +338,7 @@ from rscapi.models.paginated_player_mmr_list import PaginatedPlayerMMRList as Pa
 from rscapi.models.paginated_tracker_link_list import PaginatedTrackerLinkList as PaginatedTrackerLinkList
 from rscapi.models.paginated_transaction_response_list import PaginatedTransactionResponseList as PaginatedTransactionResponseList
 from rscapi.models.patched_draft_pick_details import PatchedDraftPickDetails as PatchedDraftPickDetails
-from rscapi.models.patched_elevated_role import PatchedElevatedRole as PatchedElevatedRole
+from rscapi.models.patched_elevated_role_update import PatchedElevatedRoleUpdate as PatchedElevatedRoleUpdate
 from rscapi.models.patched_franchise import PatchedFranchise as PatchedFranchise
 from rscapi.models.patched_league import PatchedLeague as PatchedLeague
 from rscapi.models.patched_league_player_patch import PatchedLeaguePlayerPatch as PatchedLeaguePlayerPatch

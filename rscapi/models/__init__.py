@@ -37,6 +37,7 @@ from rscapi.models.elevated_role_input import ElevatedRoleInput
 from rscapi.models.elevated_role_league import ElevatedRoleLeague
 from rscapi.models.elevated_role_sync_input import ElevatedRoleSyncInput
 from rscapi.models.elevated_role_sync_result import ElevatedRoleSyncResult
+from rscapi.models.elevated_role_update import ElevatedRoleUpdate
 from rscapi.models.error import Error
 from rscapi.models.flagged_match import FlaggedMatch
 from rscapi.models.franchise import Franchise
@@ -101,7 +102,7 @@ from rscapi.models.paginated_player_mmr_list import PaginatedPlayerMMRList
 from rscapi.models.paginated_tracker_link_list import PaginatedTrackerLinkList
 from rscapi.models.paginated_transaction_response_list import PaginatedTransactionResponseList
 from rscapi.models.patched_draft_pick_details import PatchedDraftPickDetails
-from rscapi.models.patched_elevated_role import PatchedElevatedRole
+from rscapi.models.patched_elevated_role_update import PatchedElevatedRoleUpdate
 from rscapi.models.patched_franchise import PatchedFranchise
 from rscapi.models.patched_league import PatchedLeague
 from rscapi.models.patched_league_player_patch import PatchedLeaguePlayerPatch

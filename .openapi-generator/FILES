@@ -1,7 +1,5 @@
 .github/workflows/python.yml
 .gitignore
-.gitlab-ci.yml
-.travis.yml
 README.md
 docs/ActionEnum.md
 docs/ActivityCheck.md
@@ -29,6 +27,7 @@ docs/ElevatedRoleInput.md
 docs/ElevatedRoleLeague.md
 docs/ElevatedRoleSyncInput.md
 docs/ElevatedRoleSyncResult.md
+docs/ElevatedRoleUpdate.md
 docs/ElevatedRolesApi.md
 docs/Error.md
 docs/FlaggedMatch.md
@@ -101,7 +100,7 @@ docs/PaginatedPlayerMMRList.md
 docs/PaginatedTrackerLinkList.md
 docs/PaginatedTransactionResponseList.md
 docs/PatchedDraftPickDetails.md
-docs/PatchedElevatedRole.md
+docs/PatchedElevatedRoleUpdate.md
 docs/PatchedFranchise.md
 docs/PatchedLeague.md
 docs/PatchedLeaguePlayerPatch.md
@@ -192,7 +191,6 @@ docs/WaiverClaimResponseStatusEnum.md
 docs/WaiverOrder.md
 docs/WaiverOrderEntry.md
 docs/WeekEnum.md
-git_push.sh
 pyproject.toml
 requirements.txt
 rscapi/__init__.py
@@ -242,6 +240,7 @@ rscapi/models/elevated_role_input.py
 rscapi/models/elevated_role_league.py
 rscapi/models/elevated_role_sync_input.py
 rscapi/models/elevated_role_sync_result.py
+rscapi/models/elevated_role_update.py
 rscapi/models/error.py
 rscapi/models/flagged_match.py
 rscapi/models/franchise.py
@@ -306,7 +305,7 @@ rscapi/models/paginated_player_mmr_list.py
 rscapi/models/paginated_tracker_link_list.py
 rscapi/models/paginated_transaction_response_list.py
 rscapi/models/patched_draft_pick_details.py
-rscapi/models/patched_elevated_role.py
+rscapi/models/patched_elevated_role_update.py
 rscapi/models/patched_franchise.py
 rscapi/models/patched_league.py
 rscapi/models/patched_league_player_patch.py
@@ -397,4 +396,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_elevated_role_update.py
+test/test_patched_elevated_role_update.py
 tox.ini

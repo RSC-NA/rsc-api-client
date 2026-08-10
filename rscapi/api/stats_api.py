@@ -1031,9 +1031,8 @@ class StatsApi:
     @validate_call
     async def stats_sbv_retrieve(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
+        id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
         league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        pk: Annotated[StrictStr, Field(description="LeaguePlayer ID or Member discord_id")],
         season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
         season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
@@ -1054,12 +1053,10 @@ class StatsApi:
         """stats_sbv_retrieve
 
 
-        :param id: A unique integer value identifying this league player. (required)
+        :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
         :param league: League ID (required)
         :type league: int
-        :param pk: LeaguePlayer ID or Member discord_id (required)
-        :type pk: str
         :param season: Season Number (alias)
         :type season: int
         :param season_id: Season ID
@@ -1093,7 +1090,6 @@ class StatsApi:
         _param = self._stats_sbv_retrieve_serialize(
             id=id,
             league=league,
-            pk=pk,
             season=season,
             season_id=season_id,
             season_number=season_number,
@@ -1123,9 +1119,8 @@ class StatsApi:
     @validate_call
     async def stats_sbv_retrieve_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
+        id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
         league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        pk: Annotated[StrictStr, Field(description="LeaguePlayer ID or Member discord_id")],
         season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
         season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
@@ -1146,12 +1141,10 @@ class StatsApi:
         """stats_sbv_retrieve
 
 
-        :param id: A unique integer value identifying this league player. (required)
+        :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
         :param league: League ID (required)
         :type league: int
-        :param pk: LeaguePlayer ID or Member discord_id (required)
-        :type pk: str
         :param season: Season Number (alias)
         :type season: int
         :param season_id: Season ID
@@ -1185,7 +1178,6 @@ class StatsApi:
         _param = self._stats_sbv_retrieve_serialize(
             id=id,
             league=league,
-            pk=pk,
             season=season,
             season_id=season_id,
             season_number=season_number,
@@ -1215,9 +1207,8 @@ class StatsApi:
     @validate_call
     async def stats_sbv_retrieve_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
+        id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
         league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        pk: Annotated[StrictStr, Field(description="LeaguePlayer ID or Member discord_id")],
         season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
         season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
@@ -1238,12 +1229,10 @@ class StatsApi:
         """stats_sbv_retrieve
 
 
-        :param id: A unique integer value identifying this league player. (required)
+        :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
         :param league: League ID (required)
         :type league: int
-        :param pk: LeaguePlayer ID or Member discord_id (required)
-        :type pk: str
         :param season: Season Number (alias)
         :type season: int
         :param season_id: Season ID
@@ -1277,7 +1266,6 @@ class StatsApi:
         _param = self._stats_sbv_retrieve_serialize(
             id=id,
             league=league,
-            pk=pk,
             season=season,
             season_id=season_id,
             season_number=season_number,
@@ -1304,7 +1292,6 @@ class StatsApi:
         self,
         id,
         league,
-        pk,
         season,
         season_id,
         season_number,
@@ -1332,8 +1319,6 @@ class StatsApi:
         # process the path parameters
         if id is not None:
             _path_params['id'] = id
-        if pk is not None:
-            _path_params['pk'] = pk
         # process the query parameters
         if league is not None:
             

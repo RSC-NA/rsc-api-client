@@ -21,3 +21,9 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+# Dead CI boilerplate: this repo lives on GitHub and uses
+# .github/workflows/python.yml. Don't recreate these on regeneration.
+.travis.yml
+.gitlab-ci.yml
+git_push.sh

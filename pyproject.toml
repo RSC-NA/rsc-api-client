@@ -1,6 +1,6 @@
 [project]
 name = "rscapi"
-version = "1.0.0"
+version = "1.1.0"
 description = "RSC API Docs"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
+Repository = "https://github.com/RSC-NA/rsc-api-client"
 
 [tool.poetry]
 requires-poetry = ">=2.0"

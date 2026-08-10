@@ -24,6 +24,7 @@ from rscapi.models.create_member_input import CreateMemberInput
 from rscapi.models.deleted import Deleted
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput
+from rscapi.models.elevated_role_update import ElevatedRoleUpdate
 from rscapi.models.intent_to_play_request import IntentToPlayRequest
 from rscapi.models.league_player import LeaguePlayer
 from rscapi.models.league_player_patch import LeaguePlayerPatch
@@ -33,7 +34,7 @@ from rscapi.models.member_tracker import MemberTracker
 from rscapi.models.member_transfer_request import MemberTransferRequest
 from rscapi.models.paginated_member_list import PaginatedMemberList
 from rscapi.models.paginated_name_change_history_list import PaginatedNameChangeHistoryList
-from rscapi.models.patched_elevated_role import PatchedElevatedRole
+from rscapi.models.patched_elevated_role_update import PatchedElevatedRoleUpdate
 from rscapi.models.patched_member import PatchedMember
 from rscapi.models.patched_member_name_change_request import PatchedMemberNameChangeRequest
 from rscapi.models.perm_fa_signup_details import PermFASignupDetails
@@ -339,7 +340,7 @@ class MembersApi:
     ) -> ActivityCheck:
         """members_activity_check_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -413,7 +414,7 @@ class MembersApi:
     ) -> ApiResponse[ActivityCheck]:
         """members_activity_check_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -487,7 +488,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_activity_check_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -1204,7 +1205,7 @@ class MembersApi:
     ) -> None:
         """members_destroy
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -1271,7 +1272,7 @@ class MembersApi:
     ) -> ApiResponse[None]:
         """members_destroy
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -1338,7 +1339,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_destroy
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -1442,7 +1443,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_create(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         elevated_role_input: ElevatedRoleInput,
         _request_timeout: Union[
             None,
@@ -1461,8 +1462,8 @@ class MembersApi:
 
         Create a new elevated role for member.
 
-        :param id: A unique integer value identifying this elevated role. (required)
-        :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param elevated_role_input: (required)
         :type elevated_role_input: ElevatedRoleInput
         :param _request_timeout: timeout setting for this request. If one
@@ -1488,7 +1489,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_create_serialize(
-            id=id,
+            member_id=member_id,
             elevated_role_input=elevated_role_input,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1516,7 +1517,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_create_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         elevated_role_input: ElevatedRoleInput,
         _request_timeout: Union[
             None,
@@ -1535,8 +1536,8 @@ class MembersApi:
 
         Create a new elevated role for member.
 
-        :param id: A unique integer value identifying this elevated role. (required)
-        :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param elevated_role_input: (required)
         :type elevated_role_input: ElevatedRoleInput
         :param _request_timeout: timeout setting for this request. If one
@@ -1562,7 +1563,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_create_serialize(
-            id=id,
+            member_id=member_id,
             elevated_role_input=elevated_role_input,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1590,7 +1591,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_create_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         elevated_role_input: ElevatedRoleInput,
         _request_timeout: Union[
             None,
@@ -1609,8 +1610,8 @@ class MembersApi:
 
         Create a new elevated role for member.
 
-        :param id: A unique integer value identifying this elevated role. (required)
-        :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param elevated_role_input: (required)
         :type elevated_role_input: ElevatedRoleInput
         :param _request_timeout: timeout setting for this request. If one
@@ -1636,7 +1637,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_create_serialize(
-            id=id,
+            member_id=member_id,
             elevated_role_input=elevated_role_input,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1659,7 +1660,7 @@ class MembersApi:
 
     def _members_elevated_roles_create_serialize(
         self,
-        id,
+        member_id,
         elevated_role_input,
         _request_auth,
         _content_type,
@@ -1682,8 +1683,8 @@ class MembersApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
+        if member_id is not None:
+            _path_params['member_id'] = member_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -1723,7 +1724,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='POST',
-            resource_path='/members/{id}/elevated_roles/',
+            resource_path='/members/{member_id}/elevated_roles/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1743,6 +1744,7 @@ class MembersApi:
     async def members_elevated_roles_destroy(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1762,6 +1764,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1786,6 +1790,7 @@ class MembersApi:
 
         _param = self._members_elevated_roles_destroy_serialize(
             id=id,
+            member_id=member_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1812,6 +1817,7 @@ class MembersApi:
     async def members_elevated_roles_destroy_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1831,6 +1837,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1855,6 +1863,7 @@ class MembersApi:
 
         _param = self._members_elevated_roles_destroy_serialize(
             id=id,
+            member_id=member_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1881,6 +1890,7 @@ class MembersApi:
     async def members_elevated_roles_destroy_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1900,6 +1910,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1924,6 +1936,7 @@ class MembersApi:
 
         _param = self._members_elevated_roles_destroy_serialize(
             id=id,
+            member_id=member_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1945,6 +1958,7 @@ class MembersApi:
     def _members_elevated_roles_destroy_serialize(
         self,
         id,
+        member_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1968,6 +1982,8 @@ class MembersApi:
         # process the path parameters
         if id is not None:
             _path_params['id'] = id
+        if member_id is not None:
+            _path_params['member_id'] = member_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -1990,7 +2006,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='DELETE',
-            resource_path='/members/{id}/elevated_roles/{id}/',
+            resource_path='/members/{member_id}/elevated_roles/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2009,7 +2025,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_list(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
         gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
@@ -2031,8 +2047,8 @@ class MembersApi:
 
         List elevated roles for a member.
 
-        :param id: A unique integer value identifying this elevated role. (required)
-        :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param agm: Assistant GM
         :type agm: bool
         :param gm: General Manager
@@ -2064,7 +2080,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_list_serialize(
-            id=id,
+            member_id=member_id,
             agm=agm,
             gm=gm,
             league=league,
@@ -2092,7 +2108,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_list_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
         gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
@@ -2114,8 +2130,8 @@ class MembersApi:
 
         List elevated roles for a member.
 
-        :param id: A unique integer value identifying this elevated role. (required)
-        :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param agm: Assistant GM
         :type agm: bool
         :param gm: General Manager
@@ -2147,7 +2163,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_list_serialize(
-            id=id,
+            member_id=member_id,
             agm=agm,
             gm=gm,
             league=league,
@@ -2175,7 +2191,7 @@ class MembersApi:
     @validate_call
     async def members_elevated_roles_list_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
         gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
@@ -2197,8 +2213,8 @@ class MembersApi:
 
         List elevated roles for a member.
 
-        :param id: A unique integer value identifying this elevated role. (required)
-        :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param agm: Assistant GM
         :type agm: bool
         :param gm: General Manager
@@ -2230,7 +2246,7 @@ class MembersApi:
         """ # noqa: E501
 
         _param = self._members_elevated_roles_list_serialize(
-            id=id,
+            member_id=member_id,
             agm=agm,
             gm=gm,
             league=league,
@@ -2253,7 +2269,7 @@ class MembersApi:
 
     def _members_elevated_roles_list_serialize(
         self,
-        id,
+        member_id,
         agm,
         gm,
         league,
@@ -2279,8 +2295,8 @@ class MembersApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if id is not None:
-            _path_params['id'] = id
+        if member_id is not None:
+            _path_params['member_id'] = member_id
         # process the query parameters
         if agm is not None:
             
@@ -2319,7 +2335,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/members/{id}/elevated_roles/',
+            resource_path='/members/{member_id}/elevated_roles/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2339,7 +2355,8 @@ class MembersApi:
     async def members_elevated_roles_partial_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
-        patched_elevated_role: Optional[PatchedElevatedRole] = None,
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
+        patched_elevated_role_update: Optional[PatchedElevatedRoleUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2355,12 +2372,14 @@ class MembersApi:
     ) -> ElevatedRole:
         """members_elevated_roles_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Update part of an elevated role. Unlike PUT, omitted fields keep their current values. Same permission and sync-ownership rules as PUT.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
-        :param patched_elevated_role:
-        :type patched_elevated_role: PatchedElevatedRole
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
+        :param patched_elevated_role_update:
+        :type patched_elevated_role_update: PatchedElevatedRoleUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2385,7 +2404,8 @@ class MembersApi:
 
         _param = self._members_elevated_roles_partial_update_serialize(
             id=id,
-            patched_elevated_role=patched_elevated_role,
+            member_id=member_id,
+            patched_elevated_role_update=patched_elevated_role_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2394,6 +2414,9 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ElevatedRole",
+            '400': "Error",
+            '403': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2410,7 +2433,8 @@ class MembersApi:
     async def members_elevated_roles_partial_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
-        patched_elevated_role: Optional[PatchedElevatedRole] = None,
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
+        patched_elevated_role_update: Optional[PatchedElevatedRoleUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2426,12 +2450,14 @@ class MembersApi:
     ) -> ApiResponse[ElevatedRole]:
         """members_elevated_roles_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Update part of an elevated role. Unlike PUT, omitted fields keep their current values. Same permission and sync-ownership rules as PUT.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
-        :param patched_elevated_role:
-        :type patched_elevated_role: PatchedElevatedRole
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
+        :param patched_elevated_role_update:
+        :type patched_elevated_role_update: PatchedElevatedRoleUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2456,7 +2482,8 @@ class MembersApi:
 
         _param = self._members_elevated_roles_partial_update_serialize(
             id=id,
-            patched_elevated_role=patched_elevated_role,
+            member_id=member_id,
+            patched_elevated_role_update=patched_elevated_role_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2465,6 +2492,9 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ElevatedRole",
+            '400': "Error",
+            '403': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2481,7 +2511,8 @@ class MembersApi:
     async def members_elevated_roles_partial_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
-        patched_elevated_role: Optional[PatchedElevatedRole] = None,
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
+        patched_elevated_role_update: Optional[PatchedElevatedRoleUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2497,12 +2528,14 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_elevated_roles_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Update part of an elevated role. Unlike PUT, omitted fields keep their current values. Same permission and sync-ownership rules as PUT.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
-        :param patched_elevated_role:
-        :type patched_elevated_role: PatchedElevatedRole
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
+        :param patched_elevated_role_update:
+        :type patched_elevated_role_update: PatchedElevatedRoleUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2527,7 +2560,8 @@ class MembersApi:
 
         _param = self._members_elevated_roles_partial_update_serialize(
             id=id,
-            patched_elevated_role=patched_elevated_role,
+            member_id=member_id,
+            patched_elevated_role_update=patched_elevated_role_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2536,6 +2570,9 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ElevatedRole",
+            '400': "Error",
+            '403': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2547,7 +2584,8 @@ class MembersApi:
     def _members_elevated_roles_partial_update_serialize(
         self,
         id,
-        patched_elevated_role,
+        member_id,
+        patched_elevated_role_update,
         _request_auth,
         _content_type,
         _headers,
@@ -2571,12 +2609,14 @@ class MembersApi:
         # process the path parameters
         if id is not None:
             _path_params['id'] = id
+        if member_id is not None:
+            _path_params['member_id'] = member_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if patched_elevated_role is not None:
-            _body_params = patched_elevated_role
+        if patched_elevated_role_update is not None:
+            _body_params = patched_elevated_role_update
 
 
         # set the HTTP header `Accept`
@@ -2610,7 +2650,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='PATCH',
-            resource_path='/members/{id}/elevated_roles/{id}/',
+            resource_path='/members/{member_id}/elevated_roles/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2630,6 +2670,7 @@ class MembersApi:
     async def members_elevated_roles_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2645,10 +2686,12 @@ class MembersApi:
     ) -> ElevatedRole:
         """members_elevated_roles_retrieve
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2673,6 +2716,7 @@ class MembersApi:
 
         _param = self._members_elevated_roles_retrieve_serialize(
             id=id,
+            member_id=member_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2697,6 +2741,7 @@ class MembersApi:
     async def members_elevated_roles_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2712,10 +2757,12 @@ class MembersApi:
     ) -> ApiResponse[ElevatedRole]:
         """members_elevated_roles_retrieve
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2740,6 +2787,7 @@ class MembersApi:
 
         _param = self._members_elevated_roles_retrieve_serialize(
             id=id,
+            member_id=member_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2764,6 +2812,7 @@ class MembersApi:
     async def members_elevated_roles_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2779,10 +2828,12 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_elevated_roles_retrieve
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2807,6 +2858,7 @@ class MembersApi:
 
         _param = self._members_elevated_roles_retrieve_serialize(
             id=id,
+            member_id=member_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2826,6 +2878,7 @@ class MembersApi:
     def _members_elevated_roles_retrieve_serialize(
         self,
         id,
+        member_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2849,6 +2902,8 @@ class MembersApi:
         # process the path parameters
         if id is not None:
             _path_params['id'] = id
+        if member_id is not None:
+            _path_params['member_id'] = member_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -2871,7 +2926,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/members/{id}/elevated_roles/{id}/',
+            resource_path='/members/{member_id}/elevated_roles/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2891,7 +2946,8 @@ class MembersApi:
     async def members_elevated_roles_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
-        elevated_role: ElevatedRole,
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
+        elevated_role_update: ElevatedRoleUpdate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2907,12 +2963,14 @@ class MembersApi:
     ) -> ElevatedRole:
         """members_elevated_roles_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Replace an elevated role. This is a full replace: omitted `position`, `gm`, `agm` and `franchise` are reset to their defaults -- use PATCH to change a single field.  `member` and `league` are fixed. Moving a grant to another league means deleting this role and creating a new one there.  The executor must hold Admin in this role's league. A successful edit marks the row as manually sourced, so the Discord sync stops reclaiming it.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
-        :param elevated_role: (required)
-        :type elevated_role: ElevatedRole
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
+        :param elevated_role_update: (required)
+        :type elevated_role_update: ElevatedRoleUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2937,7 +2995,8 @@ class MembersApi:
 
         _param = self._members_elevated_roles_update_serialize(
             id=id,
-            elevated_role=elevated_role,
+            member_id=member_id,
+            elevated_role_update=elevated_role_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2946,6 +3005,9 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ElevatedRole",
+            '400': "Error",
+            '403': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2962,7 +3024,8 @@ class MembersApi:
     async def members_elevated_roles_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
-        elevated_role: ElevatedRole,
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
+        elevated_role_update: ElevatedRoleUpdate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2978,12 +3041,14 @@ class MembersApi:
     ) -> ApiResponse[ElevatedRole]:
         """members_elevated_roles_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Replace an elevated role. This is a full replace: omitted `position`, `gm`, `agm` and `franchise` are reset to their defaults -- use PATCH to change a single field.  `member` and `league` are fixed. Moving a grant to another league means deleting this role and creating a new one there.  The executor must hold Admin in this role's league. A successful edit marks the row as manually sourced, so the Discord sync stops reclaiming it.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
-        :param elevated_role: (required)
-        :type elevated_role: ElevatedRole
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
+        :param elevated_role_update: (required)
+        :type elevated_role_update: ElevatedRoleUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3008,7 +3073,8 @@ class MembersApi:
 
         _param = self._members_elevated_roles_update_serialize(
             id=id,
-            elevated_role=elevated_role,
+            member_id=member_id,
+            elevated_role_update=elevated_role_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3017,6 +3083,9 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ElevatedRole",
+            '400': "Error",
+            '403': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3033,7 +3102,8 @@ class MembersApi:
     async def members_elevated_roles_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this elevated role.")],
-        elevated_role: ElevatedRole,
+        member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
+        elevated_role_update: ElevatedRoleUpdate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3049,12 +3119,14 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_elevated_roles_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Replace an elevated role. This is a full replace: omitted `position`, `gm`, `agm` and `franchise` are reset to their defaults -- use PATCH to change a single field.  `member` and `league` are fixed. Moving a grant to another league means deleting this role and creating a new one there.  The executor must hold Admin in this role's league. A successful edit marks the row as manually sourced, so the Discord sync stops reclaiming it.
 
         :param id: A unique integer value identifying this elevated role. (required)
         :type id: int
-        :param elevated_role: (required)
-        :type elevated_role: ElevatedRole
+        :param member_id: Member database ID or Discord ID. (required)
+        :type member_id: int
+        :param elevated_role_update: (required)
+        :type elevated_role_update: ElevatedRoleUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3079,7 +3151,8 @@ class MembersApi:
 
         _param = self._members_elevated_roles_update_serialize(
             id=id,
-            elevated_role=elevated_role,
+            member_id=member_id,
+            elevated_role_update=elevated_role_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3088,6 +3161,9 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "ElevatedRole",
+            '400': "Error",
+            '403': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3099,7 +3175,8 @@ class MembersApi:
     def _members_elevated_roles_update_serialize(
         self,
         id,
-        elevated_role,
+        member_id,
+        elevated_role_update,
         _request_auth,
         _content_type,
         _headers,
@@ -3123,12 +3200,14 @@ class MembersApi:
         # process the path parameters
         if id is not None:
             _path_params['id'] = id
+        if member_id is not None:
+            _path_params['member_id'] = member_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if elevated_role is not None:
-            _body_params = elevated_role
+        if elevated_role_update is not None:
+            _body_params = elevated_role_update
 
 
         # set the HTTP header `Accept`
@@ -3162,7 +3241,7 @@ class MembersApi:
 
         return self.api_client.param_serialize(
             method='PUT',
-            resource_path='/members/{id}/elevated_roles/{id}/',
+            resource_path='/members/{member_id}/elevated_roles/{id}/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3507,7 +3586,7 @@ class MembersApi:
     ) -> PaginatedMemberList:
         """members_list
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param discord_id: Discord ID of member to search for
         :type discord_id: int
@@ -3590,7 +3669,7 @@ class MembersApi:
     ) -> ApiResponse[PaginatedMemberList]:
         """members_list
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param discord_id: Discord ID of member to search for
         :type discord_id: int
@@ -3673,7 +3752,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_list
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param discord_id: Discord ID of member to search for
         :type discord_id: int
@@ -4126,7 +4205,7 @@ class MembersApi:
     ) -> Member:
         """members_member_league_drop_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -4199,7 +4278,7 @@ class MembersApi:
     ) -> ApiResponse[Member]:
         """members_member_league_drop_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -4272,7 +4351,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_member_league_drop_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -4423,7 +4502,7 @@ class MembersApi:
     ) -> Member:
         """members_name_change_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -4496,7 +4575,7 @@ class MembersApi:
     ) -> ApiResponse[Member]:
         """members_name_change_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -4569,7 +4648,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_name_change_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -4724,7 +4803,7 @@ class MembersApi:
     ) -> PaginatedNameChangeHistoryList:
         """members_name_changes_list
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -4811,7 +4890,7 @@ class MembersApi:
     ) -> ApiResponse[PaginatedNameChangeHistoryList]:
         """members_name_changes_list
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -4898,7 +4977,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_name_changes_list
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -5066,7 +5145,7 @@ class MembersApi:
     ) -> Member:
         """members_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -5137,7 +5216,7 @@ class MembersApi:
     ) -> ApiResponse[Member]:
         """members_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -5208,7 +5287,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_partial_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -5957,7 +6036,7 @@ class MembersApi:
     ) -> Member:
         """members_retrieve
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -6024,7 +6103,7 @@ class MembersApi:
     ) -> ApiResponse[Member]:
         """members_retrieve
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -6091,7 +6170,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_retrieve
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -6820,7 +6899,7 @@ class MembersApi:
     ) -> Member:
         """members_transfer_account_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -6892,7 +6971,7 @@ class MembersApi:
     ) -> ApiResponse[Member]:
         """members_transfer_account_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -6964,7 +7043,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_transfer_account_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -7114,7 +7193,7 @@ class MembersApi:
     ) -> Member:
         """members_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -7185,7 +7264,7 @@ class MembersApi:
     ) -> ApiResponse[Member]:
         """members_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -7256,7 +7335,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_update
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -7405,7 +7484,7 @@ class MembersApi:
     ) -> Member:
         """members_update_discord_id_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -7477,7 +7556,7 @@ class MembersApi:
     ) -> ApiResponse[Member]:
         """members_update_discord_id_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -7549,7 +7628,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_update_discord_id_create
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.
+        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int

@@ -259,7 +259,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **stats_sbv_retrieve**
-> SBVResult stats_sbv_retrieve(id, league, pk, season=season, season_id=season_id, season_number=season_number, stats_type=stats_type)
+> SBVResult stats_sbv_retrieve(id, league, season=season, season_id=season_id, season_number=season_number, stats_type=stats_type)
 
 ### Example
 
@@ -292,16 +292,15 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.StatsApi(api_client)
-    id = 56 # int | A unique integer value identifying this league player.
+    id = 56 # int | LeaguePlayer ID or Member discord_id
     league = 56 # int | League ID
-    pk = 'pk_example' # str | LeaguePlayer ID or Member discord_id
     season = 56 # int | Season Number (alias) (optional)
     season_id = 56 # int | Season ID (optional)
     season_number = 56 # int | Season Number (optional)
     stats_type = REG # str | Stats type filter  * `REG` - Regular Season Stats * `PST` - Post Season Stats (optional) (default to REG)
 
     try:
-        api_response = await api_instance.stats_sbv_retrieve(id, league, pk, season=season, season_id=season_id, season_number=season_number, stats_type=stats_type)
+        api_response = await api_instance.stats_sbv_retrieve(id, league, season=season, season_id=season_id, season_number=season_number, stats_type=stats_type)
         print("The response of StatsApi->stats_sbv_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -315,9 +314,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this league player. | 
+ **id** | **int**| LeaguePlayer ID or Member discord_id | 
  **league** | **int**| League ID | 
- **pk** | **str**| LeaguePlayer ID or Member discord_id | 
  **season** | **int**| Season Number (alias) | [optional] 
  **season_id** | **int**| Season ID | [optional] 
  **season_number** | **int**| Season Number | [optional] 

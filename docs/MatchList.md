@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **day** | **int** |  | [optional] [readonly] 
 **var_date** | **datetime** |  | [optional] [readonly] 
-**game_name** | **str** |  | [optional] [readonly] 
-**game_pass** | **str** |  | [optional] [readonly] 
+**game_name** | **str** | Blank unless the caller is on one of the two rosters, is GM or AGM of one of the franchises, is a league admin, or is using a bot or admin API key. | [optional] [readonly] 
+**game_pass** | **str** | Blank unless the caller is on one of the two rosters, is GM or AGM of one of the franchises, is a league admin, or is using a bot or admin API key. | [optional] [readonly] 
 **num_games** | **int** |  | [optional] [readonly] 
 **match_format** | [**MatchFormatEnum**](MatchFormatEnum.md) |  | 
 **match_type** | [**MatchTypeEnum**](MatchTypeEnum.md) |  | 

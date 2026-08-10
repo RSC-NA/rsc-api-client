@@ -32,8 +32,8 @@ class PatchedMatchList(BaseModel):
     """ # noqa: E501
     day: Optional[StrictInt] = None
     var_date: Optional[datetime] = Field(default=None, alias="date")
-    game_name: Optional[StrictStr] = None
-    game_pass: Optional[StrictStr] = None
+    game_name: Optional[StrictStr] = Field(default=None, description="Blank unless the caller is on one of the two rosters, is GM or AGM of one of the franchises, is a league admin, or is using a bot or admin API key.")
+    game_pass: Optional[StrictStr] = Field(default=None, description="Blank unless the caller is on one of the two rosters, is GM or AGM of one of the franchises, is a league admin, or is using a bot or admin API key.")
     num_games: Optional[StrictInt] = None
     match_format: Optional[MatchFormatEnum] = None
     match_type: Optional[MatchTypeEnum] = None

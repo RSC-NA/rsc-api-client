@@ -1,6 +1,6 @@
 # TrackerLinkStatusEnum
 
-* `FLD` - Failed * `INV` - Invalid * `MSG` - Missing * `NEW` - New * `PLD` - Pulled * `RPL` - Repull Needed * `STL` - Stale
+* `FLD` - Failed * `INV` - Invalid * `MSG` - Missing * `NEW` - Never Pulled * `PLD` - Pulled * `RPL` - Repull Needed * `STL` - Stale
 
 ## Enum
 

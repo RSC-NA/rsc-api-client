@@ -9,12 +9,12 @@ Method | HTTP request | Description
 [**members_contract_status_retrieve**](MembersApi.md#members_contract_status_retrieve) | **GET** /members/{id}/contract_status/ | 
 [**members_create**](MembersApi.md#members_create) | **POST** /members/ | 
 [**members_destroy**](MembersApi.md#members_destroy) | **DELETE** /members/{id}/ | 
-[**members_elevated_roles_create**](MembersApi.md#members_elevated_roles_create) | **POST** /members/{id}/elevated_roles/ | 
-[**members_elevated_roles_destroy**](MembersApi.md#members_elevated_roles_destroy) | **DELETE** /members/{id}/elevated_roles/{id}/ | 
-[**members_elevated_roles_list**](MembersApi.md#members_elevated_roles_list) | **GET** /members/{id}/elevated_roles/ | 
-[**members_elevated_roles_partial_update**](MembersApi.md#members_elevated_roles_partial_update) | **PATCH** /members/{id}/elevated_roles/{id}/ | 
-[**members_elevated_roles_retrieve**](MembersApi.md#members_elevated_roles_retrieve) | **GET** /members/{id}/elevated_roles/{id}/ | 
-[**members_elevated_roles_update**](MembersApi.md#members_elevated_roles_update) | **PUT** /members/{id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_create**](MembersApi.md#members_elevated_roles_create) | **POST** /members/{member_id}/elevated_roles/ | 
+[**members_elevated_roles_destroy**](MembersApi.md#members_elevated_roles_destroy) | **DELETE** /members/{member_id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_list**](MembersApi.md#members_elevated_roles_list) | **GET** /members/{member_id}/elevated_roles/ | 
+[**members_elevated_roles_partial_update**](MembersApi.md#members_elevated_roles_partial_update) | **PATCH** /members/{member_id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_retrieve**](MembersApi.md#members_elevated_roles_retrieve) | **GET** /members/{member_id}/elevated_roles/{id}/ | 
+[**members_elevated_roles_update**](MembersApi.md#members_elevated_roles_update) | **PUT** /members/{member_id}/elevated_roles/{id}/ | 
 [**members_intent_to_play_create**](MembersApi.md#members_intent_to_play_create) | **POST** /members/{id}/intent_to_play/ | 
 [**members_list**](MembersApi.md#members_list) | **GET** /members/ | 
 [**members_make_player_create**](MembersApi.md#members_make_player_create) | **POST** /members/{id}/make_player/ | 
@@ -113,6 +113,10 @@ Name | Type | Description  | Notes
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
+
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
 
 ### Example
 
@@ -356,6 +360,10 @@ Name | Type | Description  | Notes
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
 
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
+
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -425,7 +433,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_create**
-> Member members_elevated_roles_create(id, elevated_role_input)
+> Member members_elevated_roles_create(member_id, elevated_role_input)
 
 Create a new elevated role for member.
 
@@ -461,11 +469,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    id = 56 # int | A unique integer value identifying this elevated role.
+    member_id = 56 # int | Member database ID or Discord ID.
     elevated_role_input = rscapi.ElevatedRoleInput() # ElevatedRoleInput | 
 
     try:
-        api_response = await api_instance.members_elevated_roles_create(id, elevated_role_input)
+        api_response = await api_instance.members_elevated_roles_create(member_id, elevated_role_input)
         print("The response of MembersApi->members_elevated_roles_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -479,7 +487,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this elevated role. | 
+ **member_id** | **int**| Member database ID or Discord ID. | 
  **elevated_role_input** | [**ElevatedRoleInput**](ElevatedRoleInput.md)|  | 
 
 ### Return type
@@ -507,7 +515,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_destroy**
-> members_elevated_roles_destroy(id)
+> members_elevated_roles_destroy(id, member_id)
 
 Delete an elevated role by its ID
 
@@ -542,9 +550,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this elevated role.
+    member_id = 56 # int | Member database ID or Discord ID.
 
     try:
-        await api_instance.members_elevated_roles_destroy(id)
+        await api_instance.members_elevated_roles_destroy(id, member_id)
     except Exception as e:
         print("Exception when calling MembersApi->members_elevated_roles_destroy: %s\n" % e)
 ```
@@ -557,6 +566,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this elevated role. | 
+ **member_id** | **int**| Member database ID or Discord ID. | 
 
 ### Return type
 
@@ -582,7 +592,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_list**
-> List[ElevatedRole] members_elevated_roles_list(id, agm=agm, gm=gm, league=league, position=position)
+> List[ElevatedRole] members_elevated_roles_list(member_id, agm=agm, gm=gm, league=league, position=position)
 
 List elevated roles for a member.
 
@@ -617,14 +627,14 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
-    id = 56 # int | A unique integer value identifying this elevated role.
+    member_id = 56 # int | Member database ID or Discord ID.
     agm = True # bool | Assistant GM (optional)
     gm = True # bool | General Manager (optional)
     league = 56 # int | League ID (optional)
     position = 'position_example' # str | Staff position (optional)
 
     try:
-        api_response = await api_instance.members_elevated_roles_list(id, agm=agm, gm=gm, league=league, position=position)
+        api_response = await api_instance.members_elevated_roles_list(member_id, agm=agm, gm=gm, league=league, position=position)
         print("The response of MembersApi->members_elevated_roles_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -638,7 +648,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this elevated role. | 
+ **member_id** | **int**| Member database ID or Discord ID. | 
  **agm** | **bool**| Assistant GM | [optional] 
  **gm** | **bool**| General Manager | [optional] 
  **league** | **int**| League ID | [optional] 
@@ -666,10 +676,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_partial_update**
-> ElevatedRole members_elevated_roles_partial_update(id, patched_elevated_role=patched_elevated_role)
+> ElevatedRole members_elevated_roles_partial_update(id, member_id, patched_elevated_role_update=patched_elevated_role_update)
 
-Apply this mixin to any view or viewset to get multiple field filtering
-based on a `lookup_fields` attribute, instead of the default single field filtering.
+Update part of an elevated role. Unlike PUT, omitted fields keep their current values. Same permission and sync-ownership rules as PUT.
 
 ### Example
 
@@ -678,7 +687,7 @@ based on a `lookup_fields` attribute, instead of the default single field filter
 ```python
 import rscapi
 from rscapi.models.elevated_role import ElevatedRole
-from rscapi.models.patched_elevated_role import PatchedElevatedRole
+from rscapi.models.patched_elevated_role_update import PatchedElevatedRoleUpdate
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -704,10 +713,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this elevated role.
-    patched_elevated_role = rscapi.PatchedElevatedRole() # PatchedElevatedRole |  (optional)
+    member_id = 56 # int | Member database ID or Discord ID.
+    patched_elevated_role_update = rscapi.PatchedElevatedRoleUpdate() # PatchedElevatedRoleUpdate |  (optional)
 
     try:
-        api_response = await api_instance.members_elevated_roles_partial_update(id, patched_elevated_role=patched_elevated_role)
+        api_response = await api_instance.members_elevated_roles_partial_update(id, member_id, patched_elevated_role_update=patched_elevated_role_update)
         print("The response of MembersApi->members_elevated_roles_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -722,7 +732,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this elevated role. | 
- **patched_elevated_role** | [**PatchedElevatedRole**](PatchedElevatedRole.md)|  | [optional] 
+ **member_id** | **int**| Member database ID or Discord ID. | 
+ **patched_elevated_role_update** | [**PatchedElevatedRoleUpdate**](PatchedElevatedRoleUpdate.md)|  | [optional] 
 
 ### Return type
 
@@ -742,14 +753,21 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**400** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_retrieve**
-> ElevatedRole members_elevated_roles_retrieve(id)
+> ElevatedRole members_elevated_roles_retrieve(id, member_id)
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
+
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
 
 ### Example
 
@@ -783,9 +801,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this elevated role.
+    member_id = 56 # int | Member database ID or Discord ID.
 
     try:
-        api_response = await api_instance.members_elevated_roles_retrieve(id)
+        api_response = await api_instance.members_elevated_roles_retrieve(id, member_id)
         print("The response of MembersApi->members_elevated_roles_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -800,6 +819,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this elevated role. | 
+ **member_id** | **int**| Member database ID or Discord ID. | 
 
 ### Return type
 
@@ -823,10 +843,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_update**
-> ElevatedRole members_elevated_roles_update(id, elevated_role)
+> ElevatedRole members_elevated_roles_update(id, member_id, elevated_role_update)
 
-Apply this mixin to any view or viewset to get multiple field filtering
-based on a `lookup_fields` attribute, instead of the default single field filtering.
+Replace an elevated role. This is a full replace: omitted `position`, `gm`, `agm` and `franchise` are reset to their defaults -- use PATCH to change a single field.
+
+`member` and `league` are fixed. Moving a grant to another league means deleting this role and creating a new one there.
+
+The executor must hold Admin in this role's league. A successful edit marks the row as manually sourced, so the Discord sync stops reclaiming it.
 
 ### Example
 
@@ -835,6 +858,7 @@ based on a `lookup_fields` attribute, instead of the default single field filter
 ```python
 import rscapi
 from rscapi.models.elevated_role import ElevatedRole
+from rscapi.models.elevated_role_update import ElevatedRoleUpdate
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -860,10 +884,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this elevated role.
-    elevated_role = rscapi.ElevatedRole() # ElevatedRole | 
+    member_id = 56 # int | Member database ID or Discord ID.
+    elevated_role_update = rscapi.ElevatedRoleUpdate() # ElevatedRoleUpdate | 
 
     try:
-        api_response = await api_instance.members_elevated_roles_update(id, elevated_role)
+        api_response = await api_instance.members_elevated_roles_update(id, member_id, elevated_role_update)
         print("The response of MembersApi->members_elevated_roles_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -878,7 +903,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this elevated role. | 
- **elevated_role** | [**ElevatedRole**](ElevatedRole.md)|  | 
+ **member_id** | **int**| Member database ID or Discord ID. | 
+ **elevated_role_update** | [**ElevatedRoleUpdate**](ElevatedRoleUpdate.md)|  | 
 
 ### Return type
 
@@ -898,6 +924,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**400** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -990,6 +1019,10 @@ Name | Type | Description  | Notes
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
+
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
 
 ### Example
 
@@ -1155,6 +1188,10 @@ Name | Type | Description  | Notes
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
 
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
+
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -1237,6 +1274,10 @@ Name | Type | Description  | Notes
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
 
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
+
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -1318,6 +1359,10 @@ Name | Type | Description  | Notes
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
+
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
 
 ### Example
 
@@ -1405,6 +1450,10 @@ Name | Type | Description  | Notes
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
+
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
 
 ### Example
 
@@ -1650,6 +1699,10 @@ Name | Type | Description  | Notes
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
 
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
+
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -1891,6 +1944,10 @@ Name | Type | Description  | Notes
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
 
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
+
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -1972,6 +2029,10 @@ Name | Type | Description  | Notes
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
 
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
+
 ### Example
 
 * Api Key Authentication (Api-Key):
@@ -2050,6 +2111,10 @@ Name | Type | Description  | Notes
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
+
+The primary key is tried first, then each alternate field in turn. A field is skipped
+when the URL value is not something that column can hold (e.g. a non-numeric string
+against an integer column), so a bad lookup value is a 404 rather than a 500.
 
 ### Example
 

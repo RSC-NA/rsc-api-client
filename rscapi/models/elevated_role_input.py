@@ -30,7 +30,7 @@ class ElevatedRoleInput(BaseModel):
     ElevatedRoleInput
     """ # noqa: E501
     league: StrictInt
-    position: PositionEnum
+    position: Optional[PositionEnum] = Field(default=None, description="Staff position. Omit or send null for a gm/agm row, which carries no position.  * `ADM` - Admin * `DEV` - Development * `EVENTS` - Events * `FRAN` - Franchise Manager * `MEDIA` - Media * `MMR` - MMR Puller * `NH` - Numbers Head * `NUMS` - Numbers * `STAFF` - Staff * `STATS` - Stats * `TM` - Transactions * `TMH` - Transactions Head")
     executor: Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]
     gm: Optional[StrictBool] = False
     agm: Optional[StrictBool] = False
@@ -76,6 +76,11 @@ class ElevatedRoleInput(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if position (nullable) is None
+        # and model_fields_set contains the field
+        if self.position is None and "position" in self.model_fields_set:
+            _dict['position'] = None
+
         # set to None if franchise (nullable) is None
         # and model_fields_set contains the field
         if self.franchise is None and "franchise" in self.model_fields_set:
