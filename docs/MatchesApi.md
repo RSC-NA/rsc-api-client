@@ -204,7 +204,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     date__lt = '2013-10-20T19:20:30+01:00' # datetime |  (optional)
     day = 56 # int |  (optional)
     match_format = 'match_format_example' # str | * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven (optional)
-    match_type = REG # str | * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any (optional) (default to REG)
+    match_type = 'REG' # str | * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any (optional) (default to 'REG')
     season = 56 # int |  (optional)
     season_number = 56 # int |  (optional)
 
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
  **date__lt** | **datetime**|  | [optional] 
  **day** | **int**|  | [optional] 
  **match_format** | **str**| * &#x60;GMS&#x60; - Game Series * &#x60;BO3&#x60; - Best of Three * &#x60;BO5&#x60; - Best of Five * &#x60;BO7&#x60; - Best of Seven | [optional] 
- **match_type** | **str**| * &#x60;REG&#x60; - Regular Season * &#x60;PRE&#x60; - Pre-season * &#x60;PST&#x60; - Post-Season * &#x60;FNL&#x60; - Finals * &#x60;ANY&#x60; - Any | [optional] [default to REG]
+ **match_type** | **str**| * &#x60;REG&#x60; - Regular Season * &#x60;PRE&#x60; - Pre-season * &#x60;PST&#x60; - Post-Season * &#x60;FNL&#x60; - Finals * &#x60;ANY&#x60; - Any | [optional] [default to &#39;REG&#39;]
  **season** | **int**|  | [optional] 
  **season_number** | **int**|  | [optional] 
 

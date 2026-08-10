@@ -396,6 +396,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_elevated_role_update.py
-test/test_patched_elevated_role_update.py
 tox.ini

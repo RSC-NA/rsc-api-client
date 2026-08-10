@@ -213,7 +213,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     league = 56 # int | League ID
     season = 56 # int | Season ID
     tier = 56 # int | Tier ID
-    stats_type = REG # str | Stats type filter  * `REG` - Regular Season Stats * `PST` - Post Season Stats (optional) (default to REG)
+    stats_type = 'REG' # str | Stats type filter  * `REG` - Regular Season Stats * `PST` - Post Season Stats (optional) (default to 'REG')
 
     try:
         api_response = await api_instance.stats_sbv_list(league, season, tier, stats_type=stats_type)
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
  **league** | **int**| League ID | 
  **season** | **int**| Season ID | 
  **tier** | **int**| Tier ID | 
- **stats_type** | **str**| Stats type filter  * &#x60;REG&#x60; - Regular Season Stats * &#x60;PST&#x60; - Post Season Stats | [optional] [default to REG]
+ **stats_type** | **str**| Stats type filter  * &#x60;REG&#x60; - Regular Season Stats * &#x60;PST&#x60; - Post Season Stats | [optional] [default to &#39;REG&#39;]
 
 ### Return type
 
@@ -297,7 +297,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     season = 56 # int | Season Number (alias) (optional)
     season_id = 56 # int | Season ID (optional)
     season_number = 56 # int | Season Number (optional)
-    stats_type = REG # str | Stats type filter  * `REG` - Regular Season Stats * `PST` - Post Season Stats (optional) (default to REG)
+    stats_type = 'REG' # str | Stats type filter  * `REG` - Regular Season Stats * `PST` - Post Season Stats (optional) (default to 'REG')
 
     try:
         api_response = await api_instance.stats_sbv_retrieve(id, league, season=season, season_id=season_id, season_number=season_number, stats_type=stats_type)
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
  **season** | **int**| Season Number (alias) | [optional] 
  **season_id** | **int**| Season ID | [optional] 
  **season_number** | **int**| Season Number | [optional] 
- **stats_type** | **str**| Stats type filter  * &#x60;REG&#x60; - Regular Season Stats * &#x60;PST&#x60; - Post Season Stats | [optional] [default to REG]
+ **stats_type** | **str**| Stats type filter  * &#x60;REG&#x60; - Regular Season Stats * &#x60;PST&#x60; - Post Season Stats | [optional] [default to &#39;REG&#39;]
 
 ### Return type
 

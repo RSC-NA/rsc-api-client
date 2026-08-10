@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.member import Member
 from typing import Optional, Set
@@ -28,9 +28,9 @@ class PaginatedMemberList(BaseModel):
     """
     PaginatedMemberList
     """ # noqa: E501
-    count: StrictInt
-    next: Optional[StrictStr] = None
-    previous: Optional[StrictStr] = None
+    count: StrictInt = Field(json_schema_extra={"examples": [123]})
+    next: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["http://api.example.org/accounts/?offset=400&limit=100"]})
+    previous: Optional[StrictStr] = Field(default=None, json_schema_extra={"examples": ["http://api.example.org/accounts/?offset=200&limit=100"]})
     results: List[Member]
     __properties: ClassVar[List[str]] = ["count", "next", "previous", "results"]
 

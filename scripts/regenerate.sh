@@ -6,7 +6,13 @@
 # The spec's own info.version ("v1") is the API *contract* version and stays
 # put; this script moves packageVersion, which is the Python client's version.
 #
-# Usage: scripts/regenerate.sh [--patch|--minor|--major] [--force]
+# Usage: scripts/regenerate.sh [--patch|--minor|--major] [-f|--force]
+#
+# --force (or FORCE=1 via the Makefile) regenerates even when the upstream spec
+# is byte-identical to the committed snapshot. Note this is *our* gate, not the
+# generator's: openapi-generator has no --force flag and always overwrites what
+# it emits, so forcing only re-runs it (useful after a generator version bump,
+# a template change, or hand-edits that need to be blown away).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -14,11 +20,12 @@ SPEC_SRC="${SPEC_SRC:-$ROOT/../web-rsc-website/openapi/openapi.json}"
 SNAPSHOT="$ROOT/openapi/openapi.json"
 
 BUMP=patch
-FORCE=0
+FORCE="${FORCE:-0}"
 for arg in "$@"; do
   case "$arg" in
     --major|--minor|--patch) BUMP="${arg#--}" ;;
-    --force) FORCE=1 ;;
+    -f|--force) FORCE=1 ;;
+    -h|--help) sed -n '3,15p' "${BASH_SOURCE[0]}" | sed 's/^# \?//'; exit 0 ;;
     *) echo "unknown arg: $arg" >&2; exit 2 ;;
   esac
 done
@@ -27,9 +34,12 @@ done
 
 # Gate: skip the whole run when the upstream spec is byte-identical to the
 # snapshot that produced the current client.
-if [[ $FORCE -eq 0 && -f "$SNAPSHOT" ]] && cmp -s "$SPEC_SRC" "$SNAPSHOT"; then
-  echo "Spec unchanged; nothing to do. (--force to regenerate anyway)"
-  exit 0
+if [[ -f "$SNAPSHOT" ]] && cmp -s "$SPEC_SRC" "$SNAPSHOT"; then
+  if [[ $FORCE -eq 0 ]]; then
+    echo "Spec unchanged; nothing to do. (make update FORCE=1 to regenerate anyway)"
+    exit 0
+  fi
+  echo "Spec unchanged; forcing regeneration."
 fi
 
 CUR=$(python3 -c 'import re,sys; print(re.search(r"^version\s*=\s*\"([^\"]+)\"", open(sys.argv[1]).read(), re.M).group(1))' "$ROOT/pyproject.toml")
@@ -44,7 +54,33 @@ print(f"{ma}.{mi}.{pa}")' "$CUR" "$BUMP")
 
 echo "Version: $CUR -> $NEW ($BUMP)"
 
-openapi-generator-cli generate \
+# The generator is the npm wrapper (@openapitools/openapi-generator-cli); the
+# jar version it runs is pinned in openapitools.json, NOT by the wrapper's own
+# version. Bump it with:
+#
+#   openapi-generator-cli version-manager set <x.y.z>
+#
+# Never `set latest` -- Maven's search API lags badly and has silently pinned
+# this repo backwards before. Check the real list at
+# https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/maven-metadata.xml
+#
+# The wrapper is a global npm package under the *current* node version, so it
+# disappears if you nvm-switch. There is also a PyPI package with the identical
+# command name; if one gets installed it shadows this and ignores
+# openapitools.json entirely. Hence the check.
+command -v openapi-generator-cli >/dev/null \
+  || { echo "ERROR: openapi-generator-cli not on PATH (nvm switched? run: npm i -g @openapitools/openapi-generator-cli)" >&2; exit 1; }
+
+PINNED=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["generator-cli"]["version"])' "$ROOT/openapitools.json")
+ACTIVE=$(openapi-generator-cli --openapitools "$ROOT/openapitools.json" version 2>/dev/null | tail -1)
+[[ "$ACTIVE" == "$PINNED" ]] || {
+  echo "ERROR: openapitools.json pins $PINNED but $(command -v openapi-generator-cli) reports '$ACTIVE'." >&2
+  echo "       Something is shadowing the npm wrapper (a PyPI openapi-generator-cli?)." >&2
+  exit 1
+}
+echo "Generator: $ACTIVE"
+
+openapi-generator-cli --openapitools "$ROOT/openapitools.json" generate \
   -i "$SPEC_SRC" \
   -g python \
   -o "$ROOT" \
