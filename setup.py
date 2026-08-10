@@ -19,7 +19,7 @@ from setuptools import setup, find_packages  # noqa: H301
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "rscapi"
-VERSION = "1.1.1"
+VERSION = "2.0.0"
 PYTHON_REQUIRES = ">= 3.10"
 REQUIRES = [
     "python-dateutil >= 2.8.2",
