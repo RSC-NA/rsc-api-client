@@ -92,6 +92,31 @@ openapi-generator-cli --openapitools "$ROOT/openapitools.json" generate \
 mkdir -p "$(dirname "$SNAPSHOT")"
 cp "$SPEC_SRC" "$SNAPSHOT"
 
+# Relax the generator's aiohttp floor.
+#
+# The python generator hardcodes whatever aiohttp was current when its template
+# was cut (7.18.0 emits >=3.13.5). Our main consumer is a Red-DiscordBot cog,
+# and Red 3.5.24 pins aiohttp==3.9.5 *exactly* -- a floor above that makes
+# rscapi flatly uninstallable next to it ("your project's requirements are
+# unsatisfiable").
+#
+# Nothing in the generated client needs the newer aiohttp: rest.py only touches
+# ClientSession(connector=/trust_env=/trace_configs=) and
+# TCPConnector(limit=/limit_per_host=/ssl=), all of which exist in 3.8.x. So the
+# floor is packaging noise, and we rewrite it after every generate.
+#
+# Raise it with AIOHTTP_MIN=x.y.z if Red ever unpins.
+AIOHTTP_MIN="${AIOHTTP_MIN:-3.8.4}"
+sed -i -E "s/\"aiohttp \(>=[0-9][0-9a-z.]*\)\"/\"aiohttp (>=$AIOHTTP_MIN)\"/" "$ROOT/pyproject.toml"
+sed -i -E "s/^aiohttp >= [0-9][0-9a-z.]*$/aiohttp >= $AIOHTTP_MIN/" "$ROOT/requirements.txt"
+sed -i -E "s/\"aiohttp >= [0-9][0-9a-z.]*\"/\"aiohttp >= $AIOHTTP_MIN\"/" "$ROOT/setup.py"
+
+for f in pyproject.toml requirements.txt setup.py; do
+  grep -q "aiohttp[ (]*>= *$AIOHTTP_MIN" "$ROOT/$f" \
+    || { echo "ERROR: aiohttp floor rewrite missed $f (generator changed the line format?)" >&2; exit 1; }
+done
+echo "aiohttp floor: >=$AIOHTTP_MIN"
+
 # Fail loudly if packageVersion did not reach the generated code -- this is the
 # one thing the whole script exists to guarantee.
 grep -q "__version__ = \"$NEW\"" "$ROOT/rscapi/__init__.py" \
