@@ -30,7 +30,7 @@ class DraftPickFranchise(BaseModel):
     """ # noqa: E501
     id: Optional[StrictInt] = None
     name: StrictStr
-    gm: DraftPickGM
+    gm: Optional[DraftPickGM]
     __properties: ClassVar[List[str]] = ["id", "name", "gm"]
 
     model_config = ConfigDict(
@@ -77,6 +77,11 @@ class DraftPickFranchise(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of gm
         if self.gm:
             _dict['gm'] = self.gm.to_dict()
+        # set to None if gm (nullable) is None
+        # and model_fields_set contains the field
+        if self.gm is None and "gm" in self.model_fields_set:
+            _dict['gm'] = None
+
         return _dict
 
     @classmethod

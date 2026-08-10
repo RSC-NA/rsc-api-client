@@ -20,13 +20,14 @@ from typing_extensions import Self
 
 class StatsTypeEnum(str, Enum):
     """
-    * `REG` - Regular Season Stats * `PST` - Post Season Stats
+    * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
     """
 
     """
     allowed enum values
     """
     REG = 'REG'
+    PRE = 'PRE'
     PST = 'PST'
 
     @classmethod

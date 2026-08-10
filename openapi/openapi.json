@@ -1420,22 +1420,6 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "agm",
-                        "schema": {
-                            "type": "boolean"
-                        },
-                        "description": "Assistant GM"
-                    },
-                    {
-                        "in": "query",
-                        "name": "gm",
-                        "schema": {
-                            "type": "boolean"
-                        },
-                        "description": "General Manager"
-                    },
-                    {
-                        "in": "query",
                         "name": "league",
                         "schema": {
                             "type": "integer"
@@ -1508,7 +1492,7 @@
         "/elevated-roles/sync/": {
             "post": {
                 "operationId": "elevated_roles_sync_create",
-                "description": "Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.\n\nInactive leagues are never synced; passing one returns a no-op result.\n\nAdmin only. Pass dry_run to see the plan without writing.",
+                "description": "Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.\n\nInactive leagues are never synced; passing one returns a no-op result.\n\nAdmin only. Pass dry_run to see the plan without writing.",
                 "tags": [
                     "elevated-roles"
                 ],
@@ -1901,6 +1885,93 @@
                 }
             }
         },
+        "/franchises/{id}/add_agm/": {
+            "put": {
+                "operationId": "franchises_add_agm_update",
+                "description": "Add an assistant general manager to a franchise.\n\nIdempotent: re-adding an existing AGM succeeds and changes nothing. The executor must hold Admin in this franchise's league, and the franchise's own GM cannot also be one of its AGMs.\n\nAGMs are appointed by hand and are never touched by the Discord role sync.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this franchise.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "franchises"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FranchiseAGMRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FranchiseAGMRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FranchiseAGMRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Franchise"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/franchises/{id}/logo/": {
             "get": {
                 "operationId": "franchises_logo_retrieve",
@@ -1993,6 +2064,93 @@
                         "description": ""
                     },
                     "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/franchises/{id}/remove_agm/": {
+            "put": {
+                "operationId": "franchises_remove_agm_update",
+                "description": "Remove an assistant general manager from a franchise.\n\nReturns 404 when the member is not an AGM of this franchise. The executor must hold Admin in this franchise's league.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this franchise.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "franchises"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FranchiseAGMRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FranchiseAGMRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FranchiseAGMRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Franchise"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2818,7 +2976,7 @@
         "/league-players/{id}/postseason_stats/": {
             "get": {
                 "operationId": "league_players_postseason_stats_retrieve",
-                "description": "Get postseason stats for a specific league player.",
+                "description": "Get postseason stats for a specific league player. Prefer `stats/?stats_type=PST`.",
                 "parameters": [
                     {
                         "in": "path",
@@ -2838,6 +2996,7 @@
                         "Api-Key": []
                     }
                 ],
+                "deprecated": true,
                 "responses": {
                     "200": {
                         "content": {
@@ -2850,6 +3009,16 @@
                         "description": ""
                     },
                     "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2912,7 +3081,7 @@
         "/league-players/{id}/stats/": {
             "get": {
                 "operationId": "league_players_stats_retrieve",
-                "description": "Get stats for a specific league player.",
+                "description": "Get stats for a specific league player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.",
                 "parameters": [
                     {
                         "in": "path",
@@ -2922,6 +3091,21 @@
                         },
                         "description": "A unique integer value identifying this league player.",
                         "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "stats_type",
+                        "schema": {
+                            "enum": [
+                                "REG",
+                                "PRE",
+                                "PST"
+                            ],
+                            "type": "string",
+                            "default": "REG",
+                            "minLength": 1
+                        },
+                        "description": "Which stats bucket to return. Defaults to regular season.\n\n* `REG` - Regular Season Stats\n* `PRE` - Pre-season Stats\n* `PST` - Post Season Stats"
                     }
                 ],
                 "tags": [
@@ -2944,6 +3128,16 @@
                         "description": ""
                     },
                     "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4336,22 +4530,6 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "agm",
-                        "schema": {
-                            "type": "boolean"
-                        },
-                        "description": "Assistant GM"
-                    },
-                    {
-                        "in": "query",
-                        "name": "gm",
-                        "schema": {
-                            "type": "boolean"
-                        },
-                        "description": "General Manager"
-                    },
-                    {
-                        "in": "query",
                         "name": "league",
                         "schema": {
                             "type": "integer"
@@ -5656,7 +5834,7 @@
         "/members/{id}/postseason_stats/": {
             "get": {
                 "operationId": "members_postseason_stats_retrieve",
-                "description": "Get postseason stats for a player.",
+                "description": "Get postseason stats for a player. Prefer `stats/?stats_type=PST`.",
                 "parameters": [
                     {
                         "in": "path",
@@ -5693,6 +5871,7 @@
                         "Api-Key": []
                     }
                 ],
+                "deprecated": true,
                 "responses": {
                     "200": {
                         "content": {
@@ -5704,7 +5883,17 @@
                         },
                         "description": ""
                     },
-                    "403": {
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5817,7 +6006,7 @@
         "/members/{id}/stats/": {
             "get": {
                 "operationId": "members_stats_retrieve",
-                "description": "Get regular season stats for a player.",
+                "description": "Get stats for a player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.",
                 "parameters": [
                     {
                         "in": "path",
@@ -5844,6 +6033,20 @@
                             "type": "integer"
                         },
                         "description": "Specific season number to get stats for"
+                    },
+                    {
+                        "in": "query",
+                        "name": "stats_type",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PRE",
+                                "PST",
+                                "REG"
+                            ],
+                            "default": "REG"
+                        },
+                        "description": "Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined."
                     }
                 ],
                 "tags": [
@@ -5865,7 +6068,17 @@
                         },
                         "description": ""
                     },
-                    "403": {
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -7395,9 +7608,9 @@
                 }
             }
         },
-        "/stats/sbv/": {
+        "/stats/idr/": {
             "get": {
-                "operationId": "stats_sbv_list",
+                "operationId": "stats_idr_list",
                 "parameters": [
                     {
                         "in": "query",
@@ -7408,6 +7621,15 @@
                         },
                         "description": "League ID",
                         "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "qualified_only",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "description": "Only return players meeting the tier's games-played threshold."
                     },
                     {
                         "in": "query",
@@ -7425,13 +7647,227 @@
                         "schema": {
                             "enum": [
                                 "REG",
+                                "PRE",
                                 "PST"
                             ],
                             "type": "string",
                             "default": "REG",
                             "minLength": 1
                         },
-                        "description": "Stats type filter\n\n* `REG` - Regular Season Stats\n* `PST` - Post Season Stats"
+                        "description": "Stats type filter\n\n* `REG` - Regular Season Stats\n* `PRE` - Pre-season Stats\n* `PST` - Post Season Stats"
+                    },
+                    {
+                        "in": "query",
+                        "name": "tier",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Tier ID",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "stats"
+                ],
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/IDRResult"
+                                    }
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/stats/idr/{id}/": {
+            "get": {
+                "operationId": "stats_idr_retrieve",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "description": "LeaguePlayer ID or Member discord_id",
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "league",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "League ID",
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Season Number (alias)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_id",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Season ID"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Season Number"
+                    },
+                    {
+                        "in": "query",
+                        "name": "stats_type",
+                        "schema": {
+                            "enum": [
+                                "REG",
+                                "PRE",
+                                "PST"
+                            ],
+                            "type": "string",
+                            "default": "REG",
+                            "minLength": 1
+                        },
+                        "description": "Stats type filter\n\n* `REG` - Regular Season Stats\n* `PRE` - Pre-season Stats\n* `PST` - Post Season Stats"
+                    }
+                ],
+                "tags": [
+                    "stats"
+                ],
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IDRResult"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/stats/sbv/": {
+            "get": {
+                "operationId": "stats_sbv_list",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "league",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "League ID",
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "qualified_only",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "description": "Only return players meeting the tier's games-played threshold."
+                    },
+                    {
+                        "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Season ID",
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "stats_type",
+                        "schema": {
+                            "enum": [
+                                "REG",
+                                "PRE",
+                                "PST"
+                            ],
+                            "type": "string",
+                            "default": "REG",
+                            "minLength": 1
+                        },
+                        "description": "Stats type filter\n\n* `REG` - Regular Season Stats\n* `PRE` - Pre-season Stats\n* `PST` - Post Season Stats"
                     },
                     {
                         "in": "query",
@@ -7546,13 +7982,14 @@
                         "schema": {
                             "enum": [
                                 "REG",
+                                "PRE",
                                 "PST"
                             ],
                             "type": "string",
                             "default": "REG",
                             "minLength": 1
                         },
-                        "description": "Stats type filter\n\n* `REG` - Regular Season Stats\n* `PST` - Post Season Stats"
+                        "description": "Stats type filter\n\n* `REG` - Regular Season Stats\n* `PRE` - Pre-season Stats\n* `PST` - Post Season Stats"
                     }
                 ],
                 "tags": [
@@ -11826,7 +12263,12 @@
                         "type": "string"
                     },
                     "gm": {
-                        "$ref": "#/components/schemas/DraftPickGM"
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/DraftPickGM"
+                            }
+                        ],
+                        "nullable": true
                     }
                 },
                 "required": [
@@ -11891,7 +12333,8 @@
                         "description": "Pick in the specific tier."
                     },
                     "gm": {
-                        "type": "integer"
+                        "type": "integer",
+                        "nullable": true
                     },
                     "tier": {
                         "$ref": "#/components/schemas/SeasonDraftPickList"
@@ -12045,14 +12488,6 @@
                         "type": "string",
                         "nullable": true
                     },
-                    "gm": {
-                        "type": "boolean",
-                        "readOnly": true
-                    },
-                    "agm": {
-                        "type": "boolean",
-                        "readOnly": true
-                    },
                     "arbiter": {
                         "type": "boolean",
                         "readOnly": true
@@ -12081,13 +12516,7 @@
                         "writeOnly": true
                     },
                     "position": {
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/PositionEnum"
-                            }
-                        ],
-                        "nullable": true,
-                        "description": "Staff position. Omit or send null for a gm/agm row, which carries no position.\n\n* `ADM` - Admin\n* `DEV` - Development\n* `EVENTS` - Events\n* `FRAN` - Franchise Manager\n* `MEDIA` - Media\n* `MMR` - MMR Puller\n* `NH` - Numbers Head\n* `NUMS` - Numbers\n* `STAFF` - Staff\n* `STATS` - Stats\n* `TM` - Transactions\n* `TMH` - Transactions Head"
+                        "$ref": "#/components/schemas/PositionEnum"
                     },
                     "executor": {
                         "type": "integer",
@@ -12095,24 +12524,12 @@
                         "minimum": -9223372036854775808,
                         "format": "int64",
                         "writeOnly": true
-                    },
-                    "gm": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "agm": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "franchise": {
-                        "type": "integer",
-                        "writeOnly": true,
-                        "nullable": true
                     }
                 },
                 "required": [
                     "executor",
-                    "league"
+                    "league",
+                    "position"
                 ]
             },
             "ElevatedRoleSyncInput": {
@@ -12212,26 +12629,7 @@
                 "description": "Write body for PUT/PATCH on /members/{member_id}/elevated_roles/{id}/.\n\nDeliberately not a subclass of ElevatedRoleInputSerializer: `league` is immutable on an existing\ngrant. Moving a grant between leagues is a different grant, and since the executor check is\nscoped to a league, a mutable `league` would let an admin of league A push a row into league B\nwhile only ever being checked against A.\n\nEvery mutable field carries an explicit `default`. `Field.validate_empty_values` falls back to\n`get_default()` for an absent value, and `get_default()` raises SkipField when the default is\n`empty` -- so `required=False` alone would silently persist the stored value on a PUT, giving a\nfull-replace that only half replaces. Under `partial=True` the default is never consulted, so\nPATCH is unaffected.\n\nMust be constructed with the instance: `validate()` runs against the merged row, not the\npayload, so its rules hold under PATCH too.",
                 "properties": {
                     "position": {
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/PositionEnum"
-                            }
-                        ],
-                        "nullable": true,
-                        "description": "Staff position. Null for a gm/agm row. Omitting it on PUT clears it.\n\n* `ADM` - Admin\n* `DEV` - Development\n* `EVENTS` - Events\n* `FRAN` - Franchise Manager\n* `MEDIA` - Media\n* `MMR` - MMR Puller\n* `NH` - Numbers Head\n* `NUMS` - Numbers\n* `STAFF` - Staff\n* `STATS` - Stats\n* `TM` - Transactions\n* `TMH` - Transactions Head"
-                    },
-                    "gm": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "agm": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "franchise": {
-                        "type": "integer",
-                        "writeOnly": true,
-                        "nullable": true
+                        "$ref": "#/components/schemas/PositionEnum"
                     },
                     "executor": {
                         "type": "integer",
@@ -12384,8 +12782,7 @@
                     },
                     "active": {
                         "type": "boolean",
-                        "readOnly": true,
-                        "default": false
+                        "readOnly": true
                     },
                     "teams": {
                         "type": "array",
@@ -12400,7 +12797,12 @@
                         "readOnly": true
                     },
                     "gm": {
-                        "$ref": "#/components/schemas/FranchiseGM"
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/FranchiseGM"
+                            }
+                        ],
+                        "nullable": true
                     },
                     "agms": {
                         "type": "array",
@@ -12417,6 +12819,30 @@
                     "prefix"
                 ]
             },
+            "FranchiseAGMRequest": {
+                "type": "object",
+                "description": "Body for add_agm / remove_agm.\n\nBoth members are addressed by Discord ID, matching FranchiseTransferRequestSerializer: the\nbot never holds database ids. No `league` field -- the franchise in the path already fixes it,\nand accepting one would invite a mismatch to arbitrate.",
+                "properties": {
+                    "agm": {
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 1,
+                        "format": "int64",
+                        "description": "Discord ID of the member to add or remove."
+                    },
+                    "executor": {
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 1,
+                        "format": "int64",
+                        "description": "Discord ID of the admin performing this. Must hold Admin in the franchise's league."
+                    }
+                },
+                "required": [
+                    "agm",
+                    "executor"
+                ]
+            },
             "FranchiseContracts": {
                 "type": "object",
                 "properties": {
@@ -12425,7 +12851,8 @@
                         "readOnly": true
                     },
                     "gm": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "prefix": {
                         "type": "string",
@@ -12534,6 +12961,14 @@
                                 "$ref": "#/components/schemas/FranchiseGM"
                             }
                         ],
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "agms": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FranchiseGM"
+                        },
                         "readOnly": true
                     },
                     "league": {
@@ -12549,8 +12984,7 @@
                     },
                     "active": {
                         "type": "boolean",
-                        "readOnly": true,
-                        "default": false
+                        "readOnly": true
                     },
                     "teams": {
                         "type": "array",
@@ -12611,7 +13045,8 @@
                         "type": "string"
                     },
                     "gm": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "wins": {
                         "type": "integer",
@@ -12744,6 +13179,179 @@
                     "away_team",
                     "home_team",
                     "results"
+                ]
+            },
+            "IDRResult": {
+                "type": "object",
+                "properties": {
+                    "rank": {
+                        "type": "integer"
+                    },
+                    "league_player_id": {
+                        "type": "integer"
+                    },
+                    "discord_id": {
+                        "type": "integer"
+                    },
+                    "player_name": {
+                        "type": "string"
+                    },
+                    "tier_id": {
+                        "type": "integer"
+                    },
+                    "tier_name": {
+                        "type": "string"
+                    },
+                    "games_played": {
+                        "type": "integer"
+                    },
+                    "win_percentage": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "pwe": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "performance_index": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "Weighted sum of the indexes, before standardizing against the tier."
+                    },
+                    "idr": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "outlier_value": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "Roughly how many more players you would have to see before seeing one this far from average."
+                    },
+                    "is_qualified": {
+                        "type": "boolean",
+                        "description": "Whether the player met the tier's games-played threshold."
+                    },
+                    "qualification_threshold": {
+                        "type": "integer",
+                        "description": "Games played required to be a qualified player in this tier."
+                    },
+                    "computed_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true,
+                        "description": "When the stored IDR was last recomputed. Null if computed on the fly."
+                    },
+                    "per_game": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "against_per_game": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "opponent_per_game": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "opponent_against_per_game": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "metrics": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "stat_means": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "metric_means": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "metric_stddevs": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "correlations_win": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "correlations_pwe": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "settings_weights": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "final_weights": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    }
+                },
+                "required": [
+                    "against_per_game",
+                    "correlations_pwe",
+                    "correlations_win",
+                    "discord_id",
+                    "final_weights",
+                    "games_played",
+                    "idr",
+                    "is_qualified",
+                    "league_player_id",
+                    "metric_means",
+                    "metric_stddevs",
+                    "metrics",
+                    "opponent_against_per_game",
+                    "opponent_per_game",
+                    "outlier_value",
+                    "per_game",
+                    "performance_index",
+                    "player_name",
+                    "pwe",
+                    "qualification_threshold",
+                    "settings_weights",
+                    "stat_means",
+                    "tier_id",
+                    "tier_name",
+                    "win_percentage"
                 ]
             },
             "IRInput": {
@@ -14274,26 +14882,7 @@
                 "description": "Write body for PUT/PATCH on /members/{member_id}/elevated_roles/{id}/.\n\nDeliberately not a subclass of ElevatedRoleInputSerializer: `league` is immutable on an existing\ngrant. Moving a grant between leagues is a different grant, and since the executor check is\nscoped to a league, a mutable `league` would let an admin of league A push a row into league B\nwhile only ever being checked against A.\n\nEvery mutable field carries an explicit `default`. `Field.validate_empty_values` falls back to\n`get_default()` for an absent value, and `get_default()` raises SkipField when the default is\n`empty` -- so `required=False` alone would silently persist the stored value on a PUT, giving a\nfull-replace that only half replaces. Under `partial=True` the default is never consulted, so\nPATCH is unaffected.\n\nMust be constructed with the instance: `validate()` runs against the merged row, not the\npayload, so its rules hold under PATCH too.",
                 "properties": {
                     "position": {
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/PositionEnum"
-                            }
-                        ],
-                        "nullable": true,
-                        "description": "Staff position. Null for a gm/agm row. Omitting it on PUT clears it.\n\n* `ADM` - Admin\n* `DEV` - Development\n* `EVENTS` - Events\n* `FRAN` - Franchise Manager\n* `MEDIA` - Media\n* `MMR` - MMR Puller\n* `NH` - Numbers Head\n* `NUMS` - Numbers\n* `STAFF` - Staff\n* `STATS` - Stats\n* `TM` - Transactions\n* `TMH` - Transactions Head"
-                    },
-                    "gm": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "agm": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "franchise": {
-                        "type": "integer",
-                        "writeOnly": true,
-                        "nullable": true
+                        "$ref": "#/components/schemas/PositionEnum"
                     },
                     "executor": {
                         "type": "integer",
@@ -14330,8 +14919,7 @@
                     },
                     "active": {
                         "type": "boolean",
-                        "readOnly": true,
-                        "default": false
+                        "readOnly": true
                     },
                     "teams": {
                         "type": "array",
@@ -14346,7 +14934,12 @@
                         "readOnly": true
                     },
                     "gm": {
-                        "$ref": "#/components/schemas/FranchiseGM"
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/FranchiseGM"
+                            }
+                        ],
+                        "nullable": true
                     },
                     "agms": {
                         "type": "array",
@@ -14843,7 +15436,12 @@
                         "readOnly": true
                     },
                     "gm": {
-                        "$ref": "#/components/schemas/FranchiseGM"
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/FranchiseGM"
+                            }
+                        ],
+                        "nullable": true
                     },
                     "prefix": {
                         "type": "string",
@@ -15134,6 +15732,240 @@
                         "type": "number",
                         "format": "double"
                     },
+                    "amount_collected": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_stolen": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_collected_big": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_stolen_big": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_collected_small": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_stolen_small": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "count_collected_big": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "count_stolen_big": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "count_collected_small": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "count_stolen_small": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_overfill": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_overfill_stolen": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_used_while_supersonic": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "time_zero_boost": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_full_boost": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_0_25": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_25_50": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_50_75": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_75_100": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_boost_time": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_bpm": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_bcpm": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_avg_amount": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_powerslide": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "count_powerslide": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "total_distance": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "time_supersonic_speed": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_speed": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_slow_speed": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_ground": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_low_air": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_high_air": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_movement_time": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_avg_speed": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "raw_avg_speed_percentage": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_defensive_third": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_neutral_third": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_offensive_third": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_defensive_half": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_offensive_half": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_behind_ball": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_infront_ball": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_most_back": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_most_forward": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_closest_to_ball": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_farthest_from_ball": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_positioning_time": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_avg_distance_to_ball": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "raw_avg_distance_to_ball_possession": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "raw_avg_distance_to_ball_no_possession": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "raw_avg_distance_to_mates": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "demos_inflicted": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "demos_taken": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
                     "stats_type": {
                         "$ref": "#/components/schemas/StatsTypeEnum"
                     },
@@ -15228,240 +16060,6 @@
                         "minimum": -2147483648
                     },
                     "goals_against_while_last_defender": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "time_powerslide": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "count_powerslide": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_collected": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_stolen": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_collected_big": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_stolen_big": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_collected_small": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_stolen_small": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "count_collected_big": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "count_stolen_big": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "count_collected_small": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "count_stolen_small": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_overfill": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_overfill_stolen": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_used_while_supersonic": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "time_zero_boost": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_full_boost": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_0_25": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_25_50": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_50_75": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_75_100": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "total_distance": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "time_supersonic_speed": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_speed": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_slow_speed": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_ground": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_low_air": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_high_air": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_defensive_third": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_neutral_third": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_offensive_third": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_defensive_half": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_offensive_half": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_behind_ball": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_infront_ball": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_most_back": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_most_forward": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_closest_to_ball": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_farthest_from_ball": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "demos_inflicted": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "demos_taken": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_boost_time": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_bpm": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_bcpm": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_avg_amount": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_movement_time": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_avg_speed": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_avg_speed_percentage": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_positioning_time": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_avg_distance_to_ball": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_avg_distance_to_ball_possession": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_avg_distance_to_ball_no_possession": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_avg_distance_to_mates": {
                         "type": "integer",
                         "maximum": 2147483647,
                         "minimum": -2147483648
@@ -15844,6 +16442,240 @@
                     "avg_distance_to_mates_rank": {
                         "type": "integer"
                     },
+                    "amount_collected": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_stolen": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_collected_big": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_stolen_big": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_collected_small": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_stolen_small": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "count_collected_big": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "count_stolen_big": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "count_collected_small": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "count_stolen_small": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_overfill": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_overfill_stolen": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "amount_used_while_supersonic": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "time_zero_boost": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_full_boost": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_0_25": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_25_50": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_50_75": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_75_100": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_boost_time": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_bpm": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_bcpm": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_avg_amount": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_powerslide": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "count_powerslide": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "total_distance": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "time_supersonic_speed": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_boost_speed": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_slow_speed": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_ground": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_low_air": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_high_air": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_movement_time": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_avg_speed": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "raw_avg_speed_percentage": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_defensive_third": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_neutral_third": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_offensive_third": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_defensive_half": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_offensive_half": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_behind_ball": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_infront_ball": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_most_back": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_most_forward": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_closest_to_ball": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "time_farthest_from_ball": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_positioning_time": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "raw_avg_distance_to_ball": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "raw_avg_distance_to_ball_possession": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "raw_avg_distance_to_ball_no_possession": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "raw_avg_distance_to_mates": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "demos_inflicted": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "demos_taken": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
                     "stats_type": {
                         "$ref": "#/components/schemas/StatsTypeEnum"
                     },
@@ -15938,240 +16770,6 @@
                         "minimum": -2147483648
                     },
                     "goals_against_while_last_defender": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "time_powerslide": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "count_powerslide": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_collected": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_stolen": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_collected_big": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_stolen_big": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_collected_small": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_stolen_small": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "count_collected_big": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "count_stolen_big": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "count_collected_small": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "count_stolen_small": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_overfill": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_overfill_stolen": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "amount_used_while_supersonic": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "time_zero_boost": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_full_boost": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_0_25": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_25_50": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_50_75": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_75_100": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "total_distance": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "time_supersonic_speed": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_boost_speed": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_slow_speed": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_ground": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_low_air": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_high_air": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_defensive_third": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_neutral_third": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_offensive_third": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_defensive_half": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_offensive_half": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_behind_ball": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_infront_ball": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_most_back": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_most_forward": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_closest_to_ball": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "time_farthest_from_ball": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "demos_inflicted": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "demos_taken": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_boost_time": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_bpm": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_bcpm": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_avg_amount": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_movement_time": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_avg_speed": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_avg_speed_percentage": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_positioning_time": {
-                        "type": "number",
-                        "format": "double"
-                    },
-                    "raw_avg_distance_to_ball": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_avg_distance_to_ball_possession": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_avg_distance_to_ball_no_possession": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648
-                    },
-                    "raw_avg_distance_to_mates": {
                         "type": "integer",
                         "maximum": 2147483647,
                         "minimum": -2147483648
@@ -16666,6 +17264,24 @@
                         "type": "number",
                         "format": "double"
                     },
+                    "is_qualified": {
+                        "type": "boolean",
+                        "description": "Whether the player met the tier's games-played threshold."
+                    },
+                    "qualification_threshold": {
+                        "type": "integer",
+                        "description": "Games played required to be a qualified player in this tier."
+                    },
+                    "weight_mode": {
+                        "type": "string",
+                        "description": "How correlations to PWE were converted into metric weights."
+                    },
+                    "computed_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true,
+                        "description": "When the stored SBV was last recomputed. Null if computed on the fly."
+                    },
                     "metrics": {
                         "type": "object",
                         "additionalProperties": {
@@ -16721,17 +17337,20 @@
                     "discord_id",
                     "final_weights",
                     "games_played",
+                    "is_qualified",
                     "league_player_id",
                     "means",
                     "metrics",
                     "player_name",
                     "pwe",
+                    "qualification_threshold",
                     "sbv",
                     "settings_weights",
                     "stddevs",
                     "tier_id",
                     "tier_name",
                     "total_shots",
+                    "weight_mode",
                     "weighted_score",
                     "z_scores"
                 ]
@@ -16997,10 +17616,11 @@
             "StatsTypeEnum": {
                 "enum": [
                     "REG",
+                    "PRE",
                     "PST"
                 ],
                 "type": "string",
-                "description": "* `REG` - Regular Season Stats\n* `PST` - Post Season Stats"
+                "description": "* `REG` - Regular Season Stats\n* `PRE` - Pre-season Stats\n* `PST` - Post Season Stats"
             },
             "SubInput": {
                 "type": "object",
@@ -17116,7 +17736,8 @@
                                 "$ref": "#/components/schemas/FranchiseGM"
                             }
                         ],
-                        "readOnly": true
+                        "readOnly": true,
+                        "nullable": true
                     },
                     "name": {
                         "type": "string"
@@ -17822,7 +18443,12 @@
                 "type": "object",
                 "properties": {
                     "gm": {
-                        "$ref": "#/components/schemas/FranchiseGM"
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/FranchiseGM"
+                            }
+                        ],
+                        "nullable": true
                     },
                     "name": {
                         "type": "string"

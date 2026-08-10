@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **elevated_roles_list**
-> PaginatedElevatedRoleList elevated_roles_list(agm=agm, gm=gm, league=league, limit=limit, offset=offset, position=position)
+> PaginatedElevatedRoleList elevated_roles_list(league=league, limit=limit, offset=offset, position=position)
 
 List all elevated roles with optional filters.
 
@@ -44,15 +44,13 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.ElevatedRolesApi(api_client)
-    agm = True # bool | Assistant GM (optional)
-    gm = True # bool | General Manager (optional)
     league = 56 # int | League ID (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
     position = 'position_example' # str | Staff position (optional)
 
     try:
-        api_response = await api_instance.elevated_roles_list(agm=agm, gm=gm, league=league, limit=limit, offset=offset, position=position)
+        api_response = await api_instance.elevated_roles_list(league=league, limit=limit, offset=offset, position=position)
         print("The response of ElevatedRolesApi->elevated_roles_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -66,8 +64,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **agm** | **bool**| Assistant GM | [optional] 
- **gm** | **bool**| General Manager | [optional] 
  **league** | **int**| League ID | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
@@ -97,7 +93,7 @@ Name | Type | Description  | Notes
 # **elevated_roles_sync_create**
 > ElevatedRoleSyncResult elevated_roles_sync_create(elevated_role_sync_input)
 
-Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.
+Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.
 
 Inactive leagues are never synced; passing one returns a no-op result.
 

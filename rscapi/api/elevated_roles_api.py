@@ -15,7 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.elevated_role_sync_input import ElevatedRoleSyncInput
@@ -43,8 +43,6 @@ class ElevatedRolesApi:
     @validate_call
     async def elevated_roles_list(
         self,
-        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
-        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
@@ -66,10 +64,6 @@ class ElevatedRolesApi:
 
         List all elevated roles with optional filters.
 
-        :param agm: Assistant GM
-        :type agm: bool
-        :param gm: General Manager
-        :type gm: bool
         :param league: League ID
         :type league: int
         :param limit: Number of results to return per page.
@@ -101,8 +95,6 @@ class ElevatedRolesApi:
         """ # noqa: E501
 
         _param = self._elevated_roles_list_serialize(
-            agm=agm,
-            gm=gm,
             league=league,
             limit=limit,
             offset=offset,
@@ -130,8 +122,6 @@ class ElevatedRolesApi:
     @validate_call
     async def elevated_roles_list_with_http_info(
         self,
-        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
-        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
@@ -153,10 +143,6 @@ class ElevatedRolesApi:
 
         List all elevated roles with optional filters.
 
-        :param agm: Assistant GM
-        :type agm: bool
-        :param gm: General Manager
-        :type gm: bool
         :param league: League ID
         :type league: int
         :param limit: Number of results to return per page.
@@ -188,8 +174,6 @@ class ElevatedRolesApi:
         """ # noqa: E501
 
         _param = self._elevated_roles_list_serialize(
-            agm=agm,
-            gm=gm,
             league=league,
             limit=limit,
             offset=offset,
@@ -217,8 +201,6 @@ class ElevatedRolesApi:
     @validate_call
     async def elevated_roles_list_without_preload_content(
         self,
-        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
-        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
@@ -240,10 +222,6 @@ class ElevatedRolesApi:
 
         List all elevated roles with optional filters.
 
-        :param agm: Assistant GM
-        :type agm: bool
-        :param gm: General Manager
-        :type gm: bool
         :param league: League ID
         :type league: int
         :param limit: Number of results to return per page.
@@ -275,8 +253,6 @@ class ElevatedRolesApi:
         """ # noqa: E501
 
         _param = self._elevated_roles_list_serialize(
-            agm=agm,
-            gm=gm,
             league=league,
             limit=limit,
             offset=offset,
@@ -299,8 +275,6 @@ class ElevatedRolesApi:
 
     def _elevated_roles_list_serialize(
         self,
-        agm,
-        gm,
         league,
         limit,
         offset,
@@ -327,14 +301,6 @@ class ElevatedRolesApi:
 
         # process the path parameters
         # process the query parameters
-        if agm is not None:
-            
-            _query_params.append(('agm', agm))
-            
-        if gm is not None:
-            
-            _query_params.append(('gm', gm))
-            
         if league is not None:
             
             _query_params.append(('league', league))
@@ -407,7 +373,7 @@ class ElevatedRolesApi:
     ) -> ElevatedRoleSyncResult:
         """elevated_roles_sync_create
 
-        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
+        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
 
         :param elevated_role_sync_input: (required)
         :type elevated_role_sync_input: ElevatedRoleSyncInput
@@ -477,7 +443,7 @@ class ElevatedRolesApi:
     ) -> ApiResponse[ElevatedRoleSyncResult]:
         """elevated_roles_sync_create
 
-        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
+        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
 
         :param elevated_role_sync_input: (required)
         :type elevated_role_sync_input: ElevatedRoleSyncInput
@@ -547,7 +513,7 @@ class ElevatedRolesApi:
     ) -> RESTResponseType:
         """elevated_roles_sync_create
 
-        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles and gm/agm rows are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
+        Re-sync one member's Discord-sourced elevated roles against their current Discord guild roles, using the bot token. Grants positions they hold a mapped role for and revokes Discord-sourced positions they no longer do; manually granted roles are never touched. Records an ElevatedRoleSyncRun and audit rows just like the scheduled reconcile, so a manual run is reviewable in the admin.  Inactive leagues are never synced; passing one returns a no-op result.  Admin only. Pass dry_run to see the plan without writing.
 
         :param elevated_role_sync_input: (required)
         :type elevated_role_sync_input: ElevatedRoleSyncInput

@@ -67,6 +67,59 @@ class PlayerSeasonStats(BaseModel):
     percent_most_forward: Union[StrictFloat, StrictInt]
     percent_closest_to_ball: Union[StrictFloat, StrictInt]
     percent_farthest_from_ball: Union[StrictFloat, StrictInt]
+    amount_collected: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_stolen: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_collected_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_stolen_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_collected_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_stolen_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    count_collected_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    count_stolen_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    count_collected_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    count_stolen_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_overfill: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_overfill_stolen: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    amount_used_while_supersonic: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    time_zero_boost: Optional[Union[StrictFloat, StrictInt]] = None
+    time_full_boost: Optional[Union[StrictFloat, StrictInt]] = None
+    time_boost_0_25: Optional[Union[StrictFloat, StrictInt]] = None
+    time_boost_25_50: Optional[Union[StrictFloat, StrictInt]] = None
+    time_boost_50_75: Optional[Union[StrictFloat, StrictInt]] = None
+    time_boost_75_100: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_boost_time: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_bpm: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_bcpm: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_avg_amount: Optional[Union[StrictFloat, StrictInt]] = None
+    time_powerslide: Optional[Union[StrictFloat, StrictInt]] = None
+    count_powerslide: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    total_distance: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    time_supersonic_speed: Optional[Union[StrictFloat, StrictInt]] = None
+    time_boost_speed: Optional[Union[StrictFloat, StrictInt]] = None
+    time_slow_speed: Optional[Union[StrictFloat, StrictInt]] = None
+    time_ground: Optional[Union[StrictFloat, StrictInt]] = None
+    time_low_air: Optional[Union[StrictFloat, StrictInt]] = None
+    time_high_air: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_movement_time: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_avg_speed: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    raw_avg_speed_percentage: Optional[Union[StrictFloat, StrictInt]] = None
+    time_defensive_third: Optional[Union[StrictFloat, StrictInt]] = None
+    time_neutral_third: Optional[Union[StrictFloat, StrictInt]] = None
+    time_offensive_third: Optional[Union[StrictFloat, StrictInt]] = None
+    time_defensive_half: Optional[Union[StrictFloat, StrictInt]] = None
+    time_offensive_half: Optional[Union[StrictFloat, StrictInt]] = None
+    time_behind_ball: Optional[Union[StrictFloat, StrictInt]] = None
+    time_infront_ball: Optional[Union[StrictFloat, StrictInt]] = None
+    time_most_back: Optional[Union[StrictFloat, StrictInt]] = None
+    time_most_forward: Optional[Union[StrictFloat, StrictInt]] = None
+    time_closest_to_ball: Optional[Union[StrictFloat, StrictInt]] = None
+    time_farthest_from_ball: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_positioning_time: Optional[Union[StrictFloat, StrictInt]] = None
+    raw_avg_distance_to_ball: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    raw_avg_distance_to_ball_possession: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    raw_avg_distance_to_ball_no_possession: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    raw_avg_distance_to_mates: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    demos_inflicted: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    demos_taken: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     stats_type: Optional[StatsTypeEnum] = None
     total_shots: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     total_shots_in_games: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
@@ -87,61 +140,8 @@ class PlayerSeasonStats(BaseModel):
     playmakers: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     saviors: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     goals_against_while_last_defender: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    time_powerslide: Optional[Union[StrictFloat, StrictInt]] = None
-    count_powerslide: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_collected: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_stolen: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_collected_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_stolen_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_collected_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_stolen_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    count_collected_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    count_stolen_big: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    count_collected_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    count_stolen_small: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_overfill: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_overfill_stolen: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    amount_used_while_supersonic: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    time_zero_boost: Optional[Union[StrictFloat, StrictInt]] = None
-    time_full_boost: Optional[Union[StrictFloat, StrictInt]] = None
-    time_boost_0_25: Optional[Union[StrictFloat, StrictInt]] = None
-    time_boost_25_50: Optional[Union[StrictFloat, StrictInt]] = None
-    time_boost_50_75: Optional[Union[StrictFloat, StrictInt]] = None
-    time_boost_75_100: Optional[Union[StrictFloat, StrictInt]] = None
-    total_distance: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    time_supersonic_speed: Optional[Union[StrictFloat, StrictInt]] = None
-    time_boost_speed: Optional[Union[StrictFloat, StrictInt]] = None
-    time_slow_speed: Optional[Union[StrictFloat, StrictInt]] = None
-    time_ground: Optional[Union[StrictFloat, StrictInt]] = None
-    time_low_air: Optional[Union[StrictFloat, StrictInt]] = None
-    time_high_air: Optional[Union[StrictFloat, StrictInt]] = None
-    time_defensive_third: Optional[Union[StrictFloat, StrictInt]] = None
-    time_neutral_third: Optional[Union[StrictFloat, StrictInt]] = None
-    time_offensive_third: Optional[Union[StrictFloat, StrictInt]] = None
-    time_defensive_half: Optional[Union[StrictFloat, StrictInt]] = None
-    time_offensive_half: Optional[Union[StrictFloat, StrictInt]] = None
-    time_behind_ball: Optional[Union[StrictFloat, StrictInt]] = None
-    time_infront_ball: Optional[Union[StrictFloat, StrictInt]] = None
-    time_most_back: Optional[Union[StrictFloat, StrictInt]] = None
-    time_most_forward: Optional[Union[StrictFloat, StrictInt]] = None
-    time_closest_to_ball: Optional[Union[StrictFloat, StrictInt]] = None
-    time_farthest_from_ball: Optional[Union[StrictFloat, StrictInt]] = None
-    demos_inflicted: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    demos_taken: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    raw_boost_time: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_bpm: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_bcpm: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_avg_amount: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_movement_time: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_avg_speed: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    raw_avg_speed_percentage: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_positioning_time: Optional[Union[StrictFloat, StrictInt]] = None
-    raw_avg_distance_to_ball: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    raw_avg_distance_to_ball_possession: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    raw_avg_distance_to_ball_no_possession: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
-    raw_avg_distance_to_mates: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     tier: StrictInt
-    __properties: ClassVar[List[str]] = ["id", "player", "season", "type", "shooting_percentage", "bpm", "bcpm", "avg_amount", "percent_zero_boost", "percent_full_boost", "percent_boost_0_25", "percent_boost_25_50", "percent_boost_50_75", "percent_boost_75_100", "avg_speed", "avg_powerslide_duration", "avg_speed_percentage", "percent_slow_speed", "percent_boost_speed", "percent_supersonic_speed", "percent_ground", "percent_low_air", "percent_high_air", "avg_distance_to_ball", "avg_distance_to_ball_possession", "avg_distance_to_ball_no_possession", "avg_distance_to_mates", "percent_defensive_third", "percent_offensive_third", "percent_neutral_third", "percent_defensive_half", "percent_offensive_half", "percent_behind_ball", "percent_infront_ball", "percent_most_back", "percent_most_forward", "percent_closest_to_ball", "percent_farthest_from_ball", "stats_type", "total_shots", "total_shots_in_games", "team_goals_in_games", "games_played", "games_won", "games_lost", "mvps", "shots", "shots_against", "goals", "goals_against", "saves", "assists", "points", "cycles", "hat_tricks", "playmakers", "saviors", "goals_against_while_last_defender", "time_powerslide", "count_powerslide", "amount_collected", "amount_stolen", "amount_collected_big", "amount_stolen_big", "amount_collected_small", "amount_stolen_small", "count_collected_big", "count_stolen_big", "count_collected_small", "count_stolen_small", "amount_overfill", "amount_overfill_stolen", "amount_used_while_supersonic", "time_zero_boost", "time_full_boost", "time_boost_0_25", "time_boost_25_50", "time_boost_50_75", "time_boost_75_100", "total_distance", "time_supersonic_speed", "time_boost_speed", "time_slow_speed", "time_ground", "time_low_air", "time_high_air", "time_defensive_third", "time_neutral_third", "time_offensive_third", "time_defensive_half", "time_offensive_half", "time_behind_ball", "time_infront_ball", "time_most_back", "time_most_forward", "time_closest_to_ball", "time_farthest_from_ball", "demos_inflicted", "demos_taken", "raw_boost_time", "raw_bpm", "raw_bcpm", "raw_avg_amount", "raw_movement_time", "raw_avg_speed", "raw_avg_speed_percentage", "raw_positioning_time", "raw_avg_distance_to_ball", "raw_avg_distance_to_ball_possession", "raw_avg_distance_to_ball_no_possession", "raw_avg_distance_to_mates", "tier"]
+    __properties: ClassVar[List[str]] = ["id", "player", "season", "type", "shooting_percentage", "bpm", "bcpm", "avg_amount", "percent_zero_boost", "percent_full_boost", "percent_boost_0_25", "percent_boost_25_50", "percent_boost_50_75", "percent_boost_75_100", "avg_speed", "avg_powerslide_duration", "avg_speed_percentage", "percent_slow_speed", "percent_boost_speed", "percent_supersonic_speed", "percent_ground", "percent_low_air", "percent_high_air", "avg_distance_to_ball", "avg_distance_to_ball_possession", "avg_distance_to_ball_no_possession", "avg_distance_to_mates", "percent_defensive_third", "percent_offensive_third", "percent_neutral_third", "percent_defensive_half", "percent_offensive_half", "percent_behind_ball", "percent_infront_ball", "percent_most_back", "percent_most_forward", "percent_closest_to_ball", "percent_farthest_from_ball", "amount_collected", "amount_stolen", "amount_collected_big", "amount_stolen_big", "amount_collected_small", "amount_stolen_small", "count_collected_big", "count_stolen_big", "count_collected_small", "count_stolen_small", "amount_overfill", "amount_overfill_stolen", "amount_used_while_supersonic", "time_zero_boost", "time_full_boost", "time_boost_0_25", "time_boost_25_50", "time_boost_50_75", "time_boost_75_100", "raw_boost_time", "raw_bpm", "raw_bcpm", "raw_avg_amount", "time_powerslide", "count_powerslide", "total_distance", "time_supersonic_speed", "time_boost_speed", "time_slow_speed", "time_ground", "time_low_air", "time_high_air", "raw_movement_time", "raw_avg_speed", "raw_avg_speed_percentage", "time_defensive_third", "time_neutral_third", "time_offensive_third", "time_defensive_half", "time_offensive_half", "time_behind_ball", "time_infront_ball", "time_most_back", "time_most_forward", "time_closest_to_ball", "time_farthest_from_ball", "raw_positioning_time", "raw_avg_distance_to_ball", "raw_avg_distance_to_ball_possession", "raw_avg_distance_to_ball_no_possession", "raw_avg_distance_to_mates", "demos_inflicted", "demos_taken", "stats_type", "total_shots", "total_shots_in_games", "team_goals_in_games", "games_played", "games_won", "games_lost", "mvps", "shots", "shots_against", "goals", "goals_against", "saves", "assists", "points", "cycles", "hat_tricks", "playmakers", "saviors", "goals_against_while_last_defender", "tier"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -234,6 +234,59 @@ class PlayerSeasonStats(BaseModel):
             "percent_most_forward": obj.get("percent_most_forward"),
             "percent_closest_to_ball": obj.get("percent_closest_to_ball"),
             "percent_farthest_from_ball": obj.get("percent_farthest_from_ball"),
+            "amount_collected": obj.get("amount_collected"),
+            "amount_stolen": obj.get("amount_stolen"),
+            "amount_collected_big": obj.get("amount_collected_big"),
+            "amount_stolen_big": obj.get("amount_stolen_big"),
+            "amount_collected_small": obj.get("amount_collected_small"),
+            "amount_stolen_small": obj.get("amount_stolen_small"),
+            "count_collected_big": obj.get("count_collected_big"),
+            "count_stolen_big": obj.get("count_stolen_big"),
+            "count_collected_small": obj.get("count_collected_small"),
+            "count_stolen_small": obj.get("count_stolen_small"),
+            "amount_overfill": obj.get("amount_overfill"),
+            "amount_overfill_stolen": obj.get("amount_overfill_stolen"),
+            "amount_used_while_supersonic": obj.get("amount_used_while_supersonic"),
+            "time_zero_boost": obj.get("time_zero_boost"),
+            "time_full_boost": obj.get("time_full_boost"),
+            "time_boost_0_25": obj.get("time_boost_0_25"),
+            "time_boost_25_50": obj.get("time_boost_25_50"),
+            "time_boost_50_75": obj.get("time_boost_50_75"),
+            "time_boost_75_100": obj.get("time_boost_75_100"),
+            "raw_boost_time": obj.get("raw_boost_time"),
+            "raw_bpm": obj.get("raw_bpm"),
+            "raw_bcpm": obj.get("raw_bcpm"),
+            "raw_avg_amount": obj.get("raw_avg_amount"),
+            "time_powerslide": obj.get("time_powerslide"),
+            "count_powerslide": obj.get("count_powerslide"),
+            "total_distance": obj.get("total_distance"),
+            "time_supersonic_speed": obj.get("time_supersonic_speed"),
+            "time_boost_speed": obj.get("time_boost_speed"),
+            "time_slow_speed": obj.get("time_slow_speed"),
+            "time_ground": obj.get("time_ground"),
+            "time_low_air": obj.get("time_low_air"),
+            "time_high_air": obj.get("time_high_air"),
+            "raw_movement_time": obj.get("raw_movement_time"),
+            "raw_avg_speed": obj.get("raw_avg_speed"),
+            "raw_avg_speed_percentage": obj.get("raw_avg_speed_percentage"),
+            "time_defensive_third": obj.get("time_defensive_third"),
+            "time_neutral_third": obj.get("time_neutral_third"),
+            "time_offensive_third": obj.get("time_offensive_third"),
+            "time_defensive_half": obj.get("time_defensive_half"),
+            "time_offensive_half": obj.get("time_offensive_half"),
+            "time_behind_ball": obj.get("time_behind_ball"),
+            "time_infront_ball": obj.get("time_infront_ball"),
+            "time_most_back": obj.get("time_most_back"),
+            "time_most_forward": obj.get("time_most_forward"),
+            "time_closest_to_ball": obj.get("time_closest_to_ball"),
+            "time_farthest_from_ball": obj.get("time_farthest_from_ball"),
+            "raw_positioning_time": obj.get("raw_positioning_time"),
+            "raw_avg_distance_to_ball": obj.get("raw_avg_distance_to_ball"),
+            "raw_avg_distance_to_ball_possession": obj.get("raw_avg_distance_to_ball_possession"),
+            "raw_avg_distance_to_ball_no_possession": obj.get("raw_avg_distance_to_ball_no_possession"),
+            "raw_avg_distance_to_mates": obj.get("raw_avg_distance_to_mates"),
+            "demos_inflicted": obj.get("demos_inflicted"),
+            "demos_taken": obj.get("demos_taken"),
             "stats_type": obj.get("stats_type"),
             "total_shots": obj.get("total_shots"),
             "total_shots_in_games": obj.get("total_shots_in_games"),
@@ -254,59 +307,6 @@ class PlayerSeasonStats(BaseModel):
             "playmakers": obj.get("playmakers"),
             "saviors": obj.get("saviors"),
             "goals_against_while_last_defender": obj.get("goals_against_while_last_defender"),
-            "time_powerslide": obj.get("time_powerslide"),
-            "count_powerslide": obj.get("count_powerslide"),
-            "amount_collected": obj.get("amount_collected"),
-            "amount_stolen": obj.get("amount_stolen"),
-            "amount_collected_big": obj.get("amount_collected_big"),
-            "amount_stolen_big": obj.get("amount_stolen_big"),
-            "amount_collected_small": obj.get("amount_collected_small"),
-            "amount_stolen_small": obj.get("amount_stolen_small"),
-            "count_collected_big": obj.get("count_collected_big"),
-            "count_stolen_big": obj.get("count_stolen_big"),
-            "count_collected_small": obj.get("count_collected_small"),
-            "count_stolen_small": obj.get("count_stolen_small"),
-            "amount_overfill": obj.get("amount_overfill"),
-            "amount_overfill_stolen": obj.get("amount_overfill_stolen"),
-            "amount_used_while_supersonic": obj.get("amount_used_while_supersonic"),
-            "time_zero_boost": obj.get("time_zero_boost"),
-            "time_full_boost": obj.get("time_full_boost"),
-            "time_boost_0_25": obj.get("time_boost_0_25"),
-            "time_boost_25_50": obj.get("time_boost_25_50"),
-            "time_boost_50_75": obj.get("time_boost_50_75"),
-            "time_boost_75_100": obj.get("time_boost_75_100"),
-            "total_distance": obj.get("total_distance"),
-            "time_supersonic_speed": obj.get("time_supersonic_speed"),
-            "time_boost_speed": obj.get("time_boost_speed"),
-            "time_slow_speed": obj.get("time_slow_speed"),
-            "time_ground": obj.get("time_ground"),
-            "time_low_air": obj.get("time_low_air"),
-            "time_high_air": obj.get("time_high_air"),
-            "time_defensive_third": obj.get("time_defensive_third"),
-            "time_neutral_third": obj.get("time_neutral_third"),
-            "time_offensive_third": obj.get("time_offensive_third"),
-            "time_defensive_half": obj.get("time_defensive_half"),
-            "time_offensive_half": obj.get("time_offensive_half"),
-            "time_behind_ball": obj.get("time_behind_ball"),
-            "time_infront_ball": obj.get("time_infront_ball"),
-            "time_most_back": obj.get("time_most_back"),
-            "time_most_forward": obj.get("time_most_forward"),
-            "time_closest_to_ball": obj.get("time_closest_to_ball"),
-            "time_farthest_from_ball": obj.get("time_farthest_from_ball"),
-            "demos_inflicted": obj.get("demos_inflicted"),
-            "demos_taken": obj.get("demos_taken"),
-            "raw_boost_time": obj.get("raw_boost_time"),
-            "raw_bpm": obj.get("raw_bpm"),
-            "raw_bcpm": obj.get("raw_bcpm"),
-            "raw_avg_amount": obj.get("raw_avg_amount"),
-            "raw_movement_time": obj.get("raw_movement_time"),
-            "raw_avg_speed": obj.get("raw_avg_speed"),
-            "raw_avg_speed_percentage": obj.get("raw_avg_speed_percentage"),
-            "raw_positioning_time": obj.get("raw_positioning_time"),
-            "raw_avg_distance_to_ball": obj.get("raw_avg_distance_to_ball"),
-            "raw_avg_distance_to_ball_possession": obj.get("raw_avg_distance_to_ball_possession"),
-            "raw_avg_distance_to_ball_no_possession": obj.get("raw_avg_distance_to_ball_no_possession"),
-            "raw_avg_distance_to_mates": obj.get("raw_avg_distance_to_mates"),
             "tier": obj.get("tier")
         })
         return _obj

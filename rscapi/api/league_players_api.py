@@ -1368,9 +1368,9 @@ class LeaguePlayersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PlayerSeasonStats:
-        """league_players_postseason_stats_retrieve
+        """(Deprecated) league_players_postseason_stats_retrieve
 
-        Get postseason stats for a specific league player.
+        Get postseason stats for a specific league player. Prefer `stats/?stats_type=PST`.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
@@ -1395,6 +1395,7 @@ class LeaguePlayersApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /league-players/{id}/postseason_stats/ is deprecated.", DeprecationWarning)
 
         _param = self._league_players_postseason_stats_retrieve_serialize(
             id=id,
@@ -1407,6 +1408,7 @@ class LeaguePlayersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
             '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1436,9 +1438,9 @@ class LeaguePlayersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PlayerSeasonStats]:
-        """league_players_postseason_stats_retrieve
+        """(Deprecated) league_players_postseason_stats_retrieve
 
-        Get postseason stats for a specific league player.
+        Get postseason stats for a specific league player. Prefer `stats/?stats_type=PST`.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
@@ -1463,6 +1465,7 @@ class LeaguePlayersApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /league-players/{id}/postseason_stats/ is deprecated.", DeprecationWarning)
 
         _param = self._league_players_postseason_stats_retrieve_serialize(
             id=id,
@@ -1475,6 +1478,7 @@ class LeaguePlayersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
             '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1504,9 +1508,9 @@ class LeaguePlayersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """league_players_postseason_stats_retrieve
+        """(Deprecated) league_players_postseason_stats_retrieve
 
-        Get postseason stats for a specific league player.
+        Get postseason stats for a specific league player. Prefer `stats/?stats_type=PST`.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
@@ -1531,6 +1535,7 @@ class LeaguePlayersApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /league-players/{id}/postseason_stats/ is deprecated.", DeprecationWarning)
 
         _param = self._league_players_postseason_stats_retrieve_serialize(
             id=id,
@@ -1543,6 +1548,7 @@ class LeaguePlayersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
             '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2141,6 +2147,7 @@ class LeaguePlayersApi:
     async def league_players_stats_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
+        stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Which stats bucket to return. Defaults to regular season.  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2156,10 +2163,12 @@ class LeaguePlayersApi:
     ) -> PlayerSeasonStats:
         """league_players_stats_retrieve
 
-        Get stats for a specific league player.
+        Get stats for a specific league player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
+        :param stats_type: Which stats bucket to return. Defaults to regular season.  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
+        :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2184,6 +2193,7 @@ class LeaguePlayersApi:
 
         _param = self._league_players_stats_retrieve_serialize(
             id=id,
+            stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2193,6 +2203,7 @@ class LeaguePlayersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
             '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2209,6 +2220,7 @@ class LeaguePlayersApi:
     async def league_players_stats_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
+        stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Which stats bucket to return. Defaults to regular season.  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2224,10 +2236,12 @@ class LeaguePlayersApi:
     ) -> ApiResponse[PlayerSeasonStats]:
         """league_players_stats_retrieve
 
-        Get stats for a specific league player.
+        Get stats for a specific league player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
+        :param stats_type: Which stats bucket to return. Defaults to regular season.  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
+        :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2252,6 +2266,7 @@ class LeaguePlayersApi:
 
         _param = self._league_players_stats_retrieve_serialize(
             id=id,
+            stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2261,6 +2276,7 @@ class LeaguePlayersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
             '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2277,6 +2293,7 @@ class LeaguePlayersApi:
     async def league_players_stats_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
+        stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Which stats bucket to return. Defaults to regular season.  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2292,10 +2309,12 @@ class LeaguePlayersApi:
     ) -> RESTResponseType:
         """league_players_stats_retrieve
 
-        Get stats for a specific league player.
+        Get stats for a specific league player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
+        :param stats_type: Which stats bucket to return. Defaults to regular season.  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
+        :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2320,6 +2339,7 @@ class LeaguePlayersApi:
 
         _param = self._league_players_stats_retrieve_serialize(
             id=id,
+            stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2329,6 +2349,7 @@ class LeaguePlayersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
             '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2340,6 +2361,7 @@ class LeaguePlayersApi:
     def _league_players_stats_retrieve_serialize(
         self,
         id,
+        stats_type,
         _request_auth,
         _content_type,
         _headers,
@@ -2364,6 +2386,10 @@ class LeaguePlayersApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
+        if stats_type is not None:
+            
+            _query_params.append(('stats_type', stats_type))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

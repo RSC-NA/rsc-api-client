@@ -6,10 +6,7 @@ Write body for PUT/PATCH on /members/{member_id}/elevated_roles/{id}/.  Delibera
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**position** | [**PositionEnum**](PositionEnum.md) | Staff position. Null for a gm/agm row. Omitting it on PUT clears it.  * &#x60;ADM&#x60; - Admin * &#x60;DEV&#x60; - Development * &#x60;EVENTS&#x60; - Events * &#x60;FRAN&#x60; - Franchise Manager * &#x60;MEDIA&#x60; - Media * &#x60;MMR&#x60; - MMR Puller * &#x60;NH&#x60; - Numbers Head * &#x60;NUMS&#x60; - Numbers * &#x60;STAFF&#x60; - Staff * &#x60;STATS&#x60; - Stats * &#x60;TM&#x60; - Transactions * &#x60;TMH&#x60; - Transactions Head | [optional] 
-**gm** | **bool** |  | [optional] [default to False]
-**agm** | **bool** |  | [optional] [default to False]
-**franchise** | **int** |  | [optional] 
+**position** | [**PositionEnum**](PositionEnum.md) |  | [optional] 
 **executor** | **int** |  | 
 
 ## Example

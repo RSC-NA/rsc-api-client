@@ -32,6 +32,7 @@ docs/ElevatedRolesApi.md
 docs/Error.md
 docs/FlaggedMatch.md
 docs/Franchise.md
+docs/FranchiseAGMRequest.md
 docs/FranchiseContracts.md
 docs/FranchiseFuturesValidation.md
 docs/FranchiseFuturesValidationResponse.md
@@ -46,6 +47,7 @@ docs/FranchiseTier.md
 docs/FranchiseTransferRequest.md
 docs/FranchisesApi.md
 docs/HighLevelMatch.md
+docs/IDRResult.md
 docs/IRInput.md
 docs/IntegrationsApi.md
 docs/IntentToPlay.md
@@ -244,6 +246,7 @@ rscapi/models/elevated_role_update.py
 rscapi/models/error.py
 rscapi/models/flagged_match.py
 rscapi/models/franchise.py
+rscapi/models/franchise_agm_request.py
 rscapi/models/franchise_contracts.py
 rscapi/models/franchise_futures_validation.py
 rscapi/models/franchise_futures_validation_response.py
@@ -257,6 +260,7 @@ rscapi/models/franchise_team.py
 rscapi/models/franchise_tier.py
 rscapi/models/franchise_transfer_request.py
 rscapi/models/high_level_match.py
+rscapi/models/idr_result.py
 rscapi/models/intent_to_play.py
 rscapi/models/intent_to_play_request.py
 rscapi/models/ir_input.py
@@ -396,4 +400,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_franchise_agm_request.py
+test/test_idr_result.py
 tox.ini

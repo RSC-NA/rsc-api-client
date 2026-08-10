@@ -34,12 +34,10 @@ class ElevatedRole(BaseModel):
     member: Optional[SimpleMember] = None
     league: ElevatedRoleLeague
     position: Optional[StrictStr]
-    gm: Optional[StrictBool] = None
-    agm: Optional[StrictBool] = None
     arbiter: Optional[StrictBool] = None
     project_role: Annotated[str, Field(min_length=0, strict=True)]
     franchise_id: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["id", "member", "league", "position", "gm", "agm", "arbiter", "project_role", "franchise_id"]
+    __properties: ClassVar[List[str]] = ["id", "member", "league", "position", "arbiter", "project_role", "franchise_id"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,14 +73,10 @@ class ElevatedRole(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "member",
-            "gm",
-            "agm",
             "arbiter",
             "franchise_id",
         ])
@@ -124,8 +118,6 @@ class ElevatedRole(BaseModel):
             "member": SimpleMember.from_dict(obj["member"]) if obj.get("member") is not None else None,
             "league": ElevatedRoleLeague.from_dict(obj["league"]) if obj.get("league") is not None else None,
             "position": obj.get("position"),
-            "gm": obj.get("gm"),
-            "agm": obj.get("agm"),
             "arbiter": obj.get("arbiter"),
             "project_role": obj.get("project_role"),
             "franchise_id": obj.get("franchise_id")

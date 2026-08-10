@@ -9,9 +9,10 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] [readonly] 
 **prefix** | **str** |  | [optional] [readonly] 
 **gm** | [**FranchiseGM**](FranchiseGM.md) |  | [optional] [readonly] 
+**agms** | [**List[FranchiseGM]**](FranchiseGM.md) |  | [optional] [readonly] 
 **league** | **int** |  | [optional] [readonly] 
 **tiers** | [**List[FranchiseTier]**](FranchiseTier.md) |  | [optional] [readonly] 
-**active** | **bool** |  | [optional] [readonly] [default to False]
+**active** | **bool** |  | [optional] [readonly] 
 **teams** | [**List[FranchiseTeam]**](FranchiseTeam.md) |  | [optional] [readonly] 
 **logo** | **str** |  | [optional] [readonly] 
 

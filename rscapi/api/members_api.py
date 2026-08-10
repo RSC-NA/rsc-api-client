@@ -15,7 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.activity_check import ActivityCheck
@@ -2026,8 +2026,6 @@ class MembersApi:
     async def members_elevated_roles_list(
         self,
         member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
-        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
-        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
         position: Annotated[Optional[StrictStr], Field(description="Staff position")] = None,
         _request_timeout: Union[
@@ -2049,10 +2047,6 @@ class MembersApi:
 
         :param member_id: Member database ID or Discord ID. (required)
         :type member_id: int
-        :param agm: Assistant GM
-        :type agm: bool
-        :param gm: General Manager
-        :type gm: bool
         :param league: League ID
         :type league: int
         :param position: Staff position
@@ -2081,8 +2075,6 @@ class MembersApi:
 
         _param = self._members_elevated_roles_list_serialize(
             member_id=member_id,
-            agm=agm,
-            gm=gm,
             league=league,
             position=position,
             _request_auth=_request_auth,
@@ -2109,8 +2101,6 @@ class MembersApi:
     async def members_elevated_roles_list_with_http_info(
         self,
         member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
-        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
-        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
         position: Annotated[Optional[StrictStr], Field(description="Staff position")] = None,
         _request_timeout: Union[
@@ -2132,10 +2122,6 @@ class MembersApi:
 
         :param member_id: Member database ID or Discord ID. (required)
         :type member_id: int
-        :param agm: Assistant GM
-        :type agm: bool
-        :param gm: General Manager
-        :type gm: bool
         :param league: League ID
         :type league: int
         :param position: Staff position
@@ -2164,8 +2150,6 @@ class MembersApi:
 
         _param = self._members_elevated_roles_list_serialize(
             member_id=member_id,
-            agm=agm,
-            gm=gm,
             league=league,
             position=position,
             _request_auth=_request_auth,
@@ -2192,8 +2176,6 @@ class MembersApi:
     async def members_elevated_roles_list_without_preload_content(
         self,
         member_id: Annotated[StrictInt, Field(description="Member database ID or Discord ID.")],
-        agm: Annotated[Optional[StrictBool], Field(description="Assistant GM")] = None,
-        gm: Annotated[Optional[StrictBool], Field(description="General Manager")] = None,
         league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
         position: Annotated[Optional[StrictStr], Field(description="Staff position")] = None,
         _request_timeout: Union[
@@ -2215,10 +2197,6 @@ class MembersApi:
 
         :param member_id: Member database ID or Discord ID. (required)
         :type member_id: int
-        :param agm: Assistant GM
-        :type agm: bool
-        :param gm: General Manager
-        :type gm: bool
         :param league: League ID
         :type league: int
         :param position: Staff position
@@ -2247,8 +2225,6 @@ class MembersApi:
 
         _param = self._members_elevated_roles_list_serialize(
             member_id=member_id,
-            agm=agm,
-            gm=gm,
             league=league,
             position=position,
             _request_auth=_request_auth,
@@ -2270,8 +2246,6 @@ class MembersApi:
     def _members_elevated_roles_list_serialize(
         self,
         member_id,
-        agm,
-        gm,
         league,
         position,
         _request_auth,
@@ -2298,14 +2272,6 @@ class MembersApi:
         if member_id is not None:
             _path_params['member_id'] = member_id
         # process the query parameters
-        if agm is not None:
-            
-            _query_params.append(('agm', agm))
-            
-        if gm is not None:
-            
-            _query_params.append(('gm', gm))
-            
         if league is not None:
             
             _query_params.append(('league', league))
@@ -5738,9 +5704,9 @@ class MembersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PlayerSeasonStats:
-        """members_postseason_stats_retrieve
+        """(Deprecated) members_postseason_stats_retrieve
 
-        Get postseason stats for a player.
+        Get postseason stats for a player. Prefer `stats/?stats_type=PST`.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -5769,6 +5735,7 @@ class MembersApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /members/{id}/postseason_stats/ is deprecated.", DeprecationWarning)
 
         _param = self._members_postseason_stats_retrieve_serialize(
             id=id,
@@ -5782,7 +5749,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
-            '403': "Error",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -5814,9 +5782,9 @@ class MembersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PlayerSeasonStats]:
-        """members_postseason_stats_retrieve
+        """(Deprecated) members_postseason_stats_retrieve
 
-        Get postseason stats for a player.
+        Get postseason stats for a player. Prefer `stats/?stats_type=PST`.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -5845,6 +5813,7 @@ class MembersApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /members/{id}/postseason_stats/ is deprecated.", DeprecationWarning)
 
         _param = self._members_postseason_stats_retrieve_serialize(
             id=id,
@@ -5858,7 +5827,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
-            '403': "Error",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -5890,9 +5860,9 @@ class MembersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """members_postseason_stats_retrieve
+        """(Deprecated) members_postseason_stats_retrieve
 
-        Get postseason stats for a player.
+        Get postseason stats for a player. Prefer `stats/?stats_type=PST`.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -5921,6 +5891,7 @@ class MembersApi:
         :type _host_index: int, optional
         :return: Returns the result object.
         """ # noqa: E501
+        warnings.warn("GET /members/{id}/postseason_stats/ is deprecated.", DeprecationWarning)
 
         _param = self._members_postseason_stats_retrieve_serialize(
             id=id,
@@ -5934,7 +5905,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
-            '403': "Error",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -6587,6 +6559,7 @@ class MembersApi:
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
         league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        stats_type: Annotated[Optional[StrictStr], Field(description="Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6602,7 +6575,7 @@ class MembersApi:
     ) -> PlayerSeasonStats:
         """members_stats_retrieve
 
-        Get regular season stats for a player.
+        Get stats for a player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -6610,6 +6583,8 @@ class MembersApi:
         :type league: int
         :param season: Specific season number to get stats for
         :type season: int
+        :param stats_type: Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.
+        :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6636,6 +6611,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6644,7 +6620,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
-            '403': "Error",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -6663,6 +6640,7 @@ class MembersApi:
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
         league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        stats_type: Annotated[Optional[StrictStr], Field(description="Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6678,7 +6656,7 @@ class MembersApi:
     ) -> ApiResponse[PlayerSeasonStats]:
         """members_stats_retrieve
 
-        Get regular season stats for a player.
+        Get stats for a player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -6686,6 +6664,8 @@ class MembersApi:
         :type league: int
         :param season: Specific season number to get stats for
         :type season: int
+        :param stats_type: Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.
+        :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6712,6 +6692,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6720,7 +6701,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
-            '403': "Error",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -6739,6 +6721,7 @@ class MembersApi:
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
         league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
         season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        stats_type: Annotated[Optional[StrictStr], Field(description="Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6754,7 +6737,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_stats_retrieve
 
-        Get regular season stats for a player.
+        Get stats for a player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -6762,6 +6745,8 @@ class MembersApi:
         :type league: int
         :param season: Specific season number to get stats for
         :type season: int
+        :param stats_type: Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.
+        :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6788,6 +6773,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -6796,7 +6782,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "PlayerSeasonStats",
-            '403': "Error",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -6810,6 +6797,7 @@ class MembersApi:
         id,
         league,
         season,
+        stats_type,
         _request_auth,
         _content_type,
         _headers,
@@ -6841,6 +6829,10 @@ class MembersApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if stats_type is not None:
+            
+            _query_params.append(('stats_type', stats_type))
             
         # process the header parameters
         # process the form parameters

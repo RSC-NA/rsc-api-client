@@ -30,7 +30,7 @@ class PlayerFranchise(BaseModel):
     """ # noqa: E501
     name: Optional[StrictStr] = None
     id: Optional[StrictInt] = None
-    gm: FranchiseGM
+    gm: Optional[FranchiseGM]
     prefix: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["name", "id", "gm", "prefix"]
 
@@ -82,6 +82,11 @@ class PlayerFranchise(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of gm
         if self.gm:
             _dict['gm'] = self.gm.to_dict()
+        # set to None if gm (nullable) is None
+        # and model_fields_set contains the field
+        if self.gm is None and "gm" in self.model_fields_set:
+            _dict['gm'] = None
+
         return _dict
 
     @classmethod

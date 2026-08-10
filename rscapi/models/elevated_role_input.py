@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from rscapi.models.position_enum import PositionEnum
 from typing import Optional, Set
@@ -30,12 +30,9 @@ class ElevatedRoleInput(BaseModel):
     ElevatedRoleInput
     """ # noqa: E501
     league: StrictInt
-    position: Optional[PositionEnum] = Field(default=None, description="Staff position. Omit or send null for a gm/agm row, which carries no position.  * `ADM` - Admin * `DEV` - Development * `EVENTS` - Events * `FRAN` - Franchise Manager * `MEDIA` - Media * `MMR` - MMR Puller * `NH` - Numbers Head * `NUMS` - Numbers * `STAFF` - Staff * `STATS` - Stats * `TM` - Transactions * `TMH` - Transactions Head")
+    position: PositionEnum
     executor: Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]
-    gm: Optional[StrictBool] = False
-    agm: Optional[StrictBool] = False
-    franchise: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["league", "position", "executor", "gm", "agm", "franchise"]
+    __properties: ClassVar[List[str]] = ["league", "position", "executor"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,16 +73,6 @@ class ElevatedRoleInput(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if position (nullable) is None
-        # and model_fields_set contains the field
-        if self.position is None and "position" in self.model_fields_set:
-            _dict['position'] = None
-
-        # set to None if franchise (nullable) is None
-        # and model_fields_set contains the field
-        if self.franchise is None and "franchise" in self.model_fields_set:
-            _dict['franchise'] = None
-
         return _dict
 
     @classmethod
@@ -100,10 +87,7 @@ class ElevatedRoleInput(BaseModel):
         _obj = cls.model_validate({
             "league": obj.get("league"),
             "position": obj.get("position"),
-            "executor": obj.get("executor"),
-            "gm": obj.get("gm") if obj.get("gm") is not None else False,
-            "agm": obj.get("agm") if obj.get("agm") is not None else False,
-            "franchise": obj.get("franchise")
+            "executor": obj.get("executor")
         })
         return _obj
 

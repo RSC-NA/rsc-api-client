@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 # **league_players_postseason_stats_retrieve**
 > PlayerSeasonStats league_players_postseason_stats_retrieve(id)
 
-Get postseason stats for a specific league player.
+Get postseason stats for a specific league player. Prefer `stats/?stats_type=PST`.
 
 ### Example
 
@@ -413,6 +413,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** |  |  -  |
 **400** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -568,9 +569,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_stats_retrieve**
-> PlayerSeasonStats league_players_stats_retrieve(id)
+> PlayerSeasonStats league_players_stats_retrieve(id, stats_type=stats_type)
 
-Get stats for a specific league player.
+Get stats for a specific league player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
 ### Example
 
@@ -604,9 +605,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
     id = 56 # int | A unique integer value identifying this league player.
+    stats_type = 'REG' # str | Which stats bucket to return. Defaults to regular season.  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats (optional) (default to 'REG')
 
     try:
-        api_response = await api_instance.league_players_stats_retrieve(id)
+        api_response = await api_instance.league_players_stats_retrieve(id, stats_type=stats_type)
         print("The response of LeaguePlayersApi->league_players_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -621,6 +623,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league player. | 
+ **stats_type** | **str**| Which stats bucket to return. Defaults to regular season.  * &#x60;REG&#x60; - Regular Season Stats * &#x60;PRE&#x60; - Pre-season Stats * &#x60;PST&#x60; - Post Season Stats | [optional] [default to &#39;REG&#39;]
 
 ### Return type
 
@@ -641,6 +644,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** |  |  -  |
 **400** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

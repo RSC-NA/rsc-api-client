@@ -41,6 +41,7 @@ from rscapi.models.elevated_role_update import ElevatedRoleUpdate
 from rscapi.models.error import Error
 from rscapi.models.flagged_match import FlaggedMatch
 from rscapi.models.franchise import Franchise
+from rscapi.models.franchise_agm_request import FranchiseAGMRequest
 from rscapi.models.franchise_contracts import FranchiseContracts
 from rscapi.models.franchise_futures_validation import FranchiseFuturesValidation
 from rscapi.models.franchise_futures_validation_response import FranchiseFuturesValidationResponse
@@ -54,6 +55,7 @@ from rscapi.models.franchise_team import FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier
 from rscapi.models.franchise_transfer_request import FranchiseTransferRequest
 from rscapi.models.high_level_match import HighLevelMatch
+from rscapi.models.idr_result import IDRResult
 from rscapi.models.ir_input import IRInput
 from rscapi.models.intent_to_play import IntentToPlay
 from rscapi.models.intent_to_play_request import IntentToPlayRequest

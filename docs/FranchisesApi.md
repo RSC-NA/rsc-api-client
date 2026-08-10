@@ -4,17 +4,105 @@ All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**franchises_add_agm_update**](FranchisesApi.md#franchises_add_agm_update) | **PUT** /franchises/{id}/add_agm/ | 
 [**franchises_create**](FranchisesApi.md#franchises_create) | **POST** /franchises/ | 
 [**franchises_destroy**](FranchisesApi.md#franchises_destroy) | **DELETE** /franchises/{id}/ | 
 [**franchises_list**](FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
 [**franchises_logo_retrieve**](FranchisesApi.md#franchises_logo_retrieve) | **GET** /franchises/{id}/logo/ | 
 [**franchises_partial_update**](FranchisesApi.md#franchises_partial_update) | **PATCH** /franchises/{id}/ | 
 [**franchises_rebrand_update**](FranchisesApi.md#franchises_rebrand_update) | **PUT** /franchises/{id}/rebrand/ | 
+[**franchises_remove_agm_update**](FranchisesApi.md#franchises_remove_agm_update) | **PUT** /franchises/{id}/remove_agm/ | 
 [**franchises_retrieve**](FranchisesApi.md#franchises_retrieve) | **GET** /franchises/{id}/ | 
 [**franchises_transfer_franchise_update**](FranchisesApi.md#franchises_transfer_franchise_update) | **PUT** /franchises/{id}/transfer_franchise/ | 
 [**franchises_update**](FranchisesApi.md#franchises_update) | **PUT** /franchises/{id}/ | 
 [**franchises_upload_logo_update**](FranchisesApi.md#franchises_upload_logo_update) | **PUT** /franchises/{id}/upload_logo/ | 
 
+
+# **franchises_add_agm_update**
+> Franchise franchises_add_agm_update(id, franchise_agm_request)
+
+Add an assistant general manager to a franchise.
+
+Idempotent: re-adding an existing AGM succeeds and changes nothing. The executor must hold Admin in this franchise's league, and the franchise's own GM cannot also be one of its AGMs.
+
+AGMs are appointed by hand and are never touched by the Discord role sync.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.franchise import Franchise
+from rscapi.models.franchise_agm_request import FranchiseAGMRequest
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.FranchisesApi(api_client)
+    id = 56 # int | A unique integer value identifying this franchise.
+    franchise_agm_request = rscapi.FranchiseAGMRequest() # FranchiseAGMRequest | 
+
+    try:
+        api_response = await api_instance.franchises_add_agm_update(id, franchise_agm_request)
+        print("The response of FranchisesApi->franchises_add_agm_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FranchisesApi->franchises_add_agm_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this franchise. | 
+ **franchise_agm_request** | [**FranchiseAGMRequest**](FranchiseAGMRequest.md)|  | 
+
+### Return type
+
+[**Franchise**](Franchise.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_create**
 > Franchise franchises_create(franchise)
@@ -485,6 +573,90 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **202** |  |  -  |
 **400** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **franchises_remove_agm_update**
+> Franchise franchises_remove_agm_update(id, franchise_agm_request)
+
+Remove an assistant general manager from a franchise.
+
+Returns 404 when the member is not an AGM of this franchise. The executor must hold Admin in this franchise's league.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.franchise import Franchise
+from rscapi.models.franchise_agm_request import FranchiseAGMRequest
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.FranchisesApi(api_client)
+    id = 56 # int | A unique integer value identifying this franchise.
+    franchise_agm_request = rscapi.FranchiseAGMRequest() # FranchiseAGMRequest | 
+
+    try:
+        api_response = await api_instance.franchises_remove_agm_update(id, franchise_agm_request)
+        print("The response of FranchisesApi->franchises_remove_agm_update:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling FranchisesApi->franchises_remove_agm_update: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this franchise. | 
+ **franchise_agm_request** | [**FranchiseAGMRequest**](FranchiseAGMRequest.md)|  | 
+
+### Return type
+
+[**Franchise**](Franchise.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** |  |  -  |
+**400** |  |  -  |
+**403** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -16,6 +16,10 @@ Name | Type | Description | Notes
 **pwe** | **float** |  | 
 **weighted_score** | **float** |  | 
 **sbv** | **float** |  | 
+**is_qualified** | **bool** | Whether the player met the tier&#39;s games-played threshold. | 
+**qualification_threshold** | **int** | Games played required to be a qualified player in this tier. | 
+**weight_mode** | **str** | How correlations to PWE were converted into metric weights. | 
+**computed_at** | **datetime** | When the stored SBV was last recomputed. Null if computed on the fly. | [optional] 
 **metrics** | **Dict[str, float]** |  | 
 **means** | **Dict[str, float]** |  | 
 **stddevs** | **Dict[str, float]** |  | 

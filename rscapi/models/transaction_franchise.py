@@ -29,7 +29,7 @@ class TransactionFranchise(BaseModel):
     """
     TransactionFranchise
     """ # noqa: E501
-    gm: FranchiseGM
+    gm: Optional[FranchiseGM]
     name: StrictStr
     id: Optional[StrictInt] = None
     prefix: Annotated[str, Field(strict=True, max_length=3)]
@@ -79,6 +79,11 @@ class TransactionFranchise(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of gm
         if self.gm:
             _dict['gm'] = self.gm.to_dict()
+        # set to None if gm (nullable) is None
+        # and model_fields_set contains the field
+        if self.gm is None and "gm" in self.model_fields_set:
+            _dict['gm'] = None
+
         return _dict
 
     @classmethod

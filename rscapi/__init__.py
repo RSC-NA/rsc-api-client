@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 
 # Define package exports
 __all__ = [
@@ -71,6 +71,7 @@ __all__ = [
     "Error",
     "FlaggedMatch",
     "Franchise",
+    "FranchiseAGMRequest",
     "FranchiseContracts",
     "FranchiseFuturesValidation",
     "FranchiseFuturesValidationResponse",
@@ -84,6 +85,7 @@ __all__ = [
     "FranchiseTier",
     "FranchiseTransferRequest",
     "HighLevelMatch",
+    "IDRResult",
     "IRInput",
     "IntentToPlay",
     "IntentToPlayRequest",
@@ -277,6 +279,7 @@ from rscapi.models.elevated_role_update import ElevatedRoleUpdate as ElevatedRol
 from rscapi.models.error import Error as Error
 from rscapi.models.flagged_match import FlaggedMatch as FlaggedMatch
 from rscapi.models.franchise import Franchise as Franchise
+from rscapi.models.franchise_agm_request import FranchiseAGMRequest as FranchiseAGMRequest
 from rscapi.models.franchise_contracts import FranchiseContracts as FranchiseContracts
 from rscapi.models.franchise_futures_validation import FranchiseFuturesValidation as FranchiseFuturesValidation
 from rscapi.models.franchise_futures_validation_response import FranchiseFuturesValidationResponse as FranchiseFuturesValidationResponse
@@ -290,6 +293,7 @@ from rscapi.models.franchise_team import FranchiseTeam as FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier as FranchiseTier
 from rscapi.models.franchise_transfer_request import FranchiseTransferRequest as FranchiseTransferRequest
 from rscapi.models.high_level_match import HighLevelMatch as HighLevelMatch
+from rscapi.models.idr_result import IDRResult as IDRResult
 from rscapi.models.ir_input import IRInput as IRInput
 from rscapi.models.intent_to_play import IntentToPlay as IntentToPlay
 from rscapi.models.intent_to_play_request import IntentToPlayRequest as IntentToPlayRequest

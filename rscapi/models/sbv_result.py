@@ -17,7 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -38,6 +39,10 @@ class SBVResult(BaseModel):
     pwe: Union[StrictFloat, StrictInt]
     weighted_score: Union[StrictFloat, StrictInt]
     sbv: Union[StrictFloat, StrictInt]
+    is_qualified: StrictBool = Field(description="Whether the player met the tier's games-played threshold.")
+    qualification_threshold: StrictInt = Field(description="Games played required to be a qualified player in this tier.")
+    weight_mode: StrictStr = Field(description="How correlations to PWE were converted into metric weights.")
+    computed_at: Optional[datetime] = Field(default=None, description="When the stored SBV was last recomputed. Null if computed on the fly.")
     metrics: Dict[str, Union[StrictFloat, StrictInt]]
     means: Dict[str, Union[StrictFloat, StrictInt]]
     stddevs: Dict[str, Union[StrictFloat, StrictInt]]
@@ -45,7 +50,7 @@ class SBVResult(BaseModel):
     correlation_weights: Dict[str, Union[StrictFloat, StrictInt]]
     settings_weights: Dict[str, Union[StrictFloat, StrictInt]]
     final_weights: Dict[str, Union[StrictFloat, StrictInt]]
-    __properties: ClassVar[List[str]] = ["rank", "league_player_id", "discord_id", "player_name", "tier_id", "tier_name", "games_played", "total_shots", "pwe", "weighted_score", "sbv", "metrics", "means", "stddevs", "z_scores", "correlation_weights", "settings_weights", "final_weights"]
+    __properties: ClassVar[List[str]] = ["rank", "league_player_id", "discord_id", "player_name", "tier_id", "tier_name", "games_played", "total_shots", "pwe", "weighted_score", "sbv", "is_qualified", "qualification_threshold", "weight_mode", "computed_at", "metrics", "means", "stddevs", "z_scores", "correlation_weights", "settings_weights", "final_weights"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +91,11 @@ class SBVResult(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if computed_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.computed_at is None and "computed_at" in self.model_fields_set:
+            _dict['computed_at'] = None
+
         return _dict
 
     @classmethod
@@ -109,6 +119,10 @@ class SBVResult(BaseModel):
             "pwe": obj.get("pwe"),
             "weighted_score": obj.get("weighted_score"),
             "sbv": obj.get("sbv"),
+            "is_qualified": obj.get("is_qualified"),
+            "qualification_threshold": obj.get("qualification_threshold"),
+            "weight_mode": obj.get("weight_mode"),
+            "computed_at": obj.get("computed_at"),
             "metrics": obj.get("metrics"),
             "means": obj.get("means"),
             "stddevs": obj.get("stddevs"),

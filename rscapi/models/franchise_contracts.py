@@ -28,7 +28,7 @@ class FranchiseContracts(BaseModel):
     FranchiseContracts
     """ # noqa: E501
     name: Optional[StrictStr] = None
-    gm: StrictStr
+    gm: Optional[StrictStr]
     prefix: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["name", "gm", "prefix"]
 
@@ -75,6 +75,11 @@ class FranchiseContracts(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if gm (nullable) is None
+        # and model_fields_set contains the field
+        if self.gm is None and "gm" in self.model_fields_set:
+            _dict['gm'] = None
+
         return _dict
 
     @classmethod

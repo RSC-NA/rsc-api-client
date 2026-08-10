@@ -1,10 +1,12 @@
 # StatsTypeEnum
 
-* `REG` - Regular Season Stats * `PST` - Post Season Stats
+* `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
 
 ## Enum
 
 * `REG` (value: `'REG'`)
+
+* `PRE` (value: `'PRE'`)
 
 * `PST` (value: `'PST'`)
 

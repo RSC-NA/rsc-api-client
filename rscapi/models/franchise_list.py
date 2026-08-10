@@ -34,12 +34,13 @@ class FranchiseList(BaseModel):
     name: Optional[StrictStr] = None
     prefix: Optional[StrictStr] = None
     gm: Optional[FranchiseGM] = None
+    agms: Optional[List[FranchiseGM]] = None
     league: Optional[StrictInt] = None
     tiers: Optional[List[FranchiseTier]] = None
-    active: Optional[StrictBool] = False
+    active: Optional[StrictBool] = None
     teams: Optional[List[FranchiseTeam]] = None
     logo: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "name", "prefix", "gm", "league", "tiers", "active", "teams", "logo"]
+    __properties: ClassVar[List[str]] = ["id", "name", "prefix", "gm", "agms", "league", "tiers", "active", "teams", "logo"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -80,12 +81,14 @@ class FranchiseList(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
             "name",
             "prefix",
             "gm",
+            "agms",
             "league",
             "tiers",
             "active",
@@ -101,6 +104,13 @@ class FranchiseList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of gm
         if self.gm:
             _dict['gm'] = self.gm.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in agms (list)
+        _items = []
+        if self.agms:
+            for _item_agms in self.agms:
+                if _item_agms:
+                    _items.append(_item_agms.to_dict())
+            _dict['agms'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in tiers (list)
         _items = []
         if self.tiers:
@@ -115,6 +125,11 @@ class FranchiseList(BaseModel):
                 if _item_teams:
                     _items.append(_item_teams.to_dict())
             _dict['teams'] = _items
+        # set to None if gm (nullable) is None
+        # and model_fields_set contains the field
+        if self.gm is None and "gm" in self.model_fields_set:
+            _dict['gm'] = None
+
         return _dict
 
     @classmethod
@@ -131,9 +146,10 @@ class FranchiseList(BaseModel):
             "name": obj.get("name"),
             "prefix": obj.get("prefix"),
             "gm": FranchiseGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None,
+            "agms": [FranchiseGM.from_dict(_item) for _item in obj["agms"]] if obj.get("agms") is not None else None,
             "league": obj.get("league"),
             "tiers": [FranchiseTier.from_dict(_item) for _item in obj["tiers"]] if obj.get("tiers") is not None else None,
-            "active": obj.get("active") if obj.get("active") is not None else False,
+            "active": obj.get("active"),
             "teams": [FranchiseTeam.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None,
             "logo": obj.get("logo")
         })

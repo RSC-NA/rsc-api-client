@@ -9,8 +9,6 @@ Name | Type | Description | Notes
 **member** | [**SimpleMember**](SimpleMember.md) |  | [optional] [readonly] 
 **league** | [**ElevatedRoleLeague**](ElevatedRoleLeague.md) |  | 
 **position** | **str** |  | 
-**gm** | **bool** |  | [optional] [readonly] 
-**agm** | **bool** |  | [optional] [readonly] 
 **arbiter** | **bool** |  | [optional] [readonly] 
 **project_role** | **str** |  | 
 **franchise_id** | **int** |  | [optional] [readonly] 

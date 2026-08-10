@@ -32,7 +32,7 @@ class DraftPickList(BaseModel):
     id: Optional[StrictInt] = None
     round: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Specific round in the tier.")
     number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = Field(default=None, description="Pick in the specific tier.")
-    gm: StrictInt
+    gm: Optional[StrictInt]
     tier: SeasonDraftPickList
     __properties: ClassVar[List[str]] = ["id", "round", "number", "gm", "tier"]
 
@@ -80,6 +80,11 @@ class DraftPickList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tier
         if self.tier:
             _dict['tier'] = self.tier.to_dict()
+        # set to None if gm (nullable) is None
+        # and model_fields_set contains the field
+        if self.gm is None and "gm" in self.model_fields_set:
+            _dict['gm'] = None
+
         return _dict
 
     @classmethod

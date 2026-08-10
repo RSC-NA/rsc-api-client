@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.position_enum import PositionEnum
@@ -29,12 +29,9 @@ class ElevatedRoleUpdate(BaseModel):
     """
     Write body for PUT/PATCH on /members/{member_id}/elevated_roles/{id}/.  Deliberately not a subclass of ElevatedRoleInputSerializer: `league` is immutable on an existing grant. Moving a grant between leagues is a different grant, and since the executor check is scoped to a league, a mutable `league` would let an admin of league A push a row into league B while only ever being checked against A.  Every mutable field carries an explicit `default`. `Field.validate_empty_values` falls back to `get_default()` for an absent value, and `get_default()` raises SkipField when the default is `empty` -- so `required=False` alone would silently persist the stored value on a PUT, giving a full-replace that only half replaces. Under `partial=True` the default is never consulted, so PATCH is unaffected.  Must be constructed with the instance: `validate()` runs against the merged row, not the payload, so its rules hold under PATCH too.
     """ # noqa: E501
-    position: Optional[PositionEnum] = Field(default=None, description="Staff position. Null for a gm/agm row. Omitting it on PUT clears it.  * `ADM` - Admin * `DEV` - Development * `EVENTS` - Events * `FRAN` - Franchise Manager * `MEDIA` - Media * `MMR` - MMR Puller * `NH` - Numbers Head * `NUMS` - Numbers * `STAFF` - Staff * `STATS` - Stats * `TM` - Transactions * `TMH` - Transactions Head")
-    gm: Optional[StrictBool] = False
-    agm: Optional[StrictBool] = False
-    franchise: Optional[StrictInt] = None
+    position: Optional[PositionEnum] = None
     executor: Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]
-    __properties: ClassVar[List[str]] = ["position", "gm", "agm", "franchise", "executor"]
+    __properties: ClassVar[List[str]] = ["position", "executor"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -75,16 +72,6 @@ class ElevatedRoleUpdate(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if position (nullable) is None
-        # and model_fields_set contains the field
-        if self.position is None and "position" in self.model_fields_set:
-            _dict['position'] = None
-
-        # set to None if franchise (nullable) is None
-        # and model_fields_set contains the field
-        if self.franchise is None and "franchise" in self.model_fields_set:
-            _dict['franchise'] = None
-
         return _dict
 
     @classmethod
@@ -98,9 +85,6 @@ class ElevatedRoleUpdate(BaseModel):
 
         _obj = cls.model_validate({
             "position": obj.get("position"),
-            "gm": obj.get("gm") if obj.get("gm") is not None else False,
-            "agm": obj.get("agm") if obj.get("agm") is not None else False,
-            "franchise": obj.get("franchise"),
             "executor": obj.get("executor")
         })
         return _obj

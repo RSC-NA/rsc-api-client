@@ -592,7 +592,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_elevated_roles_list**
-> List[ElevatedRole] members_elevated_roles_list(member_id, agm=agm, gm=gm, league=league, position=position)
+> List[ElevatedRole] members_elevated_roles_list(member_id, league=league, position=position)
 
 List elevated roles for a member.
 
@@ -628,13 +628,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     member_id = 56 # int | Member database ID or Discord ID.
-    agm = True # bool | Assistant GM (optional)
-    gm = True # bool | General Manager (optional)
     league = 56 # int | League ID (optional)
     position = 'position_example' # str | Staff position (optional)
 
     try:
-        api_response = await api_instance.members_elevated_roles_list(member_id, agm=agm, gm=gm, league=league, position=position)
+        api_response = await api_instance.members_elevated_roles_list(member_id, league=league, position=position)
         print("The response of MembersApi->members_elevated_roles_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -649,8 +647,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **member_id** | **int**| Member database ID or Discord ID. | 
- **agm** | **bool**| Assistant GM | [optional] 
- **gm** | **bool**| General Manager | [optional] 
  **league** | **int**| League ID | [optional] 
  **position** | **str**| Staff position | [optional] 
 
@@ -1615,7 +1611,7 @@ Name | Type | Description  | Notes
 # **members_postseason_stats_retrieve**
 > PlayerSeasonStats members_postseason_stats_retrieve(id, league, season=season)
 
-Get postseason stats for a player.
+Get postseason stats for a player. Prefer `stats/?stats_type=PST`.
 
 ### Example
 
@@ -1689,7 +1685,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**403** |  |  -  |
+**400** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1858,9 +1855,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_stats_retrieve**
-> PlayerSeasonStats members_stats_retrieve(id, league, season=season)
+> PlayerSeasonStats members_stats_retrieve(id, league, season=season, stats_type=stats_type)
 
-Get regular season stats for a player.
+Get stats for a player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
 ### Example
 
@@ -1896,9 +1893,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     id = 56 # int | A unique integer value identifying this user.
     league = 56 # int | League to get stats from season for.
     season = 56 # int | Specific season number to get stats for (optional)
+    stats_type = 'REG' # str | Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined. (optional) (default to 'REG')
 
     try:
-        api_response = await api_instance.members_stats_retrieve(id, league, season=season)
+        api_response = await api_instance.members_stats_retrieve(id, league, season=season, stats_type=stats_type)
         print("The response of MembersApi->members_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -1915,6 +1913,7 @@ Name | Type | Description  | Notes
  **id** | **int**| A unique integer value identifying this user. | 
  **league** | **int**| League to get stats from season for. | 
  **season** | **int**| Specific season number to get stats for | [optional] 
+ **stats_type** | **str**| Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined. | [optional] [default to &#39;REG&#39;]
 
 ### Return type
 
@@ -1934,7 +1933,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
-**403** |  |  -  |
+**400** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

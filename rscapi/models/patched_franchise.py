@@ -37,7 +37,7 @@ class PatchedFranchise(BaseModel):
     id: Optional[StrictInt] = None
     league: Optional[FranchiseLeague] = None
     tiers: Optional[List[FranchiseTier]] = None
-    active: Optional[StrictBool] = False
+    active: Optional[StrictBool] = None
     teams: Optional[List[Team]] = None
     logo: Optional[StrictStr] = None
     gm: Optional[FranchiseGM] = None
@@ -122,6 +122,11 @@ class PatchedFranchise(BaseModel):
                 if _item_agms:
                     _items.append(_item_agms.to_dict())
             _dict['agms'] = _items
+        # set to None if gm (nullable) is None
+        # and model_fields_set contains the field
+        if self.gm is None and "gm" in self.model_fields_set:
+            _dict['gm'] = None
+
         return _dict
 
     @classmethod
@@ -139,7 +144,7 @@ class PatchedFranchise(BaseModel):
             "id": obj.get("id"),
             "league": FranchiseLeague.from_dict(obj["league"]) if obj.get("league") is not None else None,
             "tiers": [FranchiseTier.from_dict(_item) for _item in obj["tiers"]] if obj.get("tiers") is not None else None,
-            "active": obj.get("active") if obj.get("active") is not None else False,
+            "active": obj.get("active"),
             "teams": [Team.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None,
             "logo": obj.get("logo"),
             "gm": FranchiseGM.from_dict(obj["gm"]) if obj.get("gm") is not None else None,
