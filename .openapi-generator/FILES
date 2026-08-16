@@ -406,7 +406,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_player_mmr_export.py
-test/test_tier_reference.py
-test/test_tracker_link_spider_request.py
 tox.ini

@@ -15341,9 +15341,6 @@
                     },
                     "executor": {
                         "type": "integer",
-                        "maximum": 9223372036854775807,
-                        "minimum": -9223372036854775808,
-                        "format": "int64",
                         "nullable": true,
                         "description": "Discord ID of the member running the change. Defaults to the authenticated caller."
                     }

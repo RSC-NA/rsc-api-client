@@ -17,9 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,7 +29,7 @@ class PatchedMemberNameChangeRequest(BaseModel):
     """ # noqa: E501
     name: Optional[StrictStr] = None
     admin_override: Optional[StrictBool] = False
-    executor: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]] = Field(default=None, description="Discord ID of the member running the change. Defaults to the authenticated caller.")
+    executor: Optional[StrictInt] = Field(default=None, description="Discord ID of the member running the change. Defaults to the authenticated caller.")
     __properties: ClassVar[List[str]] = ["name", "admin_override", "executor"]
 
     model_config = ConfigDict(
