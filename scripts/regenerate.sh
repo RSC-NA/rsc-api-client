@@ -141,4 +141,7 @@ fi
 echo
 echo "Next: review the diff, run 'make test', then:"
 # git add -A, not commit -am: -a would drop the new files listed above.
-echo "  git add -A && git commit -m \"rscapi $NEW\" && git tag \"v$NEW\" && git push --follow-tags"
+# git tag -a, not a bare git tag: --follow-tags pushes annotated tags only, so every
+# lightweight tag this script suggested stayed on the machine that cut it. v1.1.0
+# through v2.1.1 were all stranded that way and never reached the remote.
+echo "  git add -A && git commit -m \"rscapi $NEW\" && git tag -a \"v$NEW\" -m \"rscapi $NEW\" && git push --follow-tags"
