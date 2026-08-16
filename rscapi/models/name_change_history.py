@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from rscapi.models.simple_member import SimpleMember
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,8 +31,10 @@ class NameChangeHistory(BaseModel):
     NameChangeHistory
     """ # noqa: E501
     old_name: Annotated[str, Field(strict=True, max_length=255)]
+    new_name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
+    executor: Optional[SimpleMember] = None
     date_changed: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["old_name", "date_changed"]
+    __properties: ClassVar[List[str]] = ["old_name", "new_name", "executor", "date_changed"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -63,8 +66,10 @@ class NameChangeHistory(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "executor",
         ])
 
         _dict = self.model_dump(
@@ -72,6 +77,9 @@ class NameChangeHistory(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of executor
+        if self.executor:
+            _dict['executor'] = self.executor.to_dict()
         return _dict
 
     @classmethod
@@ -85,6 +93,8 @@ class NameChangeHistory(BaseModel):
 
         _obj = cls.model_validate({
             "old_name": obj.get("old_name"),
+            "new_name": obj.get("new_name"),
+            "executor": SimpleMember.from_dict(obj["executor"]) if obj.get("executor") is not None else None,
             "date_changed": obj.get("date_changed")
         })
         return _obj

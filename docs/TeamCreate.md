@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **name** | **str** |  | 
 **franchise** | [**TeamFranchise**](TeamFranchise.md) |  | 
-**tier** | [**Tier**](Tier.md) |  | 
+**tier** | [**TierReference**](TierReference.md) |  | 
 **league** | **int** |  | [optional] 
 
 ## Example

@@ -1345,6 +1345,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** |  |  -  |
+**400** |  |  -  |
 **403** |  |  -  |
 **404** |  |  -  |
 

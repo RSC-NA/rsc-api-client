@@ -336,6 +336,160 @@
                 }
             }
         },
+        "/csv/player-mmr-export/": {
+            "get": {
+                "operationId": "csv_player_mmr_export_list",
+                "description": "Current and base MMR for every player in one league season, highest MMR first.\n\nThe detail route takes a **Discord ID**, not a LeaguePlayer pk. Callers of this\nexport (the bot, the numbers committee) know players by Discord ID, and a\nLeaguePlayer id is season-scoped so it is not an identifier anyone can hold onto.",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "csv",
+                                "json"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "league",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "description": "League ID to export. Defaults to 1 (RSC 3v3)."
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season ID (primary key) to export. Takes precedence over season_number."
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied."
+                    }
+                ],
+                "tags": [
+                    "csv"
+                ],
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PlayerMMRExport"
+                                    }
+                                }
+                            },
+                            "text/csv": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PlayerMMRExport"
+                                    }
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/csv/player-mmr-export/{id}/": {
+            "get": {
+                "operationId": "csv_player_mmr_export_retrieve",
+                "description": "Current and base MMR for every player in one league season, highest MMR first.\n\nThe detail route takes a **Discord ID**, not a LeaguePlayer pk. Callers of this\nexport (the bot, the numbers committee) know players by Discord ID, and a\nLeaguePlayer id is season-scoped so it is not an identifier anyone can hold onto.",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "csv",
+                                "json"
+                            ]
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "description": "Discord ID of the player, not the LeaguePlayer primary key.",
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "league",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "description": "League ID to export. Defaults to 1 (RSC 3v3)."
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season ID (primary key) to export. Takes precedence over season_number."
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied."
+                    }
+                ],
+                "tags": [
+                    "csv"
+                ],
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlayerMMRExport"
+                                }
+                            },
+                            "text/csv": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlayerMMRExport"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/csv/teams-contracts-data/": {
             "get": {
                 "operationId": "csv_teams_contracts_data_list",
@@ -2336,6 +2490,7 @@
                                 "PSF",
                                 "MPF",
                                 "MTS",
+                                "TLC",
                                 "TKF",
                                 "DJF"
                             ],
@@ -2359,6 +2514,7 @@
                                 "PSF": "Platform ID Sync Failed",
                                 "MPF": "MMR Pull Failed",
                                 "MTS": "MMR Tracker Skipped",
+                                "TLC": "Tracker Link Conflict",
                                 "TKF": "Task Failed",
                                 "DJF": "Discord Join Failed"
                             }
@@ -5627,6 +5783,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Member"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
                                 }
                             }
                         },
@@ -10739,6 +10905,55 @@
                 }
             }
         },
+        "/tracker-links/spider/": {
+            "post": {
+                "operationId": "tracker_links_spider_create",
+                "description": "Resolve every Epic tracker the player holds through RL Planet and create tracker links for the accounts it reports as linked. Returns the links that were created. Existing links are never modified, and accounts already held by a different member are reported rather than created.",
+                "tags": [
+                    "tracker-links"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Tracker link spider request",
+                                "description": "Identify one league player, by either key. Exactly one must be supplied -- sending both, or neither, is a 400.",
+                                "type": "object",
+                                "properties": {
+                                    "discord_id": {
+                                        "title": "Discord ID",
+                                        "description": "The member's Discord snowflake.",
+                                        "type": "integer"
+                                    },
+                                    "league_player_id": {
+                                        "title": "League player ID",
+                                        "description": "Primary key of a LeaguePlayer row; its member is the one spidered.",
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TrackerLink"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/transactions/cut/": {
             "post": {
                 "operationId": "transactions_cut_create",
@@ -11998,11 +12213,12 @@
                     "PSF",
                     "MPF",
                     "MTS",
+                    "TLC",
                     "TKF",
                     "DJF"
                 ],
                 "type": "string",
-                "description": "* `NCH` - Name Change\n* `TRF` - Transfer\n* `UPD` - Update\n* `LNC` - League Notice\n* `ENC` - Everyone Notice\n* `GNC` - GM Notice\n* `TNC` - Trade Notice\n* `PSG` - Player Signed\n* `PCT` - Player Cut\n* `PRS` - Player Re-Signed\n* `PDR` - Draft Pick Made\n* `PTR` - Player Traded\n* `WCW` - Waiver Claim Won\n* `WCL` - Waiver Claim Lost\n* `TMF` - Tracker Merge Failed\n* `TVF` - Tracker Validation Failed\n* `PSF` - Platform ID Sync Failed\n* `MPF` - MMR Pull Failed\n* `MTS` - MMR Tracker Skipped\n* `TKF` - Task Failed\n* `DJF` - Discord Join Failed"
+                "description": "* `NCH` - Name Change\n* `TRF` - Transfer\n* `UPD` - Update\n* `LNC` - League Notice\n* `ENC` - Everyone Notice\n* `GNC` - GM Notice\n* `TNC` - Trade Notice\n* `PSG` - Player Signed\n* `PCT` - Player Cut\n* `PRS` - Player Re-Signed\n* `PDR` - Draft Pick Made\n* `PTR` - Player Traded\n* `WCW` - Waiver Claim Won\n* `WCL` - Waiver Claim Lost\n* `TMF` - Tracker Merge Failed\n* `TVF` - Tracker Validation Failed\n* `PSF` - Platform ID Sync Failed\n* `MPF` - MMR Pull Failed\n* `MTS` - MMR Tracker Skipped\n* `TLC` - Tracker Link Conflict\n* `TKF` - Task Failed\n* `DJF` - Discord Join Failed"
             },
             "ActivityCheck": {
                 "type": "object",
@@ -14403,6 +14619,18 @@
                         "type": "string",
                         "maxLength": 255
                     },
+                    "new_name": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "executor": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/SimpleMember"
+                            }
+                        ],
+                        "readOnly": true
+                    },
                     "date_changed": {
                         "type": "string",
                         "format": "date-time"
@@ -15110,6 +15338,14 @@
                     "admin_override": {
                         "type": "boolean",
                         "default": false
+                    },
+                    "executor": {
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": -9223372036854775808,
+                        "format": "int64",
+                        "nullable": true,
+                        "description": "Discord ID of the member running the change. Defaults to the authenticated caller."
                     }
                 }
             },
@@ -15300,22 +15536,33 @@
             },
             "PatchedTier": {
                 "type": "object",
+                "description": "Read and write serializer for :class:`Tier`.\n\n``position`` and ``color`` used to be in ``read_only_fields``, which made the endpoint\nimpossible to use: ``Tier.position`` is NOT NULL with no model default, so DRF stripped it\nfrom ``validated_data`` and every create died with an IntegrityError 500 rather than a 400.\nBoth are writable now.\n\nThe validators below stand in for database constraints the table does not have. ``Tier`` rows\nare global -- they are shared between leagues through ``LeagueTiers`` -- so ``name`` and\n``position`` have to be unique across the whole table, not per league.",
                 "properties": {
-                    "name": {
-                        "type": "string"
-                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
                     },
+                    "name": {
+                        "type": "string"
+                    },
                     "color": {
                         "type": "integer",
-                        "readOnly": true,
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
                         "nullable": true
                     },
                     "position": {
                         "type": "integer",
-                        "readOnly": true
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "league": {
+                        "type": "integer",
+                        "writeOnly": true
+                    },
+                    "role_id": {
+                        "type": "integer",
+                        "writeOnly": true
                     }
                 }
             },
@@ -15574,6 +15821,33 @@
                 },
                 "required": [
                     "tracker_link"
+                ]
+            },
+            "PlayerMMRExport": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "discord_id": {
+                        "type": "integer"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "current_mmr": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "base_mmr": {
+                        "type": "integer",
+                        "readOnly": true
+                    }
+                },
+                "required": [
+                    "discord_id",
+                    "name"
                 ]
             },
             "PlayerMMRTypeEnum": {
@@ -17710,7 +17984,7 @@
                         "$ref": "#/components/schemas/TeamFranchise"
                     },
                     "tier": {
-                        "$ref": "#/components/schemas/Tier"
+                        "$ref": "#/components/schemas/TierReference"
                     },
                     "league": {
                         "type": "integer",
@@ -18022,26 +18296,38 @@
             },
             "Tier": {
                 "type": "object",
+                "description": "Read and write serializer for :class:`Tier`.\n\n``position`` and ``color`` used to be in ``read_only_fields``, which made the endpoint\nimpossible to use: ``Tier.position`` is NOT NULL with no model default, so DRF stripped it\nfrom ``validated_data`` and every create died with an IntegrityError 500 rather than a 400.\nBoth are writable now.\n\nThe validators below stand in for database constraints the table does not have. ``Tier`` rows\nare global -- they are shared between leagues through ``LeagueTiers`` -- so ``name`` and\n``position`` have to be unique across the whole table, not per league.",
                 "properties": {
-                    "name": {
-                        "type": "string"
-                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
                     },
+                    "name": {
+                        "type": "string"
+                    },
                     "color": {
                         "type": "integer",
-                        "readOnly": true,
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
                         "nullable": true
                     },
                     "position": {
                         "type": "integer",
-                        "readOnly": true
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "league": {
+                        "type": "integer",
+                        "writeOnly": true
+                    },
+                    "role_id": {
+                        "type": "integer",
+                        "writeOnly": true
                     }
                 },
                 "required": [
-                    "name"
+                    "name",
+                    "position"
                 ]
             },
             "TierLeagueAdd": {
@@ -18082,6 +18368,18 @@
                     "tier_id",
                     "tier_name",
                     "tier_position"
+                ]
+            },
+            "TierReference": {
+                "type": "object",
+                "description": "A tier identified by name, for endpoints that look one up rather than define one.\n\n``TeamCreateSerializer`` nests this to say which tier a new team belongs to. It used to nest\n``TierSerializer``, which was harmless only because every field but ``name`` was read-only\nthere. Now that ``TierSerializer`` validates a tier definition -- ``position`` required, name\nand position rejected if already taken -- reusing it would demand a position for a lookup and\nreject every tier that actually exists.",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
                 ]
             },
             "TrackerIDInput": {

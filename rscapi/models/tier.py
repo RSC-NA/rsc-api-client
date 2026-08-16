@@ -17,21 +17,24 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
 class Tier(BaseModel):
     """
-    Tier
+    Read and write serializer for :class:`Tier`.  ``position`` and ``color`` used to be in ``read_only_fields``, which made the endpoint impossible to use: ``Tier.position`` is NOT NULL with no model default, so DRF stripped it from ``validated_data`` and every create died with an IntegrityError 500 rather than a 400. Both are writable now.  The validators below stand in for database constraints the table does not have. ``Tier`` rows are global -- they are shared between leagues through ``LeagueTiers`` -- so ``name`` and ``position`` have to be unique across the whole table, not per league.
     """ # noqa: E501
-    name: StrictStr
     id: Optional[StrictInt] = None
-    color: Optional[StrictInt] = None
-    position: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["name", "id", "color", "position"]
+    name: StrictStr
+    color: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    position: Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]
+    league: Optional[StrictInt] = None
+    role_id: Optional[StrictInt] = None
+    __properties: ClassVar[List[str]] = ["id", "name", "color", "position", "league", "role_id"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -64,13 +67,9 @@ class Tier(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "id",
-            "color",
-            "position",
         ])
 
         _dict = self.model_dump(
@@ -95,10 +94,12 @@ class Tier(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "id": obj.get("id"),
+            "name": obj.get("name"),
             "color": obj.get("color"),
-            "position": obj.get("position")
+            "position": obj.get("position"),
+            "league": obj.get("league"),
+            "role_id": obj.get("role_id")
         })
         return _obj
 

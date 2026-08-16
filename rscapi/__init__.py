@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.1.1"
+__version__ = "2.1.2"
 
 # Define package exports
 __all__ = [
@@ -152,6 +152,7 @@ __all__ = [
     "PlayerFranchise",
     "PlayerInput",
     "PlayerMMR",
+    "PlayerMMRExport",
     "PlayerMMRTypeEnum",
     "PlayerSeasonStats",
     "PlayerSeasonStatsInDepth",
@@ -191,10 +192,12 @@ __all__ = [
     "Tier",
     "TierLeagueAdd",
     "TierPlayoffHunt",
+    "TierReference",
     "TrackerIDInput",
     "TrackerLink",
     "TrackerLinkInvalidateObject",
     "TrackerLinkLinking",
+    "TrackerLinkSpiderRequest",
     "TrackerLinkStats",
     "TrackerLinkStatusEnum",
     "TrackerLinksDetailedSheet",
@@ -360,6 +363,7 @@ from rscapi.models.platform_enum import PlatformEnum as PlatformEnum
 from rscapi.models.player_franchise import PlayerFranchise as PlayerFranchise
 from rscapi.models.player_input import PlayerInput as PlayerInput
 from rscapi.models.player_mmr import PlayerMMR as PlayerMMR
+from rscapi.models.player_mmr_export import PlayerMMRExport as PlayerMMRExport
 from rscapi.models.player_mmr_type_enum import PlayerMMRTypeEnum as PlayerMMRTypeEnum
 from rscapi.models.player_season_stats import PlayerSeasonStats as PlayerSeasonStats
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth as PlayerSeasonStatsInDepth
@@ -399,10 +403,12 @@ from rscapi.models.teams_contracts import TeamsContracts as TeamsContracts
 from rscapi.models.tier import Tier as Tier
 from rscapi.models.tier_league_add import TierLeagueAdd as TierLeagueAdd
 from rscapi.models.tier_playoff_hunt import TierPlayoffHunt as TierPlayoffHunt
+from rscapi.models.tier_reference import TierReference as TierReference
 from rscapi.models.tracker_id_input import TrackerIDInput as TrackerIDInput
 from rscapi.models.tracker_link import TrackerLink as TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject as TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_linking import TrackerLinkLinking as TrackerLinkLinking
+from rscapi.models.tracker_link_spider_request import TrackerLinkSpiderRequest as TrackerLinkSpiderRequest
 from rscapi.models.tracker_link_stats import TrackerLinkStats as TrackerLinkStats
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum as TrackerLinkStatusEnum
 from rscapi.models.tracker_links_detailed_sheet import TrackerLinksDetailedSheet as TrackerLinksDetailedSheet

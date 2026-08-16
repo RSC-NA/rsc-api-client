@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
 **admin_override** | **bool** |  | [optional] [default to False]
+**executor** | **int** | Discord ID of the member running the change. Defaults to the authenticated caller. | [optional] 
 
 ## Example
 

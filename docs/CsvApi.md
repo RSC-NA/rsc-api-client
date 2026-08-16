@@ -10,6 +10,8 @@ Method | HTTP request | Description
 [**csv_master_contracts_data_retrieve**](CsvApi.md#csv_master_contracts_data_retrieve) | **GET** /csv/master-contracts-data/{id}/ | 
 [**csv_master_member_sheet_list**](CsvApi.md#csv_master_member_sheet_list) | **GET** /csv/master-member-sheet/ | 
 [**csv_master_member_sheet_retrieve**](CsvApi.md#csv_master_member_sheet_retrieve) | **GET** /csv/master-member-sheet/{id}/ | 
+[**csv_player_mmr_export_list**](CsvApi.md#csv_player_mmr_export_list) | **GET** /csv/player-mmr-export/ | 
+[**csv_player_mmr_export_retrieve**](CsvApi.md#csv_player_mmr_export_retrieve) | **GET** /csv/player-mmr-export/{id}/ | 
 [**csv_teams_contracts_data_list**](CsvApi.md#csv_teams_contracts_data_list) | **GET** /csv/teams-contracts-data/ | 
 [**csv_teams_contracts_data_retrieve**](CsvApi.md#csv_teams_contracts_data_retrieve) | **GET** /csv/teams-contracts-data/{id}/ | 
 [**csv_tracker_links_data_list**](CsvApi.md#csv_tracker_links_data_list) | **GET** /csv/tracker-links-data/ | 
@@ -460,6 +462,180 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MasterMemberSheet**](MasterMemberSheet.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/csv
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **csv_player_mmr_export_list**
+> List[PlayerMMRExport] csv_player_mmr_export_list(format=format, league=league, season_id=season_id, season_number=season_number)
+
+Current and base MMR for every player in one league season, highest MMR first.
+
+The detail route takes a **Discord ID**, not a LeaguePlayer pk. Callers of this
+export (the bot, the numbers committee) know players by Discord ID, and a
+LeaguePlayer id is season-scoped so it is not an identifier anyone can hold onto.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.player_mmr_export import PlayerMMRExport
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.CsvApi(api_client)
+    format = 'format_example' # str |  (optional)
+    league = 1 # int | League ID to export. Defaults to 1 (RSC 3v3). (optional) (default to 1)
+    season_id = 56 # int | Season ID (primary key) to export. Takes precedence over season_number. (optional)
+    season_number = 56 # int | RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied. (optional)
+
+    try:
+        api_response = await api_instance.csv_player_mmr_export_list(format=format, league=league, season_id=season_id, season_number=season_number)
+        print("The response of CsvApi->csv_player_mmr_export_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CsvApi->csv_player_mmr_export_list: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **format** | **str**|  | [optional] 
+ **league** | **int**| League ID to export. Defaults to 1 (RSC 3v3). | [optional] [default to 1]
+ **season_id** | **int**| Season ID (primary key) to export. Takes precedence over season_number. | [optional] 
+ **season_number** | **int**| RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied. | [optional] 
+
+### Return type
+
+[**List[PlayerMMRExport]**](PlayerMMRExport.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/csv
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **csv_player_mmr_export_retrieve**
+> PlayerMMRExport csv_player_mmr_export_retrieve(id, format=format, league=league, season_id=season_id, season_number=season_number)
+
+Current and base MMR for every player in one league season, highest MMR first.
+
+The detail route takes a **Discord ID**, not a LeaguePlayer pk. Callers of this
+export (the bot, the numbers committee) know players by Discord ID, and a
+LeaguePlayer id is season-scoped so it is not an identifier anyone can hold onto.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.player_mmr_export import PlayerMMRExport
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.CsvApi(api_client)
+    id = 56 # int | Discord ID of the player, not the LeaguePlayer primary key.
+    format = 'format_example' # str |  (optional)
+    league = 1 # int | League ID to export. Defaults to 1 (RSC 3v3). (optional) (default to 1)
+    season_id = 56 # int | Season ID (primary key) to export. Takes precedence over season_number. (optional)
+    season_number = 56 # int | RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied. (optional)
+
+    try:
+        api_response = await api_instance.csv_player_mmr_export_retrieve(id, format=format, league=league, season_id=season_id, season_number=season_number)
+        print("The response of CsvApi->csv_player_mmr_export_retrieve:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CsvApi->csv_player_mmr_export_retrieve: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Discord ID of the player, not the LeaguePlayer primary key. | 
+ **format** | **str**|  | [optional] 
+ **league** | **int**| League ID to export. Defaults to 1 (RSC 3v3). | [optional] [default to 1]
+ **season_id** | **int**| Season ID (primary key) to export. Takes precedence over season_number. | [optional] 
+ **season_number** | **int**| RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied. | [optional] 
+
+### Return type
+
+[**PlayerMMRExport**](PlayerMMRExport.md)
 
 ### Authorization
 

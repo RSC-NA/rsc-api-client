@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.team_franchise import TeamFranchise
-from rscapi.models.tier import Tier
+from rscapi.models.tier_reference import TierReference
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -33,7 +33,7 @@ class TeamCreate(BaseModel):
     id: Optional[StrictInt] = None
     name: Annotated[str, Field(strict=True, max_length=16)]
     franchise: TeamFranchise
-    tier: Tier
+    tier: TierReference
     league: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["id", "name", "franchise", "tier", "league"]
 
@@ -99,7 +99,7 @@ class TeamCreate(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "franchise": TeamFranchise.from_dict(obj["franchise"]) if obj.get("franchise") is not None else None,
-            "tier": Tier.from_dict(obj["tier"]) if obj.get("tier") is not None else None,
+            "tier": TierReference.from_dict(obj["tier"]) if obj.get("tier") is not None else None,
             "league": obj.get("league")
         })
         return _obj

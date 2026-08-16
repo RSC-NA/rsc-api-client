@@ -4507,6 +4507,7 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '202': "Member",
+            '400': "Error",
             '403': "Error",
             '404': "Error",
         }
@@ -4580,6 +4581,7 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '202': "Member",
+            '400': "Error",
             '403': "Error",
             '404': "Error",
         }
@@ -4653,6 +4655,7 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '202': "Member",
+            '400': "Error",
             '403': "Error",
             '404': "Error",
         }

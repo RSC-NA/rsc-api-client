@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **old_name** | **str** |  | 
+**new_name** | **str** |  | [optional] 
+**executor** | [**SimpleMember**](SimpleMember.md) |  | [optional] [readonly] 
 **date_changed** | **datetime** |  | [optional] 
 
 ## Example

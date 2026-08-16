@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -29,7 +30,8 @@ class PatchedMemberNameChangeRequest(BaseModel):
     """ # noqa: E501
     name: Optional[StrictStr] = None
     admin_override: Optional[StrictBool] = False
-    __properties: ClassVar[List[str]] = ["name", "admin_override"]
+    executor: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=-9223372036854775808)]] = Field(default=None, description="Discord ID of the member running the change. Defaults to the authenticated caller.")
+    __properties: ClassVar[List[str]] = ["name", "admin_override", "executor"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -70,6 +72,11 @@ class PatchedMemberNameChangeRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if executor (nullable) is None
+        # and model_fields_set contains the field
+        if self.executor is None and "executor" in self.model_fields_set:
+            _dict['executor'] = None
+
         return _dict
 
     @classmethod
@@ -83,7 +90,8 @@ class PatchedMemberNameChangeRequest(BaseModel):
 
         _obj = cls.model_validate({
             "name": obj.get("name"),
-            "admin_override": obj.get("admin_override") if obj.get("admin_override") is not None else False
+            "admin_override": obj.get("admin_override") if obj.get("admin_override") is not None else False,
+            "executor": obj.get("executor")
         })
         return _obj
 

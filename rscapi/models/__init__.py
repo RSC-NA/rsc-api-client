@@ -122,6 +122,7 @@ from rscapi.models.platform_enum import PlatformEnum
 from rscapi.models.player_franchise import PlayerFranchise
 from rscapi.models.player_input import PlayerInput
 from rscapi.models.player_mmr import PlayerMMR
+from rscapi.models.player_mmr_export import PlayerMMRExport
 from rscapi.models.player_mmr_type_enum import PlayerMMRTypeEnum
 from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
@@ -161,10 +162,12 @@ from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.models.tier import Tier
 from rscapi.models.tier_league_add import TierLeagueAdd
 from rscapi.models.tier_playoff_hunt import TierPlayoffHunt
+from rscapi.models.tier_reference import TierReference
 from rscapi.models.tracker_id_input import TrackerIDInput
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_linking import TrackerLinkLinking
+from rscapi.models.tracker_link_spider_request import TrackerLinkSpiderRequest
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum
 from rscapi.models.tracker_links_detailed_sheet import TrackerLinksDetailedSheet
