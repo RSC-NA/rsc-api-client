@@ -125,6 +125,20 @@ grep -q "__version__ = \"$NEW\"" "$ROOT/rscapi/__init__.py" \
 echo
 echo "Regenerated rscapi $NEW"
 git -C "$ROOT" status --short | head -40
+
+# A spec that gained a schema produces model files git has never seen. `git commit -am`
+# stages tracked modifications only, so those files stay behind while the regenerated
+# rscapi/models/__init__.py that imports them goes out -- which is how v2.1.2 shipped a
+# tree where `import rscapi` raised ModuleNotFoundError. Call it out by name, because
+# the status listing above scrolls and a `??` is easy to read past.
+NEW_FILES=$(git -C "$ROOT" ls-files --others --exclude-standard -- rscapi/ | head -40)
+if [ -n "$NEW_FILES" ]; then
+  echo
+  echo "NOTE: these generated files are new and are NOT staged by 'git commit -a':"
+  echo "$NEW_FILES" | sed 's/^/  /'
+fi
+
 echo
 echo "Next: review the diff, run 'make test', then:"
-echo "  git commit -am \"rscapi $NEW\" && git tag \"v$NEW\" && git push --follow-tags"
+# git add -A, not commit -am: -a would drop the new files listed above.
+echo "  git add -A && git commit -m \"rscapi $NEW\" && git tag \"v$NEW\" && git push --follow-tags"
