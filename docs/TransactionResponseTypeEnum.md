@@ -1,6 +1,6 @@
 # TransactionResponseTypeEnum
 
-* `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release
+* `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release
 
 ## Enum
 
@@ -13,6 +13,8 @@
 * `IR` (value: `'IR'`)
 
 * `INT` (value: `'INT'`)
+
+* `ICT` (value: `'ICT'`)
 
 * `IRT` (value: `'IRT'`)
 

@@ -382,7 +382,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     offset = 56 # int | The initial index from which to return the results. (optional)
     player = 56 # int | Discord ID of player for transaction history search. (optional)
     season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
-    transaction_type = 'transaction_type_example' # str | Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release (optional)
+    transaction_type = 'transaction_type_example' # str | Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release (optional)
 
     try:
         api_response = await api_instance.transactions_history_list(league, executor=executor, limit=limit, offset=offset, player=player, season_number=season_number, transaction_type=transaction_type)
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
  **offset** | **int**| The initial index from which to return the results. | [optional] 
  **player** | **int**| Discord ID of player for transaction history search. | [optional] 
  **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
- **transaction_type** | **str**| Filter based on a specific transaction Type.  * &#x60;AIR&#x60; - AGM Inactive Reserve * &#x60;CUT&#x60; - Cut * &#x60;DFT&#x60; - Draft Player * &#x60;IR&#x60; - Inactive Reserve * &#x60;INT&#x60; - Intent to Play * &#x60;IRT&#x60; - IR Return * &#x60;NON&#x60; - Invalid Transaction * &#x60;PCH&#x60; - Patched Player * &#x60;PKU&#x60; - Pickup * &#x60;PTD&#x60; - Player Trade * &#x60;PRO&#x60; - Promotion * &#x60;RLG&#x60; - Relegation * &#x60;RES&#x60; - Re-sign * &#x60;RET&#x60; - Retire * &#x60;SGN&#x60; - Sign Up * &#x60;PSG&#x60; - Permanent FA Sign Up * &#x60;SUB&#x60; - Substitution * &#x60;TMP&#x60; - Temporary Free Agent * &#x60;TRD&#x60; - Trade * &#x60;WVR&#x60; - Waiver Release | [optional] 
+ **transaction_type** | **str**| Filter based on a specific transaction Type.  * &#x60;AIR&#x60; - AGM Inactive Reserve * &#x60;CUT&#x60; - Cut * &#x60;DFT&#x60; - Draft Player * &#x60;IR&#x60; - Inactive Reserve * &#x60;INT&#x60; - Intent to Play * &#x60;ICT&#x60; - Cut from IR * &#x60;IRT&#x60; - IR Return * &#x60;NON&#x60; - Invalid Transaction * &#x60;PCH&#x60; - Patched Player * &#x60;PKU&#x60; - Pickup * &#x60;PTD&#x60; - Player Trade * &#x60;PRO&#x60; - Promotion * &#x60;RLG&#x60; - Relegation * &#x60;RES&#x60; - Re-sign * &#x60;RET&#x60; - Retire * &#x60;SGN&#x60; - Sign Up * &#x60;PSG&#x60; - Permanent FA Sign Up * &#x60;SUB&#x60; - Substitution * &#x60;TMP&#x60; - Temporary Free Agent * &#x60;TRD&#x60; - Trade * &#x60;WVR&#x60; - Waiver Release | [optional] 
 
 ### Return type
 

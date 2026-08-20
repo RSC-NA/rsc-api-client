@@ -19,23 +19,26 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from rscapi.models.trade_object import TradeObject
+from rscapi.models.future_season_tier_plan import FutureSeasonTierPlan
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class TradeTransaction(BaseModel):
+class FutureSeasonPlan(BaseModel):
     """
-    TradeTransaction
+    What the endpoint did, or would have done under ``dry_run``.
     """ # noqa: E501
-    trades: List[TradeObject]
-    admin_override: Optional[StrictBool] = None
-    confirm_imbalanced: Optional[StrictBool] = None
-    confirm_lopsided: Optional[StrictBool] = None
-    executor: StrictInt
-    notes: StrictStr
-    league: StrictInt
-    __properties: ClassVar[List[str]] = ["trades", "admin_override", "confirm_imbalanced", "confirm_lopsided", "executor", "notes", "league"]
+    league_id: StrictInt
+    season_id: Optional[StrictInt]
+    season_number: StrictInt
+    previous_season_id: Optional[StrictInt]
+    dry_run: StrictBool
+    is_valid: StrictBool
+    created: Dict[str, StrictInt]
+    tiers: List[FutureSeasonTierPlan]
+    blockers: List[StrictStr]
+    warnings: List[StrictStr]
+    __properties: ClassVar[List[str]] = ["league_id", "season_id", "season_number", "previous_season_id", "dry_run", "is_valid", "created", "tiers", "blockers", "warnings"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -55,7 +58,7 @@ class TradeTransaction(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TradeTransaction from a JSON string"""
+        """Create an instance of FutureSeasonPlan from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,18 +79,28 @@ class TradeTransaction(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in trades (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in tiers (list)
         _items = []
-        if self.trades:
-            for _item_trades in self.trades:
-                if _item_trades:
-                    _items.append(_item_trades.to_dict())
-            _dict['trades'] = _items
+        if self.tiers:
+            for _item_tiers in self.tiers:
+                if _item_tiers:
+                    _items.append(_item_tiers.to_dict())
+            _dict['tiers'] = _items
+        # set to None if season_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.season_id is None and "season_id" in self.model_fields_set:
+            _dict['season_id'] = None
+
+        # set to None if previous_season_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.previous_season_id is None and "previous_season_id" in self.model_fields_set:
+            _dict['previous_season_id'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TradeTransaction from a dict"""
+        """Create an instance of FutureSeasonPlan from a dict"""
         if obj is None:
             return None
 
@@ -95,13 +108,16 @@ class TradeTransaction(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "trades": [TradeObject.from_dict(_item) for _item in obj["trades"]] if obj.get("trades") is not None else None,
-            "admin_override": obj.get("admin_override"),
-            "confirm_imbalanced": obj.get("confirm_imbalanced"),
-            "confirm_lopsided": obj.get("confirm_lopsided"),
-            "executor": obj.get("executor"),
-            "notes": obj.get("notes"),
-            "league": obj.get("league")
+            "league_id": obj.get("league_id"),
+            "season_id": obj.get("season_id"),
+            "season_number": obj.get("season_number"),
+            "previous_season_id": obj.get("previous_season_id"),
+            "dry_run": obj.get("dry_run"),
+            "is_valid": obj.get("is_valid"),
+            "created": obj.get("created"),
+            "tiers": [FutureSeasonTierPlan.from_dict(_item) for _item in obj["tiers"]] if obj.get("tiers") is not None else None,
+            "blockers": obj.get("blockers"),
+            "warnings": obj.get("warnings")
         })
         return _obj
 

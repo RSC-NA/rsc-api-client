@@ -54,6 +54,9 @@ from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.models.franchise_team import FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier
 from rscapi.models.franchise_transfer_request import FranchiseTransferRequest
+from rscapi.models.future_season_plan import FutureSeasonPlan
+from rscapi.models.future_season_tier_override import FutureSeasonTierOverride
+from rscapi.models.future_season_tier_plan import FutureSeasonTierPlan
 from rscapi.models.high_level_match import HighLevelMatch
 from rscapi.models.idr_result import IDRResult
 from rscapi.models.ir_input import IRInput
@@ -64,6 +67,7 @@ from rscapi.models.league_data import LeagueData
 from rscapi.models.league_event_actor import LeagueEventActor
 from rscapi.models.league_event_detail import LeagueEventDetail
 from rscapi.models.league_event_list import LeagueEventList
+from rscapi.models.league_future_season_create import LeagueFutureSeasonCreate
 from rscapi.models.league_player import LeaguePlayer
 from rscapi.models.league_player_league import LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember

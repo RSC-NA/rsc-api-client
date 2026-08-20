@@ -3632,6 +3632,83 @@
                 }
             }
         },
+        "/leagues/{id}/create_future_season/": {
+            "post": {
+                "operationId": "leagues_create_future_season_create",
+                "description": "Create a future (not-yet-started) season for a league, with its draft picks, so future picks can be traded before the season exists. Copies tier data, schedules, franchises and teams from the current season. Pass dry_run to see the plan without writing.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this league.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "leagues"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LeagueFutureSeasonCreate"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LeagueFutureSeasonCreate"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LeagueFutureSeasonCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FutureSeasonPlan"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FutureSeasonPlan"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/leagues/{id}/current_season/": {
             "get": {
                 "operationId": "leagues_current_season_retrieve",
@@ -11315,6 +11392,7 @@
                                 "AIR",
                                 "CUT",
                                 "DFT",
+                                "ICT",
                                 "INT",
                                 "IR",
                                 "IRT",
@@ -11334,7 +11412,7 @@
                                 "WVR"
                             ]
                         },
-                        "description": "Filter based on a specific transaction Type.\n\n* `AIR` - AGM Inactive Reserve\n* `CUT` - Cut\n* `DFT` - Draft Player\n* `IR` - Inactive Reserve\n* `INT` - Intent to Play\n* `IRT` - IR Return\n* `NON` - Invalid Transaction\n* `PCH` - Patched Player\n* `PKU` - Pickup\n* `PTD` - Player Trade\n* `PRO` - Promotion\n* `RLG` - Relegation\n* `RES` - Re-sign\n* `RET` - Retire\n* `SGN` - Sign Up\n* `PSG` - Permanent FA Sign Up\n* `SUB` - Substitution\n* `TMP` - Temporary Free Agent\n* `TRD` - Trade\n* `WVR` - Waiver Release"
+                        "description": "Filter based on a specific transaction Type.\n\n* `AIR` - AGM Inactive Reserve\n* `CUT` - Cut\n* `DFT` - Draft Player\n* `IR` - Inactive Reserve\n* `INT` - Intent to Play\n* `ICT` - Cut from IR\n* `IRT` - IR Return\n* `NON` - Invalid Transaction\n* `PCH` - Patched Player\n* `PKU` - Pickup\n* `PTD` - Player Trade\n* `PRO` - Promotion\n* `RLG` - Relegation\n* `RES` - Re-sign\n* `RET` - Retire\n* `SGN` - Sign Up\n* `PSG` - Permanent FA Sign Up\n* `SUB` - Substitution\n* `TMP` - Temporary Free Agent\n* `TRD` - Trade\n* `WVR` - Waiver Release"
                     }
                 ],
                 "tags": [
@@ -13329,6 +13407,157 @@
                     "league"
                 ]
             },
+            "FutureSeasonPlan": {
+                "type": "object",
+                "description": "What the endpoint did, or would have done under ``dry_run``.",
+                "properties": {
+                    "league_id": {
+                        "type": "integer"
+                    },
+                    "season_id": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "season_number": {
+                        "type": "integer"
+                    },
+                    "previous_season_id": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "dry_run": {
+                        "type": "boolean"
+                    },
+                    "is_valid": {
+                        "type": "boolean"
+                    },
+                    "created": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "integer"
+                        }
+                    },
+                    "tiers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FutureSeasonTierPlan"
+                        }
+                    },
+                    "blockers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "warnings": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "blockers",
+                    "created",
+                    "dry_run",
+                    "is_valid",
+                    "league_id",
+                    "previous_season_id",
+                    "season_id",
+                    "season_number",
+                    "tiers",
+                    "warnings"
+                ]
+            },
+            "FutureSeasonTierOverride": {
+                "type": "object",
+                "description": "Per-tier replacements for values otherwise copied from the current season.",
+                "properties": {
+                    "tier": {
+                        "type": "integer",
+                        "description": "Tier id being overridden."
+                    },
+                    "mmr_min": {
+                        "type": "integer"
+                    },
+                    "mmr_max": {
+                        "type": "integer"
+                    },
+                    "mmr_promo": {
+                        "type": "integer"
+                    },
+                    "team_cap": {
+                        "type": "integer"
+                    },
+                    "team_number": {
+                        "type": "integer"
+                    },
+                    "transactions_end_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "tier"
+                ]
+            },
+            "FutureSeasonTierPlan": {
+                "type": "object",
+                "properties": {
+                    "tier_id": {
+                        "type": "integer"
+                    },
+                    "tier_name": {
+                        "type": "string"
+                    },
+                    "franchises": {
+                        "type": "integer"
+                    },
+                    "picks": {
+                        "type": "integer"
+                    },
+                    "num_rounds": {
+                        "type": "integer"
+                    },
+                    "mmr_min": {
+                        "type": "integer"
+                    },
+                    "mmr_max": {
+                        "type": "integer"
+                    },
+                    "mmr_promo": {
+                        "type": "integer"
+                    },
+                    "team_cap": {
+                        "type": "integer"
+                    },
+                    "team_number": {
+                        "type": "integer"
+                    },
+                    "transactions_end_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "schedule_cloned": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "franchises",
+                    "mmr_max",
+                    "mmr_min",
+                    "mmr_promo",
+                    "num_rounds",
+                    "picks",
+                    "schedule_cloned",
+                    "team_cap",
+                    "team_number",
+                    "tier_id",
+                    "tier_name",
+                    "transactions_end_date"
+                ]
+            },
             "HighLevelMatch": {
                 "type": "object",
                 "properties": {
@@ -13849,6 +14078,85 @@
                         "readOnly": true
                     }
                 }
+            },
+            "LeagueFutureSeasonCreate": {
+                "type": "object",
+                "description": "Request body for creating a future season.\n\nDates are real ``DateTimeField``s rather than the strings ``LeagueSeasonStartSerializer``\nparses by hand, so an unparsable date is a field error instead of a 500.",
+                "properties": {
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Must be in the future."
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Must be later than the current season's end_date."
+                    },
+                    "draft_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Must be in the future."
+                    },
+                    "preseason_start_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "regular_season_start": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "regular_season_end": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "signup_close": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "signups_open": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "season_number": {
+                        "type": "integer",
+                        "nullable": true,
+                        "description": "Defaults to the current season's number + 1."
+                    },
+                    "num_rounds": {
+                        "type": "integer",
+                        "maximum": 20,
+                        "minimum": 1,
+                        "default": 6,
+                        "description": "Draft rounds per tier."
+                    },
+                    "tier_overrides": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FutureSeasonTierOverride"
+                        }
+                    },
+                    "allow_promotion": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Proceed even when the current season has already ended and this season would be promoted to current immediately."
+                    },
+                    "dry_run": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Report what would be created without writing anything."
+                    }
+                },
+                "required": [
+                    "draft_date",
+                    "end_date",
+                    "start_date"
+                ]
             },
             "LeaguePlayer": {
                 "type": "object",
@@ -18113,7 +18421,8 @@
                         "type": "integer"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 16
                     }
                 },
                 "required": [
@@ -18717,6 +19026,9 @@
                     "confirm_imbalanced": {
                         "type": "boolean"
                     },
+                    "confirm_lopsided": {
+                        "type": "boolean"
+                    },
                     "executor": {
                         "type": "integer"
                     },
@@ -18876,6 +19188,35 @@
                     "executor": {
                         "$ref": "#/components/schemas/SimpleMember"
                     },
+                    "pick_value_balance": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true,
+                        "description": "Smaller side's pick value over the larger side's, 0-1. Null if not comparable."
+                    },
+                    "pick_value_total": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true,
+                        "description": "Total draft pick value moved by this trade. Null if not comparable."
+                    },
+                    "pick_value_net": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true,
+                        "description": "Absolute pick value difference between the best and worst off side."
+                    },
+                    "pick_value_gap_rounds": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true,
+                        "readOnly": true
+                    },
+                    "pick_value_verdict": {
+                        "type": "string",
+                        "nullable": true,
+                        "readOnly": true
+                    },
                     "id": {
                         "type": "integer",
                         "readOnly": true
@@ -18895,6 +19236,7 @@
                     "DFT",
                     "IR",
                     "INT",
+                    "ICT",
                     "IRT",
                     "NON",
                     "PCH",
@@ -18912,7 +19254,7 @@
                     "WVR"
                 ],
                 "type": "string",
-                "description": "* `AIR` - AGM Inactive Reserve\n* `CUT` - Cut\n* `DFT` - Draft Player\n* `IR` - Inactive Reserve\n* `INT` - Intent to Play\n* `IRT` - IR Return\n* `NON` - Invalid Transaction\n* `PCH` - Patched Player\n* `PKU` - Pickup\n* `PTD` - Player Trade\n* `PRO` - Promotion\n* `RLG` - Relegation\n* `RES` - Re-sign\n* `RET` - Retire\n* `SGN` - Sign Up\n* `PSG` - Permanent FA Sign Up\n* `SUB` - Substitution\n* `TMP` - Temporary Free Agent\n* `TRD` - Trade\n* `WVR` - Waiver Release"
+                "description": "* `AIR` - AGM Inactive Reserve\n* `CUT` - Cut\n* `DFT` - Draft Player\n* `IR` - Inactive Reserve\n* `INT` - Intent to Play\n* `ICT` - Cut from IR\n* `IRT` - IR Return\n* `NON` - Invalid Transaction\n* `PCH` - Patched Player\n* `PKU` - Pickup\n* `PTD` - Player Trade\n* `PRO` - Promotion\n* `RLG` - Relegation\n* `RES` - Re-sign\n* `RET` - Retire\n* `SGN` - Sign Up\n* `PSG` - Permanent FA Sign Up\n* `SUB` - Substitution\n* `TMP` - Temporary Free Agent\n* `TRD` - Trade\n* `WVR` - Waiver Release"
             },
             "TransactionTeam": {
                 "type": "object",

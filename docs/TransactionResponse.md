@@ -17,6 +17,11 @@ Name | Type | Description | Notes
 **first_franchise** | [**TransactionFranchise**](TransactionFranchise.md) |  | [optional] 
 **second_franchise** | [**TransactionFranchise**](TransactionFranchise.md) |  | [optional] 
 **executor** | [**SimpleMember**](SimpleMember.md) |  | 
+**pick_value_balance** | **float** | Smaller side&#39;s pick value over the larger side&#39;s, 0-1. Null if not comparable. | [optional] 
+**pick_value_total** | **float** | Total draft pick value moved by this trade. Null if not comparable. | [optional] 
+**pick_value_net** | **float** | Absolute pick value difference between the best and worst off side. | [optional] 
+**pick_value_gap_rounds** | **float** |  | [optional] [readonly] 
+**pick_value_verdict** | **str** |  | [optional] [readonly] 
 **id** | **int** |  | [optional] [readonly] 
 
 ## Example

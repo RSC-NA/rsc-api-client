@@ -1,6 +1,6 @@
 [project]
 name = "rscapi"
-version = "2.1.3"
+version = "2.1.4"
 description = "RSC API Docs"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},

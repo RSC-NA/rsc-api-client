@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **trades** | [**List[TradeObject]**](TradeObject.md) |  | 
 **admin_override** | **bool** |  | [optional] 
 **confirm_imbalanced** | **bool** |  | [optional] 
+**confirm_lopsided** | **bool** |  | [optional] 
 **executor** | **int** |  | 
 **notes** | **str** |  | 
 **league** | **int** |  | 

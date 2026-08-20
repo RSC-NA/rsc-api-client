@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
 from rscapi.models.pick_transaction_updates import PickTransactionUpdates
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
@@ -46,8 +46,13 @@ class TransactionResponse(BaseModel):
     first_franchise: Optional[TransactionFranchise] = None
     second_franchise: Optional[TransactionFranchise] = None
     executor: SimpleMember
+    pick_value_balance: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Smaller side's pick value over the larger side's, 0-1. Null if not comparable.")
+    pick_value_total: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total draft pick value moved by this trade. Null if not comparable.")
+    pick_value_net: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Absolute pick value difference between the best and worst off side.")
+    pick_value_gap_rounds: Optional[Union[StrictFloat, StrictInt]] = None
+    pick_value_verdict: Optional[StrictStr] = None
     id: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["player_updates", "pick_trades", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor", "id"]
+    __properties: ClassVar[List[str]] = ["player_updates", "pick_trades", "date", "week", "week_no", "match_day", "type", "notes", "first_franchise", "second_franchise", "executor", "pick_value_balance", "pick_value_total", "pick_value_net", "pick_value_gap_rounds", "pick_value_verdict", "id"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -81,9 +86,13 @@ class TransactionResponse(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "var_date",
+            "pick_value_gap_rounds",
+            "pick_value_verdict",
             "id",
         ])
 
@@ -145,6 +154,31 @@ class TransactionResponse(BaseModel):
         if self.second_franchise is None and "second_franchise" in self.model_fields_set:
             _dict['second_franchise'] = None
 
+        # set to None if pick_value_balance (nullable) is None
+        # and model_fields_set contains the field
+        if self.pick_value_balance is None and "pick_value_balance" in self.model_fields_set:
+            _dict['pick_value_balance'] = None
+
+        # set to None if pick_value_total (nullable) is None
+        # and model_fields_set contains the field
+        if self.pick_value_total is None and "pick_value_total" in self.model_fields_set:
+            _dict['pick_value_total'] = None
+
+        # set to None if pick_value_net (nullable) is None
+        # and model_fields_set contains the field
+        if self.pick_value_net is None and "pick_value_net" in self.model_fields_set:
+            _dict['pick_value_net'] = None
+
+        # set to None if pick_value_gap_rounds (nullable) is None
+        # and model_fields_set contains the field
+        if self.pick_value_gap_rounds is None and "pick_value_gap_rounds" in self.model_fields_set:
+            _dict['pick_value_gap_rounds'] = None
+
+        # set to None if pick_value_verdict (nullable) is None
+        # and model_fields_set contains the field
+        if self.pick_value_verdict is None and "pick_value_verdict" in self.model_fields_set:
+            _dict['pick_value_verdict'] = None
+
         return _dict
 
     @classmethod
@@ -168,6 +202,11 @@ class TransactionResponse(BaseModel):
             "first_franchise": TransactionFranchise.from_dict(obj["first_franchise"]) if obj.get("first_franchise") is not None else None,
             "second_franchise": TransactionFranchise.from_dict(obj["second_franchise"]) if obj.get("second_franchise") is not None else None,
             "executor": SimpleMember.from_dict(obj["executor"]) if obj.get("executor") is not None else None,
+            "pick_value_balance": obj.get("pick_value_balance"),
+            "pick_value_total": obj.get("pick_value_total"),
+            "pick_value_net": obj.get("pick_value_net"),
+            "pick_value_gap_rounds": obj.get("pick_value_gap_rounds"),
+            "pick_value_verdict": obj.get("pick_value_verdict"),
             "id": obj.get("id")
         })
         return _obj

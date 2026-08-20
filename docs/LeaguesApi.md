@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**leagues_add_tier_update**](LeaguesApi.md#leagues_add_tier_update) | **PUT** /leagues/{id}/add_tier/ | 
 [**leagues_create**](LeaguesApi.md#leagues_create) | **POST** /leagues/ | 
+[**leagues_create_future_season_create**](LeaguesApi.md#leagues_create_future_season_create) | **POST** /leagues/{id}/create_future_season/ | 
 [**leagues_current_season_retrieve**](LeaguesApi.md#leagues_current_season_retrieve) | **GET** /leagues/{id}/current_season/ | 
 [**leagues_destroy**](LeaguesApi.md#leagues_destroy) | **DELETE** /leagues/{id}/ | 
 [**leagues_expire_subs_create**](LeaguesApi.md#leagues_expire_subs_create) | **POST** /leagues/{id}/expire_subs/ | 
@@ -169,6 +170,87 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **leagues_create_future_season_create**
+> FutureSeasonPlan leagues_create_future_season_create(id, league_future_season_create)
+
+Create a future (not-yet-started) season for a league, with its draft picks, so future picks can be traded before the season exists. Copies tier data, schedules, franchises and teams from the current season. Pass dry_run to see the plan without writing.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.future_season_plan import FutureSeasonPlan
+from rscapi.models.league_future_season_create import LeagueFutureSeasonCreate
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.LeaguesApi(api_client)
+    id = 56 # int | A unique integer value identifying this league.
+    league_future_season_create = rscapi.LeagueFutureSeasonCreate() # LeagueFutureSeasonCreate | 
+
+    try:
+        api_response = await api_instance.leagues_create_future_season_create(id, league_future_season_create)
+        print("The response of LeaguesApi->leagues_create_future_season_create:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling LeaguesApi->leagues_create_future_season_create: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this league. | 
+ **league_future_season_create** | [**LeagueFutureSeasonCreate**](LeagueFutureSeasonCreate.md)|  | 
+
+### Return type
+
+[**FutureSeasonPlan**](FutureSeasonPlan.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**201** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

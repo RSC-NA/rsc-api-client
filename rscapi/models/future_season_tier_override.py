@@ -17,20 +17,25 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class TeamRebrand(BaseModel):
+class FutureSeasonTierOverride(BaseModel):
     """
-    TeamRebrand
+    Per-tier replacements for values otherwise copied from the current season.
     """ # noqa: E501
-    tier: StrictInt
-    name: Annotated[str, Field(strict=True, max_length=16)]
-    __properties: ClassVar[List[str]] = ["tier", "name"]
+    tier: StrictInt = Field(description="Tier id being overridden.")
+    mmr_min: Optional[StrictInt] = None
+    mmr_max: Optional[StrictInt] = None
+    mmr_promo: Optional[StrictInt] = None
+    team_cap: Optional[StrictInt] = None
+    team_number: Optional[StrictInt] = None
+    transactions_end_date: Optional[datetime] = None
+    __properties: ClassVar[List[str]] = ["tier", "mmr_min", "mmr_max", "mmr_promo", "team_cap", "team_number", "transactions_end_date"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -50,7 +55,7 @@ class TeamRebrand(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TeamRebrand from a JSON string"""
+        """Create an instance of FutureSeasonTierOverride from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +80,7 @@ class TeamRebrand(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TeamRebrand from a dict"""
+        """Create an instance of FutureSeasonTierOverride from a dict"""
         if obj is None:
             return None
 
@@ -84,7 +89,12 @@ class TeamRebrand(BaseModel):
 
         _obj = cls.model_validate({
             "tier": obj.get("tier"),
-            "name": obj.get("name")
+            "mmr_min": obj.get("mmr_min"),
+            "mmr_max": obj.get("mmr_max"),
+            "mmr_promo": obj.get("mmr_promo"),
+            "team_cap": obj.get("team_cap"),
+            "team_number": obj.get("team_number"),
+            "transactions_end_date": obj.get("transactions_end_date")
         })
         return _obj
 

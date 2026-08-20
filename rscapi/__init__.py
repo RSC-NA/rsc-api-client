@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.1.3"
+__version__ = "2.1.4"
 
 # Define package exports
 __all__ = [
@@ -84,6 +84,9 @@ __all__ = [
     "FranchiseTeam",
     "FranchiseTier",
     "FranchiseTransferRequest",
+    "FutureSeasonPlan",
+    "FutureSeasonTierOverride",
+    "FutureSeasonTierPlan",
     "HighLevelMatch",
     "IDRResult",
     "IRInput",
@@ -94,6 +97,7 @@ __all__ = [
     "LeagueEventActor",
     "LeagueEventDetail",
     "LeagueEventList",
+    "LeagueFutureSeasonCreate",
     "LeaguePlayer",
     "LeaguePlayerLeague",
     "LeaguePlayerMember",
@@ -295,6 +299,9 @@ from rscapi.models.franchise_standings import FranchiseStandings as FranchiseSta
 from rscapi.models.franchise_team import FranchiseTeam as FranchiseTeam
 from rscapi.models.franchise_tier import FranchiseTier as FranchiseTier
 from rscapi.models.franchise_transfer_request import FranchiseTransferRequest as FranchiseTransferRequest
+from rscapi.models.future_season_plan import FutureSeasonPlan as FutureSeasonPlan
+from rscapi.models.future_season_tier_override import FutureSeasonTierOverride as FutureSeasonTierOverride
+from rscapi.models.future_season_tier_plan import FutureSeasonTierPlan as FutureSeasonTierPlan
 from rscapi.models.high_level_match import HighLevelMatch as HighLevelMatch
 from rscapi.models.idr_result import IDRResult as IDRResult
 from rscapi.models.ir_input import IRInput as IRInput
@@ -305,6 +312,7 @@ from rscapi.models.league_data import LeagueData as LeagueData
 from rscapi.models.league_event_actor import LeagueEventActor as LeagueEventActor
 from rscapi.models.league_event_detail import LeagueEventDetail as LeagueEventDetail
 from rscapi.models.league_event_list import LeagueEventList as LeagueEventList
+from rscapi.models.league_future_season_create import LeagueFutureSeasonCreate as LeagueFutureSeasonCreate
 from rscapi.models.league_player import LeaguePlayer as LeaguePlayer
 from rscapi.models.league_player_league import LeaguePlayerLeague as LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember as LeaguePlayerMember

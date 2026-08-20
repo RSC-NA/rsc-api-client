@@ -17,20 +17,30 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
-from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
 
-class TeamRebrand(BaseModel):
+class FutureSeasonTierPlan(BaseModel):
     """
-    TeamRebrand
+    FutureSeasonTierPlan
     """ # noqa: E501
-    tier: StrictInt
-    name: Annotated[str, Field(strict=True, max_length=16)]
-    __properties: ClassVar[List[str]] = ["tier", "name"]
+    tier_id: StrictInt
+    tier_name: StrictStr
+    franchises: StrictInt
+    picks: StrictInt
+    num_rounds: StrictInt
+    mmr_min: StrictInt
+    mmr_max: StrictInt
+    mmr_promo: StrictInt
+    team_cap: StrictInt
+    team_number: StrictInt
+    transactions_end_date: Optional[datetime]
+    schedule_cloned: StrictBool
+    __properties: ClassVar[List[str]] = ["tier_id", "tier_name", "franchises", "picks", "num_rounds", "mmr_min", "mmr_max", "mmr_promo", "team_cap", "team_number", "transactions_end_date", "schedule_cloned"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -50,7 +60,7 @@ class TeamRebrand(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TeamRebrand from a JSON string"""
+        """Create an instance of FutureSeasonTierPlan from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,11 +81,16 @@ class TeamRebrand(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if transactions_end_date (nullable) is None
+        # and model_fields_set contains the field
+        if self.transactions_end_date is None and "transactions_end_date" in self.model_fields_set:
+            _dict['transactions_end_date'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TeamRebrand from a dict"""
+        """Create an instance of FutureSeasonTierPlan from a dict"""
         if obj is None:
             return None
 
@@ -83,8 +98,18 @@ class TeamRebrand(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "tier": obj.get("tier"),
-            "name": obj.get("name")
+            "tier_id": obj.get("tier_id"),
+            "tier_name": obj.get("tier_name"),
+            "franchises": obj.get("franchises"),
+            "picks": obj.get("picks"),
+            "num_rounds": obj.get("num_rounds"),
+            "mmr_min": obj.get("mmr_min"),
+            "mmr_max": obj.get("mmr_max"),
+            "mmr_promo": obj.get("mmr_promo"),
+            "team_cap": obj.get("team_cap"),
+            "team_number": obj.get("team_number"),
+            "transactions_end_date": obj.get("transactions_end_date"),
+            "schedule_cloned": obj.get("schedule_cloned")
         })
         return _obj
 
