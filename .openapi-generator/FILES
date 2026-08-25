@@ -414,8 +414,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_future_season_plan.py
-test/test_future_season_tier_override.py
-test/test_future_season_tier_plan.py
-test/test_league_future_season_create.py
 tox.ini

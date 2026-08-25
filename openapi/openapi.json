@@ -18071,6 +18071,11 @@
                         "items": {
                             "type": "string"
                         }
+                    },
+                    "match_start_time": {
+                        "type": "string",
+                        "format": "time",
+                        "readOnly": true
                     }
                 },
                 "required": [

@@ -30,7 +30,8 @@ class SeasonSchedule(BaseModel):
     matches_per_season: Optional[StrictInt] = None
     matches_per_night: Optional[StrictInt] = None
     match_nights: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["matches_per_season", "matches_per_night", "match_nights"]
+    match_start_time: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["matches_per_season", "matches_per_night", "match_nights", "match_start_time"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -64,10 +65,12 @@ class SeasonSchedule(BaseModel):
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "matches_per_season",
             "matches_per_night",
+            "match_start_time",
         ])
 
         _dict = self.model_dump(
@@ -89,7 +92,8 @@ class SeasonSchedule(BaseModel):
         _obj = cls.model_validate({
             "matches_per_season": obj.get("matches_per_season"),
             "matches_per_night": obj.get("matches_per_night"),
-            "match_nights": obj.get("match_nights")
+            "match_nights": obj.get("match_nights"),
+            "match_start_time": obj.get("match_start_time")
         })
         return _obj
 

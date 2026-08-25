@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **matches_per_season** | **int** |  | [optional] [readonly] 
 **matches_per_night** | **int** |  | [optional] [readonly] 
 **match_nights** | **List[str]** |  | 
+**match_start_time** | **str** |  | [optional] [readonly] 
 
 ## Example
 
