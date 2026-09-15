@@ -1188,12 +1188,12 @@ class TransactionsApi:
     @validate_call
     async def transactions_history_list(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of the league whose transactions to list. Defaults to the system default league.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number within the league (e.g. 18). Defaults to the league's current season.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release")] = None,
         _request_timeout: Union[
             None,
@@ -1212,17 +1212,17 @@ class TransactionsApi:
 
         List all transactions for a given league and season.
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param league: ID of the league whose transactions to list. Defaults to the system default league.
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
         :param player: Discord ID of player for transaction history search.
         :type player: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season number within the league (e.g. 18). Defaults to the league's current season.
         :type season_number: int
         :param transaction_type: Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release
         :type transaction_type: str
@@ -1249,8 +1249,8 @@ class TransactionsApi:
         """ # noqa: E501
 
         _param = self._transactions_history_list_serialize(
-            league=league,
             executor=executor,
+            league=league,
             limit=limit,
             offset=offset,
             player=player,
@@ -1279,12 +1279,12 @@ class TransactionsApi:
     @validate_call
     async def transactions_history_list_with_http_info(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of the league whose transactions to list. Defaults to the system default league.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number within the league (e.g. 18). Defaults to the league's current season.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release")] = None,
         _request_timeout: Union[
             None,
@@ -1303,17 +1303,17 @@ class TransactionsApi:
 
         List all transactions for a given league and season.
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param league: ID of the league whose transactions to list. Defaults to the system default league.
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
         :param player: Discord ID of player for transaction history search.
         :type player: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season number within the league (e.g. 18). Defaults to the league's current season.
         :type season_number: int
         :param transaction_type: Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release
         :type transaction_type: str
@@ -1340,8 +1340,8 @@ class TransactionsApi:
         """ # noqa: E501
 
         _param = self._transactions_history_list_serialize(
-            league=league,
             executor=executor,
+            league=league,
             limit=limit,
             offset=offset,
             player=player,
@@ -1370,12 +1370,12 @@ class TransactionsApi:
     @validate_call
     async def transactions_history_list_without_preload_content(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         executor: Annotated[Optional[StrictInt], Field(description="Discord ID of the member who ran the transaction.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of the league whose transactions to list. Defaults to the system default league.")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         player: Annotated[Optional[StrictInt], Field(description="Discord ID of player for transaction history search.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number within the league (e.g. 18). Defaults to the league's current season.")] = None,
         transaction_type: Annotated[Optional[StrictStr], Field(description="Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release")] = None,
         _request_timeout: Union[
             None,
@@ -1394,17 +1394,17 @@ class TransactionsApi:
 
         List all transactions for a given league and season.
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param executor: Discord ID of the member who ran the transaction.
         :type executor: int
+        :param league: ID of the league whose transactions to list. Defaults to the system default league.
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param offset: The initial index from which to return the results.
         :type offset: int
         :param player: Discord ID of player for transaction history search.
         :type player: int
-        :param season_number: Season number to search for. (E.g: 18)
+        :param season_number: Season number within the league (e.g. 18). Defaults to the league's current season.
         :type season_number: int
         :param transaction_type: Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release
         :type transaction_type: str
@@ -1431,8 +1431,8 @@ class TransactionsApi:
         """ # noqa: E501
 
         _param = self._transactions_history_list_serialize(
-            league=league,
             executor=executor,
+            league=league,
             limit=limit,
             offset=offset,
             player=player,
@@ -1456,8 +1456,8 @@ class TransactionsApi:
 
     def _transactions_history_list_serialize(
         self,
-        league,
         executor,
+        league,
         limit,
         offset,
         player,

@@ -122,6 +122,11 @@ class Franchise(BaseModel):
                 if _item_agms:
                     _items.append(_item_agms.to_dict())
             _dict['agms'] = _items
+        # set to None if logo (nullable) is None
+        # and model_fields_set contains the field
+        if self.logo is None and "logo" in self.model_fields_set:
+            _dict['logo'] = None
+
         # set to None if gm (nullable) is None
         # and model_fields_set contains the field
         if self.gm is None and "gm" in self.model_fields_set:

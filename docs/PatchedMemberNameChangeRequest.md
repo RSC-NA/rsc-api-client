@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 
-**admin_override** | **bool** |  | [optional] [default to False]
+**admin_override** | **bool** | Retained for compatibility and recorded on the change, but no longer gates anything -- the profanity check it used to bypass has been removed. | [optional] [default to False]
 **executor** | **int** | Discord ID of the member running the change. Defaults to the authenticated caller. | [optional] 
 
 ## Example

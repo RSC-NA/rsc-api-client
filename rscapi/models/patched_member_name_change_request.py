@@ -28,7 +28,7 @@ class PatchedMemberNameChangeRequest(BaseModel):
     PatchedMemberNameChangeRequest
     """ # noqa: E501
     name: Optional[StrictStr] = None
-    admin_override: Optional[StrictBool] = False
+    admin_override: Optional[StrictBool] = Field(default=False, description="Retained for compatibility and recorded on the change, but no longer gates anything -- the profanity check it used to bypass has been removed.")
     executor: Optional[StrictInt] = Field(default=None, description="Discord ID of the member running the change. Defaults to the authenticated caller.")
     __properties: ClassVar[List[str]] = ["name", "admin_override", "executor"]
 

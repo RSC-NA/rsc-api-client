@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from rscapi.models.match_results_ballchasing_group import MatchResultsBallchasingGroup
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,7 +32,7 @@ class MatchResults(BaseModel):
     home_wins: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     away_wins: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     manual: Optional[StrictBool] = None
-    ballchasing_group: Annotated[str, Field(min_length=0, strict=True, max_length=64)]
+    ballchasing_group: MatchResultsBallchasingGroup
     __properties: ClassVar[List[str]] = ["home_wins", "away_wins", "manual", "ballchasing_group"]
 
     model_config = ConfigDict(
@@ -73,6 +74,9 @@ class MatchResults(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of ballchasing_group
+        if self.ballchasing_group:
+            _dict['ballchasing_group'] = self.ballchasing_group.to_dict()
         return _dict
 
     @classmethod
@@ -88,7 +92,7 @@ class MatchResults(BaseModel):
             "home_wins": obj.get("home_wins"),
             "away_wins": obj.get("away_wins"),
             "manual": obj.get("manual"),
-            "ballchasing_group": obj.get("ballchasing_group")
+            "ballchasing_group": MatchResultsBallchasingGroup.from_dict(obj["ballchasing_group"]) if obj.get("ballchasing_group") is not None else None
         })
         return _obj
 

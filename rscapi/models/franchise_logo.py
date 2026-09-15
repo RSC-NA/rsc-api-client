@@ -71,6 +71,11 @@ class FranchiseLogo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if logo (nullable) is None
+        # and model_fields_set contains the field
+        if self.logo is None and "logo" in self.model_fields_set:
+            _dict['logo'] = None
+
         return _dict
 
     @classmethod

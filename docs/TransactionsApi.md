@@ -341,7 +341,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_history_list**
-> PaginatedTransactionResponseList transactions_history_list(league, executor=executor, limit=limit, offset=offset, player=player, season_number=season_number, transaction_type=transaction_type)
+> PaginatedTransactionResponseList transactions_history_list(executor=executor, league=league, limit=limit, offset=offset, player=player, season_number=season_number, transaction_type=transaction_type)
 
 List all transactions for a given league and season.
 
@@ -376,16 +376,16 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    league = 56 # int | ID of the league to get team matches for
     executor = 56 # int | Discord ID of the member who ran the transaction. (optional)
+    league = 56 # int | ID of the league whose transactions to list. Defaults to the system default league. (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
     player = 56 # int | Discord ID of player for transaction history search. (optional)
-    season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
+    season_number = 56 # int | Season number within the league (e.g. 18). Defaults to the league's current season. (optional)
     transaction_type = 'transaction_type_example' # str | Filter based on a specific transaction Type.  * `AIR` - AGM Inactive Reserve * `CUT` - Cut * `DFT` - Draft Player * `IR` - Inactive Reserve * `INT` - Intent to Play * `ICT` - Cut from IR * `IRT` - IR Return * `NON` - Invalid Transaction * `PCH` - Patched Player * `PKU` - Pickup * `PTD` - Player Trade * `PRO` - Promotion * `RLG` - Relegation * `RES` - Re-sign * `RET` - Retire * `SGN` - Sign Up * `PSG` - Permanent FA Sign Up * `SUB` - Substitution * `TMP` - Temporary Free Agent * `TRD` - Trade * `WVR` - Waiver Release (optional)
 
     try:
-        api_response = await api_instance.transactions_history_list(league, executor=executor, limit=limit, offset=offset, player=player, season_number=season_number, transaction_type=transaction_type)
+        api_response = await api_instance.transactions_history_list(executor=executor, league=league, limit=limit, offset=offset, player=player, season_number=season_number, transaction_type=transaction_type)
         print("The response of TransactionsApi->transactions_history_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -399,12 +399,12 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **int**| ID of the league to get team matches for | 
  **executor** | **int**| Discord ID of the member who ran the transaction. | [optional] 
+ **league** | **int**| ID of the league whose transactions to list. Defaults to the system default league. | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
  **player** | **int**| Discord ID of player for transaction history search. | [optional] 
- **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
+ **season_number** | **int**| Season number within the league (e.g. 18). Defaults to the league&#39;s current season. | [optional] 
  **transaction_type** | **str**| Filter based on a specific transaction Type.  * &#x60;AIR&#x60; - AGM Inactive Reserve * &#x60;CUT&#x60; - Cut * &#x60;DFT&#x60; - Draft Player * &#x60;IR&#x60; - Inactive Reserve * &#x60;INT&#x60; - Intent to Play * &#x60;ICT&#x60; - Cut from IR * &#x60;IRT&#x60; - IR Return * &#x60;NON&#x60; - Invalid Transaction * &#x60;PCH&#x60; - Patched Player * &#x60;PKU&#x60; - Pickup * &#x60;PTD&#x60; - Player Trade * &#x60;PRO&#x60; - Promotion * &#x60;RLG&#x60; - Relegation * &#x60;RES&#x60; - Re-sign * &#x60;RET&#x60; - Retire * &#x60;SGN&#x60; - Sign Up * &#x60;PSG&#x60; - Permanent FA Sign Up * &#x60;SUB&#x60; - Substitution * &#x60;TMP&#x60; - Temporary Free Agent * &#x60;TRD&#x60; - Trade * &#x60;WVR&#x60; - Waiver Release | [optional] 
 
 ### Return type

@@ -11346,8 +11346,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "ID of the league to get team matches for",
-                        "required": true
+                        "description": "ID of the league whose transactions to list. Defaults to the system default league."
                     },
                     {
                         "name": "limit",
@@ -11381,7 +11380,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number to search for. (E.g: 18)"
+                        "description": "Season number within the league (e.g. 18). Defaults to the league's current season."
                     },
                     {
                         "in": "query",
@@ -12787,8 +12786,16 @@
                         "readOnly": true
                     },
                     "project_role": {
-                        "type": "string",
-                        "minLength": 0
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "minLength": 0
+                            },
+                            {
+                                "type": "string",
+                                "maxLength": 0
+                            }
+                        ]
                     },
                     "franchise_id": {
                         "type": "integer",
@@ -13088,6 +13095,7 @@
                     "logo": {
                         "type": "string",
                         "format": "uri",
+                        "nullable": true,
                         "readOnly": true
                     },
                     "gm": {
@@ -13290,6 +13298,7 @@
                     "logo": {
                         "type": "string",
                         "format": "uri",
+                        "nullable": true,
                         "readOnly": true
                     }
                 }
@@ -13301,6 +13310,7 @@
                     "logo": {
                         "type": "string",
                         "format": "uri",
+                        "nullable": true,
                         "readOnly": true
                     }
                 }
@@ -14684,9 +14694,17 @@
                         "type": "boolean"
                     },
                     "ballchasing_group": {
-                        "type": "string",
-                        "maxLength": 64,
-                        "minLength": 0
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "maxLength": 64,
+                                "minLength": 0
+                            },
+                            {
+                                "type": "string",
+                                "maxLength": 0
+                            }
+                        ]
                     }
                 },
                 "required": [
@@ -14709,9 +14727,17 @@
                         "description": "Person executing the score report"
                     },
                     "ballchasing_group": {
-                        "type": "string",
                         "description": "ID of the ballchasing group of match results.",
-                        "minLength": 0
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "minLength": 0
+                            },
+                            {
+                                "type": "string",
+                                "maxLength": 0
+                            }
+                        ]
                     },
                     "override": {
                         "type": "boolean",
@@ -15467,6 +15493,7 @@
                     "logo": {
                         "type": "string",
                         "format": "uri",
+                        "nullable": true,
                         "readOnly": true
                     },
                     "gm": {
@@ -15645,7 +15672,8 @@
                     },
                     "admin_override": {
                         "type": "boolean",
-                        "default": false
+                        "default": false,
+                        "description": "Retained for compatibility and recorded on the change, but no longer gates anything -- the profanity check it used to bypass has been removed."
                     },
                     "executor": {
                         "type": "integer",
@@ -18729,9 +18757,17 @@
                         "readOnly": true
                     },
                     "name": {
-                        "type": "string",
                         "readOnly": true,
-                        "minLength": 0
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "minLength": 0
+                            },
+                            {
+                                "type": "string",
+                                "maxLength": 0
+                            }
+                        ]
                     },
                     "pulls": {
                         "type": "integer",
@@ -18769,9 +18805,17 @@
                         "readOnly": true
                     },
                     "platform_id": {
-                        "type": "string",
                         "readOnly": true,
-                        "minLength": 0
+                        "oneOf": [
+                            {
+                                "type": "string",
+                                "minLength": 0
+                            },
+                            {
+                                "type": "string",
+                                "maxLength": 0
+                            }
+                        ]
                     },
                     "rscid": {
                         "type": "string",

@@ -25,6 +25,7 @@ docs/DraftTierList.md
 docs/ElevatedRole.md
 docs/ElevatedRoleInput.md
 docs/ElevatedRoleLeague.md
+docs/ElevatedRoleProjectRole.md
 docs/ElevatedRoleSyncInput.md
 docs/ElevatedRoleSyncResult.md
 docs/ElevatedRoleUpdate.md
@@ -78,7 +79,9 @@ docs/MatchFormatEnum.md
 docs/MatchGM.md
 docs/MatchList.md
 docs/MatchResults.md
+docs/MatchResultsBallchasingGroup.md
 docs/MatchScoreReportRequest.md
+docs/MatchScoreReportRequestBallchasingGroup.md
 docs/MatchSubmission.md
 docs/MatchTeam.md
 docs/MatchTypeEnum.md
@@ -173,6 +176,7 @@ docs/TrackerIDInput.md
 docs/TrackerLink.md
 docs/TrackerLinkInvalidateObject.md
 docs/TrackerLinkLinking.md
+docs/TrackerLinkName.md
 docs/TrackerLinkSpiderRequest.md
 docs/TrackerLinkStats.md
 docs/TrackerLinkStatusEnum.md
@@ -247,6 +251,7 @@ rscapi/models/draft_tier_list.py
 rscapi/models/elevated_role.py
 rscapi/models/elevated_role_input.py
 rscapi/models/elevated_role_league.py
+rscapi/models/elevated_role_project_role.py
 rscapi/models/elevated_role_sync_input.py
 rscapi/models/elevated_role_sync_result.py
 rscapi/models/elevated_role_update.py
@@ -295,7 +300,9 @@ rscapi/models/match_format_enum.py
 rscapi/models/match_gm.py
 rscapi/models/match_list.py
 rscapi/models/match_results.py
+rscapi/models/match_results_ballchasing_group.py
 rscapi/models/match_score_report_request.py
+rscapi/models/match_score_report_request_ballchasing_group.py
 rscapi/models/match_submission.py
 rscapi/models/match_team.py
 rscapi/models/match_type_enum.py
@@ -383,6 +390,7 @@ rscapi/models/tracker_id_input.py
 rscapi/models/tracker_link.py
 rscapi/models/tracker_link_invalidate_object.py
 rscapi/models/tracker_link_linking.py
+rscapi/models/tracker_link_name.py
 rscapi/models/tracker_link_spider_request.py
 rscapi/models/tracker_link_stats.py
 rscapi/models/tracker_link_status_enum.py
@@ -414,4 +422,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_elevated_role_project_role.py
+test/test_match_results_ballchasing_group.py
+test/test_match_score_report_request_ballchasing_group.py
+test/test_tracker_link_name.py
 tox.ini
