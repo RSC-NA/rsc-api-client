@@ -12786,16 +12786,7 @@
                         "readOnly": true
                     },
                     "project_role": {
-                        "oneOf": [
-                            {
-                                "type": "string",
-                                "minLength": 0
-                            },
-                            {
-                                "type": "string",
-                                "maxLength": 0
-                            }
-                        ]
+                        "type": "string"
                     },
                     "franchise_id": {
                         "type": "integer",
@@ -14694,17 +14685,8 @@
                         "type": "boolean"
                     },
                     "ballchasing_group": {
-                        "oneOf": [
-                            {
-                                "type": "string",
-                                "maxLength": 64,
-                                "minLength": 0
-                            },
-                            {
-                                "type": "string",
-                                "maxLength": 0
-                            }
-                        ]
+                        "type": "string",
+                        "maxLength": 64
                     }
                 },
                 "required": [
@@ -14727,17 +14709,9 @@
                         "description": "Person executing the score report"
                     },
                     "ballchasing_group": {
+                        "type": "string",
                         "description": "ID of the ballchasing group of match results.",
-                        "oneOf": [
-                            {
-                                "type": "string",
-                                "minLength": 0
-                            },
-                            {
-                                "type": "string",
-                                "maxLength": 0
-                            }
-                        ]
+                        "maxLength": 64
                     },
                     "override": {
                         "type": "boolean",
@@ -18757,17 +18731,8 @@
                         "readOnly": true
                     },
                     "name": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string",
-                                "minLength": 0
-                            },
-                            {
-                                "type": "string",
-                                "maxLength": 0
-                            }
-                        ]
+                        "type": "string",
+                        "readOnly": true
                     },
                     "pulls": {
                         "type": "integer",
@@ -18805,17 +18770,8 @@
                         "readOnly": true
                     },
                     "platform_id": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string",
-                                "minLength": 0
-                            },
-                            {
-                                "type": "string",
-                                "maxLength": 0
-                            }
-                        ]
+                        "type": "string",
+                        "readOnly": true
                     },
                     "rscid": {
                         "type": "string",

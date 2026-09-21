@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from rscapi.models.match_score_report_request_ballchasing_group import MatchScoreReportRequestBallchasingGroup
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -31,7 +31,7 @@ class MatchScoreReportRequest(BaseModel):
     home_score: StrictInt = Field(description="Number of games Home won.")
     away_score: StrictInt = Field(description="Number of games Away won.")
     executor: StrictInt = Field(description="Person executing the score report")
-    ballchasing_group: MatchScoreReportRequestBallchasingGroup
+    ballchasing_group: Annotated[str, Field(strict=True, max_length=64)] = Field(description="ID of the ballchasing group of match results.")
     override: Optional[StrictBool] = Field(default=False, description="Is an admin overriding the score report.")
     __properties: ClassVar[List[str]] = ["home_score", "away_score", "executor", "ballchasing_group", "override"]
 
@@ -74,9 +74,6 @@ class MatchScoreReportRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of ballchasing_group
-        if self.ballchasing_group:
-            _dict['ballchasing_group'] = self.ballchasing_group.to_dict()
         return _dict
 
     @classmethod
@@ -92,7 +89,7 @@ class MatchScoreReportRequest(BaseModel):
             "home_score": obj.get("home_score"),
             "away_score": obj.get("away_score"),
             "executor": obj.get("executor"),
-            "ballchasing_group": MatchScoreReportRequestBallchasingGroup.from_dict(obj["ballchasing_group"]) if obj.get("ballchasing_group") is not None else None,
+            "ballchasing_group": obj.get("ballchasing_group"),
             "override": obj.get("override") if obj.get("override") is not None else False
         })
         return _obj

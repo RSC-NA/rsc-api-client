@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **league** | [**ElevatedRoleLeague**](ElevatedRoleLeague.md) |  | 
 **position** | **str** |  | 
 **arbiter** | **bool** |  | [optional] [readonly] 
-**project_role** | [**ElevatedRoleProjectRole**](ElevatedRoleProjectRole.md) |  | 
+**project_role** | **str** |  | 
 **franchise_id** | **int** |  | [optional] [readonly] 
 
 ## Example

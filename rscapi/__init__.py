@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.1.6"
+__version__ = "2.1.7"
 
 # Define package exports
 __all__ = [
@@ -65,7 +65,6 @@ __all__ = [
     "ElevatedRole",
     "ElevatedRoleInput",
     "ElevatedRoleLeague",
-    "ElevatedRoleProjectRole",
     "ElevatedRoleSyncInput",
     "ElevatedRoleSyncResult",
     "ElevatedRoleUpdate",
@@ -114,9 +113,7 @@ __all__ = [
     "MatchGM",
     "MatchList",
     "MatchResults",
-    "MatchResultsBallchasingGroup",
     "MatchScoreReportRequest",
-    "MatchScoreReportRequestBallchasingGroup",
     "MatchSubmission",
     "MatchTeam",
     "MatchTypeEnum",
@@ -204,7 +201,6 @@ __all__ = [
     "TrackerLink",
     "TrackerLinkInvalidateObject",
     "TrackerLinkLinking",
-    "TrackerLinkName",
     "TrackerLinkSpiderRequest",
     "TrackerLinkStats",
     "TrackerLinkStatusEnum",
@@ -284,7 +280,6 @@ from rscapi.models.draft_tier_list import DraftTierList as DraftTierList
 from rscapi.models.elevated_role import ElevatedRole as ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput as ElevatedRoleInput
 from rscapi.models.elevated_role_league import ElevatedRoleLeague as ElevatedRoleLeague
-from rscapi.models.elevated_role_project_role import ElevatedRoleProjectRole as ElevatedRoleProjectRole
 from rscapi.models.elevated_role_sync_input import ElevatedRoleSyncInput as ElevatedRoleSyncInput
 from rscapi.models.elevated_role_sync_result import ElevatedRoleSyncResult as ElevatedRoleSyncResult
 from rscapi.models.elevated_role_update import ElevatedRoleUpdate as ElevatedRoleUpdate
@@ -333,9 +328,7 @@ from rscapi.models.match_format_enum import MatchFormatEnum as MatchFormatEnum
 from rscapi.models.match_gm import MatchGM as MatchGM
 from rscapi.models.match_list import MatchList as MatchList
 from rscapi.models.match_results import MatchResults as MatchResults
-from rscapi.models.match_results_ballchasing_group import MatchResultsBallchasingGroup as MatchResultsBallchasingGroup
 from rscapi.models.match_score_report_request import MatchScoreReportRequest as MatchScoreReportRequest
-from rscapi.models.match_score_report_request_ballchasing_group import MatchScoreReportRequestBallchasingGroup as MatchScoreReportRequestBallchasingGroup
 from rscapi.models.match_submission import MatchSubmission as MatchSubmission
 from rscapi.models.match_team import MatchTeam as MatchTeam
 from rscapi.models.match_type_enum import MatchTypeEnum as MatchTypeEnum
@@ -423,7 +416,6 @@ from rscapi.models.tracker_id_input import TrackerIDInput as TrackerIDInput
 from rscapi.models.tracker_link import TrackerLink as TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject as TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_linking import TrackerLinkLinking as TrackerLinkLinking
-from rscapi.models.tracker_link_name import TrackerLinkName as TrackerLinkName
 from rscapi.models.tracker_link_spider_request import TrackerLinkSpiderRequest as TrackerLinkSpiderRequest
 from rscapi.models.tracker_link_stats import TrackerLinkStats as TrackerLinkStats
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum as TrackerLinkStatusEnum

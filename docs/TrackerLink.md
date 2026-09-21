@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **member** | [**Really**](Really.md) |  | [optional] [readonly] 
 **discord_id** | **int** |  | [optional] 
 **id** | **int** |  | [optional] [readonly] 
-**name** | [**TrackerLinkName**](TrackerLinkName.md) |  | [optional] 
+**name** | **str** |  | [optional] [readonly] 
 **pulls** | **int** | Number of MMR pulls recorded against this tracker. | [optional] [readonly] 
 **platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] [readonly] 
 **status** | [**TrackerLinkStatusEnum**](TrackerLinkStatusEnum.md) |  | [optional] [readonly] 
 **last_updated** | **datetime** |  | [optional] [readonly] 
 **last_attempt_at** | **datetime** |  | [optional] [readonly] 
 **member_name** | **str** |  | [optional] [readonly] 
-**platform_id** | [**TrackerLinkName**](TrackerLinkName.md) |  | [optional] 
+**platform_id** | **str** |  | [optional] [readonly] 
 **rscid** | **str** |  | [optional] [readonly] 
 
 ## Example

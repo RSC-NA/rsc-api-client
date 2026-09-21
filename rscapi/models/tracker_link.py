@@ -22,7 +22,6 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.platform_enum import PlatformEnum
 from rscapi.models.really import Really
-from rscapi.models.tracker_link_name import TrackerLinkName
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -36,14 +35,14 @@ class TrackerLink(BaseModel):
     member: Optional[Really] = None
     discord_id: Optional[StrictInt] = None
     id: Optional[StrictInt] = None
-    name: Optional[TrackerLinkName] = None
+    name: Optional[StrictStr] = None
     pulls: Optional[StrictInt] = Field(default=None, description="Number of MMR pulls recorded against this tracker.")
     platform: Optional[PlatformEnum] = None
     status: Optional[TrackerLinkStatusEnum] = None
     last_updated: Optional[datetime] = None
     last_attempt_at: Optional[datetime] = None
     member_name: Optional[StrictStr] = None
-    platform_id: Optional[TrackerLinkName] = None
+    platform_id: Optional[StrictStr] = None
     rscid: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["link", "member", "discord_id", "id", "name", "pulls", "platform", "status", "last_updated", "last_attempt_at", "member_name", "platform_id", "rscid"]
 
@@ -86,16 +85,20 @@ class TrackerLink(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "member",
             "id",
+            "name",
             "pulls",
             "platform",
             "status",
             "last_updated",
             "last_attempt_at",
             "member_name",
+            "platform_id",
             "rscid",
         ])
 
@@ -107,12 +110,6 @@ class TrackerLink(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of member
         if self.member:
             _dict['member'] = self.member.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of name
-        if self.name:
-            _dict['name'] = self.name.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of platform_id
-        if self.platform_id:
-            _dict['platform_id'] = self.platform_id.to_dict()
         # set to None if member (nullable) is None
         # and model_fields_set contains the field
         if self.member is None and "member" in self.model_fields_set:
@@ -134,14 +131,14 @@ class TrackerLink(BaseModel):
             "member": Really.from_dict(obj["member"]) if obj.get("member") is not None else None,
             "discord_id": obj.get("discord_id"),
             "id": obj.get("id"),
-            "name": TrackerLinkName.from_dict(obj["name"]) if obj.get("name") is not None else None,
+            "name": obj.get("name"),
             "pulls": obj.get("pulls"),
             "platform": obj.get("platform"),
             "status": obj.get("status"),
             "last_updated": obj.get("last_updated"),
             "last_attempt_at": obj.get("last_attempt_at"),
             "member_name": obj.get("member_name"),
-            "platform_id": TrackerLinkName.from_dict(obj["platform_id"]) if obj.get("platform_id") is not None else None,
+            "platform_id": obj.get("platform_id"),
             "rscid": obj.get("rscid")
         })
         return _obj

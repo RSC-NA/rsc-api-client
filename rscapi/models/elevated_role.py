@@ -20,7 +20,6 @@ import json
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from rscapi.models.elevated_role_league import ElevatedRoleLeague
-from rscapi.models.elevated_role_project_role import ElevatedRoleProjectRole
 from rscapi.models.simple_member import SimpleMember
 from typing import Optional, Set
 from typing_extensions import Self
@@ -35,7 +34,7 @@ class ElevatedRole(BaseModel):
     league: ElevatedRoleLeague
     position: Optional[StrictStr]
     arbiter: Optional[StrictBool] = None
-    project_role: ElevatedRoleProjectRole
+    project_role: StrictStr
     franchise_id: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["id", "member", "league", "position", "arbiter", "project_role", "franchise_id"]
 
@@ -92,9 +91,6 @@ class ElevatedRole(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of league
         if self.league:
             _dict['league'] = self.league.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of project_role
-        if self.project_role:
-            _dict['project_role'] = self.project_role.to_dict()
         # set to None if position (nullable) is None
         # and model_fields_set contains the field
         if self.position is None and "position" in self.model_fields_set:
@@ -122,7 +118,7 @@ class ElevatedRole(BaseModel):
             "league": ElevatedRoleLeague.from_dict(obj["league"]) if obj.get("league") is not None else None,
             "position": obj.get("position"),
             "arbiter": obj.get("arbiter"),
-            "project_role": ElevatedRoleProjectRole.from_dict(obj["project_role"]) if obj.get("project_role") is not None else None,
+            "project_role": obj.get("project_role"),
             "franchise_id": obj.get("franchise_id")
         })
         return _obj

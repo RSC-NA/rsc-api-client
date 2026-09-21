@@ -35,7 +35,6 @@ from rscapi.models.draft_tier_list import DraftTierList
 from rscapi.models.elevated_role import ElevatedRole
 from rscapi.models.elevated_role_input import ElevatedRoleInput
 from rscapi.models.elevated_role_league import ElevatedRoleLeague
-from rscapi.models.elevated_role_project_role import ElevatedRoleProjectRole
 from rscapi.models.elevated_role_sync_input import ElevatedRoleSyncInput
 from rscapi.models.elevated_role_sync_result import ElevatedRoleSyncResult
 from rscapi.models.elevated_role_update import ElevatedRoleUpdate
@@ -84,9 +83,7 @@ from rscapi.models.match_format_enum import MatchFormatEnum
 from rscapi.models.match_gm import MatchGM
 from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
-from rscapi.models.match_results_ballchasing_group import MatchResultsBallchasingGroup
 from rscapi.models.match_score_report_request import MatchScoreReportRequest
-from rscapi.models.match_score_report_request_ballchasing_group import MatchScoreReportRequestBallchasingGroup
 from rscapi.models.match_submission import MatchSubmission
 from rscapi.models.match_team import MatchTeam
 from rscapi.models.match_type_enum import MatchTypeEnum
@@ -174,7 +171,6 @@ from rscapi.models.tracker_id_input import TrackerIDInput
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_linking import TrackerLinkLinking
-from rscapi.models.tracker_link_name import TrackerLinkName
 from rscapi.models.tracker_link_spider_request import TrackerLinkSpiderRequest
 from rscapi.models.tracker_link_stats import TrackerLinkStats
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum
