@@ -424,9 +424,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_playoff_division.py
-test/test_playoff_format_enum.py
-test/test_playoff_format_source_enum.py
-test/test_playoff_qualifier_reason_enum.py
-test/test_tiebreak_draw_enum.py
 tox.ini

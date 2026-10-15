@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class TiebreakDrawEnum(str, Enum):
     """
-    * `` -  * `provisional` - provisional * `drawn` - drawn
+    * `provisional` - provisional * `drawn` - drawn
     """
 
     """

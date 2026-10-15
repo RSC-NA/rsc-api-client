@@ -46,8 +46,8 @@ class PlayoffTeam(BaseModel):
     playoff_group_label: StrictStr
     playoff_cutoff: StrictInt
     playoff_qualified: StrictBool
-    playoff_qualifier_reason: PlayoffQualifierReasonEnum = Field(description="How the team qualifies: top of the group, its division, or a wildcard.  * `` -  * `cut` - cut * `division` - division * `wildcard` - wildcard")
-    tiebreak_draw: TiebreakDrawEnum = Field(description="Set when the random draw (rule 2.4.2.9) decided this team's spot or seed.  * `` -  * `provisional` - provisional * `drawn` - drawn")
+    playoff_qualifier_reason: Optional[PlayoffQualifierReasonEnum] = Field(description="How the team qualifies: top of the group, its division, or a wildcard; null when outside.  * `cut` - cut * `division` - division * `wildcard` - wildcard")
+    tiebreak_draw: Optional[TiebreakDrawEnum] = Field(description="Set when the random draw (rule 2.4.2.9) decided this team's spot or seed; otherwise null.  * `provisional` - provisional * `drawn` - drawn")
     playoff_status_label: StrictStr
     playoff_delta_label: StrictStr
     playoff_magic_number: Optional[StrictInt]
@@ -127,6 +127,16 @@ class PlayoffTeam(BaseModel):
         # and model_fields_set contains the field
         if self.playoff_seed is None and "playoff_seed" in self.model_fields_set:
             _dict['playoff_seed'] = None
+
+        # set to None if playoff_qualifier_reason (nullable) is None
+        # and model_fields_set contains the field
+        if self.playoff_qualifier_reason is None and "playoff_qualifier_reason" in self.model_fields_set:
+            _dict['playoff_qualifier_reason'] = None
+
+        # set to None if tiebreak_draw (nullable) is None
+        # and model_fields_set contains the field
+        if self.tiebreak_draw is None and "tiebreak_draw" in self.model_fields_set:
+            _dict['tiebreak_draw'] = None
 
         # set to None if playoff_magic_number (nullable) is None
         # and model_fields_set contains the field

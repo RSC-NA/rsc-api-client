@@ -20,7 +20,7 @@ from typing_extensions import Self
 
 class PlayoffQualifierReasonEnum(str, Enum):
     """
-    * `` -  * `cut` - cut * `division` - division * `wildcard` - wildcard
+    * `cut` - cut * `division` - division * `wildcard` - wildcard
     """
 
     """

@@ -1,6 +1,6 @@
 # TiebreakDrawEnum
 
-* `` -  * `provisional` - provisional * `drawn` - drawn
+* `provisional` - provisional * `drawn` - drawn
 
 ## Enum
 

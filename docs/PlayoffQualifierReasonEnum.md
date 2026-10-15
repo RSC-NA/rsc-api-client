@@ -1,6 +1,6 @@
 # PlayoffQualifierReasonEnum
 
-* `` -  * `cut` - cut * `division` - division * `wildcard` - wildcard
+* `cut` - cut * `division` - division * `wildcard` - wildcard
 
 ## Enum
 

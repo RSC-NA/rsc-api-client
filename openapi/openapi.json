@@ -17716,7 +17716,7 @@
                     "wildcard"
                 ],
                 "type": "string",
-                "description": "* `` - \n* `cut` - cut\n* `division` - division\n* `wildcard` - wildcard"
+                "description": "* `cut` - cut\n* `division` - division\n* `wildcard` - wildcard"
             },
             "PlayoffTeam": {
                 "type": "object",
@@ -17785,7 +17785,8 @@
                                 "$ref": "#/components/schemas/PlayoffQualifierReasonEnum"
                             }
                         ],
-                        "description": "How the team qualifies: top of the group, its division, or a wildcard.\n\n* `` - \n* `cut` - cut\n* `division` - division\n* `wildcard` - wildcard"
+                        "nullable": true,
+                        "description": "How the team qualifies: top of the group, its division, or a wildcard; null when outside.\n\n* `cut` - cut\n* `division` - division\n* `wildcard` - wildcard"
                     },
                     "tiebreak_draw": {
                         "allOf": [
@@ -17793,7 +17794,8 @@
                                 "$ref": "#/components/schemas/TiebreakDrawEnum"
                             }
                         ],
-                        "description": "Set when the random draw (rule 2.4.2.9) decided this team's spot or seed.\n\n* `` - \n* `provisional` - provisional\n* `drawn` - drawn"
+                        "nullable": true,
+                        "description": "Set when the random draw (rule 2.4.2.9) decided this team's spot or seed; otherwise null.\n\n* `provisional` - provisional\n* `drawn` - drawn"
                     },
                     "playoff_status_label": {
                         "type": "string"
@@ -18790,7 +18792,7 @@
                     "drawn"
                 ],
                 "type": "string",
-                "description": "* `` - \n* `provisional` - provisional\n* `drawn` - drawn"
+                "description": "* `provisional` - provisional\n* `drawn` - drawn"
             },
             "Tier": {
                 "type": "object",
