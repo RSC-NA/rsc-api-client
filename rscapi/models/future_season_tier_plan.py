@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from rscapi.models.playoff_format_enum import PlayoffFormatEnum
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -40,7 +41,8 @@ class FutureSeasonTierPlan(BaseModel):
     team_number: StrictInt
     transactions_end_date: Optional[datetime]
     schedule_cloned: StrictBool
-    __properties: ClassVar[List[str]] = ["tier_id", "tier_name", "franchises", "picks", "num_rounds", "mmr_min", "mmr_max", "mmr_promo", "team_cap", "team_number", "transactions_end_date", "schedule_cloned"]
+    playoff_format: Optional[PlayoffFormatEnum]
+    __properties: ClassVar[List[str]] = ["tier_id", "tier_name", "franchises", "picks", "num_rounds", "mmr_min", "mmr_max", "mmr_promo", "team_cap", "team_number", "transactions_end_date", "schedule_cloned", "playoff_format"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -86,6 +88,11 @@ class FutureSeasonTierPlan(BaseModel):
         if self.transactions_end_date is None and "transactions_end_date" in self.model_fields_set:
             _dict['transactions_end_date'] = None
 
+        # set to None if playoff_format (nullable) is None
+        # and model_fields_set contains the field
+        if self.playoff_format is None and "playoff_format" in self.model_fields_set:
+            _dict['playoff_format'] = None
+
         return _dict
 
     @classmethod
@@ -109,7 +116,8 @@ class FutureSeasonTierPlan(BaseModel):
             "team_cap": obj.get("team_cap"),
             "team_number": obj.get("team_number"),
             "transactions_end_date": obj.get("transactions_end_date"),
-            "schedule_cloned": obj.get("schedule_cloned")
+            "schedule_cloned": obj.get("schedule_cloned"),
+            "playoff_format": obj.get("playoff_format")
         })
         return _obj
 

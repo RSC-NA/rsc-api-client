@@ -17,10 +17,13 @@ Name | Type | Description | Notes
 **division_label** | **str** |  | 
 **overall_rank** | **int** |  | 
 **overall_games_back** | **float** |  | 
-**playoff_rank** | **int** |  | 
+**playoff_rank** | **int** | Position in the playoff group&#39;s standings. | 
+**playoff_seed** | **int** | Seed among the group&#39;s qualifiers by record (rule 2.5.5); null when outside. | 
 **playoff_group_label** | **str** |  | 
 **playoff_cutoff** | **int** |  | 
 **playoff_qualified** | **bool** |  | 
+**playoff_qualifier_reason** | [**PlayoffQualifierReasonEnum**](PlayoffQualifierReasonEnum.md) | How the team qualifies: top of the group, its division, or a wildcard.  * &#x60;&#x60; -  * &#x60;cut&#x60; - cut * &#x60;division&#x60; - division * &#x60;wildcard&#x60; - wildcard | 
+**tiebreak_draw** | [**TiebreakDrawEnum**](TiebreakDrawEnum.md) | Set when the random draw (rule 2.4.2.9) decided this team&#39;s spot or seed.  * &#x60;&#x60; -  * &#x60;provisional&#x60; - provisional * &#x60;drawn&#x60; - drawn | 
 **playoff_status_label** | **str** |  | 
 **playoff_delta_label** | **str** |  | 
 **playoff_magic_number** | **int** |  | 

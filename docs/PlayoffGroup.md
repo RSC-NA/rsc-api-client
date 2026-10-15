@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 **label** | **str** |  | 
 **conference** | **str** |  | 
 **accent** | **str** |  | 
-**cutoff** | **int** |  | 
+**cutoff** | **int** | Number of playoff spots in the group. | 
+**cutline_rank** | **int** | Standings position the cut line sits under; 0 when there is no line. | 
+**divisions** | [**List[PlayoffDivision]**](PlayoffDivision.md) |  | 
 **teams** | [**List[PlayoffTeam]**](PlayoffTeam.md) |  | 
 
 ## Example

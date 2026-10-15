@@ -17,8 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
+from rscapi.models.playoff_format_enum import PlayoffFormatEnum
+from rscapi.models.playoff_format_source_enum import PlayoffFormatSourceEnum
 from rscapi.models.playoff_group import PlayoffGroup
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,8 +33,12 @@ class TierPlayoffHunt(BaseModel):
     tier_id: StrictInt
     tier_name: StrictStr
     tier_position: StrictInt
+    playoff_format: PlayoffFormatEnum
+    playoff_format_label: StrictStr
+    playoff_format_source: PlayoffFormatSourceEnum = Field(description="Inferred when the season has no format set for the tier.  * `configured` - configured * `inferred` - inferred")
+    regular_season_complete: StrictBool
     groups: List[PlayoffGroup]
-    __properties: ClassVar[List[str]] = ["tier_id", "tier_name", "tier_position", "groups"]
+    __properties: ClassVar[List[str]] = ["tier_id", "tier_name", "tier_position", "playoff_format", "playoff_format_label", "playoff_format_source", "regular_season_complete", "groups"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -95,6 +101,10 @@ class TierPlayoffHunt(BaseModel):
             "tier_id": obj.get("tier_id"),
             "tier_name": obj.get("tier_name"),
             "tier_position": obj.get("tier_position"),
+            "playoff_format": obj.get("playoff_format"),
+            "playoff_format_label": obj.get("playoff_format_label"),
+            "playoff_format_source": obj.get("playoff_format_source"),
+            "regular_season_complete": obj.get("regular_season_complete"),
             "groups": [PlayoffGroup.from_dict(_item) for _item in obj["groups"]] if obj.get("groups") is not None else None
         })
         return _obj

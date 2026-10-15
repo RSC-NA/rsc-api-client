@@ -133,7 +133,11 @@ from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.models.player_team import PlayerTeam
 from rscapi.models.player_team_input import PlayerTeamInput
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates
+from rscapi.models.playoff_division import PlayoffDivision
+from rscapi.models.playoff_format_enum import PlayoffFormatEnum
+from rscapi.models.playoff_format_source_enum import PlayoffFormatSourceEnum
 from rscapi.models.playoff_group import PlayoffGroup
+from rscapi.models.playoff_qualifier_reason_enum import PlayoffQualifierReasonEnum
 from rscapi.models.playoff_team import PlayoffTeam
 from rscapi.models.position_enum import PositionEnum
 from rscapi.models.previous_team import PreviousTeam
@@ -163,6 +167,7 @@ from rscapi.models.team_rebrand import TeamRebrand
 from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.models.team_standings import TeamStandings
 from rscapi.models.teams_contracts import TeamsContracts
+from rscapi.models.tiebreak_draw_enum import TiebreakDrawEnum
 from rscapi.models.tier import Tier
 from rscapi.models.tier_league_add import TierLeagueAdd
 from rscapi.models.tier_playoff_hunt import TierPlayoffHunt

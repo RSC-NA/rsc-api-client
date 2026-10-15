@@ -2813,7 +2813,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "ID of season players played in."
+                        "description": "ID of season players played in. Default: the league's current season."
                     },
                     {
                         "in": "query",
@@ -2821,7 +2821,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Number of season players played in."
+                        "description": "Number of season players played in. Default: the league's current season."
                     },
                     {
                         "in": "query",
@@ -13496,6 +13496,14 @@
                     "transactions_end_date": {
                         "type": "string",
                         "format": "date-time"
+                    },
+                    "playoff_format": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PlayoffFormatEnum"
+                            }
+                        ],
+                        "nullable": true
                     }
                 },
                 "required": [
@@ -13542,6 +13550,14 @@
                     },
                     "schedule_cloned": {
                         "type": "boolean"
+                    },
+                    "playoff_format": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PlayoffFormatEnum"
+                            }
+                        ],
+                        "nullable": true
                     }
                 },
                 "required": [
@@ -13551,6 +13567,7 @@
                     "mmr_promo",
                     "num_rounds",
                     "picks",
+                    "playoff_format",
                     "schedule_cloned",
                     "team_cap",
                     "team_number",
@@ -16565,6 +16582,42 @@
                         "maximum": 2147483647,
                         "minimum": -2147483648
                     },
+                    "opponent_goals_in_games": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "description": "Goals scored by the opposing team in the games counted for SBV."
+                    },
+                    "malformed_games_played": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_points": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_goals": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_assists": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_saves": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_shots": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
                     "games_played": {
                         "type": "integer",
                         "maximum": 2147483647,
@@ -17275,6 +17328,42 @@
                         "maximum": 2147483647,
                         "minimum": -2147483648
                     },
+                    "opponent_goals_in_games": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "description": "Goals scored by the opposing team in the games counted for SBV."
+                    },
+                    "malformed_games_played": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_points": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_goals": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_assists": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_saves": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "malformed_shots": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
                     "games_played": {
                         "type": "integer",
                         "maximum": 2147483647,
@@ -17545,6 +17634,38 @@
                     "player"
                 ]
             },
+            "PlayoffDivision": {
+                "type": "object",
+                "properties": {
+                    "division": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "division",
+                    "label"
+                ]
+            },
+            "PlayoffFormatEnum": {
+                "enum": [
+                    "DIV",
+                    "CONF",
+                    "TIER"
+                ],
+                "type": "string",
+                "description": "* `DIV` - Conferences & divisions\n* `CONF` - Conferences\n* `TIER` - Whole tier"
+            },
+            "PlayoffFormatSourceEnum": {
+                "enum": [
+                    "configured",
+                    "inferred"
+                ],
+                "type": "string",
+                "description": "* `configured` - configured\n* `inferred` - inferred"
+            },
             "PlayoffGroup": {
                 "type": "object",
                 "properties": {
@@ -17558,7 +17679,18 @@
                         "type": "string"
                     },
                     "cutoff": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Number of playoff spots in the group."
+                    },
+                    "cutline_rank": {
+                        "type": "integer",
+                        "description": "Standings position the cut line sits under; 0 when there is no line."
+                    },
+                    "divisions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PlayoffDivision"
+                        }
                     },
                     "teams": {
                         "type": "array",
@@ -17570,10 +17702,21 @@
                 "required": [
                     "accent",
                     "conference",
+                    "cutline_rank",
                     "cutoff",
+                    "divisions",
                     "label",
                     "teams"
                 ]
+            },
+            "PlayoffQualifierReasonEnum": {
+                "enum": [
+                    "cut",
+                    "division",
+                    "wildcard"
+                ],
+                "type": "string",
+                "description": "* `` - \n* `cut` - cut\n* `division` - division\n* `wildcard` - wildcard"
             },
             "PlayoffTeam": {
                 "type": "object",
@@ -17619,7 +17762,13 @@
                         "nullable": true
                     },
                     "playoff_rank": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Position in the playoff group's standings."
+                    },
+                    "playoff_seed": {
+                        "type": "integer",
+                        "nullable": true,
+                        "description": "Seed among the group's qualifiers by record (rule 2.5.5); null when outside."
                     },
                     "playoff_group_label": {
                         "type": "string"
@@ -17629,6 +17778,22 @@
                     },
                     "playoff_qualified": {
                         "type": "boolean"
+                    },
+                    "playoff_qualifier_reason": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PlayoffQualifierReasonEnum"
+                            }
+                        ],
+                        "description": "How the team qualifies: top of the group, its division, or a wildcard.\n\n* `` - \n* `cut` - cut\n* `division` - division\n* `wildcard` - wildcard"
+                    },
+                    "tiebreak_draw": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/TiebreakDrawEnum"
+                            }
+                        ],
+                        "description": "Set when the random draw (rule 2.4.2.9) decided this team's spot or seed.\n\n* `` - \n* `provisional` - provisional\n* `drawn` - drawn"
                     },
                     "playoff_status_label": {
                         "type": "string"
@@ -17722,13 +17887,16 @@
                     "playoff_magic_number",
                     "playoff_magic_number_label",
                     "playoff_qualified",
+                    "playoff_qualifier_reason",
                     "playoff_rank",
+                    "playoff_seed",
                     "playoff_status_label",
                     "remaining_games",
                     "shot_pct",
                     "shots",
                     "team_id",
                     "team_name",
+                    "tiebreak_draw",
                     "win_pct"
                 ]
             },
@@ -18113,6 +18281,15 @@
                             }
                         ],
                         "readOnly": true
+                    },
+                    "playoff_format": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PlayoffFormatEnum"
+                            }
+                        ],
+                        "readOnly": true,
+                        "nullable": true
                     }
                 },
                 "required": [
@@ -18607,6 +18784,14 @@
                     "tier"
                 ]
             },
+            "TiebreakDrawEnum": {
+                "enum": [
+                    "provisional",
+                    "drawn"
+                ],
+                "type": "string",
+                "description": "* `` - \n* `provisional` - provisional\n* `drawn` - drawn"
+            },
             "Tier": {
                 "type": "object",
                 "description": "Read and write serializer for :class:`Tier`.\n\n``position`` and ``color`` used to be in ``read_only_fields``, which made the endpoint\nimpossible to use: ``Tier.position`` is NOT NULL with no model default, so DRF stripped it\nfrom ``validated_data`` and every create died with an IntegrityError 500 rather than a 400.\nBoth are writable now.\n\nThe validators below stand in for database constraints the table does not have. ``Tier`` rows\nare global -- they are shared between leagues through ``LeagueTiers`` -- so ``name`` and\n``position`` have to be unique across the whole table, not per league.",
@@ -18669,6 +18854,23 @@
                     "tier_position": {
                         "type": "integer"
                     },
+                    "playoff_format": {
+                        "$ref": "#/components/schemas/PlayoffFormatEnum"
+                    },
+                    "playoff_format_label": {
+                        "type": "string"
+                    },
+                    "playoff_format_source": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PlayoffFormatSourceEnum"
+                            }
+                        ],
+                        "description": "Inferred when the season has no format set for the tier.\n\n* `configured` - configured\n* `inferred` - inferred"
+                    },
+                    "regular_season_complete": {
+                        "type": "boolean"
+                    },
                     "groups": {
                         "type": "array",
                         "items": {
@@ -18678,6 +18880,10 @@
                 },
                 "required": [
                     "groups",
+                    "playoff_format",
+                    "playoff_format_label",
+                    "playoff_format_source",
+                    "regular_season_complete",
                     "tier_id",
                     "tier_name",
                     "tier_position"

@@ -201,8 +201,8 @@ async with rscapi.ApiClient(configuration) as api_client:
     limit = 56 # int | Number of results to return per page. (optional)
     name = 'name_example' # str | Player RSC Name Contains (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
-    season = 56 # int | ID of season players played in. (optional)
-    season_number = 56 # int | Number of season players played in. (optional)
+    season = 56 # int | ID of season players played in. Default: the league's current season. (optional)
+    season_number = 56 # int | Number of season players played in. Default: the league's current season. (optional)
     status = 'status_example' # str | Player Status (Rostered, IR, etc.) (optional)
     sub_status = 56 # int | Player current substitution status. (optional)
     team_name = 'team_name_example' # str | Name of team players are on. (optional)
@@ -231,8 +231,8 @@ Name | Type | Description  | Notes
  **limit** | **int**| Number of results to return per page. | [optional] 
  **name** | **str**| Player RSC Name Contains | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
- **season** | **int**| ID of season players played in. | [optional] 
- **season_number** | **int**| Number of season players played in. | [optional] 
+ **season** | **int**| ID of season players played in. Default: the league&#39;s current season. | [optional] 
+ **season_number** | **int**| Number of season players played in. Default: the league&#39;s current season. | [optional] 
  **status** | **str**| Player Status (Rostered, IR, etc.) | [optional] 
  **sub_status** | **int**| Player current substitution status. | [optional] 
  **team_name** | **str**| Name of team players are on. | [optional] 

@@ -575,8 +575,8 @@ class LeaguePlayersApi:
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player RSC Name Contains")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of season players played in. Default: the league's current season.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in. Default: the league's current season.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None,
         sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
@@ -612,9 +612,9 @@ class LeaguePlayersApi:
         :type name: str
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param season: ID of season players played in.
+        :param season: ID of season players played in. Default: the league's current season.
         :type season: int
-        :param season_number: Number of season players played in.
+        :param season_number: Number of season players played in. Default: the league's current season.
         :type season_number: int
         :param status: Player Status (Rostered, IR, etc.)
         :type status: str
@@ -693,8 +693,8 @@ class LeaguePlayersApi:
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player RSC Name Contains")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of season players played in. Default: the league's current season.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in. Default: the league's current season.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None,
         sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
@@ -730,9 +730,9 @@ class LeaguePlayersApi:
         :type name: str
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param season: ID of season players played in.
+        :param season: ID of season players played in. Default: the league's current season.
         :type season: int
-        :param season_number: Number of season players played in.
+        :param season_number: Number of season players played in. Default: the league's current season.
         :type season_number: int
         :param status: Player Status (Rostered, IR, etc.)
         :type status: str
@@ -811,8 +811,8 @@ class LeaguePlayersApi:
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Player RSC Name Contains")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of season players played in.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of season players played in. Default: the league's current season.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Number of season players played in. Default: the league's current season.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Player Status (Rostered, IR, etc.)")] = None,
         sub_status: Annotated[Optional[StrictInt], Field(description="Player current substitution status.")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Name of team players are on.")] = None,
@@ -848,9 +848,9 @@ class LeaguePlayersApi:
         :type name: str
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param season: ID of season players played in.
+        :param season: ID of season players played in. Default: the league's current season.
         :type season: int
-        :param season_number: Number of season players played in.
+        :param season_number: Number of season players played in. Default: the league's current season.
         :type season_number: int
         :param status: Player Status (Rostered, IR, etc.)
         :type status: str

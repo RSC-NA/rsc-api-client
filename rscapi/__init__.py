@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.1.7"
+__version__ = "2.1.8"
 
 # Define package exports
 __all__ = [
@@ -163,7 +163,11 @@ __all__ = [
     "PlayerTeam",
     "PlayerTeamInput",
     "PlayerTransactionUpdates",
+    "PlayoffDivision",
+    "PlayoffFormatEnum",
+    "PlayoffFormatSourceEnum",
     "PlayoffGroup",
+    "PlayoffQualifierReasonEnum",
     "PlayoffTeam",
     "PositionEnum",
     "PreviousTeam",
@@ -193,6 +197,7 @@ __all__ = [
     "TeamSeasonStats",
     "TeamStandings",
     "TeamsContracts",
+    "TiebreakDrawEnum",
     "Tier",
     "TierLeagueAdd",
     "TierPlayoffHunt",
@@ -378,7 +383,11 @@ from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth 
 from rscapi.models.player_team import PlayerTeam as PlayerTeam
 from rscapi.models.player_team_input import PlayerTeamInput as PlayerTeamInput
 from rscapi.models.player_transaction_updates import PlayerTransactionUpdates as PlayerTransactionUpdates
+from rscapi.models.playoff_division import PlayoffDivision as PlayoffDivision
+from rscapi.models.playoff_format_enum import PlayoffFormatEnum as PlayoffFormatEnum
+from rscapi.models.playoff_format_source_enum import PlayoffFormatSourceEnum as PlayoffFormatSourceEnum
 from rscapi.models.playoff_group import PlayoffGroup as PlayoffGroup
+from rscapi.models.playoff_qualifier_reason_enum import PlayoffQualifierReasonEnum as PlayoffQualifierReasonEnum
 from rscapi.models.playoff_team import PlayoffTeam as PlayoffTeam
 from rscapi.models.position_enum import PositionEnum as PositionEnum
 from rscapi.models.previous_team import PreviousTeam as PreviousTeam
@@ -408,6 +417,7 @@ from rscapi.models.team_rebrand import TeamRebrand as TeamRebrand
 from rscapi.models.team_season_stats import TeamSeasonStats as TeamSeasonStats
 from rscapi.models.team_standings import TeamStandings as TeamStandings
 from rscapi.models.teams_contracts import TeamsContracts as TeamsContracts
+from rscapi.models.tiebreak_draw_enum import TiebreakDrawEnum as TiebreakDrawEnum
 from rscapi.models.tier import Tier as Tier
 from rscapi.models.tier_league_add import TierLeagueAdd as TierLeagueAdd
 from rscapi.models.tier_playoff_hunt import TierPlayoffHunt as TierPlayoffHunt

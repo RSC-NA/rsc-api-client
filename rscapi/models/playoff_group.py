@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
+from rscapi.models.playoff_division import PlayoffDivision
 from rscapi.models.playoff_team import PlayoffTeam
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,9 +32,11 @@ class PlayoffGroup(BaseModel):
     label: StrictStr
     conference: StrictStr
     accent: StrictStr
-    cutoff: StrictInt
+    cutoff: StrictInt = Field(description="Number of playoff spots in the group.")
+    cutline_rank: StrictInt = Field(description="Standings position the cut line sits under; 0 when there is no line.")
+    divisions: List[PlayoffDivision]
     teams: List[PlayoffTeam]
-    __properties: ClassVar[List[str]] = ["label", "conference", "accent", "cutoff", "teams"]
+    __properties: ClassVar[List[str]] = ["label", "conference", "accent", "cutoff", "cutline_rank", "divisions", "teams"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -74,6 +77,13 @@ class PlayoffGroup(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in divisions (list)
+        _items = []
+        if self.divisions:
+            for _item_divisions in self.divisions:
+                if _item_divisions:
+                    _items.append(_item_divisions.to_dict())
+            _dict['divisions'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in teams (list)
         _items = []
         if self.teams:
@@ -97,6 +107,8 @@ class PlayoffGroup(BaseModel):
             "conference": obj.get("conference"),
             "accent": obj.get("accent"),
             "cutoff": obj.get("cutoff"),
+            "cutline_rank": obj.get("cutline_rank"),
+            "divisions": [PlayoffDivision.from_dict(_item) for _item in obj["divisions"]] if obj.get("divisions") is not None else None,
             "teams": [PlayoffTeam.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None
         })
         return _obj

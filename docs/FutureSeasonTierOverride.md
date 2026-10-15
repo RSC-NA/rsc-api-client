@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **team_cap** | **int** |  | [optional] 
 **team_number** | **int** |  | [optional] 
 **transactions_end_date** | **datetime** |  | [optional] 
+**playoff_format** | [**PlayoffFormatEnum**](PlayoffFormatEnum.md) |  | [optional] 
 
 ## Example
 

@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from rscapi.models.playoff_format_enum import PlayoffFormatEnum
 from rscapi.models.season_schedule import SeasonSchedule
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +35,8 @@ class SeasonTierData(BaseModel):
     team_cap: Optional[StrictInt] = None
     team_number: Optional[StrictInt] = None
     schedule: Optional[SeasonSchedule] = None
-    __properties: ClassVar[List[str]] = ["tier", "mmr_min", "mmr_max", "team_cap", "team_number", "schedule"]
+    playoff_format: Optional[PlayoffFormatEnum] = None
+    __properties: ClassVar[List[str]] = ["tier", "mmr_min", "mmr_max", "team_cap", "team_number", "schedule", "playoff_format"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -71,6 +73,7 @@ class SeasonTierData(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "mmr_min",
@@ -78,6 +81,7 @@ class SeasonTierData(BaseModel):
             "team_cap",
             "team_number",
             "schedule",
+            "playoff_format",
         ])
 
         _dict = self.model_dump(
@@ -88,6 +92,11 @@ class SeasonTierData(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of schedule
         if self.schedule:
             _dict['schedule'] = self.schedule.to_dict()
+        # set to None if playoff_format (nullable) is None
+        # and model_fields_set contains the field
+        if self.playoff_format is None and "playoff_format" in self.model_fields_set:
+            _dict['playoff_format'] = None
+
         return _dict
 
     @classmethod
@@ -105,7 +114,8 @@ class SeasonTierData(BaseModel):
             "mmr_max": obj.get("mmr_max"),
             "team_cap": obj.get("team_cap"),
             "team_number": obj.get("team_number"),
-            "schedule": SeasonSchedule.from_dict(obj["schedule"]) if obj.get("schedule") is not None else None
+            "schedule": SeasonSchedule.from_dict(obj["schedule"]) if obj.get("schedule") is not None else None,
+            "playoff_format": obj.get("playoff_format")
         })
         return _obj
 

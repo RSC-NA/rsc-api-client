@@ -8,6 +8,10 @@ Name | Type | Description | Notes
 **tier_id** | **int** |  | 
 **tier_name** | **str** |  | 
 **tier_position** | **int** |  | 
+**playoff_format** | [**PlayoffFormatEnum**](PlayoffFormatEnum.md) |  | 
+**playoff_format_label** | **str** |  | 
+**playoff_format_source** | [**PlayoffFormatSourceEnum**](PlayoffFormatSourceEnum.md) | Inferred when the season has no format set for the tier.  * &#x60;configured&#x60; - configured * &#x60;inferred&#x60; - inferred | 
+**regular_season_complete** | **bool** |  | 
 **groups** | [**List[PlayoffGroup]**](PlayoffGroup.md) |  | 
 
 ## Example

@@ -131,7 +131,11 @@ docs/PlayerSeasonStatsInDepth.md
 docs/PlayerTeam.md
 docs/PlayerTeamInput.md
 docs/PlayerTransactionUpdates.md
+docs/PlayoffDivision.md
+docs/PlayoffFormatEnum.md
+docs/PlayoffFormatSourceEnum.md
 docs/PlayoffGroup.md
+docs/PlayoffQualifierReasonEnum.md
 docs/PlayoffTeam.md
 docs/PositionEnum.md
 docs/PreviousTeam.md
@@ -164,6 +168,7 @@ docs/TeamSeasonStats.md
 docs/TeamStandings.md
 docs/TeamsApi.md
 docs/TeamsContracts.md
+docs/TiebreakDrawEnum.md
 docs/Tier.md
 docs/TierLeagueAdd.md
 docs/TierPlayoffHunt.md
@@ -345,7 +350,11 @@ rscapi/models/player_season_stats_in_depth.py
 rscapi/models/player_team.py
 rscapi/models/player_team_input.py
 rscapi/models/player_transaction_updates.py
+rscapi/models/playoff_division.py
+rscapi/models/playoff_format_enum.py
+rscapi/models/playoff_format_source_enum.py
 rscapi/models/playoff_group.py
+rscapi/models/playoff_qualifier_reason_enum.py
 rscapi/models/playoff_team.py
 rscapi/models/position_enum.py
 rscapi/models/previous_team.py
@@ -375,6 +384,7 @@ rscapi/models/team_rebrand.py
 rscapi/models/team_season_stats.py
 rscapi/models/team_standings.py
 rscapi/models/teams_contracts.py
+rscapi/models/tiebreak_draw_enum.py
 rscapi/models/tier.py
 rscapi/models/tier_league_add.py
 rscapi/models/tier_playoff_hunt.py
@@ -414,4 +424,9 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_playoff_division.py
+test/test_playoff_format_enum.py
+test/test_playoff_format_source_enum.py
+test/test_playoff_qualifier_reason_enum.py
+test/test_tiebreak_draw_enum.py
 tox.ini

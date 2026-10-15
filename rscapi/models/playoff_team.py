@@ -17,8 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from rscapi.models.playoff_qualifier_reason_enum import PlayoffQualifierReasonEnum
+from rscapi.models.tiebreak_draw_enum import TiebreakDrawEnum
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -39,10 +41,13 @@ class PlayoffTeam(BaseModel):
     division_label: StrictStr
     overall_rank: Optional[StrictInt]
     overall_games_back: Optional[Union[StrictFloat, StrictInt]]
-    playoff_rank: StrictInt
+    playoff_rank: StrictInt = Field(description="Position in the playoff group's standings.")
+    playoff_seed: Optional[StrictInt] = Field(description="Seed among the group's qualifiers by record (rule 2.5.5); null when outside.")
     playoff_group_label: StrictStr
     playoff_cutoff: StrictInt
     playoff_qualified: StrictBool
+    playoff_qualifier_reason: PlayoffQualifierReasonEnum = Field(description="How the team qualifies: top of the group, its division, or a wildcard.  * `` -  * `cut` - cut * `division` - division * `wildcard` - wildcard")
+    tiebreak_draw: TiebreakDrawEnum = Field(description="Set when the random draw (rule 2.4.2.9) decided this team's spot or seed.  * `` -  * `provisional` - provisional * `drawn` - drawn")
     playoff_status_label: StrictStr
     playoff_delta_label: StrictStr
     playoff_magic_number: Optional[StrictInt]
@@ -62,7 +67,7 @@ class PlayoffTeam(BaseModel):
     goal_differential: StrictInt
     shots: StrictInt
     shot_pct: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["team_id", "team_name", "franchise_id", "franchise_name", "franchise_prefix", "franchise_logo_url", "conference", "conference_label", "division", "division_label", "overall_rank", "overall_games_back", "playoff_rank", "playoff_group_label", "playoff_cutoff", "playoff_qualified", "playoff_status_label", "playoff_delta_label", "playoff_magic_number", "playoff_magic_number_label", "remaining_games", "max_possible_games_won", "group_games_back", "group_games_won", "group_games_lost", "group_win_pct", "games_played", "games_won", "games_lost", "win_pct", "goals", "opponent_goals", "goal_differential", "shots", "shot_pct"]
+    __properties: ClassVar[List[str]] = ["team_id", "team_name", "franchise_id", "franchise_name", "franchise_prefix", "franchise_logo_url", "conference", "conference_label", "division", "division_label", "overall_rank", "overall_games_back", "playoff_rank", "playoff_seed", "playoff_group_label", "playoff_cutoff", "playoff_qualified", "playoff_qualifier_reason", "tiebreak_draw", "playoff_status_label", "playoff_delta_label", "playoff_magic_number", "playoff_magic_number_label", "remaining_games", "max_possible_games_won", "group_games_back", "group_games_won", "group_games_lost", "group_win_pct", "games_played", "games_won", "games_lost", "win_pct", "goals", "opponent_goals", "goal_differential", "shots", "shot_pct"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -118,6 +123,11 @@ class PlayoffTeam(BaseModel):
         if self.overall_games_back is None and "overall_games_back" in self.model_fields_set:
             _dict['overall_games_back'] = None
 
+        # set to None if playoff_seed (nullable) is None
+        # and model_fields_set contains the field
+        if self.playoff_seed is None and "playoff_seed" in self.model_fields_set:
+            _dict['playoff_seed'] = None
+
         # set to None if playoff_magic_number (nullable) is None
         # and model_fields_set contains the field
         if self.playoff_magic_number is None and "playoff_magic_number" in self.model_fields_set:
@@ -153,9 +163,12 @@ class PlayoffTeam(BaseModel):
             "overall_rank": obj.get("overall_rank"),
             "overall_games_back": obj.get("overall_games_back"),
             "playoff_rank": obj.get("playoff_rank"),
+            "playoff_seed": obj.get("playoff_seed"),
             "playoff_group_label": obj.get("playoff_group_label"),
             "playoff_cutoff": obj.get("playoff_cutoff"),
             "playoff_qualified": obj.get("playoff_qualified"),
+            "playoff_qualifier_reason": obj.get("playoff_qualifier_reason"),
+            "tiebreak_draw": obj.get("tiebreak_draw"),
             "playoff_status_label": obj.get("playoff_status_label"),
             "playoff_delta_label": obj.get("playoff_delta_label"),
             "playoff_magic_number": obj.get("playoff_magic_number"),

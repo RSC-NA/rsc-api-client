@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **team_cap** | **int** |  | [optional] [readonly] 
 **team_number** | **int** |  | [optional] [readonly] 
 **schedule** | [**SeasonSchedule**](SeasonSchedule.md) |  | [optional] [readonly] 
+**playoff_format** | [**PlayoffFormatEnum**](PlayoffFormatEnum.md) |  | [optional] [readonly] 
 
 ## Example
 

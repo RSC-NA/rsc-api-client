@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from rscapi.models.playoff_format_enum import PlayoffFormatEnum
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -35,7 +36,8 @@ class FutureSeasonTierOverride(BaseModel):
     team_cap: Optional[StrictInt] = None
     team_number: Optional[StrictInt] = None
     transactions_end_date: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["tier", "mmr_min", "mmr_max", "mmr_promo", "team_cap", "team_number", "transactions_end_date"]
+    playoff_format: Optional[PlayoffFormatEnum] = None
+    __properties: ClassVar[List[str]] = ["tier", "mmr_min", "mmr_max", "mmr_promo", "team_cap", "team_number", "transactions_end_date", "playoff_format"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -76,6 +78,11 @@ class FutureSeasonTierOverride(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if playoff_format (nullable) is None
+        # and model_fields_set contains the field
+        if self.playoff_format is None and "playoff_format" in self.model_fields_set:
+            _dict['playoff_format'] = None
+
         return _dict
 
     @classmethod
@@ -94,7 +101,8 @@ class FutureSeasonTierOverride(BaseModel):
             "mmr_promo": obj.get("mmr_promo"),
             "team_cap": obj.get("team_cap"),
             "team_number": obj.get("team_number"),
-            "transactions_end_date": obj.get("transactions_end_date")
+            "transactions_end_date": obj.get("transactions_end_date"),
+            "playoff_format": obj.get("playoff_format")
         })
         return _obj
 

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **team_number** | **int** |  | 
 **transactions_end_date** | **datetime** |  | 
 **schedule_cloned** | **bool** |  | 
+**playoff_format** | [**PlayoffFormatEnum**](PlayoffFormatEnum.md) |  | 
 
 ## Example
 
