@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **tier** | **int** |  | [optional] 
 **status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [optional] 
 **executor** | **int** |  | 
-**waiver_period** | **str** |  | [optional] 
+**waiver_period** | **datetime** |  | [optional] 
 **contract_length** | **int** |  | [optional] 
 **captain** | **bool** |  | [optional] 
 **sub_status** | [**SubStatusEnum**](SubStatusEnum.md) |  | [optional] 

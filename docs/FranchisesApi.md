@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**franchises_add_agm_update**](FranchisesApi.md#franchises_add_agm_update) | **PUT** /franchises/{id}/add_agm/ | 
 [**franchises_create**](FranchisesApi.md#franchises_create) | **POST** /franchises/ | 
-[**franchises_destroy**](FranchisesApi.md#franchises_destroy) | **DELETE** /franchises/{id}/ | 
 [**franchises_list**](FranchisesApi.md#franchises_list) | **GET** /franchises/ | 
 [**franchises_logo_retrieve**](FranchisesApi.md#franchises_logo_retrieve) | **GET** /franchises/{id}/logo/ | 
 [**franchises_partial_update**](FranchisesApi.md#franchises_partial_update) | **PATCH** /franchises/{id}/ | 
@@ -180,79 +179,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **franchises_destroy**
-> franchises_destroy(id)
-
-Viewset for the franchise model. Contains endpoints related to working with franchises.
-
-### Example
-
-* Api Key Authentication (Api-Key):
-
-```python
-import rscapi
-from rscapi.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rscapi.Configuration(
-    host = "/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Api-Key
-configuration.api_key['Api-Key'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Api-Key'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-async with rscapi.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = rscapi.FranchisesApi(api_client)
-    id = 56 # int | A unique integer value identifying this franchise.
-
-    try:
-        await api_instance.franchises_destroy(id)
-    except Exception as e:
-        print("Exception when calling FranchisesApi->franchises_destroy: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this franchise. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Api-Key](../README.md#Api-Key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No response body |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **franchises_list**
 > List[FranchiseList] franchises_list(gm_discord_id=gm_discord_id, gm_name=gm_name, league=league, name=name, prefix=prefix, tier=tier, tier_name=tier_name)
 
@@ -418,7 +344,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_partial_update**
-> Franchise franchises_partial_update(id, patched_franchise=patched_franchise)
+> Franchise franchises_partial_update(id, patched_franchise_rebrand=patched_franchise_rebrand)
 
 Viewset for the franchise model. Contains endpoints related to working with franchises.
 
@@ -429,7 +355,7 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ```python
 import rscapi
 from rscapi.models.franchise import Franchise
-from rscapi.models.patched_franchise import PatchedFranchise
+from rscapi.models.patched_franchise_rebrand import PatchedFranchiseRebrand
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -455,10 +381,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    patched_franchise = rscapi.PatchedFranchise() # PatchedFranchise |  (optional)
+    patched_franchise_rebrand = rscapi.PatchedFranchiseRebrand() # PatchedFranchiseRebrand |  (optional)
 
     try:
-        api_response = await api_instance.franchises_partial_update(id, patched_franchise=patched_franchise)
+        api_response = await api_instance.franchises_partial_update(id, patched_franchise_rebrand=patched_franchise_rebrand)
         print("The response of FranchisesApi->franchises_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -473,7 +399,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **patched_franchise** | [**PatchedFranchise**](PatchedFranchise.md)|  | [optional] 
+ **patched_franchise_rebrand** | [**PatchedFranchiseRebrand**](PatchedFranchiseRebrand.md)|  | [optional] 
 
 ### Return type
 
@@ -492,7 +418,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -819,9 +746,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **franchises_update**
-> Franchise franchises_update(id, franchise)
+> Franchise franchises_update(id, franchise_rebrand)
 
-Viewset for the franchise model. Contains endpoints related to working with franchises.
+Edit a franchise: the rebrand, under the same rules as PUT /franchises/{id}/rebrand/.
 
 ### Example
 
@@ -830,6 +757,7 @@ Viewset for the franchise model. Contains endpoints related to working with fran
 ```python
 import rscapi
 from rscapi.models.franchise import Franchise
+from rscapi.models.franchise_rebrand import FranchiseRebrand
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -855,10 +783,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.FranchisesApi(api_client)
     id = 56 # int | A unique integer value identifying this franchise.
-    franchise = rscapi.Franchise() # Franchise | 
+    franchise_rebrand = rscapi.FranchiseRebrand() # FranchiseRebrand | 
 
     try:
-        api_response = await api_instance.franchises_update(id, franchise)
+        api_response = await api_instance.franchises_update(id, franchise_rebrand)
         print("The response of FranchisesApi->franchises_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -873,7 +801,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this franchise. | 
- **franchise** | [**Franchise**](Franchise.md)|  | 
+ **franchise_rebrand** | [**FranchiseRebrand**](FranchiseRebrand.md)|  | 
 
 ### Return type
 
@@ -892,7 +820,8 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**400** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

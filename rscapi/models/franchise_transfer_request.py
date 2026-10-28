@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,7 +28,7 @@ class FranchiseTransferRequest(BaseModel):
     """
     FranchiseTransferRequest
     """ # noqa: E501
-    general_manager: StrictInt
+    general_manager: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     league: StrictInt
     __properties: ClassVar[List[str]] = ["general_manager", "league"]
 

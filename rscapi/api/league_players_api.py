@@ -19,6 +19,8 @@ from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.league_player_create import LeaguePlayerCreate
+from rscapi.models.league_player_patch import LeaguePlayerPatch
 from rscapi.models.paginated_league_player_list import PaginatedLeaguePlayerList
 from rscapi.models.patched_league_player_patch import PatchedLeaguePlayerPatch
 from rscapi.models.player_season_stats import PlayerSeasonStats
@@ -44,7 +46,7 @@ class LeaguePlayersApi:
     @validate_call
     async def league_players_create(
         self,
-        league_player: LeaguePlayer,
+        league_player_create: LeaguePlayerCreate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -60,9 +62,10 @@ class LeaguePlayersApi:
     ) -> LeaguePlayer:
         """league_players_create
 
+        Register a member as a league player for the league's newest season.
 
-        :param league_player: (required)
-        :type league_player: LeaguePlayer
+        :param league_player_create: (required)
+        :type league_player_create: LeaguePlayerCreate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -86,7 +89,7 @@ class LeaguePlayersApi:
         """ # noqa: E501
 
         _param = self._league_players_create_serialize(
-            league_player=league_player,
+            league_player_create=league_player_create,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -110,7 +113,7 @@ class LeaguePlayersApi:
     @validate_call
     async def league_players_create_with_http_info(
         self,
-        league_player: LeaguePlayer,
+        league_player_create: LeaguePlayerCreate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -126,9 +129,10 @@ class LeaguePlayersApi:
     ) -> ApiResponse[LeaguePlayer]:
         """league_players_create
 
+        Register a member as a league player for the league's newest season.
 
-        :param league_player: (required)
-        :type league_player: LeaguePlayer
+        :param league_player_create: (required)
+        :type league_player_create: LeaguePlayerCreate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -152,7 +156,7 @@ class LeaguePlayersApi:
         """ # noqa: E501
 
         _param = self._league_players_create_serialize(
-            league_player=league_player,
+            league_player_create=league_player_create,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -176,7 +180,7 @@ class LeaguePlayersApi:
     @validate_call
     async def league_players_create_without_preload_content(
         self,
-        league_player: LeaguePlayer,
+        league_player_create: LeaguePlayerCreate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -192,9 +196,10 @@ class LeaguePlayersApi:
     ) -> RESTResponseType:
         """league_players_create
 
+        Register a member as a league player for the league's newest season.
 
-        :param league_player: (required)
-        :type league_player: LeaguePlayer
+        :param league_player_create: (required)
+        :type league_player_create: LeaguePlayerCreate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -218,7 +223,7 @@ class LeaguePlayersApi:
         """ # noqa: E501
 
         _param = self._league_players_create_serialize(
-            league_player=league_player,
+            league_player_create=league_player_create,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -237,7 +242,7 @@ class LeaguePlayersApi:
 
     def _league_players_create_serialize(
         self,
-        league_player,
+        league_player_create,
         _request_auth,
         _content_type,
         _headers,
@@ -263,8 +268,8 @@ class LeaguePlayersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if league_player is not None:
-            _body_params = league_player
+        if league_player_create is not None:
+            _body_params = league_player_create
 
 
         # set the HTTP header `Accept`
@@ -333,6 +338,7 @@ class LeaguePlayersApi:
     ) -> None:
         """league_players_destroy
 
+        Delete a league player row that holds no history: a registration made by mistake.  A row with stats, previous teams or transactions is refused: the delete would cascade the stats away (or hit a PROTECT and 500, as it used to). Release the player through a transaction instead.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
@@ -368,6 +374,7 @@ class LeaguePlayersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -399,6 +406,7 @@ class LeaguePlayersApi:
     ) -> ApiResponse[None]:
         """league_players_destroy
 
+        Delete a league player row that holds no history: a registration made by mistake.  A row with stats, previous teams or transactions is refused: the delete would cascade the stats away (or hit a PROTECT and 500, as it used to). Release the player through a transaction instead.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
@@ -434,6 +442,7 @@ class LeaguePlayersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -465,6 +474,7 @@ class LeaguePlayersApi:
     ) -> RESTResponseType:
         """league_players_destroy
 
+        Delete a league player row that holds no history: a registration made by mistake.  A row with stats, previous teams or transactions is refused: the delete would cascade the stats away (or hit a PROTECT and 500, as it used to). Release the player through a transaction instead.
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
@@ -500,6 +510,7 @@ class LeaguePlayersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -540,6 +551,13 @@ class LeaguePlayersApi:
         # process the body parameter
 
 
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
@@ -1050,7 +1068,6 @@ class LeaguePlayersApi:
     async def league_players_partial_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        league: Annotated[Optional[StrictInt], Field(description="ID of league to update player in")] = None,
         patched_league_player_patch: Optional[PatchedLeaguePlayerPatch] = None,
         _request_timeout: Union[
             None,
@@ -1070,8 +1087,6 @@ class LeaguePlayersApi:
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
-        :param league: ID of league to update player in
-        :type league: int
         :param patched_league_player_patch:
         :type patched_league_player_patch: PatchedLeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
@@ -1098,7 +1113,6 @@ class LeaguePlayersApi:
 
         _param = self._league_players_partial_update_serialize(
             id=id,
-            league=league,
             patched_league_player_patch=patched_league_player_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1124,7 +1138,6 @@ class LeaguePlayersApi:
     async def league_players_partial_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        league: Annotated[Optional[StrictInt], Field(description="ID of league to update player in")] = None,
         patched_league_player_patch: Optional[PatchedLeaguePlayerPatch] = None,
         _request_timeout: Union[
             None,
@@ -1144,8 +1157,6 @@ class LeaguePlayersApi:
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
-        :param league: ID of league to update player in
-        :type league: int
         :param patched_league_player_patch:
         :type patched_league_player_patch: PatchedLeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
@@ -1172,7 +1183,6 @@ class LeaguePlayersApi:
 
         _param = self._league_players_partial_update_serialize(
             id=id,
-            league=league,
             patched_league_player_patch=patched_league_player_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1198,7 +1208,6 @@ class LeaguePlayersApi:
     async def league_players_partial_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        league: Annotated[Optional[StrictInt], Field(description="ID of league to update player in")] = None,
         patched_league_player_patch: Optional[PatchedLeaguePlayerPatch] = None,
         _request_timeout: Union[
             None,
@@ -1218,8 +1227,6 @@ class LeaguePlayersApi:
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
-        :param league: ID of league to update player in
-        :type league: int
         :param patched_league_player_patch:
         :type patched_league_player_patch: PatchedLeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
@@ -1246,7 +1253,6 @@ class LeaguePlayersApi:
 
         _param = self._league_players_partial_update_serialize(
             id=id,
-            league=league,
             patched_league_player_patch=patched_league_player_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1267,7 +1273,6 @@ class LeaguePlayersApi:
     def _league_players_partial_update_serialize(
         self,
         id,
-        league,
         patched_league_player_patch,
         _request_auth,
         _content_type,
@@ -1293,10 +1298,6 @@ class LeaguePlayersApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
-        if league is not None:
-            
-            _query_params.append(('league', league))
-            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -2431,7 +2432,7 @@ class LeaguePlayersApi:
     async def league_players_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        league_player: LeaguePlayer,
+        league_player_patch: LeaguePlayerPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2450,8 +2451,8 @@ class LeaguePlayersApi:
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
-        :param league_player: (required)
-        :type league_player: LeaguePlayer
+        :param league_player_patch: (required)
+        :type league_player_patch: LeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2476,7 +2477,7 @@ class LeaguePlayersApi:
 
         _param = self._league_players_update_serialize(
             id=id,
-            league_player=league_player,
+            league_player_patch=league_player_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2501,7 +2502,7 @@ class LeaguePlayersApi:
     async def league_players_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        league_player: LeaguePlayer,
+        league_player_patch: LeaguePlayerPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2520,8 +2521,8 @@ class LeaguePlayersApi:
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
-        :param league_player: (required)
-        :type league_player: LeaguePlayer
+        :param league_player_patch: (required)
+        :type league_player_patch: LeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2546,7 +2547,7 @@ class LeaguePlayersApi:
 
         _param = self._league_players_update_serialize(
             id=id,
-            league_player=league_player,
+            league_player_patch=league_player_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2571,7 +2572,7 @@ class LeaguePlayersApi:
     async def league_players_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this league player.")],
-        league_player: LeaguePlayer,
+        league_player_patch: LeaguePlayerPatch,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2590,8 +2591,8 @@ class LeaguePlayersApi:
 
         :param id: A unique integer value identifying this league player. (required)
         :type id: int
-        :param league_player: (required)
-        :type league_player: LeaguePlayer
+        :param league_player_patch: (required)
+        :type league_player_patch: LeaguePlayerPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2616,7 +2617,7 @@ class LeaguePlayersApi:
 
         _param = self._league_players_update_serialize(
             id=id,
-            league_player=league_player,
+            league_player_patch=league_player_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2636,7 +2637,7 @@ class LeaguePlayersApi:
     def _league_players_update_serialize(
         self,
         id,
-        league_player,
+        league_player_patch,
         _request_auth,
         _content_type,
         _headers,
@@ -2664,8 +2665,8 @@ class LeaguePlayersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if league_player is not None:
-            _body_params = league_player
+        if league_player_patch is not None:
+            _body_params = league_player_patch
 
 
         # set the HTTP header `Accept`

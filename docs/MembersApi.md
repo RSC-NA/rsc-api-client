@@ -196,7 +196,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_contract_status_retrieve**
-> LeaguePlayer members_contract_status_retrieve(id, league)
+> LeaguePlayer members_contract_status_retrieve(id, league=league, season=season, season_number=season_number)
 
 GET /member/{id}/contract_status/
 
@@ -232,10 +232,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    league = 56 # int | League ID to get player contract status of
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.members_contract_status_retrieve(id, league)
+        api_response = await api_instance.members_contract_status_retrieve(id, league=league, season=season, season_number=season_number)
         print("The response of MembersApi->members_contract_status_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -250,7 +252,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **league** | **int**| League ID to get player contract status of | 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -357,12 +361,11 @@ Name | Type | Description  | Notes
 # **members_destroy**
 > members_destroy(id)
 
-Apply this mixin to any view or viewset to get multiple field filtering
-based on a `lookup_fields` attribute, instead of the default single field filtering.
+Delete a member record that holds no history: a duplicate or mistaken account.
 
-The primary key is tried first, then each alternate field in turn. A field is skipped
-when the URL value is not something that column can hold (e.g. a non-numeric string
-against an integer column), so a bad lookup value is a 404 rather than a 500.
+Superusers only: a member belongs to no single league, so a league admin's role
+could not scope it. A member with league, stats or MMR history is refused; the
+delete would cascade it away (or hit a PROTECT and 500, as it used to).
 
 ### Example
 
@@ -422,13 +425,15 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No response body |  -  |
+**403** |  |  -  |
+**409** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1100,7 +1105,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_make_player_create**
-> LeaguePlayerPatch members_make_player_create(id, league_player_signup)
+> LeaguePlayer members_make_player_create(id, league_player_signup)
 
 Make a player a league player
 
@@ -1110,7 +1115,7 @@ Make a player a league player
 
 ```python
 import rscapi
-from rscapi.models.league_player_patch import LeaguePlayerPatch
+from rscapi.models.league_player import LeaguePlayer
 from rscapi.models.league_player_signup import LeaguePlayerSignup
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -1159,7 +1164,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LeaguePlayerPatch**](LeaguePlayerPatch.md)
+[**LeaguePlayer**](LeaguePlayer.md)
 
 ### Authorization
 
@@ -1179,7 +1184,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_member_league_drop_create**
-> Member members_member_league_drop_create(id, league_player_signup)
+> Member members_member_league_drop_create(id, member_league_drop_request)
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
@@ -1194,8 +1199,8 @@ against an integer column), so a bad lookup value is a 404 rather than a 500.
 
 ```python
 import rscapi
-from rscapi.models.league_player_signup import LeaguePlayerSignup
 from rscapi.models.member import Member
+from rscapi.models.member_league_drop_request import MemberLeagueDropRequest
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -1221,10 +1226,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    league_player_signup = rscapi.LeaguePlayerSignup() # LeaguePlayerSignup | 
+    member_league_drop_request = rscapi.MemberLeagueDropRequest() # MemberLeagueDropRequest | 
 
     try:
-        api_response = await api_instance.members_member_league_drop_create(id, league_player_signup)
+        api_response = await api_instance.members_member_league_drop_create(id, member_league_drop_request)
         print("The response of MembersApi->members_member_league_drop_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -1239,7 +1244,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **league_player_signup** | [**LeaguePlayerSignup**](LeaguePlayerSignup.md)|  | 
+ **member_league_drop_request** | [**MemberLeagueDropRequest**](MemberLeagueDropRequest.md)|  | 
 
 ### Return type
 
@@ -1443,7 +1448,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_partial_update**
-> Member members_partial_update(id, patched_member=patched_member)
+> Member members_partial_update(id, patched_member_update=patched_member_update)
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
@@ -1459,7 +1464,7 @@ against an integer column), so a bad lookup value is a 404 rather than a 500.
 ```python
 import rscapi
 from rscapi.models.member import Member
-from rscapi.models.patched_member import PatchedMember
+from rscapi.models.patched_member_update import PatchedMemberUpdate
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -1485,10 +1490,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    patched_member = rscapi.PatchedMember() # PatchedMember |  (optional)
+    patched_member_update = rscapi.PatchedMemberUpdate() # PatchedMemberUpdate |  (optional)
 
     try:
-        api_response = await api_instance.members_partial_update(id, patched_member=patched_member)
+        api_response = await api_instance.members_partial_update(id, patched_member_update=patched_member_update)
         print("The response of MembersApi->members_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -1503,7 +1508,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **patched_member** | [**PatchedMember**](PatchedMember.md)|  | [optional] 
+ **patched_member_update** | [**PatchedMemberUpdate**](PatchedMemberUpdate.md)|  | [optional] 
 
 ### Return type
 
@@ -1610,7 +1615,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_postseason_stats_retrieve**
-> PlayerSeasonStats members_postseason_stats_retrieve(id, league, season=season)
+> PlayerSeasonStats members_postseason_stats_retrieve(id, league=league, season=season, season_number=season_number)
 
 Get postseason stats for a player. Prefer `stats/?stats_type=PST`.
 
@@ -1646,11 +1651,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    league = 56 # int | League to get stats from season for.
-    season = 56 # int | Specific season number to get stats for (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.members_postseason_stats_retrieve(id, league, season=season)
+        api_response = await api_instance.members_postseason_stats_retrieve(id, league=league, season=season, season_number=season_number)
         print("The response of MembersApi->members_postseason_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -1665,8 +1671,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **league** | **int**| League to get stats from season for. | 
- **season** | **int**| Specific season number to get stats for | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -1856,7 +1863,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_stats_retrieve**
-> PlayerSeasonStats members_stats_retrieve(id, league, season=season, stats_type=stats_type)
+> PlayerSeasonStats members_stats_retrieve(id, league=league, season=season, season_number=season_number, stats_type=stats_type)
 
 Get stats for a player. Defaults to regular season; pass `stats_type=PRE` or `stats_type=PST` for the preseason/postseason buckets. The buckets are never combined.
 
@@ -1892,12 +1899,13 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    league = 56 # int | League to get stats from season for.
-    season = 56 # int | Specific season number to get stats for (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
     stats_type = 'REG' # str | Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined. (optional) (default to 'REG')
 
     try:
-        api_response = await api_instance.members_stats_retrieve(id, league, season=season, stats_type=stats_type)
+        api_response = await api_instance.members_stats_retrieve(id, league=league, season=season, season_number=season_number, stats_type=stats_type)
         print("The response of MembersApi->members_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -1912,8 +1920,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **league** | **int**| League to get stats from season for. | 
- **season** | **int**| Specific season number to get stats for | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
  **stats_type** | **str**| Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined. | [optional] [default to &#39;REG&#39;]
 
 ### Return type
@@ -2025,7 +2034,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **members_update**
-> Member members_update(id, member)
+> Member members_update(id, member_update)
 
 Apply this mixin to any view or viewset to get multiple field filtering
 based on a `lookup_fields` attribute, instead of the default single field filtering.
@@ -2041,6 +2050,7 @@ against an integer column), so a bad lookup value is a 404 rather than a 500.
 ```python
 import rscapi
 from rscapi.models.member import Member
+from rscapi.models.member_update import MemberUpdate
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -2066,10 +2076,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.MembersApi(api_client)
     id = 56 # int | A unique integer value identifying this user.
-    member = rscapi.Member() # Member | 
+    member_update = rscapi.MemberUpdate() # MemberUpdate | 
 
     try:
-        api_response = await api_instance.members_update(id, member)
+        api_response = await api_instance.members_update(id, member_update)
         print("The response of MembersApi->members_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -2084,7 +2094,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this user. | 
- **member** | [**Member**](Member.md)|  | 
+ **member_update** | [**MemberUpdate**](MemberUpdate.md)|  | 
 
 ### Return type
 

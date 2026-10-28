@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **home_score** | **int** | Number of games Home won. | 
 **away_score** | **int** | Number of games Away won. | 
-**executor** | **int** | Person executing the score report | 
+**executor** | **int** | Discord ID of the member reporting the score. | 
 **ballchasing_group** | **str** | ID of the ballchasing group of match results. | 
 **override** | **bool** | Is an admin overriding the score report. | [optional] [default to False]
 

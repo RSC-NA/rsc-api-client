@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **numbers_mmr_bulk_submit_create**
-> PaginatedPlayerMMRList numbers_mmr_bulk_submit_create(discord_id=discord_id, format=format, limit=limit, offset=offset, psyonix_season=psyonix_season, pulled=pulled, pulled_after_after=pulled_after_after, pulled_after_before=pulled_after_before, pulled_before_after=pulled_before_after, pulled_before_before=pulled_before_before, rscid=rscid, rscid_begin=rscid_begin, rscid_end=rscid_end, bulk_mmr_schema_submission=bulk_mmr_schema_submission)
+> List[PlayerMMR] numbers_mmr_bulk_submit_create(format=format, bulk_mmr_schema_submission=bulk_mmr_schema_submission)
 
 ### Example
 
@@ -23,7 +23,7 @@ Method | HTTP request | Description
 ```python
 import rscapi
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
-from rscapi.models.paginated_player_mmr_list import PaginatedPlayerMMRList
+from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -48,23 +48,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.NumbersApi(api_client)
-    discord_id = 56 # int | Member discord ID. (optional)
     format = 'format_example' # str |  (optional)
-    limit = 56 # int | Number of results to return per page. (optional)
-    offset = 56 # int | The initial index from which to return the results. (optional)
-    psyonix_season = 56 # int | Psyonix Season (as internal value. E.g F2P S14 = 28) (optional)
-    pulled = '2013-10-20T19:20:30+01:00' # datetime | Specific date pulled (YYYY-MM-DD) (optional)
-    pulled_after_after = '2013-10-20' # date | Date pulled is greater than or equal to this date (YYYY-MM-DD) (optional)
-    pulled_after_before = '2013-10-20' # date | Date pulled is greater than or equal to this date (YYYY-MM-DD) (optional)
-    pulled_before_after = '2013-10-20' # date | Date pulled is less than or equal to this date (YYYY-MM-DD) (optional)
-    pulled_before_before = '2013-10-20' # date | Date pulled is less than or equal to this date (YYYY-MM-DD) (optional)
-    rscid = 'rscid_example' # str |  (optional)
-    rscid_begin = 'rscid_begin_example' # str | Starting RSC ID (optional)
-    rscid_end = 'rscid_end_example' # str | Ending RSC ID (optional)
     bulk_mmr_schema_submission = rscapi.BulkMMRSchemaSubmission() # BulkMMRSchemaSubmission |  (optional)
 
     try:
-        api_response = await api_instance.numbers_mmr_bulk_submit_create(discord_id=discord_id, format=format, limit=limit, offset=offset, psyonix_season=psyonix_season, pulled=pulled, pulled_after_after=pulled_after_after, pulled_after_before=pulled_after_before, pulled_before_after=pulled_before_after, pulled_before_before=pulled_before_before, rscid=rscid, rscid_begin=rscid_begin, rscid_end=rscid_end, bulk_mmr_schema_submission=bulk_mmr_schema_submission)
+        api_response = await api_instance.numbers_mmr_bulk_submit_create(format=format, bulk_mmr_schema_submission=bulk_mmr_schema_submission)
         print("The response of NumbersApi->numbers_mmr_bulk_submit_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -78,24 +66,12 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **discord_id** | **int**| Member discord ID. | [optional] 
  **format** | **str**|  | [optional] 
- **limit** | **int**| Number of results to return per page. | [optional] 
- **offset** | **int**| The initial index from which to return the results. | [optional] 
- **psyonix_season** | **int**| Psyonix Season (as internal value. E.g F2P S14 &#x3D; 28) | [optional] 
- **pulled** | **datetime**| Specific date pulled (YYYY-MM-DD) | [optional] 
- **pulled_after_after** | **date**| Date pulled is greater than or equal to this date (YYYY-MM-DD) | [optional] 
- **pulled_after_before** | **date**| Date pulled is greater than or equal to this date (YYYY-MM-DD) | [optional] 
- **pulled_before_after** | **date**| Date pulled is less than or equal to this date (YYYY-MM-DD) | [optional] 
- **pulled_before_before** | **date**| Date pulled is less than or equal to this date (YYYY-MM-DD) | [optional] 
- **rscid** | **str**|  | [optional] 
- **rscid_begin** | **str**| Starting RSC ID | [optional] 
- **rscid_end** | **str**| Ending RSC ID | [optional] 
  **bulk_mmr_schema_submission** | [**BulkMMRSchemaSubmission**](BulkMMRSchemaSubmission.md)|  | [optional] 
 
 ### Return type
 
-[**PaginatedPlayerMMRList**](PaginatedPlayerMMRList.md)
+[**List[PlayerMMR]**](PlayerMMR.md)
 
 ### Authorization
 
@@ -264,7 +240,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **numbers_mmr_list**
-> PaginatedPlayerMMRList numbers_mmr_list(discord_id=discord_id, format=format, limit=limit, offset=offset, psyonix_season=psyonix_season, pulled=pulled, pulled_after=pulled_after, pulled_after_after=pulled_after_after, pulled_after_before=pulled_after_before, pulled_before=pulled_before, pulled_before_after=pulled_before_after, pulled_before_before=pulled_before_before, rscid=rscid, rscid_begin=rscid_begin, rscid_end=rscid_end)
+> PaginatedPlayerMMRList numbers_mmr_list(discord_id=discord_id, format=format, limit=limit, offset=offset, psyonix_season=psyonix_season, pulled=pulled, pulled_after=pulled_after, pulled_before=pulled_before, rscid=rscid, rscid_begin=rscid_begin, rscid_end=rscid_end)
 
 List all player MMRs.
 
@@ -306,17 +282,13 @@ async with rscapi.ApiClient(configuration) as api_client:
     psyonix_season = 56 # int | Psyonix Season Number (optional)
     pulled = '2013-10-20T19:20:30+01:00' # datetime | Specific date pulled (YYYY-MM-DD) (optional)
     pulled_after = 'pulled_after_example' # str | MMR pulled after date in YYYY-MM-DD format. (optional)
-    pulled_after_after = '2013-10-20' # date | Date pulled is greater than or equal to this date (YYYY-MM-DD) (optional)
-    pulled_after_before = '2013-10-20' # date | Date pulled is greater than or equal to this date (YYYY-MM-DD) (optional)
     pulled_before = 'pulled_before_example' # str | MMR pulled before date in YYYY-MM-DD format. (optional)
-    pulled_before_after = '2013-10-20' # date | Date pulled is less than or equal to this date (YYYY-MM-DD) (optional)
-    pulled_before_before = '2013-10-20' # date | Date pulled is less than or equal to this date (YYYY-MM-DD) (optional)
     rscid = 'rscid_example' # str | Specific Member RSC ID (E.g: RSC002918) (optional)
     rscid_begin = 'rscid_begin_example' # str | Starting RSC ID for a range of RSC IDs (optional)
     rscid_end = 'rscid_end_example' # str | Ending RSC ID for a range of RSC IDs (optional)
 
     try:
-        api_response = await api_instance.numbers_mmr_list(discord_id=discord_id, format=format, limit=limit, offset=offset, psyonix_season=psyonix_season, pulled=pulled, pulled_after=pulled_after, pulled_after_after=pulled_after_after, pulled_after_before=pulled_after_before, pulled_before=pulled_before, pulled_before_after=pulled_before_after, pulled_before_before=pulled_before_before, rscid=rscid, rscid_begin=rscid_begin, rscid_end=rscid_end)
+        api_response = await api_instance.numbers_mmr_list(discord_id=discord_id, format=format, limit=limit, offset=offset, psyonix_season=psyonix_season, pulled=pulled, pulled_after=pulled_after, pulled_before=pulled_before, rscid=rscid, rscid_begin=rscid_begin, rscid_end=rscid_end)
         print("The response of NumbersApi->numbers_mmr_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -337,11 +309,7 @@ Name | Type | Description  | Notes
  **psyonix_season** | **int**| Psyonix Season Number | [optional] 
  **pulled** | **datetime**| Specific date pulled (YYYY-MM-DD) | [optional] 
  **pulled_after** | **str**| MMR pulled after date in YYYY-MM-DD format. | [optional] 
- **pulled_after_after** | **date**| Date pulled is greater than or equal to this date (YYYY-MM-DD) | [optional] 
- **pulled_after_before** | **date**| Date pulled is greater than or equal to this date (YYYY-MM-DD) | [optional] 
  **pulled_before** | **str**| MMR pulled before date in YYYY-MM-DD format. | [optional] 
- **pulled_before_after** | **date**| Date pulled is less than or equal to this date (YYYY-MM-DD) | [optional] 
- **pulled_before_before** | **date**| Date pulled is less than or equal to this date (YYYY-MM-DD) | [optional] 
  **rscid** | **str**| Specific Member RSC ID (E.g: RSC002918) | [optional] 
  **rscid_begin** | **str**| Starting RSC ID for a range of RSC IDs | [optional] 
  **rscid_end** | **str**| Ending RSC ID for a range of RSC IDs | [optional] 
@@ -368,7 +336,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **numbers_mmr_partial_update**
-> PlayerMMR numbers_mmr_partial_update(id, format=format, patched_player_mmr=patched_player_mmr)
+> PlayerMMR numbers_mmr_partial_update(id, format=format, patched_player_mmr_update=patched_player_mmr_update)
 
 ### Example
 
@@ -376,7 +344,7 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.patched_player_mmr import PatchedPlayerMMR
+from rscapi.models.patched_player_mmr_update import PatchedPlayerMMRUpdate
 from rscapi.models.player_mmr import PlayerMMR
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -404,10 +372,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.NumbersApi(api_client)
     id = 56 # int | A unique integer value identifying this player mmr pull.
     format = 'format_example' # str |  (optional)
-    patched_player_mmr = rscapi.PatchedPlayerMMR() # PatchedPlayerMMR |  (optional)
+    patched_player_mmr_update = rscapi.PatchedPlayerMMRUpdate() # PatchedPlayerMMRUpdate |  (optional)
 
     try:
-        api_response = await api_instance.numbers_mmr_partial_update(id, format=format, patched_player_mmr=patched_player_mmr)
+        api_response = await api_instance.numbers_mmr_partial_update(id, format=format, patched_player_mmr_update=patched_player_mmr_update)
         print("The response of NumbersApi->numbers_mmr_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -423,7 +391,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this player mmr pull. | 
  **format** | **str**|  | [optional] 
- **patched_player_mmr** | [**PatchedPlayerMMR**](PatchedPlayerMMR.md)|  | [optional] 
+ **patched_player_mmr_update** | [**PatchedPlayerMMRUpdate**](PatchedPlayerMMRUpdate.md)|  | [optional] 
 
 ### Return type
 
@@ -523,7 +491,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **numbers_mmr_update**
-> PlayerMMR numbers_mmr_update(id, player_mmr, format=format)
+> PlayerMMR numbers_mmr_update(id, format=format, player_mmr_update=player_mmr_update)
 
 ### Example
 
@@ -532,6 +500,7 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.player_mmr import PlayerMMR
+from rscapi.models.player_mmr_update import PlayerMMRUpdate
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -557,11 +526,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.NumbersApi(api_client)
     id = 56 # int | A unique integer value identifying this player mmr pull.
-    player_mmr = rscapi.PlayerMMR() # PlayerMMR | 
     format = 'format_example' # str |  (optional)
+    player_mmr_update = rscapi.PlayerMMRUpdate() # PlayerMMRUpdate |  (optional)
 
     try:
-        api_response = await api_instance.numbers_mmr_update(id, player_mmr, format=format)
+        api_response = await api_instance.numbers_mmr_update(id, format=format, player_mmr_update=player_mmr_update)
         print("The response of NumbersApi->numbers_mmr_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -576,8 +545,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this player mmr pull. | 
- **player_mmr** | [**PlayerMMR**](PlayerMMR.md)|  | 
  **format** | **str**|  | [optional] 
+ **player_mmr_update** | [**PlayerMMRUpdate**](PlayerMMRUpdate.md)|  | [optional] 
 
 ### Return type
 

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.player_mmr_type_enum import PlayerMMRTypeEnum
@@ -44,10 +44,11 @@ class PlayerMMR(BaseModel):
     ones_games_played: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     notes: Optional[StrictStr] = None
     psyonix_season: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
+    id: Optional[StrictInt] = None
     member: Optional[StrictStr] = None
     type: Optional[PlayerMMRTypeEnum] = None
     rscid: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["date_pulled", "tracker_link", "threes_rating", "threes_season_peak", "threes_games_played", "twos_rating", "twos_season_peak", "twos_games_played", "ones_rating", "ones_season_peak", "ones_games_played", "notes", "psyonix_season", "member", "type", "rscid"]
+    __properties: ClassVar[List[str]] = ["date_pulled", "tracker_link", "threes_rating", "threes_season_peak", "threes_games_played", "twos_rating", "twos_season_peak", "twos_games_played", "ones_rating", "ones_season_peak", "ones_games_played", "notes", "psyonix_season", "id", "member", "type", "rscid"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -82,8 +83,10 @@ class PlayerMMR(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "id",
             "member",
             "type",
             "rscid",
@@ -177,6 +180,7 @@ class PlayerMMR(BaseModel):
             "ones_games_played": obj.get("ones_games_played"),
             "notes": obj.get("notes"),
             "psyonix_season": obj.get("psyonix_season"),
+            "id": obj.get("id"),
             "member": obj.get("member"),
             "type": obj.get("type"),
             "rscid": obj.get("rscid")

@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,9 +28,9 @@ class PatchedMemberNameChangeRequest(BaseModel):
     """
     PatchedMemberNameChangeRequest
     """ # noqa: E501
-    name: Optional[StrictStr] = None
+    name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = None
     admin_override: Optional[StrictBool] = Field(default=False, description="Retained for compatibility and recorded on the change, but no longer gates anything -- the profanity check it used to bypass has been removed.")
-    executor: Optional[StrictInt] = Field(default=None, description="Discord ID of the member running the change. Defaults to the authenticated caller.")
+    executor: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = Field(default=None, description="Discord ID of the member running the change. Defaults to the authenticated caller.")
     __properties: ClassVar[List[str]] = ["name", "admin_override", "executor"]
 
     model_config = ConfigDict(

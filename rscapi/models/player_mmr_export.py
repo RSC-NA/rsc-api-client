@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,7 +29,7 @@ class PlayerMMRExport(BaseModel):
     PlayerMMRExport
     """ # noqa: E501
     name: StrictStr
-    discord_id: StrictInt
+    discord_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     tier: Optional[StrictStr] = ''
     current_mmr: Optional[StrictInt] = None
     base_mmr: Optional[StrictInt] = None

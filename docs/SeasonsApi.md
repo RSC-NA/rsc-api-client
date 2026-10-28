@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **seasons_activity_check_list**
-> PaginatedActivityCheckList seasons_activity_check_list(completed=completed, discord_id=discord_id, limit=limit, missing=missing, offset=offset, returning_status=returning_status, season=season, season_number=season_number)
+> PaginatedActivityCheckList seasons_activity_check_list(completed=completed, discord_id=discord_id, league=league, limit=limit, missing=missing, offset=offset, returning_status=returning_status, season=season, season_number=season_number)
 
 List all activity checks for a given season.
 
@@ -60,15 +60,16 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.SeasonsApi(api_client)
     completed = True # bool | Check has been completed or not. (optional)
     discord_id = 56 # int | Discord ID of player intent to search for. (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     missing = True # bool | If the player has responded or not. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
     returning_status = True # bool | If the player is returning or not. (optional)
-    season = 56 # int | Season ID (E.g: 8) (optional)
+    season = 56 # int | Season ID (E.g: 8). (Default: the league's current season) (optional)
     season_number = 56 # int | Season number to search for. (E.g: 18) (optional)
 
     try:
-        api_response = await api_instance.seasons_activity_check_list(completed=completed, discord_id=discord_id, limit=limit, missing=missing, offset=offset, returning_status=returning_status, season=season, season_number=season_number)
+        api_response = await api_instance.seasons_activity_check_list(completed=completed, discord_id=discord_id, league=league, limit=limit, missing=missing, offset=offset, returning_status=returning_status, season=season, season_number=season_number)
         print("The response of SeasonsApi->seasons_activity_check_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -84,11 +85,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **completed** | **bool**| Check has been completed or not. | [optional] 
  **discord_id** | **int**| Discord ID of player intent to search for. | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **missing** | **bool**| If the player has responded or not. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
  **returning_status** | **bool**| If the player is returning or not. | [optional] 
- **season** | **int**| Season ID (E.g: 8) | [optional] 
+ **season** | **int**| Season ID (E.g: 8). (Default: the league&#39;s current season) | [optional] 
  **season_number** | **int**| Season number to search for. (E.g: 18) | [optional] 
 
 ### Return type
@@ -187,7 +189,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_create**
-> Season seasons_create(season)
+> Season seasons_create(season_write)
 
 ### Example
 
@@ -196,6 +198,7 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.season import Season
+from rscapi.models.season_write import SeasonWrite
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -220,10 +223,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    season = rscapi.Season() # Season | 
+    season_write = rscapi.SeasonWrite() # SeasonWrite | 
 
     try:
-        api_response = await api_instance.seasons_create(season)
+        api_response = await api_instance.seasons_create(season_write)
         print("The response of SeasonsApi->seasons_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -237,7 +240,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **season** | [**Season**](Season.md)|  | 
+ **season_write** | [**SeasonWrite**](SeasonWrite.md)|  | 
 
 ### Return type
 
@@ -408,7 +411,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_league_season_retrieve**
-> Season seasons_league_season_retrieve(league)
+> Season seasons_league_season_retrieve(league=league)
 
 Get current season for a given league.
 
@@ -443,10 +446,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    league = 56 # int | League to get current season for.
+    league = 56 # int | League ID. (Default: the default league) (optional)
 
     try:
-        api_response = await api_instance.seasons_league_season_retrieve(league)
+        api_response = await api_instance.seasons_league_season_retrieve(league=league)
         print("The response of SeasonsApi->seasons_league_season_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -460,7 +463,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **int**| League to get current season for. | 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
 
 ### Return type
 
@@ -565,7 +568,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_partial_update**
-> Season seasons_partial_update(id, patched_season=patched_season)
+> Season seasons_partial_update(id, patched_season_write=patched_season_write)
 
 ### Example
 
@@ -573,7 +576,7 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.patched_season import PatchedSeason
+from rscapi.models.patched_season_write import PatchedSeasonWrite
 from rscapi.models.season import Season
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -600,10 +603,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
     id = 56 # int | A unique integer value identifying this season.
-    patched_season = rscapi.PatchedSeason() # PatchedSeason |  (optional)
+    patched_season_write = rscapi.PatchedSeasonWrite() # PatchedSeasonWrite |  (optional)
 
     try:
-        api_response = await api_instance.seasons_partial_update(id, patched_season=patched_season)
+        api_response = await api_instance.seasons_partial_update(id, patched_season_write=patched_season_write)
         print("The response of SeasonsApi->seasons_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -618,7 +621,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this season. | 
- **patched_season** | [**PatchedSeason**](PatchedSeason.md)|  | [optional] 
+ **patched_season_write** | [**PatchedSeasonWrite**](PatchedSeasonWrite.md)|  | [optional] 
 
 ### Return type
 
@@ -799,7 +802,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_signup_season_retrieve**
-> Season seasons_signup_season_retrieve(league)
+> Season seasons_signup_season_retrieve(league=league)
 
 Get the season currently accepting signups.
 
@@ -834,10 +837,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
-    league = 56 # int | League to get current season for.
+    league = 56 # int | League ID. (Default: the default league) (optional)
 
     try:
-        api_response = await api_instance.seasons_signup_season_retrieve(league)
+        api_response = await api_instance.seasons_signup_season_retrieve(league=league)
         print("The response of SeasonsApi->seasons_signup_season_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -851,7 +854,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **int**| League to get current season for. | 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
 
 ### Return type
 
@@ -876,7 +879,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **seasons_update**
-> Season seasons_update(id, season)
+> Season seasons_update(id, season_write)
 
 ### Example
 
@@ -885,6 +888,7 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.season import Season
+from rscapi.models.season_write import SeasonWrite
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -910,10 +914,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.SeasonsApi(api_client)
     id = 56 # int | A unique integer value identifying this season.
-    season = rscapi.Season() # Season | 
+    season_write = rscapi.SeasonWrite() # SeasonWrite | 
 
     try:
-        api_response = await api_instance.seasons_update(id, season)
+        api_response = await api_instance.seasons_update(id, season_write)
         print("The response of SeasonsApi->seasons_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -928,7 +932,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this season. | 
- **season** | [**Season**](Season.md)|  | 
+ **season_write** | [**SeasonWrite**](SeasonWrite.md)|  | 
 
 ### Return type
 

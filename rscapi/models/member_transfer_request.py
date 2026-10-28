@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,7 +28,7 @@ class MemberTransferRequest(BaseModel):
     """
     MemberTransferRequest
     """ # noqa: E501
-    new_account: StrictInt = Field(description="Discord ID for the member account to transfer to or set as the member's new Discord ID.")
+    new_account: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)] = Field(description="Discord ID for the member account to transfer to or set as the member's new Discord ID.")
     __properties: ClassVar[List[str]] = ["new_account"]
 
     model_config = ConfigDict(

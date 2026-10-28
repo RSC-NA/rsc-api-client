@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -28,9 +28,9 @@ class MatchScoreReportRequest(BaseModel):
     """
     MatchScoreReportRequest
     """ # noqa: E501
-    home_score: StrictInt = Field(description="Number of games Home won.")
-    away_score: StrictInt = Field(description="Number of games Away won.")
-    executor: StrictInt = Field(description="Person executing the score report")
+    home_score: Annotated[int, Field(le=2147483647, strict=True, ge=0)] = Field(description="Number of games Home won.")
+    away_score: Annotated[int, Field(le=2147483647, strict=True, ge=0)] = Field(description="Number of games Away won.")
+    executor: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)] = Field(description="Discord ID of the member reporting the score.")
     ballchasing_group: Annotated[str, Field(strict=True, max_length=64)] = Field(description="ID of the ballchasing group of match results.")
     override: Optional[StrictBool] = Field(default=False, description="Is an admin overriding the score report.")
     __properties: ClassVar[List[str]] = ["home_score", "away_score", "executor", "ballchasing_group", "override"]

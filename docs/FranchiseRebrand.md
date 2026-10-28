@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **prefix** | **str** |  | 
 **name** | **str** |  | 
 **teams** | [**List[TeamRebrand]**](TeamRebrand.md) |  | 
-**admin_override** | **bool** |  | 
+**admin_override** | **bool** |  | [optional] [default to False]
 
 ## Example
 

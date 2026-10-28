@@ -15,14 +15,15 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from datetime import date, datetime
+from datetime import datetime
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
 from rscapi.models.paginated_player_mmr_list import PaginatedPlayerMMRList
-from rscapi.models.patched_player_mmr import PatchedPlayerMMR
+from rscapi.models.patched_player_mmr_update import PatchedPlayerMMRUpdate
 from rscapi.models.player_mmr import PlayerMMR
+from rscapi.models.player_mmr_update import PlayerMMRUpdate
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -45,19 +46,7 @@ class NumbersApi:
     @validate_call
     async def numbers_mmr_bulk_submit_create(
         self,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID.")] = None,
         format: Optional[StrictStr] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        psyonix_season: Annotated[Optional[StrictInt], Field(description="Psyonix Season (as internal value. E.g F2P S14 = 28)")] = None,
-        pulled: Annotated[Optional[datetime], Field(description="Specific date pulled (YYYY-MM-DD)")] = None,
-        pulled_after_after: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_after_before: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_after: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_before: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        rscid: Optional[StrictStr] = None,
-        rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID")] = None,
-        rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID")] = None,
         bulk_mmr_schema_submission: Optional[BulkMMRSchemaSubmission] = None,
         _request_timeout: Union[
             None,
@@ -71,36 +60,12 @@ class NumbersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PaginatedPlayerMMRList:
+    ) -> List[PlayerMMR]:
         """numbers_mmr_bulk_submit_create
 
 
-        :param discord_id: Member discord ID.
-        :type discord_id: int
         :param format:
         :type format: str
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
-        :param psyonix_season: Psyonix Season (as internal value. E.g F2P S14 = 28)
-        :type psyonix_season: int
-        :param pulled: Specific date pulled (YYYY-MM-DD)
-        :type pulled: datetime
-        :param pulled_after_after: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_after: date
-        :param pulled_after_before: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_before: date
-        :param pulled_before_after: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_after: date
-        :param pulled_before_before: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_before: date
-        :param rscid:
-        :type rscid: str
-        :param rscid_begin: Starting RSC ID
-        :type rscid_begin: str
-        :param rscid_end: Ending RSC ID
-        :type rscid_end: str
         :param bulk_mmr_schema_submission:
         :type bulk_mmr_schema_submission: BulkMMRSchemaSubmission
         :param _request_timeout: timeout setting for this request. If one
@@ -126,19 +91,7 @@ class NumbersApi:
         """ # noqa: E501
 
         _param = self._numbers_mmr_bulk_submit_create_serialize(
-            discord_id=discord_id,
             format=format,
-            limit=limit,
-            offset=offset,
-            psyonix_season=psyonix_season,
-            pulled=pulled,
-            pulled_after_after=pulled_after_after,
-            pulled_after_before=pulled_after_before,
-            pulled_before_after=pulled_before_after,
-            pulled_before_before=pulled_before_before,
-            rscid=rscid,
-            rscid_begin=rscid_begin,
-            rscid_end=rscid_end,
             bulk_mmr_schema_submission=bulk_mmr_schema_submission,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -147,7 +100,7 @@ class NumbersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedPlayerMMRList",
+            '200': "List[PlayerMMR]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -163,19 +116,7 @@ class NumbersApi:
     @validate_call
     async def numbers_mmr_bulk_submit_create_with_http_info(
         self,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID.")] = None,
         format: Optional[StrictStr] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        psyonix_season: Annotated[Optional[StrictInt], Field(description="Psyonix Season (as internal value. E.g F2P S14 = 28)")] = None,
-        pulled: Annotated[Optional[datetime], Field(description="Specific date pulled (YYYY-MM-DD)")] = None,
-        pulled_after_after: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_after_before: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_after: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_before: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        rscid: Optional[StrictStr] = None,
-        rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID")] = None,
-        rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID")] = None,
         bulk_mmr_schema_submission: Optional[BulkMMRSchemaSubmission] = None,
         _request_timeout: Union[
             None,
@@ -189,36 +130,12 @@ class NumbersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PaginatedPlayerMMRList]:
+    ) -> ApiResponse[List[PlayerMMR]]:
         """numbers_mmr_bulk_submit_create
 
 
-        :param discord_id: Member discord ID.
-        :type discord_id: int
         :param format:
         :type format: str
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
-        :param psyonix_season: Psyonix Season (as internal value. E.g F2P S14 = 28)
-        :type psyonix_season: int
-        :param pulled: Specific date pulled (YYYY-MM-DD)
-        :type pulled: datetime
-        :param pulled_after_after: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_after: date
-        :param pulled_after_before: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_before: date
-        :param pulled_before_after: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_after: date
-        :param pulled_before_before: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_before: date
-        :param rscid:
-        :type rscid: str
-        :param rscid_begin: Starting RSC ID
-        :type rscid_begin: str
-        :param rscid_end: Ending RSC ID
-        :type rscid_end: str
         :param bulk_mmr_schema_submission:
         :type bulk_mmr_schema_submission: BulkMMRSchemaSubmission
         :param _request_timeout: timeout setting for this request. If one
@@ -244,19 +161,7 @@ class NumbersApi:
         """ # noqa: E501
 
         _param = self._numbers_mmr_bulk_submit_create_serialize(
-            discord_id=discord_id,
             format=format,
-            limit=limit,
-            offset=offset,
-            psyonix_season=psyonix_season,
-            pulled=pulled,
-            pulled_after_after=pulled_after_after,
-            pulled_after_before=pulled_after_before,
-            pulled_before_after=pulled_before_after,
-            pulled_before_before=pulled_before_before,
-            rscid=rscid,
-            rscid_begin=rscid_begin,
-            rscid_end=rscid_end,
             bulk_mmr_schema_submission=bulk_mmr_schema_submission,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -265,7 +170,7 @@ class NumbersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedPlayerMMRList",
+            '200': "List[PlayerMMR]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -281,19 +186,7 @@ class NumbersApi:
     @validate_call
     async def numbers_mmr_bulk_submit_create_without_preload_content(
         self,
-        discord_id: Annotated[Optional[StrictInt], Field(description="Member discord ID.")] = None,
         format: Optional[StrictStr] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
-        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        psyonix_season: Annotated[Optional[StrictInt], Field(description="Psyonix Season (as internal value. E.g F2P S14 = 28)")] = None,
-        pulled: Annotated[Optional[datetime], Field(description="Specific date pulled (YYYY-MM-DD)")] = None,
-        pulled_after_after: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_after_before: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_after: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_before: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        rscid: Optional[StrictStr] = None,
-        rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID")] = None,
-        rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID")] = None,
         bulk_mmr_schema_submission: Optional[BulkMMRSchemaSubmission] = None,
         _request_timeout: Union[
             None,
@@ -311,32 +204,8 @@ class NumbersApi:
         """numbers_mmr_bulk_submit_create
 
 
-        :param discord_id: Member discord ID.
-        :type discord_id: int
         :param format:
         :type format: str
-        :param limit: Number of results to return per page.
-        :type limit: int
-        :param offset: The initial index from which to return the results.
-        :type offset: int
-        :param psyonix_season: Psyonix Season (as internal value. E.g F2P S14 = 28)
-        :type psyonix_season: int
-        :param pulled: Specific date pulled (YYYY-MM-DD)
-        :type pulled: datetime
-        :param pulled_after_after: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_after: date
-        :param pulled_after_before: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_before: date
-        :param pulled_before_after: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_after: date
-        :param pulled_before_before: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_before: date
-        :param rscid:
-        :type rscid: str
-        :param rscid_begin: Starting RSC ID
-        :type rscid_begin: str
-        :param rscid_end: Ending RSC ID
-        :type rscid_end: str
         :param bulk_mmr_schema_submission:
         :type bulk_mmr_schema_submission: BulkMMRSchemaSubmission
         :param _request_timeout: timeout setting for this request. If one
@@ -362,19 +231,7 @@ class NumbersApi:
         """ # noqa: E501
 
         _param = self._numbers_mmr_bulk_submit_create_serialize(
-            discord_id=discord_id,
             format=format,
-            limit=limit,
-            offset=offset,
-            psyonix_season=psyonix_season,
-            pulled=pulled,
-            pulled_after_after=pulled_after_after,
-            pulled_after_before=pulled_after_before,
-            pulled_before_after=pulled_before_after,
-            pulled_before_before=pulled_before_before,
-            rscid=rscid,
-            rscid_begin=rscid_begin,
-            rscid_end=rscid_end,
             bulk_mmr_schema_submission=bulk_mmr_schema_submission,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -383,7 +240,7 @@ class NumbersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedPlayerMMRList",
+            '200': "List[PlayerMMR]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -394,19 +251,7 @@ class NumbersApi:
 
     def _numbers_mmr_bulk_submit_create_serialize(
         self,
-        discord_id,
         format,
-        limit,
-        offset,
-        psyonix_season,
-        pulled,
-        pulled_after_after,
-        pulled_after_before,
-        pulled_before_after,
-        pulled_before_before,
-        rscid,
-        rscid_begin,
-        rscid_end,
         bulk_mmr_schema_submission,
         _request_auth,
         _content_type,
@@ -430,102 +275,9 @@ class NumbersApi:
 
         # process the path parameters
         # process the query parameters
-        if discord_id is not None:
-            
-            _query_params.append(('discord_id', discord_id))
-            
         if format is not None:
             
             _query_params.append(('format', format))
-            
-        if limit is not None:
-            
-            _query_params.append(('limit', limit))
-            
-        if offset is not None:
-            
-            _query_params.append(('offset', offset))
-            
-        if psyonix_season is not None:
-            
-            _query_params.append(('psyonix_season', psyonix_season))
-            
-        if pulled is not None:
-            if isinstance(pulled, datetime):
-                _query_params.append(
-                    (
-                        'pulled',
-                        pulled.strftime(
-                            self.api_client.configuration.datetime_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled', pulled))
-            
-        if pulled_after_after is not None:
-            if isinstance(pulled_after_after, date):
-                _query_params.append(
-                    (
-                        'pulled_after_after',
-                        pulled_after_after.strftime(
-                            self.api_client.configuration.date_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled_after_after', pulled_after_after))
-            
-        if pulled_after_before is not None:
-            if isinstance(pulled_after_before, date):
-                _query_params.append(
-                    (
-                        'pulled_after_before',
-                        pulled_after_before.strftime(
-                            self.api_client.configuration.date_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled_after_before', pulled_after_before))
-            
-        if pulled_before_after is not None:
-            if isinstance(pulled_before_after, date):
-                _query_params.append(
-                    (
-                        'pulled_before_after',
-                        pulled_before_after.strftime(
-                            self.api_client.configuration.date_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled_before_after', pulled_before_after))
-            
-        if pulled_before_before is not None:
-            if isinstance(pulled_before_before, date):
-                _query_params.append(
-                    (
-                        'pulled_before_before',
-                        pulled_before_before.strftime(
-                            self.api_client.configuration.date_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled_before_before', pulled_before_before))
-            
-        if rscid is not None:
-            
-            _query_params.append(('rscid', rscid))
-            
-        if rscid_begin is not None:
-            
-            _query_params.append(('rscid_begin', rscid_begin))
-            
-        if rscid_end is not None:
-            
-            _query_params.append(('rscid_end', rscid_end))
             
         # process the header parameters
         # process the form parameters
@@ -1149,11 +901,7 @@ class NumbersApi:
         psyonix_season: Annotated[Optional[StrictInt], Field(description="Psyonix Season Number")] = None,
         pulled: Annotated[Optional[datetime], Field(description="Specific date pulled (YYYY-MM-DD)")] = None,
         pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
-        pulled_after_after: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_after_before: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
         pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_before_after: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_before: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
         rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
@@ -1188,16 +936,8 @@ class NumbersApi:
         :type pulled: datetime
         :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
         :type pulled_after: str
-        :param pulled_after_after: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_after: date
-        :param pulled_after_before: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_before: date
         :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
         :type pulled_before: str
-        :param pulled_before_after: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_after: date
-        :param pulled_before_before: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_before: date
         :param rscid: Specific Member RSC ID (E.g: RSC002918)
         :type rscid: str
         :param rscid_begin: Starting RSC ID for a range of RSC IDs
@@ -1234,11 +974,7 @@ class NumbersApi:
             psyonix_season=psyonix_season,
             pulled=pulled,
             pulled_after=pulled_after,
-            pulled_after_after=pulled_after_after,
-            pulled_after_before=pulled_after_before,
             pulled_before=pulled_before,
-            pulled_before_after=pulled_before_after,
-            pulled_before_before=pulled_before_before,
             rscid=rscid,
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
@@ -1272,11 +1008,7 @@ class NumbersApi:
         psyonix_season: Annotated[Optional[StrictInt], Field(description="Psyonix Season Number")] = None,
         pulled: Annotated[Optional[datetime], Field(description="Specific date pulled (YYYY-MM-DD)")] = None,
         pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
-        pulled_after_after: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_after_before: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
         pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_before_after: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_before: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
         rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
@@ -1311,16 +1043,8 @@ class NumbersApi:
         :type pulled: datetime
         :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
         :type pulled_after: str
-        :param pulled_after_after: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_after: date
-        :param pulled_after_before: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_before: date
         :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
         :type pulled_before: str
-        :param pulled_before_after: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_after: date
-        :param pulled_before_before: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_before: date
         :param rscid: Specific Member RSC ID (E.g: RSC002918)
         :type rscid: str
         :param rscid_begin: Starting RSC ID for a range of RSC IDs
@@ -1357,11 +1081,7 @@ class NumbersApi:
             psyonix_season=psyonix_season,
             pulled=pulled,
             pulled_after=pulled_after,
-            pulled_after_after=pulled_after_after,
-            pulled_after_before=pulled_after_before,
             pulled_before=pulled_before,
-            pulled_before_after=pulled_before_after,
-            pulled_before_before=pulled_before_before,
             rscid=rscid,
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
@@ -1395,11 +1115,7 @@ class NumbersApi:
         psyonix_season: Annotated[Optional[StrictInt], Field(description="Psyonix Season Number")] = None,
         pulled: Annotated[Optional[datetime], Field(description="Specific date pulled (YYYY-MM-DD)")] = None,
         pulled_after: Annotated[Optional[StrictStr], Field(description="MMR pulled after date in YYYY-MM-DD format.")] = None,
-        pulled_after_after: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_after_before: Annotated[Optional[date], Field(description="Date pulled is greater than or equal to this date (YYYY-MM-DD)")] = None,
         pulled_before: Annotated[Optional[StrictStr], Field(description="MMR pulled before date in YYYY-MM-DD format.")] = None,
-        pulled_before_after: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
-        pulled_before_before: Annotated[Optional[date], Field(description="Date pulled is less than or equal to this date (YYYY-MM-DD)")] = None,
         rscid: Annotated[Optional[StrictStr], Field(description="Specific Member RSC ID (E.g: RSC002918)")] = None,
         rscid_begin: Annotated[Optional[StrictStr], Field(description="Starting RSC ID for a range of RSC IDs")] = None,
         rscid_end: Annotated[Optional[StrictStr], Field(description="Ending RSC ID for a range of RSC IDs")] = None,
@@ -1434,16 +1150,8 @@ class NumbersApi:
         :type pulled: datetime
         :param pulled_after: MMR pulled after date in YYYY-MM-DD format.
         :type pulled_after: str
-        :param pulled_after_after: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_after: date
-        :param pulled_after_before: Date pulled is greater than or equal to this date (YYYY-MM-DD)
-        :type pulled_after_before: date
         :param pulled_before: MMR pulled before date in YYYY-MM-DD format.
         :type pulled_before: str
-        :param pulled_before_after: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_after: date
-        :param pulled_before_before: Date pulled is less than or equal to this date (YYYY-MM-DD)
-        :type pulled_before_before: date
         :param rscid: Specific Member RSC ID (E.g: RSC002918)
         :type rscid: str
         :param rscid_begin: Starting RSC ID for a range of RSC IDs
@@ -1480,11 +1188,7 @@ class NumbersApi:
             psyonix_season=psyonix_season,
             pulled=pulled,
             pulled_after=pulled_after,
-            pulled_after_after=pulled_after_after,
-            pulled_after_before=pulled_after_before,
             pulled_before=pulled_before,
-            pulled_before_after=pulled_before_after,
-            pulled_before_before=pulled_before_before,
             rscid=rscid,
             rscid_begin=rscid_begin,
             rscid_end=rscid_end,
@@ -1513,11 +1217,7 @@ class NumbersApi:
         psyonix_season,
         pulled,
         pulled_after,
-        pulled_after_after,
-        pulled_after_before,
         pulled_before,
-        pulled_before_after,
-        pulled_before_before,
         rscid,
         rscid_begin,
         rscid_end,
@@ -1580,61 +1280,9 @@ class NumbersApi:
             
             _query_params.append(('pulled_after', pulled_after))
             
-        if pulled_after_after is not None:
-            if isinstance(pulled_after_after, date):
-                _query_params.append(
-                    (
-                        'pulled_after_after',
-                        pulled_after_after.strftime(
-                            self.api_client.configuration.date_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled_after_after', pulled_after_after))
-            
-        if pulled_after_before is not None:
-            if isinstance(pulled_after_before, date):
-                _query_params.append(
-                    (
-                        'pulled_after_before',
-                        pulled_after_before.strftime(
-                            self.api_client.configuration.date_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled_after_before', pulled_after_before))
-            
         if pulled_before is not None:
             
             _query_params.append(('pulled_before', pulled_before))
-            
-        if pulled_before_after is not None:
-            if isinstance(pulled_before_after, date):
-                _query_params.append(
-                    (
-                        'pulled_before_after',
-                        pulled_before_after.strftime(
-                            self.api_client.configuration.date_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled_before_after', pulled_before_after))
-            
-        if pulled_before_before is not None:
-            if isinstance(pulled_before_before, date):
-                _query_params.append(
-                    (
-                        'pulled_before_before',
-                        pulled_before_before.strftime(
-                            self.api_client.configuration.date_format
-                        )
-                    )
-                )
-            else:
-                _query_params.append(('pulled_before_before', pulled_before_before))
             
         if rscid is not None:
             
@@ -1691,7 +1339,7 @@ class NumbersApi:
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this player mmr pull.")],
         format: Optional[StrictStr] = None,
-        patched_player_mmr: Optional[PatchedPlayerMMR] = None,
+        patched_player_mmr_update: Optional[PatchedPlayerMMRUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1712,8 +1360,8 @@ class NumbersApi:
         :type id: int
         :param format:
         :type format: str
-        :param patched_player_mmr:
-        :type patched_player_mmr: PatchedPlayerMMR
+        :param patched_player_mmr_update:
+        :type patched_player_mmr_update: PatchedPlayerMMRUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1739,7 +1387,7 @@ class NumbersApi:
         _param = self._numbers_mmr_partial_update_serialize(
             id=id,
             format=format,
-            patched_player_mmr=patched_player_mmr,
+            patched_player_mmr_update=patched_player_mmr_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1765,7 +1413,7 @@ class NumbersApi:
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this player mmr pull.")],
         format: Optional[StrictStr] = None,
-        patched_player_mmr: Optional[PatchedPlayerMMR] = None,
+        patched_player_mmr_update: Optional[PatchedPlayerMMRUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1786,8 +1434,8 @@ class NumbersApi:
         :type id: int
         :param format:
         :type format: str
-        :param patched_player_mmr:
-        :type patched_player_mmr: PatchedPlayerMMR
+        :param patched_player_mmr_update:
+        :type patched_player_mmr_update: PatchedPlayerMMRUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1813,7 +1461,7 @@ class NumbersApi:
         _param = self._numbers_mmr_partial_update_serialize(
             id=id,
             format=format,
-            patched_player_mmr=patched_player_mmr,
+            patched_player_mmr_update=patched_player_mmr_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1839,7 +1487,7 @@ class NumbersApi:
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this player mmr pull.")],
         format: Optional[StrictStr] = None,
-        patched_player_mmr: Optional[PatchedPlayerMMR] = None,
+        patched_player_mmr_update: Optional[PatchedPlayerMMRUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1860,8 +1508,8 @@ class NumbersApi:
         :type id: int
         :param format:
         :type format: str
-        :param patched_player_mmr:
-        :type patched_player_mmr: PatchedPlayerMMR
+        :param patched_player_mmr_update:
+        :type patched_player_mmr_update: PatchedPlayerMMRUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1887,7 +1535,7 @@ class NumbersApi:
         _param = self._numbers_mmr_partial_update_serialize(
             id=id,
             format=format,
-            patched_player_mmr=patched_player_mmr,
+            patched_player_mmr_update=patched_player_mmr_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1908,7 +1556,7 @@ class NumbersApi:
         self,
         id,
         format,
-        patched_player_mmr,
+        patched_player_mmr_update,
         _request_auth,
         _content_type,
         _headers,
@@ -1940,8 +1588,8 @@ class NumbersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if patched_player_mmr is not None:
-            _body_params = patched_player_mmr
+        if patched_player_mmr_update is not None:
+            _body_params = patched_player_mmr_update
 
 
         # set the HTTP header `Accept`
@@ -2272,8 +1920,8 @@ class NumbersApi:
     async def numbers_mmr_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this player mmr pull.")],
-        player_mmr: PlayerMMR,
         format: Optional[StrictStr] = None,
+        player_mmr_update: Optional[PlayerMMRUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2292,10 +1940,10 @@ class NumbersApi:
 
         :param id: A unique integer value identifying this player mmr pull. (required)
         :type id: int
-        :param player_mmr: (required)
-        :type player_mmr: PlayerMMR
         :param format:
         :type format: str
+        :param player_mmr_update:
+        :type player_mmr_update: PlayerMMRUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2320,8 +1968,8 @@ class NumbersApi:
 
         _param = self._numbers_mmr_update_serialize(
             id=id,
-            player_mmr=player_mmr,
             format=format,
+            player_mmr_update=player_mmr_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2346,8 +1994,8 @@ class NumbersApi:
     async def numbers_mmr_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this player mmr pull.")],
-        player_mmr: PlayerMMR,
         format: Optional[StrictStr] = None,
+        player_mmr_update: Optional[PlayerMMRUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2366,10 +2014,10 @@ class NumbersApi:
 
         :param id: A unique integer value identifying this player mmr pull. (required)
         :type id: int
-        :param player_mmr: (required)
-        :type player_mmr: PlayerMMR
         :param format:
         :type format: str
+        :param player_mmr_update:
+        :type player_mmr_update: PlayerMMRUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2394,8 +2042,8 @@ class NumbersApi:
 
         _param = self._numbers_mmr_update_serialize(
             id=id,
-            player_mmr=player_mmr,
             format=format,
+            player_mmr_update=player_mmr_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2420,8 +2068,8 @@ class NumbersApi:
     async def numbers_mmr_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this player mmr pull.")],
-        player_mmr: PlayerMMR,
         format: Optional[StrictStr] = None,
+        player_mmr_update: Optional[PlayerMMRUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2440,10 +2088,10 @@ class NumbersApi:
 
         :param id: A unique integer value identifying this player mmr pull. (required)
         :type id: int
-        :param player_mmr: (required)
-        :type player_mmr: PlayerMMR
         :param format:
         :type format: str
+        :param player_mmr_update:
+        :type player_mmr_update: PlayerMMRUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2468,8 +2116,8 @@ class NumbersApi:
 
         _param = self._numbers_mmr_update_serialize(
             id=id,
-            player_mmr=player_mmr,
             format=format,
+            player_mmr_update=player_mmr_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2489,8 +2137,8 @@ class NumbersApi:
     def _numbers_mmr_update_serialize(
         self,
         id,
-        player_mmr,
         format,
+        player_mmr_update,
         _request_auth,
         _content_type,
         _headers,
@@ -2522,8 +2170,8 @@ class NumbersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if player_mmr is not None:
-            _body_params = player_mmr
+        if player_mmr_update is not None:
+            _body_params = player_mmr_update
 
 
         # set the HTTP header `Accept`

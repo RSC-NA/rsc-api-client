@@ -28,7 +28,7 @@ class ElevatedRoleSyncInput(BaseModel):
     """
     ElevatedRoleSyncInput
     """ # noqa: E501
-    discord_id: Annotated[int, Field(strict=True, ge=1)] = Field(description="Discord ID of the member to re-sync against their Discord guild roles.")
+    discord_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=1)] = Field(description="Discord ID of the member to re-sync against their Discord guild roles.")
     league: Optional[StrictInt] = Field(default=None, description="Limit the sync to one league. Default: every league with Discord role mappings.")
     dry_run: Optional[StrictBool] = Field(default=False, description="Report what would change without writing anything.")
     __properties: ClassVar[List[str]] = ["discord_id", "league", "dry_run"]

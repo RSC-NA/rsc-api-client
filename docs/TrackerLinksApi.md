@@ -26,7 +26,7 @@ Method | HTTP request | Description
 
 
 # **tracker_links_create**
-> TrackerLink tracker_links_create(tracker_link, format=format)
+> TrackerLink tracker_links_create(tracker_create_input, format=format)
 
 ### Example
 
@@ -34,6 +34,7 @@ Method | HTTP request | Description
 
 ```python
 import rscapi
+from rscapi.models.tracker_create_input import TrackerCreateInput
 from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -59,11 +60,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    tracker_link = rscapi.TrackerLink() # TrackerLink | 
+    tracker_create_input = rscapi.TrackerCreateInput() # TrackerCreateInput | 
     format = 'format_example' # str |  (optional)
 
     try:
-        api_response = await api_instance.tracker_links_create(tracker_link, format=format)
+        api_response = await api_instance.tracker_links_create(tracker_create_input, format=format)
         print("The response of TrackerLinksApi->tracker_links_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -77,7 +78,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tracker_link** | [**TrackerLink**](TrackerLink.md)|  | 
+ **tracker_create_input** | [**TrackerCreateInput**](TrackerCreateInput.md)|  | 
  **format** | **str**|  | [optional] 
 
 ### Return type
@@ -97,12 +98,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** |  |  -  |
+**200** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_dedup_mmr_pulls_create**
-> TrackerLink tracker_links_dedup_mmr_pulls_create()
+> Dict[str, object] tracker_links_dedup_mmr_pulls_create()
 
 Deduplicate PlayerMMRPull records (ignoring date_pulled and notes).
 
@@ -115,7 +116,6 @@ POST: Actually deletes the duplicates (keeps earliest record per group).
 
 ```python
 import rscapi
-from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -157,7 +157,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TrackerLink**](TrackerLink.md)
+**Dict[str, object]**
 
 ### Authorization
 
@@ -177,7 +177,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_dedup_mmr_pulls_retrieve**
-> TrackerLink tracker_links_dedup_mmr_pulls_retrieve()
+> Dict[str, object] tracker_links_dedup_mmr_pulls_retrieve()
 
 Deduplicate PlayerMMRPull records (ignoring date_pulled and notes).
 
@@ -190,7 +190,6 @@ POST: Actually deletes the duplicates (keeps earliest record per group).
 
 ```python
 import rscapi
-from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -232,7 +231,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TrackerLink**](TrackerLink.md)
+**Dict[str, object]**
 
 ### Authorization
 
@@ -252,7 +251,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_dedup_pulls_create**
-> TrackerLink tracker_links_dedup_pulls_create(id)
+> Dict[str, object] tracker_links_dedup_pulls_create(id)
 
 Deduplicate PlayerMMRPull records for a single tracker link.
 
@@ -267,7 +266,6 @@ POST: Actually deletes the duplicates (keeps newest date_pulled per group).
 
 ```python
 import rscapi
-from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -292,7 +290,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker link.
+    id = 'id_example' # str | 
 
     try:
         api_response = await api_instance.tracker_links_dedup_pulls_create(id)
@@ -309,11 +307,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker link. | 
+ **id** | **str**|  | 
 
 ### Return type
 
-[**TrackerLink**](TrackerLink.md)
+**Dict[str, object]**
 
 ### Authorization
 
@@ -333,7 +331,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_dedup_pulls_retrieve**
-> TrackerLink tracker_links_dedup_pulls_retrieve(id)
+> Dict[str, object] tracker_links_dedup_pulls_retrieve(id)
 
 Deduplicate PlayerMMRPull records for a single tracker link.
 
@@ -348,7 +346,6 @@ POST: Actually deletes the duplicates (keeps newest date_pulled per group).
 
 ```python
 import rscapi
-from rscapi.models.tracker_link import TrackerLink
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -373,7 +370,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker link.
+    id = 'id_example' # str | 
 
     try:
         api_response = await api_instance.tracker_links_dedup_pulls_retrieve(id)
@@ -390,11 +387,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker link. | 
+ **id** | **str**|  | 
 
 ### Return type
 
-[**TrackerLink**](TrackerLink.md)
+**Dict[str, object]**
 
 ### Authorization
 
@@ -487,7 +484,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_fix_duplicate_links_create**
-> TrackerLink tracker_links_fix_duplicate_links_create()
+> List[TrackerLink] tracker_links_fix_duplicate_links_create()
 
 Fixes duplicate tracker links by merging MMR pulls and removing duplicates.
 
@@ -539,7 +536,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**TrackerLink**](TrackerLink.md)
+[**List[TrackerLink]**](TrackerLink.md)
 
 ### Authorization
 
@@ -559,7 +556,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_invalidate_links_create**
-> TrackerLink tracker_links_invalidate_links_create(tracker_link_invalidate_object=tracker_link_invalidate_object)
+> TrackerLinksInvalidated tracker_links_invalidate_links_create(tracker_links_invalidate)
 
 ### Example
 
@@ -567,8 +564,8 @@ This endpoint does not need any parameter.
 
 ```python
 import rscapi
-from rscapi.models.tracker_link import TrackerLink
-from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject
+from rscapi.models.tracker_links_invalidate import TrackerLinksInvalidate
+from rscapi.models.tracker_links_invalidated import TrackerLinksInvalidated
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -593,10 +590,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    tracker_link_invalidate_object = rscapi.TrackerLinkInvalidateObject() # TrackerLinkInvalidateObject |  (optional)
+    tracker_links_invalidate = rscapi.TrackerLinksInvalidate() # TrackerLinksInvalidate | 
 
     try:
-        api_response = await api_instance.tracker_links_invalidate_links_create(tracker_link_invalidate_object=tracker_link_invalidate_object)
+        api_response = await api_instance.tracker_links_invalidate_links_create(tracker_links_invalidate)
         print("The response of TrackerLinksApi->tracker_links_invalidate_links_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -610,11 +607,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tracker_link_invalidate_object** | [**TrackerLinkInvalidateObject**](TrackerLinkInvalidateObject.md)|  | [optional] 
+ **tracker_links_invalidate** | [**TrackerLinksInvalidate**](TrackerLinksInvalidate.md)|  | 
 
 ### Return type
 
-[**TrackerLink**](TrackerLink.md)
+[**TrackerLinksInvalidated**](TrackerLinksInvalidated.md)
 
 ### Authorization
 
@@ -622,7 +619,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
@@ -668,7 +665,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker link.
+    id = 'id_example' # str | 
     tracker_link_linking = rscapi.TrackerLinkLinking() # TrackerLinkLinking | 
 
     try:
@@ -686,7 +683,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker link. | 
+ **id** | **str**|  | 
  **tracker_link_linking** | [**TrackerLinkLinking**](TrackerLinkLinking.md)|  | 
 
 ### Return type
@@ -915,7 +912,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker link.
+    id = 'id_example' # str | 
     tracker_id_input = rscapi.TrackerIDInput() # TrackerIDInput | 
 
     try:
@@ -933,7 +930,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker link. | 
+ **id** | **str**|  | 
  **tracker_id_input** | [**TrackerIDInput**](TrackerIDInput.md)|  | 
 
 ### Return type
@@ -1069,7 +1066,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker link.
+    id = 'id_example' # str | 
     pysonix_season = 56 # int | Psysonix season number to filter by.
 
     try:
@@ -1087,7 +1084,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker link. | 
+ **id** | **str**|  | 
  **pysonix_season** | **int**| Psysonix season number to filter by. | 
 
 ### Return type
@@ -1188,9 +1185,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tracker_links_spider_create**
-> TrackerLink tracker_links_spider_create(tracker_link_spider_request=tracker_link_spider_request)
+> Dict[str, object] tracker_links_spider_create(tracker_link_spider_request=tracker_link_spider_request)
 
-Resolve every Epic tracker the player holds through RL Planet and create tracker links for the accounts it reports as linked. Returns the links that were created. Existing links are never modified, and accounts already held by a different member are reported rather than created.
+Resolve every Epic tracker the player holds through Orbit and create tracker links for the accounts it reports as linked. Returns the links that were created. Existing links are never modified, and accounts already held by a different member are reported rather than created.
 
 ### Example
 
@@ -1198,7 +1195,6 @@ Resolve every Epic tracker the player holds through RL Planet and create tracker
 
 ```python
 import rscapi
-from rscapi.models.tracker_link import TrackerLink
 from rscapi.models.tracker_link_spider_request import TrackerLinkSpiderRequest
 from rscapi.rest import ApiException
 from pprint import pprint
@@ -1245,7 +1241,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrackerLink**](TrackerLink.md)
+**Dict[str, object]**
 
 ### Authorization
 
@@ -1261,6 +1257,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
+**400** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1299,7 +1297,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker link.
+    id = 'id_example' # str | 
     patched_tracker_status = rscapi.PatchedTrackerStatus() # PatchedTrackerStatus |  (optional)
 
     try:
@@ -1317,7 +1315,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker link. | 
+ **id** | **str**|  | 
  **patched_tracker_status** | [**PatchedTrackerStatus**](PatchedTrackerStatus.md)|  | [optional] 
 
 ### Return type
@@ -1375,7 +1373,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker link.
+    id = 'id_example' # str | 
 
     try:
         api_response = await api_instance.tracker_links_status_retrieve(id)
@@ -1392,7 +1390,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker link. | 
+ **id** | **str**|  | 
 
 ### Return type
 
@@ -1450,7 +1448,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TrackerLinksApi(api_client)
-    id = 56 # int | A unique integer value identifying this tracker link.
+    id = 'id_example' # str | 
     tracker_link_linking = rscapi.TrackerLinkLinking() # TrackerLinkLinking | 
 
     try:
@@ -1468,7 +1466,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this tracker link. | 
+ **id** | **str**|  | 
  **tracker_link_linking** | [**TrackerLinkLinking**](TrackerLinkLinking.md)|  | 
 
 ### Return type

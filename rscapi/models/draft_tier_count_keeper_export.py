@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,7 +31,7 @@ class DraftTierCountKeeperExport(BaseModel):
     league_player_id: StrictInt
     rsc_id: StrictStr
     player_name: StrictStr
-    discord_id: StrictInt
+    discord_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     base_mmr: StrictInt
     effective_mmr: StrictInt
     tier_data: StrictStr

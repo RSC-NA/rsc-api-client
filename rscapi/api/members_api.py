@@ -27,16 +27,17 @@ from rscapi.models.elevated_role_input import ElevatedRoleInput
 from rscapi.models.elevated_role_update import ElevatedRoleUpdate
 from rscapi.models.intent_to_play_request import IntentToPlayRequest
 from rscapi.models.league_player import LeaguePlayer
-from rscapi.models.league_player_patch import LeaguePlayerPatch
 from rscapi.models.league_player_signup import LeaguePlayerSignup
 from rscapi.models.member import Member
+from rscapi.models.member_league_drop_request import MemberLeagueDropRequest
 from rscapi.models.member_tracker import MemberTracker
 from rscapi.models.member_transfer_request import MemberTransferRequest
+from rscapi.models.member_update import MemberUpdate
 from rscapi.models.paginated_member_list import PaginatedMemberList
 from rscapi.models.paginated_name_change_history_list import PaginatedNameChangeHistoryList
 from rscapi.models.patched_elevated_role_update import PatchedElevatedRoleUpdate
-from rscapi.models.patched_member import PatchedMember
 from rscapi.models.patched_member_name_change_request import PatchedMemberNameChangeRequest
+from rscapi.models.patched_member_update import PatchedMemberUpdate
 from rscapi.models.perm_fa_signup_details import PermFASignupDetails
 from rscapi.models.player_season_stats import PlayerSeasonStats
 from rscapi.models.signup_details_request import SignupDetailsRequest
@@ -624,7 +625,9 @@ class MembersApi:
     async def members_contract_status_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League ID to get player contract status of")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -644,8 +647,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League ID to get player contract status of (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -671,6 +678,8 @@ class MembersApi:
         _param = self._members_contract_status_retrieve_serialize(
             id=id,
             league=league,
+            season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -697,7 +706,9 @@ class MembersApi:
     async def members_contract_status_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League ID to get player contract status of")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -717,8 +728,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League ID to get player contract status of (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -744,6 +759,8 @@ class MembersApi:
         _param = self._members_contract_status_retrieve_serialize(
             id=id,
             league=league,
+            season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -770,7 +787,9 @@ class MembersApi:
     async def members_contract_status_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League ID to get player contract status of")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -790,8 +809,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League ID to get player contract status of (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -817,6 +840,8 @@ class MembersApi:
         _param = self._members_contract_status_retrieve_serialize(
             id=id,
             league=league,
+            season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -839,6 +864,8 @@ class MembersApi:
         self,
         id,
         league,
+        season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -866,6 +893,14 @@ class MembersApi:
         if league is not None:
             
             _query_params.append(('league', league))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -1205,7 +1240,7 @@ class MembersApi:
     ) -> None:
         """members_destroy
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
+        Delete a member record that holds no history: a duplicate or mistaken account.  Superusers only: a member belongs to no single league, so a league admin's role could not scope it. A member with league, stats or MMR history is refused; the delete would cascade it away (or hit a PROTECT and 500, as it used to).
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -1241,6 +1276,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
+            '403': "Error",
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1272,7 +1309,7 @@ class MembersApi:
     ) -> ApiResponse[None]:
         """members_destroy
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
+        Delete a member record that holds no history: a duplicate or mistaken account.  Superusers only: a member belongs to no single league, so a league admin's role could not scope it. A member with league, stats or MMR history is refused; the delete would cascade it away (or hit a PROTECT and 500, as it used to).
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -1308,6 +1345,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
+            '403': "Error",
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1339,7 +1378,7 @@ class MembersApi:
     ) -> RESTResponseType:
         """members_destroy
 
-        Apply this mixin to any view or viewset to get multiple field filtering based on a `lookup_fields` attribute, instead of the default single field filtering.  The primary key is tried first, then each alternate field in turn. A field is skipped when the URL value is not something that column can hold (e.g. a non-numeric string against an integer column), so a bad lookup value is a 404 rather than a 500.
+        Delete a member record that holds no history: a duplicate or mistaken account.  Superusers only: a member belongs to no single league, so a league admin's role could not scope it. A member with league, stats or MMR history is refused; the delete would cascade it away (or hit a PROTECT and 500, as it used to).
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
@@ -1375,6 +1414,8 @@ class MembersApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '204': None,
+            '403': "Error",
+            '409': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1415,6 +1456,13 @@ class MembersApi:
         # process the body parameter
 
 
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
 
 
         # authentication setting
@@ -3877,7 +3925,7 @@ class MembersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> LeaguePlayerPatch:
+    ) -> LeaguePlayer:
         """members_make_player_create
 
         Make a player a league player
@@ -3918,7 +3966,7 @@ class MembersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "LeaguePlayerPatch",
+            '201': "LeaguePlayer",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3948,7 +3996,7 @@ class MembersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[LeaguePlayerPatch]:
+    ) -> ApiResponse[LeaguePlayer]:
         """members_make_player_create
 
         Make a player a league player
@@ -3989,7 +4037,7 @@ class MembersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "LeaguePlayerPatch",
+            '201': "LeaguePlayer",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -4060,7 +4108,7 @@ class MembersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "LeaguePlayerPatch",
+            '201': "LeaguePlayer",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -4155,7 +4203,7 @@ class MembersApi:
     async def members_member_league_drop_create(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league_player_signup: LeaguePlayerSignup,
+        member_league_drop_request: MemberLeagueDropRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4175,8 +4223,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league_player_signup: (required)
-        :type league_player_signup: LeaguePlayerSignup
+        :param member_league_drop_request: (required)
+        :type member_league_drop_request: MemberLeagueDropRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4201,7 +4249,7 @@ class MembersApi:
 
         _param = self._members_member_league_drop_create_serialize(
             id=id,
-            league_player_signup=league_player_signup,
+            member_league_drop_request=member_league_drop_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4228,7 +4276,7 @@ class MembersApi:
     async def members_member_league_drop_create_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league_player_signup: LeaguePlayerSignup,
+        member_league_drop_request: MemberLeagueDropRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4248,8 +4296,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league_player_signup: (required)
-        :type league_player_signup: LeaguePlayerSignup
+        :param member_league_drop_request: (required)
+        :type member_league_drop_request: MemberLeagueDropRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4274,7 +4322,7 @@ class MembersApi:
 
         _param = self._members_member_league_drop_create_serialize(
             id=id,
-            league_player_signup=league_player_signup,
+            member_league_drop_request=member_league_drop_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4301,7 +4349,7 @@ class MembersApi:
     async def members_member_league_drop_create_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league_player_signup: LeaguePlayerSignup,
+        member_league_drop_request: MemberLeagueDropRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4321,8 +4369,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league_player_signup: (required)
-        :type league_player_signup: LeaguePlayerSignup
+        :param member_league_drop_request: (required)
+        :type member_league_drop_request: MemberLeagueDropRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4347,7 +4395,7 @@ class MembersApi:
 
         _param = self._members_member_league_drop_create_serialize(
             id=id,
-            league_player_signup=league_player_signup,
+            member_league_drop_request=member_league_drop_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4369,7 +4417,7 @@ class MembersApi:
     def _members_member_league_drop_create_serialize(
         self,
         id,
-        league_player_signup,
+        member_league_drop_request,
         _request_auth,
         _content_type,
         _headers,
@@ -4397,8 +4445,8 @@ class MembersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if league_player_signup is not None:
-            _body_params = league_player_signup
+        if member_league_drop_request is not None:
+            _body_params = member_league_drop_request
 
 
         # set the HTTP header `Accept`
@@ -5098,7 +5146,7 @@ class MembersApi:
     async def members_partial_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        patched_member: Optional[PatchedMember] = None,
+        patched_member_update: Optional[PatchedMemberUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5118,8 +5166,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param patched_member:
-        :type patched_member: PatchedMember
+        :param patched_member_update:
+        :type patched_member_update: PatchedMemberUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5144,7 +5192,7 @@ class MembersApi:
 
         _param = self._members_partial_update_serialize(
             id=id,
-            patched_member=patched_member,
+            patched_member_update=patched_member_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5169,7 +5217,7 @@ class MembersApi:
     async def members_partial_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        patched_member: Optional[PatchedMember] = None,
+        patched_member_update: Optional[PatchedMemberUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5189,8 +5237,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param patched_member:
-        :type patched_member: PatchedMember
+        :param patched_member_update:
+        :type patched_member_update: PatchedMemberUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5215,7 +5263,7 @@ class MembersApi:
 
         _param = self._members_partial_update_serialize(
             id=id,
-            patched_member=patched_member,
+            patched_member_update=patched_member_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5240,7 +5288,7 @@ class MembersApi:
     async def members_partial_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        patched_member: Optional[PatchedMember] = None,
+        patched_member_update: Optional[PatchedMemberUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5260,8 +5308,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param patched_member:
-        :type patched_member: PatchedMember
+        :param patched_member_update:
+        :type patched_member_update: PatchedMemberUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5286,7 +5334,7 @@ class MembersApi:
 
         _param = self._members_partial_update_serialize(
             id=id,
-            patched_member=patched_member,
+            patched_member_update=patched_member_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5306,7 +5354,7 @@ class MembersApi:
     def _members_partial_update_serialize(
         self,
         id,
-        patched_member,
+        patched_member_update,
         _request_auth,
         _content_type,
         _headers,
@@ -5334,8 +5382,8 @@ class MembersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if patched_member is not None:
-            _body_params = patched_member
+        if patched_member_update is not None:
+            _body_params = patched_member_update
 
 
         # set the HTTP header `Accept`
@@ -5692,8 +5740,9 @@ class MembersApi:
     async def members_postseason_stats_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
-        season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5713,10 +5762,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League to get stats from season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Specific season number to get stats for
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5744,6 +5795,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5770,8 +5822,9 @@ class MembersApi:
     async def members_postseason_stats_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
-        season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5791,10 +5844,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League to get stats from season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Specific season number to get stats for
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5822,6 +5877,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5848,8 +5904,9 @@ class MembersApi:
     async def members_postseason_stats_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
-        season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5869,10 +5926,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League to get stats from season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Specific season number to get stats for
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5900,6 +5959,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5923,6 +5983,7 @@ class MembersApi:
         id,
         league,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -5954,6 +6015,10 @@ class MembersApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -6560,8 +6625,9 @@ class MembersApi:
     async def members_stats_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
-        season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         stats_type: Annotated[Optional[StrictStr], Field(description="Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.")] = None,
         _request_timeout: Union[
             None,
@@ -6582,10 +6648,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League to get stats from season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Specific season number to get stats for
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param stats_type: Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6614,6 +6682,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -6641,8 +6710,9 @@ class MembersApi:
     async def members_stats_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
-        season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         stats_type: Annotated[Optional[StrictStr], Field(description="Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.")] = None,
         _request_timeout: Union[
             None,
@@ -6663,10 +6733,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League to get stats from season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Specific season number to get stats for
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param stats_type: Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6695,6 +6767,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -6722,8 +6795,9 @@ class MembersApi:
     async def members_stats_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        league: Annotated[StrictInt, Field(description="League to get stats from season for.")],
-        season: Annotated[Optional[StrictInt], Field(description="Specific season number to get stats for")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         stats_type: Annotated[Optional[StrictStr], Field(description="Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.")] = None,
         _request_timeout: Union[
             None,
@@ -6744,10 +6818,12 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param league: League to get stats from season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Specific season number to get stats for
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param stats_type: Which stats bucket to return: REG (regular season, the default), PRE (preseason), PST (postseason). Buckets are stored and returned separately, never combined.
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6776,6 +6852,7 @@ class MembersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -6800,6 +6877,7 @@ class MembersApi:
         id,
         league,
         season,
+        season_number,
         stats_type,
         _request_auth,
         _content_type,
@@ -6832,6 +6910,10 @@ class MembersApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         if stats_type is not None:
             
@@ -7172,7 +7254,7 @@ class MembersApi:
     async def members_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        member: Member,
+        member_update: MemberUpdate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7192,8 +7274,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param member: (required)
-        :type member: Member
+        :param member_update: (required)
+        :type member_update: MemberUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7218,7 +7300,7 @@ class MembersApi:
 
         _param = self._members_update_serialize(
             id=id,
-            member=member,
+            member_update=member_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7243,7 +7325,7 @@ class MembersApi:
     async def members_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        member: Member,
+        member_update: MemberUpdate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7263,8 +7345,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param member: (required)
-        :type member: Member
+        :param member_update: (required)
+        :type member_update: MemberUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7289,7 +7371,7 @@ class MembersApi:
 
         _param = self._members_update_serialize(
             id=id,
-            member=member,
+            member_update=member_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7314,7 +7396,7 @@ class MembersApi:
     async def members_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this user.")],
-        member: Member,
+        member_update: MemberUpdate,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7334,8 +7416,8 @@ class MembersApi:
 
         :param id: A unique integer value identifying this user. (required)
         :type id: int
-        :param member: (required)
-        :type member: Member
+        :param member_update: (required)
+        :type member_update: MemberUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -7360,7 +7442,7 @@ class MembersApi:
 
         _param = self._members_update_serialize(
             id=id,
-            member=member,
+            member_update=member_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -7380,7 +7462,7 @@ class MembersApi:
     def _members_update_serialize(
         self,
         id,
-        member,
+        member_update,
         _request_auth,
         _content_type,
         _headers,
@@ -7408,8 +7490,8 @@ class MembersApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if member is not None:
-            _body_params = member
+        if member_update is not None:
+            _body_params = member_update
 
 
         # set the HTTP header `Accept`

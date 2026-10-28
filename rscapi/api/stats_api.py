@@ -45,7 +45,7 @@ class StatsApi:
     async def stats_flagged_matches_list(
         self,
         day: Annotated[Optional[StrictInt], Field(description="Match day")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         match_type: Annotated[Optional[StrictStr], Field(description="Match type filter")] = None,
         missing_ballchasing_group: Annotated[Optional[StrictBool], Field(description="Filter by missing ballchasing group flag")] = None,
@@ -53,7 +53,8 @@ class StatsApi:
         missing_stats: Annotated[Optional[StrictBool], Field(description="Filter by missing stats flag")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         search: Annotated[Optional[StrictStr], Field(description="Case-insensitive search across team and franchise names")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season ID")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -72,7 +73,7 @@ class StatsApi:
 
         :param day: Match day
         :type day: int
-        :param league: League ID
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
@@ -88,8 +89,10 @@ class StatsApi:
         :type offset: int
         :param search: Case-insensitive search across team and franchise names
         :type search: str
-        :param season: Season ID
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -123,6 +126,7 @@ class StatsApi:
             offset=offset,
             search=search,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -147,7 +151,7 @@ class StatsApi:
     async def stats_flagged_matches_list_with_http_info(
         self,
         day: Annotated[Optional[StrictInt], Field(description="Match day")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         match_type: Annotated[Optional[StrictStr], Field(description="Match type filter")] = None,
         missing_ballchasing_group: Annotated[Optional[StrictBool], Field(description="Filter by missing ballchasing group flag")] = None,
@@ -155,7 +159,8 @@ class StatsApi:
         missing_stats: Annotated[Optional[StrictBool], Field(description="Filter by missing stats flag")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         search: Annotated[Optional[StrictStr], Field(description="Case-insensitive search across team and franchise names")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season ID")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -174,7 +179,7 @@ class StatsApi:
 
         :param day: Match day
         :type day: int
-        :param league: League ID
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
@@ -190,8 +195,10 @@ class StatsApi:
         :type offset: int
         :param search: Case-insensitive search across team and franchise names
         :type search: str
-        :param season: Season ID
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -225,6 +232,7 @@ class StatsApi:
             offset=offset,
             search=search,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -249,7 +257,7 @@ class StatsApi:
     async def stats_flagged_matches_list_without_preload_content(
         self,
         day: Annotated[Optional[StrictInt], Field(description="Match day")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         match_type: Annotated[Optional[StrictStr], Field(description="Match type filter")] = None,
         missing_ballchasing_group: Annotated[Optional[StrictBool], Field(description="Filter by missing ballchasing group flag")] = None,
@@ -257,7 +265,8 @@ class StatsApi:
         missing_stats: Annotated[Optional[StrictBool], Field(description="Filter by missing stats flag")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         search: Annotated[Optional[StrictStr], Field(description="Case-insensitive search across team and franchise names")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season ID")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -276,7 +285,7 @@ class StatsApi:
 
         :param day: Match day
         :type day: int
-        :param league: League ID
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
@@ -292,8 +301,10 @@ class StatsApi:
         :type offset: int
         :param search: Case-insensitive search across team and franchise names
         :type search: str
-        :param season: Season ID
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -327,6 +338,7 @@ class StatsApi:
             offset=offset,
             search=search,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -355,6 +367,7 @@ class StatsApi:
         offset,
         search,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -416,6 +429,10 @@ class StatsApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -715,10 +732,11 @@ class StatsApi:
     @validate_call
     async def stats_idr_list(
         self,
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[int, Field(strict=True, ge=1, description="Season ID")],
         tier: Annotated[int, Field(strict=True, ge=1, description="Tier ID")],
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
         qualified_only: Annotated[Optional[StrictBool], Field(description="Only return players meeting the tier's games-played threshold.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -736,14 +754,16 @@ class StatsApi:
         """stats_idr_list
 
 
-        :param league: League ID (required)
-        :type league: int
-        :param season: Season ID (required)
-        :type season: int
         :param tier: Tier ID (required)
         :type tier: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param qualified_only: Only return players meeting the tier's games-played threshold.
         :type qualified_only: bool
+        :param season: Season ID (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number
+        :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -769,10 +789,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._stats_idr_list_serialize(
-            league=league,
-            season=season,
             tier=tier,
+            league=league,
             qualified_only=qualified_only,
+            season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -799,10 +820,11 @@ class StatsApi:
     @validate_call
     async def stats_idr_list_with_http_info(
         self,
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[int, Field(strict=True, ge=1, description="Season ID")],
         tier: Annotated[int, Field(strict=True, ge=1, description="Tier ID")],
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
         qualified_only: Annotated[Optional[StrictBool], Field(description="Only return players meeting the tier's games-played threshold.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -820,14 +842,16 @@ class StatsApi:
         """stats_idr_list
 
 
-        :param league: League ID (required)
-        :type league: int
-        :param season: Season ID (required)
-        :type season: int
         :param tier: Tier ID (required)
         :type tier: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param qualified_only: Only return players meeting the tier's games-played threshold.
         :type qualified_only: bool
+        :param season: Season ID (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number
+        :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -853,10 +877,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._stats_idr_list_serialize(
-            league=league,
-            season=season,
             tier=tier,
+            league=league,
             qualified_only=qualified_only,
+            season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -883,10 +908,11 @@ class StatsApi:
     @validate_call
     async def stats_idr_list_without_preload_content(
         self,
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[int, Field(strict=True, ge=1, description="Season ID")],
         tier: Annotated[int, Field(strict=True, ge=1, description="Tier ID")],
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
         qualified_only: Annotated[Optional[StrictBool], Field(description="Only return players meeting the tier's games-played threshold.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -904,14 +930,16 @@ class StatsApi:
         """stats_idr_list
 
 
-        :param league: League ID (required)
-        :type league: int
-        :param season: Season ID (required)
-        :type season: int
         :param tier: Tier ID (required)
         :type tier: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param qualified_only: Only return players meeting the tier's games-played threshold.
         :type qualified_only: bool
+        :param season: Season ID (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number
+        :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -937,10 +965,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._stats_idr_list_serialize(
-            league=league,
-            season=season,
             tier=tier,
+            league=league,
             qualified_only=qualified_only,
+            season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -962,10 +991,11 @@ class StatsApi:
 
     def _stats_idr_list_serialize(
         self,
-        league,
-        season,
         tier,
+        league,
         qualified_only,
+        season,
+        season_number,
         stats_type,
         _request_auth,
         _content_type,
@@ -1000,6 +1030,10 @@ class StatsApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         if stats_type is not None:
             
@@ -1050,10 +1084,10 @@ class StatsApi:
     async def stats_idr_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
-        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1073,13 +1107,13 @@ class StatsApi:
 
         :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID (Default: the default league)
         :type league: int
-        :param season: Season Number (alias)
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_id: Season ID
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: Season Number
+        :param season_number: Season number
         :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
@@ -1138,10 +1172,10 @@ class StatsApi:
     async def stats_idr_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
-        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1161,13 +1195,13 @@ class StatsApi:
 
         :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID (Default: the default league)
         :type league: int
-        :param season: Season Number (alias)
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_id: Season ID
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: Season Number
+        :param season_number: Season number
         :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
@@ -1226,10 +1260,10 @@ class StatsApi:
     async def stats_idr_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
-        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1249,13 +1283,13 @@ class StatsApi:
 
         :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID (Default: the default league)
         :type league: int
-        :param season: Season Number (alias)
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_id: Season ID
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: Season Number
+        :param season_number: Season number
         :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
@@ -1398,10 +1432,11 @@ class StatsApi:
     @validate_call
     async def stats_sbv_list(
         self,
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[int, Field(strict=True, ge=1, description="Season ID")],
         tier: Annotated[int, Field(strict=True, ge=1, description="Tier ID")],
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
         qualified_only: Annotated[Optional[StrictBool], Field(description="Only return players meeting the tier's games-played threshold.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1419,14 +1454,16 @@ class StatsApi:
         """stats_sbv_list
 
 
-        :param league: League ID (required)
-        :type league: int
-        :param season: Season ID (required)
-        :type season: int
         :param tier: Tier ID (required)
         :type tier: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param qualified_only: Only return players meeting the tier's games-played threshold.
         :type qualified_only: bool
+        :param season: Season ID (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number
+        :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1452,10 +1489,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._stats_sbv_list_serialize(
-            league=league,
-            season=season,
             tier=tier,
+            league=league,
             qualified_only=qualified_only,
+            season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1482,10 +1520,11 @@ class StatsApi:
     @validate_call
     async def stats_sbv_list_with_http_info(
         self,
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[int, Field(strict=True, ge=1, description="Season ID")],
         tier: Annotated[int, Field(strict=True, ge=1, description="Tier ID")],
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
         qualified_only: Annotated[Optional[StrictBool], Field(description="Only return players meeting the tier's games-played threshold.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1503,14 +1542,16 @@ class StatsApi:
         """stats_sbv_list
 
 
-        :param league: League ID (required)
-        :type league: int
-        :param season: Season ID (required)
-        :type season: int
         :param tier: Tier ID (required)
         :type tier: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param qualified_only: Only return players meeting the tier's games-played threshold.
         :type qualified_only: bool
+        :param season: Season ID (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number
+        :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1536,10 +1577,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._stats_sbv_list_serialize(
-            league=league,
-            season=season,
             tier=tier,
+            league=league,
             qualified_only=qualified_only,
+            season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1566,10 +1608,11 @@ class StatsApi:
     @validate_call
     async def stats_sbv_list_without_preload_content(
         self,
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[int, Field(strict=True, ge=1, description="Season ID")],
         tier: Annotated[int, Field(strict=True, ge=1, description="Tier ID")],
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
         qualified_only: Annotated[Optional[StrictBool], Field(description="Only return players meeting the tier's games-played threshold.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1587,14 +1630,16 @@ class StatsApi:
         """stats_sbv_list
 
 
-        :param league: League ID (required)
-        :type league: int
-        :param season: Season ID (required)
-        :type season: int
         :param tier: Tier ID (required)
         :type tier: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param qualified_only: Only return players meeting the tier's games-played threshold.
         :type qualified_only: bool
+        :param season: Season ID (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number
+        :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1620,10 +1665,11 @@ class StatsApi:
         """ # noqa: E501
 
         _param = self._stats_sbv_list_serialize(
-            league=league,
-            season=season,
             tier=tier,
+            league=league,
             qualified_only=qualified_only,
+            season=season,
+            season_number=season_number,
             stats_type=stats_type,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1645,10 +1691,11 @@ class StatsApi:
 
     def _stats_sbv_list_serialize(
         self,
-        league,
-        season,
         tier,
+        league,
         qualified_only,
+        season,
+        season_number,
         stats_type,
         _request_auth,
         _content_type,
@@ -1683,6 +1730,10 @@ class StatsApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         if stats_type is not None:
             
@@ -1733,10 +1784,10 @@ class StatsApi:
     async def stats_sbv_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
-        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1756,13 +1807,13 @@ class StatsApi:
 
         :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID (Default: the default league)
         :type league: int
-        :param season: Season Number (alias)
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_id: Season ID
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: Season Number
+        :param season_number: Season number
         :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
@@ -1821,10 +1872,10 @@ class StatsApi:
     async def stats_sbv_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
-        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1844,13 +1895,13 @@ class StatsApi:
 
         :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID (Default: the default league)
         :type league: int
-        :param season: Season Number (alias)
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_id: Season ID
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: Season Number
+        :param season_number: Season number
         :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str
@@ -1909,10 +1960,10 @@ class StatsApi:
     async def stats_sbv_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="LeaguePlayer ID or Member discord_id")],
-        league: Annotated[int, Field(strict=True, ge=1, description="League ID")],
-        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number (alias)")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID")] = None,
-        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season Number")] = None,
+        league: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="League ID (Default: the default league)")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number")] = None,
         stats_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats")] = None,
         _request_timeout: Union[
             None,
@@ -1932,13 +1983,13 @@ class StatsApi:
 
         :param id: LeaguePlayer ID or Member discord_id (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID (Default: the default league)
         :type league: int
-        :param season: Season Number (alias)
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_id: Season ID
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: Season Number
+        :param season_number: Season number
         :type season_number: int
         :param stats_type: Stats type filter  * `REG` - Regular Season Stats * `PRE` - Pre-season Stats * `PST` - Post Season Stats
         :type stats_type: str

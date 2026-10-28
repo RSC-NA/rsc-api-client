@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -27,9 +28,9 @@ class CreateMemberInput(BaseModel):
     """
     CreateMemberInput
     """ # noqa: E501
-    username: StrictStr
-    rsc_name: StrictStr
-    discord_id: StrictInt
+    username: Annotated[str, Field(strict=True, max_length=100)]
+    rsc_name: Annotated[str, Field(strict=True, max_length=255)]
+    discord_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     __properties: ClassVar[List[str]] = ["username", "rsc_name", "discord_id"]
 
     model_config = ConfigDict(

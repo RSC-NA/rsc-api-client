@@ -31,9 +31,10 @@ class DraftPickSwap(BaseModel):
     to_gm: StrictInt
     round: StrictInt
     tier: StrictStr
-    league: Optional[StrictInt] = 1
-    season: StrictInt = Field(description="Season **number**.")
-    __properties: ClassVar[List[str]] = ["from_gm", "to_gm", "round", "tier", "league", "season"]
+    league: Optional[StrictInt] = Field(default=None, description="League ID (Default: the default league)")
+    season: Optional[StrictInt] = Field(default=None, description="Season ID (Default: the league's current season)")
+    season_number: Optional[StrictInt] = Field(default=None, description="Season number")
+    __properties: ClassVar[List[str]] = ["from_gm", "to_gm", "round", "tier", "league", "season", "season_number"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -90,8 +91,9 @@ class DraftPickSwap(BaseModel):
             "to_gm": obj.get("to_gm"),
             "round": obj.get("round"),
             "tier": obj.get("tier"),
-            "league": obj.get("league") if obj.get("league") is not None else 1,
-            "season": obj.get("season")
+            "league": obj.get("league"),
+            "season": obj.get("season"),
+            "season_number": obj.get("season_number")
         })
         return _obj
 

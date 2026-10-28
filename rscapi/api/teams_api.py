@@ -20,7 +20,7 @@ from typing import List, Optional, Union
 from typing_extensions import Annotated
 from rscapi.models.high_level_match import HighLevelMatch
 from rscapi.models.match import Match
-from rscapi.models.patched_team_list import PatchedTeamList
+from rscapi.models.patched_team_patch import PatchedTeamPatch
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth
 from rscapi.models.team import Team
 from rscapi.models.team_create import TeamCreate
@@ -578,7 +578,7 @@ class TeamsApi:
     async def teams_list(
         self,
         franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
+        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID (Default: the default league)")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
         seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
@@ -600,8 +600,8 @@ class TeamsApi:
 
         :param franchise: Franchise Name Contains
         :type franchise: str
-        :param league: League Database ID
-        :type league: int
+        :param league: League ID (Default: the default league)
+        :type league: float
         :param name: Team Name Contains
         :type name: str
         :param seasons: Season Number contains
@@ -660,7 +660,7 @@ class TeamsApi:
     async def teams_list_with_http_info(
         self,
         franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
+        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID (Default: the default league)")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
         seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
@@ -682,8 +682,8 @@ class TeamsApi:
 
         :param franchise: Franchise Name Contains
         :type franchise: str
-        :param league: League Database ID
-        :type league: int
+        :param league: League ID (Default: the default league)
+        :type league: float
         :param name: Team Name Contains
         :type name: str
         :param seasons: Season Number contains
@@ -742,7 +742,7 @@ class TeamsApi:
     async def teams_list_without_preload_content(
         self,
         franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
+        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID (Default: the default league)")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
         seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
@@ -764,8 +764,8 @@ class TeamsApi:
 
         :param franchise: Franchise Name Contains
         :type franchise: str
-        :param league: League Database ID
-        :type league: int
+        :param league: League ID (Default: the default league)
+        :type league: float
         :param name: Team Name Contains
         :type name: str
         :param seasons: Season Number contains
@@ -909,7 +909,8 @@ class TeamsApi:
         day: StrictInt,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         preseason: Optional[StrictBool] = None,
-        season_number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the team's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -933,7 +934,9 @@ class TeamsApi:
         :type id: int
         :param preseason:
         :type preseason: bool
-        :param season_number:
+        :param season: Season ID (Default: the team's current season)
+        :type season: int
+        :param season_number: Season number
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -961,6 +964,7 @@ class TeamsApi:
             day=day,
             id=id,
             preseason=preseason,
+            season=season,
             season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -990,7 +994,8 @@ class TeamsApi:
         day: StrictInt,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         preseason: Optional[StrictBool] = None,
-        season_number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the team's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1014,7 +1019,9 @@ class TeamsApi:
         :type id: int
         :param preseason:
         :type preseason: bool
-        :param season_number:
+        :param season: Season ID (Default: the team's current season)
+        :type season: int
+        :param season_number: Season number
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1042,6 +1049,7 @@ class TeamsApi:
             day=day,
             id=id,
             preseason=preseason,
+            season=season,
             season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1071,7 +1079,8 @@ class TeamsApi:
         day: StrictInt,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
         preseason: Optional[StrictBool] = None,
-        season_number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the team's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1095,7 +1104,9 @@ class TeamsApi:
         :type id: int
         :param preseason:
         :type preseason: bool
-        :param season_number:
+        :param season: Season ID (Default: the team's current season)
+        :type season: int
+        :param season_number: Season number
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1123,6 +1134,7 @@ class TeamsApi:
             day=day,
             id=id,
             preseason=preseason,
+            season=season,
             season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1147,6 +1159,7 @@ class TeamsApi:
         day,
         id,
         preseason,
+        season,
         season_number,
         _request_auth,
         _content_type,
@@ -1179,6 +1192,10 @@ class TeamsApi:
         if preseason is not None:
             
             _query_params.append(('preseason', preseason))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
             
         if season_number is not None:
             
@@ -1489,7 +1506,7 @@ class TeamsApi:
     async def teams_partial_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        patched_team_list: Optional[PatchedTeamList] = None,
+        patched_team_patch: Optional[PatchedTeamPatch] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1502,14 +1519,14 @@ class TeamsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TeamList:
+    ) -> TeamPatch:
         """teams_partial_update
 
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param patched_team_list:
-        :type patched_team_list: PatchedTeamList
+        :param patched_team_patch:
+        :type patched_team_patch: PatchedTeamPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1534,7 +1551,7 @@ class TeamsApi:
 
         _param = self._teams_partial_update_serialize(
             id=id,
-            patched_team_list=patched_team_list,
+            patched_team_patch=patched_team_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1542,7 +1559,7 @@ class TeamsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TeamList",
+            '200': "TeamPatch",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1559,7 +1576,7 @@ class TeamsApi:
     async def teams_partial_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        patched_team_list: Optional[PatchedTeamList] = None,
+        patched_team_patch: Optional[PatchedTeamPatch] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1572,14 +1589,14 @@ class TeamsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TeamList]:
+    ) -> ApiResponse[TeamPatch]:
         """teams_partial_update
 
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param patched_team_list:
-        :type patched_team_list: PatchedTeamList
+        :param patched_team_patch:
+        :type patched_team_patch: PatchedTeamPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1604,7 +1621,7 @@ class TeamsApi:
 
         _param = self._teams_partial_update_serialize(
             id=id,
-            patched_team_list=patched_team_list,
+            patched_team_patch=patched_team_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1612,7 +1629,7 @@ class TeamsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TeamList",
+            '200': "TeamPatch",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1629,7 +1646,7 @@ class TeamsApi:
     async def teams_partial_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        patched_team_list: Optional[PatchedTeamList] = None,
+        patched_team_patch: Optional[PatchedTeamPatch] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1648,8 +1665,8 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param patched_team_list:
-        :type patched_team_list: PatchedTeamList
+        :param patched_team_patch:
+        :type patched_team_patch: PatchedTeamPatch
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1674,7 +1691,7 @@ class TeamsApi:
 
         _param = self._teams_partial_update_serialize(
             id=id,
-            patched_team_list=patched_team_list,
+            patched_team_patch=patched_team_patch,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1682,7 +1699,7 @@ class TeamsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TeamList",
+            '200': "TeamPatch",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1694,7 +1711,7 @@ class TeamsApi:
     def _teams_partial_update_serialize(
         self,
         id,
-        patched_team_list,
+        patched_team_patch,
         _request_auth,
         _content_type,
         _headers,
@@ -1722,8 +1739,8 @@ class TeamsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if patched_team_list is not None:
-            _body_params = patched_team_list
+        if patched_team_patch is not None:
+            _body_params = patched_team_patch
 
 
         # set the HTTP header `Accept`
@@ -1777,13 +1794,9 @@ class TeamsApi:
     async def teams_player_stats_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1803,20 +1816,12 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1841,13 +1846,9 @@ class TeamsApi:
 
         _param = self._teams_player_stats_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
+            season=season,
             season_id=season_id,
             season_number=season_number,
-            seasons=seasons,
-            tier=tier,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1873,13 +1874,9 @@ class TeamsApi:
     async def teams_player_stats_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1899,20 +1896,12 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1937,13 +1926,9 @@ class TeamsApi:
 
         _param = self._teams_player_stats_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
+            season=season,
             season_id=season_id,
             season_number=season_number,
-            seasons=seasons,
-            tier=tier,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1969,13 +1954,9 @@ class TeamsApi:
     async def teams_player_stats_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1995,20 +1976,12 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2033,13 +2006,9 @@ class TeamsApi:
 
         _param = self._teams_player_stats_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
+            season=season,
             season_id=season_id,
             season_number=season_number,
-            seasons=seasons,
-            tier=tier,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2060,13 +2029,9 @@ class TeamsApi:
     def _teams_player_stats_list_serialize(
         self,
         id,
-        franchise,
-        league,
-        name,
+        season,
         season_id,
         season_number,
-        seasons,
-        tier,
         _request_auth,
         _content_type,
         _headers,
@@ -2076,7 +2041,6 @@ class TeamsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            'seasons': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -2092,17 +2056,9 @@ class TeamsApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
-        if franchise is not None:
+        if season is not None:
             
-            _query_params.append(('franchise', franchise))
-            
-        if league is not None:
-            
-            _query_params.append(('league', league))
-            
-        if name is not None:
-            
-            _query_params.append(('name', name))
+            _query_params.append(('season', season))
             
         if season_id is not None:
             
@@ -2111,14 +2067,6 @@ class TeamsApi:
         if season_number is not None:
             
             _query_params.append(('season_number', season_number))
-            
-        if seasons is not None:
-            
-            _query_params.append(('seasons', seasons))
-            
-        if tier is not None:
-            
-            _query_params.append(('tier', tier))
             
         # process the header parameters
         # process the form parameters
@@ -2161,11 +2109,6 @@ class TeamsApi:
     async def teams_players_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2185,16 +2128,6 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2219,11 +2152,6 @@ class TeamsApi:
 
         _param = self._teams_players_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
-            seasons=seasons,
-            tier=tier,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2248,11 +2176,6 @@ class TeamsApi:
     async def teams_players_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2272,16 +2195,6 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2306,11 +2219,6 @@ class TeamsApi:
 
         _param = self._teams_players_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
-            seasons=seasons,
-            tier=tier,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2335,11 +2243,6 @@ class TeamsApi:
     async def teams_players_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2359,16 +2262,6 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2393,11 +2286,6 @@ class TeamsApi:
 
         _param = self._teams_players_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
-            seasons=seasons,
-            tier=tier,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2417,11 +2305,6 @@ class TeamsApi:
     def _teams_players_list_serialize(
         self,
         id,
-        franchise,
-        league,
-        name,
-        seasons,
-        tier,
         _request_auth,
         _content_type,
         _headers,
@@ -2431,7 +2314,6 @@ class TeamsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            'seasons': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -2447,26 +2329,6 @@ class TeamsApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
-        if franchise is not None:
-            
-            _query_params.append(('franchise', franchise))
-            
-        if league is not None:
-            
-            _query_params.append(('league', league))
-            
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
-        if seasons is not None:
-            
-            _query_params.append(('seasons', seasons))
-            
-        if tier is not None:
-            
-            _query_params.append(('tier', tier))
-            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -2508,7 +2370,8 @@ class TeamsApi:
     async def teams_postseason_stats_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
         _request_timeout: Union[
             None,
@@ -2529,7 +2392,9 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
@@ -2557,6 +2422,7 @@ class TeamsApi:
 
         _param = self._teams_postseason_stats_retrieve_serialize(
             id=id,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -2584,7 +2450,8 @@ class TeamsApi:
     async def teams_postseason_stats_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
         _request_timeout: Union[
             None,
@@ -2605,7 +2472,9 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
@@ -2633,6 +2502,7 @@ class TeamsApi:
 
         _param = self._teams_postseason_stats_retrieve_serialize(
             id=id,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -2660,7 +2530,8 @@ class TeamsApi:
     async def teams_postseason_stats_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
         _request_timeout: Union[
             None,
@@ -2681,7 +2552,9 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
@@ -2709,6 +2582,7 @@ class TeamsApi:
 
         _param = self._teams_postseason_stats_retrieve_serialize(
             id=id,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -2731,6 +2605,7 @@ class TeamsApi:
     def _teams_postseason_stats_retrieve_serialize(
         self,
         id,
+        season,
         season_id,
         season_number,
         _request_auth,
@@ -2757,6 +2632,10 @@ class TeamsApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
         if season_id is not None:
             
             _query_params.append(('season_id', season_id))
@@ -3064,13 +2943,9 @@ class TeamsApi:
     async def teams_season_matches_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
         preseason: Optional[StrictBool] = None,
-        season: Optional[StrictInt] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3090,20 +2965,12 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
         :param preseason:
         :type preseason: bool
-        :param season:
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
+        :param season_number: Season number
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3128,13 +2995,9 @@ class TeamsApi:
 
         _param = self._teams_season_matches_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
             preseason=preseason,
             season=season,
-            seasons=seasons,
-            tier=tier,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3160,13 +3023,9 @@ class TeamsApi:
     async def teams_season_matches_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
         preseason: Optional[StrictBool] = None,
-        season: Optional[StrictInt] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3186,20 +3045,12 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
         :param preseason:
         :type preseason: bool
-        :param season:
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
+        :param season_number: Season number
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3224,13 +3075,9 @@ class TeamsApi:
 
         _param = self._teams_season_matches_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
             preseason=preseason,
             season=season,
-            seasons=seasons,
-            tier=tier,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3256,13 +3103,9 @@ class TeamsApi:
     async def teams_season_matches_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        franchise: Annotated[Optional[StrictStr], Field(description="Franchise Name Contains")] = None,
-        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="League ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Team Name Contains")] = None,
         preseason: Optional[StrictBool] = None,
-        season: Optional[StrictInt] = None,
-        seasons: Annotated[Optional[List[StrictInt]], Field(description="Season Number contains")] = None,
-        tier: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3282,20 +3125,12 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param franchise: Franchise Name Contains
-        :type franchise: str
-        :param league: League ID
-        :type league: float
-        :param name: Team Name Contains
-        :type name: str
         :param preseason:
         :type preseason: bool
-        :param season:
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param seasons: Season Number contains
-        :type seasons: List[int]
-        :param tier: Tier Name Contains
-        :type tier: str
+        :param season_number: Season number
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3320,13 +3155,9 @@ class TeamsApi:
 
         _param = self._teams_season_matches_list_serialize(
             id=id,
-            franchise=franchise,
-            league=league,
-            name=name,
             preseason=preseason,
             season=season,
-            seasons=seasons,
-            tier=tier,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3347,13 +3178,9 @@ class TeamsApi:
     def _teams_season_matches_list_serialize(
         self,
         id,
-        franchise,
-        league,
-        name,
         preseason,
         season,
-        seasons,
-        tier,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -3363,7 +3190,6 @@ class TeamsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            'seasons': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -3379,18 +3205,6 @@ class TeamsApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
-        if franchise is not None:
-            
-            _query_params.append(('franchise', franchise))
-            
-        if league is not None:
-            
-            _query_params.append(('league', league))
-            
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
         if preseason is not None:
             
             _query_params.append(('preseason', preseason))
@@ -3399,13 +3213,9 @@ class TeamsApi:
             
             _query_params.append(('season', season))
             
-        if seasons is not None:
+        if season_number is not None:
             
-            _query_params.append(('seasons', seasons))
-            
-        if tier is not None:
-            
-            _query_params.append(('tier', tier))
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -3448,7 +3258,8 @@ class TeamsApi:
     async def teams_stats_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
         _request_timeout: Union[
             None,
@@ -3469,7 +3280,9 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
@@ -3497,6 +3310,7 @@ class TeamsApi:
 
         _param = self._teams_stats_retrieve_serialize(
             id=id,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -3523,7 +3337,8 @@ class TeamsApi:
     async def teams_stats_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
         _request_timeout: Union[
             None,
@@ -3544,7 +3359,9 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
@@ -3572,6 +3389,7 @@ class TeamsApi:
 
         _param = self._teams_stats_retrieve_serialize(
             id=id,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -3598,7 +3416,8 @@ class TeamsApi:
     async def teams_stats_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this team.")],
-        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season database ID to query for.")] = None,
+        season: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season ID to query for.")] = None,
+        season_id: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Deprecated spelling of `season`.")] = None,
         season_number: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Season number to query for. Defaults to the league current season when omitted.")] = None,
         _request_timeout: Union[
             None,
@@ -3619,7 +3438,9 @@ class TeamsApi:
 
         :param id: A unique integer value identifying this team. (required)
         :type id: int
-        :param season_id: Season database ID to query for.
+        :param season: Season ID to query for.
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
         :param season_number: Season number to query for. Defaults to the league current season when omitted.
         :type season_number: int
@@ -3647,6 +3468,7 @@ class TeamsApi:
 
         _param = self._teams_stats_retrieve_serialize(
             id=id,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -3668,6 +3490,7 @@ class TeamsApi:
     def _teams_stats_retrieve_serialize(
         self,
         id,
+        season,
         season_id,
         season_number,
         _request_auth,
@@ -3694,6 +3517,10 @@ class TeamsApi:
         if id is not None:
             _path_params['id'] = id
         # process the query parameters
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
         if season_id is not None:
             
             _query_params.append(('season_id', season_id))

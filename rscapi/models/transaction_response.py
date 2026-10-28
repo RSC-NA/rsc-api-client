@@ -88,8 +88,10 @@ class TransactionResponse(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
+            "pick_trades",
             "var_date",
             "pick_value_gap_rounds",
             "pick_value_verdict",
@@ -128,11 +130,6 @@ class TransactionResponse(BaseModel):
         # and model_fields_set contains the field
         if self.player_updates is None and "player_updates" in self.model_fields_set:
             _dict['player_updates'] = None
-
-        # set to None if pick_trades (nullable) is None
-        # and model_fields_set contains the field
-        if self.pick_trades is None and "pick_trades" in self.model_fields_set:
-            _dict['pick_trades'] = None
 
         # set to None if type (nullable) is None
         # and model_fields_set contains the field

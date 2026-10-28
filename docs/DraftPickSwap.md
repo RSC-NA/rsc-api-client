@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 **to_gm** | **int** |  | 
 **round** | **int** |  | 
 **tier** | **str** |  | 
-**league** | **int** |  | [optional] [default to 1]
-**season** | **int** | Season **number**. | 
+**league** | **int** | League ID (Default: the default league) | [optional] 
+**season** | **int** | Season ID (Default: the league&#39;s current season) | [optional] 
+**season_number** | **int** | Season number | [optional] 
 
 ## Example
 

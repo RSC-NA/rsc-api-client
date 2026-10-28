@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,7 +31,7 @@ class IntentToPlayRequest(BaseModel):
     returning: StrictBool
     league: StrictInt
     admin_override: Optional[StrictBool] = None
-    executor: Optional[StrictInt] = None
+    executor: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None
     __properties: ClassVar[List[str]] = ["returning", "league", "admin_override", "executor"]
 
     model_config = ConfigDict(

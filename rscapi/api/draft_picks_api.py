@@ -19,10 +19,12 @@ from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from rscapi.models.draft_pick_details import DraftPickDetails
+from rscapi.models.draft_pick_list import DraftPickList
 from rscapi.models.draft_pick_swap import DraftPickSwap
+from rscapi.models.draft_pick_update import DraftPickUpdate
 from rscapi.models.draft_tier_count_keeper_export import DraftTierCountKeeperExport
 from rscapi.models.paginated_draft_pick_list_list import PaginatedDraftPickListList
-from rscapi.models.patched_draft_pick_details import PatchedDraftPickDetails
+from rscapi.models.patched_draft_pick_update import PatchedDraftPickUpdate
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -49,7 +51,7 @@ class DraftPicksApi:
         count: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Filter by calculated count value.")] = None,
         format: Optional[StrictStr] = None,
         keeper: Annotated[Optional[Annotated[int, Field(le=1, strict=True, ge=0)]], Field(description="Filter by keeper flag. Use 1 for keeper picks and 0 for non-keeper picks.")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League id. Defaults to 1.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League id. (Default: the default league)")] = None,
         season: Annotated[Optional[StrictInt], Field(description="Season id. If omitted, current season for the league is used.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number (alternative to season id).")] = None,
         _request_timeout: Union[
@@ -76,7 +78,7 @@ class DraftPicksApi:
         :type format: str
         :param keeper: Filter by keeper flag. Use 1 for keeper picks and 0 for non-keeper picks.
         :type keeper: int
-        :param league: League id. Defaults to 1.
+        :param league: League id. (Default: the default league)
         :type league: int
         :param season: Season id. If omitted, current season for the league is used.
         :type season: int
@@ -139,7 +141,7 @@ class DraftPicksApi:
         count: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Filter by calculated count value.")] = None,
         format: Optional[StrictStr] = None,
         keeper: Annotated[Optional[Annotated[int, Field(le=1, strict=True, ge=0)]], Field(description="Filter by keeper flag. Use 1 for keeper picks and 0 for non-keeper picks.")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League id. Defaults to 1.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League id. (Default: the default league)")] = None,
         season: Annotated[Optional[StrictInt], Field(description="Season id. If omitted, current season for the league is used.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number (alternative to season id).")] = None,
         _request_timeout: Union[
@@ -166,7 +168,7 @@ class DraftPicksApi:
         :type format: str
         :param keeper: Filter by keeper flag. Use 1 for keeper picks and 0 for non-keeper picks.
         :type keeper: int
-        :param league: League id. Defaults to 1.
+        :param league: League id. (Default: the default league)
         :type league: int
         :param season: Season id. If omitted, current season for the league is used.
         :type season: int
@@ -229,7 +231,7 @@ class DraftPicksApi:
         count: Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="Filter by calculated count value.")] = None,
         format: Optional[StrictStr] = None,
         keeper: Annotated[Optional[Annotated[int, Field(le=1, strict=True, ge=0)]], Field(description="Filter by keeper flag. Use 1 for keeper picks and 0 for non-keeper picks.")] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League id. Defaults to 1.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League id. (Default: the default league)")] = None,
         season: Annotated[Optional[StrictInt], Field(description="Season id. If omitted, current season for the league is used.")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number (alternative to season id).")] = None,
         _request_timeout: Union[
@@ -256,7 +258,7 @@ class DraftPicksApi:
         :type format: str
         :param keeper: Filter by keeper flag. Use 1 for keeper picks and 0 for non-keeper picks.
         :type keeper: int
-        :param league: League id. Defaults to 1.
+        :param league: League id. (Default: the default league)
         :type league: int
         :param season: Season id. If omitted, current season for the league is used.
         :type season: int
@@ -408,7 +410,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_destroy(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        id: Annotated[str, Field(strict=True)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -426,8 +428,8 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -475,7 +477,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_destroy_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        id: Annotated[str, Field(strict=True)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -493,8 +495,8 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -542,7 +544,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_destroy_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        id: Annotated[str, Field(strict=True)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -560,8 +562,8 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -666,13 +668,15 @@ class DraftPicksApi:
         franchise: Annotated[Optional[StrictStr], Field(description="Franchise name contains.")] = None,
         future: Annotated[Optional[StrictBool], Field(description="Future pick.")] = None,
         future_season: Annotated[Optional[StrictInt], Field(description="Future season number.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         number: Annotated[Optional[StrictInt], Field(description="Pick number in the specific tier.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         original_pick: Annotated[Optional[StrictStr], Field(description="Pick this originally came from.")] = None,
         pick_from: Annotated[Optional[StrictStr], Field(description="Prefix of who the pick came from.")] = None,
         round: Annotated[Optional[StrictInt], Field(description="Specific round in the tier.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number. (Default: the league's current season)")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier name.")] = None,
         _request_timeout: Union[
             None,
@@ -699,6 +703,8 @@ class DraftPicksApi:
         :type future: bool
         :param future_season: Future season number.
         :type future_season: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param number: Pick number in the specific tier.
@@ -711,7 +717,9 @@ class DraftPicksApi:
         :type pick_from: str
         :param round: Specific round in the tier.
         :type round: int
-        :param season_number: Season number.
+        :param season: Season ID. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number. (Default: the league's current season)
         :type season_number: int
         :param tier: Tier name.
         :type tier: str
@@ -742,12 +750,14 @@ class DraftPicksApi:
             franchise=franchise,
             future=future,
             future_season=future_season,
+            league=league,
             limit=limit,
             number=number,
             offset=offset,
             original_pick=original_pick,
             pick_from=pick_from,
             round=round,
+            season=season,
             season_number=season_number,
             tier=tier,
             _request_auth=_request_auth,
@@ -777,13 +787,15 @@ class DraftPicksApi:
         franchise: Annotated[Optional[StrictStr], Field(description="Franchise name contains.")] = None,
         future: Annotated[Optional[StrictBool], Field(description="Future pick.")] = None,
         future_season: Annotated[Optional[StrictInt], Field(description="Future season number.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         number: Annotated[Optional[StrictInt], Field(description="Pick number in the specific tier.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         original_pick: Annotated[Optional[StrictStr], Field(description="Pick this originally came from.")] = None,
         pick_from: Annotated[Optional[StrictStr], Field(description="Prefix of who the pick came from.")] = None,
         round: Annotated[Optional[StrictInt], Field(description="Specific round in the tier.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number. (Default: the league's current season)")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier name.")] = None,
         _request_timeout: Union[
             None,
@@ -810,6 +822,8 @@ class DraftPicksApi:
         :type future: bool
         :param future_season: Future season number.
         :type future_season: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param number: Pick number in the specific tier.
@@ -822,7 +836,9 @@ class DraftPicksApi:
         :type pick_from: str
         :param round: Specific round in the tier.
         :type round: int
-        :param season_number: Season number.
+        :param season: Season ID. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number. (Default: the league's current season)
         :type season_number: int
         :param tier: Tier name.
         :type tier: str
@@ -853,12 +869,14 @@ class DraftPicksApi:
             franchise=franchise,
             future=future,
             future_season=future_season,
+            league=league,
             limit=limit,
             number=number,
             offset=offset,
             original_pick=original_pick,
             pick_from=pick_from,
             round=round,
+            season=season,
             season_number=season_number,
             tier=tier,
             _request_auth=_request_auth,
@@ -888,13 +906,15 @@ class DraftPicksApi:
         franchise: Annotated[Optional[StrictStr], Field(description="Franchise name contains.")] = None,
         future: Annotated[Optional[StrictBool], Field(description="Future pick.")] = None,
         future_season: Annotated[Optional[StrictInt], Field(description="Future season number.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         number: Annotated[Optional[StrictInt], Field(description="Pick number in the specific tier.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         original_pick: Annotated[Optional[StrictStr], Field(description="Pick this originally came from.")] = None,
         pick_from: Annotated[Optional[StrictStr], Field(description="Prefix of who the pick came from.")] = None,
         round: Annotated[Optional[StrictInt], Field(description="Specific round in the tier.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="Season number.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number. (Default: the league's current season)")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier name.")] = None,
         _request_timeout: Union[
             None,
@@ -921,6 +941,8 @@ class DraftPicksApi:
         :type future: bool
         :param future_season: Future season number.
         :type future_season: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param number: Pick number in the specific tier.
@@ -933,7 +955,9 @@ class DraftPicksApi:
         :type pick_from: str
         :param round: Specific round in the tier.
         :type round: int
-        :param season_number: Season number.
+        :param season: Season ID. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number. (Default: the league's current season)
         :type season_number: int
         :param tier: Tier name.
         :type tier: str
@@ -964,12 +988,14 @@ class DraftPicksApi:
             franchise=franchise,
             future=future,
             future_season=future_season,
+            league=league,
             limit=limit,
             number=number,
             offset=offset,
             original_pick=original_pick,
             pick_from=pick_from,
             round=round,
+            season=season,
             season_number=season_number,
             tier=tier,
             _request_auth=_request_auth,
@@ -994,12 +1020,14 @@ class DraftPicksApi:
         franchise,
         future,
         future_season,
+        league,
         limit,
         number,
         offset,
         original_pick,
         pick_from,
         round,
+        season,
         season_number,
         tier,
         _request_auth,
@@ -1040,6 +1068,10 @@ class DraftPicksApi:
             
             _query_params.append(('future_season', future_season))
             
+        if league is not None:
+            
+            _query_params.append(('league', league))
+            
         if limit is not None:
             
             _query_params.append(('limit', limit))
@@ -1063,6 +1095,10 @@ class DraftPicksApi:
         if round is not None:
             
             _query_params.append(('round', round))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
             
         if season_number is not None:
             
@@ -1112,8 +1148,8 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_partial_update(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
-        patched_draft_pick_details: Optional[PatchedDraftPickDetails] = None,
+        id: Annotated[str, Field(strict=True)],
+        patched_draft_pick_update: Optional[PatchedDraftPickUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1131,10 +1167,10 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
-        :param patched_draft_pick_details:
-        :type patched_draft_pick_details: PatchedDraftPickDetails
+        :param id: (required)
+        :type id: str
+        :param patched_draft_pick_update:
+        :type patched_draft_pick_update: PatchedDraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1159,7 +1195,7 @@ class DraftPicksApi:
 
         _param = self._draft_picks_partial_update_serialize(
             id=id,
-            patched_draft_pick_details=patched_draft_pick_details,
+            patched_draft_pick_update=patched_draft_pick_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1183,8 +1219,8 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_partial_update_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
-        patched_draft_pick_details: Optional[PatchedDraftPickDetails] = None,
+        id: Annotated[str, Field(strict=True)],
+        patched_draft_pick_update: Optional[PatchedDraftPickUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1202,10 +1238,10 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
-        :param patched_draft_pick_details:
-        :type patched_draft_pick_details: PatchedDraftPickDetails
+        :param id: (required)
+        :type id: str
+        :param patched_draft_pick_update:
+        :type patched_draft_pick_update: PatchedDraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1230,7 +1266,7 @@ class DraftPicksApi:
 
         _param = self._draft_picks_partial_update_serialize(
             id=id,
-            patched_draft_pick_details=patched_draft_pick_details,
+            patched_draft_pick_update=patched_draft_pick_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1254,8 +1290,8 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_partial_update_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
-        patched_draft_pick_details: Optional[PatchedDraftPickDetails] = None,
+        id: Annotated[str, Field(strict=True)],
+        patched_draft_pick_update: Optional[PatchedDraftPickUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1273,10 +1309,10 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
-        :param patched_draft_pick_details:
-        :type patched_draft_pick_details: PatchedDraftPickDetails
+        :param id: (required)
+        :type id: str
+        :param patched_draft_pick_update:
+        :type patched_draft_pick_update: PatchedDraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1301,7 +1337,7 @@ class DraftPicksApi:
 
         _param = self._draft_picks_partial_update_serialize(
             id=id,
-            patched_draft_pick_details=patched_draft_pick_details,
+            patched_draft_pick_update=patched_draft_pick_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1321,7 +1357,7 @@ class DraftPicksApi:
     def _draft_picks_partial_update_serialize(
         self,
         id,
-        patched_draft_pick_details,
+        patched_draft_pick_update,
         _request_auth,
         _content_type,
         _headers,
@@ -1349,8 +1385,8 @@ class DraftPicksApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if patched_draft_pick_details is not None:
-            _body_params = patched_draft_pick_details
+        if patched_draft_pick_update is not None:
+            _body_params = patched_draft_pick_update
 
 
         # set the HTTP header `Accept`
@@ -1403,7 +1439,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_retrieve(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        id: Annotated[str, Field(strict=True)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1421,8 +1457,8 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1470,7 +1506,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_retrieve_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        id: Annotated[str, Field(strict=True)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1488,8 +1524,8 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1537,7 +1573,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_retrieve_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
+        id: Annotated[str, Field(strict=True)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1555,8 +1591,8 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
+        :param id: (required)
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1665,7 +1701,6 @@ class DraftPicksApi:
     async def draft_picks_swap_create(
         self,
         draft_pick_swap: List[DraftPickSwap],
-        page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1678,14 +1713,13 @@ class DraftPicksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PaginatedDraftPickListList:
+    ) -> List[DraftPickList]:
         """draft_picks_swap_create
 
+        Only the swap action: the draft-picks list and detail routes belong to the DraftPicksListViewSet and DraftPickDetailsViewSet registered on the same prefix.
 
         :param draft_pick_swap: (required)
         :type draft_pick_swap: List[DraftPickSwap]
-        :param page: A page number within the paginated result set.
-        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1710,7 +1744,6 @@ class DraftPicksApi:
 
         _param = self._draft_picks_swap_create_serialize(
             draft_pick_swap=draft_pick_swap,
-            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1718,7 +1751,9 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedDraftPickListList",
+            '202': "List[DraftPickList]",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1735,7 +1770,6 @@ class DraftPicksApi:
     async def draft_picks_swap_create_with_http_info(
         self,
         draft_pick_swap: List[DraftPickSwap],
-        page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1748,14 +1782,13 @@ class DraftPicksApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PaginatedDraftPickListList]:
+    ) -> ApiResponse[List[DraftPickList]]:
         """draft_picks_swap_create
 
+        Only the swap action: the draft-picks list and detail routes belong to the DraftPicksListViewSet and DraftPickDetailsViewSet registered on the same prefix.
 
         :param draft_pick_swap: (required)
         :type draft_pick_swap: List[DraftPickSwap]
-        :param page: A page number within the paginated result set.
-        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1780,7 +1813,6 @@ class DraftPicksApi:
 
         _param = self._draft_picks_swap_create_serialize(
             draft_pick_swap=draft_pick_swap,
-            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1788,7 +1820,9 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedDraftPickListList",
+            '202': "List[DraftPickList]",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1805,7 +1839,6 @@ class DraftPicksApi:
     async def draft_picks_swap_create_without_preload_content(
         self,
         draft_pick_swap: List[DraftPickSwap],
-        page: Annotated[Optional[StrictInt], Field(description="A page number within the paginated result set.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1821,11 +1854,10 @@ class DraftPicksApi:
     ) -> RESTResponseType:
         """draft_picks_swap_create
 
+        Only the swap action: the draft-picks list and detail routes belong to the DraftPicksListViewSet and DraftPickDetailsViewSet registered on the same prefix.
 
         :param draft_pick_swap: (required)
         :type draft_pick_swap: List[DraftPickSwap]
-        :param page: A page number within the paginated result set.
-        :type page: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1850,7 +1882,6 @@ class DraftPicksApi:
 
         _param = self._draft_picks_swap_create_serialize(
             draft_pick_swap=draft_pick_swap,
-            page=page,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1858,7 +1889,9 @@ class DraftPicksApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PaginatedDraftPickListList",
+            '202': "List[DraftPickList]",
+            '400': "Error",
+            '404': "Error",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1870,7 +1903,6 @@ class DraftPicksApi:
     def _draft_picks_swap_create_serialize(
         self,
         draft_pick_swap,
-        page,
         _request_auth,
         _content_type,
         _headers,
@@ -1894,10 +1926,6 @@ class DraftPicksApi:
 
         # process the path parameters
         # process the query parameters
-        if page is not None:
-            
-            _query_params.append(('page', page))
-            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -1955,8 +1983,8 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_update(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
-        draft_pick_details: DraftPickDetails,
+        id: Annotated[str, Field(strict=True)],
+        draft_pick_update: Optional[DraftPickUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1974,10 +2002,10 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
-        :param draft_pick_details: (required)
-        :type draft_pick_details: DraftPickDetails
+        :param id: (required)
+        :type id: str
+        :param draft_pick_update:
+        :type draft_pick_update: DraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2002,7 +2030,7 @@ class DraftPicksApi:
 
         _param = self._draft_picks_update_serialize(
             id=id,
-            draft_pick_details=draft_pick_details,
+            draft_pick_update=draft_pick_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2026,8 +2054,8 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_update_with_http_info(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
-        draft_pick_details: DraftPickDetails,
+        id: Annotated[str, Field(strict=True)],
+        draft_pick_update: Optional[DraftPickUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2045,10 +2073,10 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
-        :param draft_pick_details: (required)
-        :type draft_pick_details: DraftPickDetails
+        :param id: (required)
+        :type id: str
+        :param draft_pick_update:
+        :type draft_pick_update: DraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2073,7 +2101,7 @@ class DraftPicksApi:
 
         _param = self._draft_picks_update_serialize(
             id=id,
-            draft_pick_details=draft_pick_details,
+            draft_pick_update=draft_pick_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2097,8 +2125,8 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_update_without_preload_content(
         self,
-        id: Annotated[StrictInt, Field(description="A unique integer value identifying this draft pick.")],
-        draft_pick_details: DraftPickDetails,
+        id: Annotated[str, Field(strict=True)],
+        draft_pick_update: Optional[DraftPickUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2116,10 +2144,10 @@ class DraftPicksApi:
 
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
-        :param id: A unique integer value identifying this draft pick. (required)
-        :type id: int
-        :param draft_pick_details: (required)
-        :type draft_pick_details: DraftPickDetails
+        :param id: (required)
+        :type id: str
+        :param draft_pick_update:
+        :type draft_pick_update: DraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2144,7 +2172,7 @@ class DraftPicksApi:
 
         _param = self._draft_picks_update_serialize(
             id=id,
-            draft_pick_details=draft_pick_details,
+            draft_pick_update=draft_pick_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2164,7 +2192,7 @@ class DraftPicksApi:
     def _draft_picks_update_serialize(
         self,
         id,
-        draft_pick_details,
+        draft_pick_update,
         _request_auth,
         _content_type,
         _headers,
@@ -2192,8 +2220,8 @@ class DraftPicksApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if draft_pick_details is not None:
-            _body_params = draft_pick_details
+        if draft_pick_update is not None:
+            _body_params = draft_pick_update
 
 
         # set the HTTP header `Accept`

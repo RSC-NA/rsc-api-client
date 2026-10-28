@@ -206,7 +206,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
-    league = 56 # int | League Database ID (optional)
+    league = 56 # int | Tiers in League with ID (optional)
     name = 'name_example' # str | Tier Name Contains (optional)
 
     try:
@@ -224,7 +224,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **int**| League Database ID | [optional] 
+ **league** | **int**| Tiers in League with ID | [optional] 
  **name** | **str**| Tier Name Contains | [optional] 
 
 ### Return type
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_player_stats_list**
-> List[PlayerSeasonStatsInDepth] tiers_player_stats_list(id, league, name=name, season=season)
+> List[PlayerSeasonStatsInDepth] tiers_player_stats_list(id, league=league, season=season, season_number=season_number)
 
 Get player stats for a given tier and season in a league. (Default: Current Season)
 
@@ -364,12 +364,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    league = 56 # int | League ID
-    name = 'name_example' # str | Tier Name Contains (optional)
-    season = 56 # int | Season number (Default: Current season.) (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_player_stats_list(id, league, name=name, season=season)
+        api_response = await api_instance.tiers_player_stats_list(id, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_player_stats_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -384,9 +384,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **league** | **int**| League ID | 
- **name** | **str**| Tier Name Contains | [optional] 
- **season** | **int**| Season number (Default: Current season.) | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -411,7 +411,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_players_list**
-> List[LeaguePlayer] tiers_players_list(id, league, name=name, season=season)
+> List[LeaguePlayer] tiers_players_list(id, league=league, season=season, season_number=season_number)
 
 Get all players for a specific tier in a league
 
@@ -447,12 +447,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    league = 56 # int | League ID
-    name = 'name_example' # str | Tier Name Contains (optional)
-    season = 56 # int | Season number (Default: Current season.) (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_players_list(id, league, name=name, season=season)
+        api_response = await api_instance.tiers_players_list(id, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_players_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -467,9 +467,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **league** | **int**| League ID | 
- **name** | **str**| Tier Name Contains | [optional] 
- **season** | **int**| Season number (Default: Current season.) | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_playoffs_retrieve**
-> TierPlayoffHunt tiers_playoffs_retrieve(id, league, season=season)
+> TierPlayoffHunt tiers_playoffs_retrieve(id, league=league, season=season, season_number=season_number)
 
 Get the current playoff hunt for a specific tier in a league and season.
 
@@ -530,11 +530,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    league = 56 # int | League ID
-    season = 56 # int | Season number (Default: Current season.) (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_playoffs_retrieve(id, league, season=season)
+        api_response = await api_instance.tiers_playoffs_retrieve(id, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_playoffs_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -549,8 +550,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **league** | **int**| League ID | 
- **season** | **int**| Season number (Default: Current season.) | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -575,7 +577,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_postseason_player_stats_list**
-> List[PlayerSeasonStatsInDepth] tiers_postseason_player_stats_list(id, league, name=name, season=season)
+> List[PlayerSeasonStatsInDepth] tiers_postseason_player_stats_list(id, league=league, season=season, season_number=season_number)
 
 Get player postseason stats for a given tier and season in a league
 
@@ -611,12 +613,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    league = 56 # int | League ID
-    name = 'name_example' # str | Tier Name Contains (optional)
-    season = 56 # int | Season number (Default: Current season.) (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_postseason_player_stats_list(id, league, name=name, season=season)
+        api_response = await api_instance.tiers_postseason_player_stats_list(id, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_postseason_player_stats_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -631,9 +633,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **league** | **int**| League ID | 
- **name** | **str**| Tier Name Contains | [optional] 
- **season** | **int**| Season number (Default: Current season.) | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -658,7 +660,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_postseason_team_stats_list**
-> List[TeamSeasonStats] tiers_postseason_team_stats_list(id, league, name=name, season=season)
+> List[TeamSeasonStats] tiers_postseason_team_stats_list(id, league=league, season=season, season_number=season_number)
 
 Get postseason team stats for a given tier and season in a league. (Default: Current)
 
@@ -694,12 +696,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    league = 56 # int | League ID
-    name = 'name_example' # str | Tier Name Contains (optional)
-    season = 56 # int | Season number (Default: Current season.) (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_postseason_team_stats_list(id, league, name=name, season=season)
+        api_response = await api_instance.tiers_postseason_team_stats_list(id, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_postseason_team_stats_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -714,9 +716,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **league** | **int**| League ID | 
- **name** | **str**| Tier Name Contains | [optional] 
- **season** | **int**| Season number (Default: Current season.) | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -817,7 +819,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_standings_list**
-> List[TeamStandings] tiers_standings_list(id, season, league=league, name=name)
+> List[TeamStandings] tiers_standings_list(id, league=league, season=season, season_number=season_number)
 
 Get standings for a specific tier in a league and season.
 
@@ -853,12 +855,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    season = 56 # int | Season number to query for.
-    league = 56 # int | Tiers in League with ID (optional)
-    name = 'name_example' # str | Tier Name Contains (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_standings_list(id, season, league=league, name=name)
+        api_response = await api_instance.tiers_standings_list(id, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_standings_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -873,9 +875,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **season** | **int**| Season number to query for. | 
- **league** | **int**| Tiers in League with ID | [optional] 
- **name** | **str**| Tier Name Contains | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -901,7 +903,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_team_stats_list**
-> List[TeamSeasonStats] tiers_team_stats_list(id, league, name=name, season=season)
+> List[TeamSeasonStats] tiers_team_stats_list(id, league=league, season=season, season_number=season_number)
 
 Get team based stats for a given tier and season in a league. (Default: Current)
 
@@ -937,12 +939,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    league = 56 # int | League ID
-    name = 'name_example' # str | Tier Name Contains (optional)
-    season = 56 # int | Season number (Default: Current season.) (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_team_stats_list(id, league, name=name, season=season)
+        api_response = await api_instance.tiers_team_stats_list(id, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_team_stats_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -957,9 +959,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **league** | **int**| League ID | 
- **name** | **str**| Tier Name Contains | [optional] 
- **season** | **int**| Season number (Default: Current season.) | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -984,7 +986,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_teams_list**
-> List[Team] tiers_teams_list(id, league, name=name, season=season)
+> List[Team] tiers_teams_list(id, league=league, season=season, season_number=season_number)
 
 Get all teams for a specific tier in a league.
 
@@ -1020,12 +1022,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
     id = 56 # int | A unique integer value identifying this tier.
-    league = 56 # int | League ID
-    name = 'name_example' # str | Tier Name Contains (optional)
-    season = 56 # int | Season number (Default: Current season.) (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_teams_list(id, league, name=name, season=season)
+        api_response = await api_instance.tiers_teams_list(id, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_teams_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -1040,9 +1042,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this tier. | 
- **league** | **int**| League ID | 
- **name** | **str**| Tier Name Contains | [optional] 
- **season** | **int**| Season number (Default: Current season.) | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -1145,7 +1147,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tiers_waiver_order_retrieve**
-> WaiverOrder tiers_waiver_order_retrieve(league, tier, season=season)
+> WaiverOrder tiers_waiver_order_retrieve(tier, league=league, season=season, season_number=season_number)
 
 Get the waiver order for a specific tier in a league and season.
 
@@ -1180,12 +1182,13 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TiersApi(api_client)
-    league = 56 # int | League ID.
     tier = 'tier_example' # str | Tier ID or name.
-    season = 56 # int | Season number (default: current). (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.tiers_waiver_order_retrieve(league, tier, season=season)
+        api_response = await api_instance.tiers_waiver_order_retrieve(tier, league=league, season=season, season_number=season_number)
         print("The response of TiersApi->tiers_waiver_order_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -1199,9 +1202,10 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **int**| League ID. | 
  **tier** | **str**| Tier ID or name. | 
- **season** | **int**| Season number (default: current). | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 

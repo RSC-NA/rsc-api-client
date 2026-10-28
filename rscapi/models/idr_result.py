@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,7 +31,7 @@ class IDRResult(BaseModel):
     """ # noqa: E501
     rank: Optional[StrictInt] = None
     league_player_id: StrictInt
-    discord_id: StrictInt
+    discord_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     player_name: StrictStr
     tier_id: StrictInt
     tier_name: StrictStr

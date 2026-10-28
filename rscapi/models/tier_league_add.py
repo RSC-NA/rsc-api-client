@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,7 +29,7 @@ class TierLeagueAdd(BaseModel):
     TierLeagueAdd
     """ # noqa: E501
     tier: StrictInt
-    role_id: Optional[StrictInt] = None
+    role_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None
     __properties: ClassVar[List[str]] = ["tier", "role_id"]
 
     model_config = ConfigDict(

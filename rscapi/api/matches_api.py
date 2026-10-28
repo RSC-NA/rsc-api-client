@@ -16,17 +16,18 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from datetime import datetime
-from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Optional
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Optional, Union
 from typing_extensions import Annotated
 from rscapi.models.match import Match
-from rscapi.models.match_list import MatchList
 from rscapi.models.match_results import MatchResults
 from rscapi.models.match_score_report_request import MatchScoreReportRequest
 from rscapi.models.match_submission import MatchSubmission
+from rscapi.models.match_update import MatchUpdate
 from rscapi.models.paginated_match import PaginatedMatch
 from rscapi.models.paginated_match_list_list import PaginatedMatchListList
-from rscapi.models.patched_match_list import PatchedMatchList
+from rscapi.models.paginated_match_result_list_list import PaginatedMatchResultListList
+from rscapi.models.patched_match_update import PatchedMatchUpdate
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -573,15 +574,15 @@ class MatchesApi:
     @validate_call
     async def matches_find_match_retrieve(
         self,
-        league: StrictInt,
         teams: Annotated[str, Field(min_length=1, strict=True, description="Team names separated by comma")],
         date__gt: Optional[datetime] = None,
         date__lt: Optional[datetime] = None,
         day: Optional[StrictInt] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID (Default: the default league)")] = None,
         match_format: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="* `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
         match_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="* `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
-        season: Optional[StrictInt] = None,
-        season_number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -599,8 +600,6 @@ class MatchesApi:
 
         Find a match for a team or teams.
 
-        :param league: (required)
-        :type league: int
         :param teams: Team names separated by comma (required)
         :type teams: str
         :param date__gt:
@@ -609,13 +608,15 @@ class MatchesApi:
         :type date__lt: datetime
         :param day:
         :type day: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param match_format: * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
         :type match_format: str
         :param match_type: * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
         :type match_type: str
-        :param season:
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_number:
+        :param season_number: Season number
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -640,11 +641,11 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_find_match_retrieve_serialize(
-            league=league,
             teams=teams,
             date__gt=date__gt,
             date__lt=date__lt,
             day=day,
+            league=league,
             match_format=match_format,
             match_type=match_type,
             season=season,
@@ -673,15 +674,15 @@ class MatchesApi:
     @validate_call
     async def matches_find_match_retrieve_with_http_info(
         self,
-        league: StrictInt,
         teams: Annotated[str, Field(min_length=1, strict=True, description="Team names separated by comma")],
         date__gt: Optional[datetime] = None,
         date__lt: Optional[datetime] = None,
         day: Optional[StrictInt] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID (Default: the default league)")] = None,
         match_format: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="* `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
         match_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="* `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
-        season: Optional[StrictInt] = None,
-        season_number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -699,8 +700,6 @@ class MatchesApi:
 
         Find a match for a team or teams.
 
-        :param league: (required)
-        :type league: int
         :param teams: Team names separated by comma (required)
         :type teams: str
         :param date__gt:
@@ -709,13 +708,15 @@ class MatchesApi:
         :type date__lt: datetime
         :param day:
         :type day: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param match_format: * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
         :type match_format: str
         :param match_type: * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
         :type match_type: str
-        :param season:
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_number:
+        :param season_number: Season number
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -740,11 +741,11 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_find_match_retrieve_serialize(
-            league=league,
             teams=teams,
             date__gt=date__gt,
             date__lt=date__lt,
             day=day,
+            league=league,
             match_format=match_format,
             match_type=match_type,
             season=season,
@@ -773,15 +774,15 @@ class MatchesApi:
     @validate_call
     async def matches_find_match_retrieve_without_preload_content(
         self,
-        league: StrictInt,
         teams: Annotated[str, Field(min_length=1, strict=True, description="Team names separated by comma")],
         date__gt: Optional[datetime] = None,
         date__lt: Optional[datetime] = None,
         day: Optional[StrictInt] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID (Default: the default league)")] = None,
         match_format: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="* `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
         match_type: Annotated[Optional[Annotated[str, Field(min_length=1, strict=True)]], Field(description="* `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
-        season: Optional[StrictInt] = None,
-        season_number: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -799,8 +800,6 @@ class MatchesApi:
 
         Find a match for a team or teams.
 
-        :param league: (required)
-        :type league: int
         :param teams: Team names separated by comma (required)
         :type teams: str
         :param date__gt:
@@ -809,13 +808,15 @@ class MatchesApi:
         :type date__lt: datetime
         :param day:
         :type day: int
+        :param league: League ID (Default: the default league)
+        :type league: int
         :param match_format: * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
         :type match_format: str
         :param match_type: * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
         :type match_type: str
-        :param season:
+        :param season: Season ID (Default: the league's current season)
         :type season: int
-        :param season_number:
+        :param season_number: Season number
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -840,11 +841,11 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_find_match_retrieve_serialize(
-            league=league,
             teams=teams,
             date__gt=date__gt,
             date__lt=date__lt,
             day=day,
+            league=league,
             match_format=match_format,
             match_type=match_type,
             season=season,
@@ -868,11 +869,11 @@ class MatchesApi:
 
     def _matches_find_match_retrieve_serialize(
         self,
-        league,
         teams,
         date__gt,
         date__lt,
         day,
+        league,
         match_format,
         match_type,
         season,
@@ -993,16 +994,16 @@ class MatchesApi:
     @validate_call
     async def matches_list(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of the league to get team matches for. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
         match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match. (Default: the league's current season)")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Specific team name to search for.")] = None,
         _request_timeout: Union[
@@ -1021,25 +1022,25 @@ class MatchesApi:
         """matches_list
 
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param date__gt: Date greater than in datetime isoformat.
         :type date__gt: str
         :param date__lt: Date less than in datetime isoformat.
         :type date__lt: str
         :param day: Match day to query for.
         :type day: int
+        :param league: ID of the league to get team matches for. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param match_format: Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
         :type match_format: str
         :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
         :type match_team_type: str
-        :param match_type: Match Type Equals  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
+        :param match_type: Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
         :type match_type: str
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param season: ID of the season to search for match.
+        :param season: ID of the season to search for match. (Default: the league's current season)
         :type season: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
@@ -1068,10 +1069,10 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_list_serialize(
-            league=league,
             date__gt=date__gt,
             date__lt=date__lt,
             day=day,
+            league=league,
             limit=limit,
             match_format=match_format,
             match_team_type=match_team_type,
@@ -1103,16 +1104,16 @@ class MatchesApi:
     @validate_call
     async def matches_list_with_http_info(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of the league to get team matches for. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
         match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match. (Default: the league's current season)")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Specific team name to search for.")] = None,
         _request_timeout: Union[
@@ -1131,25 +1132,25 @@ class MatchesApi:
         """matches_list
 
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param date__gt: Date greater than in datetime isoformat.
         :type date__gt: str
         :param date__lt: Date less than in datetime isoformat.
         :type date__lt: str
         :param day: Match day to query for.
         :type day: int
+        :param league: ID of the league to get team matches for. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param match_format: Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
         :type match_format: str
         :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
         :type match_team_type: str
-        :param match_type: Match Type Equals  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
+        :param match_type: Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
         :type match_type: str
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param season: ID of the season to search for match.
+        :param season: ID of the season to search for match. (Default: the league's current season)
         :type season: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
@@ -1178,10 +1179,10 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_list_serialize(
-            league=league,
             date__gt=date__gt,
             date__lt=date__lt,
             day=day,
+            league=league,
             limit=limit,
             match_format=match_format,
             match_team_type=match_team_type,
@@ -1213,16 +1214,16 @@ class MatchesApi:
     @validate_call
     async def matches_list_without_preload_content(
         self,
-        league: Annotated[StrictInt, Field(description="ID of the league to get team matches for")],
         date__gt: Annotated[Optional[StrictStr], Field(description="Date greater than in datetime isoformat.")] = None,
         date__lt: Annotated[Optional[StrictStr], Field(description="Date less than in datetime isoformat.")] = None,
         day: Annotated[Optional[StrictInt], Field(description="Match day to query for.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="ID of the league to get team matches for. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         match_format: Annotated[Optional[StrictStr], Field(description="Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
         match_team_type: Annotated[Optional[StrictStr], Field(description="Game location. (Home, Away, or All. Default: All. Requires a team name)")] = None,
-        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match.")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="ID of the season to search for match. (Default: the league's current season)")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         team_name: Annotated[Optional[StrictStr], Field(description="Specific team name to search for.")] = None,
         _request_timeout: Union[
@@ -1241,25 +1242,25 @@ class MatchesApi:
         """matches_list
 
 
-        :param league: ID of the league to get team matches for (required)
-        :type league: int
         :param date__gt: Date greater than in datetime isoformat.
         :type date__gt: str
         :param date__lt: Date less than in datetime isoformat.
         :type date__lt: str
         :param day: Match day to query for.
         :type day: int
+        :param league: ID of the league to get team matches for. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param match_format: Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
         :type match_format: str
         :param match_team_type: Game location. (Home, Away, or All. Default: All. Requires a team name)
         :type match_team_type: str
-        :param match_type: Match Type Equals  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
+        :param match_type: Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
         :type match_type: str
         :param offset: The initial index from which to return the results.
         :type offset: int
-        :param season: ID of the season to search for match.
+        :param season: ID of the season to search for match. (Default: the league's current season)
         :type season: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
@@ -1288,10 +1289,10 @@ class MatchesApi:
         """ # noqa: E501
 
         _param = self._matches_list_serialize(
-            league=league,
             date__gt=date__gt,
             date__lt=date__lt,
             day=day,
+            league=league,
             limit=limit,
             match_format=match_format,
             match_team_type=match_team_type,
@@ -1318,10 +1319,10 @@ class MatchesApi:
 
     def _matches_list_serialize(
         self,
-        league,
         date__gt,
         date__lt,
         day,
+        league,
         limit,
         match_format,
         match_team_type,
@@ -1441,7 +1442,7 @@ class MatchesApi:
     async def matches_partial_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
-        patched_match_list: Optional[PatchedMatchList] = None,
+        patched_match_update: Optional[PatchedMatchUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1454,14 +1455,14 @@ class MatchesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> MatchList:
+    ) -> Match:
         """matches_partial_update
 
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
-        :param patched_match_list:
-        :type patched_match_list: PatchedMatchList
+        :param patched_match_update:
+        :type patched_match_update: PatchedMatchUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1486,7 +1487,7 @@ class MatchesApi:
 
         _param = self._matches_partial_update_serialize(
             id=id,
-            patched_match_list=patched_match_list,
+            patched_match_update=patched_match_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1494,7 +1495,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
+            '200': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1511,7 +1512,7 @@ class MatchesApi:
     async def matches_partial_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
-        patched_match_list: Optional[PatchedMatchList] = None,
+        patched_match_update: Optional[PatchedMatchUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1524,14 +1525,14 @@ class MatchesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[MatchList]:
+    ) -> ApiResponse[Match]:
         """matches_partial_update
 
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
-        :param patched_match_list:
-        :type patched_match_list: PatchedMatchList
+        :param patched_match_update:
+        :type patched_match_update: PatchedMatchUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1556,7 +1557,7 @@ class MatchesApi:
 
         _param = self._matches_partial_update_serialize(
             id=id,
-            patched_match_list=patched_match_list,
+            patched_match_update=patched_match_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1564,7 +1565,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
+            '200': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1581,7 +1582,7 @@ class MatchesApi:
     async def matches_partial_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
-        patched_match_list: Optional[PatchedMatchList] = None,
+        patched_match_update: Optional[PatchedMatchUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1600,8 +1601,8 @@ class MatchesApi:
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
-        :param patched_match_list:
-        :type patched_match_list: PatchedMatchList
+        :param patched_match_update:
+        :type patched_match_update: PatchedMatchUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1626,7 +1627,7 @@ class MatchesApi:
 
         _param = self._matches_partial_update_serialize(
             id=id,
-            patched_match_list=patched_match_list,
+            patched_match_update=patched_match_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1634,7 +1635,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
+            '200': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -1646,7 +1647,7 @@ class MatchesApi:
     def _matches_partial_update_serialize(
         self,
         id,
-        patched_match_list,
+        patched_match_update,
         _request_auth,
         _content_type,
         _headers,
@@ -1674,8 +1675,8 @@ class MatchesApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if patched_match_list is not None:
-            _body_params = patched_match_list
+        if patched_match_update is not None:
+            _body_params = patched_match_update
 
 
         # set the HTTP header `Accept`
@@ -1726,7 +1727,7 @@ class MatchesApi:
 
 
     @validate_call
-    async def matches_process_stats_retrieve(
+    async def matches_process_stats_create(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
@@ -1742,9 +1743,9 @@ class MatchesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """matches_process_stats_retrieve
+        """matches_process_stats_create
 
-        Process ballchasing stats for a given match
+        Process ballchasing stats for a given match. League admins only.
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
@@ -1770,7 +1771,7 @@ class MatchesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._matches_process_stats_retrieve_serialize(
+        _param = self._matches_process_stats_create_serialize(
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1780,6 +1781,7 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '400': "Error",
+            '403': "Error",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(
@@ -1794,7 +1796,7 @@ class MatchesApi:
 
 
     @validate_call
-    async def matches_process_stats_retrieve_with_http_info(
+    async def matches_process_stats_create_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
@@ -1810,9 +1812,9 @@ class MatchesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """matches_process_stats_retrieve
+        """matches_process_stats_create
 
-        Process ballchasing stats for a given match
+        Process ballchasing stats for a given match. League admins only.
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
@@ -1838,7 +1840,7 @@ class MatchesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._matches_process_stats_retrieve_serialize(
+        _param = self._matches_process_stats_create_serialize(
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1848,6 +1850,7 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '400': "Error",
+            '403': "Error",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(
@@ -1862,7 +1865,7 @@ class MatchesApi:
 
 
     @validate_call
-    async def matches_process_stats_retrieve_without_preload_content(
+    async def matches_process_stats_create_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
         _request_timeout: Union[
@@ -1878,9 +1881,9 @@ class MatchesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """matches_process_stats_retrieve
+        """matches_process_stats_create
 
-        Process ballchasing stats for a given match
+        Process ballchasing stats for a given match. League admins only.
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
@@ -1906,7 +1909,7 @@ class MatchesApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._matches_process_stats_retrieve_serialize(
+        _param = self._matches_process_stats_create_serialize(
             id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1916,6 +1919,7 @@ class MatchesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '400': "Error",
+            '403': "Error",
             '404': "Error",
         }
         response_data = await self.api_client.call_api(
@@ -1925,7 +1929,7 @@ class MatchesApi:
         return response_data.response
 
 
-    def _matches_process_stats_retrieve_serialize(
+    def _matches_process_stats_create_serialize(
         self,
         id,
         _request_auth,
@@ -1972,8 +1976,544 @@ class MatchesApi:
         ]
 
         return self.api_client.param_serialize(
-            method='GET',
+            method='POST',
             resource_path='/matches/{id}/process_stats/',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    async def matches_results_list(
+        self,
+        date__gt: Optional[datetime] = None,
+        date__lt: Optional[datetime] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match Day Equals")] = None,
+        latest: Annotated[Optional[StrictBool], Field(description="Only the most recent match day already played (day and match type) with a reported score, among the matches the other filters select.")] = None,
+        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches by League ID (Default: System Default League)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        match_format: Annotated[Optional[StrictStr], Field(description="Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
+        match_team_type: Annotated[Optional[StrictStr], Field(description="* `HME` - Home * `AWY` - Away * `ALL` - All Games")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        reported: Annotated[Optional[StrictBool], Field(description="Only matches with (true) or without (false) a reported score.")] = None,
+        season: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches by Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Matches by Season Number")] = None,
+        team_name: Annotated[Optional[StrictStr], Field(description="Specific team name to search for.")] = None,
+        tier: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches in Tier (Tier ID Equals)")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="Matches in Tier (Tier Name Equals, case-insensitive)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PaginatedMatchResultListList:
+        """matches_results_list
+
+        List matches with their scores. Score fields are null for a match not yet reported. (Default: the default league's current season)
+
+        :param date__gt:
+        :type date__gt: datetime
+        :param date__lt:
+        :type date__lt: datetime
+        :param day: Match Day Equals
+        :type day: int
+        :param latest: Only the most recent match day already played (day and match type) with a reported score, among the matches the other filters select.
+        :type latest: bool
+        :param league: Matches by League ID (Default: System Default League)
+        :type league: float
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param match_format: Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
+        :type match_format: str
+        :param match_team_type: * `HME` - Home * `AWY` - Away * `ALL` - All Games
+        :type match_team_type: str
+        :param match_type: Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
+        :type match_type: str
+        :param offset: The initial index from which to return the results.
+        :type offset: int
+        :param reported: Only matches with (true) or without (false) a reported score.
+        :type reported: bool
+        :param season: Matches by Season ID (Default: the league's current season)
+        :type season: float
+        :param season_number: Matches by Season Number
+        :type season_number: int
+        :param team_name: Specific team name to search for.
+        :type team_name: str
+        :param tier: Matches in Tier (Tier ID Equals)
+        :type tier: float
+        :param tier_name: Matches in Tier (Tier Name Equals, case-insensitive)
+        :type tier_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._matches_results_list_serialize(
+            date__gt=date__gt,
+            date__lt=date__lt,
+            day=day,
+            latest=latest,
+            league=league,
+            limit=limit,
+            match_format=match_format,
+            match_team_type=match_team_type,
+            match_type=match_type,
+            offset=offset,
+            reported=reported,
+            season=season,
+            season_number=season_number,
+            team_name=team_name,
+            tier=tier,
+            tier_name=tier_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedMatchResultListList",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    async def matches_results_list_with_http_info(
+        self,
+        date__gt: Optional[datetime] = None,
+        date__lt: Optional[datetime] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match Day Equals")] = None,
+        latest: Annotated[Optional[StrictBool], Field(description="Only the most recent match day already played (day and match type) with a reported score, among the matches the other filters select.")] = None,
+        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches by League ID (Default: System Default League)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        match_format: Annotated[Optional[StrictStr], Field(description="Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
+        match_team_type: Annotated[Optional[StrictStr], Field(description="* `HME` - Home * `AWY` - Away * `ALL` - All Games")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        reported: Annotated[Optional[StrictBool], Field(description="Only matches with (true) or without (false) a reported score.")] = None,
+        season: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches by Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Matches by Season Number")] = None,
+        team_name: Annotated[Optional[StrictStr], Field(description="Specific team name to search for.")] = None,
+        tier: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches in Tier (Tier ID Equals)")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="Matches in Tier (Tier Name Equals, case-insensitive)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PaginatedMatchResultListList]:
+        """matches_results_list
+
+        List matches with their scores. Score fields are null for a match not yet reported. (Default: the default league's current season)
+
+        :param date__gt:
+        :type date__gt: datetime
+        :param date__lt:
+        :type date__lt: datetime
+        :param day: Match Day Equals
+        :type day: int
+        :param latest: Only the most recent match day already played (day and match type) with a reported score, among the matches the other filters select.
+        :type latest: bool
+        :param league: Matches by League ID (Default: System Default League)
+        :type league: float
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param match_format: Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
+        :type match_format: str
+        :param match_team_type: * `HME` - Home * `AWY` - Away * `ALL` - All Games
+        :type match_team_type: str
+        :param match_type: Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
+        :type match_type: str
+        :param offset: The initial index from which to return the results.
+        :type offset: int
+        :param reported: Only matches with (true) or without (false) a reported score.
+        :type reported: bool
+        :param season: Matches by Season ID (Default: the league's current season)
+        :type season: float
+        :param season_number: Matches by Season Number
+        :type season_number: int
+        :param team_name: Specific team name to search for.
+        :type team_name: str
+        :param tier: Matches in Tier (Tier ID Equals)
+        :type tier: float
+        :param tier_name: Matches in Tier (Tier Name Equals, case-insensitive)
+        :type tier_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._matches_results_list_serialize(
+            date__gt=date__gt,
+            date__lt=date__lt,
+            day=day,
+            latest=latest,
+            league=league,
+            limit=limit,
+            match_format=match_format,
+            match_team_type=match_team_type,
+            match_type=match_type,
+            offset=offset,
+            reported=reported,
+            season=season,
+            season_number=season_number,
+            team_name=team_name,
+            tier=tier,
+            tier_name=tier_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedMatchResultListList",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        await response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    async def matches_results_list_without_preload_content(
+        self,
+        date__gt: Optional[datetime] = None,
+        date__lt: Optional[datetime] = None,
+        day: Annotated[Optional[StrictInt], Field(description="Match Day Equals")] = None,
+        latest: Annotated[Optional[StrictBool], Field(description="Only the most recent match day already played (day and match type) with a reported score, among the matches the other filters select.")] = None,
+        league: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches by League ID (Default: System Default League)")] = None,
+        limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
+        match_format: Annotated[Optional[StrictStr], Field(description="Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven")] = None,
+        match_team_type: Annotated[Optional[StrictStr], Field(description="* `HME` - Home * `AWY` - Away * `ALL` - All Games")] = None,
+        match_type: Annotated[Optional[StrictStr], Field(description="Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any")] = None,
+        offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
+        reported: Annotated[Optional[StrictBool], Field(description="Only matches with (true) or without (false) a reported score.")] = None,
+        season: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches by Season ID (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Matches by Season Number")] = None,
+        team_name: Annotated[Optional[StrictStr], Field(description="Specific team name to search for.")] = None,
+        tier: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Matches in Tier (Tier ID Equals)")] = None,
+        tier_name: Annotated[Optional[StrictStr], Field(description="Matches in Tier (Tier Name Equals, case-insensitive)")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """matches_results_list
+
+        List matches with their scores. Score fields are null for a match not yet reported. (Default: the default league's current season)
+
+        :param date__gt:
+        :type date__gt: datetime
+        :param date__lt:
+        :type date__lt: datetime
+        :param day: Match Day Equals
+        :type day: int
+        :param latest: Only the most recent match day already played (day and match type) with a reported score, among the matches the other filters select.
+        :type latest: bool
+        :param league: Matches by League ID (Default: System Default League)
+        :type league: float
+        :param limit: Number of results to return per page.
+        :type limit: int
+        :param match_format: Match Format Equals  * `GMS` - Game Series * `BO3` - Best of Three * `BO5` - Best of Five * `BO7` - Best of Seven
+        :type match_format: str
+        :param match_team_type: * `HME` - Home * `AWY` - Away * `ALL` - All Games
+        :type match_team_type: str
+        :param match_type: Match Type Equals (ANY: every type)  * `REG` - Regular Season * `PRE` - Pre-season * `PST` - Post-Season * `FNL` - Finals * `ANY` - Any
+        :type match_type: str
+        :param offset: The initial index from which to return the results.
+        :type offset: int
+        :param reported: Only matches with (true) or without (false) a reported score.
+        :type reported: bool
+        :param season: Matches by Season ID (Default: the league's current season)
+        :type season: float
+        :param season_number: Matches by Season Number
+        :type season_number: int
+        :param team_name: Specific team name to search for.
+        :type team_name: str
+        :param tier: Matches in Tier (Tier ID Equals)
+        :type tier: float
+        :param tier_name: Matches in Tier (Tier Name Equals, case-insensitive)
+        :type tier_name: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._matches_results_list_serialize(
+            date__gt=date__gt,
+            date__lt=date__lt,
+            day=day,
+            latest=latest,
+            league=league,
+            limit=limit,
+            match_format=match_format,
+            match_team_type=match_team_type,
+            match_type=match_type,
+            offset=offset,
+            reported=reported,
+            season=season,
+            season_number=season_number,
+            team_name=team_name,
+            tier=tier,
+            tier_name=tier_name,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PaginatedMatchResultListList",
+        }
+        response_data = await self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _matches_results_list_serialize(
+        self,
+        date__gt,
+        date__lt,
+        day,
+        latest,
+        league,
+        limit,
+        match_format,
+        match_team_type,
+        match_type,
+        offset,
+        reported,
+        season,
+        season_number,
+        team_name,
+        tier,
+        tier_name,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if date__gt is not None:
+            if isinstance(date__gt, datetime):
+                _query_params.append(
+                    (
+                        'date__gt',
+                        date__gt.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('date__gt', date__gt))
+            
+        if date__lt is not None:
+            if isinstance(date__lt, datetime):
+                _query_params.append(
+                    (
+                        'date__lt',
+                        date__lt.strftime(
+                            self.api_client.configuration.datetime_format
+                        )
+                    )
+                )
+            else:
+                _query_params.append(('date__lt', date__lt))
+            
+        if day is not None:
+            
+            _query_params.append(('day', day))
+            
+        if latest is not None:
+            
+            _query_params.append(('latest', latest))
+            
+        if league is not None:
+            
+            _query_params.append(('league', league))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if match_format is not None:
+            
+            _query_params.append(('match_format', match_format))
+            
+        if match_team_type is not None:
+            
+            _query_params.append(('match_team_type', match_team_type))
+            
+        if match_type is not None:
+            
+            _query_params.append(('match_type', match_type))
+            
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
+            
+        if reported is not None:
+            
+            _query_params.append(('reported', reported))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
+            
+        if team_name is not None:
+            
+            _query_params.append(('team_name', team_name))
+            
+        if tier is not None:
+            
+            _query_params.append(('tier', tier))
+            
+        if tier_name is not None:
+            
+            _query_params.append(('tier_name', tier_name))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Api-Key'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/matches/results/',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2809,7 +3349,7 @@ class MatchesApi:
     async def matches_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
-        match_list: MatchList,
+        match_update: Optional[MatchUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2822,14 +3362,14 @@ class MatchesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> MatchList:
+    ) -> Match:
         """matches_update
 
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
-        :param match_list: (required)
-        :type match_list: MatchList
+        :param match_update:
+        :type match_update: MatchUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2854,7 +3394,7 @@ class MatchesApi:
 
         _param = self._matches_update_serialize(
             id=id,
-            match_list=match_list,
+            match_update=match_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2862,7 +3402,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
+            '200': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2879,7 +3419,7 @@ class MatchesApi:
     async def matches_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
-        match_list: MatchList,
+        match_update: Optional[MatchUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2892,14 +3432,14 @@ class MatchesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[MatchList]:
+    ) -> ApiResponse[Match]:
         """matches_update
 
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
-        :param match_list: (required)
-        :type match_list: MatchList
+        :param match_update:
+        :type match_update: MatchUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2924,7 +3464,7 @@ class MatchesApi:
 
         _param = self._matches_update_serialize(
             id=id,
-            match_list=match_list,
+            match_update=match_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2932,7 +3472,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
+            '200': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -2949,7 +3489,7 @@ class MatchesApi:
     async def matches_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this match.")],
-        match_list: MatchList,
+        match_update: Optional[MatchUpdate] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2968,8 +3508,8 @@ class MatchesApi:
 
         :param id: A unique integer value identifying this match. (required)
         :type id: int
-        :param match_list: (required)
-        :type match_list: MatchList
+        :param match_update:
+        :type match_update: MatchUpdate
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2994,7 +3534,7 @@ class MatchesApi:
 
         _param = self._matches_update_serialize(
             id=id,
-            match_list=match_list,
+            match_update=match_update,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3002,7 +3542,7 @@ class MatchesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "MatchList",
+            '200': "Match",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -3014,7 +3554,7 @@ class MatchesApi:
     def _matches_update_serialize(
         self,
         id,
-        match_list,
+        match_update,
         _request_auth,
         _content_type,
         _headers,
@@ -3042,8 +3582,8 @@ class MatchesApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if match_list is not None:
-            _body_params = match_list
+        if match_update is not None:
+            _body_params = match_update
 
 
         # set the HTTP header `Accept`

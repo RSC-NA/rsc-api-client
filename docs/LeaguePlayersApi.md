@@ -16,7 +16,9 @@ Method | HTTP request | Description
 
 
 # **league_players_create**
-> LeaguePlayer league_players_create(league_player)
+> LeaguePlayer league_players_create(league_player_create)
+
+Register a member as a league player for the league's newest season.
 
 ### Example
 
@@ -25,6 +27,7 @@ Method | HTTP request | Description
 ```python
 import rscapi
 from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.league_player_create import LeaguePlayerCreate
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -49,10 +52,10 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
-    league_player = rscapi.LeaguePlayer() # LeaguePlayer | 
+    league_player_create = rscapi.LeaguePlayerCreate() # LeaguePlayerCreate | 
 
     try:
-        api_response = await api_instance.league_players_create(league_player)
+        api_response = await api_instance.league_players_create(league_player_create)
         print("The response of LeaguePlayersApi->league_players_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -66,7 +69,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league_player** | [**LeaguePlayer**](LeaguePlayer.md)|  | 
+ **league_player_create** | [**LeaguePlayerCreate**](LeaguePlayerCreate.md)|  | 
 
 ### Return type
 
@@ -91,6 +94,12 @@ Name | Type | Description  | Notes
 
 # **league_players_destroy**
 > league_players_destroy(id)
+
+Delete a league player row that holds no history: a registration made by mistake.
+
+A row with stats, previous teams or transactions is refused: the delete would
+cascade the stats away (or hit a PROTECT and 500, as it used to). Release the player
+through a transaction instead.
 
 ### Example
 
@@ -150,13 +159,14 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No response body |  -  |
+**409** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -261,7 +271,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_partial_update**
-> LeaguePlayer league_players_partial_update(id, league=league, patched_league_player_patch=patched_league_player_patch)
+> LeaguePlayer league_players_partial_update(id, patched_league_player_patch=patched_league_player_patch)
 
 ### Example
 
@@ -296,11 +306,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
     id = 56 # int | A unique integer value identifying this league player.
-    league = 56 # int | ID of league to update player in (optional)
     patched_league_player_patch = rscapi.PatchedLeaguePlayerPatch() # PatchedLeaguePlayerPatch |  (optional)
 
     try:
-        api_response = await api_instance.league_players_partial_update(id, league=league, patched_league_player_patch=patched_league_player_patch)
+        api_response = await api_instance.league_players_partial_update(id, patched_league_player_patch=patched_league_player_patch)
         print("The response of LeaguePlayersApi->league_players_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -315,7 +324,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league player. | 
- **league** | **int**| ID of league to update player in | [optional] 
  **patched_league_player_patch** | [**PatchedLeaguePlayerPatch**](PatchedLeaguePlayerPatch.md)|  | [optional] 
 
 ### Return type
@@ -649,7 +657,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **league_players_update**
-> LeaguePlayer league_players_update(id, league_player)
+> LeaguePlayer league_players_update(id, league_player_patch)
 
 ### Example
 
@@ -658,6 +666,7 @@ Name | Type | Description  | Notes
 ```python
 import rscapi
 from rscapi.models.league_player import LeaguePlayer
+from rscapi.models.league_player_patch import LeaguePlayerPatch
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -683,10 +692,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.LeaguePlayersApi(api_client)
     id = 56 # int | A unique integer value identifying this league player.
-    league_player = rscapi.LeaguePlayer() # LeaguePlayer | 
+    league_player_patch = rscapi.LeaguePlayerPatch() # LeaguePlayerPatch | 
 
     try:
-        api_response = await api_instance.league_players_update(id, league_player)
+        api_response = await api_instance.league_players_update(id, league_player_patch)
         print("The response of LeaguePlayersApi->league_players_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -701,7 +710,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this league player. | 
- **league_player** | [**LeaguePlayer**](LeaguePlayer.md)|  | 
+ **league_player_patch** | [**LeaguePlayerPatch**](LeaguePlayerPatch.md)|  | 
 
 ### Return type
 

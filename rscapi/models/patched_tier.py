@@ -33,7 +33,7 @@ class PatchedTier(BaseModel):
     color: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     position: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648)]] = None
     league: Optional[StrictInt] = None
-    role_id: Optional[StrictInt] = None
+    role_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None
     __properties: ClassVar[List[str]] = ["id", "name", "color", "position", "league", "role_id"]
 
     model_config = ConfigDict(

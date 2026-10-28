@@ -7,7 +7,7 @@ This serializer class will likely be replaced with something more robust later. 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **player_updates** | [**List[PlayerTransactionUpdates]**](PlayerTransactionUpdates.md) |  | [optional] 
-**pick_trades** | [**List[PickTransactionUpdates]**](PickTransactionUpdates.md) |  | [optional] 
+**pick_trades** | [**List[PickTransactionUpdates]**](PickTransactionUpdates.md) |  | [optional] [readonly] 
 **var_date** | **datetime** | Date transaction occurred | [optional] [readonly] 
 **week** | [**WeekEnum**](WeekEnum.md) |  | 
 **week_no** | **int** | Week no of transaction (if applicable) | [optional] 

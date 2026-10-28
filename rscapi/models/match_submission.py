@@ -18,10 +18,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.match_format_enum import MatchFormatEnum
-from rscapi.models.match_type_enum import MatchTypeEnum
+from rscapi.models.playable_match_type_enum import PlayableMatchTypeEnum
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -30,11 +31,11 @@ class MatchSubmission(BaseModel):
     """
     MatchSubmission
     """ # noqa: E501
-    home_team: StrictInt
-    away_team: StrictInt
-    day: Optional[StrictInt] = 0
+    home_team: Annotated[int, Field(strict=True, ge=1)]
+    away_team: Annotated[int, Field(strict=True, ge=1)]
+    day: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=0)]] = 0
     match_format: MatchFormatEnum
-    match_type: MatchTypeEnum
+    match_type: PlayableMatchTypeEnum
     var_date: Optional[datetime] = Field(default=None, alias="date")
     __properties: ClassVar[List[str]] = ["home_team", "away_team", "day", "match_format", "match_type", "date"]
 

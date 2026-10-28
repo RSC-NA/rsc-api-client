@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from rscapi.models.team_rebrand import TeamRebrand
 from typing import Optional, Set
@@ -32,7 +32,7 @@ class FranchiseRebrand(BaseModel):
     prefix: Annotated[str, Field(strict=True, max_length=3)]
     name: StrictStr
     teams: List[TeamRebrand]
-    admin_override: StrictBool
+    admin_override: Optional[StrictBool] = False
     __properties: ClassVar[List[str]] = ["prefix", "name", "teams", "admin_override"]
 
     model_config = ConfigDict(
@@ -96,7 +96,7 @@ class FranchiseRebrand(BaseModel):
             "prefix": obj.get("prefix"),
             "name": obj.get("name"),
             "teams": [TeamRebrand.from_dict(_item) for _item in obj["teams"]] if obj.get("teams") is not None else None,
-            "admin_override": obj.get("admin_override")
+            "admin_override": obj.get("admin_override") if obj.get("admin_override") is not None else False
         })
         return _obj
 

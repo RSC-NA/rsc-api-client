@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.platform_enum import PlatformEnum
 from rscapi.models.really import Really
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum
@@ -33,7 +34,7 @@ class TrackerLink(BaseModel):
     """ # noqa: E501
     link: StrictStr
     member: Optional[Really] = None
-    discord_id: Optional[StrictInt] = None
+    discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None
     id: Optional[StrictInt] = None
     name: Optional[StrictStr] = None
     pulls: Optional[StrictInt] = Field(default=None, description="Number of MMR pulls recorded against this tracker.")

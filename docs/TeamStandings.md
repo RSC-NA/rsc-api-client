@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**franchise** | **str** |  | 
+**franchise** | **str** |  | [optional] 
 **team** | **str** |  | 
-**tier** | **str** |  | 
+**tier** | **str** |  | [optional] 
 **rank** | **int** |  | 
 **games_played** | **int** |  | [optional] [readonly] 
 **games_won** | **int** |  | [optional] [readonly] 

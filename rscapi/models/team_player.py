@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.league_player_status_enum import LeaguePlayerStatusEnum
 from rscapi.models.sub_status_enum import SubStatusEnum
 from typing import Optional, Set
@@ -37,7 +38,7 @@ class TeamPlayer(BaseModel):
     base_mmr: Optional[StrictInt] = None
     current_mmr: Optional[StrictInt] = None
     last_updated: Optional[datetime] = None
-    discord_id: StrictInt
+    discord_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     sub_status: Optional[SubStatusEnum] = None
     __properties: ClassVar[List[str]] = ["id", "name", "status", "captain", "base_mmr", "current_mmr", "last_updated", "discord_id", "sub_status"]
 

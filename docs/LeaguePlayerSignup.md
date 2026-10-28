@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **league** | **int** |  | 
 **team_name** | **str** |  | [optional] 
-**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | [optional] 
+**status** | [**LeaguePlayerStatusEnum**](LeaguePlayerStatusEnum.md) |  | 
 **base_mmr** | **int** |  | 
 **current_mmr** | **int** |  | 
 **tier** | **int** |  | 

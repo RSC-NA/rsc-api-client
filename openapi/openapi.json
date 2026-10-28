@@ -27,8 +27,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "description": "League name to search for franchises in.",
-                        "required": true
+                        "description": "League name to search for franchises in. (Default: the default league)"
                     }
                 ],
                 "tags": [
@@ -137,8 +136,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "description": "League name to search for franchises in.",
-                        "required": true
+                        "description": "League ID, or league name. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -146,8 +144,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "RSC season number to filter by.",
-                        "required": true
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -356,10 +361,17 @@
                         "in": "query",
                         "name": "league",
                         "schema": {
-                            "type": "integer",
-                            "default": 1
+                            "type": "integer"
                         },
-                        "description": "League ID to export. Defaults to 1 (RSC 3v3)."
+                        "description": "League ID. (Default: the default league)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season ID, within the league. (Default: the league's current season)"
                     },
                     {
                         "in": "query",
@@ -367,7 +379,8 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season ID (primary key) to export. Takes precedence over season_number."
+                        "description": "Deprecated spelling of `season`.",
+                        "deprecated": true
                     },
                     {
                         "in": "query",
@@ -375,7 +388,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied."
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -441,10 +454,17 @@
                         "in": "query",
                         "name": "league",
                         "schema": {
-                            "type": "integer",
-                            "default": 1
+                            "type": "integer"
                         },
-                        "description": "League ID to export. Defaults to 1 (RSC 3v3)."
+                        "description": "League ID. (Default: the default league)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season ID, within the league. (Default: the league's current season)"
                     },
                     {
                         "in": "query",
@@ -452,7 +472,8 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season ID (primary key) to export. Takes precedence over season_number."
+                        "description": "Deprecated spelling of `season`.",
+                        "deprecated": true
                     },
                     {
                         "in": "query",
@@ -460,7 +481,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied."
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -511,7 +532,7 @@
                         "schema": {
                             "type": "string"
                         },
-                        "description": "League name to search for franchises in.",
+                        "description": "League name.",
                         "required": true
                     }
                 ],
@@ -919,7 +940,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/TrackerPeak"
+                                        "$ref": "#/components/schemas/TrackerPeakRow"
                                     }
                                 }
                             },
@@ -927,7 +948,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/TrackerPeak"
+                                        "$ref": "#/components/schemas/TrackerPeakRow"
                                     }
                                 }
                             }
@@ -984,12 +1005,12 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerPeak"
+                                    "$ref": "#/components/schemas/TrackerPeakRow"
                                 }
                             },
                             "text/csv": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerPeak"
+                                    "$ref": "#/components/schemas/TrackerPeakRow"
                                 }
                             }
                         },
@@ -1137,6 +1158,14 @@
                         "description": "Future season number."
                     },
                     {
+                        "in": "query",
+                        "name": "league",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "League ID. (Default: the default league)"
+                    },
+                    {
                         "name": "limit",
                         "required": false,
                         "in": "query",
@@ -1188,11 +1217,19 @@
                     },
                     {
                         "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season ID. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
                         "name": "season_number",
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number."
+                        "description": "Season number. (Default: the league's current season)"
                     },
                     {
                         "in": "query",
@@ -1234,9 +1271,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this draft pick.",
                         "required": true
                     }
                 ],
@@ -1269,9 +1306,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this draft pick.",
                         "required": true
                     }
                 ],
@@ -1282,21 +1319,20 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/DraftPickDetails"
+                                "$ref": "#/components/schemas/DraftPickUpdate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/DraftPickDetails"
+                                "$ref": "#/components/schemas/DraftPickUpdate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/DraftPickDetails"
+                                "$ref": "#/components/schemas/DraftPickUpdate"
                             }
                         }
-                    },
-                    "required": true
+                    }
                 },
                 "security": [
                     {
@@ -1324,9 +1360,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this draft pick.",
                         "required": true
                     }
                 ],
@@ -1337,17 +1373,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedDraftPickDetails"
+                                "$ref": "#/components/schemas/PatchedDraftPickUpdate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedDraftPickDetails"
+                                "$ref": "#/components/schemas/PatchedDraftPickUpdate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedDraftPickDetails"
+                                "$ref": "#/components/schemas/PatchedDraftPickUpdate"
                             }
                         }
                     }
@@ -1378,9 +1414,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this draft pick.",
                         "required": true
                     }
                 ],
@@ -1437,10 +1473,9 @@
                         "in": "query",
                         "name": "league",
                         "schema": {
-                            "type": "integer",
-                            "default": 1
+                            "type": "integer"
                         },
-                        "description": "League id. Defaults to 1."
+                        "description": "League id. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -1505,17 +1540,7 @@
         "/draft-picks/swap/": {
             "post": {
                 "operationId": "draft_picks_swap_create",
-                "parameters": [
-                    {
-                        "name": "page",
-                        "required": false,
-                        "in": "query",
-                        "description": "A page number within the paginated result set.",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
+                "description": "Only the swap action: the draft-picks list and detail routes belong to the\nDraftPicksListViewSet and DraftPickDetailsViewSet registered on the same prefix.",
                 "tags": [
                     "draft-picks"
                 ],
@@ -1554,11 +1579,34 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "202": {
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PaginatedDraftPickListList"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DraftPickList"
+                                    }
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
                                 }
                             }
                         },
@@ -1903,7 +1951,7 @@
             },
             "put": {
                 "operationId": "franchises_update",
-                "description": "Viewset for the franchise model. Contains endpoints related to working with franchises.",
+                "description": "Edit a franchise: the rebrand, under the same rules as PUT /franchises/{id}/rebrand/.",
                 "parameters": [
                     {
                         "in": "path",
@@ -1922,17 +1970,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Franchise"
+                                "$ref": "#/components/schemas/FranchiseRebrand"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Franchise"
+                                "$ref": "#/components/schemas/FranchiseRebrand"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Franchise"
+                                "$ref": "#/components/schemas/FranchiseRebrand"
                             }
                         }
                     },
@@ -1944,11 +1992,21 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "202": {
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Franchise"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
                                 }
                             }
                         },
@@ -1977,17 +2035,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedFranchise"
+                                "$ref": "#/components/schemas/PatchedFranchiseRebrand"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedFranchise"
+                                "$ref": "#/components/schemas/PatchedFranchiseRebrand"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedFranchise"
+                                "$ref": "#/components/schemas/PatchedFranchiseRebrand"
                             }
                         }
                     }
@@ -1998,7 +2056,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "202": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2007,34 +2065,16 @@
                             }
                         },
                         "description": ""
-                    }
-                }
-            },
-            "delete": {
-                "operationId": "franchises_destroy",
-                "description": "Viewset for the franchise model. Contains endpoints related to working with franchises.",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "schema": {
-                            "type": "integer"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
                         },
-                        "description": "A unique integer value identifying this franchise.",
-                        "required": true
-                    }
-                ],
-                "tags": [
-                    "franchises"
-                ],
-                "security": [
-                    {
-                        "Api-Key": []
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "No response body"
+                        "description": ""
                     }
                 }
             }
@@ -2909,6 +2949,7 @@
             },
             "post": {
                 "operationId": "league_players_create",
+                "description": "Register a member as a league player for the league's newest season.",
                 "tags": [
                     "league-players"
                 ],
@@ -2916,17 +2957,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayer"
+                                "$ref": "#/components/schemas/LeaguePlayerCreate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayer"
+                                "$ref": "#/components/schemas/LeaguePlayerCreate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayer"
+                                "$ref": "#/components/schemas/LeaguePlayerCreate"
                             }
                         }
                     },
@@ -3006,17 +3047,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayer"
+                                "$ref": "#/components/schemas/LeaguePlayerPatch"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayer"
+                                "$ref": "#/components/schemas/LeaguePlayerPatch"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayer"
+                                "$ref": "#/components/schemas/LeaguePlayerPatch"
                             }
                         }
                     },
@@ -3051,14 +3092,6 @@
                         },
                         "description": "A unique integer value identifying this league player.",
                         "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "league",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "description": "ID of league to update player in"
                     }
                 ],
                 "tags": [
@@ -3103,6 +3136,7 @@
             },
             "delete": {
                 "operationId": "league_players_destroy",
+                "description": "Delete a league player row that holds no history: a registration made by mistake.\n\nA row with stats, previous teams or transactions is refused: the delete would\ncascade the stats away (or hit a PROTECT and 500, as it used to). Release the player\nthrough a transaction instead.",
                 "parameters": [
                     {
                         "in": "path",
@@ -3125,6 +3159,16 @@
                 "responses": {
                     "204": {
                         "description": "No response body"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -3350,49 +3394,6 @@
                         "description": ""
                     }
                 }
-            },
-            "post": {
-                "operationId": "leagues_create",
-                "tags": [
-                    "leagues"
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        },
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        },
-                        "multipart/form-data": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "security": [
-                    {
-                        "Api-Key": []
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/League"
-                                }
-                            }
-                        },
-                        "description": ""
-                    }
-                }
             }
         },
         "/leagues/{id}/": {
@@ -3427,140 +3428,6 @@
                             }
                         },
                         "description": ""
-                    }
-                }
-            },
-            "put": {
-                "operationId": "leagues_update",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "description": "A unique integer value identifying this league.",
-                        "required": true
-                    }
-                ],
-                "tags": [
-                    "leagues"
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        },
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        },
-                        "multipart/form-data": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "security": [
-                    {
-                        "Api-Key": []
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/League"
-                                }
-                            }
-                        },
-                        "description": ""
-                    }
-                }
-            },
-            "patch": {
-                "operationId": "leagues_partial_update",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "description": "A unique integer value identifying this league.",
-                        "required": true
-                    }
-                ],
-                "tags": [
-                    "leagues"
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/PatchedLeague"
-                            }
-                        },
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "$ref": "#/components/schemas/PatchedLeague"
-                            }
-                        },
-                        "multipart/form-data": {
-                            "schema": {
-                                "$ref": "#/components/schemas/PatchedLeague"
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "Api-Key": []
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/League"
-                                }
-                            }
-                        },
-                        "description": ""
-                    }
-                }
-            },
-            "delete": {
-                "operationId": "leagues_destroy",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "description": "A unique integer value identifying this league.",
-                        "required": true
-                    }
-                ],
-                "tags": [
-                    "leagues"
-                ],
-                "security": [
-                    {
-                        "Api-Key": []
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "No response body"
                     }
                 }
             }
@@ -3749,6 +3616,7 @@
         "/leagues/{id}/expire_subs/": {
             "post": {
                 "operationId": "leagues_expire_subs_create",
+                "description": "Queue the expiry of this league's active substitutions.",
                 "parameters": [
                     {
                         "in": "path",
@@ -3763,33 +3631,13 @@
                 "tags": [
                     "leagues"
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        },
-                        "application/x-www-form-urlencoded": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        },
-                        "multipart/form-data": {
-                            "schema": {
-                                "$ref": "#/components/schemas/League"
-                            }
-                        }
-                    },
-                    "required": true
-                },
                 "security": [
                     {
                         "Api-Key": []
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4010,8 +3858,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "ID of the league to get team matches for",
-                        "required": true
+                        "description": "ID of the league to get team matches for. (Default: the default league)"
                     },
                     {
                         "name": "limit",
@@ -4062,7 +3909,7 @@
                                 "REG"
                             ]
                         },
-                        "description": "Match Type Equals\n\n* `REG` - Regular Season\n* `PRE` - Pre-season\n* `PST` - Post-Season\n* `FNL` - Finals\n* `ANY` - Any"
+                        "description": "Match Type Equals (ANY: every type)\n\n* `REG` - Regular Season\n* `PRE` - Pre-season\n* `PST` - Post-Season\n* `FNL` - Finals\n* `ANY` - Any"
                     },
                     {
                         "name": "offset",
@@ -4079,7 +3926,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "ID of the season to search for match."
+                        "description": "ID of the season to search for match. (Default: the league's current season)"
                     },
                     {
                         "in": "query",
@@ -4218,21 +4065,20 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/MatchList"
+                                "$ref": "#/components/schemas/MatchUpdate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/MatchList"
+                                "$ref": "#/components/schemas/MatchUpdate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/MatchList"
+                                "$ref": "#/components/schemas/MatchUpdate"
                             }
                         }
-                    },
-                    "required": true
+                    }
                 },
                 "security": [
                     {
@@ -4244,7 +4090,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/MatchList"
+                                    "$ref": "#/components/schemas/Match"
                                 }
                             }
                         },
@@ -4272,17 +4118,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedMatchList"
+                                "$ref": "#/components/schemas/PatchedMatchUpdate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedMatchList"
+                                "$ref": "#/components/schemas/PatchedMatchUpdate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedMatchList"
+                                "$ref": "#/components/schemas/PatchedMatchUpdate"
                             }
                         }
                     }
@@ -4297,7 +4143,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/MatchList"
+                                    "$ref": "#/components/schemas/Match"
                                 }
                             }
                         },
@@ -4334,9 +4180,9 @@
             }
         },
         "/matches/{id}/process_stats/": {
-            "get": {
-                "operationId": "matches_process_stats_retrieve",
-                "description": "Process ballchasing stats for a given match",
+            "post": {
+                "operationId": "matches_process_stats_create",
+                "description": "Process ballchasing stats for a given match. League admins only.",
                 "parameters": [
                     {
                         "in": "path",
@@ -4358,6 +4204,16 @@
                 ],
                 "responses": {
                     "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "403": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4528,7 +4384,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "required": true
+                        "description": "League ID (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -4567,16 +4423,16 @@
                         "name": "season",
                         "schema": {
                             "type": "integer"
-                        }
+                        },
+                        "description": "Season ID (Default: the league's current season)"
                     },
                     {
                         "in": "query",
                         "name": "season_number",
                         "schema": {
-                            "type": "integer",
-                            "maximum": 2147483647,
-                            "minimum": -2147483648
-                        }
+                            "type": "integer"
+                        },
+                        "description": "Season number"
                     },
                     {
                         "in": "query",
@@ -4613,6 +4469,182 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/matches/results/": {
+            "get": {
+                "operationId": "matches_results_list",
+                "description": "List matches with their scores. Score fields are null for a match not yet reported. (Default: the default league's current season)",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "date__gt",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "date__lt",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "day",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Match Day Equals"
+                    },
+                    {
+                        "in": "query",
+                        "name": "latest",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "Only the most recent match day already played (day and match type) with a reported score, among the matches the other filters select."
+                    },
+                    {
+                        "in": "query",
+                        "name": "league",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "description": "Matches by League ID (Default: System Default League)"
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "Number of results to return per page.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "match_format",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "BO3",
+                                "BO5",
+                                "BO7",
+                                "GMS"
+                            ]
+                        },
+                        "description": "Match Format Equals\n\n* `GMS` - Game Series\n* `BO3` - Best of Three\n* `BO5` - Best of Five\n* `BO7` - Best of Seven"
+                    },
+                    {
+                        "in": "query",
+                        "name": "match_team_type",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "ALL",
+                                "AWY",
+                                "HME"
+                            ]
+                        },
+                        "description": "* `HME` - Home\n* `AWY` - Away\n* `ALL` - All Games"
+                    },
+                    {
+                        "in": "query",
+                        "name": "match_type",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "ANY",
+                                "FNL",
+                                "PRE",
+                                "PST",
+                                "REG"
+                            ]
+                        },
+                        "description": "Match Type Equals (ANY: every type)\n\n* `REG` - Regular Season\n* `PRE` - Pre-season\n* `PST` - Post-Season\n* `FNL` - Finals\n* `ANY` - Any"
+                    },
+                    {
+                        "name": "offset",
+                        "required": false,
+                        "in": "query",
+                        "description": "The initial index from which to return the results.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "reported",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "Only matches with (true) or without (false) a reported score."
+                    },
+                    {
+                        "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "description": "Matches by Season ID (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Matches by Season Number"
+                    },
+                    {
+                        "in": "query",
+                        "name": "team_name",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Specific team name to search for."
+                    },
+                    {
+                        "in": "query",
+                        "name": "tier",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "description": "Matches in Tier (Tier ID Equals)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "tier_name",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Matches in Tier (Tier Name Equals, case-insensitive)"
+                    }
+                ],
+                "tags": [
+                    "matches"
+                ],
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaginatedMatchResultListList"
                                 }
                             }
                         },
@@ -5264,17 +5296,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Member"
+                                "$ref": "#/components/schemas/MemberUpdate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Member"
+                                "$ref": "#/components/schemas/MemberUpdate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Member"
+                                "$ref": "#/components/schemas/MemberUpdate"
                             }
                         }
                     },
@@ -5319,17 +5351,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedMember"
+                                "$ref": "#/components/schemas/PatchedMemberUpdate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedMember"
+                                "$ref": "#/components/schemas/PatchedMemberUpdate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedMember"
+                                "$ref": "#/components/schemas/PatchedMemberUpdate"
                             }
                         }
                     }
@@ -5354,7 +5386,7 @@
             },
             "delete": {
                 "operationId": "members_destroy",
-                "description": "Apply this mixin to any view or viewset to get multiple field filtering\nbased on a `lookup_fields` attribute, instead of the default single field filtering.\n\nThe primary key is tried first, then each alternate field in turn. A field is skipped\nwhen the URL value is not something that column can hold (e.g. a non-numeric string\nagainst an integer column), so a bad lookup value is a 404 rather than a 500.",
+                "description": "Delete a member record that holds no history: a duplicate or mistaken account.\n\nSuperusers only: a member belongs to no single league, so a league admin's role\ncould not scope it. A member with league, stats or MMR history is refused; the\ndelete would cascade it away (or hit a PROTECT and 500, as it used to).",
                 "parameters": [
                     {
                         "in": "path",
@@ -5377,6 +5409,26 @@
                 "responses": {
                     "204": {
                         "description": "No response body"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -5525,8 +5577,23 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID to get player contract status of",
-                        "required": true
+                        "description": "League ID. (Default: the default league)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -5726,7 +5793,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/LeaguePlayerPatch"
+                                    "$ref": "#/components/schemas/LeaguePlayer"
                                 }
                             }
                         },
@@ -5757,17 +5824,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayerSignup"
+                                "$ref": "#/components/schemas/MemberLeagueDropRequest"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayerSignup"
+                                "$ref": "#/components/schemas/MemberLeagueDropRequest"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/LeaguePlayerSignup"
+                                "$ref": "#/components/schemas/MemberLeagueDropRequest"
                             }
                         }
                     },
@@ -6094,8 +6161,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League to get stats from season for.",
-                        "required": true
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -6103,7 +6169,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Specific season number to get stats for"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -6266,8 +6340,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League to get stats from season for.",
-                        "required": true
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -6275,7 +6348,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Specific season number to get stats for"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     },
                     {
                         "in": "query",
@@ -6538,47 +6619,11 @@
                     },
                     {
                         "in": "query",
-                        "name": "pulled_after_after",
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "description": "Date pulled is greater than or equal to this date (YYYY-MM-DD)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "pulled_after_before",
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "description": "Date pulled is greater than or equal to this date (YYYY-MM-DD)"
-                    },
-                    {
-                        "in": "query",
                         "name": "pulled_before",
                         "schema": {
                             "type": "string"
                         },
                         "description": "MMR pulled before date in YYYY-MM-DD format."
-                    },
-                    {
-                        "in": "query",
-                        "name": "pulled_before_after",
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "description": "Date pulled is less than or equal to this date (YYYY-MM-DD)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "pulled_before_before",
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "description": "Date pulled is less than or equal to this date (YYYY-MM-DD)"
                     },
                     {
                         "in": "query",
@@ -6775,21 +6820,20 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PlayerMMR"
+                                "$ref": "#/components/schemas/PlayerMMRUpdate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PlayerMMR"
+                                "$ref": "#/components/schemas/PlayerMMRUpdate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PlayerMMR"
+                                "$ref": "#/components/schemas/PlayerMMRUpdate"
                             }
                         }
-                    },
-                    "required": true
+                    }
                 },
                 "security": [
                     {
@@ -6845,17 +6889,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedPlayerMMR"
+                                "$ref": "#/components/schemas/PatchedPlayerMMRUpdate"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedPlayerMMR"
+                                "$ref": "#/components/schemas/PatchedPlayerMMRUpdate"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedPlayerMMR"
+                                "$ref": "#/components/schemas/PatchedPlayerMMRUpdate"
                             }
                         }
                     }
@@ -6928,14 +6972,6 @@
                 "parameters": [
                     {
                         "in": "query",
-                        "name": "discord_id",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "description": "Member discord ID."
-                    },
-                    {
-                        "in": "query",
                         "name": "format",
                         "schema": {
                             "type": "string",
@@ -6944,100 +6980,6 @@
                                 "json"
                             ]
                         }
-                    },
-                    {
-                        "name": "limit",
-                        "required": false,
-                        "in": "query",
-                        "description": "Number of results to return per page.",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "offset",
-                        "required": false,
-                        "in": "query",
-                        "description": "The initial index from which to return the results.",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "in": "query",
-                        "name": "psyonix_season",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "description": "Psyonix Season (as internal value. E.g F2P S14 = 28)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "pulled",
-                        "schema": {
-                            "type": "string",
-                            "format": "date-time"
-                        },
-                        "description": "Specific date pulled (YYYY-MM-DD)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "pulled_after_after",
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "description": "Date pulled is greater than or equal to this date (YYYY-MM-DD)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "pulled_after_before",
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "description": "Date pulled is greater than or equal to this date (YYYY-MM-DD)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "pulled_before_after",
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "description": "Date pulled is less than or equal to this date (YYYY-MM-DD)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "pulled_before_before",
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "description": "Date pulled is less than or equal to this date (YYYY-MM-DD)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "rscid",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "in": "query",
-                        "name": "rscid_begin",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Starting RSC ID"
-                    },
-                    {
-                        "in": "query",
-                        "name": "rscid_end",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Ending RSC ID"
                     }
                 ],
                 "tags": [
@@ -7079,12 +7021,18 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PaginatedPlayerMMRList"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PlayerMMR"
+                                    }
                                 }
                             },
                             "text/csv": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PaginatedPlayerMMRList"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PlayerMMR"
+                                    }
                                 }
                             }
                         },
@@ -7156,17 +7104,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Season"
+                                "$ref": "#/components/schemas/SeasonWrite"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Season"
+                                "$ref": "#/components/schemas/SeasonWrite"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Season"
+                                "$ref": "#/components/schemas/SeasonWrite"
                             }
                         }
                     },
@@ -7246,17 +7194,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Season"
+                                "$ref": "#/components/schemas/SeasonWrite"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Season"
+                                "$ref": "#/components/schemas/SeasonWrite"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Season"
+                                "$ref": "#/components/schemas/SeasonWrite"
                             }
                         }
                     },
@@ -7300,17 +7248,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedSeason"
+                                "$ref": "#/components/schemas/PatchedSeasonWrite"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedSeason"
+                                "$ref": "#/components/schemas/PatchedSeasonWrite"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedSeason"
+                                "$ref": "#/components/schemas/PatchedSeasonWrite"
                             }
                         }
                     }
@@ -7410,7 +7358,10 @@
                         "in": "query",
                         "name": "discord_id",
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "maximum": 9223372036854775807,
+                            "minimum": 0,
+                            "format": "int64"
                         }
                     },
                     {
@@ -7497,6 +7448,14 @@
                         "description": "Discord ID of player intent to search for."
                     },
                     {
+                        "in": "query",
+                        "name": "league",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "League ID. (Default: the default league)"
+                    },
+                    {
                         "name": "limit",
                         "required": false,
                         "in": "query",
@@ -7536,7 +7495,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season ID (E.g: 8)"
+                        "description": "Season ID (E.g: 8). (Default: the league's current season)"
                     },
                     {
                         "in": "query",
@@ -7616,8 +7575,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League to get current season for.",
-                        "required": true
+                        "description": "League ID. (Default: the default league)"
                     }
                 ],
                 "tags": [
@@ -7663,8 +7621,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League to get current season for.",
-                        "required": true
+                        "description": "League ID. (Default: the default league)"
                     }
                 ],
                 "tags": [
@@ -7717,7 +7674,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID"
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "name": "limit",
@@ -7790,7 +7747,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season ID"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -7862,8 +7827,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "League ID",
-                        "required": true
+                        "description": "League ID (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -7881,8 +7845,16 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season ID",
-                        "required": true
+                        "description": "Season ID (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Season number"
                     },
                     {
                         "in": "query",
@@ -7976,8 +7948,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "League ID",
-                        "required": true
+                        "description": "League ID (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -7986,7 +7957,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season Number (alias)"
+                        "description": "Season ID (Default: the league's current season)"
                     },
                     {
                         "in": "query",
@@ -7995,7 +7966,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season ID"
+                        "description": "Deprecated spelling of `season`."
                     },
                     {
                         "in": "query",
@@ -8004,7 +7975,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season Number"
+                        "description": "Season number"
                     },
                     {
                         "in": "query",
@@ -8075,8 +8046,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "League ID",
-                        "required": true
+                        "description": "League ID (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -8094,8 +8064,16 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season ID",
-                        "required": true
+                        "description": "Season ID (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Season number"
                     },
                     {
                         "in": "query",
@@ -8189,8 +8167,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "League ID",
-                        "required": true
+                        "description": "League ID (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -8199,7 +8176,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season Number (alias)"
+                        "description": "Season ID (Default: the league's current season)"
                     },
                     {
                         "in": "query",
@@ -8208,7 +8185,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season ID"
+                        "description": "Deprecated spelling of `season`."
                     },
                     {
                         "in": "query",
@@ -8217,7 +8194,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season Number"
+                        "description": "Season number"
                     },
                     {
                         "in": "query",
@@ -8293,9 +8270,9 @@
                         "in": "query",
                         "name": "league",
                         "schema": {
-                            "type": "integer"
+                            "type": "number"
                         },
-                        "description": "League Database ID"
+                        "description": "League ID (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -8514,17 +8491,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedTeamList"
+                                "$ref": "#/components/schemas/PatchedTeamPatch"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedTeamList"
+                                "$ref": "#/components/schemas/PatchedTeamPatch"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedTeamList"
+                                "$ref": "#/components/schemas/PatchedTeamPatch"
                             }
                         }
                     }
@@ -8539,7 +8516,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TeamList"
+                                    "$ref": "#/components/schemas/TeamPatch"
                                 }
                             }
                         },
@@ -8607,12 +8584,19 @@
                     },
                     {
                         "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season ID (Default: the team's current season)"
+                    },
+                    {
+                        "in": "query",
                         "name": "season_number",
                         "schema": {
-                            "type": "integer",
-                            "maximum": 2147483647,
-                            "minimum": -2147483648
-                        }
+                            "type": "integer"
+                        },
+                        "description": "Season number"
                     }
                 ],
                 "tags": [
@@ -8710,14 +8694,6 @@
                 "description": "Get player stats for a given team. (Default: Current Season)",
                 "parameters": [
                     {
-                        "in": "query",
-                        "name": "franchise",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Franchise Name Contains"
-                    },
-                    {
                         "in": "path",
                         "name": "id",
                         "schema": {
@@ -8728,19 +8704,12 @@
                     },
                     {
                         "in": "query",
-                        "name": "league",
+                        "name": "season",
                         "schema": {
-                            "type": "number"
+                            "type": "integer",
+                            "minimum": 1
                         },
-                        "description": "League ID"
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Team Name Contains"
+                        "description": "Season ID to query for."
                     },
                     {
                         "in": "query",
@@ -8749,7 +8718,7 @@
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season database ID to query for."
+                        "description": "Deprecated spelling of `season`."
                     },
                     {
                         "in": "query",
@@ -8759,27 +8728,6 @@
                             "minimum": 1
                         },
                         "description": "Season number to query for. Defaults to the league current season when omitted."
-                    },
-                    {
-                        "in": "query",
-                        "name": "seasons",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer"
-                            }
-                        },
-                        "description": "Season Number contains",
-                        "explode": false,
-                        "style": "form"
-                    },
-                    {
-                        "in": "query",
-                        "name": "tier",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
                     }
                 ],
                 "tags": [
@@ -8823,14 +8771,6 @@
                 "description": "Get the players for a given team.",
                 "parameters": [
                     {
-                        "in": "query",
-                        "name": "franchise",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Franchise Name Contains"
-                    },
-                    {
                         "in": "path",
                         "name": "id",
                         "schema": {
@@ -8838,43 +8778,6 @@
                         },
                         "description": "A unique integer value identifying this team.",
                         "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "league",
-                        "schema": {
-                            "type": "number"
-                        },
-                        "description": "League ID"
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Team Name Contains"
-                    },
-                    {
-                        "in": "query",
-                        "name": "seasons",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer"
-                            }
-                        },
-                        "description": "Season Number contains",
-                        "explode": false,
-                        "style": "form"
-                    },
-                    {
-                        "in": "query",
-                        "name": "tier",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
                     }
                 ],
                 "tags": [
@@ -8918,12 +8821,21 @@
                     },
                     {
                         "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Season ID to query for."
+                    },
+                    {
+                        "in": "query",
                         "name": "season_id",
                         "schema": {
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season database ID to query for."
+                        "description": "Deprecated spelling of `season`."
                     },
                     {
                         "in": "query",
@@ -8973,14 +8885,6 @@
                 "description": "Get all matches for a given team.",
                 "parameters": [
                     {
-                        "in": "query",
-                        "name": "franchise",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Franchise Name Contains"
-                    },
-                    {
                         "in": "path",
                         "name": "id",
                         "schema": {
@@ -8988,22 +8892,6 @@
                         },
                         "description": "A unique integer value identifying this team.",
                         "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "league",
-                        "schema": {
-                            "type": "number"
-                        },
-                        "description": "League ID"
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Team Name Contains"
                     },
                     {
                         "in": "query",
@@ -9017,28 +8905,16 @@
                         "name": "season",
                         "schema": {
                             "type": "integer"
-                        }
+                        },
+                        "description": "Season ID (Default: the league's current season)"
                     },
                     {
                         "in": "query",
-                        "name": "seasons",
+                        "name": "season_number",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer"
-                            }
+                            "type": "integer"
                         },
-                        "description": "Season Number contains",
-                        "explode": false,
-                        "style": "form"
-                    },
-                    {
-                        "in": "query",
-                        "name": "tier",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
+                        "description": "Season number"
                     }
                 ],
                 "tags": [
@@ -9092,12 +8968,21 @@
                     },
                     {
                         "in": "query",
+                        "name": "season",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Season ID to query for."
+                    },
+                    {
+                        "in": "query",
                         "name": "season_id",
                         "schema": {
                             "type": "integer",
                             "minimum": 1
                         },
-                        "description": "Season database ID to query for."
+                        "description": "Deprecated spelling of `season`."
                     },
                     {
                         "in": "query",
@@ -9142,7 +9027,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League Database ID"
+                        "description": "Tiers in League with ID"
                     },
                     {
                         "in": "query",
@@ -9416,16 +9301,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -9433,7 +9309,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number (Default: Current season.)"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -9491,16 +9375,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -9508,7 +9383,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number (Default: Current season.)"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -9566,8 +9449,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID",
-                        "required": true
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -9575,7 +9457,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number (Default: Current season.)"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -9630,16 +9520,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -9647,7 +9528,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number (Default: Current season.)"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -9705,16 +9594,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -9722,7 +9602,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number (Default: Current season.)"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -9780,26 +9668,23 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Tiers in League with ID"
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
                         "name": "season",
                         "schema": {
-                            "type": "integer",
-                            "maximum": 2147483647,
-                            "minimum": -2147483648
+                            "type": "integer"
                         },
-                        "description": "Season number to query for.",
-                        "required": true
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -9867,16 +9752,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -9884,7 +9760,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number (Default: Current season.)"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -9942,16 +9826,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID",
-                        "required": true
-                    },
-                    {
-                        "in": "query",
-                        "name": "name",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Tier Name Contains"
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -9959,7 +9834,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number (Default: Current season.)"
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     }
                 ],
                 "tags": [
@@ -10008,8 +9891,7 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID.",
-                        "required": true
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
@@ -10017,7 +9899,15 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "Season number (default: current)."
+                        "description": "Season ID, within the league. (Default: the league's current season)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "season_number",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Season number, within the league. Ignored when `season` is given."
                     },
                     {
                         "in": "query",
@@ -10226,17 +10116,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/TrackerLink"
+                                "$ref": "#/components/schemas/TrackerCreateInput"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/TrackerLink"
+                                "$ref": "#/components/schemas/TrackerCreateInput"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/TrackerLink"
+                                "$ref": "#/components/schemas/TrackerCreateInput"
                             }
                         }
                     },
@@ -10248,7 +10138,7 @@
                     }
                 ],
                 "responses": {
-                    "201": {
+                    "200": {
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -10365,9 +10255,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this tracker link.",
                         "required": true
                     }
                 ],
@@ -10384,7 +10274,8 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerLink"
+                                    "type": "object",
+                                    "additionalProperties": {}
                                 }
                             }
                         },
@@ -10400,9 +10291,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this tracker link.",
                         "required": true
                     }
                 ],
@@ -10419,7 +10310,8 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerLink"
+                                    "type": "object",
+                                    "additionalProperties": {}
                                 }
                             }
                         },
@@ -10436,9 +10328,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this tracker link.",
                         "required": true
                     }
                 ],
@@ -10493,9 +10385,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this tracker link.",
                         "required": true
                     }
                 ],
@@ -10549,9 +10441,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this tracker link.",
                         "required": true
                     },
                     {
@@ -10594,9 +10486,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this tracker link.",
                         "required": true
                     }
                 ],
@@ -10628,9 +10520,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this tracker link.",
                         "required": true
                     }
                 ],
@@ -10683,9 +10575,9 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "pattern": "^\\d+$"
                         },
-                        "description": "A unique integer value identifying this tracker link.",
                         "required": true
                     }
                 ],
@@ -10748,7 +10640,8 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerLink"
+                                    "type": "object",
+                                    "additionalProperties": {}
                                 }
                             }
                         },
@@ -10772,7 +10665,8 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerLink"
+                                    "type": "object",
+                                    "additionalProperties": {}
                                 }
                             }
                         },
@@ -10798,7 +10692,10 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerLink"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TrackerLink"
+                                    }
                                 }
                             }
                         },
@@ -10817,27 +10714,21 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "title": "Tracker Link invalidate object",
-                                "description": "Request body object containing a dictionary ",
-                                "type": "object",
-                                "properties": {
-                                    "links": {
-                                        "title": "Links",
-                                        "description": "List of links to invalidate",
-                                        "type": "array",
-                                        "items": {
-                                            "title": "link",
-                                            "description": "Tracker link",
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "links"
-                                ]
+                                "$ref": "#/components/schemas/TrackerLinksInvalidate"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TrackerLinksInvalidate"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TrackerLinksInvalidate"
                             }
                         }
-                    }
+                    },
+                    "required": true
                 },
                 "security": [
                     {
@@ -10849,7 +10740,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerLink"
+                                    "$ref": "#/components/schemas/TrackerLinksInvalidated"
                                 }
                             }
                         },
@@ -10985,7 +10876,7 @@
         "/tracker-links/spider/": {
             "post": {
                 "operationId": "tracker_links_spider_create",
-                "description": "Resolve every Epic tracker the player holds through RL Planet and create tracker links for the accounts it reports as linked. Returns the links that were created. Existing links are never modified, and accounts already held by a different member are reported rather than created.",
+                "description": "Resolve every Epic tracker the player holds through Orbit and create tracker links for the accounts it reports as linked. Returns the links that were created. Existing links are never modified, and accounts already held by a different member are reported rather than created.",
                 "tags": [
                     "tracker-links"
                 ],
@@ -11022,7 +10913,28 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/TrackerLink"
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
                                 }
                             }
                         },
@@ -12004,14 +11916,20 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "description": "League ID.",
-                        "required": true
+                        "description": "League ID. (Default: the default league)"
                     },
                     {
                         "in": "query",
                         "name": "status",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "enum": [
+                                "cancelled",
+                                "invalid",
+                                "lost",
+                                "pending",
+                                "won"
+                            ]
                         },
                         "description": "Claim status (default: pending)."
                     },
@@ -12316,7 +12234,10 @@
                         "type": "string"
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "returning_status": {
                         "type": "boolean"
@@ -12336,7 +12257,10 @@
                         "type": "boolean"
                     },
                     "executor": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "league": {
                         "type": "integer"
@@ -12382,13 +12306,18 @@
                 "type": "object",
                 "properties": {
                     "username": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 100
                     },
                     "rsc_name": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 255
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
@@ -12598,7 +12527,10 @@
                         "type": "string"
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
@@ -12655,17 +12587,20 @@
                     },
                     "league": {
                         "type": "integer",
-                        "default": 1
+                        "description": "League ID (Default: the default league)"
                     },
                     "season": {
                         "type": "integer",
-                        "description": "Season **number**."
+                        "description": "Season ID (Default: the league's current season)"
+                    },
+                    "season_number": {
+                        "type": "integer",
+                        "description": "Season number"
                     }
                 },
                 "required": [
                     "from_gm",
                     "round",
-                    "season",
                     "tier",
                     "to_gm"
                 ]
@@ -12701,6 +12636,46 @@
                     "tier"
                 ]
             },
+            "DraftPickUpdate": {
+                "type": "object",
+                "description": "PUT/PATCH on a pick: its slot and flags. Owners change through trades and swaps.\n\nThe generic update used DraftPickDetailsSerializer, whose nested franchise, tier and\nplayers were writable on paper and raised on save (500).",
+                "properties": {
+                    "number": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
+                    },
+                    "round": {
+                        "type": "integer",
+                        "maximum": 99,
+                        "minimum": 1
+                    },
+                    "future_pick": {
+                        "type": "boolean"
+                    },
+                    "deleted": {
+                        "type": "boolean",
+                        "description": "Is this pick removed because someone lost a tier."
+                    },
+                    "future_season": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
+                    },
+                    "pick_from": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Prefix of franchise this pick came from (if any)",
+                        "maxLength": 3
+                    },
+                    "original_pick": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Prefix of franchise this pick originally came from (if any)",
+                        "maxLength": 3
+                    }
+                }
+            },
             "DraftTierCountKeeperExport": {
                 "type": "object",
                 "properties": {
@@ -12714,7 +12689,10 @@
                         "type": "string"
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "base_mmr": {
                         "type": "integer"
@@ -12829,7 +12807,9 @@
                 "properties": {
                     "discord_id": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
                         "minimum": 1,
+                        "format": "int64",
                         "description": "Discord ID of the member to re-sync against their Discord guild roles."
                     },
                     "league": {
@@ -13207,7 +13187,10 @@
                         "readOnly": true
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
@@ -13323,11 +13306,11 @@
                         }
                     },
                     "admin_override": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "default": false
                     }
                 },
                 "required": [
-                    "admin_override",
                     "name",
                     "prefix",
                     "teams"
@@ -13397,7 +13380,10 @@
                 "type": "object",
                 "properties": {
                     "general_manager": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "league": {
                         "type": "integer"
@@ -13654,7 +13640,10 @@
                         "type": "integer"
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "player_name": {
                         "type": "string"
@@ -13894,7 +13883,10 @@
                         "type": "boolean"
                     },
                     "executor": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
@@ -14272,6 +14264,57 @@
                     "waiver_period_end_date"
                 ]
             },
+            "LeaguePlayerCreate": {
+                "type": "object",
+                "properties": {
+                    "league": {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    "team_name": {
+                        "type": "string",
+                        "writeOnly": true
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/LeaguePlayerStatusEnum"
+                    },
+                    "base_mmr": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
+                    },
+                    "current_mmr": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
+                    },
+                    "tier": {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    "contract_length": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "default": 0
+                    },
+                    "player": {
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
+                        "description": "Discord ID of the member."
+                    }
+                },
+                "required": [
+                    "base_mmr",
+                    "current_mmr",
+                    "league",
+                    "player",
+                    "status",
+                    "tier"
+                ]
+            },
             "LeaguePlayerLeague": {
                 "type": "object",
                 "properties": {
@@ -14339,14 +14382,20 @@
                     },
                     "executor": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "writeOnly": true
                     },
                     "waiver_period": {
                         "type": "string",
+                        "format": "date-time",
                         "writeOnly": true
                     },
                     "contract_length": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
                     },
                     "captain": {
                         "type": "boolean"
@@ -14363,7 +14412,8 @@
                 "type": "object",
                 "properties": {
                     "league": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": 1
                     },
                     "team_name": {
                         "type": "string",
@@ -14373,16 +14423,23 @@
                         "$ref": "#/components/schemas/LeaguePlayerStatusEnum"
                     },
                     "base_mmr": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
                     },
                     "current_mmr": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
                     },
                     "tier": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": 1
                     },
                     "contract_length": {
                         "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0,
                         "default": 0
                     }
                 },
@@ -14390,6 +14447,7 @@
                     "base_mmr",
                     "current_mmr",
                     "league",
+                    "status",
                     "tier"
                 ]
             },
@@ -14685,6 +14743,86 @@
                     "match_type"
                 ]
             },
+            "MatchResultList": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "season_number": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "day": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "match_type": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/MatchTypeEnum"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "match_format": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/MatchFormatEnum"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "num_games": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "tier": {
+                        "type": "string",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "home_team": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "away_team": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "home_wins": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "nullable": true,
+                        "description": "Null until the match is reported."
+                    },
+                    "away_wins": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "nullable": true,
+                        "description": "Null until the match is reported."
+                    },
+                    "home_goals": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "nullable": true,
+                        "description": "Null until goal totals are imported."
+                    },
+                    "away_goals": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "nullable": true,
+                        "description": "Null until goal totals are imported."
+                    }
+                }
+            },
             "MatchResults": {
                 "type": "object",
                 "properties": {
@@ -14715,15 +14853,22 @@
                 "properties": {
                     "home_score": {
                         "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0,
                         "description": "Number of games Home won."
                     },
                     "away_score": {
                         "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0,
                         "description": "Number of games Away won."
                     },
                     "executor": {
                         "type": "integer",
-                        "description": "Person executing the score report"
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
+                        "description": "Discord ID of the member reporting the score."
                     },
                     "ballchasing_group": {
                         "type": "string",
@@ -14747,20 +14892,24 @@
                 "type": "object",
                 "properties": {
                     "home_team": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": 1
                     },
                     "away_team": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": 1
                     },
                     "day": {
                         "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0,
                         "default": 0
                     },
                     "match_format": {
                         "$ref": "#/components/schemas/MatchFormatEnum"
                     },
                     "match_type": {
-                        "$ref": "#/components/schemas/MatchTypeEnum"
+                        "$ref": "#/components/schemas/PlayableMatchTypeEnum"
                     },
                     "date": {
                         "type": "string",
@@ -14820,6 +14969,44 @@
                 ],
                 "type": "string",
                 "description": "* `REG` - Regular Season\n* `PRE` - Pre-season\n* `PST` - Post-Season\n* `FNL` - Finals\n* `ANY` - Any"
+            },
+            "MatchUpdate": {
+                "type": "object",
+                "description": "PUT/PATCH on a match: its schedule and lobby, never its teams or season.\n\nThe generic update used MatchListSerializer, whose dotted-source team fields made every\nPUT a 500 and silently ignored most PATCHes.",
+                "properties": {
+                    "day": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "num_games": {
+                        "type": "integer",
+                        "maximum": 99,
+                        "minimum": 0
+                    },
+                    "game_name": {
+                        "type": "string",
+                        "maxLength": 20
+                    },
+                    "game_pass": {
+                        "type": "string",
+                        "maxLength": 20
+                    },
+                    "match_format": {
+                        "$ref": "#/components/schemas/MatchFormatEnum"
+                    },
+                    "match_type": {
+                        "$ref": "#/components/schemas/PlayableMatchTypeEnum"
+                    },
+                    "streamed_match": {
+                        "type": "boolean"
+                    }
+                }
             },
             "Member": {
                 "type": "object",
@@ -14886,12 +15073,28 @@
                         "type": "string"
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
                     "discord_id",
                     "rsc_name"
+                ]
+            },
+            "MemberLeagueDropRequest": {
+                "type": "object",
+                "properties": {
+                    "league": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "League ID to drop the member from."
+                    }
+                },
+                "required": [
+                    "league"
                 ]
             },
             "MemberTracker": {
@@ -14910,6 +15113,9 @@
                     },
                     "discord_id": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "readOnly": true
                     },
                     "accounts": {
@@ -14929,12 +15135,28 @@
                 "properties": {
                     "new_account": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "title": "New Account Discord ID",
                         "description": "Discord ID for the member account to transfer to or set as the member's new Discord ID."
                     }
                 },
                 "required": [
                     "new_account"
+                ]
+            },
+            "MemberUpdate": {
+                "type": "object",
+                "description": "PUT/PATCH on a member. Only the username: the RSC name and Discord ID have their own\nroutes (name_change keeps the name history, update_discord_id checks uniqueness), and\nediting them here skipped both.",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "maxLength": 100
+                    }
+                },
+                "required": [
+                    "username"
                 ]
             },
             "NameChangeHistory": {
@@ -15218,6 +15440,37 @@
                     }
                 }
             },
+            "PaginatedMatchResultListList": {
+                "type": "object",
+                "required": [
+                    "count",
+                    "results"
+                ],
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "next": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "uri",
+                        "example": "http://api.example.org/accounts/?offset=400&limit=100"
+                    },
+                    "previous": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "uri",
+                        "example": "http://api.example.org/accounts/?offset=200&limit=100"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MatchResultList"
+                        }
+                    }
+                }
+            },
             "PaginatedMemberList": {
                 "type": "object",
                 "required": [
@@ -15373,30 +15626,19 @@
                     }
                 }
             },
-            "PatchedDraftPickDetails": {
+            "PatchedDraftPickUpdate": {
                 "type": "object",
+                "description": "PUT/PATCH on a pick: its slot and flags. Owners change through trades and swaps.\n\nThe generic update used DraftPickDetailsSerializer, whose nested franchise, tier and\nplayers were writable on paper and raised on save (500).",
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
-                    "round": {
-                        "type": "integer",
-                        "maximum": 2147483647,
-                        "minimum": -2147483648,
-                        "description": "Specific round in the tier."
-                    },
                     "number": {
                         "type": "integer",
                         "maximum": 2147483647,
-                        "minimum": -2147483648,
-                        "description": "Pick in the specific tier."
+                        "minimum": 0
                     },
-                    "tier": {
-                        "$ref": "#/components/schemas/SeasonDraftPickList"
-                    },
-                    "franchise": {
-                        "$ref": "#/components/schemas/DraftPickFranchise"
+                    "round": {
+                        "type": "integer",
+                        "maximum": 99,
+                        "minimum": 1
                     },
                     "future_pick": {
                         "type": "boolean"
@@ -15405,28 +15647,22 @@
                         "type": "boolean",
                         "description": "Is this pick removed because someone lost a tier."
                     },
-                    "pick_from": {
-                        "type": "object",
-                        "additionalProperties": {},
-                        "nullable": true,
-                        "readOnly": true
-                    },
-                    "original_pick": {
-                        "type": "object",
-                        "additionalProperties": {},
-                        "nullable": true,
-                        "readOnly": true
-                    },
                     "future_season": {
                         "type": "integer",
                         "maximum": 2147483647,
-                        "minimum": -2147483648
+                        "minimum": 0
                     },
-                    "players": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/DraftPickLeaguePlayer"
-                        }
+                    "pick_from": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Prefix of franchise this pick came from (if any)",
+                        "maxLength": 3
+                    },
+                    "original_pick": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Prefix of franchise this pick originally came from (if any)",
+                        "maxLength": 3
                     }
                 }
             },
@@ -15446,88 +15682,25 @@
                     }
                 }
             },
-            "PatchedFranchise": {
+            "PatchedFranchiseRebrand": {
                 "type": "object",
                 "properties": {
-                    "name": {
-                        "type": "string"
-                    },
                     "prefix": {
                         "type": "string",
                         "maxLength": 3
                     },
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
-                    "league": {
-                        "$ref": "#/components/schemas/FranchiseLeague"
-                    },
-                    "tiers": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/FranchiseTier"
-                        },
-                        "readOnly": true
-                    },
-                    "active": {
-                        "type": "boolean",
-                        "readOnly": true
+                    "name": {
+                        "type": "string"
                     },
                     "teams": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/Team"
-                        },
-                        "readOnly": true
-                    },
-                    "logo": {
-                        "type": "string",
-                        "format": "uri",
-                        "nullable": true,
-                        "readOnly": true
-                    },
-                    "gm": {
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/FranchiseGM"
-                            }
-                        ],
-                        "nullable": true
-                    },
-                    "agms": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/FranchiseGM"
-                        },
-                        "readOnly": true
-                    }
-                }
-            },
-            "PatchedLeague": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "guild_id": {
-                        "type": "integer"
-                    },
-                    "active": {
-                        "type": "boolean"
-                    },
-                    "league_data": {
-                        "$ref": "#/components/schemas/LeagueData"
-                    },
-                    "tiers": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Tier"
+                            "$ref": "#/components/schemas/TeamRebrand"
                         }
+                    },
+                    "admin_override": {
+                        "type": "boolean",
+                        "default": false
                     }
                 }
             },
@@ -15557,14 +15730,20 @@
                     },
                     "executor": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "writeOnly": true
                     },
                     "waiver_period": {
                         "type": "string",
+                        "format": "date-time",
                         "writeOnly": true
                     },
                     "contract_length": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 0
                     },
                     "captain": {
                         "type": "boolean"
@@ -15574,84 +15753,41 @@
                     }
                 }
             },
-            "PatchedMatchList": {
+            "PatchedMatchUpdate": {
                 "type": "object",
+                "description": "PUT/PATCH on a match: its schedule and lobby, never its teams or season.\n\nThe generic update used MatchListSerializer, whose dotted-source team fields made every\nPUT a 500 and silently ignored most PATCHes.",
                 "properties": {
                     "day": {
                         "type": "integer",
-                        "readOnly": true
+                        "maximum": 2147483647,
+                        "minimum": 0
                     },
                     "date": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
-                    },
-                    "game_name": {
-                        "type": "string",
-                        "readOnly": true,
-                        "description": "Blank unless the caller is on one of the two rosters, is GM or AGM of one of the franchises, is a league admin, or is using a bot or admin API key."
-                    },
-                    "game_pass": {
-                        "type": "string",
-                        "readOnly": true,
-                        "description": "Blank unless the caller is on one of the two rosters, is GM or AGM of one of the franchises, is a league admin, or is using a bot or admin API key."
                     },
                     "num_games": {
                         "type": "integer",
-                        "readOnly": true
+                        "maximum": 99,
+                        "minimum": 0
+                    },
+                    "game_name": {
+                        "type": "string",
+                        "maxLength": 20
+                    },
+                    "game_pass": {
+                        "type": "string",
+                        "maxLength": 20
                     },
                     "match_format": {
                         "$ref": "#/components/schemas/MatchFormatEnum"
                     },
                     "match_type": {
-                        "$ref": "#/components/schemas/MatchTypeEnum"
+                        "$ref": "#/components/schemas/PlayableMatchTypeEnum"
                     },
-                    "home_team": {
-                        "type": "string"
-                    },
-                    "away_team": {
-                        "type": "string"
-                    },
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    }
-                }
-            },
-            "PatchedMember": {
-                "type": "object",
-                "properties": {
-                    "username": {
-                        "type": "string",
-                        "maxLength": 100
-                    },
-                    "rsc_id": {
-                        "type": "string",
-                        "readOnly": true
-                    },
-                    "elevated_roles": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ElevatedRole"
-                        },
-                        "readOnly": true
-                    },
-                    "player_leagues": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/LeaguePlayer"
-                        },
-                        "readOnly": true
-                    },
-                    "rsc_name": {
-                        "type": "string"
-                    },
-                    "discord_id": {
-                        "type": "integer",
-                        "maximum": 9223372036854775807,
-                        "minimum": -9223372036854775808,
-                        "format": "int64"
+                    "streamed_match": {
+                        "type": "boolean"
                     }
                 }
             },
@@ -15659,7 +15795,8 @@
                 "type": "object",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 255
                     },
                     "admin_override": {
                         "type": "boolean",
@@ -15668,20 +15805,31 @@
                     },
                     "executor": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "nullable": true,
                         "description": "Discord ID of the member running the change. Defaults to the authenticated caller."
                     }
                 }
             },
-            "PatchedPlayerMMR": {
+            "PatchedMemberUpdate": {
                 "type": "object",
+                "description": "PUT/PATCH on a member. Only the username: the RSC name and Discord ID have their own\nroutes (name_change keeps the name history, update_discord_id checks uniqueness), and\nediting them here skipped both.",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "maxLength": 100
+                    }
+                }
+            },
+            "PatchedPlayerMMRUpdate": {
+                "type": "object",
+                "description": "PUT/PATCH on a pull: its figures and notes, never which tracker it belongs to.\n\nThe generic update used PlayerMMRSerializer, whose nested ``tracker_link`` made every\nPUT, and any PATCH naming it, a 500. Moving a pull between trackers is\n``POST /tracker-links/{id}/migrate_pulls/``.",
                 "properties": {
                     "date_pulled": {
                         "type": "string",
                         "format": "date-time"
-                    },
-                    "tracker_link": {
-                        "$ref": "#/components/schemas/TrackerMMR"
                     },
                     "threes_rating": {
                         "type": "integer",
@@ -15746,115 +15894,79 @@
                         "maximum": 2147483647,
                         "minimum": -2147483648,
                         "nullable": true
-                    },
-                    "member": {
-                        "type": "string",
-                        "readOnly": true
-                    },
-                    "type": {
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/PlayerMMRTypeEnum"
-                            }
-                        ],
-                        "readOnly": true
-                    },
-                    "rscid": {
-                        "type": "string",
-                        "readOnly": true
                     }
                 }
             },
-            "PatchedSeason": {
+            "PatchedSeasonWrite": {
                 "type": "object",
+                "description": "POST/PUT/PATCH on a season: its number and dates.\n\nThe generic routes used SeasonSerializer, whose nested ``league`` and\n``season_tier_data`` were writable on paper and raised on save (500), while scalar\nfields were silently ignored. ``league`` is set on create only; ``current`` stays with\nthe rollover, which keeps one current season per league.",
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
                     "league": {
-                        "$ref": "#/components/schemas/SeasonLeague"
+                        "type": "integer"
                     },
                     "number": {
                         "type": "integer",
-                        "readOnly": true
-                    },
-                    "season_tier_data": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/SeasonTierData"
-                        }
-                    },
-                    "current": {
-                        "type": "boolean",
-                        "readOnly": true
+                        "maximum": 2147483647,
+                        "minimum": 1
                     },
                     "start_date": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
                     },
                     "end_date": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
                     },
                     "preseason_start_date": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
                     },
                     "regular_season_start": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
                     },
                     "regular_season_end": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
                     },
                     "signup_close": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
                     },
                     "signups_open": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
                     },
                     "draft_date": {
                         "type": "string",
                         "format": "date-time",
-                        "readOnly": true,
                         "nullable": true
+                    },
+                    "preseason_matches": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "number_of_games": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
                     }
                 }
             },
-            "PatchedTeamList": {
+            "PatchedTeamPatch": {
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "readOnly": true
-                    },
                     "name": {
                         "type": "string",
                         "maxLength": 16
-                    },
-                    "franchise": {
-                        "$ref": "#/components/schemas/TeamFranchise"
-                    },
-                    "tier": {
-                        "$ref": "#/components/schemas/Tier"
                     }
                 }
             },
@@ -15886,6 +15998,9 @@
                     },
                     "role_id": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "writeOnly": true
                     }
                 }
@@ -15936,7 +16051,10 @@
                         "type": "boolean"
                     },
                     "executor": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
@@ -15994,6 +16112,16 @@
                 ],
                 "type": "string",
                 "description": "* `STEAM` - Steam\n* `EPIC` - Epic\n* `XBOX` - Xbox\n* `PS` - Playstation\n* `SWTCH` - Switch"
+            },
+            "PlayableMatchTypeEnum": {
+                "enum": [
+                    "REG",
+                    "PRE",
+                    "PST",
+                    "FNL"
+                ],
+                "type": "string",
+                "description": "* `REG` - Regular Season\n* `PRE` - Pre-season\n* `PST` - Post-Season\n* `FNL` - Finals"
             },
             "PlayerFranchise": {
                 "type": "object",
@@ -16126,6 +16254,10 @@
                         "minimum": -2147483648,
                         "nullable": true
                     },
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
                     "member": {
                         "type": "string",
                         "readOnly": true
@@ -16154,7 +16286,10 @@
                         "type": "string"
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "tier": {
                         "type": "string",
@@ -16182,6 +16317,80 @@
                 ],
                 "type": "string",
                 "description": "* `SN` - Season\n* `HS` - Historical\n* `DA` - Daily"
+            },
+            "PlayerMMRUpdate": {
+                "type": "object",
+                "description": "PUT/PATCH on a pull: its figures and notes, never which tracker it belongs to.\n\nThe generic update used PlayerMMRSerializer, whose nested ``tracker_link`` made every\nPUT, and any PATCH naming it, a 500. Moving a pull between trackers is\n``POST /tracker-links/{id}/migrate_pulls/``.",
+                "properties": {
+                    "date_pulled": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "threes_rating": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "threes_season_peak": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "threes_games_played": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "twos_rating": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "twos_season_peak": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "twos_games_played": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "ones_rating": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "ones_season_peak": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "ones_games_played": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    },
+                    "notes": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "psyonix_season": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "nullable": true
+                    }
+                }
             },
             "PlayerSeasonStats": {
                 "type": "object",
@@ -17986,7 +18195,10 @@
                         "type": "integer"
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "player_name": {
                         "type": "string"
@@ -18298,6 +18510,74 @@
                     "tier"
                 ]
             },
+            "SeasonWrite": {
+                "type": "object",
+                "description": "POST/PUT/PATCH on a season: its number and dates.\n\nThe generic routes used SeasonSerializer, whose nested ``league`` and\n``season_tier_data`` were writable on paper and raised on save (500), while scalar\nfields were silently ignored. ``league`` is set on create only; ``current`` stays with\nthe rollover, which keeps one current season per league.",
+                "properties": {
+                    "league": {
+                        "type": "integer"
+                    },
+                    "number": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": 1
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "preseason_start_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "regular_season_start": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "regular_season_end": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "signup_close": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "signups_open": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "draft_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "preseason_matches": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    },
+                    "number_of_games": {
+                        "type": "integer",
+                        "maximum": 2147483647,
+                        "minimum": -2147483648
+                    }
+                },
+                "required": [
+                    "league",
+                    "number"
+                ]
+            },
             "SeverityEnum": {
                 "enum": [
                     "INF",
@@ -18346,7 +18626,10 @@
                         "type": "boolean"
                     },
                     "executor": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
@@ -18584,7 +18867,10 @@
                         "readOnly": true
                     },
                     "discord_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "sub_status": {
                         "allOf": [
@@ -18736,13 +19022,15 @@
                 "type": "object",
                 "properties": {
                     "franchise": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "team": {
                         "type": "string"
                     },
                     "tier": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "rank": {
                         "type": "integer"
@@ -18761,10 +19049,8 @@
                     }
                 },
                 "required": [
-                    "franchise",
                     "rank",
-                    "team",
-                    "tier"
+                    "team"
                 ]
             },
             "TeamsContracts": {
@@ -18822,6 +19108,9 @@
                     },
                     "role_id": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "writeOnly": true
                     }
                 },
@@ -18837,7 +19126,10 @@
                         "type": "integer"
                     },
                     "role_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
@@ -18903,6 +19195,27 @@
                     "name"
                 ]
             },
+            "TrackerCreateInput": {
+                "type": "object",
+                "properties": {
+                    "discord_id": {
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
+                        "description": "The Discord ID of the member to link the tracker to."
+                    },
+                    "link": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Rocket Tracker Link"
+                    }
+                },
+                "required": [
+                    "discord_id",
+                    "link"
+                ]
+            },
             "TrackerIDInput": {
                 "type": "object",
                 "properties": {
@@ -18932,6 +19245,9 @@
                     },
                     "discord_id": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "writeOnly": true
                     },
                     "id": {
@@ -18997,7 +19313,10 @@
                         "type": "integer"
                     },
                     "executor": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     }
                 },
                 "required": [
@@ -19050,6 +19369,9 @@
                     },
                     "discord_id": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "readOnly": true
                     },
                     "platform": {
@@ -19073,6 +19395,32 @@
                         "readOnly": true
                     }
                 }
+            },
+            "TrackerLinksInvalidate": {
+                "type": "object",
+                "properties": {
+                    "links": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tracker link URLs to mark failed."
+                    }
+                },
+                "required": [
+                    "links"
+                ]
+            },
+            "TrackerLinksInvalidated": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "count"
+                ]
             },
             "TrackerLinksSheet": {
                 "type": "object",
@@ -19118,6 +19466,9 @@
                     },
                     "discord_id": {
                         "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64",
                         "readOnly": true
                     },
                     "status": {
@@ -19142,6 +19493,93 @@
                         "readOnly": true
                     }
                 }
+            },
+            "TrackerPeakRow": {
+                "type": "object",
+                "description": "One row of the peaks CSV: flat, unlike TrackerPeakSerializer's nested ``peaks``.",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "rsc_id": {
+                        "type": "string"
+                    },
+                    "discord_id": {
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "pulls": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "psyonix_season": {
+                        "type": "integer"
+                    },
+                    "threes_peak_mmr": {
+                        "type": "integer"
+                    },
+                    "threes_avg_mmr": {
+                        "type": "integer"
+                    },
+                    "threes_seventy_five_mmr": {
+                        "type": "integer"
+                    },
+                    "threes_games_played": {
+                        "type": "integer"
+                    },
+                    "twos_peak_mmr": {
+                        "type": "integer"
+                    },
+                    "twos_avg_mmr": {
+                        "type": "integer"
+                    },
+                    "twos_seventy_five_mmr": {
+                        "type": "integer"
+                    },
+                    "twos_games_played": {
+                        "type": "integer"
+                    },
+                    "ones_peak_mmr": {
+                        "type": "integer"
+                    },
+                    "ones_avg_mmr": {
+                        "type": "integer"
+                    },
+                    "ones_seventy_five_mmr": {
+                        "type": "integer"
+                    },
+                    "ones_games_played": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "discord_id",
+                    "id",
+                    "name",
+                    "ones_avg_mmr",
+                    "ones_games_played",
+                    "ones_peak_mmr",
+                    "ones_seventy_five_mmr",
+                    "psyonix_season",
+                    "pulls",
+                    "rsc_id",
+                    "status",
+                    "threes_avg_mmr",
+                    "threes_games_played",
+                    "threes_peak_mmr",
+                    "threes_seventy_five_mmr",
+                    "twos_avg_mmr",
+                    "twos_games_played",
+                    "twos_peak_mmr",
+                    "twos_seventy_five_mmr"
+                ]
             },
             "TrackerStatus": {
                 "type": "object",
@@ -19243,7 +19681,10 @@
                         "type": "boolean"
                     },
                     "executor": {
-                        "type": "integer"
+                        "type": "integer",
+                        "maximum": 9223372036854775807,
+                        "minimum": 0,
+                        "format": "int64"
                     },
                     "notes": {
                         "type": "string"
@@ -19347,7 +19788,7 @@
                         "items": {
                             "$ref": "#/components/schemas/PickTransactionUpdates"
                         },
-                        "nullable": true
+                        "readOnly": true
                     },
                     "date": {
                         "type": "string",

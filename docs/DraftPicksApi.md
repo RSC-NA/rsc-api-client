@@ -51,7 +51,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     count = 56 # int | Filter by calculated count value. (optional)
     format = 'format_example' # str |  (optional)
     keeper = 56 # int | Filter by keeper flag. Use 1 for keeper picks and 0 for non-keeper picks. (optional)
-    league = 1 # int | League id. Defaults to 1. (optional) (default to 1)
+    league = 56 # int | League id. (Default: the default league) (optional)
     season = 56 # int | Season id. If omitted, current season for the league is used. (optional)
     season_number = 56 # int | Season number (alternative to season id). (optional)
 
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
  **count** | **int**| Filter by calculated count value. | [optional] 
  **format** | **str**|  | [optional] 
  **keeper** | **int**| Filter by keeper flag. Use 1 for keeper picks and 0 for non-keeper picks. | [optional] 
- **league** | **int**| League id. Defaults to 1. | [optional] [default to 1]
+ **league** | **int**| League id. (Default: the default league) | [optional] 
  **season** | **int**| Season id. If omitted, current season for the league is used. | [optional] 
  **season_number** | **int**| Season number (alternative to season id). | [optional] 
 
@@ -134,7 +134,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 56 # int | A unique integer value identifying this draft pick.
+    id = 'id_example' # str | 
 
     try:
         await api_instance.draft_picks_destroy(id)
@@ -149,7 +149,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this draft pick. | 
+ **id** | **str**|  | 
 
 ### Return type
 
@@ -173,7 +173,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **draft_picks_list**
-> PaginatedDraftPickListList draft_picks_list(deleted=deleted, franchise=franchise, future=future, future_season=future_season, limit=limit, number=number, offset=offset, original_pick=original_pick, pick_from=pick_from, round=round, season_number=season_number, tier=tier)
+> PaginatedDraftPickListList draft_picks_list(deleted=deleted, franchise=franchise, future=future, future_season=future_season, league=league, limit=limit, number=number, offset=offset, original_pick=original_pick, pick_from=pick_from, round=round, season=season, season_number=season_number, tier=tier)
 
 List all draft picks for a given league and season.
 
@@ -212,17 +212,19 @@ async with rscapi.ApiClient(configuration) as api_client:
     franchise = 'franchise_example' # str | Franchise name contains. (optional)
     future = True # bool | Future pick. (optional)
     future_season = 56 # int | Future season number. (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
     limit = 56 # int | Number of results to return per page. (optional)
     number = 56 # int | Pick number in the specific tier. (optional)
     offset = 56 # int | The initial index from which to return the results. (optional)
     original_pick = 'original_pick_example' # str | Pick this originally came from. (optional)
     pick_from = 'pick_from_example' # str | Prefix of who the pick came from. (optional)
     round = 56 # int | Specific round in the tier. (optional)
-    season_number = 56 # int | Season number. (optional)
+    season = 56 # int | Season ID. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number. (Default: the league's current season) (optional)
     tier = 'tier_example' # str | Tier name. (optional)
 
     try:
-        api_response = await api_instance.draft_picks_list(deleted=deleted, franchise=franchise, future=future, future_season=future_season, limit=limit, number=number, offset=offset, original_pick=original_pick, pick_from=pick_from, round=round, season_number=season_number, tier=tier)
+        api_response = await api_instance.draft_picks_list(deleted=deleted, franchise=franchise, future=future, future_season=future_season, league=league, limit=limit, number=number, offset=offset, original_pick=original_pick, pick_from=pick_from, round=round, season=season, season_number=season_number, tier=tier)
         print("The response of DraftPicksApi->draft_picks_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -240,13 +242,15 @@ Name | Type | Description  | Notes
  **franchise** | **str**| Franchise name contains. | [optional] 
  **future** | **bool**| Future pick. | [optional] 
  **future_season** | **int**| Future season number. | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
  **limit** | **int**| Number of results to return per page. | [optional] 
  **number** | **int**| Pick number in the specific tier. | [optional] 
  **offset** | **int**| The initial index from which to return the results. | [optional] 
  **original_pick** | **str**| Pick this originally came from. | [optional] 
  **pick_from** | **str**| Prefix of who the pick came from. | [optional] 
  **round** | **int**| Specific round in the tier. | [optional] 
- **season_number** | **int**| Season number. | [optional] 
+ **season** | **int**| Season ID. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number. (Default: the league&#39;s current season) | [optional] 
  **tier** | **str**| Tier name. | [optional] 
 
 ### Return type
@@ -271,7 +275,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **draft_picks_partial_update**
-> DraftPickDetails draft_picks_partial_update(id, patched_draft_pick_details=patched_draft_pick_details)
+> DraftPickDetails draft_picks_partial_update(id, patched_draft_pick_update=patched_draft_pick_update)
 
 A viewset that provides retrieve, update, partial_update, and destroy actions.
 
@@ -282,7 +286,7 @@ A viewset that provides retrieve, update, partial_update, and destroy actions.
 ```python
 import rscapi
 from rscapi.models.draft_pick_details import DraftPickDetails
-from rscapi.models.patched_draft_pick_details import PatchedDraftPickDetails
+from rscapi.models.patched_draft_pick_update import PatchedDraftPickUpdate
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -307,11 +311,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 56 # int | A unique integer value identifying this draft pick.
-    patched_draft_pick_details = rscapi.PatchedDraftPickDetails() # PatchedDraftPickDetails |  (optional)
+    id = 'id_example' # str | 
+    patched_draft_pick_update = rscapi.PatchedDraftPickUpdate() # PatchedDraftPickUpdate |  (optional)
 
     try:
-        api_response = await api_instance.draft_picks_partial_update(id, patched_draft_pick_details=patched_draft_pick_details)
+        api_response = await api_instance.draft_picks_partial_update(id, patched_draft_pick_update=patched_draft_pick_update)
         print("The response of DraftPicksApi->draft_picks_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -325,8 +329,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this draft pick. | 
- **patched_draft_pick_details** | [**PatchedDraftPickDetails**](PatchedDraftPickDetails.md)|  | [optional] 
+ **id** | **str**|  | 
+ **patched_draft_pick_update** | [**PatchedDraftPickUpdate**](PatchedDraftPickUpdate.md)|  | [optional] 
 
 ### Return type
 
@@ -385,7 +389,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 56 # int | A unique integer value identifying this draft pick.
+    id = 'id_example' # str | 
 
     try:
         api_response = await api_instance.draft_picks_retrieve(id)
@@ -402,7 +406,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this draft pick. | 
+ **id** | **str**|  | 
 
 ### Return type
 
@@ -426,7 +430,10 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **draft_picks_swap_create**
-> PaginatedDraftPickListList draft_picks_swap_create(draft_pick_swap, page=page)
+> List[DraftPickList] draft_picks_swap_create(draft_pick_swap)
+
+Only the swap action: the draft-picks list and detail routes belong to the
+DraftPicksListViewSet and DraftPickDetailsViewSet registered on the same prefix.
 
 ### Example
 
@@ -434,8 +441,8 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
+from rscapi.models.draft_pick_list import DraftPickList
 from rscapi.models.draft_pick_swap import DraftPickSwap
-from rscapi.models.paginated_draft_pick_list_list import PaginatedDraftPickListList
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -461,10 +468,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
     draft_pick_swap = [rscapi.DraftPickSwap()] # List[DraftPickSwap] | 
-    page = 56 # int | A page number within the paginated result set. (optional)
 
     try:
-        api_response = await api_instance.draft_picks_swap_create(draft_pick_swap, page=page)
+        api_response = await api_instance.draft_picks_swap_create(draft_pick_swap)
         print("The response of DraftPicksApi->draft_picks_swap_create:\n")
         pprint(api_response)
     except Exception as e:
@@ -479,11 +485,10 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **draft_pick_swap** | [**List[DraftPickSwap]**](DraftPickSwap.md)|  | 
- **page** | **int**| A page number within the paginated result set. | [optional] 
 
 ### Return type
 
-[**PaginatedDraftPickListList**](PaginatedDraftPickListList.md)
+[**List[DraftPickList]**](DraftPickList.md)
 
 ### Authorization
 
@@ -498,12 +503,14 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**202** |  |  -  |
+**400** |  |  -  |
+**404** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **draft_picks_update**
-> DraftPickDetails draft_picks_update(id, draft_pick_details)
+> DraftPickDetails draft_picks_update(id, draft_pick_update=draft_pick_update)
 
 A viewset that provides retrieve, update, partial_update, and destroy actions.
 
@@ -514,6 +521,7 @@ A viewset that provides retrieve, update, partial_update, and destroy actions.
 ```python
 import rscapi
 from rscapi.models.draft_pick_details import DraftPickDetails
+from rscapi.models.draft_pick_update import DraftPickUpdate
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -538,11 +546,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 56 # int | A unique integer value identifying this draft pick.
-    draft_pick_details = rscapi.DraftPickDetails() # DraftPickDetails | 
+    id = 'id_example' # str | 
+    draft_pick_update = rscapi.DraftPickUpdate() # DraftPickUpdate |  (optional)
 
     try:
-        api_response = await api_instance.draft_picks_update(id, draft_pick_details)
+        api_response = await api_instance.draft_picks_update(id, draft_pick_update=draft_pick_update)
         print("The response of DraftPicksApi->draft_picks_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -556,8 +564,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| A unique integer value identifying this draft pick. | 
- **draft_pick_details** | [**DraftPickDetails**](DraftPickDetails.md)|  | 
+ **id** | **str**|  | 
+ **draft_pick_update** | [**DraftPickUpdate**](DraftPickUpdate.md)|  | [optional] 
 
 ### Return type
 

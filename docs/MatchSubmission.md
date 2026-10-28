@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **away_team** | **int** |  | 
 **day** | **int** |  | [optional] [default to 0]
 **match_format** | [**MatchFormatEnum**](MatchFormatEnum.md) |  | 
-**match_type** | [**MatchTypeEnum**](MatchTypeEnum.md) |  | 
+**match_type** | [**PlayableMatchTypeEnum**](PlayableMatchTypeEnum.md) |  | 
 **var_date** | **datetime** |  | [optional] 
 
 ## Example

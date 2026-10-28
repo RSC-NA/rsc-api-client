@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.1.9"
+__version__ = "2.2.0"
 
 # Define package exports
 __all__ = [
@@ -60,6 +60,7 @@ __all__ = [
     "DraftPickList",
     "DraftPickSwap",
     "DraftPickTrade",
+    "DraftPickUpdate",
     "DraftTierCountKeeperExport",
     "DraftTierList",
     "ElevatedRole",
@@ -99,6 +100,7 @@ __all__ = [
     "LeagueEventList",
     "LeagueFutureSeasonCreate",
     "LeaguePlayer",
+    "LeaguePlayerCreate",
     "LeaguePlayerLeague",
     "LeaguePlayerMember",
     "LeaguePlayerPatch",
@@ -112,16 +114,20 @@ __all__ = [
     "MatchFormatEnum",
     "MatchGM",
     "MatchList",
+    "MatchResultList",
     "MatchResults",
     "MatchScoreReportRequest",
     "MatchSubmission",
     "MatchTeam",
     "MatchTypeEnum",
+    "MatchUpdate",
     "Member",
     "MemberIntent",
     "MemberIntentData",
+    "MemberLeagueDropRequest",
     "MemberTracker",
     "MemberTransferRequest",
+    "MemberUpdate",
     "NameChangeHistory",
     "NewOrReturningEnum",
     "PaginatedActivityCheckList",
@@ -132,32 +138,34 @@ __all__ = [
     "PaginatedLeaguePlayerList",
     "PaginatedMatch",
     "PaginatedMatchListList",
+    "PaginatedMatchResultListList",
     "PaginatedMemberList",
     "PaginatedNameChangeHistoryList",
     "PaginatedPlayerMMRList",
     "PaginatedTrackerLinkList",
     "PaginatedTransactionResponseList",
-    "PatchedDraftPickDetails",
+    "PatchedDraftPickUpdate",
     "PatchedElevatedRoleUpdate",
-    "PatchedFranchise",
-    "PatchedLeague",
+    "PatchedFranchiseRebrand",
     "PatchedLeaguePlayerPatch",
-    "PatchedMatchList",
-    "PatchedMember",
+    "PatchedMatchUpdate",
     "PatchedMemberNameChangeRequest",
-    "PatchedPlayerMMR",
-    "PatchedSeason",
-    "PatchedTeamList",
+    "PatchedMemberUpdate",
+    "PatchedPlayerMMRUpdate",
+    "PatchedSeasonWrite",
+    "PatchedTeamPatch",
     "PatchedTier",
     "PatchedTrackerStatus",
     "PermFASignupDetails",
     "PickTransactionUpdates",
     "PlatformEnum",
+    "PlayableMatchTypeEnum",
     "PlayerFranchise",
     "PlayerInput",
     "PlayerMMR",
     "PlayerMMRExport",
     "PlayerMMRTypeEnum",
+    "PlayerMMRUpdate",
     "PlayerSeasonStats",
     "PlayerSeasonStatsInDepth",
     "PlayerTeam",
@@ -181,6 +189,7 @@ __all__ = [
     "SeasonLeague",
     "SeasonSchedule",
     "SeasonTierData",
+    "SeasonWrite",
     "SeverityEnum",
     "SignupDetailsRequest",
     "SimpleMember",
@@ -202,17 +211,20 @@ __all__ = [
     "TierLeagueAdd",
     "TierPlayoffHunt",
     "TierReference",
+    "TrackerCreateInput",
     "TrackerIDInput",
     "TrackerLink",
-    "TrackerLinkInvalidateObject",
     "TrackerLinkLinking",
     "TrackerLinkSpiderRequest",
     "TrackerLinkStats",
     "TrackerLinkStatusEnum",
     "TrackerLinksDetailedSheet",
+    "TrackerLinksInvalidate",
+    "TrackerLinksInvalidated",
     "TrackerLinksSheet",
     "TrackerMMR",
     "TrackerPeak",
+    "TrackerPeakRow",
     "TrackerStatus",
     "TradeFranchise",
     "TradeItem",
@@ -280,6 +292,7 @@ from rscapi.models.draft_pick_league_player import DraftPickLeaguePlayer as Draf
 from rscapi.models.draft_pick_list import DraftPickList as DraftPickList
 from rscapi.models.draft_pick_swap import DraftPickSwap as DraftPickSwap
 from rscapi.models.draft_pick_trade import DraftPickTrade as DraftPickTrade
+from rscapi.models.draft_pick_update import DraftPickUpdate as DraftPickUpdate
 from rscapi.models.draft_tier_count_keeper_export import DraftTierCountKeeperExport as DraftTierCountKeeperExport
 from rscapi.models.draft_tier_list import DraftTierList as DraftTierList
 from rscapi.models.elevated_role import ElevatedRole as ElevatedRole
@@ -319,6 +332,7 @@ from rscapi.models.league_event_detail import LeagueEventDetail as LeagueEventDe
 from rscapi.models.league_event_list import LeagueEventList as LeagueEventList
 from rscapi.models.league_future_season_create import LeagueFutureSeasonCreate as LeagueFutureSeasonCreate
 from rscapi.models.league_player import LeaguePlayer as LeaguePlayer
+from rscapi.models.league_player_create import LeaguePlayerCreate as LeaguePlayerCreate
 from rscapi.models.league_player_league import LeaguePlayerLeague as LeaguePlayerLeague
 from rscapi.models.league_player_member import LeaguePlayerMember as LeaguePlayerMember
 from rscapi.models.league_player_patch import LeaguePlayerPatch as LeaguePlayerPatch
@@ -332,16 +346,20 @@ from rscapi.models.match import Match as Match
 from rscapi.models.match_format_enum import MatchFormatEnum as MatchFormatEnum
 from rscapi.models.match_gm import MatchGM as MatchGM
 from rscapi.models.match_list import MatchList as MatchList
+from rscapi.models.match_result_list import MatchResultList as MatchResultList
 from rscapi.models.match_results import MatchResults as MatchResults
 from rscapi.models.match_score_report_request import MatchScoreReportRequest as MatchScoreReportRequest
 from rscapi.models.match_submission import MatchSubmission as MatchSubmission
 from rscapi.models.match_team import MatchTeam as MatchTeam
 from rscapi.models.match_type_enum import MatchTypeEnum as MatchTypeEnum
+from rscapi.models.match_update import MatchUpdate as MatchUpdate
 from rscapi.models.member import Member as Member
 from rscapi.models.member_intent import MemberIntent as MemberIntent
 from rscapi.models.member_intent_data import MemberIntentData as MemberIntentData
+from rscapi.models.member_league_drop_request import MemberLeagueDropRequest as MemberLeagueDropRequest
 from rscapi.models.member_tracker import MemberTracker as MemberTracker
 from rscapi.models.member_transfer_request import MemberTransferRequest as MemberTransferRequest
+from rscapi.models.member_update import MemberUpdate as MemberUpdate
 from rscapi.models.name_change_history import NameChangeHistory as NameChangeHistory
 from rscapi.models.new_or_returning_enum import NewOrReturningEnum as NewOrReturningEnum
 from rscapi.models.paginated_activity_check_list import PaginatedActivityCheckList as PaginatedActivityCheckList
@@ -352,32 +370,34 @@ from rscapi.models.paginated_league_event_list_list import PaginatedLeagueEventL
 from rscapi.models.paginated_league_player_list import PaginatedLeaguePlayerList as PaginatedLeaguePlayerList
 from rscapi.models.paginated_match import PaginatedMatch as PaginatedMatch
 from rscapi.models.paginated_match_list_list import PaginatedMatchListList as PaginatedMatchListList
+from rscapi.models.paginated_match_result_list_list import PaginatedMatchResultListList as PaginatedMatchResultListList
 from rscapi.models.paginated_member_list import PaginatedMemberList as PaginatedMemberList
 from rscapi.models.paginated_name_change_history_list import PaginatedNameChangeHistoryList as PaginatedNameChangeHistoryList
 from rscapi.models.paginated_player_mmr_list import PaginatedPlayerMMRList as PaginatedPlayerMMRList
 from rscapi.models.paginated_tracker_link_list import PaginatedTrackerLinkList as PaginatedTrackerLinkList
 from rscapi.models.paginated_transaction_response_list import PaginatedTransactionResponseList as PaginatedTransactionResponseList
-from rscapi.models.patched_draft_pick_details import PatchedDraftPickDetails as PatchedDraftPickDetails
+from rscapi.models.patched_draft_pick_update import PatchedDraftPickUpdate as PatchedDraftPickUpdate
 from rscapi.models.patched_elevated_role_update import PatchedElevatedRoleUpdate as PatchedElevatedRoleUpdate
-from rscapi.models.patched_franchise import PatchedFranchise as PatchedFranchise
-from rscapi.models.patched_league import PatchedLeague as PatchedLeague
+from rscapi.models.patched_franchise_rebrand import PatchedFranchiseRebrand as PatchedFranchiseRebrand
 from rscapi.models.patched_league_player_patch import PatchedLeaguePlayerPatch as PatchedLeaguePlayerPatch
-from rscapi.models.patched_match_list import PatchedMatchList as PatchedMatchList
-from rscapi.models.patched_member import PatchedMember as PatchedMember
+from rscapi.models.patched_match_update import PatchedMatchUpdate as PatchedMatchUpdate
 from rscapi.models.patched_member_name_change_request import PatchedMemberNameChangeRequest as PatchedMemberNameChangeRequest
-from rscapi.models.patched_player_mmr import PatchedPlayerMMR as PatchedPlayerMMR
-from rscapi.models.patched_season import PatchedSeason as PatchedSeason
-from rscapi.models.patched_team_list import PatchedTeamList as PatchedTeamList
+from rscapi.models.patched_member_update import PatchedMemberUpdate as PatchedMemberUpdate
+from rscapi.models.patched_player_mmr_update import PatchedPlayerMMRUpdate as PatchedPlayerMMRUpdate
+from rscapi.models.patched_season_write import PatchedSeasonWrite as PatchedSeasonWrite
+from rscapi.models.patched_team_patch import PatchedTeamPatch as PatchedTeamPatch
 from rscapi.models.patched_tier import PatchedTier as PatchedTier
 from rscapi.models.patched_tracker_status import PatchedTrackerStatus as PatchedTrackerStatus
 from rscapi.models.perm_fa_signup_details import PermFASignupDetails as PermFASignupDetails
 from rscapi.models.pick_transaction_updates import PickTransactionUpdates as PickTransactionUpdates
 from rscapi.models.platform_enum import PlatformEnum as PlatformEnum
+from rscapi.models.playable_match_type_enum import PlayableMatchTypeEnum as PlayableMatchTypeEnum
 from rscapi.models.player_franchise import PlayerFranchise as PlayerFranchise
 from rscapi.models.player_input import PlayerInput as PlayerInput
 from rscapi.models.player_mmr import PlayerMMR as PlayerMMR
 from rscapi.models.player_mmr_export import PlayerMMRExport as PlayerMMRExport
 from rscapi.models.player_mmr_type_enum import PlayerMMRTypeEnum as PlayerMMRTypeEnum
+from rscapi.models.player_mmr_update import PlayerMMRUpdate as PlayerMMRUpdate
 from rscapi.models.player_season_stats import PlayerSeasonStats as PlayerSeasonStats
 from rscapi.models.player_season_stats_in_depth import PlayerSeasonStatsInDepth as PlayerSeasonStatsInDepth
 from rscapi.models.player_team import PlayerTeam as PlayerTeam
@@ -401,6 +421,7 @@ from rscapi.models.season_draft_pick_list import SeasonDraftPickList as SeasonDr
 from rscapi.models.season_league import SeasonLeague as SeasonLeague
 from rscapi.models.season_schedule import SeasonSchedule as SeasonSchedule
 from rscapi.models.season_tier_data import SeasonTierData as SeasonTierData
+from rscapi.models.season_write import SeasonWrite as SeasonWrite
 from rscapi.models.severity_enum import SeverityEnum as SeverityEnum
 from rscapi.models.signup_details_request import SignupDetailsRequest as SignupDetailsRequest
 from rscapi.models.simple_member import SimpleMember as SimpleMember
@@ -422,17 +443,20 @@ from rscapi.models.tier import Tier as Tier
 from rscapi.models.tier_league_add import TierLeagueAdd as TierLeagueAdd
 from rscapi.models.tier_playoff_hunt import TierPlayoffHunt as TierPlayoffHunt
 from rscapi.models.tier_reference import TierReference as TierReference
+from rscapi.models.tracker_create_input import TrackerCreateInput as TrackerCreateInput
 from rscapi.models.tracker_id_input import TrackerIDInput as TrackerIDInput
 from rscapi.models.tracker_link import TrackerLink as TrackerLink
-from rscapi.models.tracker_link_invalidate_object import TrackerLinkInvalidateObject as TrackerLinkInvalidateObject
 from rscapi.models.tracker_link_linking import TrackerLinkLinking as TrackerLinkLinking
 from rscapi.models.tracker_link_spider_request import TrackerLinkSpiderRequest as TrackerLinkSpiderRequest
 from rscapi.models.tracker_link_stats import TrackerLinkStats as TrackerLinkStats
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum as TrackerLinkStatusEnum
 from rscapi.models.tracker_links_detailed_sheet import TrackerLinksDetailedSheet as TrackerLinksDetailedSheet
+from rscapi.models.tracker_links_invalidate import TrackerLinksInvalidate as TrackerLinksInvalidate
+from rscapi.models.tracker_links_invalidated import TrackerLinksInvalidated as TrackerLinksInvalidated
 from rscapi.models.tracker_links_sheet import TrackerLinksSheet as TrackerLinksSheet
 from rscapi.models.tracker_mmr import TrackerMMR as TrackerMMR
 from rscapi.models.tracker_peak import TrackerPeak as TrackerPeak
+from rscapi.models.tracker_peak_row import TrackerPeakRow as TrackerPeakRow
 from rscapi.models.tracker_status import TrackerStatus as TrackerStatus
 from rscapi.models.trade_franchise import TradeFranchise as TradeFranchise
 from rscapi.models.trade_item import TradeItem as TradeItem

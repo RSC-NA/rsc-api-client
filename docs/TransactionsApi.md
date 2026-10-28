@@ -1221,7 +1221,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transactions_waiver_claim_list**
-> List[WaiverClaimResponse] transactions_waiver_claim_list(league, franchise=franchise, status=status, tier=tier)
+> List[WaiverClaimResponse] transactions_waiver_claim_list(franchise=franchise, league=league, status=status, tier=tier)
 
 List waiver claims for a league (default: pending).
 
@@ -1256,13 +1256,13 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TransactionsApi(api_client)
-    league = 56 # int | League ID.
     franchise = 56 # int | Franchise ID. (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
     status = 'status_example' # str | Claim status (default: pending). (optional)
     tier = 'tier_example' # str | Tier ID or name. (optional)
 
     try:
-        api_response = await api_instance.transactions_waiver_claim_list(league, franchise=franchise, status=status, tier=tier)
+        api_response = await api_instance.transactions_waiver_claim_list(franchise=franchise, league=league, status=status, tier=tier)
         print("The response of TransactionsApi->transactions_waiver_claim_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -1276,8 +1276,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **int**| League ID. | 
  **franchise** | **int**| Franchise ID. | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
  **status** | **str**| Claim status (default: pending). | [optional] 
  **tier** | **str**| Tier ID or name. | [optional] 
 

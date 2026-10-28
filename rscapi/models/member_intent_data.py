@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -28,7 +29,7 @@ class MemberIntentData(BaseModel):
     MemberIntentData
     """ # noqa: E501
     rsc_name: StrictStr
-    discord_id: StrictInt
+    discord_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     __properties: ClassVar[List[str]] = ["rsc_name", "discord_id"]
 
     model_config = ConfigDict(

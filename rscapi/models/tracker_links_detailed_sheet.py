@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.platform_enum import PlatformEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,7 +32,7 @@ class TrackerLinksDetailedSheet(BaseModel):
     active: Optional[StrictBool] = None
     rsc_id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
-    discord_id: Optional[StrictInt] = None
+    discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None
     platform: Optional[PlatformEnum] = None
     platform_id: Optional[StrictStr] = None
     platform_name: Optional[StrictStr] = None

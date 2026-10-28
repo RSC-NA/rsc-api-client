@@ -25,7 +25,7 @@ Method | HTTP request | Description
 
 
 # **csv_franchise_contracts_data_list**
-> List[FranchiseContracts] csv_franchise_contracts_data_list(league, format=format)
+> List[FranchiseContracts] csv_franchise_contracts_data_list(format=format, league=league)
 
 ### Example
 
@@ -58,11 +58,11 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.CsvApi(api_client)
-    league = 'league_example' # str | League name to search for franchises in.
     format = 'format_example' # str |  (optional)
+    league = 'league_example' # str | League name to search for franchises in. (Default: the default league) (optional)
 
     try:
-        api_response = await api_instance.csv_franchise_contracts_data_list(league, format=format)
+        api_response = await api_instance.csv_franchise_contracts_data_list(format=format, league=league)
         print("The response of CsvApi->csv_franchise_contracts_data_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -76,8 +76,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **str**| League name to search for franchises in. | 
  **format** | **str**|  | [optional] 
+ **league** | **str**| League name to search for franchises in. (Default: the default league) | [optional] 
 
 ### Return type
 
@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **csv_master_contracts_data_list**
-> List[MasterContracts] csv_master_contracts_data_list(league, season, format=format)
+> List[MasterContracts] csv_master_contracts_data_list(format=format, league=league, season=season, season_number=season_number)
 
 ### Example
 
@@ -210,12 +210,13 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.CsvApi(api_client)
-    league = 'league_example' # str | League name to search for franchises in.
-    season = 56 # int | RSC season number to filter by.
     format = 'format_example' # str |  (optional)
+    league = 'league_example' # str | League ID, or league name. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.csv_master_contracts_data_list(league, season, format=format)
+        api_response = await api_instance.csv_master_contracts_data_list(format=format, league=league, season=season, season_number=season_number)
         print("The response of CsvApi->csv_master_contracts_data_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -229,9 +230,10 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **str**| League name to search for franchises in. | 
- **season** | **int**| RSC season number to filter by. | 
  **format** | **str**|  | [optional] 
+ **league** | **str**| League ID, or league name. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -481,7 +483,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **csv_player_mmr_export_list**
-> List[PlayerMMRExport] csv_player_mmr_export_list(format=format, league=league, season_id=season_id, season_number=season_number)
+> List[PlayerMMRExport] csv_player_mmr_export_list(format=format, league=league, season=season, season_id=season_id, season_number=season_number)
 
 Current and base MMR for every player in one league season, highest MMR first.
 
@@ -521,12 +523,13 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.CsvApi(api_client)
     format = 'format_example' # str |  (optional)
-    league = 1 # int | League ID to export. Defaults to 1 (RSC 3v3). (optional) (default to 1)
-    season_id = 56 # int | Season ID (primary key) to export. Takes precedence over season_number. (optional)
-    season_number = 56 # int | RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied. (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_id = 56 # int | Deprecated spelling of `season`. (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.csv_player_mmr_export_list(format=format, league=league, season_id=season_id, season_number=season_number)
+        api_response = await api_instance.csv_player_mmr_export_list(format=format, league=league, season=season, season_id=season_id, season_number=season_number)
         print("The response of CsvApi->csv_player_mmr_export_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -541,9 +544,10 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **format** | **str**|  | [optional] 
- **league** | **int**| League ID to export. Defaults to 1 (RSC 3v3). | [optional] [default to 1]
- **season_id** | **int**| Season ID (primary key) to export. Takes precedence over season_number. | [optional] 
- **season_number** | **int**| RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied. | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_id** | **int**| Deprecated spelling of &#x60;season&#x60;. | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -567,7 +571,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **csv_player_mmr_export_retrieve**
-> PlayerMMRExport csv_player_mmr_export_retrieve(id, format=format, league=league, season_id=season_id, season_number=season_number)
+> PlayerMMRExport csv_player_mmr_export_retrieve(id, format=format, league=league, season=season, season_id=season_id, season_number=season_number)
 
 Current and base MMR for every player in one league season, highest MMR first.
 
@@ -608,12 +612,13 @@ async with rscapi.ApiClient(configuration) as api_client:
     api_instance = rscapi.CsvApi(api_client)
     id = 56 # int | Discord ID of the player, not the LeaguePlayer primary key.
     format = 'format_example' # str |  (optional)
-    league = 1 # int | League ID to export. Defaults to 1 (RSC 3v3). (optional) (default to 1)
-    season_id = 56 # int | Season ID (primary key) to export. Takes precedence over season_number. (optional)
-    season_number = 56 # int | RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied. (optional)
+    league = 56 # int | League ID. (Default: the default league) (optional)
+    season = 56 # int | Season ID, within the league. (Default: the league's current season) (optional)
+    season_id = 56 # int | Deprecated spelling of `season`. (optional)
+    season_number = 56 # int | Season number, within the league. Ignored when `season` is given. (optional)
 
     try:
-        api_response = await api_instance.csv_player_mmr_export_retrieve(id, format=format, league=league, season_id=season_id, season_number=season_number)
+        api_response = await api_instance.csv_player_mmr_export_retrieve(id, format=format, league=league, season=season, season_id=season_id, season_number=season_number)
         print("The response of CsvApi->csv_player_mmr_export_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -629,9 +634,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Discord ID of the player, not the LeaguePlayer primary key. | 
  **format** | **str**|  | [optional] 
- **league** | **int**| League ID to export. Defaults to 1 (RSC 3v3). | [optional] [default to 1]
- **season_id** | **int**| Season ID (primary key) to export. Takes precedence over season_number. | [optional] 
- **season_number** | **int**| RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied. | [optional] 
+ **league** | **int**| League ID. (Default: the default league) | [optional] 
+ **season** | **int**| Season ID, within the league. (Default: the league&#39;s current season) | [optional] 
+ **season_id** | **int**| Deprecated spelling of &#x60;season&#x60;. | [optional] 
+ **season_number** | **int**| Season number, within the league. Ignored when &#x60;season&#x60; is given. | [optional] 
 
 ### Return type
 
@@ -688,7 +694,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.CsvApi(api_client)
-    league = 'league_example' # str | League name to search for franchises in.
+    league = 'league_example' # str | League name.
     format = 'format_example' # str |  (optional)
 
     try:
@@ -706,7 +712,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **league** | **str**| League name to search for franchises in. | 
+ **league** | **str**| League name. | 
  **format** | **str**|  | [optional] 
 
 ### Return type
@@ -1115,7 +1121,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **csv_tracker_links_peaks_list**
-> List[TrackerPeak] csv_tracker_links_peaks_list(pysonix_season, discord_id=discord_id, format=format, member_name=member_name, status=status)
+> List[TrackerPeakRow] csv_tracker_links_peaks_list(pysonix_season, discord_id=discord_id, format=format, member_name=member_name, status=status)
 
 ### Example
 
@@ -1123,7 +1129,7 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.tracker_peak import TrackerPeak
+from rscapi.models.tracker_peak_row import TrackerPeakRow
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -1177,7 +1183,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List[TrackerPeak]**](TrackerPeak.md)
+[**List[TrackerPeakRow]**](TrackerPeakRow.md)
 
 ### Authorization
 
@@ -1197,7 +1203,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **csv_tracker_links_peaks_retrieve**
-> TrackerPeak csv_tracker_links_peaks_retrieve(id, pysonix_season, format=format)
+> TrackerPeakRow csv_tracker_links_peaks_retrieve(id, pysonix_season, format=format)
 
 ### Example
 
@@ -1205,7 +1211,7 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.tracker_peak import TrackerPeak
+from rscapi.models.tracker_peak_row import TrackerPeakRow
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -1255,7 +1261,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TrackerPeak**](TrackerPeak.md)
+[**TrackerPeakRow**](TrackerPeakRow.md)
 
 ### Authorization
 

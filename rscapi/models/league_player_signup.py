@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.league_player_status_enum import LeaguePlayerStatusEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,13 +29,13 @@ class LeaguePlayerSignup(BaseModel):
     """
     LeaguePlayerSignup
     """ # noqa: E501
-    league: StrictInt
+    league: Annotated[int, Field(strict=True, ge=1)]
     team_name: Optional[StrictStr] = None
-    status: Optional[LeaguePlayerStatusEnum] = None
-    base_mmr: StrictInt
-    current_mmr: StrictInt
-    tier: StrictInt
-    contract_length: Optional[StrictInt] = 0
+    status: LeaguePlayerStatusEnum
+    base_mmr: Annotated[int, Field(le=2147483647, strict=True, ge=0)]
+    current_mmr: Annotated[int, Field(le=2147483647, strict=True, ge=0)]
+    tier: Annotated[int, Field(strict=True, ge=1)]
+    contract_length: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=0)]] = 0
     __properties: ClassVar[List[str]] = ["league", "team_name", "status", "base_mmr", "current_mmr", "tier", "contract_length"]
 
     model_config = ConfigDict(

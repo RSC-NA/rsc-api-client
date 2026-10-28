@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.new_or_returning_enum import NewOrReturningEnum
 from rscapi.models.platform_enum import PlatformEnum
 from rscapi.models.referrer_enum import ReferrerEnum
@@ -41,7 +42,7 @@ class PermFASignupDetails(BaseModel):
     accepted_match_nights: StrictBool
     tracker_links: List[StrictStr]
     admin_override: Optional[StrictBool] = None
-    executor: Optional[StrictInt] = None
+    executor: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None
     __properties: ClassVar[List[str]] = ["rsc_name", "league", "platform", "referrer", "region_preference", "new_or_returning", "accepted_rules", "accepted_match_nights", "tracker_links", "admin_override", "executor"]
 
     model_config = ConfigDict(

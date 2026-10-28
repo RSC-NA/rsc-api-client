@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.tracker_link_status_enum import TrackerLinkStatusEnum
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,7 +32,7 @@ class TrackerPeak(BaseModel):
     id: Optional[StrictInt] = None
     rsc_id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
-    discord_id: Optional[StrictInt] = None
+    discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None
     status: Optional[TrackerLinkStatusEnum] = None
     pulls: Optional[StrictInt] = Field(default=None, description="Get the number of pulls for the tracker link.")
     peaks: Optional[Dict[str, StrictInt]] = Field(default=None, description="Get the seasons for the tracker link.")

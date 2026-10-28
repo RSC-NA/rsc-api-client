@@ -17,6 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
@@ -35,9 +36,9 @@ class PatchedLeaguePlayerPatch(BaseModel):
     team_name: Optional[StrictStr] = None
     tier: Optional[StrictInt] = None
     status: Optional[LeaguePlayerStatusEnum] = None
-    executor: Optional[StrictInt] = None
-    waiver_period: Optional[StrictStr] = None
-    contract_length: Optional[StrictInt] = None
+    executor: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None
+    waiver_period: Optional[datetime] = None
+    contract_length: Optional[Annotated[int, Field(le=2147483647, strict=True, ge=0)]] = None
     captain: Optional[StrictBool] = None
     sub_status: Optional[SubStatusEnum] = None
     __properties: ClassVar[List[str]] = ["base_mmr", "current_mmr", "team_name", "tier", "status", "executor", "waiver_period", "contract_length", "captain", "sub_status"]

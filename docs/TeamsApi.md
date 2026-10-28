@@ -200,7 +200,7 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     franchise = 'franchise_example' # str | Franchise Name Contains (optional)
-    league = 56 # int | League Database ID (optional)
+    league = 3.4 # float | League ID (Default: the default league) (optional)
     name = 'name_example' # str | Team Name Contains (optional)
     seasons = [56] # List[int] | Season Number contains (optional)
     tier = 'tier_example' # str | Tier Name Contains (optional)
@@ -221,7 +221,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **franchise** | **str**| Franchise Name Contains | [optional] 
- **league** | **int**| League Database ID | [optional] 
+ **league** | **float**| League ID (Default: the default league) | [optional] 
  **name** | **str**| Team Name Contains | [optional] 
  **seasons** | [**List[int]**](int.md)| Season Number contains | [optional] 
  **tier** | **str**| Tier Name Contains | [optional] 
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_match_retrieve**
-> Match teams_match_retrieve(day, id, preseason=preseason, season_number=season_number)
+> Match teams_match_retrieve(day, id, preseason=preseason, season=season, season_number=season_number)
 
 Get a match details for a specific day for the given team
 
@@ -286,10 +286,11 @@ async with rscapi.ApiClient(configuration) as api_client:
     day = 56 # int | 
     id = 56 # int | A unique integer value identifying this team.
     preseason = False # bool |  (optional) (default to False)
-    season_number = 56 # int |  (optional)
+    season = 56 # int | Season ID (Default: the team's current season) (optional)
+    season_number = 56 # int | Season number (optional)
 
     try:
-        api_response = await api_instance.teams_match_retrieve(day, id, preseason=preseason, season_number=season_number)
+        api_response = await api_instance.teams_match_retrieve(day, id, preseason=preseason, season=season, season_number=season_number)
         print("The response of TeamsApi->teams_match_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -306,7 +307,8 @@ Name | Type | Description  | Notes
  **day** | **int**|  | 
  **id** | **int**| A unique integer value identifying this team. | 
  **preseason** | **bool**|  | [optional] [default to False]
- **season_number** | **int**|  | [optional] 
+ **season** | **int**| Season ID (Default: the team&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number | [optional] 
 
 ### Return type
 
@@ -409,7 +411,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_partial_update**
-> TeamList teams_partial_update(id, patched_team_list=patched_team_list)
+> TeamPatch teams_partial_update(id, patched_team_patch=patched_team_patch)
 
 ### Example
 
@@ -417,8 +419,8 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.patched_team_list import PatchedTeamList
-from rscapi.models.team_list import TeamList
+from rscapi.models.patched_team_patch import PatchedTeamPatch
+from rscapi.models.team_patch import TeamPatch
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -444,10 +446,10 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    patched_team_list = rscapi.PatchedTeamList() # PatchedTeamList |  (optional)
+    patched_team_patch = rscapi.PatchedTeamPatch() # PatchedTeamPatch |  (optional)
 
     try:
-        api_response = await api_instance.teams_partial_update(id, patched_team_list=patched_team_list)
+        api_response = await api_instance.teams_partial_update(id, patched_team_patch=patched_team_patch)
         print("The response of TeamsApi->teams_partial_update:\n")
         pprint(api_response)
     except Exception as e:
@@ -462,11 +464,11 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **patched_team_list** | [**PatchedTeamList**](PatchedTeamList.md)|  | [optional] 
+ **patched_team_patch** | [**PatchedTeamPatch**](PatchedTeamPatch.md)|  | [optional] 
 
 ### Return type
 
-[**TeamList**](TeamList.md)
+[**TeamPatch**](TeamPatch.md)
 
 ### Authorization
 
@@ -486,7 +488,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_player_stats_list**
-> List[PlayerSeasonStatsInDepth] teams_player_stats_list(id, franchise=franchise, league=league, name=name, season_id=season_id, season_number=season_number, seasons=seasons, tier=tier)
+> List[PlayerSeasonStatsInDepth] teams_player_stats_list(id, season=season, season_id=season_id, season_number=season_number)
 
 Get player stats for a given team. (Default: Current Season)
 
@@ -522,16 +524,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    franchise = 'franchise_example' # str | Franchise Name Contains (optional)
-    league = 3.4 # float | League ID (optional)
-    name = 'name_example' # str | Team Name Contains (optional)
-    season_id = 56 # int | Season database ID to query for. (optional)
+    season = 56 # int | Season ID to query for. (optional)
+    season_id = 56 # int | Deprecated spelling of `season`. (optional)
     season_number = 56 # int | Season number to query for. Defaults to the league current season when omitted. (optional)
-    seasons = [56] # List[int] | Season Number contains (optional)
-    tier = 'tier_example' # str | Tier Name Contains (optional)
 
     try:
-        api_response = await api_instance.teams_player_stats_list(id, franchise=franchise, league=league, name=name, season_id=season_id, season_number=season_number, seasons=seasons, tier=tier)
+        api_response = await api_instance.teams_player_stats_list(id, season=season, season_id=season_id, season_number=season_number)
         print("The response of TeamsApi->teams_player_stats_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -546,13 +544,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **franchise** | **str**| Franchise Name Contains | [optional] 
- **league** | **float**| League ID | [optional] 
- **name** | **str**| Team Name Contains | [optional] 
- **season_id** | **int**| Season database ID to query for. | [optional] 
+ **season** | **int**| Season ID to query for. | [optional] 
+ **season_id** | **int**| Deprecated spelling of &#x60;season&#x60;. | [optional] 
  **season_number** | **int**| Season number to query for. Defaults to the league current season when omitted. | [optional] 
- **seasons** | [**List[int]**](int.md)| Season Number contains | [optional] 
- **tier** | **str**| Tier Name Contains | [optional] 
 
 ### Return type
 
@@ -577,7 +571,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_players_list**
-> List[TeamPlayer] teams_players_list(id, franchise=franchise, league=league, name=name, seasons=seasons, tier=tier)
+> List[TeamPlayer] teams_players_list(id)
 
 Get the players for a given team.
 
@@ -613,14 +607,9 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    franchise = 'franchise_example' # str | Franchise Name Contains (optional)
-    league = 3.4 # float | League ID (optional)
-    name = 'name_example' # str | Team Name Contains (optional)
-    seasons = [56] # List[int] | Season Number contains (optional)
-    tier = 'tier_example' # str | Tier Name Contains (optional)
 
     try:
-        api_response = await api_instance.teams_players_list(id, franchise=franchise, league=league, name=name, seasons=seasons, tier=tier)
+        api_response = await api_instance.teams_players_list(id)
         print("The response of TeamsApi->teams_players_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -635,11 +624,6 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **franchise** | **str**| Franchise Name Contains | [optional] 
- **league** | **float**| League ID | [optional] 
- **name** | **str**| Team Name Contains | [optional] 
- **seasons** | [**List[int]**](int.md)| Season Number contains | [optional] 
- **tier** | **str**| Tier Name Contains | [optional] 
 
 ### Return type
 
@@ -663,7 +647,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_postseason_stats_retrieve**
-> TeamSeasonStats teams_postseason_stats_retrieve(id, season_id=season_id, season_number=season_number)
+> TeamSeasonStats teams_postseason_stats_retrieve(id, season=season, season_id=season_id, season_number=season_number)
 
 Get postseason stats for a given team. (Default: Current Season)
 
@@ -699,11 +683,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    season_id = 56 # int | Season database ID to query for. (optional)
+    season = 56 # int | Season ID to query for. (optional)
+    season_id = 56 # int | Deprecated spelling of `season`. (optional)
     season_number = 56 # int | Season number to query for. Defaults to the league current season when omitted. (optional)
 
     try:
-        api_response = await api_instance.teams_postseason_stats_retrieve(id, season_id=season_id, season_number=season_number)
+        api_response = await api_instance.teams_postseason_stats_retrieve(id, season=season, season_id=season_id, season_number=season_number)
         print("The response of TeamsApi->teams_postseason_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -718,7 +703,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **season_id** | **int**| Season database ID to query for. | [optional] 
+ **season** | **int**| Season ID to query for. | [optional] 
+ **season_id** | **int**| Deprecated spelling of &#x60;season&#x60;. | [optional] 
  **season_number** | **int**| Season number to query for. Defaults to the league current season when omitted. | [optional] 
 
 ### Return type
@@ -818,7 +804,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_season_matches_list**
-> List[HighLevelMatch] teams_season_matches_list(id, franchise=franchise, league=league, name=name, preseason=preseason, season=season, seasons=seasons, tier=tier)
+> List[HighLevelMatch] teams_season_matches_list(id, preseason=preseason, season=season, season_number=season_number)
 
 Get all matches for a given team.
 
@@ -854,16 +840,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    franchise = 'franchise_example' # str | Franchise Name Contains (optional)
-    league = 3.4 # float | League ID (optional)
-    name = 'name_example' # str | Team Name Contains (optional)
     preseason = True # bool |  (optional)
-    season = 56 # int |  (optional)
-    seasons = [56] # List[int] | Season Number contains (optional)
-    tier = 'tier_example' # str | Tier Name Contains (optional)
+    season = 56 # int | Season ID (Default: the league's current season) (optional)
+    season_number = 56 # int | Season number (optional)
 
     try:
-        api_response = await api_instance.teams_season_matches_list(id, franchise=franchise, league=league, name=name, preseason=preseason, season=season, seasons=seasons, tier=tier)
+        api_response = await api_instance.teams_season_matches_list(id, preseason=preseason, season=season, season_number=season_number)
         print("The response of TeamsApi->teams_season_matches_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -878,13 +860,9 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **franchise** | **str**| Franchise Name Contains | [optional] 
- **league** | **float**| League ID | [optional] 
- **name** | **str**| Team Name Contains | [optional] 
  **preseason** | **bool**|  | [optional] 
- **season** | **int**|  | [optional] 
- **seasons** | [**List[int]**](int.md)| Season Number contains | [optional] 
- **tier** | **str**| Tier Name Contains | [optional] 
+ **season** | **int**| Season ID (Default: the league&#39;s current season) | [optional] 
+ **season_number** | **int**| Season number | [optional] 
 
 ### Return type
 
@@ -909,7 +887,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_stats_retrieve**
-> TeamSeasonStats teams_stats_retrieve(id, season_id=season_id, season_number=season_number)
+> TeamSeasonStats teams_stats_retrieve(id, season=season, season_id=season_id, season_number=season_number)
 
 Get regular season stats for a given team. (Default: Current Season)
 
@@ -945,11 +923,12 @@ async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.TeamsApi(api_client)
     id = 56 # int | A unique integer value identifying this team.
-    season_id = 56 # int | Season database ID to query for. (optional)
+    season = 56 # int | Season ID to query for. (optional)
+    season_id = 56 # int | Deprecated spelling of `season`. (optional)
     season_number = 56 # int | Season number to query for. Defaults to the league current season when omitted. (optional)
 
     try:
-        api_response = await api_instance.teams_stats_retrieve(id, season_id=season_id, season_number=season_number)
+        api_response = await api_instance.teams_stats_retrieve(id, season=season, season_id=season_id, season_number=season_number)
         print("The response of TeamsApi->teams_stats_retrieve:\n")
         pprint(api_response)
     except Exception as e:
@@ -964,7 +943,8 @@ async with rscapi.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| A unique integer value identifying this team. | 
- **season_id** | **int**| Season database ID to query for. | [optional] 
+ **season** | **int**| Season ID to query for. | [optional] 
+ **season_id** | **int**| Deprecated spelling of &#x60;season&#x60;. | [optional] 
  **season_number** | **int**| Season number to query for. Defaults to the league current season when omitted. | [optional] 
 
 ### Return type

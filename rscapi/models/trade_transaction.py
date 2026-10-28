@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from rscapi.models.trade_object import TradeObject
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,7 +33,7 @@ class TradeTransaction(BaseModel):
     admin_override: Optional[StrictBool] = None
     confirm_imbalanced: Optional[StrictBool] = None
     confirm_lopsided: Optional[StrictBool] = None
-    executor: StrictInt
+    executor: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     notes: StrictStr
     league: StrictInt
     __properties: ClassVar[List[str]] = ["trades", "admin_override", "confirm_imbalanced", "confirm_lopsided", "executor", "notes", "league"]

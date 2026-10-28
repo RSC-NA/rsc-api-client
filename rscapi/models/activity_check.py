@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 from pydantic_core import to_jsonable_python
@@ -32,7 +33,7 @@ class ActivityCheck(BaseModel):
     season: StrictInt
     member: StrictStr
     rsc_id: StrictStr
-    discord_id: StrictInt
+    discord_id: Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]
     returning_status: Optional[StrictBool] = None
     __properties: ClassVar[List[str]] = ["missing", "completed", "season", "member", "rsc_id", "discord_id", "returning_status"]
 

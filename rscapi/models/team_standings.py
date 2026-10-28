@@ -27,9 +27,9 @@ class TeamStandings(BaseModel):
     """
     TeamStandings
     """ # noqa: E501
-    franchise: StrictStr
+    franchise: Optional[StrictStr] = None
     team: StrictStr
-    tier: StrictStr
+    tier: Optional[StrictStr] = None
     rank: StrictInt
     games_played: Optional[StrictInt] = None
     games_won: Optional[StrictInt] = None
@@ -81,6 +81,16 @@ class TeamStandings(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if franchise (nullable) is None
+        # and model_fields_set contains the field
+        if self.franchise is None and "franchise" in self.model_fields_set:
+            _dict['franchise'] = None
+
+        # set to None if tier (nullable) is None
+        # and model_fields_set contains the field
+        if self.tier is None and "tier" in self.model_fields_set:
+            _dict['tier'] = None
+
         return _dict
 
     @classmethod

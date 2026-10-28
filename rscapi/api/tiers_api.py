@@ -579,7 +579,7 @@ class TiersApi:
     @validate_call
     async def tiers_list(
         self,
-        league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="Tiers in League with ID")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
@@ -598,7 +598,7 @@ class TiersApi:
 
         Viewset for the Tier model.
 
-        :param league: League Database ID
+        :param league: Tiers in League with ID
         :type league: int
         :param name: Tier Name Contains
         :type name: str
@@ -650,7 +650,7 @@ class TiersApi:
     @validate_call
     async def tiers_list_with_http_info(
         self,
-        league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="Tiers in League with ID")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
@@ -669,7 +669,7 @@ class TiersApi:
 
         Viewset for the Tier model.
 
-        :param league: League Database ID
+        :param league: Tiers in League with ID
         :type league: int
         :param name: Tier Name Contains
         :type name: str
@@ -721,7 +721,7 @@ class TiersApi:
     @validate_call
     async def tiers_list_without_preload_content(
         self,
-        league: Annotated[Optional[StrictInt], Field(description="League Database ID")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="Tiers in League with ID")] = None,
         name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
         _request_timeout: Union[
             None,
@@ -740,7 +740,7 @@ class TiersApi:
 
         Viewset for the Tier model.
 
-        :param league: League Database ID
+        :param league: Tiers in League with ID
         :type league: int
         :param name: Tier Name Contains
         :type name: str
@@ -1151,9 +1151,9 @@ class TiersApi:
     async def tiers_player_stats_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1173,12 +1173,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1204,8 +1204,8 @@ class TiersApi:
         _param = self._tiers_player_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1231,9 +1231,9 @@ class TiersApi:
     async def tiers_player_stats_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1253,12 +1253,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1284,8 +1284,8 @@ class TiersApi:
         _param = self._tiers_player_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1311,9 +1311,9 @@ class TiersApi:
     async def tiers_player_stats_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1333,12 +1333,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1364,8 +1364,8 @@ class TiersApi:
         _param = self._tiers_player_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1387,8 +1387,8 @@ class TiersApi:
         self,
         id,
         league,
-        name,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -1417,13 +1417,13 @@ class TiersApi:
             
             _query_params.append(('league', league))
             
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -1466,9 +1466,9 @@ class TiersApi:
     async def tiers_players_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1488,12 +1488,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1519,8 +1519,8 @@ class TiersApi:
         _param = self._tiers_players_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1546,9 +1546,9 @@ class TiersApi:
     async def tiers_players_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1568,12 +1568,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1599,8 +1599,8 @@ class TiersApi:
         _param = self._tiers_players_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1626,9 +1626,9 @@ class TiersApi:
     async def tiers_players_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1648,12 +1648,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1679,8 +1679,8 @@ class TiersApi:
         _param = self._tiers_players_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1702,8 +1702,8 @@ class TiersApi:
         self,
         id,
         league,
-        name,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -1732,13 +1732,13 @@ class TiersApi:
             
             _query_params.append(('league', league))
             
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -1781,8 +1781,9 @@ class TiersApi:
     async def tiers_playoffs_retrieve(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1802,10 +1803,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1832,6 +1835,7 @@ class TiersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1857,8 +1861,9 @@ class TiersApi:
     async def tiers_playoffs_retrieve_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1878,10 +1883,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1908,6 +1915,7 @@ class TiersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1933,8 +1941,9 @@ class TiersApi:
     async def tiers_playoffs_retrieve_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1954,10 +1963,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1984,6 +1995,7 @@ class TiersApi:
             id=id,
             league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2006,6 +2018,7 @@ class TiersApi:
         id,
         league,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -2037,6 +2050,10 @@ class TiersApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -2079,9 +2096,9 @@ class TiersApi:
     async def tiers_postseason_player_stats_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2101,12 +2118,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2132,8 +2149,8 @@ class TiersApi:
         _param = self._tiers_postseason_player_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2159,9 +2176,9 @@ class TiersApi:
     async def tiers_postseason_player_stats_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2181,12 +2198,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2212,8 +2229,8 @@ class TiersApi:
         _param = self._tiers_postseason_player_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2239,9 +2256,9 @@ class TiersApi:
     async def tiers_postseason_player_stats_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2261,12 +2278,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2292,8 +2309,8 @@ class TiersApi:
         _param = self._tiers_postseason_player_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2315,8 +2332,8 @@ class TiersApi:
         self,
         id,
         league,
-        name,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -2345,13 +2362,13 @@ class TiersApi:
             
             _query_params.append(('league', league))
             
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -2394,9 +2411,9 @@ class TiersApi:
     async def tiers_postseason_team_stats_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2416,12 +2433,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2447,8 +2464,8 @@ class TiersApi:
         _param = self._tiers_postseason_team_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2474,9 +2491,9 @@ class TiersApi:
     async def tiers_postseason_team_stats_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2496,12 +2513,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2527,8 +2544,8 @@ class TiersApi:
         _param = self._tiers_postseason_team_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2554,9 +2571,9 @@ class TiersApi:
     async def tiers_postseason_team_stats_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2576,12 +2593,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2607,8 +2624,8 @@ class TiersApi:
         _param = self._tiers_postseason_team_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2630,8 +2647,8 @@ class TiersApi:
         self,
         id,
         league,
-        name,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -2660,13 +2677,13 @@ class TiersApi:
             
             _query_params.append(('league', league))
             
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -2970,9 +2987,9 @@ class TiersApi:
     async def tiers_standings_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        season: Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648, description="Season number to query for.")],
-        league: Annotated[Optional[StrictInt], Field(description="Tiers in League with ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2992,12 +3009,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param season: Season number to query for. (required)
-        :type season: int
-        :param league: Tiers in League with ID
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3022,9 +3039,9 @@ class TiersApi:
 
         _param = self._tiers_standings_list_serialize(
             id=id,
-            season=season,
             league=league,
-            name=name,
+            season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3051,9 +3068,9 @@ class TiersApi:
     async def tiers_standings_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        season: Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648, description="Season number to query for.")],
-        league: Annotated[Optional[StrictInt], Field(description="Tiers in League with ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3073,12 +3090,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param season: Season number to query for. (required)
-        :type season: int
-        :param league: Tiers in League with ID
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3103,9 +3120,9 @@ class TiersApi:
 
         _param = self._tiers_standings_list_serialize(
             id=id,
-            season=season,
             league=league,
-            name=name,
+            season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3132,9 +3149,9 @@ class TiersApi:
     async def tiers_standings_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        season: Annotated[int, Field(le=2147483647, strict=True, ge=-2147483648, description="Season number to query for.")],
-        league: Annotated[Optional[StrictInt], Field(description="Tiers in League with ID")] = None,
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3154,12 +3171,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param season: Season number to query for. (required)
-        :type season: int
-        :param league: Tiers in League with ID
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3184,9 +3201,9 @@ class TiersApi:
 
         _param = self._tiers_standings_list_serialize(
             id=id,
-            season=season,
             league=league,
-            name=name,
+            season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3208,9 +3225,9 @@ class TiersApi:
     def _tiers_standings_list_serialize(
         self,
         id,
-        season,
         league,
-        name,
+        season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -3239,13 +3256,13 @@ class TiersApi:
             
             _query_params.append(('league', league))
             
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -3288,9 +3305,9 @@ class TiersApi:
     async def tiers_team_stats_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3310,12 +3327,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3341,8 +3358,8 @@ class TiersApi:
         _param = self._tiers_team_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3368,9 +3385,9 @@ class TiersApi:
     async def tiers_team_stats_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3390,12 +3407,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3421,8 +3438,8 @@ class TiersApi:
         _param = self._tiers_team_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3448,9 +3465,9 @@ class TiersApi:
     async def tiers_team_stats_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3470,12 +3487,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3501,8 +3518,8 @@ class TiersApi:
         _param = self._tiers_team_stats_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3524,8 +3541,8 @@ class TiersApi:
         self,
         id,
         league,
-        name,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -3554,13 +3571,13 @@ class TiersApi:
             
             _query_params.append(('league', league))
             
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -3603,9 +3620,9 @@ class TiersApi:
     async def tiers_teams_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3625,12 +3642,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3656,8 +3673,8 @@ class TiersApi:
         _param = self._tiers_teams_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3683,9 +3700,9 @@ class TiersApi:
     async def tiers_teams_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3705,12 +3722,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3736,8 +3753,8 @@ class TiersApi:
         _param = self._tiers_teams_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3763,9 +3780,9 @@ class TiersApi:
     async def tiers_teams_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this tier.")],
-        league: Annotated[StrictInt, Field(description="League ID")],
-        name: Annotated[Optional[StrictStr], Field(description="Tier Name Contains")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season number (Default: Current season.)")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3785,12 +3802,12 @@ class TiersApi:
 
         :param id: A unique integer value identifying this tier. (required)
         :type id: int
-        :param league: League ID (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param name: Tier Name Contains
-        :type name: str
-        :param season: Season number (Default: Current season.)
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3816,8 +3833,8 @@ class TiersApi:
         _param = self._tiers_teams_list_serialize(
             id=id,
             league=league,
-            name=name,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3839,8 +3856,8 @@ class TiersApi:
         self,
         id,
         league,
-        name,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -3869,13 +3886,13 @@ class TiersApi:
             
             _query_params.append(('league', league))
             
-        if name is not None:
-            
-            _query_params.append(('name', name))
-            
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -4208,9 +4225,10 @@ class TiersApi:
     @validate_call
     async def tiers_waiver_order_retrieve(
         self,
-        league: Annotated[StrictInt, Field(description="League ID.")],
         tier: Annotated[StrictStr, Field(description="Tier ID or name.")],
-        season: Annotated[Optional[StrictInt], Field(description="Season number (default: current).")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4228,12 +4246,14 @@ class TiersApi:
 
         Get the waiver order for a specific tier in a league and season.
 
-        :param league: League ID. (required)
-        :type league: int
         :param tier: Tier ID or name. (required)
         :type tier: str
-        :param season: Season number (default: current).
+        :param league: League ID. (Default: the default league)
+        :type league: int
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4257,9 +4277,10 @@ class TiersApi:
         """ # noqa: E501
 
         _param = self._tiers_waiver_order_retrieve_serialize(
-            league=league,
             tier=tier,
+            league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4285,9 +4306,10 @@ class TiersApi:
     @validate_call
     async def tiers_waiver_order_retrieve_with_http_info(
         self,
-        league: Annotated[StrictInt, Field(description="League ID.")],
         tier: Annotated[StrictStr, Field(description="Tier ID or name.")],
-        season: Annotated[Optional[StrictInt], Field(description="Season number (default: current).")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4305,12 +4327,14 @@ class TiersApi:
 
         Get the waiver order for a specific tier in a league and season.
 
-        :param league: League ID. (required)
-        :type league: int
         :param tier: Tier ID or name. (required)
         :type tier: str
-        :param season: Season number (default: current).
+        :param league: League ID. (Default: the default league)
+        :type league: int
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4334,9 +4358,10 @@ class TiersApi:
         """ # noqa: E501
 
         _param = self._tiers_waiver_order_retrieve_serialize(
-            league=league,
             tier=tier,
+            league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4362,9 +4387,10 @@ class TiersApi:
     @validate_call
     async def tiers_waiver_order_retrieve_without_preload_content(
         self,
-        league: Annotated[StrictInt, Field(description="League ID.")],
         tier: Annotated[StrictStr, Field(description="Tier ID or name.")],
-        season: Annotated[Optional[StrictInt], Field(description="Season number (default: current).")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4382,12 +4408,14 @@ class TiersApi:
 
         Get the waiver order for a specific tier in a league and season.
 
-        :param league: League ID. (required)
-        :type league: int
         :param tier: Tier ID or name. (required)
         :type tier: str
-        :param season: Season number (default: current).
+        :param league: League ID. (Default: the default league)
+        :type league: int
+        :param season: Season ID, within the league. (Default: the league's current season)
         :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4411,9 +4439,10 @@ class TiersApi:
         """ # noqa: E501
 
         _param = self._tiers_waiver_order_retrieve_serialize(
-            league=league,
             tier=tier,
+            league=league,
             season=season,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4434,9 +4463,10 @@ class TiersApi:
 
     def _tiers_waiver_order_retrieve_serialize(
         self,
-        league,
         tier,
+        league,
         season,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -4466,6 +4496,10 @@ class TiersApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         if tier is not None:
             

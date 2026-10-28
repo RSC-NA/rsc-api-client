@@ -4355,8 +4355,8 @@ class TransactionsApi:
     @validate_call
     async def transactions_waiver_claim_list(
         self,
-        league: Annotated[StrictInt, Field(description="League ID.")],
         franchise: Annotated[Optional[StrictInt], Field(description="Franchise ID.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Claim status (default: pending).")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier ID or name.")] = None,
         _request_timeout: Union[
@@ -4376,10 +4376,10 @@ class TransactionsApi:
 
         List waiver claims for a league (default: pending).
 
-        :param league: League ID. (required)
-        :type league: int
         :param franchise: Franchise ID.
         :type franchise: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param status: Claim status (default: pending).
         :type status: str
         :param tier: Tier ID or name.
@@ -4407,8 +4407,8 @@ class TransactionsApi:
         """ # noqa: E501
 
         _param = self._transactions_waiver_claim_list_serialize(
-            league=league,
             franchise=franchise,
+            league=league,
             status=status,
             tier=tier,
             _request_auth=_request_auth,
@@ -4435,8 +4435,8 @@ class TransactionsApi:
     @validate_call
     async def transactions_waiver_claim_list_with_http_info(
         self,
-        league: Annotated[StrictInt, Field(description="League ID.")],
         franchise: Annotated[Optional[StrictInt], Field(description="Franchise ID.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Claim status (default: pending).")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier ID or name.")] = None,
         _request_timeout: Union[
@@ -4456,10 +4456,10 @@ class TransactionsApi:
 
         List waiver claims for a league (default: pending).
 
-        :param league: League ID. (required)
-        :type league: int
         :param franchise: Franchise ID.
         :type franchise: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param status: Claim status (default: pending).
         :type status: str
         :param tier: Tier ID or name.
@@ -4487,8 +4487,8 @@ class TransactionsApi:
         """ # noqa: E501
 
         _param = self._transactions_waiver_claim_list_serialize(
-            league=league,
             franchise=franchise,
+            league=league,
             status=status,
             tier=tier,
             _request_auth=_request_auth,
@@ -4515,8 +4515,8 @@ class TransactionsApi:
     @validate_call
     async def transactions_waiver_claim_list_without_preload_content(
         self,
-        league: Annotated[StrictInt, Field(description="League ID.")],
         franchise: Annotated[Optional[StrictInt], Field(description="Franchise ID.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         status: Annotated[Optional[StrictStr], Field(description="Claim status (default: pending).")] = None,
         tier: Annotated[Optional[StrictStr], Field(description="Tier ID or name.")] = None,
         _request_timeout: Union[
@@ -4536,10 +4536,10 @@ class TransactionsApi:
 
         List waiver claims for a league (default: pending).
 
-        :param league: League ID. (required)
-        :type league: int
         :param franchise: Franchise ID.
         :type franchise: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param status: Claim status (default: pending).
         :type status: str
         :param tier: Tier ID or name.
@@ -4567,8 +4567,8 @@ class TransactionsApi:
         """ # noqa: E501
 
         _param = self._transactions_waiver_claim_list_serialize(
-            league=league,
             franchise=franchise,
+            league=league,
             status=status,
             tier=tier,
             _request_auth=_request_auth,
@@ -4590,8 +4590,8 @@ class TransactionsApi:
 
     def _transactions_waiver_claim_list_serialize(
         self,
-        league,
         franchise,
+        league,
         status,
         tier,
         _request_auth,

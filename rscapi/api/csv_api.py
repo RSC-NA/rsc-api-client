@@ -25,7 +25,7 @@ from rscapi.models.player_mmr_export import PlayerMMRExport
 from rscapi.models.teams_contracts import TeamsContracts
 from rscapi.models.tracker_links_detailed_sheet import TrackerLinksDetailedSheet
 from rscapi.models.tracker_links_sheet import TrackerLinksSheet
-from rscapi.models.tracker_peak import TrackerPeak
+from rscapi.models.tracker_peak_row import TrackerPeakRow
 from rscapi.models.twos_master_member_sheet import TwosMasterMemberSheet
 
 from rscapi.api_client import ApiClient, RequestSerialized
@@ -49,8 +49,8 @@ class CsvApi:
     @validate_call
     async def csv_franchise_contracts_data_list(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         format: Optional[StrictStr] = None,
+        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -67,10 +67,10 @@ class CsvApi:
         """csv_franchise_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
-        :type league: str
         :param format:
         :type format: str
+        :param league: League name to search for franchises in. (Default: the default league)
+        :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -94,8 +94,8 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_franchise_contracts_data_list_serialize(
-            league=league,
             format=format,
+            league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -119,8 +119,8 @@ class CsvApi:
     @validate_call
     async def csv_franchise_contracts_data_list_with_http_info(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         format: Optional[StrictStr] = None,
+        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -137,10 +137,10 @@ class CsvApi:
         """csv_franchise_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
-        :type league: str
         :param format:
         :type format: str
+        :param league: League name to search for franchises in. (Default: the default league)
+        :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -164,8 +164,8 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_franchise_contracts_data_list_serialize(
-            league=league,
             format=format,
+            league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -189,8 +189,8 @@ class CsvApi:
     @validate_call
     async def csv_franchise_contracts_data_list_without_preload_content(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
         format: Optional[StrictStr] = None,
+        league: Annotated[Optional[StrictStr], Field(description="League name to search for franchises in. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -207,10 +207,10 @@ class CsvApi:
         """csv_franchise_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
-        :type league: str
         :param format:
         :type format: str
+        :param league: League name to search for franchises in. (Default: the default league)
+        :type league: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -234,8 +234,8 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_franchise_contracts_data_list_serialize(
-            league=league,
             format=format,
+            league=league,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -254,8 +254,8 @@ class CsvApi:
 
     def _csv_franchise_contracts_data_list_serialize(
         self,
-        league,
         format,
+        league,
         _request_auth,
         _content_type,
         _headers,
@@ -603,9 +603,10 @@ class CsvApi:
     @validate_call
     async def csv_master_contracts_data_list(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
-        season: Annotated[StrictInt, Field(description="RSC season number to filter by.")],
         format: Optional[StrictStr] = None,
+        league: Annotated[Optional[StrictStr], Field(description="League ID, or league name. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -622,12 +623,14 @@ class CsvApi:
         """csv_master_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
-        :type league: str
-        :param season: RSC season number to filter by. (required)
-        :type season: int
         :param format:
         :type format: str
+        :param league: League ID, or league name. (Default: the default league)
+        :type league: str
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -651,9 +654,10 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_master_contracts_data_list_serialize(
+            format=format,
             league=league,
             season=season,
-            format=format,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -677,9 +681,10 @@ class CsvApi:
     @validate_call
     async def csv_master_contracts_data_list_with_http_info(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
-        season: Annotated[StrictInt, Field(description="RSC season number to filter by.")],
         format: Optional[StrictStr] = None,
+        league: Annotated[Optional[StrictStr], Field(description="League ID, or league name. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -696,12 +701,14 @@ class CsvApi:
         """csv_master_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
-        :type league: str
-        :param season: RSC season number to filter by. (required)
-        :type season: int
         :param format:
         :type format: str
+        :param league: League ID, or league name. (Default: the default league)
+        :type league: str
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -725,9 +732,10 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_master_contracts_data_list_serialize(
+            format=format,
             league=league,
             season=season,
-            format=format,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -751,9 +759,10 @@ class CsvApi:
     @validate_call
     async def csv_master_contracts_data_list_without_preload_content(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
-        season: Annotated[StrictInt, Field(description="RSC season number to filter by.")],
         format: Optional[StrictStr] = None,
+        league: Annotated[Optional[StrictStr], Field(description="League ID, or league name. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -770,12 +779,14 @@ class CsvApi:
         """csv_master_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
-        :type league: str
-        :param season: RSC season number to filter by. (required)
-        :type season: int
         :param format:
         :type format: str
+        :param league: League ID, or league name. (Default: the default league)
+        :type league: str
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_number: Season number, within the league. Ignored when `season` is given.
+        :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -799,9 +810,10 @@ class CsvApi:
         """ # noqa: E501
 
         _param = self._csv_master_contracts_data_list_serialize(
+            format=format,
             league=league,
             season=season,
-            format=format,
+            season_number=season_number,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -820,9 +832,10 @@ class CsvApi:
 
     def _csv_master_contracts_data_list_serialize(
         self,
+        format,
         league,
         season,
-        format,
+        season_number,
         _request_auth,
         _content_type,
         _headers,
@@ -856,6 +869,10 @@ class CsvApi:
         if season is not None:
             
             _query_params.append(('season', season))
+            
+        if season_number is not None:
+            
+            _query_params.append(('season_number', season_number))
             
         # process the header parameters
         # process the form parameters
@@ -1712,9 +1729,10 @@ class CsvApi:
     async def csv_player_mmr_export_list(
         self,
         format: Optional[StrictStr] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID to export. Defaults to 1 (RSC 3v3).")] = None,
-        season_id: Annotated[Optional[StrictInt], Field(description="Season ID (primary key) to export. Takes precedence over season_number.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[StrictInt], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1734,11 +1752,13 @@ class CsvApi:
 
         :param format:
         :type format: str
-        :param league: League ID to export. Defaults to 1 (RSC 3v3).
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season_id: Season ID (primary key) to export. Takes precedence over season_number.
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.
+        :param season_number: Season number, within the league. Ignored when `season` is given.
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1765,6 +1785,7 @@ class CsvApi:
         _param = self._csv_player_mmr_export_list_serialize(
             format=format,
             league=league,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -1791,9 +1812,10 @@ class CsvApi:
     async def csv_player_mmr_export_list_with_http_info(
         self,
         format: Optional[StrictStr] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID to export. Defaults to 1 (RSC 3v3).")] = None,
-        season_id: Annotated[Optional[StrictInt], Field(description="Season ID (primary key) to export. Takes precedence over season_number.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[StrictInt], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1813,11 +1835,13 @@ class CsvApi:
 
         :param format:
         :type format: str
-        :param league: League ID to export. Defaults to 1 (RSC 3v3).
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season_id: Season ID (primary key) to export. Takes precedence over season_number.
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.
+        :param season_number: Season number, within the league. Ignored when `season` is given.
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1844,6 +1868,7 @@ class CsvApi:
         _param = self._csv_player_mmr_export_list_serialize(
             format=format,
             league=league,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -1870,9 +1895,10 @@ class CsvApi:
     async def csv_player_mmr_export_list_without_preload_content(
         self,
         format: Optional[StrictStr] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID to export. Defaults to 1 (RSC 3v3).")] = None,
-        season_id: Annotated[Optional[StrictInt], Field(description="Season ID (primary key) to export. Takes precedence over season_number.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[StrictInt], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1892,11 +1918,13 @@ class CsvApi:
 
         :param format:
         :type format: str
-        :param league: League ID to export. Defaults to 1 (RSC 3v3).
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season_id: Season ID (primary key) to export. Takes precedence over season_number.
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.
+        :param season_number: Season number, within the league. Ignored when `season` is given.
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1923,6 +1951,7 @@ class CsvApi:
         _param = self._csv_player_mmr_export_list_serialize(
             format=format,
             league=league,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -1945,6 +1974,7 @@ class CsvApi:
         self,
         format,
         league,
+        season,
         season_id,
         season_number,
         _request_auth,
@@ -1976,6 +2006,10 @@ class CsvApi:
         if league is not None:
             
             _query_params.append(('league', league))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
             
         if season_id is not None:
             
@@ -2028,9 +2062,10 @@ class CsvApi:
         self,
         id: Annotated[StrictInt, Field(description="Discord ID of the player, not the LeaguePlayer primary key.")],
         format: Optional[StrictStr] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID to export. Defaults to 1 (RSC 3v3).")] = None,
-        season_id: Annotated[Optional[StrictInt], Field(description="Season ID (primary key) to export. Takes precedence over season_number.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[StrictInt], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2052,11 +2087,13 @@ class CsvApi:
         :type id: int
         :param format:
         :type format: str
-        :param league: League ID to export. Defaults to 1 (RSC 3v3).
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season_id: Season ID (primary key) to export. Takes precedence over season_number.
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.
+        :param season_number: Season number, within the league. Ignored when `season` is given.
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2084,6 +2121,7 @@ class CsvApi:
             id=id,
             format=format,
             league=league,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -2111,9 +2149,10 @@ class CsvApi:
         self,
         id: Annotated[StrictInt, Field(description="Discord ID of the player, not the LeaguePlayer primary key.")],
         format: Optional[StrictStr] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID to export. Defaults to 1 (RSC 3v3).")] = None,
-        season_id: Annotated[Optional[StrictInt], Field(description="Season ID (primary key) to export. Takes precedence over season_number.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[StrictInt], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2135,11 +2174,13 @@ class CsvApi:
         :type id: int
         :param format:
         :type format: str
-        :param league: League ID to export. Defaults to 1 (RSC 3v3).
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season_id: Season ID (primary key) to export. Takes precedence over season_number.
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.
+        :param season_number: Season number, within the league. Ignored when `season` is given.
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2167,6 +2208,7 @@ class CsvApi:
             id=id,
             format=format,
             league=league,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -2194,9 +2236,10 @@ class CsvApi:
         self,
         id: Annotated[StrictInt, Field(description="Discord ID of the player, not the LeaguePlayer primary key.")],
         format: Optional[StrictStr] = None,
-        league: Annotated[Optional[StrictInt], Field(description="League ID to export. Defaults to 1 (RSC 3v3).")] = None,
-        season_id: Annotated[Optional[StrictInt], Field(description="Season ID (primary key) to export. Takes precedence over season_number.")] = None,
-        season_number: Annotated[Optional[StrictInt], Field(description="RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID, within the league. (Default: the league's current season)")] = None,
+        season_id: Annotated[Optional[StrictInt], Field(description="Deprecated spelling of `season`.")] = None,
+        season_number: Annotated[Optional[StrictInt], Field(description="Season number, within the league. Ignored when `season` is given.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2218,11 +2261,13 @@ class CsvApi:
         :type id: int
         :param format:
         :type format: str
-        :param league: League ID to export. Defaults to 1 (RSC 3v3).
+        :param league: League ID. (Default: the default league)
         :type league: int
-        :param season_id: Season ID (primary key) to export. Takes precedence over season_number.
+        :param season: Season ID, within the league. (Default: the league's current season)
+        :type season: int
+        :param season_id: Deprecated spelling of `season`.
         :type season_id: int
-        :param season_number: RSC season number to export. Season numbers are per-league. Ignored when season_id is supplied.
+        :param season_number: Season number, within the league. Ignored when `season` is given.
         :type season_number: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2250,6 +2295,7 @@ class CsvApi:
             id=id,
             format=format,
             league=league,
+            season=season,
             season_id=season_id,
             season_number=season_number,
             _request_auth=_request_auth,
@@ -2273,6 +2319,7 @@ class CsvApi:
         id,
         format,
         league,
+        season,
         season_id,
         season_number,
         _request_auth,
@@ -2306,6 +2353,10 @@ class CsvApi:
         if league is not None:
             
             _query_params.append(('league', league))
+            
+        if season is not None:
+            
+            _query_params.append(('season', season))
             
         if season_id is not None:
             
@@ -2356,7 +2407,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_list(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
+        league: Annotated[StrictStr, Field(description="League name.")],
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -2374,7 +2425,7 @@ class CsvApi:
         """csv_teams_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
+        :param league: League name. (required)
         :type league: str
         :param format:
         :type format: str
@@ -2426,7 +2477,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_list_with_http_info(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
+        league: Annotated[StrictStr, Field(description="League name.")],
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -2444,7 +2495,7 @@ class CsvApi:
         """csv_teams_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
+        :param league: League name. (required)
         :type league: str
         :param format:
         :type format: str
@@ -2496,7 +2547,7 @@ class CsvApi:
     @validate_call
     async def csv_teams_contracts_data_list_without_preload_content(
         self,
-        league: Annotated[StrictStr, Field(description="League name to search for franchises in.")],
+        league: Annotated[StrictStr, Field(description="League name.")],
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -2514,7 +2565,7 @@ class CsvApi:
         """csv_teams_contracts_data_list
 
 
-        :param league: League name to search for franchises in. (required)
+        :param league: League name. (required)
         :type league: str
         :param format:
         :type format: str
@@ -4069,7 +4120,7 @@ class CsvApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[TrackerPeak]:
+    ) -> List[TrackerPeakRow]:
         """csv_tracker_links_peaks_list
 
 
@@ -4118,7 +4169,7 @@ class CsvApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[TrackerPeak]",
+            '200': "List[TrackerPeakRow]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -4151,7 +4202,7 @@ class CsvApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[TrackerPeak]]:
+    ) -> ApiResponse[List[TrackerPeakRow]]:
         """csv_tracker_links_peaks_list
 
 
@@ -4200,7 +4251,7 @@ class CsvApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[TrackerPeak]",
+            '200': "List[TrackerPeakRow]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -4282,7 +4333,7 @@ class CsvApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[TrackerPeak]",
+            '200': "List[TrackerPeakRow]",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -4396,7 +4447,7 @@ class CsvApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> TrackerPeak:
+    ) -> TrackerPeakRow:
         """csv_tracker_links_peaks_retrieve
 
 
@@ -4439,7 +4490,7 @@ class CsvApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerPeak",
+            '200': "TrackerPeakRow",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -4470,7 +4521,7 @@ class CsvApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[TrackerPeak]:
+    ) -> ApiResponse[TrackerPeakRow]:
         """csv_tracker_links_peaks_retrieve
 
 
@@ -4513,7 +4564,7 @@ class CsvApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerPeak",
+            '200': "TrackerPeakRow",
         }
         response_data = await self.api_client.call_api(
             *_param,
@@ -4587,7 +4638,7 @@ class CsvApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "TrackerPeak",
+            '200': "TrackerPeakRow",
         }
         response_data = await self.api_client.call_api(
             *_param,

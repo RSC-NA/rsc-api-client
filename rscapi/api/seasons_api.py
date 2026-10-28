@@ -22,8 +22,9 @@ from rscapi.models.activity_check import ActivityCheck
 from rscapi.models.franchise_standings import FranchiseStandings
 from rscapi.models.intent_to_play import IntentToPlay
 from rscapi.models.paginated_activity_check_list import PaginatedActivityCheckList
-from rscapi.models.patched_season import PatchedSeason
+from rscapi.models.patched_season_write import PatchedSeasonWrite
 from rscapi.models.season import Season
+from rscapi.models.season_write import SeasonWrite
 
 from rscapi.api_client import ApiClient, RequestSerialized
 from rscapi.api_response import ApiResponse
@@ -48,11 +49,12 @@ class SeasonsApi:
         self,
         completed: Annotated[Optional[StrictBool], Field(description="Check has been completed or not.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         returning_status: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8). (Default: the league's current season)")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         _request_timeout: Union[
             None,
@@ -75,6 +77,8 @@ class SeasonsApi:
         :type completed: bool
         :param discord_id: Discord ID of player intent to search for.
         :type discord_id: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param missing: If the player has responded or not.
@@ -83,7 +87,7 @@ class SeasonsApi:
         :type offset: int
         :param returning_status: If the player is returning or not.
         :type returning_status: bool
-        :param season: Season ID (E.g: 8)
+        :param season: Season ID (E.g: 8). (Default: the league's current season)
         :type season: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
@@ -112,6 +116,7 @@ class SeasonsApi:
         _param = self._seasons_activity_check_list_serialize(
             completed=completed,
             discord_id=discord_id,
+            league=league,
             limit=limit,
             missing=missing,
             offset=offset,
@@ -143,11 +148,12 @@ class SeasonsApi:
         self,
         completed: Annotated[Optional[StrictBool], Field(description="Check has been completed or not.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         returning_status: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8). (Default: the league's current season)")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         _request_timeout: Union[
             None,
@@ -170,6 +176,8 @@ class SeasonsApi:
         :type completed: bool
         :param discord_id: Discord ID of player intent to search for.
         :type discord_id: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param missing: If the player has responded or not.
@@ -178,7 +186,7 @@ class SeasonsApi:
         :type offset: int
         :param returning_status: If the player is returning or not.
         :type returning_status: bool
-        :param season: Season ID (E.g: 8)
+        :param season: Season ID (E.g: 8). (Default: the league's current season)
         :type season: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
@@ -207,6 +215,7 @@ class SeasonsApi:
         _param = self._seasons_activity_check_list_serialize(
             completed=completed,
             discord_id=discord_id,
+            league=league,
             limit=limit,
             missing=missing,
             offset=offset,
@@ -238,11 +247,12 @@ class SeasonsApi:
         self,
         completed: Annotated[Optional[StrictBool], Field(description="Check has been completed or not.")] = None,
         discord_id: Annotated[Optional[StrictInt], Field(description="Discord ID of player intent to search for.")] = None,
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         limit: Annotated[Optional[StrictInt], Field(description="Number of results to return per page.")] = None,
         missing: Annotated[Optional[StrictBool], Field(description="If the player has responded or not.")] = None,
         offset: Annotated[Optional[StrictInt], Field(description="The initial index from which to return the results.")] = None,
         returning_status: Annotated[Optional[StrictBool], Field(description="If the player is returning or not.")] = None,
-        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8)")] = None,
+        season: Annotated[Optional[StrictInt], Field(description="Season ID (E.g: 8). (Default: the league's current season)")] = None,
         season_number: Annotated[Optional[StrictInt], Field(description="Season number to search for. (E.g: 18)")] = None,
         _request_timeout: Union[
             None,
@@ -265,6 +275,8 @@ class SeasonsApi:
         :type completed: bool
         :param discord_id: Discord ID of player intent to search for.
         :type discord_id: int
+        :param league: League ID. (Default: the default league)
+        :type league: int
         :param limit: Number of results to return per page.
         :type limit: int
         :param missing: If the player has responded or not.
@@ -273,7 +285,7 @@ class SeasonsApi:
         :type offset: int
         :param returning_status: If the player is returning or not.
         :type returning_status: bool
-        :param season: Season ID (E.g: 8)
+        :param season: Season ID (E.g: 8). (Default: the league's current season)
         :type season: int
         :param season_number: Season number to search for. (E.g: 18)
         :type season_number: int
@@ -302,6 +314,7 @@ class SeasonsApi:
         _param = self._seasons_activity_check_list_serialize(
             completed=completed,
             discord_id=discord_id,
+            league=league,
             limit=limit,
             missing=missing,
             offset=offset,
@@ -328,6 +341,7 @@ class SeasonsApi:
         self,
         completed,
         discord_id,
+        league,
         limit,
         missing,
         offset,
@@ -363,6 +377,10 @@ class SeasonsApi:
         if discord_id is not None:
             
             _query_params.append(('discord_id', discord_id))
+            
+        if league is not None:
+            
+            _query_params.append(('league', league))
             
         if limit is not None:
             
@@ -686,7 +704,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_create(
         self,
-        season: Season,
+        season_write: SeasonWrite,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -703,8 +721,8 @@ class SeasonsApi:
         """seasons_create
 
 
-        :param season: (required)
-        :type season: Season
+        :param season_write: (required)
+        :type season_write: SeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -728,7 +746,7 @@ class SeasonsApi:
         """ # noqa: E501
 
         _param = self._seasons_create_serialize(
-            season=season,
+            season_write=season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -752,7 +770,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_create_with_http_info(
         self,
-        season: Season,
+        season_write: SeasonWrite,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -769,8 +787,8 @@ class SeasonsApi:
         """seasons_create
 
 
-        :param season: (required)
-        :type season: Season
+        :param season_write: (required)
+        :type season_write: SeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -794,7 +812,7 @@ class SeasonsApi:
         """ # noqa: E501
 
         _param = self._seasons_create_serialize(
-            season=season,
+            season_write=season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -818,7 +836,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_create_without_preload_content(
         self,
-        season: Season,
+        season_write: SeasonWrite,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -835,8 +853,8 @@ class SeasonsApi:
         """seasons_create
 
 
-        :param season: (required)
-        :type season: Season
+        :param season_write: (required)
+        :type season_write: SeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -860,7 +878,7 @@ class SeasonsApi:
         """ # noqa: E501
 
         _param = self._seasons_create_serialize(
-            season=season,
+            season_write=season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -879,7 +897,7 @@ class SeasonsApi:
 
     def _seasons_create_serialize(
         self,
-        season,
+        season_write,
         _request_auth,
         _content_type,
         _headers,
@@ -905,8 +923,8 @@ class SeasonsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if season is not None:
-            _body_params = season
+        if season_write is not None:
+            _body_params = season_write
 
 
         # set the HTTP header `Accept`
@@ -1471,7 +1489,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_league_season_retrieve(
         self,
-        league: Annotated[StrictInt, Field(description="League to get current season for.")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1489,7 +1507,7 @@ class SeasonsApi:
 
         Get current season for a given league.
 
-        :param league: League to get current season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1539,7 +1557,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_league_season_retrieve_with_http_info(
         self,
-        league: Annotated[StrictInt, Field(description="League to get current season for.")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1557,7 +1575,7 @@ class SeasonsApi:
 
         Get current season for a given league.
 
-        :param league: League to get current season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1607,7 +1625,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_league_season_retrieve_without_preload_content(
         self,
-        league: Annotated[StrictInt, Field(description="League to get current season for.")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1625,7 +1643,7 @@ class SeasonsApi:
 
         Get current season for a given league.
 
-        :param league: League to get current season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2035,7 +2053,7 @@ class SeasonsApi:
     async def seasons_partial_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        patched_season: Optional[PatchedSeason] = None,
+        patched_season_write: Optional[PatchedSeasonWrite] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2054,8 +2072,8 @@ class SeasonsApi:
 
         :param id: A unique integer value identifying this season. (required)
         :type id: int
-        :param patched_season:
-        :type patched_season: PatchedSeason
+        :param patched_season_write:
+        :type patched_season_write: PatchedSeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2080,7 +2098,7 @@ class SeasonsApi:
 
         _param = self._seasons_partial_update_serialize(
             id=id,
-            patched_season=patched_season,
+            patched_season_write=patched_season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2105,7 +2123,7 @@ class SeasonsApi:
     async def seasons_partial_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        patched_season: Optional[PatchedSeason] = None,
+        patched_season_write: Optional[PatchedSeasonWrite] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2124,8 +2142,8 @@ class SeasonsApi:
 
         :param id: A unique integer value identifying this season. (required)
         :type id: int
-        :param patched_season:
-        :type patched_season: PatchedSeason
+        :param patched_season_write:
+        :type patched_season_write: PatchedSeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2150,7 +2168,7 @@ class SeasonsApi:
 
         _param = self._seasons_partial_update_serialize(
             id=id,
-            patched_season=patched_season,
+            patched_season_write=patched_season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2175,7 +2193,7 @@ class SeasonsApi:
     async def seasons_partial_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        patched_season: Optional[PatchedSeason] = None,
+        patched_season_write: Optional[PatchedSeasonWrite] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2194,8 +2212,8 @@ class SeasonsApi:
 
         :param id: A unique integer value identifying this season. (required)
         :type id: int
-        :param patched_season:
-        :type patched_season: PatchedSeason
+        :param patched_season_write:
+        :type patched_season_write: PatchedSeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2220,7 +2238,7 @@ class SeasonsApi:
 
         _param = self._seasons_partial_update_serialize(
             id=id,
-            patched_season=patched_season,
+            patched_season_write=patched_season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2240,7 +2258,7 @@ class SeasonsApi:
     def _seasons_partial_update_serialize(
         self,
         id,
-        patched_season,
+        patched_season_write,
         _request_auth,
         _content_type,
         _headers,
@@ -2268,8 +2286,8 @@ class SeasonsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if patched_season is not None:
-            _body_params = patched_season
+        if patched_season_write is not None:
+            _body_params = patched_season_write
 
 
         # set the HTTP header `Accept`
@@ -2323,7 +2341,7 @@ class SeasonsApi:
     async def seasons_player_intents_list(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        discord_id: Optional[StrictInt] = None,
+        discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None,
         missing: Optional[StrictBool] = None,
         returning: Optional[StrictBool] = None,
         _request_timeout: Union[
@@ -2403,7 +2421,7 @@ class SeasonsApi:
     async def seasons_player_intents_list_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        discord_id: Optional[StrictInt] = None,
+        discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None,
         missing: Optional[StrictBool] = None,
         returning: Optional[StrictBool] = None,
         _request_timeout: Union[
@@ -2483,7 +2501,7 @@ class SeasonsApi:
     async def seasons_player_intents_list_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        discord_id: Optional[StrictInt] = None,
+        discord_id: Optional[Annotated[int, Field(le=9223372036854775807, strict=True, ge=0)]] = None,
         missing: Optional[StrictBool] = None,
         returning: Optional[StrictBool] = None,
         _request_timeout: Union[
@@ -2895,7 +2913,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_signup_season_retrieve(
         self,
-        league: Annotated[StrictInt, Field(description="League to get current season for.")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2913,7 +2931,7 @@ class SeasonsApi:
 
         Get the season currently accepting signups.
 
-        :param league: League to get current season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2963,7 +2981,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_signup_season_retrieve_with_http_info(
         self,
-        league: Annotated[StrictInt, Field(description="League to get current season for.")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2981,7 +2999,7 @@ class SeasonsApi:
 
         Get the season currently accepting signups.
 
-        :param league: League to get current season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3031,7 +3049,7 @@ class SeasonsApi:
     @validate_call
     async def seasons_signup_season_retrieve_without_preload_content(
         self,
-        league: Annotated[StrictInt, Field(description="League to get current season for.")],
+        league: Annotated[Optional[StrictInt], Field(description="League ID. (Default: the default league)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3049,7 +3067,7 @@ class SeasonsApi:
 
         Get the season currently accepting signups.
 
-        :param league: League to get current season for. (required)
+        :param league: League ID. (Default: the default league)
         :type league: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3162,7 +3180,7 @@ class SeasonsApi:
     async def seasons_update(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        season: Season,
+        season_write: SeasonWrite,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3181,8 +3199,8 @@ class SeasonsApi:
 
         :param id: A unique integer value identifying this season. (required)
         :type id: int
-        :param season: (required)
-        :type season: Season
+        :param season_write: (required)
+        :type season_write: SeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3207,7 +3225,7 @@ class SeasonsApi:
 
         _param = self._seasons_update_serialize(
             id=id,
-            season=season,
+            season_write=season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3232,7 +3250,7 @@ class SeasonsApi:
     async def seasons_update_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        season: Season,
+        season_write: SeasonWrite,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3251,8 +3269,8 @@ class SeasonsApi:
 
         :param id: A unique integer value identifying this season. (required)
         :type id: int
-        :param season: (required)
-        :type season: Season
+        :param season_write: (required)
+        :type season_write: SeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3277,7 +3295,7 @@ class SeasonsApi:
 
         _param = self._seasons_update_serialize(
             id=id,
-            season=season,
+            season_write=season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3302,7 +3320,7 @@ class SeasonsApi:
     async def seasons_update_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="A unique integer value identifying this season.")],
-        season: Season,
+        season_write: SeasonWrite,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3321,8 +3339,8 @@ class SeasonsApi:
 
         :param id: A unique integer value identifying this season. (required)
         :type id: int
-        :param season: (required)
-        :type season: Season
+        :param season_write: (required)
+        :type season_write: SeasonWrite
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3347,7 +3365,7 @@ class SeasonsApi:
 
         _param = self._seasons_update_serialize(
             id=id,
-            season=season,
+            season_write=season_write,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3367,7 +3385,7 @@ class SeasonsApi:
     def _seasons_update_serialize(
         self,
         id,
-        season,
+        season_write,
         _request_auth,
         _content_type,
         _headers,
@@ -3395,8 +3413,8 @@ class SeasonsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if season is not None:
-            _body_params = season
+        if season_write is not None:
+            _body_params = season_write
 
 
         # set the HTTP header `Accept`
