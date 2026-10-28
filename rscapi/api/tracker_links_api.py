@@ -835,7 +835,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_dedup_pulls_create(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -854,7 +854,7 @@ class TrackerLinksApi:
         Deduplicate PlayerMMRPull records for a single tracker link.  GET:  Dry-run. Returns duplicate counts, IDs to delete, and max field       stats before/after so you can validate no data is lost. POST: Actually deletes the duplicates (keeps newest date_pulled per group).       Aborts if max field stats would change.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -902,7 +902,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_dedup_pulls_create_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -921,7 +921,7 @@ class TrackerLinksApi:
         Deduplicate PlayerMMRPull records for a single tracker link.  GET:  Dry-run. Returns duplicate counts, IDs to delete, and max field       stats before/after so you can validate no data is lost. POST: Actually deletes the duplicates (keeps newest date_pulled per group).       Aborts if max field stats would change.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -969,7 +969,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_dedup_pulls_create_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -988,7 +988,7 @@ class TrackerLinksApi:
         Deduplicate PlayerMMRPull records for a single tracker link.  GET:  Dry-run. Returns duplicate counts, IDs to delete, and max field       stats before/after so you can validate no data is lost. POST: Actually deletes the duplicates (keeps newest date_pulled per group).       Aborts if max field stats would change.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1096,7 +1096,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_dedup_pulls_retrieve(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1115,7 +1115,7 @@ class TrackerLinksApi:
         Deduplicate PlayerMMRPull records for a single tracker link.  GET:  Dry-run. Returns duplicate counts, IDs to delete, and max field       stats before/after so you can validate no data is lost. POST: Actually deletes the duplicates (keeps newest date_pulled per group).       Aborts if max field stats would change.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1163,7 +1163,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_dedup_pulls_retrieve_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1182,7 +1182,7 @@ class TrackerLinksApi:
         Deduplicate PlayerMMRPull records for a single tracker link.  GET:  Dry-run. Returns duplicate counts, IDs to delete, and max field       stats before/after so you can validate no data is lost. POST: Actually deletes the duplicates (keeps newest date_pulled per group).       Aborts if max field stats would change.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1230,7 +1230,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_dedup_pulls_retrieve_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1249,7 +1249,7 @@ class TrackerLinksApi:
         Deduplicate PlayerMMRPull records for a single tracker link.  GET:  Dry-run. Returns duplicate counts, IDs to delete, and max field       stats before/after so you can validate no data is lost. POST: Actually deletes the duplicates (keeps newest date_pulled per group).       Aborts if max field stats would change.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1357,7 +1357,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_destroy(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -1376,7 +1376,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1427,7 +1427,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_destroy_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -1446,7 +1446,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1497,7 +1497,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_destroy_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -1516,7 +1516,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2144,7 +2144,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_link_create(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_link_linking: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -2163,7 +2163,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_link_linking: (required)
         :type tracker_link_linking: TrackerLinkLinking
         :param _request_timeout: timeout setting for this request. If one
@@ -2214,7 +2214,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_link_create_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_link_linking: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -2233,7 +2233,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_link_linking: (required)
         :type tracker_link_linking: TrackerLinkLinking
         :param _request_timeout: timeout setting for this request. If one
@@ -2284,7 +2284,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_link_create_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_link_linking: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -2303,7 +2303,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_link_linking: (required)
         :type tracker_link_linking: TrackerLinkLinking
         :param _request_timeout: timeout setting for this request. If one
@@ -3124,7 +3124,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_migrate_pulls_create(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_id_input: TrackerIDInput,
         _request_timeout: Union[
             None,
@@ -3144,7 +3144,7 @@ class TrackerLinksApi:
         Migrates MMR pulls from one tracker link to another.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_id_input: (required)
         :type tracker_id_input: TrackerIDInput
         :param _request_timeout: timeout setting for this request. If one
@@ -3195,7 +3195,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_migrate_pulls_create_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_id_input: TrackerIDInput,
         _request_timeout: Union[
             None,
@@ -3215,7 +3215,7 @@ class TrackerLinksApi:
         Migrates MMR pulls from one tracker link to another.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_id_input: (required)
         :type tracker_id_input: TrackerIDInput
         :param _request_timeout: timeout setting for this request. If one
@@ -3266,7 +3266,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_migrate_pulls_create_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_id_input: TrackerIDInput,
         _request_timeout: Union[
             None,
@@ -3286,7 +3286,7 @@ class TrackerLinksApi:
         Migrates MMR pulls from one tracker link to another.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_id_input: (required)
         :type tracker_id_input: TrackerIDInput
         :param _request_timeout: timeout setting for this request. If one
@@ -3710,7 +3710,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_peak_stats_retrieve(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -3729,7 +3729,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int
         :param _request_timeout: timeout setting for this request. If one
@@ -3780,7 +3780,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_peak_stats_retrieve_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -3799,7 +3799,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int
         :param _request_timeout: timeout setting for this request. If one
@@ -3850,7 +3850,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_peak_stats_retrieve_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         pysonix_season: Annotated[StrictInt, Field(description="Psysonix season number to filter by.")],
         _request_timeout: Union[
             None,
@@ -3869,7 +3869,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param pysonix_season: Psysonix season number to filter by. (required)
         :type pysonix_season: int
         :param _request_timeout: timeout setting for this request. If one
@@ -3985,7 +3985,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_retrieve(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -4004,7 +4004,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4055,7 +4055,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_retrieve_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -4074,7 +4074,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4125,7 +4125,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_retrieve_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         format: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -4144,7 +4144,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param format:
         :type format: str
         :param _request_timeout: timeout setting for this request. If one
@@ -4541,7 +4541,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_status_partial_update(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         patched_tracker_status: Optional[PatchedTrackerStatus] = None,
         _request_timeout: Union[
             None,
@@ -4560,7 +4560,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param patched_tracker_status:
         :type patched_tracker_status: PatchedTrackerStatus
         :param _request_timeout: timeout setting for this request. If one
@@ -4611,7 +4611,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_status_partial_update_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         patched_tracker_status: Optional[PatchedTrackerStatus] = None,
         _request_timeout: Union[
             None,
@@ -4630,7 +4630,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param patched_tracker_status:
         :type patched_tracker_status: PatchedTrackerStatus
         :param _request_timeout: timeout setting for this request. If one
@@ -4681,7 +4681,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_status_partial_update_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         patched_tracker_status: Optional[PatchedTrackerStatus] = None,
         _request_timeout: Union[
             None,
@@ -4700,7 +4700,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param patched_tracker_status:
         :type patched_tracker_status: PatchedTrackerStatus
         :param _request_timeout: timeout setting for this request. If one
@@ -4829,7 +4829,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_status_retrieve(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4847,7 +4847,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4895,7 +4895,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_status_retrieve_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4913,7 +4913,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4961,7 +4961,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_status_retrieve_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4979,7 +4979,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5087,7 +5087,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_unlink_create(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_link_linking: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -5106,7 +5106,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_link_linking: (required)
         :type tracker_link_linking: TrackerLinkLinking
         :param _request_timeout: timeout setting for this request. If one
@@ -5157,7 +5157,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_unlink_create_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_link_linking: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -5176,7 +5176,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_link_linking: (required)
         :type tracker_link_linking: TrackerLinkLinking
         :param _request_timeout: timeout setting for this request. If one
@@ -5227,7 +5227,7 @@ class TrackerLinksApi:
     @validate_call
     async def tracker_links_unlink_create_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         tracker_link_linking: TrackerLinkLinking,
         _request_timeout: Union[
             None,
@@ -5246,7 +5246,7 @@ class TrackerLinksApi:
 
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param tracker_link_linking: (required)
         :type tracker_link_linking: TrackerLinkLinking
         :param _request_timeout: timeout setting for this request. If one

@@ -1271,8 +1271,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -1306,8 +1305,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -1360,8 +1358,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -1414,8 +1411,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10175,8 +10171,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10225,8 +10220,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10255,8 +10249,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10291,8 +10284,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10328,8 +10320,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10385,8 +10376,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10441,8 +10431,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     },
@@ -10486,8 +10475,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10520,8 +10508,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -10575,8 +10562,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string",
-                            "pattern": "^\\d+$"
+                            "type": "integer"
                         },
                         "required": true
                     }

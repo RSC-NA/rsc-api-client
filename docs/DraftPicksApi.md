@@ -134,7 +134,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | 
 
     try:
         await api_instance.draft_picks_destroy(id)
@@ -149,7 +149,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**|  | 
 
 ### Return type
 
@@ -311,7 +311,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | 
     patched_draft_pick_update = rscapi.PatchedDraftPickUpdate() # PatchedDraftPickUpdate |  (optional)
 
     try:
@@ -329,7 +329,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**|  | 
  **patched_draft_pick_update** | [**PatchedDraftPickUpdate**](PatchedDraftPickUpdate.md)|  | [optional] 
 
 ### Return type
@@ -389,7 +389,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | 
 
     try:
         api_response = await api_instance.draft_picks_retrieve(id)
@@ -406,7 +406,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**|  | 
 
 ### Return type
 
@@ -546,7 +546,7 @@ configuration.api_key['Api-Key'] = os.environ["API_KEY"]
 async with rscapi.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = rscapi.DraftPicksApi(api_client)
-    id = 'id_example' # str | 
+    id = 56 # int | 
     draft_pick_update = rscapi.DraftPickUpdate() # DraftPickUpdate |  (optional)
 
     try:
@@ -564,7 +564,7 @@ async with rscapi.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
+ **id** | **int**|  | 
  **draft_pick_update** | [**DraftPickUpdate**](DraftPickUpdate.md)|  | [optional] 
 
 ### Return type

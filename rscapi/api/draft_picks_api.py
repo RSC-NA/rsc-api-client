@@ -410,7 +410,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_destroy(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -429,7 +429,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -477,7 +477,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_destroy_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -496,7 +496,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -544,7 +544,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_destroy_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -563,7 +563,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1148,7 +1148,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_partial_update(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         patched_draft_pick_update: Optional[PatchedDraftPickUpdate] = None,
         _request_timeout: Union[
             None,
@@ -1168,7 +1168,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param patched_draft_pick_update:
         :type patched_draft_pick_update: PatchedDraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
@@ -1219,7 +1219,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_partial_update_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         patched_draft_pick_update: Optional[PatchedDraftPickUpdate] = None,
         _request_timeout: Union[
             None,
@@ -1239,7 +1239,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param patched_draft_pick_update:
         :type patched_draft_pick_update: PatchedDraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
@@ -1290,7 +1290,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_partial_update_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         patched_draft_pick_update: Optional[PatchedDraftPickUpdate] = None,
         _request_timeout: Union[
             None,
@@ -1310,7 +1310,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param patched_draft_pick_update:
         :type patched_draft_pick_update: PatchedDraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
@@ -1439,7 +1439,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_retrieve(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1458,7 +1458,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1506,7 +1506,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_retrieve_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1525,7 +1525,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1573,7 +1573,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_retrieve_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1592,7 +1592,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1983,7 +1983,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_update(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         draft_pick_update: Optional[DraftPickUpdate] = None,
         _request_timeout: Union[
             None,
@@ -2003,7 +2003,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param draft_pick_update:
         :type draft_pick_update: DraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
@@ -2054,7 +2054,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_update_with_http_info(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         draft_pick_update: Optional[DraftPickUpdate] = None,
         _request_timeout: Union[
             None,
@@ -2074,7 +2074,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param draft_pick_update:
         :type draft_pick_update: DraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
@@ -2125,7 +2125,7 @@ class DraftPicksApi:
     @validate_call
     async def draft_picks_update_without_preload_content(
         self,
-        id: Annotated[str, Field(strict=True)],
+        id: StrictInt,
         draft_pick_update: Optional[DraftPickUpdate] = None,
         _request_timeout: Union[
             None,
@@ -2145,7 +2145,7 @@ class DraftPicksApi:
         A viewset that provides retrieve, update, partial_update, and destroy actions.
 
         :param id: (required)
-        :type id: str
+        :type id: int
         :param draft_pick_update:
         :type draft_pick_update: DraftPickUpdate
         :param _request_timeout: timeout setting for this request. If one
