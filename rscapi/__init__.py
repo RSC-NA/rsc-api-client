@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.2.1"
+__version__ = "2.3.0"
 
 # Define package exports
 __all__ = [
@@ -49,9 +49,11 @@ __all__ = [
     "BaseTeam",
     "BulkMMRSchemaSubmission",
     "CategoryEnum",
+    "ConferenceEnum",
     "CreateMemberInput",
     "CutSignInput",
     "Deleted",
+    "DivisionEnum",
     "DraftInput",
     "DraftPickDetails",
     "DraftPickFranchise",
@@ -156,6 +158,8 @@ __all__ = [
     "PatchedTeamPatch",
     "PatchedTier",
     "PatchedTrackerStatus",
+    "PendingSeries",
+    "PendingSeriesFeeder",
     "PermFASignupDetails",
     "PickTransactionUpdates",
     "PlatformEnum",
@@ -198,11 +202,13 @@ __all__ = [
     "SubStatusEnum",
     "Team",
     "TeamCreate",
+    "TeamDetail",
     "TeamFranchise",
     "TeamList",
     "TeamPatch",
     "TeamPlayer",
     "TeamRebrand",
+    "TeamSeasonDetails",
     "TeamSeasonStats",
     "TeamStandings",
     "TeamsContracts",
@@ -281,9 +287,11 @@ from rscapi.models.activity_request import ActivityRequest as ActivityRequest
 from rscapi.models.base_team import BaseTeam as BaseTeam
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission as BulkMMRSchemaSubmission
 from rscapi.models.category_enum import CategoryEnum as CategoryEnum
+from rscapi.models.conference_enum import ConferenceEnum as ConferenceEnum
 from rscapi.models.create_member_input import CreateMemberInput as CreateMemberInput
 from rscapi.models.cut_sign_input import CutSignInput as CutSignInput
 from rscapi.models.deleted import Deleted as Deleted
+from rscapi.models.division_enum import DivisionEnum as DivisionEnum
 from rscapi.models.draft_input import DraftInput as DraftInput
 from rscapi.models.draft_pick_details import DraftPickDetails as DraftPickDetails
 from rscapi.models.draft_pick_franchise import DraftPickFranchise as DraftPickFranchise
@@ -388,6 +396,8 @@ from rscapi.models.patched_season_write import PatchedSeasonWrite as PatchedSeas
 from rscapi.models.patched_team_patch import PatchedTeamPatch as PatchedTeamPatch
 from rscapi.models.patched_tier import PatchedTier as PatchedTier
 from rscapi.models.patched_tracker_status import PatchedTrackerStatus as PatchedTrackerStatus
+from rscapi.models.pending_series import PendingSeries as PendingSeries
+from rscapi.models.pending_series_feeder import PendingSeriesFeeder as PendingSeriesFeeder
 from rscapi.models.perm_fa_signup_details import PermFASignupDetails as PermFASignupDetails
 from rscapi.models.pick_transaction_updates import PickTransactionUpdates as PickTransactionUpdates
 from rscapi.models.platform_enum import PlatformEnum as PlatformEnum
@@ -430,11 +440,13 @@ from rscapi.models.sub_input import SubInput as SubInput
 from rscapi.models.sub_status_enum import SubStatusEnum as SubStatusEnum
 from rscapi.models.team import Team as Team
 from rscapi.models.team_create import TeamCreate as TeamCreate
+from rscapi.models.team_detail import TeamDetail as TeamDetail
 from rscapi.models.team_franchise import TeamFranchise as TeamFranchise
 from rscapi.models.team_list import TeamList as TeamList
 from rscapi.models.team_patch import TeamPatch as TeamPatch
 from rscapi.models.team_player import TeamPlayer as TeamPlayer
 from rscapi.models.team_rebrand import TeamRebrand as TeamRebrand
+from rscapi.models.team_season_details import TeamSeasonDetails as TeamSeasonDetails
 from rscapi.models.team_season_stats import TeamSeasonStats as TeamSeasonStats
 from rscapi.models.team_standings import TeamStandings as TeamStandings
 from rscapi.models.teams_contracts import TeamsContracts as TeamsContracts

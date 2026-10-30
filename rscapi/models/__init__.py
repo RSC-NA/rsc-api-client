@@ -19,9 +19,11 @@ from rscapi.models.activity_request import ActivityRequest
 from rscapi.models.base_team import BaseTeam
 from rscapi.models.bulk_mmr_schema_submission import BulkMMRSchemaSubmission
 from rscapi.models.category_enum import CategoryEnum
+from rscapi.models.conference_enum import ConferenceEnum
 from rscapi.models.create_member_input import CreateMemberInput
 from rscapi.models.cut_sign_input import CutSignInput
 from rscapi.models.deleted import Deleted
+from rscapi.models.division_enum import DivisionEnum
 from rscapi.models.draft_input import DraftInput
 from rscapi.models.draft_pick_details import DraftPickDetails
 from rscapi.models.draft_pick_franchise import DraftPickFranchise
@@ -126,6 +128,8 @@ from rscapi.models.patched_season_write import PatchedSeasonWrite
 from rscapi.models.patched_team_patch import PatchedTeamPatch
 from rscapi.models.patched_tier import PatchedTier
 from rscapi.models.patched_tracker_status import PatchedTrackerStatus
+from rscapi.models.pending_series import PendingSeries
+from rscapi.models.pending_series_feeder import PendingSeriesFeeder
 from rscapi.models.perm_fa_signup_details import PermFASignupDetails
 from rscapi.models.pick_transaction_updates import PickTransactionUpdates
 from rscapi.models.platform_enum import PlatformEnum
@@ -168,11 +172,13 @@ from rscapi.models.sub_input import SubInput
 from rscapi.models.sub_status_enum import SubStatusEnum
 from rscapi.models.team import Team
 from rscapi.models.team_create import TeamCreate
+from rscapi.models.team_detail import TeamDetail
 from rscapi.models.team_franchise import TeamFranchise
 from rscapi.models.team_list import TeamList
 from rscapi.models.team_patch import TeamPatch
 from rscapi.models.team_player import TeamPlayer
 from rscapi.models.team_rebrand import TeamRebrand
+from rscapi.models.team_season_details import TeamSeasonDetails
 from rscapi.models.team_season_stats import TeamSeasonStats
 from rscapi.models.team_standings import TeamStandings
 from rscapi.models.teams_contracts import TeamsContracts

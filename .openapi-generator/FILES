@@ -7,10 +7,12 @@ docs/ActivityRequest.md
 docs/BaseTeam.md
 docs/BulkMMRSchemaSubmission.md
 docs/CategoryEnum.md
+docs/ConferenceEnum.md
 docs/CreateMemberInput.md
 docs/CsvApi.md
 docs/CutSignInput.md
 docs/Deleted.md
+docs/DivisionEnum.md
 docs/DraftInput.md
 docs/DraftPickDetails.md
 docs/DraftPickFranchise.md
@@ -124,6 +126,8 @@ docs/PatchedSeasonWrite.md
 docs/PatchedTeamPatch.md
 docs/PatchedTier.md
 docs/PatchedTrackerStatus.md
+docs/PendingSeries.md
+docs/PendingSeriesFeeder.md
 docs/PermFASignupDetails.md
 docs/PickTransactionUpdates.md
 docs/PlatformEnum.md
@@ -168,11 +172,13 @@ docs/SubInput.md
 docs/SubStatusEnum.md
 docs/Team.md
 docs/TeamCreate.md
+docs/TeamDetail.md
 docs/TeamFranchise.md
 docs/TeamList.md
 docs/TeamPatch.md
 docs/TeamPlayer.md
 docs/TeamRebrand.md
+docs/TeamSeasonDetails.md
 docs/TeamSeasonStats.md
 docs/TeamStandings.md
 docs/TeamsApi.md
@@ -248,9 +254,11 @@ rscapi/models/activity_request.py
 rscapi/models/base_team.py
 rscapi/models/bulk_mmr_schema_submission.py
 rscapi/models/category_enum.py
+rscapi/models/conference_enum.py
 rscapi/models/create_member_input.py
 rscapi/models/cut_sign_input.py
 rscapi/models/deleted.py
+rscapi/models/division_enum.py
 rscapi/models/draft_input.py
 rscapi/models/draft_pick_details.py
 rscapi/models/draft_pick_franchise.py
@@ -355,6 +363,8 @@ rscapi/models/patched_season_write.py
 rscapi/models/patched_team_patch.py
 rscapi/models/patched_tier.py
 rscapi/models/patched_tracker_status.py
+rscapi/models/pending_series.py
+rscapi/models/pending_series_feeder.py
 rscapi/models/perm_fa_signup_details.py
 rscapi/models/pick_transaction_updates.py
 rscapi/models/platform_enum.py
@@ -397,11 +407,13 @@ rscapi/models/sub_input.py
 rscapi/models/sub_status_enum.py
 rscapi/models/team.py
 rscapi/models/team_create.py
+rscapi/models/team_detail.py
 rscapi/models/team_franchise.py
 rscapi/models/team_list.py
 rscapi/models/team_patch.py
 rscapi/models/team_player.py
 rscapi/models/team_rebrand.py
+rscapi/models/team_season_details.py
 rscapi/models/team_season_stats.py
 rscapi/models/team_standings.py
 rscapi/models/teams_contracts.py
@@ -448,4 +460,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_pending_series.py
+test/test_pending_series_feeder.py
 tox.ini

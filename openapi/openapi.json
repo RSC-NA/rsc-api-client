@@ -8405,7 +8405,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Team"
+                                    "$ref": "#/components/schemas/TeamDetail"
                                 }
                             }
                         },
@@ -8666,6 +8666,53 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Match"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/teams/{id}/pending_series/": {
+            "get": {
+                "operationId": "teams_pending_series_retrieve",
+                "description": "Get the team's next playoff series while its opponent is still being decided: a bye seed before its feeder series is reported, or a winner waiting on the other series it meets. 404 once the series has a match (see next_match) or when the team is not waiting on one.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this team.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "teams"
+                ],
+                "security": [
+                    {
+                        "Api-Key": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PendingSeries"
                                 }
                             }
                         },
@@ -12288,6 +12335,15 @@
                 "type": "string",
                 "description": "* `OBJ` - Object\n* `ANN` - Announcement\n* `TRN` - Transaction\n* `SYS` - System"
             },
+            "ConferenceEnum": {
+                "enum": [
+                    "L",
+                    "S",
+                    "N"
+                ],
+                "type": "string",
+                "description": "* `L` - Lunar\n* `S` - Solar\n* `N` - None"
+            },
             "CreateMemberInput": {
                 "type": "object",
                 "properties": {
@@ -12354,6 +12410,17 @@
                         "default": "Player removed from playing"
                     }
                 }
+            },
+            "DivisionEnum": {
+                "enum": [
+                    "O",
+                    "M",
+                    "E",
+                    "C",
+                    "N"
+                ],
+                "type": "string",
+                "description": "* `O` - Ocean\n* `M` - Mountain\n* `E` - Ember\n* `C` - Cloud\n* `N` - None"
             },
             "DraftInput": {
                 "type": "object",
@@ -15999,6 +16066,99 @@
                     }
                 }
             },
+            "PendingSeries": {
+                "type": "object",
+                "description": "A team's next playoff series before it has a match: its opponent is the winner of a\nfeeder series not yet reported. No lobby yet; the match, with one, exists once it is.",
+                "properties": {
+                    "tier": {
+                        "type": "string"
+                    },
+                    "round": {
+                        "type": "integer",
+                        "description": "Playoff round: 1 Wild Card, 2 Quarterfinals, 3 Semifinals, 4 Finals"
+                    },
+                    "round_label": {
+                        "type": "string"
+                    },
+                    "match_format": {
+                        "$ref": "#/components/schemas/MatchFormatEnum"
+                    },
+                    "num_games": {
+                        "type": "integer"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "home": {
+                        "type": "boolean",
+                        "nullable": true,
+                        "description": "True or False when the team is home or away whoever wins the feeder; null when that depends."
+                    },
+                    "team": {
+                        "$ref": "#/components/schemas/BaseTeam"
+                    },
+                    "possible_opponents": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BaseTeam"
+                        }
+                    },
+                    "feeder_match": {
+                        "$ref": "#/components/schemas/PendingSeriesFeeder"
+                    }
+                },
+                "required": [
+                    "date",
+                    "feeder_match",
+                    "home",
+                    "match_format",
+                    "num_games",
+                    "possible_opponents",
+                    "round",
+                    "round_label",
+                    "team",
+                    "tier"
+                ]
+            },
+            "PendingSeriesFeeder": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "day": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "match_format": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/MatchFormatEnum"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "home_team": {
+                        "$ref": "#/components/schemas/BaseTeam"
+                    },
+                    "away_team": {
+                        "$ref": "#/components/schemas/BaseTeam"
+                    }
+                },
+                "required": [
+                    "away_team",
+                    "home_team"
+                ]
+            },
             "PermFASignupDetails": {
                 "type": "object",
                 "properties": {
@@ -18757,6 +18917,45 @@
                     "tier"
                 ]
             },
+            "TeamDetail": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "franchise": {
+                        "type": "string"
+                    },
+                    "tier": {
+                        "type": "string"
+                    },
+                    "players": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TeamPlayer"
+                        },
+                        "readOnly": true
+                    },
+                    "latest_season": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "season_details": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/TeamSeasonDetails"
+                            }
+                        ],
+                        "nullable": true,
+                        "readOnly": true
+                    }
+                }
+            },
             "TeamFranchise": {
                 "type": "object",
                 "properties": {
@@ -18887,6 +19086,35 @@
                     "name",
                     "tier"
                 ]
+            },
+            "TeamSeasonDetails": {
+                "type": "object",
+                "properties": {
+                    "conference": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ConferenceEnum"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "conference_label": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "division": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/DivisionEnum"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "division_label": {
+                        "type": "string",
+                        "readOnly": true
+                    }
+                }
             },
             "TeamSeasonStats": {
                 "type": "object",

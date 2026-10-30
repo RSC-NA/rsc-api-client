@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**teams_match_retrieve**](TeamsApi.md#teams_match_retrieve) | **GET** /teams/{id}/match/ | 
 [**teams_next_match_retrieve**](TeamsApi.md#teams_next_match_retrieve) | **GET** /teams/{id}/next_match/ | 
 [**teams_partial_update**](TeamsApi.md#teams_partial_update) | **PATCH** /teams/{id}/ | 
+[**teams_pending_series_retrieve**](TeamsApi.md#teams_pending_series_retrieve) | **GET** /teams/{id}/pending_series/ | 
 [**teams_player_stats_list**](TeamsApi.md#teams_player_stats_list) | **GET** /teams/{id}/player_stats/ | 
 [**teams_players_list**](TeamsApi.md#teams_players_list) | **GET** /teams/{id}/players/ | 
 [**teams_postseason_stats_retrieve**](TeamsApi.md#teams_postseason_stats_retrieve) | **GET** /teams/{id}/postseason_stats/ | 
@@ -487,6 +488,83 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **teams_pending_series_retrieve**
+> PendingSeries teams_pending_series_retrieve(id)
+
+Get the team's next playoff series while its opponent is still being decided: a bye seed before its feeder series is reported, or a winner waiting on the other series it meets. 404 once the series has a match (see next_match) or when the team is not waiting on one.
+
+### Example
+
+* Api Key Authentication (Api-Key):
+
+```python
+import rscapi
+from rscapi.models.pending_series import PendingSeries
+from rscapi.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = rscapi.Configuration(
+    host = "/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Api-Key
+configuration.api_key['Api-Key'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Api-Key'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+async with rscapi.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = rscapi.TeamsApi(api_client)
+    id = 56 # int | A unique integer value identifying this team.
+
+    try:
+        api_response = await api_instance.teams_pending_series_retrieve(id)
+        print("The response of TeamsApi->teams_pending_series_retrieve:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TeamsApi->teams_pending_series_retrieve: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| A unique integer value identifying this team. | 
+
+### Return type
+
+[**PendingSeries**](PendingSeries.md)
+
+### Authorization
+
+[Api-Key](../README.md#Api-Key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**404** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **teams_player_stats_list**
 > List[PlayerSeasonStatsInDepth] teams_player_stats_list(id, season=season, season_id=season_id, season_number=season_number)
 
@@ -730,7 +808,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **teams_retrieve**
-> Team teams_retrieve(id)
+> TeamDetail teams_retrieve(id)
 
 ### Example
 
@@ -738,7 +816,7 @@ Name | Type | Description  | Notes
 
 ```python
 import rscapi
-from rscapi.models.team import Team
+from rscapi.models.team_detail import TeamDetail
 from rscapi.rest import ApiException
 from pprint import pprint
 
@@ -784,7 +862,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Team**](Team.md)
+[**TeamDetail**](TeamDetail.md)
 
 ### Authorization
 
